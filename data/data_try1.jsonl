@@ -1,4 +1,12 @@
 [
+
+  {
+    "task_id": "test/1",
+    "prompt": "Using numpy, create a matrix with only zeros with 2*n rows and n cols\n def zero_matrix(n):\n",
+    "canonical_solution": "    import numpy as _np\n    return _np.zeros((2*n, n))",
+    "test": "import numpy as _np\nassert (zero_matrix(2) == _np.zeros((4, 2))).all()",
+    "entry_point": "zero_matrix"
+  },
   {
     "task_id": "test/0",
     "prompt": "def sub(a, b):\n",

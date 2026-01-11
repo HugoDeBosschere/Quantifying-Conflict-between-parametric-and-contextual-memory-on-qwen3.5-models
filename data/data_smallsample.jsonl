@@ -1,22 +1,16 @@
 [
 {
-    "task_id": "test/1",
-    "prompt": "Using numpy, create a matrix with only zeros with 2*n rows and n cols\n def zero_matrix(n):\n",
-    "canonical_solution": "    import numpy as _np\n    return _np.zeros((2*n, n))",
-    "test": "import numpy as _np\nassert (zero_matrix(2) == _np.zeros((4, 2))).all()",
-    "entry_point": "zero_matrix"
-},
-{
-"prompt": "Problem:\nI have the following DataFrame:\n    Col1  Col2  Col3  Type\n0      1     2     3     1\n1      4     5     6     1\n2      7     8     9     2\n3    10    11    12     2\n4    13    14    15     3\n5    16    17    18     3\n\n\nThe DataFrame is read from a CSV file. All rows which have Type 1 are on top, followed by the rows with Type 2, followed by the rows with Type 3, etc.\nI would like to shuffle the order of the DataFrame's rows according to a list. \\\nFor example, give a list [2, 4, 0, 3, 1, 5] and desired result should be:\n    Col1  Col2  Col3  Type\n2      7     8     9     2\n4     13    14    15     3\n0     1     2     3     1\n3    10    11    12     2\n1     4     5     6     1\n5    16    17    18     3\n...\n\n\nHow can I achieve this?\n\n\nA:\n<code>\nimport pandas as pd\nimport numpy as np\n\n\ndf = pd.DataFrame({'Col1': [1, 4, 7, 10, 13, 16],\n                   'Col2': [2, 5, 8, 11, 14, 17],\n                   'Col3': [3, 6, 9, 12, 15, 18],\n                   'Type': [1, 1, 2, 2, 3, 3]})\nList = np.random.permutation(len(df))\n</code>\nresult = ... # put solution in this variable\nBEGIN SOLUTION\n<code>\n", 
-"reference_code": "def g(df, List):\n    return df.iloc[List]\n\nresult = g(df.copy(), List)\n", 
-"metadata": {"problem_id": 0, 
-             "library_problem_id": 0, 
-             "library": "Pandas", 
-             "test_case_cnt": 1, 
-             "perturbation_type": "Origin", 
-             "perturbation_origin_id": 0
-            }, 
-"code_context": "import pandas as pd\nimport numpy as np\nimport copy\n\n\ndef generate_test_case(test_case_id):\n    def generate_ans(data):\n        data = data\n        df, List = data\n        return df.iloc[List]\n\n    def define_test_input(test_case_id):\n        if test_case_id == 1:\n            df = pd.DataFrame(\n                {\n                    \"Col1\": [1, 4, 7, 10, 13, 16],\n                    \"Col2\": [2, 5, 8, 11, 14, 17],\n                    \"Col3\": [3, 6, 9, 12, 15, 18],\n                    \"Type\": [1, 1, 2, 2, 3, 3],\n                }\n            )\n            List = np.random.permutation(len(df))\n        return df, List\n\n    test_input = define_test_input(test_case_id)\n    expected_result = generate_ans(copy.deepcopy(test_input))\n    return test_input, expected_result\n\n\ndef exec_test(result, ans):\n    try:\n        pd.testing.assert_frame_equal(result, ans, check_dtype=False)\n        return 1\n    except:\n        return 0\n\n\nexec_context = r\"\"\"\nimport pandas as pd\nimport numpy as np\ndf, List = test_input\n[insert]\n\"\"\"\n\n\ndef test_execution(solution: str):\n    code = exec_context.replace(\"[insert]\", solution)\n    for i in range(1):\n        test_input, expected_result = generate_test_case(i + 1)\n        test_env = {\"test_input\": test_input}\n        exec(code, test_env)\n        assert exec_test(test_env[\"result\"], expected_result)\n"
+    "prompt": "Problem:\nIs there a convenient way to calculate percentiles for a sequence or single-dimensional numpy array?\nI am looking for something similar to Excel's percentile function.\nI looked in NumPy's statistics reference, and couldn't find this. All I could find is the median (50th percentile), but not something more specific.\n\nA:\n<code>\nimport numpy as np\na = np.array([1,2,3,4,5])\np = 25\n</code>\nresult = ... # put solution in this variable\nBEGIN SOLUTION\n<code>\n", 
+    "reference_code": "result = np.percentile(a, p)\n", 
+    "metadata": {
+                "problem_id": 300, 
+                "library_problem_id": 9, 
+                "library": "Numpy", 
+                "test_case_cnt": 2, 
+                "perturbation_type": "Origin", 
+                "perturbation_origin_id": 9
+                }, 
+    "code_context": "import numpy as np\nimport pandas as pd\nimport copy\n\n\ndef generate_test_case(test_case_id):\n    def define_test_input(test_case_id):\n        if test_case_id == 1:\n            a = np.array([1, 2, 3, 4, 5])\n            p = 25\n        elif test_case_id == 2:\n            np.random.seed(42)\n            a = np.random.rand(20)\n            p = np.random.randint(1, 99)\n        return a, p\n\n    def generate_ans(data):\n        _a = data\n        a, p = _a\n        result = np.percentile(a, p)\n        return result\n\n    test_input = define_test_input(test_case_id)\n    expected_result = generate_ans(copy.deepcopy(test_input))\n    return test_input, expected_result\n\n\ndef exec_test(result, ans):\n    np.testing.assert_allclose(result, ans)\n    return 1\n\n\nexec_context = r\"\"\"\nimport numpy as np\na, p = test_input\n[insert]\n\"\"\"\n\n\ndef test_execution(solution: str):\n    code = exec_context.replace(\"[insert]\", solution)\n    for i in range(2):\n        test_input, expected_result = generate_test_case(i + 1)\n        test_env = {\"test_input\": test_input}\n        exec(code, test_env)\n        assert exec_test(test_env[\"result\"], expected_result)\n"
 }
 
 ]
