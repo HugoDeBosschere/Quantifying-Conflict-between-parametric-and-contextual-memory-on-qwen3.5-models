@@ -7,7 +7,7 @@ import sys
 import textwrap
 
 ## LOAD the config file
-from config_loader import load_config
+from src.config_loader import load_config
 config = load_config()
 
 # --- CONFIGURATION ---
