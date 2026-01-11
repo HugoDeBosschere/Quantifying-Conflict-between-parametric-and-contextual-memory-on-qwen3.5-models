@@ -68,9 +68,6 @@ data example :
 
 
 
-
-
-
 - Humaneval : un classique d'évalusation de code, on peut s'en inspirer pour leurs formats de questions
   https://github.com/openai/human-eval/blob/master/data/example_samples.jsonl
 

@@ -9,7 +9,7 @@
             },
     "new_lib_injection": {
             "name": "WrapRotatedNumpy",
-            "system_prompt": "You are a Python Data Science expert (Numpy).\nComplete the code to solve the problem.\nAssign the final answer to the variable 'result'.\n\nIMPORTANT CONSTRAINTS:\n1. Assume that input data (DataFrames, arrays) is ALREADY LOADED in the environment.\n2. Do NOT redefine input variables or create mock data examples.\n3. Return ONLY the code inside a markdown block.",
+            "system_prompt": "You are a Python Data Science expert.\n Complete the code to solve the problem.\n Assign the final answer to the variable 'result'.\n IMPORTANT CONSTRAINTS:\n 1. Assume that input data (arrays) is ALREADY LOADED.\n2. Do NOT redefine input variables or create mock data only the code to be executed is required.\n 3. Do NOT import standard libraries (numpy/pandas are pre-imported).\n 4. Return ONLY the code inside a markdown block.\n You must only use the Numpy library to find the solution.",
             "context_prompt":"You must use the Numpy library to find the solution of the following problem."
             }
             

@@ -18,6 +18,8 @@ def generate_test_case(test_case_id):
             np.random.seed(42)
             a = np.random.rand(20)
             p = np.random.randint(1, 99)
+        # else:
+        #     raise ValueError(f"Unknown test_case_id: {test_case_id}")
         return a, p
 
     def generate_ans(data):
