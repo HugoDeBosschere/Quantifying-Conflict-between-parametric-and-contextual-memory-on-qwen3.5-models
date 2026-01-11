@@ -1,8 +1,3 @@
-import numpy as np
-import copy
-import sys
-import math
-
 # --- 1. LE MOTEUR DE TEST (Issu du JSON) ---
 import numpy as np
 import pandas as pd
@@ -18,8 +13,6 @@ def generate_test_case(test_case_id):
             np.random.seed(42)
             a = np.random.rand(20)
             p = np.random.randint(1, 99)
-        # else:
-        #     raise ValueError(f"Unknown test_case_id: {test_case_id}")
         return a, p
 
     def generate_ans(data):
@@ -57,7 +50,7 @@ def test_execution(solution: str):
 # --- 2. L'EXÉCUTION ---
 try:
     # On appelle la fonction fournie par le JSON pour tester la solution
-    test_execution('\np = 25\nresult = percentileofscore(a, p) * 100')
+    test_execution('result = np.percentile(a, p)')
     print('SUCCESS_MARKER')
 except AssertionError:
     print('TEST_FAILED: Assertion incorrecte')

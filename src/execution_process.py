@@ -42,11 +42,6 @@ def execute_task_engine(code_context, llm_solution):
 
     # 3. Construction du script Python temporaire
     final_script = (
-        "import numpy as np\n"
-        "import copy\n"
-        "import sys\n"
-        "import math\n\n"
-        
         "# --- 1. LE MOTEUR DE TEST (Issu du JSON) ---\n"
         f"{code_context}\n\n"
         
@@ -70,8 +65,8 @@ def execute_task_engine(code_context, llm_solution):
 
 
     # Uncomment to have a view on which file is executed
-    # with open("/usr/users/sdim/sdim_25/memory_code_eval/example.py", mode="w") as f :
-    #     f.write(final_script)
+    with open("/usr/users/sdim/sdim_25/memory_code_eval/example.py", mode="w") as f :
+        f.write(final_script)
 
     try:
         result = subprocess.run(
