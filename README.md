@@ -48,6 +48,29 @@ Sources improtantes -- Etat de l'art :
 - Dataset de questions python : à creuser mais contient 220 questions ciblés sur numpy:
   https://github.com/xlang-ai/DS-1000/tree/main
 
+data example :
+
+{
+    "prompt": problem description, 
+    "reference_code": The working code for the problem, 
+    "metadata": {
+                "problem_id": 300, 
+                "library_problem_id": 9, 
+                "library": "Numpy", 
+                "test_case_cnt": 2, 
+                "perturbation_type": "Origin", 
+                "perturbation_origin_id": 9
+                }, 
+    "code_context": a code that contains a generation of examples and assertions
+}
+
+
+
+
+
+
+
+
 - Humaneval : un classique d'évalusation de code, on peut s'en inspirer pour leurs formats de questions
   https://github.com/openai/human-eval/blob/master/data/example_samples.jsonl
 

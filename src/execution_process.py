@@ -20,8 +20,9 @@ API_URL = config["llm"]["api_url"]
 def query_llm(prompt_text):
     print(f"Interrogation de {MODEL_NAME}...")
     
-    system = "You are a Python expert. Provide ONLY the raw code inside a markdown block. Do not explain."
-    full_prompt = f"{system}\n\n{prompt_text}"
+    system = config["new_lib_injection"]["system_prompt"]
+    context_prompt = config["new_lib_injection"]["context_prompt"]
+    full_prompt = f"{system}\n\n{context_prompt}\n\n{prompt_text}"
     
     response = requests.post(API_URL, json={
         "model": MODEL_NAME,
@@ -37,12 +38,13 @@ def query_llm(prompt_text):
         
     return response.json()['response']
 
-def extract_code_and_fix(original_prompt, llm_response):
+def extract_code_and_fix(llm_response):
     print("\n--- Réponse Brut du LLM ---")
     print(llm_response)
     print("---------------------------\n")
 
-    pattern = r"```(?:python|Python)?\n(.*?)```"
+    # find the code between the markdown
+    pattern = r"```(?:python|Python|code)?\n(.*?)```"
     matches = re.findall(pattern, llm_response, re.DOTALL)
     
     if matches:
@@ -50,40 +52,93 @@ def extract_code_and_fix(original_prompt, llm_response):
     else:
         code = llm_response.strip()
 
-    if "def" not in code:
-        print("Signature manquante, concaténation avec le prompt...")
-        return original_prompt.strip() + "\n    " + code
-    
+    # take the imports out of the code 
+    lines = code.split('\n')
+    cleaned_lines = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("import ") or stripped.startswith("from "):
+            continue
+            
+        cleaned_lines.append(line)
+        
+    code = "\n".join(cleaned_lines)
+
     return code
 
-def run_test(code_to_run, test_code):
-    indented_test = textwrap.indent(test_code, '    ')
+
+def ensure_result_assignment(code):
+    """
+    Heuristique : Le moteur de test s'attend souvent à trouver une variable 'result'.
+    Si le LLM renvoie juste 'np.percentile(...)', on rajoute 'result = ' devant.
+    """
+    if "result =" not in code and "result=" not in code:
+        # On prend la dernière ligne non vide
+        lines = code.split('\n')
+        last_line_idx = -1
+        for i in range(len(lines) -1, -1, -1):
+            if lines[i].strip():
+                last_line_idx = i
+                break
+        
+        if last_line_idx != -1:
+            lines[last_line_idx] = "result = " + lines[last_line_idx]
+            return "\n".join(lines)
+            
+    return code
+
+
+
+def execute_task_engine(code_context, llm_solution):
+    """
+    Construit le script final en combinant le moteur de test (JSON) et la solution (LLM).
+    """
     
+    # 1. Nettoyage et préparation de la solution
+    clean_solution = ensure_result_assignment(llm_solution)
+    
+    # 2. Échappement : On transforme le code du LLM en chaîne de caractères Python valide
+    safe_solution_str = repr(clean_solution)
+
+    # 3. Construction du script Python temporaire
     final_script = (
         "import numpy as np\n"
-        f"{code_to_run}\n"
-        "\n# --- TESTS ---\n"
+        "import copy\n"
+        "import sys\n"
+        "import math\n\n"
+        
+        "# --- 1. LE MOTEUR DE TEST (Issu du JSON) ---\n"
+        f"{code_context}\n\n"
+        
+        "# --- 2. L'EXÉCUTION ---\n"
         "try:\n"
-        f"{indented_test}\n" # Injection du bloc correctement indenté
+        f"    # On appelle la fonction fournie par le JSON pour tester la solution\n"
+        f"    test_execution({safe_solution_str})\n"
         "    print('SUCCESS_MARKER')\n"
+        "except AssertionError:\n"
+        "    print('TEST_FAILED: Assertion incorrecte')\n"
         "except Exception as e:\n"
-        "    print(f'ERROR_MARKER: {e}')\n"
+        "    print(f'EXEC_ERROR: {e}')\n"
         "    import traceback\n"
         "    traceback.print_exc()\n"
     )
-    
-  
-    
+
+    # 4. Écriture et Exécution
     with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as f:
         f.write(final_script)
         script_path = f.name
+
+
+    # Uncomment to have a view on which file is executed
+    # with open("/usr/users/sdim/sdim_25/memory_code_eval/example.py", mode="w") as f :
+    #     f.write(final_script)
 
     try:
         result = subprocess.run(
             [sys.executable, script_path],
             capture_output=True,
             text=True,
-            timeout=10
+            timeout=10 
         )
         return result.stdout, result.stderr
     except subprocess.TimeoutExpired:
@@ -93,62 +148,86 @@ def run_test(code_to_run, test_code):
             os.remove(script_path)
 
 
+
 def evaluate_single_task(task):
-    """Orchestre l'évaluation d'une seule tâche JSON"""
-    print(f"Traitement de {task['task_id']}...")
+    """
+    Orchestre l'évaluation d'une seule tâche.
+    Input: Dictionnaire de la tâche (JSON)
+    Output: Dictionnaire de résultat complet
+    """
     
-    # 1. Génération
+    # 1. Récupération ID (Gère le format simple ou metadata)
+    task_id = task.get("metadata", {}).get("problem_id") or task.get("task_id", "unknown")
+    print(f"🔹 Traitement ID {task_id}...")
+
+    # 2. Appel LLM
     raw_response = query_llm(task['prompt'])
     if not raw_response:
-        return {"passed": False, "error": "LLM API Error - no response where given"}
+        return {
+            "task_id": task_id,
+            "passed": False,
+            "error": "LLM_API_FAILURE",
+            "llm_code": ""
+        }
 
-    # 2. Parsing
-    final_code = extract_code_and_fix(task['prompt'], raw_response)
-    
-    # 3. Exécution
-    stdout, stderr = run_test(final_code, task['test'])
-    
-    passed = "SUCCESS_MARKER" in stdout
-    
+    # 3. Parsing
+    code = extract_code_and_fix(raw_response)
+
+    # 4. Exécution (si contexte présent)
+    if "code_context" in task:
+        stdout, stderr = execute_task_engine(task["code_context"], code)
+        passed = "SUCCESS_MARKER" in stdout
+    else:
+        print(f"Warning: Pas de 'code_context' pour {task_id}")
+        passed = False
+        stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
+
+    # 5. Construction du résultat
     return {
-        "task_id": task["task_id"],
+        "task_id": task_id,
         "passed": passed,
-        "generated_code": final_code,
+        "llm_code": code,
         "stdout": stdout,
         "stderr": stderr,
-        "llm_raw_response": raw_response
+        "full_response": raw_response
     }
 
 def run_benchmark():
-    # Résolution des chemins relatifs
+    """Lit le fichier d'entrée et traite chaque ligne"""
     base_dir = os.path.dirname(os.path.abspath(__file__))
     input_path = os.path.join(base_dir, config["data"]["input_path"])
     output_path = os.path.join(base_dir, config["data"]["output_path"])
 
-    print(f"📂 Lecture de : {input_path}")
-    print(f"💾 Écriture dans : {output_path}")
+    print(f"Lecture : {input_path}")
+    
+    if not os.path.exists(input_path):
+        print(f"Erreur: Fichier introuvable -> {input_path}")
+        return
 
-    # On ouvre le fichier de sortie en mode 'append' (a)
-    # Comme ça, si le script crash, les résultats précédents sont sauvés.
+    # Ouverture en mode append ('a') pour reprendre si crash
     with open(input_path, 'r', encoding='utf-8') as f_in, \
          open(output_path, 'a', encoding='utf-8') as f_out:
         
         for line in f_in:
-            if not line.strip(): continue # Sauter lignes vides
+            if not line.strip(): continue
             
-            task = json.loads(line)
+            # Chargement JSON
+            try:
+                task = json.loads(line)
+            except json.JSONDecodeError:
+                print("Ligne JSON invalide ignorée")
+                continue
             
-            # Évaluation
+            # --- APPEL DE LA FONCTION DÉDIÉE ---
             result = evaluate_single_task(task)
             
-            # Affichage console minimaliste
-            status = "✅" if result["passed"] else "❌"
-            print(f"{status} {task['task_id']}")
+            # Feedback Console
+            status = "pass" if result["passed"] else "false"
+            print(f"{status} {result['task_id']}")
             
-            # Écriture immédiate dans le fichier jsonl
-            json_record = json.dumps(result)
-            f_out.write(json_record + "\n")
-            f_out.flush() # Force l'écriture disque
+            # Écriture Disque
+            f_out.write(json.dumps(result) + "\n")
+            f_out.flush() # Important pour sauvegarder en temps réel
 
 if __name__ == "__main__":
     run_benchmark()

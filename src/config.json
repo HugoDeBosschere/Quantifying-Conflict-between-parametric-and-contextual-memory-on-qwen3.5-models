@@ -1,14 +1,16 @@
 {
     "llm": {"model":"koesn/llama3-8b-instruct",
-            "temperature":0.7,
+            "temperature":0.2,
             "api_url": "http://localhost:11434/api/generate"
             },
     "data": {
-            "input_path": "data/problems.jsonl",
-            "output_path": "data/results.jsonl"
+            "input_path": "../data/data_smallsample.jsonl",
+            "output_path": "../data/results.jsonl"
             },
     "new_lib_injection": {
-            "name": "WrapRotatedNumpy"
+            "name": "WrapRotatedNumpy",
+            "system_prompt": "You are a Python Data Science expert (Numpy).\nComplete the code to solve the problem.\nAssign the final answer to the variable 'result'.\n\nIMPORTANT CONSTRAINTS:\n1. Assume that input data (DataFrames, arrays) is ALREADY LOADED in the environment.\n2. Do NOT redefine input variables or create mock data examples.\n3. Return ONLY the code inside a markdown block.",
+            "context_prompt":"You must use the Numpy library to find the solution of the following problem."
             }
             
 }
