@@ -7,6 +7,7 @@ import sys
 import textwrap
 import json
 from datetime import datetime
+from queries import LLMClient
 
 ## LOAD the config file
 from config_loader import load_config
@@ -15,28 +16,15 @@ config = load_config()
 # --- CONFIGURATION ---
 MODEL_NAME = config["llm"]["model"]
 API_URL = config["llm"]["api_url"]
+system_prompt = config["new_lib_injection"]["system_prompt"]
+context_prompt = config["new_lib_injection"]["context_prompt"]
+temperature = config["llm"]["temperature"]
 
 
-def query_llm(prompt_text):
-    print(f"Interrogation de {MODEL_NAME}...")
-    
-    system = config["new_lib_injection"]["system_prompt"]
-    context_prompt = config["new_lib_injection"]["context_prompt"]
-    full_prompt = f"{system}\n\n{context_prompt}\n\n{prompt_text}"
-    
-    response = requests.post(API_URL, json={
-        "model": MODEL_NAME,
-        "prompt": full_prompt,
-        "stream": False,
-        "options": {
-            "temperature": config["llm"]["temperature"],
-        }
-    })
-    
-    if response.status_code != 200:
-        raise Exception(f"API Error: {response.text}")
-        
-    return response.json()['response']
+# --- INIT LLM CLIENT ---
+llm_client = LLMClient(config)
+
+
 
 def extract_code_and_fix(llm_response):
     print("\n--- Réponse Brut du LLM ---")
@@ -161,7 +149,7 @@ def evaluate_single_task(task):
     print(f"🔹 Traitement ID {task_id}...")
 
     # 2. Appel LLM
-    raw_response = query_llm(task['prompt'])
+    raw_response = llm_client.query_llm(task['prompt'])
     if not raw_response:
         return {
             "task_id": task_id,
