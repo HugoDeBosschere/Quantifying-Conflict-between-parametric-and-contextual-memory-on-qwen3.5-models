@@ -29,6 +29,6 @@ class LLMClient:
             response.raise_for_status()
             return response.json()['response']
         except Exception as e:
-            print(f"🚨 Erreur API : {e}")
+            print(f"Erreur API : {e}")
             return None
 
