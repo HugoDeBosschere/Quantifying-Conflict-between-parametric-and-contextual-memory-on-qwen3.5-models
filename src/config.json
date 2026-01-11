@@ -6,5 +6,9 @@
     "data": {
             "input_path": "data/problems.jsonl",
             "output_path": "data/results.jsonl"
+            },
+    "new_lib_injection": {
+            "name": "WrapRotatedNumpy"
             }
+            
 }
