@@ -2,5 +2,9 @@
     "llm": {"model":"koesn/llama3-8b-instruct",
             "temperature":0.7,
             "api_url": "http://localhost:11434/api/generate"
+            },
+    "data": {
+            "input_path": "data/problems.jsonl",
+            "output_path": "data/results.jsonl"
             }
 }

@@ -14,12 +14,6 @@ config = load_config()
 MODEL_NAME = config["llm"]["model"]
 API_URL = config["llm"]["api_url"]
 
-dataset_item = {
-    "task_id": "test/1",
-    "prompt": "Using numpy, create a matrix with only zeros with 2*n rows and n cols\n def zero_matrix(n):\n",
-    "test": "import numpy as _np\nassert (zero_matrix(2) == _np.zeros((4, 2))).all()",
-    "entry_point": "zero_matrix"
-}
 
 def query_llm(prompt_text):
     print(f"Interrogation de {MODEL_NAME}...")
