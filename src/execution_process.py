@@ -8,7 +8,7 @@ import textwrap
 import json
 from datetime import datetime
 from llmclient import LLMClient
-from cleaning import extract_code_and_fix, ensure_result_assignment
+from cleaning import extract_code_and_fix, ensure_result_assignment, modify_lib
 
 ## LOAD the config file
 from config_loader import load_config
@@ -110,6 +110,11 @@ def evaluate_single_task(task):
 
     # 4. Exécution (si contexte présent)
     if "code_context" in task:
+        ## Ajouter la modif en fonction de la lib plus tard
+        # new_import = "import " + config["new_lib_injection"]["name"] + " as np"
+        # new_context = modify_lib(task["code_context"], new_import)
+        # stdout, stderr = execute_task_engine(new_context, code)
+
         stdout, stderr = execute_task_engine(task["code_context"], code)
         passed = "SUCCESS_MARKER" in stdout
     else:
