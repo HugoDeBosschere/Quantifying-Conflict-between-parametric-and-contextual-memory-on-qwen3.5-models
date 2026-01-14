@@ -37,9 +37,25 @@ autre test de modif de numpy mais moins abouti
 
 
 
+BUT intermédiaire : intégrer le fait de pouvoir rajouter plusieurs llm et plusieurs lib su r le fichier de config de telle sorte que les executions en fonction d'un contexte (description, example, tout le fichier) se fassent toutes d'un coup selon ce au'on ajoute ou non sur le fichier de config. 
+
+En gros rendre la pipeline la plus générique possible pour que plus tard seul la partie écriture de fichier temporaire d'execution etc dépende uniquement de comment la data est présentée et on conserve les autres fichiers.
+
+faire un fichier d'exec pour lancer les commandes bash de ollama etc au préalable pour une meilleure automatisation.
+
+Faire une image docker, un dockerfile pour que les exec se fassent dessus. --> meilleure sécurité.
+
+Voir comment on peut nous même créer notre benchmark de questions à tester. créer le bench en fonction de nos besoins. 
 
 
-Sources improtantes -- Etat de l'art : 
+
+
+
+
+
+
+
+Sources importantes -- Etat de l'art : 
 
 - Papier OpenAI expliquant comment ils créent des SandBox afin d'executer du code provenant de LLM de façon automatisé:
   https://arxiv.org/pdf/2107.03374
