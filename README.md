@@ -14,7 +14,7 @@ disant de l'utiliser). L'idée serait donc de lui demander de résoudre des peti
 et de controller de façon fonctionnelle (en executant le code de sortie) pour savoir s'il a intégré la modif ou non.
 
 Pour s'assurer que ce sont bien les fonctions de notre nouvelle librairie qui sont utilisées on peut dans la sandbox
-ou container ajouter au préalable les nouveaux modules .py et ajouter l'import correpsondant dans le fichier qui sera executé
+ou container ajouter au préalable les nouveaux modules .py et ajouter l'import correspondant dans le fichier qui sera executé
 
 
 
