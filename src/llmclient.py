@@ -11,6 +11,7 @@ class LLMClient:
         self.temperature = config["llm"]["temperature"]
         self.system_prompt = config["new_lib_injection"]["system_prompt"]
         self.context_prompt = config["new_lib_injection"]["context_prompt"]
+        self.custom_lib_path = config["new_lib_injection"]["custom_lib_path"]
 
     def query_llm(self, prompt_text):
         print(f"Interrogation de {self.model_name}...")
