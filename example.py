@@ -32,7 +32,7 @@ def exec_test(result, ans):
 
 
 exec_context = r"""
-import numpy as np
+import WrapRotatedNumpy as np
 a, p = test_input
 [insert]
 """

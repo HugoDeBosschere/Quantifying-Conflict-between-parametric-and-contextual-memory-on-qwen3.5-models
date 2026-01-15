@@ -8,7 +8,7 @@ def extract_code_and_fix(llm_response):
     print("---------------------------\n")
 
     # find the code between the markdown
-    pattern = r"```(?:python|Python|code)?\n(.*?)```"
+    pattern = r"```(?:python|markdown|Markdown|Python|code)?\n(.*?)```"
     matches = re.findall(pattern, llm_response, re.DOTALL)
     
     if matches:
@@ -80,4 +80,4 @@ def modify_lib(file_content, new_import_statement):
         return new_content
     else:
         print("Aucune occurrence trouvée dans exec_context.")
-        return file_content
+        return ""

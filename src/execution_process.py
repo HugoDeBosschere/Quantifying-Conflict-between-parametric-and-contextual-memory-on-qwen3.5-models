@@ -14,18 +14,10 @@ from cleaning import extract_code_and_fix, ensure_result_assignment, modify_lib
 from config_loader import load_config
 config = load_config()
 
-# --- CONFIGURATION ---
-MODEL_NAME = config["llm"]["model"]
-API_URL = config["llm"]["api_url"]
-system_prompt = config["new_lib_injection"]["system_prompt"]
-context_prompt = config["new_lib_injection"]["context_prompt"]
-temperature = config["llm"]["temperature"]
 
 
 # --- INIT LLM CLIENT ---
 llm_client = LLMClient(config)
-
-
 
 
 
@@ -63,17 +55,22 @@ def execute_task_engine(code_context, llm_solution):
         f.write(final_script)
         script_path = f.name
 
+    # On ajoute au python path notre librairie maison contrefactuelle
+    env_execution = os.environ.copy()
+    current_pythonpath = env_execution.get("PYTHONPATH", "")
+    env_execution["PYTHONPATH"] = llm_client.custom_lib_path + os.pathsep + current_pythonpath
 
     # # Uncomment to have a view on which file is executed
-    # with open("/usr/users/sdim/sdim_25/memory_code_eval/example.py", mode="w") as f :
-    #     f.write(final_script)
+    with open("/usr/users/sdim/sdim_25/memory_code_eval/example.py", mode="w") as f :
+        f.write(final_script)
 
     try:
         result = subprocess.run(
             [sys.executable, script_path],
             capture_output=True,
             text=True,
-            timeout=10 
+            timeout=10,
+            env=env_execution
         )
         return result.stdout, result.stderr
     except subprocess.TimeoutExpired:
@@ -111,11 +108,13 @@ def evaluate_single_task(task):
     # 4. Exécution (si contexte présent)
     if "code_context" in task:
         ## Ajouter la modif en fonction de la lib plus tard
-        # new_import = "import " + config["new_lib_injection"]["name"] + " as np"
-        # new_context = modify_lib(task["code_context"], new_import)
-        # stdout, stderr = execute_task_engine(new_context, code)
-
-        stdout, stderr = execute_task_engine(task["code_context"], code)
+        new_import = "import " + config["new_lib_injection"]["name"] + " as np"
+        new_context = modify_lib(task["code_context"], new_import)
+        if new_context :
+            stdout, stderr = execute_task_engine(new_context, code)
+        else:
+            stdout, stderr = "", ""
+        # stdout, stderr = execute_task_engine(task["code_context"], code)
         passed = "SUCCESS_MARKER" in stdout
     else:
         print(f"Warning: Pas de 'code_context' pour {task_id}")
