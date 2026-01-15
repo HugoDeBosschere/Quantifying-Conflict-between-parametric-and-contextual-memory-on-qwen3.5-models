@@ -21,6 +21,7 @@ class LLMClient:
         try:
             response = requests.post(self.api_url, json={
                 "model": self.model_name,
+                "system":self.system_prompt,
                 "prompt": full_prompt,
                 "stream": False,
                 "options": {
