@@ -37,7 +37,7 @@ autre test de modif de numpy mais moins abouti
 
 
 
-BUT intermédiaire : intégrer le fait de pouvoir rajouter plusieurs llm et plusieurs lib su r le fichier de config de telle sorte que les executions en fonction d'un contexte (description, example, tout le fichier) se fassent toutes d'un coup selon ce au'on ajoute ou non sur le fichier de config. 
+BUT intermédiaire : intégrer le fait de pouvoir rajouter plusieurs llm et plusieurs lib sur le fichier de config de telle sorte que les executions en fonction d'un contexte (description, example, tout le fichier) se fassent toutes d'un coup selon ce qu'on ajoute ou non sur le fichier de config. 
 
 En gros rendre la pipeline la plus générique possible pour que plus tard seul la partie écriture de fichier temporaire d'execution etc dépende uniquement de comment la data est présentée et on conserve les autres fichiers.
 
