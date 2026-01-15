@@ -137,7 +137,7 @@ def run_benchmark():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     input_path = os.path.join(base_dir, config["data"]["input_path"])
     output_path = os.path.join(base_dir, config["data"]["output_path"])
-    context_prompt_type_list = ["description", "explanation", "whole_lib"]
+    context_prompt_type_list = list(llm_client.context_prompt.keys())
     print(f"Lecture : {input_path}")
     
     if not os.path.exists(input_path):
