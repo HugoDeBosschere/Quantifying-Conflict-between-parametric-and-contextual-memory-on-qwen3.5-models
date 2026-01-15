@@ -50,7 +50,7 @@ def test_execution(solution: str):
 # --- 2. L'EXÉCUTION ---
 try:
     # On appelle la fonction fournie par le JSON pour tester la solution
-    test_execution('percentile_value = np.percentile(a, p)\nresult = percentile_value')
+    test_execution('result = np.percentile(a, p/100)')
     print('SUCCESS_MARKER')
 except AssertionError:
     print('TEST_FAILED: Assertion incorrecte')
