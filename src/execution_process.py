@@ -84,7 +84,7 @@ def execute_task_engine(code_context, llm_solution):
 
 
 
-def evaluate_single_task(task):
+def evaluate_single_task(task, context_prompt_type="description"):
     """
     Orchestre l'évaluation d'une seule tâche.
     Input: Dictionnaire de la tâche (JSON)
@@ -93,10 +93,10 @@ def evaluate_single_task(task):
     
     # 1. Récupération ID (Gère le format simple ou metadata)
     task_id = task.get("metadata", {}).get("problem_id") or task.get("task_id", "unknown")
-    print(f"🔹 Traitement ID {task_id}...")
+    print(f"Traitement ID {task_id}...")
 
     # 2. Appel LLM
-    raw_response = llm_client.query_llm(task['prompt'])
+    raw_response = llm_client.query_llm(task['prompt'], context_prompt_type)
     if not raw_response:
         return {
             "task_id": task_id,
@@ -137,7 +137,7 @@ def run_benchmark():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     input_path = os.path.join(base_dir, config["data"]["input_path"])
     output_path = os.path.join(base_dir, config["data"]["output_path"])
-
+    context_prompt_type_list = ["description", "explanation", "whole_lib"]
     print(f"Lecture : {input_path}")
     
     if not os.path.exists(input_path):
@@ -158,15 +158,16 @@ def run_benchmark():
                 continue
             
             # run on single task
-            result = evaluate_single_task(task)
+            for context_prompt_type in context_prompt_type_list:
+                result = evaluate_single_task(task, context_prompt_type)
             
             # Feedback Console
-            status = "pass" if result["passed"] else "false"
-            print(f"{status} {result['task_id']}")
-            
-            # Écriture Disque
-            f_out.write(json.dumps(result) + "\n")
-            f_out.flush() 
+                status = "pass" if result["passed"] else "false"
+                print(f"{status} {result['task_id']}")
+                
+                # Écriture Disque
+                f_out.write(json.dumps(result) + "\n")
+                f_out.flush() 
 
 if __name__ == "__main__":
     run_benchmark()

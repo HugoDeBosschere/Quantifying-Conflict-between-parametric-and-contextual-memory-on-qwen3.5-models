@@ -29,10 +29,10 @@ def load_config(config_filename="config.json"):
             config = json.load(f)
             return config
     except json.JSONDecodeError as e:
-        print(f"🚨 ERREUR : Le JSON est mal formé (virgule manquante ? accolade ?).\n{e}")
+        print(f"ERREUR : Le JSON est mal formé (virgule manquante ? accolade ?).\n{e}")
         sys.exit(1)
     except Exception as e:
-        print(f"🚨 Erreur inattendue : {e}")
+        print(f"Erreur inattendue : {e}")
         sys.exit(1)
 
 if __name__ == "__main__":

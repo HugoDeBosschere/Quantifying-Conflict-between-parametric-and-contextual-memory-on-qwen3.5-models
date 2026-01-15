@@ -12,10 +12,10 @@ class LLMClient:
         self.system_prompt = config["new_lib_injection"]["system_prompt"]
         self.context_prompt = config["new_lib_injection"]["context_prompt"]
 
-    def query_llm(self, prompt_text):
+    def query_llm(self, prompt_text, context_prompt_type="description"):
         print(f"Interrogation de {self.model_name}...")
         
-        full_prompt = f"{self.system_prompt}\n\n{self.context_prompt}\n\n{prompt_text}"
+        full_prompt = f"{self.system_prompt}\n\n{self.context_prompt[context_prompt_type]}\n\n{prompt_text}"
         
         try:
             response = requests.post(self.api_url, json={
