@@ -64,9 +64,9 @@ def execute_task_engine(code_context, llm_solution):
         script_path = f.name
 
 
-    # Uncomment to have a view on which file is executed
-    with open("/usr/users/sdim/sdim_25/memory_code_eval/example.py", mode="w") as f :
-        f.write(final_script)
+    # # Uncomment to have a view on which file is executed
+    # with open("/usr/users/sdim/sdim_25/memory_code_eval/example.py", mode="w") as f :
+    #     f.write(final_script)
 
     try:
         result = subprocess.run(

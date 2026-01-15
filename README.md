@@ -84,12 +84,13 @@ data example :
 
 
 
-- Humaneval : un classique d'évalusation de code, on peut s'en inspirer pour leurs formats de questions
+- Humaneval : un classique d'évaluation de code, on peut s'en inspirer pour leurs formats de questions
   https://github.com/openai/human-eval/blob/master/data/example_samples.jsonl
 
 
 - Big code evaluation harness : IMPORTANT - en gros c'est un papier qui présente un framework hyper cohérent avec ce qu'on cherche
-  Ce repo permet de définir des tâches qui sont des :     """A task represents an entire benchmark including its dataset, problems,
+  Ce repo permet de définir des tâches qui sont des :     
+  """A task represents an entire benchmark including its dataset, problems,
     answers, generation settings and evaluation methods.
     """
   en gros on fournit un dataset de questions réponses, test unitaire etc. et ensuite LE PLUS IMPORTANT, il montre comment 
@@ -98,4 +99,3 @@ data example :
   ---> toute la partie execution de code dans un container est le point clé de comment on pourrait faire pour vérif nos réponses
   https://github.com/bigcode-project/bigcode-evaluation-harness/blob/main/bigcode_eval/base.py
 
-- 
