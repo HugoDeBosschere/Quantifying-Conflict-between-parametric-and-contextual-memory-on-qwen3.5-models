@@ -124,6 +124,7 @@ def evaluate_single_task(task, context_prompt_type="description"):
     # 5. Construction du résultat
     return {
         "task_id": task_id,
+        "context_prompt_type":context_prompt_type,
         "passed": passed,
         "llm_code": code,
         "stdout": stdout,
