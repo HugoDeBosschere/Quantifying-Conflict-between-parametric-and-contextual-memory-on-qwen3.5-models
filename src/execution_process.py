@@ -65,8 +65,8 @@ def execute_task_engine(code_context, llm_solution):
     env_execution["PYTHONPATH"] = llm_client.custom_lib_path + os.pathsep + current_pythonpath
 
     # # Uncomment to have a view on which file is executed
-    with open("/usr/users/sdim/sdim_25/memory_code_eval/example.py", mode="w") as f :
-        f.write(final_script)
+    # with open("/usr/users/sdim/sdim_25/memory_code_eval/example.py", mode="w") as f :
+    #     f.write(final_script)
 
     try:
         result = subprocess.run(
@@ -174,8 +174,9 @@ def run_benchmark():
                 f_out.write(json.dumps(result) + "\n")
                 f_out.flush()
     
-def run_witness() :
+def run_control() :
     """Lit le fichier d'entrée et traite chaque ligne"""
+    print("CONTROL MODE")
     base_dir = os.path.dirname(os.path.abspath(__file__))
     input_path = os.path.join(base_dir, config["data"]["input_path"])
     output_path = os.path.join(base_dir, config["data"]["output_path"])
@@ -204,7 +205,7 @@ def run_witness() :
 
 
             result = evaluate_single_task(task, usual_lib.lower(), "None")
-            result["is_witness"] = True
+            result["is_control"] = True
 
             # Feedback Console
             status = "pass" if result["passed"] else "false"
@@ -216,6 +217,6 @@ def run_witness() :
 
 if __name__ == "__main__":
     # run_benchmark()
-    run_witness()
+    run_control()
 
 

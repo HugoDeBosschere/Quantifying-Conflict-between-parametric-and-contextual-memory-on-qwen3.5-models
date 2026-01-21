@@ -4,8 +4,8 @@
             "api_url"    : "http://localhost:11434/api/generate"
             },
     "data": {
-            "input_path" : "../data/data_smallsample.jsonl",
-            "output_path": "../data/results.jsonl"
+            "input_path" : "../data/ds1000_npy.jsonl",
+            "output_path": "/usr/users/sdim/sdim_25/memory_code_eval/src/perf_review/results/result_try.jsonl"
             },
     "new_lib_injection": {
             "name"           : "WrapRotatedNumpy",

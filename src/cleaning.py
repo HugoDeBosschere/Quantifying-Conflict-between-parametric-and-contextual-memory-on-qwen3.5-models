@@ -1,4 +1,5 @@
 import re
+import textwrap
 
 
 
@@ -36,21 +37,24 @@ def extract_code_and_fix(llm_response):
 
 
 def ensure_result_assignment(code):
-    """
-    Heuristique : Le moteur de test s'attend souvent à trouver une variable 'result'.
-    Si le LLM renvoie juste 'np.percentile(...)', on rajoute 'result = ' devant.
-    """
     if "result =" not in code and "result=" not in code:
-        # On prend la dernière ligne non vide
         lines = code.split('\n')
         last_line_idx = -1
+        
+        # Trouver la dernière ligne de code réel
         for i in range(len(lines) -1, -1, -1):
-            if lines[i].strip():
+            if lines[i].strip() and not lines[i].strip().startswith("#"):
                 last_line_idx = i
                 break
         
         if last_line_idx != -1:
-            lines[last_line_idx] = "result = " + lines[last_line_idx]
+            line = lines[last_line_idx]
+            # On récupère l'indentation actuelle de la ligne
+            indent = line[:len(line) - len(line.lstrip())]
+            content = line.lstrip()
+            
+            # On reconstruit : Indentation + "result = " + Contenu
+            lines[last_line_idx] = f"{indent}result = {content}"
             return "\n".join(lines)
             
     return code
