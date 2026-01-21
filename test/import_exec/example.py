@@ -32,7 +32,7 @@ def exec_test(result, ans):
 
 
 exec_context = r"""
-import WrapRotatedNumpy as np
+import WrapNumpy as np
 a, p = test_input
 [insert]
 """
@@ -50,7 +50,7 @@ def test_execution(solution: str):
 # --- 2. L'EXÉCUTION ---
 try:
     # On appelle la fonction fournie par le JSON pour tester la solution
-    test_execution('result = np.percentile(a, p/100)')
+    test_execution('result = np.percentile(p,a)')
     print('SUCCESS_MARKER')
 except AssertionError:
     print('TEST_FAILED: Assertion incorrecte')
