@@ -8,31 +8,36 @@ def extract_code_and_fix(llm_response):
     print(llm_response)
     print("---------------------------\n")
 
-    # find the code between the markdown
     pattern = r"```(?:python|markdown|Markdown|Python|code)?\n(.*?)```|(.*?)</code>"
     matches = re.findall(pattern, llm_response, re.DOTALL)
+    
+    code = ""
     if matches:
         valid_matches = [m[0] or m[1] for m in matches if m[0] or m[1]]
-        
         if valid_matches:
-            code = max(valid_matches, key=len).strip()
+            code = max(valid_matches, key=len)
         else:
-            code = llm_response.strip()
+            code = llm_response
     else:
-        code = llm_response.strip()
+        code = llm_response
 
-    # take the imports out of the code 
+    code = code.strip("\n")
+    code = textwrap.dedent(code)
+
     lines = code.split('\n')
     cleaned_lines = []
+    
     for line in lines:
-        stripped = line.strip()
-        if stripped.startswith("import ") or stripped.startswith("from "):
+        line_clean = line.rstrip() 
+        if not line_clean.strip():
+            continue
+
+        if line_clean.strip().startswith(("import ", "from ")):
             continue
             
-        cleaned_lines.append(line)
+        cleaned_lines.append(line_clean)
         
     code = "\n".join(cleaned_lines)
-    print(f" le code : {code}")
     return code
 
 
