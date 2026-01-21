@@ -3,42 +3,57 @@ import textwrap
 
 
 
+import re
+import textwrap
+
 def extract_code_and_fix(llm_response):
     print("\n--- Réponse Brut du LLM ---")
     print(llm_response)
     print("---------------------------\n")
 
-    pattern = r"```(?:python|markdown|Markdown|Python|code)?\n(.*?)```|(.*?)</code>"
+    pattern = r"(?:```(?:\w*)|<code.*?>)\n?(.*?)(?:```|</code>)|((?:(?!```|<code).)*?)</code>"
+    
     matches = re.findall(pattern, llm_response, re.DOTALL)
     
-    code = ""
+    code_blocks = []
+    
     if matches:
-        valid_matches = [m[0] or m[1] for m in matches if m[0] or m[1]]
-        if valid_matches:
-            code = max(valid_matches, key=len)
-        else:
-            code = llm_response
+        for m in matches:
+            raw_block = m[0] or m[1]
+            
+            if not raw_block or not raw_block.strip():
+                continue
+                
+            block = raw_block.strip("\n")
+            
+            try:
+                block = textwrap.dedent(block)
+            except Exception:
+                pass
+            
+            code_blocks.append(block)
     else:
-        code = llm_response
+        code_blocks.append(llm_response.strip())
 
-    code = code.strip("\n")
-    code = textwrap.dedent(code)
+    full_code = "\n".join(code_blocks)
+    full_code = fix_unexpected_indent(full_code)
 
-    lines = code.split('\n')
+    lines = full_code.split('\n')
     cleaned_lines = []
     
     for line in lines:
         line_clean = line.rstrip() 
-        if not line_clean.strip():
-            continue
+        
+        if not line_clean.strip(): continue
+        if line_clean.strip().startswith(("import ", "from ")): continue
+        
+        if line_clean.strip() in ["```", "```python", "<code>", "</code>"]: continue
 
-        if line_clean.strip().startswith(("import ", "from ")):
-            continue
-            
         cleaned_lines.append(line_clean)
         
-    code = "\n".join(cleaned_lines)
-    return code
+    final_code = "\n".join(cleaned_lines)
+    print(f"code final : {final_code}")
+    return final_code
 
 
 def ensure_result_assignment(code):
@@ -93,3 +108,79 @@ def modify_lib(file_content, new_import_statement):
     else:
         print("Aucune occurrence trouvée dans exec_context.")
         return ""
+
+
+
+import ast
+
+def fix_unexpected_indent(code):
+    """
+    Corrige le cas où la première ligne est collée à gauche, 
+    mais la suite est indentée sans raison (pas de ':', '(', etc. à la fin de la 1ère ligne).
+    """
+    # 1. Vérif rapide : Si le code est valide, on ne touche à rien
+    try:
+        ast.parse(code)
+        return code
+    except (SyntaxError, IndentationError):
+        pass # On continue pour essayer de réparer
+
+    lines = code.split('\n')
+    
+    # Trouver la première ligne non vide
+    idx1 = -1
+    for i, line in enumerate(lines):
+        if line.strip():
+            idx1 = i
+            break
+    
+    if idx1 == -1: return code # Code vide
+
+    line1 = lines[idx1]
+    indent1 = len(line1) - len(line1.lstrip())
+
+    # Vérifier si la ligne 1 "appelle" une indentation (finie par :, (, [, { ou \)
+    # Si oui, l'indentation suivante est légitime, on arrête.
+    if line1.strip().endswith( (':', '(', '[', '{', '\\', ',') ):
+        return code
+
+    # Trouver la deuxième ligne non vide
+    idx2 = -1
+    for i in range(idx1 + 1, len(lines)):
+        if lines[i].strip():
+            idx2 = i
+            break
+            
+    if idx2 == -1: return code # Une seule ligne de code
+
+    line2 = lines[idx2]
+    indent2 = len(line2) - len(line2.lstrip())
+
+    # --- DÉTECTION DU BUG ---
+    # Si la ligne 2 est plus indentée que la 1, alors que la 1 n'est pas un bloc...
+    if indent2 > indent1:
+        offset = indent2 - indent1
+        # On garde le début (la première ligne) tel quel
+        repaired_lines = lines[:idx2]
+        
+        # Pour tout le reste, on retire l'offset (l'indentation en trop)
+        for line in lines[idx2:]:
+            if not line.strip():
+                repaired_lines.append(line)
+                continue
+                
+            # On calcule l'indentation actuelle
+            curr_indent = len(line) - len(line.lstrip())
+            
+            # Si la ligne a assez d'espaces, on coupe
+            if curr_indent >= offset:
+                # On coupe 'offset' caractères au début, mais on préserve le reste
+                # (ex: indentation relative if/else plus loin dans le code)
+                repaired_lines.append(line[offset:])
+            else:
+                # Cas rare : ligne bizarrement moins indentée, on lstrip tout par sécurité
+                repaired_lines.append(line.lstrip())
+        
+        return "\n".join(repaired_lines)
+
+    return code
