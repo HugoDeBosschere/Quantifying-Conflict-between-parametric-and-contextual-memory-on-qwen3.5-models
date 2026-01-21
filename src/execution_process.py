@@ -203,8 +203,9 @@ def run_witness() :
             # run on single task
 
 
-            result = evaluate_single_task(task, usual_lib, "None")
-            
+            result = evaluate_single_task(task, usual_lib.lower(), "None")
+            result["is_witness"] = True
+
             # Feedback Console
             status = "pass" if result["passed"] else "false"
             print(f"{status} {result['task_id']}")

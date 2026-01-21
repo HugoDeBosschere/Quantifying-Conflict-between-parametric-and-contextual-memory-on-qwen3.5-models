@@ -8,11 +8,15 @@ def extract_code_and_fix(llm_response):
     print("---------------------------\n")
 
     # find the code between the markdown
-    pattern = r"```(?:python|markdown|Markdown|Python|code)?\n(.*?)```"
+    pattern = r"```(?:python|markdown|Markdown|Python|code)?\n(.*?)```|(.*?)</code>"
     matches = re.findall(pattern, llm_response, re.DOTALL)
-    
     if matches:
-        code = max(matches, key=len).strip()
+        valid_matches = [m[0] or m[1] for m in matches if m[0] or m[1]]
+        
+        if valid_matches:
+            code = max(valid_matches, key=len).strip()
+        else:
+            code = llm_response.strip()
     else:
         code = llm_response.strip()
 
@@ -27,7 +31,7 @@ def extract_code_and_fix(llm_response):
         cleaned_lines.append(line)
         
     code = "\n".join(cleaned_lines)
-
+    print(f" le code : {code}")
     return code
 
 
@@ -70,7 +74,6 @@ def modify_lib(file_content, new_import_statement):
     match = re.search(pattern, file_content, flags=re.DOTALL)
 
     if match:
-        print("Occurrence trouvée dans exec_context !")
         new_content = re.sub(
             pattern, 
             rf'\1\2{new_import_statement}\4', 
