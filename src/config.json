@@ -1,5 +1,5 @@
 {
-    "llm": {"model"      :"koesn/llama3-8b-instruct",
+    "llm": {"model"      :"codestral",
             "temperature":0,
             "api_url"    : "http://localhost:11434/api/generate"
             },

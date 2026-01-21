@@ -23,7 +23,7 @@ def rotate_args_logic(func):
         print(caller_name)
         # if caller_name in forbidden_callers:
         #     error_msg = (
-        #         f"🚨 ALERTE ROUGE : Le wrapper est utilisé par '{caller_name}' ! "
+        #         f"ALERTE ROUGE : Le wrapper est utilisé par '{caller_name}' ! "
         #         "Ceci est interdit. La vérité terrain doit utiliser le vrai Numpy."
         #     )
         #     print(error_msg, file=sys.stderr)

@@ -18,6 +18,10 @@ config = load_config()
 
 # --- INIT LLM CLIENT ---
 llm_client = LLMClient(config)
+model_metadata = {
+                  "model_name" :  llm_client.model_name,
+                  "temperature" : llm_client.temperature,
+                  }
 
 
 
@@ -81,7 +85,7 @@ def execute_task_engine(code_context, llm_solution):
 
 
 
-def evaluate_single_task(task, context_prompt_type="description"):
+def evaluate_single_task(task, new_lib, context_prompt_type):
     """
     Orchestre l'évaluation d'une seule tâche.
     Input: Dictionnaire de la tâche (JSON)
@@ -108,7 +112,7 @@ def evaluate_single_task(task, context_prompt_type="description"):
     # 4. Exécution (si contexte présent)
     if "code_context" in task:
         ## Ajouter la modif en fonction de la lib plus tard
-        new_import = "import " + config["new_lib_injection"]["name"] + " as np"
+        new_import = "import " + new_lib + " as np"
         new_context = modify_lib(task["code_context"], new_import)
         if new_context :
             stdout, stderr = execute_task_engine(new_context, code)
@@ -124,6 +128,7 @@ def evaluate_single_task(task, context_prompt_type="description"):
     # 5. Construction du résultat
     return {
         "task_id": task_id,
+        "model_metadata" : model_metadata,
         "context_prompt_type":context_prompt_type,
         "passed": passed,
         "llm_code": code,
@@ -159,7 +164,7 @@ def run_benchmark():
             
             # run on single task
             for context_prompt_type in context_prompt_type_list:
-                result = evaluate_single_task(task, context_prompt_type)
+                result = evaluate_single_task(task, config["new_lib_injection"]["name"], context_prompt_type)
             
             # Feedback Console
                 status = "pass" if result["passed"] else "false"
@@ -167,9 +172,49 @@ def run_benchmark():
                 
                 # Écriture Disque
                 f_out.write(json.dumps(result) + "\n")
-                f_out.flush() 
+                f_out.flush()
+    
+def run_witness() :
+    """Lit le fichier d'entrée et traite chaque ligne"""
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    input_path = os.path.join(base_dir, config["data"]["input_path"])
+    output_path = os.path.join(base_dir, config["data"]["output_path"])
+    context_prompt_type_list = list(llm_client.context_prompt.keys())
+    print(f"Lecture : {input_path}")
+    
+    if not os.path.exists(input_path):
+        print(f"Erreur: Fichier introuvable -> {input_path}")
+        return
+
+    with open(input_path, 'r', encoding='utf-8') as f_in, \
+         open(output_path, 'a', encoding='utf-8') as f_out:
+        
+        for line in f_in:
+            if not line.strip(): continue
+            
+            # Chargement JSON
+            try:
+                task = json.loads(line)
+            except json.JSONDecodeError:
+                print("Ligne JSON invalide ignorée")
+                continue
+            
+            usual_lib = task.get("metadata").get("library")
+            # run on single task
+
+
+            result = evaluate_single_task(task, usual_lib, "None")
+            
+            # Feedback Console
+            status = "pass" if result["passed"] else "false"
+            print(f"{status} {result['task_id']}")
+            
+            # Écriture Disque
+            f_out.write(json.dumps(result) + "\n")
+            f_out.flush()
 
 if __name__ == "__main__":
-    run_benchmark()
+    # run_benchmark()
+    run_witness()
 
 
