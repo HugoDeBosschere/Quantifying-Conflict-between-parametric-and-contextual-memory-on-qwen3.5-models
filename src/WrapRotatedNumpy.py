@@ -1,4 +1,4 @@
-import numpy as _real_np
+import numpy as np
 import types
 import sys
 
@@ -14,7 +14,7 @@ def rotate_args_logic(func):
     return wrapper
 
 # 2. La classe "Proxy" qui intercepte tout
-class RotatedNumPy:
+class WrapRotatedNumpy:
     def __init__(self, target_module):
         self._target = target_module
 
@@ -25,7 +25,7 @@ class RotatedNumPy:
         # CAS 1 : C'est un sous-module (ex: np.linalg)
         # On retourne un nouveau Proxy pour ce sous-module
         if isinstance(real_attr, types.ModuleType):
-            return RotatedNumPy(real_attr)
+            return WrapRotatedNumpy(real_attr)
 
         # CAS 2 : C'est une fonction ou une ufunc (ex: np.add, np.mean)
         # On exclut les "types" (comme np.int32, np.float64, np.array) car ce sont des classes
@@ -42,9 +42,9 @@ class RotatedNumPy:
 
     # Permet d'afficher l'objet proprement
     def __repr__(self):
-        return f"<RotatedNumPy Proxy sur {self._target.__name__}>"
+        return f"<WrapRotatedNumpy Proxy sur {self._target.__name__}>"
 
 # 3. L'astuce finale
 # On remplace le module actuel par une instance de notre classe.
 # Cela permet d'utiliser "import mon_numpy" comme si c'était un vrai module.
-sys.modules[__name__] = RotatedNumPy(_real_np)
+sys.modules[__name__] = WrapRotatedNumpy(np)
