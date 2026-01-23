@@ -36,6 +36,19 @@ def extract_code_and_fix(llm_response):
         code_blocks.append(llm_response.strip())
 
     full_code = "\n".join(code_blocks)
+
+    # for when the result= part is not between markdowns
+    if "result =" not in full_code and "result=" not in full_code:
+        rescue_pattern = r"^\s*result\s*=.*"
+        
+        potential_lines = re.findall(rescue_pattern, llm_response, re.MULTILINE)
+        
+        if potential_lines:
+            rescued_line = potential_lines[-1].strip()
+            
+            if not rescued_line.startswith("#"):
+                full_code += "\n" + rescued_line
+
     full_code = fix_unexpected_indent(full_code)
 
     lines = full_code.split('\n')
