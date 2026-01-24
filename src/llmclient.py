@@ -17,9 +17,9 @@ class LLMClient:
 
     def load_doc(self, config) :
         doc = []
-        doc.append(config.get("documentation", "").get("intro"))
-        
-        doc_path = config.get("documentation", "").get("path", "")
+        doc.append(config.get("new_lib_injection", {}).get("documentation", {}).get("intro", ""))
+
+        doc_path = config.get("new_lib_injection", {}).get("documentation", {}).get("path", "")
         try :
             if os.path.exists(doc_path) :
                 with open(doc_path, mode = "r", encoding="utf-8") as f :

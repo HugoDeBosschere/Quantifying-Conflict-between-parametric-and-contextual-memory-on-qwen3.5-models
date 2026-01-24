@@ -17,7 +17,7 @@ def perf_on_data(filepath):
                 except json.JSONDecodeError:
                     continue
 
-                model_name = res.get("model_metadata", {}).get("model_name", "Unknown_Model")
+                model_name = res.get("metadata", {}).get("model_name", "Unknown_Model")
                 
                 task_id = res.get("task_id")
                 is_passed = res.get("passed", False)

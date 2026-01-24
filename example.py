@@ -1,40 +1,24 @@
 # --- 1. LE MOTEUR DE TEST (Issu du JSON) ---
 import numpy as np
+import pandas as pd
 import copy
-import tokenize, io
 
 
 def generate_test_case(test_case_id):
     def define_test_input(test_case_id):
         if test_case_id == 1:
-            im = np.array(
-                [
-                    [0, 0, 0, 0, 0, 0],
-                    [0, 0, 5, 1, 2, 0],
-                    [0, 1, 8, 0, 1, 0],
-                    [0, 0, 0, 7, 1, 0],
-                    [0, 0, 0, 0, 0, 0],
-                ]
-            )
+            a = np.array([1, 2, 3, 4, 5])
+            p = 25
         elif test_case_id == 2:
             np.random.seed(42)
-            im = np.random.randint(0, 10, (10, 12))
-            im[:, 0] = 0
-            im[-1, :] = 0
-        elif test_case_id == 3:
-            im = np.zeros((10, 10))
-        return im
+            a = np.random.rand(20)
+            p = np.random.randint(1, 99)
+        return a, p
 
     def generate_ans(data):
         _a = data
-        im = _a
-        mask = im == 0
-        rows = np.flatnonzero((~mask).sum(axis=1))
-        cols = np.flatnonzero((~mask).sum(axis=0))
-        if rows.shape[0] == 0:
-            result = np.array([])
-        else:
-            result = im[rows.min() : rows.max() + 1, cols.min() : cols.max() + 1]
+        a, p = _a
+        result = np.percentile(a, p)
         return result
 
     test_input = define_test_input(test_case_id)
@@ -43,42 +27,30 @@ def generate_test_case(test_case_id):
 
 
 def exec_test(result, ans):
-    if ans.shape[0]:
-        np.testing.assert_array_equal(result, ans)
-    else:
-        ans = ans.reshape(0)
-        result = result.reshape(0)
-        np.testing.assert_array_equal(result, ans)
+    np.testing.assert_allclose(result, ans)
     return 1
 
 
 exec_context = r"""
-import numpy as np
-im = test_input
+import WrapUnderscoreNumpy as np
+a, p = test_input
 [insert]
 """
 
 
 def test_execution(solution: str):
     code = exec_context.replace("[insert]", solution)
-    for i in range(3):
+    for i in range(2):
         test_input, expected_result = generate_test_case(i + 1)
         test_env = {"test_input": test_input}
         exec(code, test_env)
         assert exec_test(test_env["result"], expected_result)
 
 
-def test_string(solution: str):
-    tokens = []
-    for token in tokenize.tokenize(io.BytesIO(solution.encode("utf-8")).readline):
-        tokens.append(token.string)
-    assert "while" not in tokens and "for" not in tokens
-
-
 # --- 2. L'EXÉCUTION ---
 try:
     # On appelle la fonction fournie par le JSON pour tester la solution
-    test_execution('# Find the indices of non-zero rows and columns\n   non_zero_rows = np.where(np.any(im != 0, axis=1))[0]\n   non_zero_cols = np.where(np.any(im != 0, axis=0))[0]\n\n   # Slice the array to remove peripheral zeros\n   result = im[non_zero_rows[:, None], non_zero_cols]')
+    test_execution('result = np.percentile(a, p)')
     print('SUCCESS_MARKER')
 except AssertionError:
     print('TEST_FAILED: Assertion incorrecte')
