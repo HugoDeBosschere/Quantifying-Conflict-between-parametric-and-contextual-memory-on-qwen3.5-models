@@ -125,10 +125,14 @@ def evaluate_single_task(task, new_lib, context_prompt_type):
         passed = False
         stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
 
+    ## récupération des Metadonnées
+    metadata = task["metadata"] | model_metadata
+    
+
     # 5. Construction du résultat
     return {
         "task_id": task_id,
-        "model_metadata" : model_metadata,
+        "metadata" : metadata,
         "context_prompt_type":context_prompt_type,
         "passed": passed,
         "llm_code": code,

@@ -3,70 +3,160 @@ import textwrap
 
 
 
+# def extract_code_and_fix(llm_response):
+#     print("\n--- Réponse Brut du LLM ---")
+#     print(llm_response)
+#     print("---------------------------\n")
+
+#     pattern = r"(?:```(?:\w*)|<code.*?>)\n?(.*?)(?:```|</code>)|((?:(?!```|<code).)*?)</code>"
+    
+#     matches = re.findall(pattern, llm_response, re.DOTALL)
+    
+#     code_blocks = []
+    
+#     if matches:
+#         for m in matches:
+#             raw_block = m[0] or m[1]
+            
+#             if not raw_block or not raw_block.strip():
+#                 continue
+                
+#             block = raw_block.strip("\n")
+            
+#             try:
+#                 block = textwrap.dedent(block)
+#             except Exception:
+#                 pass
+            
+#             code_blocks.append(block)
+#     else:
+#         code_blocks.append(llm_response.strip())
+
+#     full_code = "\n".join(code_blocks)
+
+#     # for when the result= part is not between markdowns
+#     if "result =" not in full_code and "result=" not in full_code:
+#         rescue_pattern = r"^\s*result\s*=.*"
+        
+#         potential_lines = re.findall(rescue_pattern, llm_response, re.MULTILINE)
+        
+#         if potential_lines:
+#             rescued_line = potential_lines[-1].strip()
+            
+#             if not rescued_line.startswith("#"):
+#                 full_code += "\n" + rescued_line
+
+#     full_code = fix_unexpected_indent(full_code)
+
+#     lines = full_code.split('\n')
+#     cleaned_lines = []
+    
+#     for line in lines:
+#         line_clean = line.rstrip() 
+        
+#         if not line_clean.strip(): continue
+#         if line_clean.strip().startswith(("import ", "from ")): continue
+        
+#         if line_clean.strip() in ["```", "```python", "<code>", "</code>"]: continue
+
+#         cleaned_lines.append(line_clean)
+        
+#     final_code = "\n".join(cleaned_lines)
+#     print(f"code final : {final_code}")
+#     return final_code
+
+
 import re
 import textwrap
+import ast
+
+# ... (Garde ta fonction fix_unexpected_indent inchangée) ...
 
 def extract_code_and_fix(llm_response):
     print("\n--- Réponse Brut du LLM ---")
     print(llm_response)
     print("---------------------------\n")
 
+    # 1. Extraction (Ta regex robuste)
     pattern = r"(?:```(?:\w*)|<code.*?>)\n?(.*?)(?:```|</code>)|((?:(?!```|<code).)*?)</code>"
-    
     matches = re.findall(pattern, llm_response, re.DOTALL)
     
     code_blocks = []
-    
     if matches:
         for m in matches:
             raw_block = m[0] or m[1]
-            
-            if not raw_block or not raw_block.strip():
-                continue
-                
+            if not raw_block or not raw_block.strip(): continue
             block = raw_block.strip("\n")
-            
             try:
                 block = textwrap.dedent(block)
-            except Exception:
-                pass
-            
+            except: pass
             code_blocks.append(block)
     else:
         code_blocks.append(llm_response.strip())
 
     full_code = "\n".join(code_blocks)
 
-    # for when the result= part is not between markdowns
+    # =================================================================
+    # ### --- SAUVETAGE INTELLIGENT (SMARTER RESCUE) ---
+    # =================================================================
     if "result =" not in full_code and "result=" not in full_code:
         rescue_pattern = r"^\s*result\s*=.*"
-        
         potential_lines = re.findall(rescue_pattern, llm_response, re.MULTILINE)
         
         if potential_lines:
-            rescued_line = potential_lines[-1].strip()
+            # ON TRIE LES CANDIDATS
+            # On cherche d'abord une ligne "propre" (sans array, sans crochets, sans DataFrame)
+            # Car souvent "result = array([...])" est juste un print du LLM.
             
-            if not rescued_line.startswith("#"):
-                full_code += "\n" + rescued_line
+            clean_candidates = [
+                line.strip() for line in potential_lines 
+                if "array(" not in line and "[" not in line and "DataFrame" not in line
+            ]
+            
+            best_candidate = None
+            
+            if clean_candidates:
+                # Si on a des lignes propres (ex: "result = a"), on prend la dernière trouvée
+                best_candidate = clean_candidates[-1]
+            else:
+                # Si on n'a que des lignes "sales" (avec crochets), on prend la PREMIÈRE trouvée
+                # (Car la dernière est souvent celle qui est coupée/tronquée)
+                best_candidate = potential_lines[0].strip()
 
+            if best_candidate and not best_candidate.startswith("#"):
+                print(f"🚑 Sauvetage réussi avec : '{best_candidate}'")
+                full_code += "\n" + best_candidate
+
+    # 2. Fix Indentation Escalier
     full_code = fix_unexpected_indent(full_code)
 
+    # 3. Nettoyage Final
     lines = full_code.split('\n')
     cleaned_lines = []
     
     for line in lines:
         line_clean = line.rstrip() 
-        
         if not line_clean.strip(): continue
-        if line_clean.strip().startswith(("import ", "from ")): continue
         
+        # Filtre Imports
+        if line_clean.strip().startswith(("import ", "from ")): 
+            # Petit bonus : on filtre explicitement sklearn/scipy ici aussi
+            continue
+            
         if line_clean.strip() in ["```", "```python", "<code>", "</code>"]: continue
+        if "END SOLUTION" in line_clean: continue 
+        
+        # Conversion return -> result = (Bonus vu tes erreurs précédentes)
+        if line_clean.startswith("return "):
+             line_clean = line_clean.replace("return ", "result = ", 1)
 
         cleaned_lines.append(line_clean)
         
     final_code = "\n".join(cleaned_lines)
     print(f"code final : {final_code}")
     return final_code
+
+
 
 
 def ensure_result_assignment(code):
