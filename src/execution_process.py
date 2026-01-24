@@ -85,7 +85,7 @@ def execute_task_engine(code_context, llm_solution):
 
 
 
-def evaluate_single_task(task, new_lib, context_prompt_type):
+def evaluate_single_task(task, new_lib):
     """
     Orchestre l'évaluation d'une seule tâche.
     Input: Dictionnaire de la tâche (JSON)
@@ -97,7 +97,7 @@ def evaluate_single_task(task, new_lib, context_prompt_type):
     print(f"Traitement ID {task_id}...")
 
     # 2. Appel LLM
-    raw_response = llm_client.query_llm(task['prompt'], context_prompt_type)
+    raw_response = llm_client.query_llm(task['prompt'])
     if not raw_response:
         return {
             "task_id": task_id,
@@ -133,7 +133,6 @@ def evaluate_single_task(task, new_lib, context_prompt_type):
     return {
         "task_id": task_id,
         "metadata" : metadata,
-        "context_prompt_type":context_prompt_type,
         "passed": passed,
         "llm_code": code,
         "stdout": stdout,
@@ -146,7 +145,6 @@ def run_benchmark():
     base_dir = os.path.dirname(os.path.abspath(__file__))
     input_path = os.path.join(base_dir, config["data"]["input_path"])
     output_path = os.path.join(base_dir, config["data"]["output_path"])
-    context_prompt_type_list = list(llm_client.context_prompt.keys())
     print(f"Lecture : {input_path}")
     
     if not os.path.exists(input_path):
@@ -167,16 +165,15 @@ def run_benchmark():
                 continue
             
             # run on single task
-            for context_prompt_type in context_prompt_type_list:
-                result = evaluate_single_task(task, config["new_lib_injection"]["name"], context_prompt_type)
+            result = evaluate_single_task(task, config["new_lib_injection"]["name"])
             
             # Feedback Console
-                status = "pass" if result["passed"] else "false"
-                print(f"{status} {result['task_id']}")
-                
-                # Écriture Disque
-                f_out.write(json.dumps(result) + "\n")
-                f_out.flush()
+            status = "pass" if result["passed"] else "false"
+            print(f"{status} {result['task_id']}")
+            
+            # Écriture Disque
+            f_out.write(json.dumps(result) + "\n")
+            f_out.flush()
     
 def run_control() :
     """Lit le fichier d'entrée et traite chaque ligne"""
@@ -184,7 +181,6 @@ def run_control() :
     base_dir = os.path.dirname(os.path.abspath(__file__))
     input_path = os.path.join(base_dir, config["data"]["input_path"])
     output_path = os.path.join(base_dir, config["data"]["output_path"])
-    context_prompt_type_list = list(llm_client.context_prompt.keys())
     print(f"Lecture : {input_path}")
     
     if not os.path.exists(input_path):
@@ -208,7 +204,7 @@ def run_control() :
             # run on single task
 
 
-            result = evaluate_single_task(task, usual_lib.lower(), "None")
+            result = evaluate_single_task(task, usual_lib.lower())
             result["is_control"] = True
 
             # Feedback Console
