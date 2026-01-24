@@ -216,7 +216,8 @@ def run_control() :
             f_out.flush()
 
 if __name__ == "__main__":
+    run_control()
     run_benchmark()
-    # run_control()
+    
 
 
