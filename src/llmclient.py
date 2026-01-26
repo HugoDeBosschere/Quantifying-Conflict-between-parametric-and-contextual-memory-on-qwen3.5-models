@@ -38,7 +38,7 @@ class LLMClient:
             full_prompt = f"{self.system_prompt}\n\n{self.documentation}\n\n{prompt_text}"
         else :
             full_prompt = f"{self.system_prompt}\n\n{prompt_text}"
-        
+
         try:
             response = requests.post(self.api_url, json={
                 "model": self.model_name,
