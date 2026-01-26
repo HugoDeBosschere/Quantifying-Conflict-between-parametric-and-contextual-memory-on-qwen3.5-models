@@ -12,6 +12,7 @@ class LLMClient:
         self.temperature = config["llm"]["temperature"]
         self.system_prompt = config["new_lib_injection"]["system_prompt"]
         self.custom_lib_path = config["new_lib_injection"]["custom_lib_path"]
+        self.new_lib_name = config["new_lib_injection"]["name"]
         self.documentation = self.load_doc(config)
     
 
@@ -28,13 +29,15 @@ class LLMClient:
                     return ''.join(doc)
         except FileNotFoundError:
             print("THE DOCUMENTATION was not found")
-            return "NO DOCUMENTATION"
+            return ""
 
 
-    def query_llm(self, prompt_text):
+    def query_llm(self, prompt_text, new_lib_name):
         print(f"Interrogation de {self.model_name}...")
-        
-        full_prompt = f"{self.system_prompt}\n\n{self.documentation}\n\n{prompt_text}"
+        if self.new_lib_name == new_lib_name :
+            full_prompt = f"{self.system_prompt}\n\n{self.documentation}\n\n{prompt_text}"
+        else :
+            full_prompt = f"{self.system_prompt}\n\n{prompt_text}"
         
         try:
             response = requests.post(self.api_url, json={

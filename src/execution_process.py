@@ -97,7 +97,7 @@ def evaluate_single_task(task, new_lib):
     print(f"Traitement ID {task_id}...")
 
     # 2. Appel LLM
-    raw_response = llm_client.query_llm(task['prompt'])
+    raw_response = llm_client.query_llm(task['prompt'], new_lib)
     if not raw_response:
         return {
             "task_id": task_id,
@@ -201,9 +201,8 @@ def run_control() :
                 continue
             
             usual_lib = task.get("metadata").get("library")
+
             # run on single task
-
-
             result = evaluate_single_task(task, usual_lib.lower())
             result["is_control"] = True
 
