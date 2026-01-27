@@ -137,10 +137,71 @@ def plot_model_performance(perf_dict, output_filename):
     plt.savefig(output_filename)
 
 
+## fonction de comptage mais qui ne comptabilise pas les tâches qui n'utilisent pas numpy dans leur reference code.
+
+
+def perf_on_relevant_data(filepath, useless_data_path):
+    """Récupération de résultats depuis un fichier result.jsonl et compte des succès"""
+    perf_dict = {}
+    try :
+        with open(useless_data_path, mode="r") as data :
+            ## TODO
+            useless_data = json.loads(data)
+    except FileNotFoundError:
+        print(f"Erreur : Le fichier {useless_data_path} est introuvable.")
+        return {}
+    
+    try:
+        with open(filepath, mode="r", encoding="utf-8") as f:
+            for line in f:
+                if not line.strip(): continue
+                try:
+                    res = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+
+                model_name = res.get("metadata", {}).get("model_name", "Unknown_Model")
+                
+                task_id = res.get("task_id")
+                if task_id in useless_data :
+                    continue
+                
+                is_passed = res.get("passed", False)
+
+                if model_name not in perf_dict:
+                    perf_dict[model_name] = {
+                        "success": 0,
+                        "success_control": 0,
+                        "tasks_id": set(),
+                        "tasks_id_control": set()
+                    }
+
+                if res.get("is_control", False):
+                    if task_id not in perf_dict[model_name]["tasks_id_control"]:
+                        if is_passed:
+                            perf_dict[model_name]["success_control"] += 1
+                        perf_dict[model_name]["tasks_id_control"].add(task_id)
+                else:
+                    if task_id not in perf_dict[model_name]["tasks_id"]:
+                        if is_passed:
+                            perf_dict[model_name]["success"] += 1
+                        perf_dict[model_name]["tasks_id"].add(task_id)
+                        
+    except FileNotFoundError:
+        print(f"Erreur : Le fichier {filepath} est introuvable.")
+        return {}
+
+    return perf_dict
+
+
+
+
+
+
 if __name__ == "__main__":
-    # Remplace par ton vrai chemin de fichier
     path = "/usr/users/sdim/sdim_25/memory_code_eval/src/perf_review/results/result_try.jsonl"
     output_filename = "/usr/users/sdim/sdim_25/memory_code_eval/src/perf_review/results/test.png"
-    
+    useless_data_path = ""
+
     data = perf_on_data(path)
     plot_model_performance(data, output_filename)
