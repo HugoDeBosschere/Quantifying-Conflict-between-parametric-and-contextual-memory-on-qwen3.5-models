@@ -221,7 +221,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     run_control(args.task_id)
-    run_benchmark(args.task_id)
+    run_benchmark(0)
     
 
 
