@@ -1,5 +1,5 @@
 {
-    "llm": {"model"      :"codestral",
+    "llm": {"model"      :"qwen2.5-coder",
             "temperature":0,
             "api_url"    : "http://localhost:11434/api/generate"
             },
