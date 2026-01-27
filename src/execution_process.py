@@ -1,10 +1,8 @@
-import requests
-import re
 import subprocess
 import tempfile
+import argparse
 import os
 import sys
-import textwrap
 import json
 from datetime import datetime
 from llmclient import LLMClient
@@ -93,7 +91,7 @@ def evaluate_single_task(task, new_lib):
     """
     
     # 1. Récupération ID (Gère le format simple ou metadata)
-    task_id = task.get("metadata", {}).get("problem_id") or task.get("task_id", "unknown")
+    task_id = task.get("metadata", {}).get("problem_id", "") or task.get("task_id", "")
     print(f"Traitement ID {task_id}...")
 
     # 2. Appel LLM
@@ -140,7 +138,7 @@ def evaluate_single_task(task, new_lib):
         "full_response": raw_response
     }
 
-def run_benchmark():
+def run_benchmark(first_task):
     """Lit le fichier d'entrée et traite chaque ligne"""
     base_dir = os.path.dirname(os.path.abspath(__file__))
     input_path = os.path.join(base_dir, config["data"]["input_path"])
@@ -163,19 +161,20 @@ def run_benchmark():
             except json.JSONDecodeError:
                 print("Ligne JSON invalide ignorée")
                 continue
-            
-            # run on single task
-            result = evaluate_single_task(task, config["new_lib_injection"]["name"])
-            
-            # Feedback Console
-            status = "pass" if result["passed"] else "false"
-            print(f"{status} {result['task_id']}")
-            
-            # Écriture Disque
-            f_out.write(json.dumps(result) + "\n")
-            f_out.flush()
+            task_id = task.get("metadata", {}).get("problem_id", "") or task.get("task_id", "")
+            if task_id and task_id > first_task :
+                # run on single task
+                result = evaluate_single_task(task, config["new_lib_injection"]["name"])
+                
+                # Feedback Console
+                status = "pass" if result["passed"] else "false"
+                print(f"{status} {result['task_id']}")
+                
+                # Écriture Disque
+                f_out.write(json.dumps(result) + "\n")
+                f_out.flush()
     
-def run_control() :
+def run_control(first_task) :
     """Lit le fichier d'entrée et traite chaque ligne"""
     print("CONTROL MODE")
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -200,23 +199,29 @@ def run_control() :
                 print("Ligne JSON invalide ignorée")
                 continue
             
-            usual_lib = task.get("metadata").get("library")
+            usual_lib = task.get("metadata", {}).get("library", "None")
 
-            # run on single task
-            result = evaluate_single_task(task, usual_lib.lower())
-            result["is_control"] = True
+            task_id = task.get("metadata", {}).get("problem_id", "") or task.get("task_id", "")
+            if task_id and task_id > first_task :
+                # run on single task
+                result = evaluate_single_task(task, usual_lib.lower())
+                result["is_control"] = True
 
-            # Feedback Console
-            status = "pass" if result["passed"] else "false"
-            print(f"{status} {result['task_id']}")
-            
-            # Écriture Disque
-            f_out.write(json.dumps(result) + "\n")
-            f_out.flush()
+                # Feedback Console
+                status = "pass" if result["passed"] else "false"
+                print(f"{status} {result['task_id']}")
+                
+                # Écriture Disque
+                f_out.write(json.dumps(result) + "\n")
+                f_out.flush()
 
 if __name__ == "__main__":
-    run_control()
-    run_benchmark()
+    parser = argparse.ArgumentParser(description="Lancer l'évaluation DS-1000")
+    parser.add_argument("-t", "--task_id", type=int, default=0, help="ID spécifique de la tâche à partir de laquelle relancer l'execution")
+    args = parser.parse_args()
+
+    run_control(args.task_id)
+    run_benchmark(args.task_id)
     
 
 
