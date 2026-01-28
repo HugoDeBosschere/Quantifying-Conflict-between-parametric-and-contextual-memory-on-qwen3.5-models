@@ -7,6 +7,7 @@ import sys
 import textwrap
 import json
 from datetime import datetime
+from tqdm import tqdm
 from llmclient import LLMClient
 from cleaning import extract_code_and_fix, ensure_result_assignment, modify_lib
 
@@ -61,8 +62,8 @@ def execute_task_engine(code_context, llm_solution):
     env_execution["PYTHONPATH"] = llm_client.custom_lib_path + os.pathsep + current_pythonpath
 
     # # Uncomment to have a view on which file is executed
-    with open("/usr/users/sdim/sdim_25/memory_code_eval/example.py", mode="w") as f :
-        f.write(final_script)
+    # with open("/usr/users/sdim/sdim_9/STEERWAY/repo_lyon/memory_code_eval/example.py", mode="w") as f :
+    #     f.write(final_script)
 
     try:
         result = subprocess.run(
@@ -90,7 +91,6 @@ def evaluate_single_task(task, context_prompt_type="description"):
     
     # 1. Récupération ID (Gère le format simple ou metadata)
     task_id = task.get("metadata", {}).get("problem_id") or task.get("task_id", "unknown")
-    print(f"Traitement ID {task_id}...")
 
     # 2. Appel LLM
     raw_response = llm_client.query_llm(task['prompt'], context_prompt_type)
@@ -117,7 +117,6 @@ def evaluate_single_task(task, context_prompt_type="description"):
         # stdout, stderr = execute_task_engine(task["code_context"], code)
         passed = "SUCCESS_MARKER" in stdout
     else:
-        print(f"Warning: Pas de 'code_context' pour {task_id}")
         passed = False
         stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
 
@@ -139,35 +138,68 @@ def run_benchmark():
     output_path = os.path.join(base_dir, config["data"]["output_path"])
     context_prompt_type_list = list(llm_client.context_prompt.keys())
     print(f"Lecture : {input_path}")
-    
+
     if not os.path.exists(input_path):
         print(f"Erreur: Fichier introuvable -> {input_path}")
         return
 
+    # Count total lines for progress bar
+    with open(input_path, 'r', encoding='utf-8') as f:
+        total_tasks = sum(1 for line in f if line.strip())
+
+    total_evaluations = total_tasks * len(context_prompt_type_list)
+    print(f"Total tasks: {total_tasks}, Total evaluations: {total_evaluations}")
+
+    passed_count = 0
+    failed_count = 0
+
     with open(input_path, 'r', encoding='utf-8') as f_in, \
          open(output_path, 'a', encoding='utf-8') as f_out:
-        
+
+        # Main progress bar for all evaluations
+        pbar = tqdm(total=total_evaluations, desc="Benchmark Progress", unit="eval")
+
         for line in f_in:
             if not line.strip(): continue
-            
+
             # Chargement JSON
             try:
                 task = json.loads(line)
             except json.JSONDecodeError:
-                print("Ligne JSON invalide ignorée")
+                pbar.write("Ligne JSON invalide ignorée")
                 continue
-            
+
+            task_id = task.get("metadata", {}).get("problem_id") or task.get("task_id", "unknown")
+
             # run on single task
             for context_prompt_type in context_prompt_type_list:
                 result = evaluate_single_task(task, context_prompt_type)
-            
-            # Feedback Console
-                status = "pass" if result["passed"] else "false"
-                print(f"{status} {result['task_id']}")
-                
+
+                # Update counts
+                if result["passed"]:
+                    passed_count += 1
+                else:
+                    failed_count += 1
+
+                # Update progress bar
+                pbar.set_postfix({
+                    'task': task_id,
+                    'ctx': context_prompt_type[:4],
+                    'pass': passed_count,
+                    'fail': failed_count
+                })
+                pbar.update(1)
+
                 # Écriture Disque
                 f_out.write(json.dumps(result) + "\n")
-                f_out.flush() 
+                f_out.flush()
+
+        pbar.close()
+
+    # Final summary
+    print(f"\n=== Benchmark Complete ===")
+    print(f"Passed: {passed_count}/{total_evaluations} ({100*passed_count/total_evaluations:.1f}%)")
+    print(f"Failed: {failed_count}/{total_evaluations} ({100*failed_count/total_evaluations:.1f}%)") 
 
 if __name__ == "__main__":
     run_benchmark()

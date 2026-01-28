@@ -3,10 +3,6 @@ import re
 
 
 def extract_code_and_fix(llm_response):
-    print("\n--- Réponse Brut du LLM ---")
-    print(llm_response)
-    print("---------------------------\n")
-
     # find the code between the markdown
     pattern = r"```(?:python|markdown|Markdown|Python|code)?\n(.*?)```"
     matches = re.findall(pattern, llm_response, re.DOTALL)
@@ -70,14 +66,12 @@ def modify_lib(file_content, new_import_statement):
     match = re.search(pattern, file_content, flags=re.DOTALL)
 
     if match:
-        print("Occurrence trouvée dans exec_context !")
         new_content = re.sub(
-            pattern, 
-            rf'\1\2{new_import_statement}\4', 
-            file_content, 
+            pattern,
+            rf'\1\2{new_import_statement}\4',
+            file_content,
             flags=re.DOTALL
         )
         return new_content
     else:
-        print("Aucune occurrence trouvée dans exec_context.")
         return ""
