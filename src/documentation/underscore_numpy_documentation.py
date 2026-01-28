@@ -7,7 +7,7 @@ import re
 
 def add_underscore(s):
     print(f"voici le string {s}")
-    new_s = re.sub(r"np\.(\w+)",r"np.\1_ ", s)  
+    new_s = re.sub(r"np\.(\w+)",r"np.\1_", s)  
     return new_s
 
 
@@ -89,5 +89,5 @@ def generate_full_docs(base_module, output_file):
 
 # --- 3. Run it ---
 if __name__ == "__main__":
-    generate_full_docs(numpy, "numpy_manual_underscore.txt")
+    generate_full_docs(numpy, "src/documentation/numpy_manual_underscore.txt")
     

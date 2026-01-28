@@ -13,6 +13,11 @@ from config_loader import load_config
 config = load_config()
 
 
+#*-------------------------------------*
+# Functional evaluation of the LLM code#
+#*-------------------------------------*
+
+
 
 def execute_task_engine(code_context, llm_solution, llm_client):
     """
@@ -73,6 +78,10 @@ def execute_task_engine(code_context, llm_solution, llm_client):
             os.remove(script_path)
 
 
+#*----------------------------------------------------------------------*
+# Function that question the LLM, run the solution and return the result#
+#*----------------------------------------------------------------------*
+
 
 def evaluate_single_task(task, new_lib, llm_client):
     """
@@ -129,6 +138,12 @@ def evaluate_single_task(task, new_lib, llm_client):
         "full_response": raw_response
     }
 
+
+#*-----------------------------------------------------------------------------------------------*
+# Function to run tests on the dataset mentioned in the config file with the COUNTERFACTUAL LIB #
+#*-----------------------------------------------------------------------------------------------*
+
+
 def run_benchmark(first_task, llm_client):
     """Lit le fichier d'entrée et traite chaque ligne"""
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -165,6 +180,11 @@ def run_benchmark(first_task, llm_client):
                 f_out.write(json.dumps(result) + "\n")
                 f_out.flush()
     
+
+#*-------------------------------------------------------------------------*
+# Function to run tests on the dataset with the RIGHT LIB as a control test#
+#*-------------------------------------------------------------------------*
+
 
 def run_control(first_task, llm_client) :
     """Lit le fichier d'entrée et traite chaque ligne"""
@@ -206,6 +226,14 @@ def run_control(first_task, llm_client) :
                 # Écriture Disque
                 f_out.write(json.dumps(result) + "\n")
                 f_out.flush()
+
+
+
+
+#*-----*
+# MAIN #
+#*-----*
+
 
 if __name__ == "__main__":
     # Get task id to start with
