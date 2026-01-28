@@ -220,8 +220,8 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--task_id", type=int, default=0, help="ID spécifique de la tâche à partir de laquelle relancer l'execution")
     args = parser.parse_args()
 
-    run_control(args.task_id)
-    run_benchmark(0)
+    # run_control(args.task_id)
+    run_benchmark(args.task_id)
     
 
 
