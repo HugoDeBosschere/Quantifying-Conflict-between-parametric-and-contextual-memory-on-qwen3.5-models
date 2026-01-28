@@ -14,16 +14,7 @@ config = load_config()
 
 
 
-# --- INIT LLM CLIENT ---
-llm_client = LLMClient(config)
-model_metadata = {
-                  "model_name" :  llm_client.model_name,
-                  "temperature" : llm_client.temperature,
-                  }
-
-
-
-def execute_task_engine(code_context, llm_solution):
+def execute_task_engine(code_context, llm_solution, llm_client):
     """
     Construit le script final en combinant le moteur de test (JSON) et la solution (LLM).
     """
@@ -83,7 +74,7 @@ def execute_task_engine(code_context, llm_solution):
 
 
 
-def evaluate_single_task(task, new_lib):
+def evaluate_single_task(task, new_lib, llm_client):
     """
     Orchestre l'évaluation d'une seule tâche.
     Input: Dictionnaire de la tâche (JSON)
@@ -113,7 +104,7 @@ def evaluate_single_task(task, new_lib):
         new_import = "import " + new_lib + " as np"
         new_context = modify_lib(task["code_context"], new_import)
         if new_context :
-            stdout, stderr = execute_task_engine(new_context, code)
+            stdout, stderr = execute_task_engine(new_context, code, llm_client)
         else:
             stdout, stderr = "", ""
         # stdout, stderr = execute_task_engine(task["code_context"], code)
@@ -124,7 +115,7 @@ def evaluate_single_task(task, new_lib):
         stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
 
     ## récupération des Metadonnées
-    metadata = task["metadata"] | model_metadata
+    metadata = task["metadata"] | llm_client.model_metadata
     
 
     # 5. Construction du résultat
@@ -138,7 +129,7 @@ def evaluate_single_task(task, new_lib):
         "full_response": raw_response
     }
 
-def run_benchmark(first_task):
+def run_benchmark(first_task, llm_client):
     """Lit le fichier d'entrée et traite chaque ligne"""
     base_dir = os.path.dirname(os.path.abspath(__file__))
     input_path = os.path.join(base_dir, config["data"]["input_path"])
@@ -164,7 +155,7 @@ def run_benchmark(first_task):
             task_id = task.get("metadata", {}).get("problem_id", "") or task.get("task_id", "")
             if task_id and task_id > first_task :
                 # run on single task
-                result = evaluate_single_task(task, config["new_lib_injection"]["name"])
+                result = evaluate_single_task(task, config["new_lib_injection"]["name"], llm_client)
                 
                 # Feedback Console
                 status = "pass" if result["passed"] else "false"
@@ -174,7 +165,8 @@ def run_benchmark(first_task):
                 f_out.write(json.dumps(result) + "\n")
                 f_out.flush()
     
-def run_control(first_task) :
+
+def run_control(first_task, llm_client) :
     """Lit le fichier d'entrée et traite chaque ligne"""
     print("CONTROL MODE")
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -204,7 +196,7 @@ def run_control(first_task) :
             task_id = task.get("metadata", {}).get("problem_id", "") or task.get("task_id", "")
             if task_id and task_id > first_task :
                 # run on single task
-                result = evaluate_single_task(task, usual_lib.lower())
+                result = evaluate_single_task(task, usual_lib.lower(), llm_client)
                 result["is_control"] = True
 
                 # Feedback Console
@@ -216,12 +208,22 @@ def run_control(first_task) :
                 f_out.flush()
 
 if __name__ == "__main__":
+    # Get task id to start with
     parser = argparse.ArgumentParser(description="Lancer l'évaluation DS-1000")
     parser.add_argument("-t", "--task_id", type=int, default=0, help="ID spécifique de la tâche à partir de laquelle relancer l'execution")
     args = parser.parse_args()
 
-    # run_control(args.task_id)
-    run_benchmark(args.task_id)
-    
+    # Liste noms de modèles
+    list_model_name = config.get("llm", {}).get("model", [])
+
+    for model_name in list_model_name :
+
+        # --- INIT LLM CLIENT ---
+        llm_client = LLMClient(config, model_name)
+
+
+        # run_control(args.task_id, llm_client)
+        run_benchmark(args.task_id, llm_client)
+        
 
 

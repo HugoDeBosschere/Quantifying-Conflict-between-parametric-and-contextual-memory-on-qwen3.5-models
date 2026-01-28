@@ -2,25 +2,31 @@ import requests
 import os
 
 class LLMClient:
-    def __init__(self, config):
+    def __init__(self, config, model_name):
         """
         On injecte la config à l'initialisation.
         config: dict contenant la section "llm" et "new_lib_injection"
         """
-        self.model_name = config["llm"]["model"]
+        self.model_name = model_name
         self.api_url = config["llm"]["api_url"]
         self.temperature = config["llm"]["temperature"]
         self.system_prompt = config["new_lib_injection"]["system_prompt"]
         self.custom_lib_path = config["new_lib_injection"]["custom_lib_path"]
         self.new_lib_name = config["new_lib_injection"]["name"]
         self.documentation = self.load_doc(config)
+        self.model_metadata = self.load_model_metadata()
     
+
+    def load_model_metadata(self) :
+        return {"model_name" : self.model_name,
+                "temperature" : self.temperature}
+
 
     def load_doc(self, config) :
         doc = []
         doc.append(config.get("new_lib_injection", {}).get("documentation", {}).get("intro", ""))
-
         doc_path = config.get("new_lib_injection", {}).get("documentation", {}).get("path", "")
+        
         try :
             if os.path.exists(doc_path) :
                 with open(doc_path, mode = "r", encoding="utf-8") as f :

@@ -1,5 +1,5 @@
 {
-    "llm": {"model"      :"qwen2.5-coder:32b",
+    "llm": {"model"      : ["qwen2.5-coder:32b", "qwen2.5-coder", "codestral"],
             "temperature":0,
             "api_url"    : "http://localhost:11434/api/generate"
             },
@@ -12,7 +12,7 @@
             "custom_lib_path": "/usr/users/sdim/sdim_25/memory_code_eval/src",
             "system_prompt"  : "You are a Python Data Science expert.\n Complete the code between Markdowns to solve the problem.\n Assign the final answer to the variable 'result'.\n IMPORTANT CONSTRAINTS:\n 1. Assume that input data (arrays) is ALREADY LOADED.\n2. Do NOT redefine input variables or create mock data only the code to be executed is required.\n 3. Do NOT import standard libraries.\n 4. Do not import functions from standard librairies \n 5. Return ONLY the code inside a markdown block.\n 6. the numpy function you use must all start with 'np.'\n 7. The final response to the problem must be into a variable 'result' Therefore, the last line of the code must start with : 'result =' ",
             "documentation" :{
-                               "intro" : "This is the new version of the numpy library documentationthat I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following doucmentation : ",
+                               "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following doucmentation : ",
                                "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/numpy_manual_underscore.txt"
                                 }
             
