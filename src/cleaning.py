@@ -214,42 +214,50 @@ def rescue_missing_result(code, full_response):
     return code
 
 # ==============================================================================
-# 3. TRANSFORMATIONS AST (SEMANTIQUE SÉCURISÉE)
+# 3. TRANSFORMATIONS AST (SUPPRESSION IMPORT + RETURN -> RESULT)
 # ==============================================================================
 
-def transform_return_to_result(code):
+def apply_ast_transformations(code):
     """
-    Transforme les 'return x' en 'result = x', MAIS SEULEMENT au niveau global.
-    Ne touche PAS aux returns à l'intérieur des fonctions 'def'.
+    Parse le code, supprime les imports, convertit les returns globaux,
+    et régénère le code propre.
     """
     try:
         tree = ast.parse(code)
         new_body = []
-        modified = False
         
         for node in tree.body:
-            # Si on trouve un 'return' tout nu au niveau 0 (ce qui est illégal en script normal)
-            if isinstance(node, ast.Return) and node.value:
+            # --- SUPPRESSION DES IMPORTS ---
+            # Si le noeud est un import, on ne l'ajoute pas à la nouvelle liste.
+            # Il disparaît donc purement et simplement.
+            if isinstance(node, (ast.Import, ast.ImportFrom)):
+                continue 
+
+            # --- TRANSFORMATION RETURN -> RESULT ---
+            elif isinstance(node, ast.Return) and node.value:
                 assign = ast.Assign(
                     targets=[ast.Name(id='result', ctx=ast.Store())],
                     value=node.value
                 )
                 new_body.append(assign)
-                modified = True
+
+            # --- LE RESTE ON GARDE ---
             else:
-                # Si c'est une fonction (def), on ne rentre PAS dedans, on garde le noeud tel quel.
                 new_body.append(node)
         
-        if modified:
-            tree.body = new_body
-            # ast.unparse est dispo depuis Python 3.9
-            if hasattr(ast, "unparse"):
-                return ast.unparse(tree)
+        tree.body = new_body
+        
+        # On régénère le code sous forme de string (Python 3.9+)
+        if hasattr(ast, "unparse"):
+            return ast.unparse(tree)
             
     except SyntaxError:
-        pass # Si l'AST échoue, on ne fait rien (le nettoyage ligne par ligne s'en chargera)
+        # Si le code est cassé, on ne peut pas le transformer via AST.
+        # On le renvoie tel quel pour que le 'Slow Path' (nettoyage ligne par ligne) s'en occupe.
+        pass
     
     return code
+
 
 # ==============================================================================
 # 4. LE PIPELINE PRINCIPAL (L'ENTONNOIR)
@@ -286,6 +294,10 @@ def extract_code_and_fix(llm_response):
             if "END SOLUTION" in line_clean: continue
             if line_clean.strip() in ["```", "```python", "<code>", "</code>"]: continue
             
+            # --- FILTRE IMPORT MANUEL (Backup indispensable ici) ---
+            if line_clean.strip().startswith(("import ", "from ")): 
+                continue
+
             # Filtre AST (Le Gardien)
             if not is_valid_and_useful_line(line_clean):
                 continue
@@ -299,7 +311,7 @@ def extract_code_and_fix(llm_response):
 
     # 5. Transformation Sémantique (Return -> Result)
     # On le fait via AST pour être sûr de ne pas casser les fonctions
-    final_code = transform_return_to_result(clean_code)
+    final_code = apply_ast_transformations(clean_code)
 
     print(f"--- Code Final ---\n{final_code}\n------------------")
     return final_code
