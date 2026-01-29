@@ -1,4 +1,4 @@
-Refrence Documentation for numpy 
+Reference Documentation for numpy 
 ============================================================
 
 FUNCTION: numpy.abs
@@ -105,9 +105,7 @@ angle : ndarray
     `x`-coordinate in radians [0, pi].
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-cos, arctan, arcsin, emath.arccos
+
 
 Notes
 -----
@@ -182,10 +180,7 @@ arccosh : ndarray
     Array of the same shape as `x`.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
 
-cosh, arcsinh, sinh, arctanh, tanh
 
 Notes
 -----
@@ -313,9 +308,7 @@ angle : ndarray
     closed interval ``[-pi/2, pi/2]``.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-sin, cos, arccos, tan, arctan, arctan2, emath.arcsin
+
 
 Notes
 -----
@@ -449,11 +442,7 @@ out : ndarray or scalar
     ``[-pi/2, pi/2]`` (``arctan(+/-inf)`` returns ``+/-pi/2``).
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-arctan2 : The "four quadrant" arctan of the angle formed by (`x`, `y`)
-    and the positive `x`-axis.
-angle : Argument of complex values.
+
 
 Notes
 -----
@@ -547,9 +536,7 @@ angle : ndarray
     Array of angles in radians, in the range ``[-pi, pi]``.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-arctan, tan, angle
+
 
 Notes
 -----
@@ -629,9 +616,7 @@ out : ndarray or scalar
     Array of the same shape as `x`.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-emath.arctanh
+
 
 Notes
 -----
@@ -700,16 +685,7 @@ Convert the input to an array, checking for NaNs or Infs.
     ValueError
         Raises ValueError if `a` contains NaN (Not a Number) or Inf (Infinity).
 
-    See Also
-    --------
-    asarray : Create and array.
-    asanyarray : Similar function which passes through subclasses.
-    ascontiguousarray : Convert input to a contiguous array.
-    asfortranarray : Convert input to an ndarray with column-major
-                     memory order.
-    fromiter : Create an array from an iterator.
-    fromfunction : Construct an array by executing a function on grid
-                   positions.
+    
 
     Examples
     --------
@@ -796,9 +772,7 @@ FUNCTION: numpy.bartlett
         (the value one appears only if the number of samples is odd), with
         the first and last samples equal to zero.
 
-    See Also
-    --------
-    blackman, hamming, hanning, kaiser
+    
 
     Notes
     -----
@@ -890,9 +864,7 @@ FUNCTION: numpy.base_repr
     out : str
         String representation of `number` in `base` system.
 
-    See Also
-    --------
-    binary_repr : Faster version of `base_repr` for base 2.
+    
 
     Examples
     --------
@@ -944,11 +916,7 @@ FUNCTION: numpy.binary_repr
     bin : str
         Binary representation of `num` or two's complement of `num`.
 
-    See Also
-    --------
-    base_repr: Return a string representation of a number in the given base
-               system.
-    bin: Python's built-in binary representation generator of an integer.
+    
 
     Notes
     -----
@@ -1020,13 +988,7 @@ out : ndarray or scalar
     Result.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-logical_and
-bitwise_or
-bitwise_xor
-binary_repr :
-    Return the binary representation of the input number as a string.
+
 
 Examples
 --------
@@ -1162,12 +1124,7 @@ out : ndarray or scalar
     Result.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-bitwise_and, bitwise_or, bitwise_xor
-logical_not
-binary_repr :
-    Return the binary representation of the input number as a string.
+
 
 Notes
 -----
@@ -1264,11 +1221,7 @@ out : array of integer type
     Return `x1` with bits shifted `x2` times to the left.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-right_shift : Shift the bits of an integer to the right.
-binary_repr : Return the binary representation of the input number
-    as a string.
+
 
 Examples
 --------
@@ -1342,13 +1295,7 @@ out : ndarray or scalar
     Result.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-logical_or
-bitwise_and
-bitwise_xor
-binary_repr :
-    Return the binary representation of the input number as a string.
+
 
 Examples
 --------
@@ -1430,11 +1377,7 @@ out : ndarray, int
     Return `x1` with bits shifted `x2` times to the right.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-left_shift : Shift the bits of an integer to the left.
-binary_repr : Return the binary representation of the input number
-    as a string.
+
 
 Examples
 --------
@@ -1497,13 +1440,7 @@ out : ndarray or scalar
     Result.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-logical_xor
-bitwise_and
-bitwise_or
-binary_repr :
-    Return the binary representation of the input number as a string.
+
 
 Examples
 --------
@@ -1560,9 +1497,7 @@ FUNCTION: numpy.blackman
         The window, with the maximum value normalized to one (the value one
         appears only if the number of samples is odd).
 
-    See Also
-    --------
-    bartlett, hamming, hanning, kaiser
+    
 
     Notes
     -----
@@ -1650,11 +1585,7 @@ FUNCTION: numpy.bmat
     out : matrix
         Returns a matrix object, which is a specialized 2-D array.
 
-    See Also
-    --------
-    block :
-        A generalization of this function for N-d arrays, that returns normal
-        ndarrays.
+    
 
     Examples
     --------
@@ -1711,11 +1642,7 @@ FUNCTION: numpy.broadcast_shapes
         If the shapes are not compatible and cannot be broadcast according
         to NumPy's broadcasting rules.
 
-    See Also
-    --------
-    broadcast
-    broadcast_arrays
-    broadcast_to
+    
 
     Examples
     --------
@@ -1807,9 +1734,7 @@ y : ndarray or scalar
     The ceiling of each element in `x`.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-floor, trunc, rint, fix
+
 
 Examples
 --------
@@ -1914,10 +1839,7 @@ out : ndarray or scalar
     The values of `x1` with the sign of `x2`.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-sign
-signbit
+
 
 Examples
 --------
@@ -2079,10 +2001,7 @@ y : ndarray
     The corresponding angle in radians.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-rad2deg : Convert angles from radians to degrees.
-unwrap : Remove large jumps in angle by wrapping.
+
 
 Notes
 -----
@@ -2129,9 +2048,7 @@ y : ndarray of floats
     reference to it.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-rad2deg : equivalent function
+
 
 Examples
 --------
@@ -2170,9 +2087,7 @@ FUNCTION: numpy.diag_indices
     ndim : int, optional
       The number of dimensions.
 
-    See Also
-    --------
-    diag_indices_from
+    
 
     Examples
     --------
@@ -2252,10 +2167,7 @@ y : ndarray or scalar
     The quotient ``x1/x2``, element-wise.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-seterr : Set whether to raise or warn on overflow, underflow and
-         division by zero.
+
 
 Notes
 -----
@@ -2331,12 +2243,7 @@ out2 : ndarray
     Element-wise remainder from floor division.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-floor_divide : Equivalent to Python's ``//`` operator.
-remainder : Equivalent to Python's ``%`` operator.
-modf : Equivalent to ``divmod(x, 1)`` for positive ``x`` with the return
-       values switched.
+
 
 Examples
 --------
@@ -2388,9 +2295,7 @@ out : ndarray or scalar
     Typically of type bool, unless ``dtype=object`` is passed.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-not_equal, greater_equal, less_equal, greater, less
+
 
 Examples
 --------
@@ -2446,10 +2351,7 @@ out : ndarray or scalar
     Output array, element-wise exponential of `x`.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-expm1 : Calculate ``exp(x) - 1`` for all elements in the array.
-exp2  : Calculate ``2**x`` for all elements in the array.
+
 
 Notes
 -----
@@ -2530,9 +2432,7 @@ out : ndarray or scalar
     Element-wise 2 to the power `x`.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-power
+
 
 Examples
 --------
@@ -2574,9 +2474,7 @@ out : ndarray or scalar
     Element-wise exponential minus one: ``out = exp(x) - 1``.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-log1p : ``log(1 + x)``, the inverse of expm1.
+
 
 
 Notes
@@ -2639,10 +2537,7 @@ FUNCTION: numpy.eye
       An array where all elements are equal to zero, except for the `k`-th
       diagonal, whose values are equal to one.
 
-    See Also
-    --------
-    identity : (almost) equivalent function
-    diag : diagonal 2-D array from a 1-D array specified by the user.
+    
 
     Examples
     --------
@@ -2696,9 +2591,7 @@ y : ndarray or scalar
     The absolute values of `x`, the returned values are always floats.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-absolute : Absolute values including `complex` types.
+
 
 Examples
 --------
@@ -2757,9 +2650,7 @@ y : ndarray
     The bases in `x1` raised to the exponents in `x2`.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-power : power function that preserves type
+
 
 Examples
 --------
@@ -2841,9 +2732,7 @@ y : ndarray or scalar
     The floor of each element in `x`.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-ceil, trunc, rint, fix
+
 
 Notes
 -----
@@ -2900,13 +2789,7 @@ y : ndarray
     y = floor(`x1`/`x2`)
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-remainder : Remainder complementary to floor_divide.
-divmod : Simultaneous floor division and remainder.
-divide : Standard division.
-floor : Round a number to the nearest integer toward minus infinity.
-ceil : Round a number to the nearest integer toward infinity.
+
 
 Examples
 --------
@@ -2966,16 +2849,7 @@ y : ndarray or scalar
     The maximum of `x1` and `x2`, element-wise.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-fmin :
-    Element-wise minimum of two arrays, ignores NaNs.
-maximum :
-    Element-wise maximum of two arrays, propagates NaNs.
-amax :
-    The maximum value of an array along a given axis, propagates NaNs.
-nanmax :
-    The maximum value of an array along a given axis, ignores NaNs.
+
 
 minimum, amin, nanmin
 
@@ -3040,16 +2914,7 @@ y : ndarray or scalar
     The minimum of `x1` and `x2`, element-wise.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-fmax :
-    Element-wise maximum of two arrays, ignores NaNs.
-minimum :
-    Element-wise minimum of two arrays, propagates NaNs.
-amin :
-    The minimum value of an array along a given axis, propagates NaNs.
-nanmin :
-    The minimum value of an array along a given axis, ignores NaNs.
+
 
 maximum, amax, nanmax
 
@@ -3114,10 +2979,7 @@ y : array_like
     The remainder of the division of `x1` by `x2`.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-remainder : Equivalent to the Python ``%`` operator.
-divide
+
 
 Notes
 -----
@@ -3209,9 +3071,7 @@ FUNCTION: numpy.format_float_positional
     rep : string
         The string representation of the floating point value
 
-    See Also
-    --------
-    format_float_scientific
+    
 
     Examples
     --------
@@ -3281,9 +3141,7 @@ FUNCTION: numpy.format_float_scientific
     rep : string
         The string representation of the floating point value
 
-    See Also
-    --------
-    format_float_positional
+    
 
     Examples
     --------
@@ -3342,9 +3200,7 @@ exponent : ndarray
     Integer exponents of 2.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-ldexp : Compute ``y = x1 * 2**x2``, the inverse of `frexp`.
+
 
 Notes
 -----
@@ -3404,9 +3260,7 @@ FUNCTION: numpy.fromfunction
         `function`.  If `function` returns a scalar value, the shape of
         `fromfunction` would not match the `shape` parameter.
 
-    See Also
-    --------
-    indices, meshgrid
+    
 
     Notes
     -----
@@ -3473,9 +3327,7 @@ FUNCTION: numpy.fromregex
     TypeError
         When `dtype` is not a valid dtype for a structured array.
 
-    See Also
-    --------
-    fromstring, loadtxt
+    
 
     Notes
     -----
@@ -3538,12 +3390,7 @@ FUNCTION: numpy.full
     out : ndarray
         Array of `fill_value` with the given shape, dtype, and order.
 
-    See Also
-    --------
-    full_like : Return a new array with shape of input filled with value.
-    empty : Return a new uninitialized array.
-    ones : Return a new array setting values to one.
-    zeros : Return a new array setting values to zero.
+    
 
     Examples
     --------
@@ -3582,9 +3429,7 @@ y : ndarray or scalar
     The greatest common divisor of the absolute value of the inputs
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-lcm : The lowest common multiple
+
 
 Examples
 --------
@@ -3720,9 +3565,7 @@ FUNCTION: numpy.genfromtxt
         Data read from the text file. If `usemask` is True, this is a
         masked array.
 
-    See Also
-    --------
-    numpy.loadtxt : equivalent function when no data is missing.
+    
 
     Notes
     -----
@@ -3864,9 +3707,7 @@ FUNCTION: numpy.get_printoptions
 
     **Concurrency note:** see :ref:`text_formatting_options`
 
-    See Also
-    --------
-    set_printoptions, printoptions
+    
 
     Examples
     --------
@@ -3924,9 +3765,7 @@ FUNCTION: numpy.geterr
         "raise", and "call". The keys represent possible floating-point
         exceptions, and the values define how these exceptions are handled.
 
-    See Also
-    --------
-    geterrcall, seterr, seterrcall
+    
 
     Notes
     -----
@@ -3974,9 +3813,7 @@ FUNCTION: numpy.geterrcall
         The current error handler. If no handler was set through `seterrcall`,
         ``None`` is returned.
 
-    See Also
-    --------
-    seterrcall, seterr, geterr
+    
 
     Notes
     -----
@@ -4044,9 +3881,7 @@ out : ndarray or scalar
     This is a scalar if both `x1` and `x2` are scalars.
 
 
-See Also
---------
-greater_equal, less, less_equal, equal, not_equal
+
 
 Examples
 --------
@@ -4099,9 +3934,7 @@ out : bool or ndarray of bool
     Typically of type bool, unless ``dtype=object`` is passed.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-greater, less, less_equal, equal, not_equal
+
 
 Examples
 --------
@@ -4138,9 +3971,7 @@ FUNCTION: numpy.hamming
         The window, with the maximum value normalized to one (the value
         one appears only if the number of samples is odd).
 
-    See Also
-    --------
-    bartlett, blackman, hanning, kaiser
+    
 
     Notes
     -----
@@ -4227,9 +4058,7 @@ FUNCTION: numpy.hanning
         The window, with the maximum value normalized to one (the value
         one appears only if `M` is odd).
 
-    See Also
-    --------
-    bartlett, blackman, hamming, kaiser
+    
 
     Notes
     -----
@@ -4485,9 +4314,7 @@ FUNCTION: numpy.indices
             ``grid[i].shape = (1, ..., 1, dimensions[i], 1, ..., 1)`` with
             dimensions[i] in the ith place
 
-    See Also
-    --------
-    mgrid, ogrid, meshgrid
+    
 
     Notes
     -----
@@ -4636,9 +4463,7 @@ FUNCTION: numpy.isdtype
     -------
     out : bool
 
-    See Also
-    --------
-    issubdtype
+    
 
     Examples
     --------
@@ -4689,9 +4514,7 @@ y : ndarray, bool
     or NaN; false otherwise.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-isinf, isneginf, isposinf, isnan
+
 
 Notes
 -----
@@ -4832,9 +4655,7 @@ y : bool (scalar) or boolean ndarray
     True where ``x`` is positive or negative infinity, false otherwise.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-isneginf, isposinf, isnan, isfinite
+
 
 Notes
 -----
@@ -4898,9 +4719,7 @@ y : ndarray or bool
     True where ``x`` is NaN, false otherwise.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-isinf, isneginf, isposinf, isfinite, isnat
+
 
 Notes
 -----
@@ -4951,9 +4770,7 @@ y : ndarray or bool
     True where ``x`` is NaT, false otherwise.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-isnan, isinf, isneginf, isposinf, isfinite
+
 
 Examples
 --------
@@ -4982,9 +4799,7 @@ FUNCTION: numpy.isscalar
     val : bool
         True if `element` is a scalar type, False if it is not.
 
-    See Also
-    --------
-    ndim : Get the number of dimensions of an array
+    
 
     Notes
     -----
@@ -5068,9 +4883,7 @@ FUNCTION: numpy.issubdtype
     -------
     out : bool
 
-    See Also
-    --------
-    :ref:`arrays.scalars` : Overview of the numpy type hierarchy.
+    
 
     Examples
     --------
@@ -5176,9 +4989,7 @@ FUNCTION: numpy.kaiser
         The window, with the maximum value normalized to one (the value
         one appears only if the number of samples is odd).
 
-    See Also
-    --------
-    bartlett, blackman, hamming, hanning
+    
 
     Notes
     -----
@@ -5293,9 +5104,7 @@ y : ndarray or scalar
     The lowest common multiple of the absolute value of the inputs
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-gcd : The greatest common divisor
+
 
 Examples
 --------
@@ -5350,9 +5159,7 @@ y : ndarray or scalar
     The result of ``x1 * 2**x2``.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-frexp : Return (y1, y2) from ``x = y1 * 2**y2``, inverse to `ldexp`.
+
 
 Notes
 -----
@@ -5408,9 +5215,7 @@ out : ndarray or scalar
     Typically of type bool, unless ``dtype=object`` is passed.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-greater, less_equal, greater_equal, equal, not_equal
+
 
 Examples
 --------
@@ -5462,9 +5267,7 @@ out : ndarray or scalar
     Typically of type bool, unless ``dtype=object`` is passed.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-greater, less, greater_equal, equal, not_equal
+
 
 Examples
 --------
@@ -5548,11 +5351,7 @@ FUNCTION: numpy.load
         When calling ``np.load`` multiple times on the same file handle,
         if all data has already been read
 
-    See Also
-    --------
-    save, savez, savez_compressed, loadtxt
-    memmap : Create a memory-map to an array stored in a file on disk.
-    lib.format.open_memmap : Create or load a memory-mapped ``.npy`` file.
+    
 
     Notes
     -----
@@ -5708,11 +5507,7 @@ FUNCTION: numpy.loadtxt
     out : ndarray
         Data read from the text file.
 
-    See Also
-    --------
-    load, fromstring, fromregex
-    genfromtxt : Load data with missing values handled as specified.
-    scipy.io.loadmat : reads MATLAB data files
+    
 
     Notes
     -----
@@ -5887,9 +5682,7 @@ y : ndarray
     The natural logarithm of `x`, element-wise.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-log10, log2, log1p, emath.log
+
 
 Notes
 -----
@@ -5958,9 +5751,7 @@ y : ndarray
     returned where x is negative.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-emath.log10
+
 
 Notes
 -----
@@ -6030,9 +5821,7 @@ y : ndarray
     Natural logarithm of `1 + x`, element-wise.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-expm1 : ``exp(x) - 1``, the inverse of `log1p`.
+
 
 Notes
 -----
@@ -6101,9 +5890,7 @@ y : ndarray
     Base-2 logarithm of `x`.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-log, log10, log1p, emath.log2
+
 
 Notes
 -----
@@ -6177,9 +5964,7 @@ result : ndarray
     Logarithm of ``exp(x1) + exp(x2)``.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-logaddexp2: Logarithm of the sum of exponentiations of inputs in base 2.
+
 
 Examples
 --------
@@ -6234,9 +6019,7 @@ result : ndarray
     Base-2 logarithm of ``2**x1 + 2**x2``.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-logaddexp: Logarithm of the sum of exponentiations of the inputs.
+
 
 Examples
 --------
@@ -6286,10 +6069,7 @@ y : ndarray or bool
     of `x1` and `x2`; the shape is determined by broadcasting.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-logical_or, logical_not, logical_xor
-bitwise_and
+
 
 Examples
 --------
@@ -6347,9 +6127,7 @@ y : bool or ndarray of bool
     on elements of `x`.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-logical_and, logical_or, logical_xor
+
 
 Examples
 --------
@@ -6400,10 +6178,7 @@ y : ndarray or bool
     of `x1` and `x2`; the shape is determined by broadcasting.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-logical_and, logical_not, logical_xor
-bitwise_or
+
 
 Examples
 --------
@@ -6462,9 +6237,7 @@ y : bool or ndarray of bool
     of `x1` and `x2`; the shape is determined by broadcasting.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-logical_and, logical_or, logical_not, bitwise_xor
+
 
 Examples
 --------
@@ -6516,9 +6289,7 @@ FUNCTION: numpy.mask_indices
         The `n` arrays of indices corresponding to the locations where
         ``mask_func(np.ones((n, n)), k)`` is True.
 
-    See Also
-    --------
-    triu, tril, triu_indices, tril_indices
+    
 
     Examples
     --------
@@ -6585,14 +6356,7 @@ ValueError
 
     If a scalar value is passed in.
 
-See Also
---------
-vecdot : Complex-conjugating dot product for stacks of vectors.
-matvec : Matrix-vector product for stacks of matrices and vectors.
-vecmat : Vector-matrix product for stacks of vectors and matrices.
-tensordot : Sum products over arbitrary axes.
-einsum : Einstein summation convention.
-dot : alternative matrix product with different broadcasting rules.
+
 
 Notes
 -----
@@ -6729,12 +6493,7 @@ ValueError
 
     If a scalar value is passed in.
 
-See Also
---------
-vecdot : Vector-vector product.
-vecmat : Vector-matrix product.
-matmul : Matrix-matrix product.
-einsum : Einstein summation convention.
+
 
 Examples
 --------
@@ -6796,16 +6555,7 @@ y : ndarray or scalar
     The maximum of `x1` and `x2`, element-wise.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-minimum :
-    Element-wise minimum of two arrays, propagates NaNs.
-fmax :
-    Element-wise maximum of two arrays, ignores NaNs.
-amax :
-    The maximum value of an array along a given axis, propagates NaNs.
-nanmax :
-    The maximum value of an array along a given axis, ignores NaNs.
+
 
 fmin, amin, nanmin
 
@@ -6873,16 +6623,7 @@ y : ndarray or scalar
     The minimum of `x1` and `x2`, element-wise.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-maximum :
-    Element-wise maximum of two arrays, propagates NaNs.
-fmin :
-    Element-wise minimum of two arrays, ignores NaNs.
-amin :
-    The minimum value of an array along a given axis, propagates NaNs.
-nanmin :
-    The minimum value of an array along a given axis, ignores NaNs.
+
 
 fmax, amax, nanmax
 
@@ -6937,9 +6678,7 @@ FUNCTION: numpy.mintypecode
     typechar : str
         The character representing the minimum-size type that was found.
 
-    See Also
-    --------
-    dtype
+    
 
     Examples
     --------
@@ -7008,12 +6747,7 @@ y : ndarray
     The element-wise remainder of the quotient ``floor_divide(x1, x2)``.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-floor_divide : Equivalent of Python ``//`` operator.
-divmod : Simultaneous floor division and remainder.
-fmod : Equivalent of the MATLAB ``rem`` function.
-divide, floor
+
 
 Notes
 -----
@@ -7080,10 +6814,7 @@ Notes
 -----
 For integer input the return values are floats.
 
-See Also
---------
-divmod : ``divmod(x, 1)`` is equivalent to ``modf`` with the return values
-         switched, except it always has a positive remainder.
+
 
 Examples
 --------
@@ -7287,9 +7018,7 @@ out : ndarray or scalar
     Typically of type bool, unless ``dtype=object`` is passed.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-equal, greater, greater_equal, less, less_equal
+
 
 Examples
 --------
@@ -7345,12 +7074,7 @@ FUNCTION: numpy.ones
     out : ndarray
         Array of ones with the given shape, dtype, and order.
 
-    See Also
-    --------
-    ones_like : Return an array of ones with shape and type of input.
-    empty : Return a new uninitialized array.
-    zeros : Return a new array setting values to zero.
-    full : Return a new array of given shape filled with value.
+    
 
     Examples
     --------
@@ -7459,9 +7183,7 @@ y : ndarray
     The bases in `x1` raised to the exponents in `x2`.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-float_power : power function that promotes integers to float
+
 
 Examples
 --------
@@ -7538,9 +7260,7 @@ Context manager for setting print options.
     >>> with np.printoptions(precision=2) as opts:
     ...      assert_equal(opts, np.get_printoptions())
 
-    See Also
-    --------
-    set_printoptions, get_printoptions
+    
 
     Notes
     -----
@@ -7584,10 +7304,7 @@ y : ndarray
     The corresponding angle in degrees.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-deg2rad : Convert angles from degrees to radians.
-unwrap : Remove large jumps in angle by wrapping.
+
 
 Notes
 -----
@@ -7633,9 +7350,7 @@ y : ndarray
     The corresponding radian values.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-deg2rad : equivalent function
+
 
 Examples
 --------
@@ -7748,14 +7463,7 @@ FUNCTION: numpy.require
     out : ndarray
         Array with specified requirements and type if given.
 
-    See Also
-    --------
-    asarray : Convert input to an ndarray.
-    asanyarray : Convert to an ndarray, but pass through ndarray subclasses.
-    ascontiguousarray : Convert input to a contiguous array.
-    asfortranarray : Convert input to an ndarray with column-major
-                     memory order.
-    ndarray.flags : Information about the memory layout of the array.
+    
 
     Notes
     -----
@@ -7819,9 +7527,7 @@ out : ndarray or scalar
     Output array is same shape and type as `x`.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-fix, ceil, floor, trunc
+
 
 Notes
 -----
@@ -7876,16 +7582,7 @@ FUNCTION: numpy.row_stack
     stacked : ndarray
         The array formed by stacking the given arrays, will be at least 2-D.
 
-    See Also
-    --------
-    concatenate : Join a sequence of arrays along an existing axis.
-    stack : Join a sequence of arrays along a new axis.
-    block : Assemble an nd-array from nested lists of blocks.
-    hstack : Stack arrays in sequence horizontally (column wise).
-    dstack : Stack arrays in sequence depth wise (along third axis).
-    column_stack : Stack 1-D arrays as columns into a 2-D array.
-    vsplit : Split an array into multiple sub-arrays vertically (row-wise).
-    unstack : Split an array into a tuple of sub-arrays along an axis.
+    
 
     Examples
     --------
@@ -8032,9 +7729,7 @@ FUNCTION: numpy.set_printoptions
         If set a passed function will be used for generating arrays' repr.
         Other options will be ignored.
 
-    See Also
-    --------
-    get_printoptions, printoptions, array2string
+    
 
 
     Notes
@@ -8175,10 +7870,7 @@ FUNCTION: numpy.seterr
     old_settings : dict
         Dictionary containing the old settings.
 
-    See also
-    --------
-    seterrcall : Set a callback function for the 'call' mode.
-    geterr, geterrcall, errstate
+    
 
 
     Notes
@@ -8259,9 +7951,7 @@ FUNCTION: numpy.seterrcall
     h : callable, log instance or None
         The old error handler.
 
-    See Also
-    --------
-    seterr, geterr, geterrcall
+    
 
     Notes
     -----
@@ -8332,10 +8022,7 @@ FUNCTION: numpy.show_config
     out : {`dict`, `None`}
         If mode is `'dicts'`, a dict is returned, else None
 
-    See Also
-    --------
-    get_include : Returns the directory containing NumPy C
-                  header files.
+    
 
     Notes
     -----
@@ -8355,9 +8042,7 @@ FUNCTION: numpy.show_runtime
 
     .. versionadded:: 1.24.0
 
-    See Also
-    --------
-    show_config : Show libraries in the system on which NumPy was built.
+    
 
     Notes
     -----
@@ -8411,10 +8096,7 @@ y : ndarray
     The sign of `x`.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-signbit
-copysign
+
 
 Notes
 -----
@@ -8468,10 +8150,7 @@ result : ndarray of bool
     Output array, or reference to `out` if that was supplied.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-sign
-copysign
+
 
 Examples
 --------
@@ -8515,9 +8194,7 @@ y : array_like
     The sine of each element of x.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-arcsin, sinh, cos
+
 
 Notes
 -----
@@ -8715,11 +8392,7 @@ y : ndarray
     If `out` was provided, `y` is a reference to it.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-emath.sqrt
-    A version which returns complex numbers when given negative reals.
-    Note that 0.0 and -0.0 are handled differently for complex inputs.
+
 
 Notes
 -----
@@ -8774,11 +8447,7 @@ out : ndarray or scalar
     Element-wise `x*x`, of the same shape and dtype as `x`.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-numpy.linalg.matrix_power
-sqrt
-power
+
 
 Examples
 --------
@@ -9061,11 +8730,7 @@ FUNCTION: numpy.tril_indices
         in non-decreasing order, and the corresponding column indices are
         strictly increasing for each row.
 
-    See also
-    --------
-    triu_indices : similar function, for upper-triangular.
-    mask_indices : generic function accepting an arbitrary mask function.
-    tril, triu
+    
 
     Examples
     --------
@@ -9143,11 +8808,7 @@ FUNCTION: numpy.triu_indices
         in non-decreasing order, and the corresponding column indices are
         strictly increasing for each row.
 
-    See also
-    --------
-    tril_indices : similar function, for lower-triangular.
-    mask_indices : generic function accepting an arbitrary mask function.
-    triu, tril
+    
 
     Examples
     --------
@@ -9238,9 +8899,7 @@ y : ndarray or scalar
     The truncated value of each element in `x`.
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-ceil, floor, rint, fix
+
 
 Examples
 --------
@@ -9266,9 +8925,7 @@ FUNCTION: numpy.typename
     out : str
         Description of the input data type code.
 
-    See Also
-    --------
-    dtype
+    
 
     Examples
     --------
@@ -9349,13 +9006,7 @@ ValueError
 
     If a scalar value is passed in.
 
-See Also
---------
-vdot : same but flattens arguments first
-matmul : Matrix-matrix product.
-vecmat : Vector-matrix product.
-matvec : Matrix-vector product.
-einsum : Einstein summation convention.
+
 
 Examples
 --------
@@ -9416,12 +9067,7 @@ ValueError
 
     If a scalar value is passed in.
 
-See Also
---------
-vecdot : Vector-vector product.
-matvec : Matrix-vector product.
-matmul : Matrix-matrix product.
-einsum : Einstein summation convention.
+
 
 Examples
 --------
@@ -9496,9 +9142,7 @@ FUNCTION: numpy.testing.assert_allclose
     AssertionError
         If actual and desired are not equal up to specified precision.
 
-    See Also
-    --------
-    assert_array_almost_equal_nulp, assert_array_max_ulp
+    
 
     Notes
     -----
@@ -9588,11 +9232,7 @@ FUNCTION: numpy.testing.assert_almost_equal
     AssertionError
       If actual and desired are not equal up to specified precision.
 
-    See Also
-    --------
-    assert_allclose: Compare two array_like objects for equality with desired
-                     relative and/or absolute precision.
-    assert_array_almost_equal_nulp, assert_array_max_ulp, assert_equal
+    
 
     Examples
     --------
@@ -9658,11 +9298,7 @@ FUNCTION: numpy.testing.assert_approx_equal
     AssertionError
       If actual and desired are not equal up to specified precision.
 
-    See Also
-    --------
-    assert_allclose: Compare two array_like objects for equality with desired
-                     relative and/or absolute precision.
-    assert_array_almost_equal_nulp, assert_array_max_ulp, assert_equal
+    
 
     Examples
     --------
@@ -9727,11 +9363,7 @@ FUNCTION: numpy.testing.assert_array_almost_equal
     AssertionError
         If actual and desired are not equal up to specified precision.
 
-    See Also
-    --------
-    assert_allclose: Compare two array_like objects for equality with desired
-                     relative and/or absolute precision.
-    assert_array_almost_equal_nulp, assert_array_max_ulp, assert_equal
+    
 
     Examples
     --------
@@ -9796,11 +9428,7 @@ FUNCTION: numpy.testing.assert_array_almost_equal_nulp
         If the spacing between `x` and `y` for one or more elements is larger
         than `nulp`.
 
-    See Also
-    --------
-    assert_array_max_ulp : Check that all items of arrays differ in at most
-        N Units in the Last Place.
-    spacing : Return the distance between x and the nearest adjacent number.
+    
 
     Notes
     -----
@@ -9871,11 +9499,7 @@ FUNCTION: numpy.testing.assert_array_equal
     AssertionError
         If actual and desired objects are not equal.
 
-    See Also
-    --------
-    assert_allclose: Compare two array_like objects for equality with desired
-                     relative and/or absolute precision.
-    assert_array_almost_equal_nulp, assert_array_max_ulp, assert_equal
+    
 
     Notes
     -----
@@ -9987,10 +9611,7 @@ FUNCTION: numpy.testing.assert_array_less
     AssertionError
       If x is not strictly smaller than y, element-wise.
 
-    See Also
-    --------
-    assert_array_equal: tests objects for equality
-    assert_array_almost_equal: test objects for equality up to precision
+    
 
     Notes
     -----
@@ -10096,10 +9717,7 @@ FUNCTION: numpy.testing.assert_array_max_ulp
     various representations of NAN (ULP difference between 0x7fc00000 and 0xffc00000
     is zero).
 
-    See Also
-    --------
-    assert_array_almost_equal_nulp : Compare two arrays relatively to their
-        spacing.
+    
 
     Examples
     --------
@@ -10147,11 +9765,7 @@ FUNCTION: numpy.testing.assert_equal
     AssertionError
         If actual and desired are not equal.
 
-    See Also
-    --------
-    assert_allclose
-    assert_array_almost_equal_nulp,
-    assert_array_max_ulp,
+    
 
     Notes
     -----
@@ -10762,9 +10376,7 @@ FUNCTION: numpy.strings.count
     y : ndarray
         Output array of ints
 
-    See Also
-    --------
-    str.count
+    
 
     Examples
     --------
@@ -10806,9 +10418,7 @@ FUNCTION: numpy.strings.endswith
     out : ndarray
         Output array of bools
 
-    See Also
-    --------
-    str.endswith
+    
 
     Examples
     --------
@@ -10847,9 +10457,7 @@ FUNCTION: numpy.strings.find
     y : ndarray
         Output array of ints
 
-    See Also
-    --------
-    str.find
+    
 
     Examples
     --------
@@ -10880,9 +10488,7 @@ FUNCTION: numpy.strings.index
     out : ndarray
         Output array of ints.
 
-    See Also
-    --------
-    find, str.index
+    
 
     Examples
     --------
@@ -10927,9 +10533,7 @@ out : ndarray
     Output array of bool
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-str.isalnum
+
 
 Examples
 --------
@@ -10979,9 +10583,7 @@ y : ndarray
     Output array of bools
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-str.isalpha
+
 
 Examples
 --------
@@ -11032,9 +10634,7 @@ y : ndarray
     Output array of bools
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-str.isdecimal
+
 
 Examples
 --------
@@ -11082,9 +10682,7 @@ y : ndarray
     Output array of bools
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-str.isdigit
+
 
 Examples
 --------
@@ -11131,9 +10729,7 @@ out : ndarray
     Output array of bools
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-str.islower
+
 
 Examples
 --------
@@ -11181,9 +10777,7 @@ y : ndarray
     Output array of bools
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-str.isnumeric
+
 
 Examples
 --------
@@ -11232,9 +10826,7 @@ y : ndarray
     Output array of bools
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-str.isspace
+
 
 Examples
 --------
@@ -11279,9 +10871,7 @@ out : ndarray
     Output array of bools
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-str.istitle
+
 
 Examples
 --------
@@ -11327,9 +10917,7 @@ out : ndarray
     Output array of bools
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-str.isupper
+
 
 Examples
 --------
@@ -11364,9 +10952,7 @@ FUNCTION: numpy.strings.lstrip
         Output array of ``StringDType``, ``bytes_`` or ``str_`` dtype,
         depending on input types
 
-    See Also
-    --------
-    str.lstrip
+    
 
     Examples
     --------
@@ -11410,9 +10996,7 @@ FUNCTION: numpy.strings.rfind
     y : ndarray
         Output array of ints
 
-    See Also
-    --------
-    str.rfind
+    
 
     Examples
     --------
@@ -11449,9 +11033,7 @@ FUNCTION: numpy.strings.rindex
     out : ndarray
         Output array of ints.
 
-    See Also
-    --------
-    rfind, str.rindex
+    
 
     Examples
     --------
@@ -11485,9 +11067,7 @@ FUNCTION: numpy.strings.rstrip
         Output array of ``StringDType``, ``bytes_`` or ``str_`` dtype,
         depending on input types
 
-    See Also
-    --------
-    str.rstrip
+    
 
     Examples
     --------
@@ -11591,9 +11171,7 @@ FUNCTION: numpy.strings.startswith
     out : ndarray
         Output array of bools
 
-    See Also
-    --------
-    str.startswith
+    
 
     Examples
     --------
@@ -11643,9 +11221,7 @@ y : ndarray
     Output array of ints
     This is a scalar if `x` is a scalar.
 
-See Also
---------
-len
+
 
 Examples
 --------
@@ -11684,9 +11260,7 @@ FUNCTION: numpy.strings.strip
         Output array of ``StringDType``, ``bytes_`` or ``str_`` dtype,
         depending on input types
 
-    See Also
-    --------
-    str.strip
+    
 
     Examples
     --------
@@ -11971,9 +11545,7 @@ Create a record array from binary data
         Record array view into the data in datastring. This will be readonly
         if `datastring` is readonly.
 
-    See Also
-    --------
-    numpy.frombuffer
+    
 
     Examples
     --------
@@ -12131,9 +11703,7 @@ FUNCTION: numpy.polynomial.polyutils.getdomain
         two points are the ends of the smallest interval containing the
         points `x`.
 
-    See Also
-    --------
-    mapparms, mapdomain
+    
 
     Examples
     --------
@@ -12174,9 +11744,7 @@ FUNCTION: numpy.polynomial.polyutils.mapdomain
         Array of points of the same shape as `x`, after application of the
         linear map between the two domains.
 
-    See Also
-    --------
-    getdomain, mapparms
+    
 
     Notes
     -----
@@ -12239,9 +11807,7 @@ FUNCTION: numpy.polynomial.polyutils.mapparms
         The map ``L(x) = offset + scale*x`` maps the first domain to the
         second.
 
-    See Also
-    --------
-    getdomain, mapdomain
+    
 
     Notes
     -----
@@ -12351,9 +11917,7 @@ FUNCTION: numpy.polynomial.polynomial.polyadd
     out : ndarray
         The coefficient array representing their sum.
 
-    See Also
-    --------
-    polysub, polymulx, polymul, polydiv, polypow
+    
 
     Examples
     --------
@@ -12434,9 +11998,7 @@ FUNCTION: numpy.polynomial.polynomial.polyder
     der : ndarray
         Polynomial coefficients of the derivative.
 
-    See Also
-    --------
-    polyint
+    
 
     Examples
     --------
@@ -12474,9 +12036,7 @@ FUNCTION: numpy.polynomial.polynomial.polydiv
     [quo, rem] : ndarrays
         Of coefficient series representing the quotient and remainder.
 
-    See Also
-    --------
-    polyadd, polysub, polymulx, polymul, polypow
+    
 
     Examples
     --------
@@ -12567,17 +12127,7 @@ FUNCTION: numpy.polynomial.polynomial.polyfit
         >>> import warnings
         >>> warnings.simplefilter('ignore', np.exceptions.RankWarning)
 
-    See Also
-    --------
-    numpy.polynomial.chebyshev.chebfit
-    numpy.polynomial.legendre.legfit
-    numpy.polynomial.laguerre.lagfit
-    numpy.polynomial.hermite.hermfit
-    numpy.polynomial.hermite_e.hermefit
-    polyval : Evaluates a polynomial.
-    polyvander : Vandermonde matrix for powers.
-    numpy.linalg.lstsq : Computes a least-squares fit from the matrix.
-    scipy.interpolate.UnivariateSpline : Computes spline fits.
+    
 
     Notes
     -----
@@ -12681,13 +12231,7 @@ FUNCTION: numpy.polynomial.polynomial.polyfromroots
         real, then `out` is also real, otherwise it is complex.  (see
         Examples below).
 
-    See Also
-    --------
-    numpy.polynomial.chebyshev.chebfromroots
-    numpy.polynomial.legendre.legfromroots
-    numpy.polynomial.laguerre.lagfromroots
-    numpy.polynomial.hermite.hermfromroots
-    numpy.polynomial.hermite_e.hermefromroots
+    
 
     Notes
     -----
@@ -12756,9 +12300,7 @@ FUNCTION: numpy.polynomial.polynomial.polygrid3d
         The values of the two dimensional polynomial at points in the Cartesian
         product of `x` and `y`.
 
-    See Also
-    --------
-    polyval, polyval2d, polygrid2d, polyval3d
+    
 
     Examples
     --------
@@ -12820,9 +12362,7 @@ FUNCTION: numpy.polynomial.polynomial.polyint
         If ``m < 1``, ``len(k) > m``, ``np.ndim(lbnd) != 0``, or
         ``np.ndim(scl) != 0``.
 
-    See Also
-    --------
-    polyder
+    
 
     Notes
     -----
@@ -12868,13 +12408,7 @@ FUNCTION: numpy.polynomial.polynomial.polyline
         This module's representation of the linear polynomial ``off +
         scl*x``.
 
-    See Also
-    --------
-    numpy.polynomial.chebyshev.chebline
-    numpy.polynomial.legendre.legline
-    numpy.polynomial.laguerre.lagline
-    numpy.polynomial.hermite.hermline
-    numpy.polynomial.hermite_e.hermeline
+    
 
     Examples
     --------
@@ -12908,9 +12442,7 @@ FUNCTION: numpy.polynomial.polynomial.polymul
     out : ndarray
         Of the coefficients of their product.
 
-    See Also
-    --------
-    polyadd, polysub, polymulx, polydiv, polypow
+    
 
     Examples
     --------
@@ -12943,9 +12475,7 @@ Multiply a polynomial by x.
     out : ndarray
         Array representing the result of the multiplication.
 
-    See Also
-    --------
-    polyadd, polysub, polymul, polydiv, polypow
+    
 
     Examples
     --------
@@ -12982,9 +12512,7 @@ Raise a polynomial to a power.
     coef : ndarray
         Power series of power.
 
-    See Also
-    --------
-    polyadd, polysub, polymulx, polymul, polydiv
+    
 
     Examples
     --------
@@ -13016,13 +12544,7 @@ FUNCTION: numpy.polynomial.polynomial.polyroots
         Array of the roots of the polynomial. If all the roots are real,
         then `out` is also real, otherwise it is complex.
 
-    See Also
-    --------
-    numpy.polynomial.chebyshev.chebroots
-    numpy.polynomial.legendre.legroots
-    numpy.polynomial.laguerre.lagroots
-    numpy.polynomial.hermite.hermroots
-    numpy.polynomial.hermite_e.hermeroots
+    
 
     Notes
     -----
@@ -13069,9 +12591,7 @@ FUNCTION: numpy.polynomial.polynomial.polysub
     out : ndarray
         Of coefficients representing their difference.
 
-    See Also
-    --------
-    polyadd, polymulx, polymul, polydiv, polypow
+    
 
     Examples
     --------
@@ -13136,9 +12656,7 @@ FUNCTION: numpy.polynomial.polynomial.polyval
     values : ndarray, compatible object
         The shape of the returned array is described above.
 
-    See Also
-    --------
-    polyval2d, polygrid2d, polyval3d, polygrid3d
+    
 
     Notes
     -----
@@ -13214,9 +12732,7 @@ FUNCTION: numpy.polynomial.polynomial.polyval3d
         The values of the multidimensional polynomial on points formed with
         triples of corresponding values from `x`, `y`, and `z`.
 
-    See Also
-    --------
-    polyval, polyval2d, polygrid2d, polygrid3d
+    
 
     Examples
     --------
@@ -13276,9 +12792,7 @@ FUNCTION: numpy.polynomial.polynomial.polyvalfromroots
     values : ndarray, compatible object
         The shape of the returned array is described above.
 
-    See Also
-    --------
-    polyroots, polyfromroots, polyval
+    
 
     Examples
     --------
@@ -13341,9 +12855,7 @@ Vandermonde matrix of given degree.
         ``x.shape + (deg + 1,)``, where the last index is the power of `x`.
         The dtype will be the same as the converted `x`.
 
-    See Also
-    --------
-    polyvander2d, polyvander3d
+    
 
     Examples
     --------
@@ -13403,9 +12915,7 @@ Pseudo-Vandermonde matrix of given degrees.
         :math:`order = (deg[0]+1)*(deg([1]+1)`.  The dtype will be the same
         as the converted `x` and `y`.
 
-    See Also
-    --------
-    polyvander, polyvander3d, polyval2d, polyval3d
+    
 
     Examples
     --------
@@ -13484,9 +12994,7 @@ Pseudo-Vandermonde matrix of given degrees.
         :math:`order = (deg[0]+1)*(deg([1]+1)*(deg[2]+1)`.  The dtype will
         be the same as the converted `x`, `y`, and `z`.
 
-    See Also
-    --------
-    polyvander, polyvander3d, polyval2d, polyval3d
+    
 
     Examples
     --------
@@ -13540,9 +13048,7 @@ FUNCTION: numpy.polynomial.legendre.leg2poly
         (relative to the "standard" basis) ordered from lowest order term
         to highest.
 
-    See Also
-    --------
-    poly2leg
+    
 
     Notes
     -----
@@ -13586,9 +13092,7 @@ FUNCTION: numpy.polynomial.legendre.legadd
     out : ndarray
         Array representing the Legendre series of their sum.
 
-    See Also
-    --------
-    legsub, legmulx, legmul, legdiv, legpow
+    
 
     Notes
     -----
@@ -13667,9 +13171,7 @@ FUNCTION: numpy.polynomial.legendre.legder
     der : ndarray
         Legendre series of the derivative.
 
-    See Also
-    --------
-    legint
+    
 
     Notes
     -----
@@ -13717,9 +13219,7 @@ FUNCTION: numpy.polynomial.legendre.legdiv
         Of Legendre series coefficients representing the quotient and
         remainder.
 
-    See Also
-    --------
-    legadd, legsub, legmulx, legmul, legpow
+    
 
     Notes
     -----
@@ -13819,18 +13319,7 @@ FUNCTION: numpy.polynomial.legendre.legfit
         >>> import warnings
         >>> warnings.simplefilter('ignore', np.exceptions.RankWarning)
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyfit
-    numpy.polynomial.chebyshev.chebfit
-    numpy.polynomial.laguerre.lagfit
-    numpy.polynomial.hermite.hermfit
-    numpy.polynomial.hermite_e.hermefit
-    legval : Evaluates a Legendre series.
-    legvander : Vandermonde matrix of Legendre series.
-    legweight : Legendre weight function (= 1).
-    numpy.linalg.lstsq : Computes a least-squares fit from the matrix.
-    scipy.interpolate.UnivariateSpline : Computes spline fits.
+    
 
     Notes
     -----
@@ -13908,13 +13397,7 @@ FUNCTION: numpy.polynomial.legendre.legfromroots
         even if all the coefficients in the result are real (see Examples
         below).
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyfromroots
-    numpy.polynomial.chebyshev.chebfromroots
-    numpy.polynomial.laguerre.lagfromroots
-    numpy.polynomial.hermite.hermfromroots
-    numpy.polynomial.hermite_e.hermefromroots
+    
 
     Examples
     --------
@@ -14007,9 +13490,6 @@ FUNCTION: numpy.polynomial.legendre.leggrid2d
         The values of the two dimensional Chebyshev series at points in the
         Cartesian product of `x` and `y`.
 
-    See Also
-    --------
-    legval, legval2d, legval3d, leggrid3d
     
 
 ########################################
@@ -14058,9 +13538,6 @@ FUNCTION: numpy.polynomial.legendre.leggrid3d
         The values of the two dimensional polynomial at points in the Cartesian
         product of `x` and `y`.
 
-    See Also
-    --------
-    legval, legval2d, leggrid2d, legval3d
     
 
 ########################################
@@ -14115,9 +13592,7 @@ FUNCTION: numpy.polynomial.legendre.legint
         If ``m < 0``, ``len(k) > m``, ``np.ndim(lbnd) != 0``, or
         ``np.ndim(scl) != 0``.
 
-    See Also
-    --------
-    legder
+    
 
     Notes
     -----
@@ -14170,13 +13645,7 @@ FUNCTION: numpy.polynomial.legendre.legline
         This module's representation of the Legendre series for
         ``off + scl*x``.
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyline
-    numpy.polynomial.chebyshev.chebline
-    numpy.polynomial.laguerre.lagline
-    numpy.polynomial.hermite.hermline
-    numpy.polynomial.hermite_e.hermeline
+    
 
     Examples
     --------
@@ -14210,9 +13679,7 @@ FUNCTION: numpy.polynomial.legendre.legmul
     out : ndarray
         Of Legendre series coefficients representing their product.
 
-    See Also
-    --------
-    legadd, legsub, legmulx, legdiv, legpow
+    
 
     Notes
     -----
@@ -14253,9 +13720,7 @@ Multiply a Legendre series by x.
     out : ndarray
         Array representing the result of the multiplication.
 
-    See Also
-    --------
-    legadd, legsub, legmul, legdiv, legpow
+    
 
     Notes
     -----
@@ -14300,9 +13765,7 @@ Raise a Legendre series to a power.
     coef : ndarray
         Legendre series of power.
 
-    See Also
-    --------
-    legadd, legsub, legmulx, legmul, legdiv
+    
 
     
 
@@ -14328,13 +13791,7 @@ FUNCTION: numpy.polynomial.legendre.legroots
         Array of the roots of the series. If all the roots are real,
         then `out` is also real, otherwise it is complex.
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyroots
-    numpy.polynomial.chebyshev.chebroots
-    numpy.polynomial.laguerre.lagroots
-    numpy.polynomial.hermite.hermroots
-    numpy.polynomial.hermite_e.hermeroots
+    
 
     Notes
     -----
@@ -14379,9 +13836,7 @@ FUNCTION: numpy.polynomial.legendre.legsub
     out : ndarray
         Of Legendre series coefficients representing their difference.
 
-    See Also
-    --------
-    legadd, legmulx, legmul, legdiv, legpow
+    
 
     Notes
     -----
@@ -14453,9 +13908,7 @@ FUNCTION: numpy.polynomial.legendre.legval
     values : ndarray, algebra_like
         The shape of the return value is described above.
 
-    See Also
-    --------
-    legval2d, leggrid2d, legval3d, leggrid3d
+    
 
     Notes
     -----
@@ -14502,9 +13955,6 @@ FUNCTION: numpy.polynomial.legendre.legval2d
         The values of the two dimensional Legendre series at points formed
         from pairs of corresponding values from `x` and `y`.
 
-    See Also
-    --------
-    legval, leggrid2d, legval3d, leggrid3d
     
 
 ########################################
@@ -14548,9 +13998,6 @@ FUNCTION: numpy.polynomial.legendre.legval3d
         The values of the multidimensional polynomial on points formed with
         triples of corresponding values from `x`, `y`, and `z`.
 
-    See Also
-    --------
-    legval, legval2d, leggrid2d, leggrid3d
     
 
 ########################################
@@ -14635,9 +14082,6 @@ Pseudo-Vandermonde matrix of given degrees.
         :math:`order = (deg[0]+1)*(deg[1]+1)`.  The dtype will be the same
         as the converted `x` and `y`.
 
-    See Also
-    --------
-    legvander, legvander3d, legval2d, legval3d
     
 
 ########################################
@@ -14684,9 +14128,6 @@ Pseudo-Vandermonde matrix of given degrees.
         :math:`order = (deg[0]+1)*(deg[1]+1)*(deg[2]+1)`.  The dtype will
         be the same as the converted `x`, `y`, and `z`.
 
-    See Also
-    --------
-    legvander, legvander3d, legval2d, legval3d
     
 
 ########################################
@@ -14734,9 +14175,7 @@ FUNCTION: numpy.polynomial.legendre.poly2leg
         1-D array containing the coefficients of the equivalent Legendre
         series.
 
-    See Also
-    --------
-    leg2poly
+    
 
     Notes
     -----
@@ -14781,9 +14220,7 @@ FUNCTION: numpy.polynomial.laguerre.lag2poly
         (relative to the "standard" basis) ordered from lowest order term
         to highest.
 
-    See Also
-    --------
-    poly2lag
+    
 
     Notes
     -----
@@ -14820,9 +14257,7 @@ FUNCTION: numpy.polynomial.laguerre.lagadd
     out : ndarray
         Array representing the Laguerre series of their sum.
 
-    See Also
-    --------
-    lagsub, lagmulx, lagmul, lagdiv, lagpow
+    
 
     Notes
     -----
@@ -14906,9 +14341,7 @@ FUNCTION: numpy.polynomial.laguerre.lagder
     der : ndarray
         Laguerre series of the derivative.
 
-    See Also
-    --------
-    lagint
+    
 
     Notes
     -----
@@ -14951,9 +14384,7 @@ FUNCTION: numpy.polynomial.laguerre.lagdiv
         Of Laguerre series coefficients representing the quotient and
         remainder.
 
-    See Also
-    --------
-    lagadd, lagsub, lagmulx, lagmul, lagpow
+    
 
     Notes
     -----
@@ -15048,18 +14479,7 @@ FUNCTION: numpy.polynomial.laguerre.lagfit
         >>> import warnings
         >>> warnings.simplefilter('ignore', np.exceptions.RankWarning)
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyfit
-    numpy.polynomial.legendre.legfit
-    numpy.polynomial.chebyshev.chebfit
-    numpy.polynomial.hermite.hermfit
-    numpy.polynomial.hermite_e.hermefit
-    lagval : Evaluates a Laguerre series.
-    lagvander : pseudo Vandermonde matrix of Laguerre series.
-    lagweight : Laguerre weight function.
-    numpy.linalg.lstsq : Computes a least-squares fit from the matrix.
-    scipy.interpolate.UnivariateSpline : Computes spline fits.
+    
 
     Notes
     -----
@@ -15146,13 +14566,7 @@ FUNCTION: numpy.polynomial.laguerre.lagfromroots
         even if all the coefficients in the result are real (see Examples
         below).
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyfromroots
-    numpy.polynomial.legendre.legfromroots
-    numpy.polynomial.chebyshev.chebfromroots
-    numpy.polynomial.hermite.hermfromroots
-    numpy.polynomial.hermite_e.hermefromroots
+    
 
     Examples
     --------
@@ -15252,9 +14666,7 @@ FUNCTION: numpy.polynomial.laguerre.laggrid2d
         The values of the two dimensional Chebyshev series at points in the
         Cartesian product of `x` and `y`.
 
-    See Also
-    --------
-    lagval, lagval2d, lagval3d, laggrid3d
+    
 
     Examples
     --------
@@ -15312,9 +14724,7 @@ FUNCTION: numpy.polynomial.laguerre.laggrid3d
         The values of the two dimensional polynomial at points in the Cartesian
         product of `x` and `y`.
 
-    See Also
-    --------
-    lagval, lagval2d, laggrid2d, lagval3d
+    
 
     Examples
     --------
@@ -15381,9 +14791,7 @@ FUNCTION: numpy.polynomial.laguerre.lagint
         If ``m < 0``, ``len(k) > m``, ``np.ndim(lbnd) != 0``, or
         ``np.ndim(scl) != 0``.
 
-    See Also
-    --------
-    lagder
+    
 
     Notes
     -----
@@ -15432,13 +14840,7 @@ FUNCTION: numpy.polynomial.laguerre.lagline
         This module's representation of the Laguerre series for
         ``off + scl*x``.
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyline
-    numpy.polynomial.chebyshev.chebline
-    numpy.polynomial.legendre.legline
-    numpy.polynomial.hermite.hermline
-    numpy.polynomial.hermite_e.hermeline
+    
 
     Examples
     --------
@@ -15472,9 +14874,7 @@ FUNCTION: numpy.polynomial.laguerre.lagmul
     out : ndarray
         Of Laguerre series coefficients representing their product.
 
-    See Also
-    --------
-    lagadd, lagsub, lagmulx, lagdiv, lagpow
+    
 
     Notes
     -----
@@ -15513,9 +14913,7 @@ Multiply a Laguerre series by x.
     out : ndarray
         Array representing the result of the multiplication.
 
-    See Also
-    --------
-    lagadd, lagsub, lagmul, lagdiv, lagpow
+    
 
     Notes
     -----
@@ -15560,9 +14958,7 @@ Raise a Laguerre series to a power.
     coef : ndarray
         Laguerre series of power.
 
-    See Also
-    --------
-    lagadd, lagsub, lagmulx, lagmul, lagdiv
+    
 
     Examples
     --------
@@ -15594,13 +14990,7 @@ FUNCTION: numpy.polynomial.laguerre.lagroots
         Array of the roots of the series. If all the roots are real,
         then `out` is also real, otherwise it is complex.
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyroots
-    numpy.polynomial.legendre.legroots
-    numpy.polynomial.chebyshev.chebroots
-    numpy.polynomial.hermite.hermroots
-    numpy.polynomial.hermite_e.hermeroots
+    
 
     Notes
     -----
@@ -15648,9 +15038,7 @@ FUNCTION: numpy.polynomial.laguerre.lagsub
     out : ndarray
         Of Laguerre series coefficients representing their difference.
 
-    See Also
-    --------
-    lagadd, lagmulx, lagmul, lagdiv, lagpow
+    
 
     Notes
     -----
@@ -15718,9 +15106,7 @@ FUNCTION: numpy.polynomial.laguerre.lagval
     values : ndarray, algebra_like
         The shape of the return value is described above.
 
-    See Also
-    --------
-    lagval2d, laggrid2d, lagval3d, laggrid3d
+    
 
     Notes
     -----
@@ -15777,9 +15163,7 @@ FUNCTION: numpy.polynomial.laguerre.lagval2d
         The values of the two dimensional polynomial at points formed with
         pairs of corresponding values from `x` and `y`.
 
-    See Also
-    --------
-    lagval, laggrid2d, lagval3d, laggrid3d
+    
 
     Examples
     --------
@@ -15830,9 +15214,7 @@ FUNCTION: numpy.polynomial.laguerre.lagval3d
         The values of the multidimensional polynomial on points formed with
         triples of corresponding values from `x`, `y`, and `z`.
 
-    See Also
-    --------
-    lagval, lagval2d, laggrid2d, laggrid3d
+    
 
     Examples
     --------
@@ -15935,9 +15317,7 @@ Pseudo-Vandermonde matrix of given degrees.
         :math:`order = (deg[0]+1)*(deg[1]+1)`.  The dtype will be the same
         as the converted `x` and `y`.
 
-    See Also
-    --------
-    lagvander, lagvander3d, lagval2d, lagval3d
+    
 
     Examples
     --------
@@ -15994,9 +15374,7 @@ Pseudo-Vandermonde matrix of given degrees.
         :math:`order = (deg[0]+1)*(deg[1]+1)*(deg[2]+1)`.  The dtype will
         be the same as the converted `x`, `y`, and `z`.
 
-    See Also
-    --------
-    lagvander, lagvander3d, lagval2d, lagval3d
+    
 
     Examples
     --------
@@ -16065,9 +15443,7 @@ FUNCTION: numpy.polynomial.laguerre.poly2lag
         1-D array containing the coefficients of the equivalent Laguerre
         series.
 
-    See Also
-    --------
-    lag2poly
+    
 
     Notes
     -----
@@ -16108,9 +15484,7 @@ FUNCTION: numpy.polynomial.hermite_e.herme2poly
         (relative to the "standard" basis) ordered from lowest order term
         to highest.
 
-    See Also
-    --------
-    poly2herme
+    
 
     Notes
     -----
@@ -16147,9 +15521,7 @@ FUNCTION: numpy.polynomial.hermite_e.hermeadd
     out : ndarray
         Array representing the Hermite series of their sum.
 
-    See Also
-    --------
-    hermesub, hermemulx, hermemul, hermediv, hermepow
+    
 
     Notes
     -----
@@ -16227,9 +15599,7 @@ FUNCTION: numpy.polynomial.hermite_e.hermeder
     der : ndarray
         Hermite series of the derivative.
 
-    See Also
-    --------
-    hermeint
+    
 
     Notes
     -----
@@ -16272,9 +15642,7 @@ FUNCTION: numpy.polynomial.hermite_e.hermediv
         Of Hermite series coefficients representing the quotient and
         remainder.
 
-    See Also
-    --------
-    hermeadd, hermesub, hermemulx, hermemul, hermepow
+    
 
     Notes
     -----
@@ -16369,18 +15737,7 @@ FUNCTION: numpy.polynomial.hermite_e.hermefit
         >>> import warnings
         >>> warnings.simplefilter('ignore', np.exceptions.RankWarning)
 
-    See Also
-    --------
-    numpy.polynomial.chebyshev.chebfit
-    numpy.polynomial.legendre.legfit
-    numpy.polynomial.polynomial.polyfit
-    numpy.polynomial.hermite.hermfit
-    numpy.polynomial.laguerre.lagfit
-    hermeval : Evaluates a Hermite series.
-    hermevander : pseudo Vandermonde matrix of Hermite series.
-    hermeweight : HermiteE weight function.
-    numpy.linalg.lstsq : Computes a least-squares fit from the matrix.
-    scipy.interpolate.UnivariateSpline : Computes spline fits.
+    
 
     Notes
     -----
@@ -16467,13 +15824,7 @@ FUNCTION: numpy.polynomial.hermite_e.hermefromroots
         even if all the coefficients in the result are real (see Examples
         below).
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyfromroots
-    numpy.polynomial.legendre.legfromroots
-    numpy.polynomial.laguerre.lagfromroots
-    numpy.polynomial.hermite.hermfromroots
-    numpy.polynomial.chebyshev.chebfromroots
+    
 
     Examples
     --------
@@ -16567,9 +15918,6 @@ FUNCTION: numpy.polynomial.hermite_e.hermegrid2d
         The values of the two dimensional polynomial at points in the Cartesian
         product of `x` and `y`.
 
-    See Also
-    --------
-    hermeval, hermeval2d, hermeval3d, hermegrid3d
     
 
 ########################################
@@ -16618,9 +15966,6 @@ FUNCTION: numpy.polynomial.hermite_e.hermegrid3d
         The values of the two dimensional polynomial at points in the Cartesian
         product of `x` and `y`.
 
-    See Also
-    --------
-    hermeval, hermeval2d, hermegrid2d, hermeval3d
     
 
 ########################################
@@ -16675,9 +16020,7 @@ FUNCTION: numpy.polynomial.hermite_e.hermeint
         If ``m < 0``, ``len(k) > m``, ``np.ndim(lbnd) != 0``, or
         ``np.ndim(scl) != 0``.
 
-    See Also
-    --------
-    hermeder
+    
 
     Notes
     -----
@@ -16726,13 +16069,7 @@ FUNCTION: numpy.polynomial.hermite_e.hermeline
         This module's representation of the Hermite series for
         ``off + scl*x``.
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyline
-    numpy.polynomial.chebyshev.chebline
-    numpy.polynomial.legendre.legline
-    numpy.polynomial.laguerre.lagline
-    numpy.polynomial.hermite.hermline
+    
 
     Examples
     --------
@@ -16767,9 +16104,7 @@ FUNCTION: numpy.polynomial.hermite_e.hermemul
     out : ndarray
         Of Hermite series coefficients representing their product.
 
-    See Also
-    --------
-    hermeadd, hermesub, hermemulx, hermediv, hermepow
+    
 
     Notes
     -----
@@ -16808,9 +16143,7 @@ Multiply a Hermite series by x.
     out : ndarray
         Array representing the result of the multiplication.
 
-    See Also
-    --------
-    hermeadd, hermesub, hermemul, hermediv, hermepow
+    
 
     Notes
     -----
@@ -16855,9 +16188,7 @@ Raise a Hermite series to a power.
     coef : ndarray
         Hermite series of power.
 
-    See Also
-    --------
-    hermeadd, hermesub, hermemulx, hermemul, hermediv
+    
 
     Examples
     --------
@@ -16889,13 +16220,7 @@ FUNCTION: numpy.polynomial.hermite_e.hermeroots
         Array of the roots of the series. If all the roots are real,
         then `out` is also real, otherwise it is complex.
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyroots
-    numpy.polynomial.legendre.legroots
-    numpy.polynomial.laguerre.lagroots
-    numpy.polynomial.hermite.hermroots
-    numpy.polynomial.chebyshev.chebroots
+    
 
     Notes
     -----
@@ -16943,9 +16268,7 @@ FUNCTION: numpy.polynomial.hermite_e.hermesub
     out : ndarray
         Of Hermite series coefficients representing their difference.
 
-    See Also
-    --------
-    hermeadd, hermemulx, hermemul, hermediv, hermepow
+    
 
     Notes
     -----
@@ -17013,9 +16336,7 @@ FUNCTION: numpy.polynomial.hermite_e.hermeval
     values : ndarray, algebra_like
         The shape of the return value is described above.
 
-    See Also
-    --------
-    hermeval2d, hermegrid2d, hermeval3d, hermegrid3d
+    
 
     Notes
     -----
@@ -17072,9 +16393,6 @@ FUNCTION: numpy.polynomial.hermite_e.hermeval2d
         The values of the two dimensional polynomial at points formed with
         pairs of corresponding values from `x` and `y`.
 
-    See Also
-    --------
-    hermeval, hermegrid2d, hermeval3d, hermegrid3d
     
 
 ########################################
@@ -17118,9 +16436,6 @@ FUNCTION: numpy.polynomial.hermite_e.hermeval3d
         The values of the multidimensional polynomial on points formed with
         triples of corresponding values from `x`, `y`, and `z`.
 
-    See Also
-    --------
-    hermeval, hermeval2d, hermegrid2d, hermegrid3d
     
 
 ########################################
@@ -17215,9 +16530,6 @@ Pseudo-Vandermonde matrix of given degrees.
         :math:`order = (deg[0]+1)*(deg[1]+1)`.  The dtype will be the same
         as the converted `x` and `y`.
 
-    See Also
-    --------
-    hermevander, hermevander3d, hermeval2d, hermeval3d
     
 
 ########################################
@@ -17264,9 +16576,6 @@ Pseudo-Vandermonde matrix of given degrees.
         :math:`order = (deg[0]+1)*(deg[1]+1)*(deg[2]+1)`.  The dtype will
         be the same as the converted `x`, `y`, and `z`.
 
-    See Also
-    --------
-    hermevander, hermevander3d, hermeval2d, hermeval3d
     
 
 ########################################
@@ -17315,9 +16624,7 @@ FUNCTION: numpy.polynomial.hermite_e.poly2herme
         1-D array containing the coefficients of the equivalent Hermite
         series.
 
-    See Also
-    --------
-    herme2poly
+    
 
     Notes
     -----
@@ -17358,9 +16665,7 @@ FUNCTION: numpy.polynomial.hermite.herm2poly
         (relative to the "standard" basis) ordered from lowest order term
         to highest.
 
-    See Also
-    --------
-    poly2herm
+    
 
     Notes
     -----
@@ -17397,9 +16702,7 @@ FUNCTION: numpy.polynomial.hermite.hermadd
     out : ndarray
         Array representing the Hermite series of their sum.
 
-    See Also
-    --------
-    hermsub, hermmulx, hermmul, hermdiv, hermpow
+    
 
     Notes
     -----
@@ -17484,9 +16787,7 @@ FUNCTION: numpy.polynomial.hermite.hermder
     der : ndarray
         Hermite series of the derivative.
 
-    See Also
-    --------
-    hermint
+    
 
     Notes
     -----
@@ -17529,9 +16830,7 @@ FUNCTION: numpy.polynomial.hermite.hermdiv
         Of Hermite series coefficients representing the quotient and
         remainder.
 
-    See Also
-    --------
-    hermadd, hermsub, hermmulx, hermmul, hermpow
+    
 
     Notes
     -----
@@ -17628,18 +16927,7 @@ FUNCTION: numpy.polynomial.hermite.hermfit
         >>> import warnings
         >>> warnings.simplefilter('ignore', np.exceptions.RankWarning)
 
-    See Also
-    --------
-    numpy.polynomial.chebyshev.chebfit
-    numpy.polynomial.legendre.legfit
-    numpy.polynomial.laguerre.lagfit
-    numpy.polynomial.polynomial.polyfit
-    numpy.polynomial.hermite_e.hermefit
-    hermval : Evaluates a Hermite series.
-    hermvander : Vandermonde matrix of Hermite series.
-    hermweight : Hermite weight function
-    numpy.linalg.lstsq : Computes a least-squares fit from the matrix.
-    scipy.interpolate.UnivariateSpline : Computes spline fits.
+    
 
     Notes
     -----
@@ -17726,13 +17014,7 @@ FUNCTION: numpy.polynomial.hermite.hermfromroots
         even if all the coefficients in the result are real (see Examples
         below).
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyfromroots
-    numpy.polynomial.legendre.legfromroots
-    numpy.polynomial.laguerre.lagfromroots
-    numpy.polynomial.chebyshev.chebfromroots
-    numpy.polynomial.hermite_e.hermefromroots
+    
 
     Examples
     --------
@@ -17832,9 +17114,7 @@ FUNCTION: numpy.polynomial.hermite.hermgrid2d
         The values of the two dimensional polynomial at points in the Cartesian
         product of `x` and `y`.
 
-    See Also
-    --------
-    hermval, hermval2d, hermval3d, hermgrid3d
+    
 
     Examples
     --------
@@ -17895,9 +17175,7 @@ FUNCTION: numpy.polynomial.hermite.hermgrid3d
         The values of the two dimensional polynomial at points in the Cartesian
         product of `x` and `y`.
 
-    See Also
-    --------
-    hermval, hermval2d, hermgrid2d, hermval3d
+    
 
     Examples
     --------
@@ -17966,9 +17244,7 @@ FUNCTION: numpy.polynomial.hermite.hermint
         If ``m < 0``, ``len(k) > m``, ``np.ndim(lbnd) != 0``, or
         ``np.ndim(scl) != 0``.
 
-    See Also
-    --------
-    hermder
+    
 
     Notes
     -----
@@ -18019,13 +17295,7 @@ FUNCTION: numpy.polynomial.hermite.hermline
         This module's representation of the Hermite series for
         ``off + scl*x``.
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyline
-    numpy.polynomial.chebyshev.chebline
-    numpy.polynomial.legendre.legline
-    numpy.polynomial.laguerre.lagline
-    numpy.polynomial.hermite_e.hermeline
+    
 
     Examples
     --------
@@ -18059,9 +17329,7 @@ FUNCTION: numpy.polynomial.hermite.hermmul
     out : ndarray
         Of Hermite series coefficients representing their product.
 
-    See Also
-    --------
-    hermadd, hermsub, hermmulx, hermdiv, hermpow
+    
 
     Notes
     -----
@@ -18100,9 +17368,7 @@ Multiply a Hermite series by x.
     out : ndarray
         Array representing the result of the multiplication.
 
-    See Also
-    --------
-    hermadd, hermsub, hermmul, hermdiv, hermpow
+    
 
     Notes
     -----
@@ -18147,9 +17413,7 @@ Raise a Hermite series to a power.
     coef : ndarray
         Hermite series of power.
 
-    See Also
-    --------
-    hermadd, hermsub, hermmulx, hermmul, hermdiv
+    
 
     Examples
     --------
@@ -18181,13 +17445,7 @@ FUNCTION: numpy.polynomial.hermite.hermroots
         Array of the roots of the series. If all the roots are real,
         then `out` is also real, otherwise it is complex.
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyroots
-    numpy.polynomial.legendre.legroots
-    numpy.polynomial.laguerre.lagroots
-    numpy.polynomial.chebyshev.chebroots
-    numpy.polynomial.hermite_e.hermeroots
+    
 
     Notes
     -----
@@ -18235,9 +17493,7 @@ FUNCTION: numpy.polynomial.hermite.hermsub
     out : ndarray
         Of Hermite series coefficients representing their difference.
 
-    See Also
-    --------
-    hermadd, hermmulx, hermmul, hermdiv, hermpow
+    
 
     Notes
     -----
@@ -18305,9 +17561,7 @@ FUNCTION: numpy.polynomial.hermite.hermval
     values : ndarray, algebra_like
         The shape of the return value is described above.
 
-    See Also
-    --------
-    hermval2d, hermgrid2d, hermval3d, hermgrid3d
+    
 
     Notes
     -----
@@ -18364,9 +17618,7 @@ FUNCTION: numpy.polynomial.hermite.hermval2d
         The values of the two dimensional polynomial at points formed with
         pairs of corresponding values from `x` and `y`.
 
-    See Also
-    --------
-    hermval, hermgrid2d, hermval3d, hermgrid3d
+    
 
     Examples
     --------
@@ -18420,9 +17672,7 @@ FUNCTION: numpy.polynomial.hermite.hermval3d
         The values of the multidimensional polynomial on points formed with
         triples of corresponding values from `x`, `y`, and `z`.
 
-    See Also
-    --------
-    hermval, hermval2d, hermgrid2d, hermgrid3d
+    
 
     Examples
     --------
@@ -18528,9 +17778,7 @@ Pseudo-Vandermonde matrix of given degrees.
         :math:`order = (deg[0]+1)*(deg[1]+1)`.  The dtype will be the same
         as the converted `x` and `y`.
 
-    See Also
-    --------
-    hermvander, hermvander3d, hermval2d, hermval3d
+    
 
     Examples
     --------
@@ -18589,9 +17837,7 @@ Pseudo-Vandermonde matrix of given degrees.
         :math:`order = (deg[0]+1)*(deg[1]+1)*(deg[2]+1)`.  The dtype will
         be the same as the converted `x`, `y`, and `z`.
 
-    See Also
-    --------
-    hermvander, hermvander3d, hermval2d, hermval3d
+    
 
     Examples
     --------
@@ -18662,9 +17908,7 @@ FUNCTION: numpy.polynomial.hermite.poly2herm
         1-D array containing the coefficients of the equivalent Hermite
         series.
 
-    See Also
-    --------
-    herm2poly
+    
 
     Notes
     -----
@@ -18704,9 +17948,7 @@ FUNCTION: numpy.polynomial.chebyshev.cheb2poly
         (relative to the "standard" basis) ordered from lowest order term
         to highest.
 
-    See Also
-    --------
-    poly2cheb
+    
 
     Notes
     -----
@@ -18749,9 +17991,7 @@ FUNCTION: numpy.polynomial.chebyshev.chebadd
     out : ndarray
         Array representing the Chebyshev series of their sum.
 
-    See Also
-    --------
-    chebsub, chebmulx, chebmul, chebdiv, chebpow
+    
 
     Notes
     -----
@@ -18830,9 +18070,7 @@ FUNCTION: numpy.polynomial.chebyshev.chebder
     der : ndarray
         Chebyshev series of the derivative.
 
-    See Also
-    --------
-    chebint
+    
 
     Notes
     -----
@@ -18880,9 +18118,7 @@ FUNCTION: numpy.polynomial.chebyshev.chebdiv
         Of Chebyshev series coefficients representing the quotient and
         remainder.
 
-    See Also
-    --------
-    chebadd, chebsub, chebmulx, chebmul, chebpow
+    
 
     Notes
     -----
@@ -18980,18 +18216,7 @@ FUNCTION: numpy.polynomial.chebyshev.chebfit
         >>> import warnings
         >>> warnings.simplefilter('ignore', np.exceptions.RankWarning)
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyfit
-    numpy.polynomial.legendre.legfit
-    numpy.polynomial.laguerre.lagfit
-    numpy.polynomial.hermite.hermfit
-    numpy.polynomial.hermite_e.hermefit
-    chebval : Evaluates a Chebyshev series.
-    chebvander : Vandermonde matrix of Chebyshev series.
-    chebweight : Chebyshev weight function.
-    numpy.linalg.lstsq : Computes a least-squares fit from the matrix.
-    scipy.interpolate.UnivariateSpline : Computes spline fits.
+    
 
     Notes
     -----
@@ -19069,13 +18294,7 @@ FUNCTION: numpy.polynomial.chebyshev.chebfromroots
         even if all the coefficients in the result are real (see Examples
         below).
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyfromroots
-    numpy.polynomial.legendre.legfromroots
-    numpy.polynomial.laguerre.lagfromroots
-    numpy.polynomial.hermite.hermfromroots
-    numpy.polynomial.hermite_e.hermefromroots
+    
 
     Examples
     --------
@@ -19167,9 +18386,6 @@ FUNCTION: numpy.polynomial.chebyshev.chebgrid2d
         The values of the two dimensional Chebyshev series at points in the
         Cartesian product of `x` and `y`.
 
-    See Also
-    --------
-    chebval, chebval2d, chebval3d, chebgrid3d
     
 
 ########################################
@@ -19218,9 +18434,6 @@ FUNCTION: numpy.polynomial.chebyshev.chebgrid3d
         The values of the two dimensional polynomial at points in the Cartesian
         product of `x` and `y`.
 
-    See Also
-    --------
-    chebval, chebval2d, chebgrid2d, chebval3d
     
 
 ########################################
@@ -19275,9 +18488,7 @@ FUNCTION: numpy.polynomial.chebyshev.chebint
         If ``m < 1``, ``len(k) > m``, ``np.ndim(lbnd) != 0``, or
         ``np.ndim(scl) != 0``.
 
-    See Also
-    --------
-    chebder
+    
 
     Notes
     -----
@@ -19377,13 +18588,7 @@ FUNCTION: numpy.polynomial.chebyshev.chebline
         This module's representation of the Chebyshev series for
         ``off + scl*x``.
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyline
-    numpy.polynomial.legendre.legline
-    numpy.polynomial.laguerre.lagline
-    numpy.polynomial.hermite.hermline
-    numpy.polynomial.hermite_e.hermeline
+    
 
     Examples
     --------
@@ -19417,9 +18622,7 @@ FUNCTION: numpy.polynomial.chebyshev.chebmul
     out : ndarray
         Of Chebyshev series coefficients representing their product.
 
-    See Also
-    --------
-    chebadd, chebsub, chebmulx, chebdiv, chebpow
+    
 
     Notes
     -----
@@ -19460,9 +18663,7 @@ Multiply a Chebyshev series by x.
     out : ndarray
         Array representing the result of the multiplication.
 
-    See Also
-    --------
-    chebadd, chebsub, chebmul, chebdiv, chebpow
+    
 
     Examples
     --------
@@ -19498,9 +18699,7 @@ Raise a Chebyshev series to a power.
     coef : ndarray
         Chebyshev series of power.
 
-    See Also
-    --------
-    chebadd, chebsub, chebmulx, chebmul, chebdiv
+    
 
     Examples
     --------
@@ -19530,9 +18729,6 @@ FUNCTION: numpy.polynomial.chebyshev.chebpts1
     pts : ndarray
         The Chebyshev points of the first kind.
 
-    See Also
-    --------
-    chebpts2
     
 
 ########################################
@@ -19579,13 +18775,7 @@ FUNCTION: numpy.polynomial.chebyshev.chebroots
         Array of the roots of the series. If all the roots are real,
         then `out` is also real, otherwise it is complex.
 
-    See Also
-    --------
-    numpy.polynomial.polynomial.polyroots
-    numpy.polynomial.legendre.legroots
-    numpy.polynomial.laguerre.lagroots
-    numpy.polynomial.hermite.hermroots
-    numpy.polynomial.hermite_e.hermeroots
+    
 
     Notes
     -----
@@ -19630,9 +18820,7 @@ FUNCTION: numpy.polynomial.chebyshev.chebsub
     out : ndarray
         Of Chebyshev series coefficients representing their difference.
 
-    See Also
-    --------
-    chebadd, chebmulx, chebmul, chebdiv, chebpow
+    
 
     Notes
     -----
@@ -19704,9 +18892,7 @@ FUNCTION: numpy.polynomial.chebyshev.chebval
     values : ndarray, algebra_like
         The shape of the return value is described above.
 
-    See Also
-    --------
-    chebval2d, chebgrid2d, chebval3d, chebgrid3d
+    
 
     Notes
     -----
@@ -19753,9 +18939,6 @@ FUNCTION: numpy.polynomial.chebyshev.chebval2d
         The values of the two dimensional Chebyshev series at points formed
         from pairs of corresponding values from `x` and `y`.
 
-    See Also
-    --------
-    chebval, chebgrid2d, chebval3d, chebgrid3d
     
 
 ########################################
@@ -19799,9 +18982,6 @@ FUNCTION: numpy.polynomial.chebyshev.chebval3d
         The values of the multidimensional polynomial on points formed with
         triples of corresponding values from `x`, `y`, and `z`.
 
-    See Also
-    --------
-    chebval, chebval2d, chebgrid2d, chebgrid3d
     
 
 ########################################
@@ -19886,9 +19066,6 @@ Pseudo-Vandermonde matrix of given degrees.
         :math:`order = (deg[0]+1)*(deg[1]+1)`.  The dtype will be the same
         as the converted `x` and `y`.
 
-    See Also
-    --------
-    chebvander, chebvander3d, chebval2d, chebval3d
     
 
 ########################################
@@ -19935,9 +19112,6 @@ Pseudo-Vandermonde matrix of given degrees.
         :math:`order = (deg[0]+1)*(deg[1]+1)*(deg[2]+1)`.  The dtype will
         be the same as the converted `x`, `y`, and `z`.
 
-    See Also
-    --------
-    chebvander, chebvander3d, chebval2d, chebval3d
     
 
 ########################################
@@ -19985,9 +19159,7 @@ FUNCTION: numpy.polynomial.chebyshev.poly2cheb
         1-D array containing the coefficients of the equivalent Chebyshev
         series.
 
-    See Also
-    --------
-    cheb2poly
+    
 
     Notes
     -----
@@ -20022,10 +19194,7 @@ FUNCTION: numpy.ma.all
 
         Refer to `numpy.all` for full documentation.
 
-        See Also
-        --------
-        numpy.ndarray.all : corresponding function for ndarrays
-        numpy.all : equivalent function
+        
 
         Examples
         --------
@@ -20070,10 +19239,7 @@ FUNCTION: numpy.ma.allclose
         tolerance, False otherwise. If either array contains NaN, then
         False is returned.
 
-    See Also
-    --------
-    all, any
-    numpy.allclose : the non-masked `allclose`.
+    
 
     Notes
     -----
@@ -20138,10 +19304,7 @@ FUNCTION: numpy.ma.allequal
         tolerance, False otherwise. If either array contains NaN,
         then False is returned.
 
-    See Also
-    --------
-    all, any
-    numpy.ma.allclose
+    
 
     Examples
     --------
@@ -20184,9 +19347,7 @@ FUNCTION: numpy.ma.anom
             the default is float32; for arrays of float types it is the same as
             the array type.
 
-        See Also
-        --------
-        mean : Compute the mean of the array.
+        
 
         Examples
         --------
@@ -20211,10 +19372,7 @@ FUNCTION: numpy.ma.any
 
         Refer to `numpy.any` for full documentation.
 
-        See Also
-        --------
-        numpy.ndarray.any : corresponding function for ndarrays
-        numpy.any : equivalent function
+        
 
         
 
@@ -20244,9 +19402,7 @@ Append values to the end of an array.
         does not occur in-place: a new array is allocated and filled.  If
         `axis` is None, the result is a flattened array.
 
-    See Also
-    --------
-    numpy.append : Equivalent function in the top-level NumPy module.
+    
 
     Examples
     --------
@@ -20312,9 +19468,7 @@ FUNCTION: numpy.ma.apply_along_axis
         of `func1d`. So if `func1d` returns a scalar `out` will have one
         fewer dimensions than `arr`.
 
-    See Also
-    --------
-    apply_over_axes : Apply a function repeatedly over multiple axes.
+    
 
     Examples
     --------
@@ -20383,10 +19537,7 @@ FUNCTION: numpy.ma.apply_over_axes
         but the shape can be different.  This depends on whether `func`
         changes the shape of its output with respect to its input.
 
-    See Also
-    --------
-    apply_along_axis :
-        Apply a function to 1-D slices of an array along the given axis.
+    
 
     Examples
     --------
@@ -20534,12 +19685,7 @@ incorrect results for large integer values::
   >>> print(x2)
   [0, 1, 7776, 7185, 0, 5969, 4816, 3361]  # incorrect
 
-See Also
---------
-numpy.linspace : Evenly spaced numbers with careful handling of endpoints.
-numpy.ogrid: Arrays of evenly spaced numbers in N-dimensions.
-numpy.mgrid: Grid-shaped arrays of evenly spaced numbers in N-dimensions.
-:ref:`how-to-partition`
+
 
 Examples
 --------
@@ -20675,11 +19821,7 @@ FUNCTION: numpy.ma.argsort
             Array of indices that sort `a` along the specified axis.
             In other words, ``a[index_array]`` yields a sorted `a`.
 
-        See Also
-        --------
-        ma.MaskedArray.sort : Describes sorting algorithms used.
-        lexsort : Indirect stable sort with multiple keys.
-        numpy.ndarray.sort : Inplace sort.
+        
 
         Notes
         -----
@@ -20832,9 +19974,7 @@ FUNCTION: numpy.ma.asanyarray
     out : MaskedArray
         MaskedArray interpretation of `a`.
 
-    See Also
-    --------
-    asarray : Similar to `asanyarray`, but does not conserve subclass.
+    
 
     Examples
     --------
@@ -20881,9 +20021,7 @@ FUNCTION: numpy.ma.asarray
     out : MaskedArray
         Masked array interpretation of `a`.
 
-    See Also
-    --------
-    asanyarray : Similar to `asarray`, but conserves subclasses.
+    
 
     Examples
     --------
@@ -20923,9 +20061,7 @@ ret : ndarray
     An array, or tuple of arrays, each with ``a.ndim >= 1``.
     Copies are made only if necessary.
 
-See Also
---------
-atleast_2d, atleast_3d
+
 
 Examples
 --------
@@ -20969,9 +20105,7 @@ res, res2, ... : ndarray
     Copies are avoided where possible, and views with two or more
     dimensions are returned.
 
-See Also
---------
-atleast_1d, atleast_3d
+
 
 Examples
 --------
@@ -21015,9 +20149,7 @@ res1, res2, ... : ndarray
     of shape ``(1, N, 1)``, and a 2-D array of shape ``(M, N)`` becomes a
     view of shape ``(M, N, 1)``.
 
-See Also
---------
-atleast_1d, atleast_2d
+
 
 Examples
 --------
@@ -21199,9 +20331,7 @@ FUNCTION: numpy.ma.choose
     -------
     merged_array : array
 
-    See Also
-    --------
-    choose : equivalent function
+    
 
     Examples
     --------
@@ -21260,9 +20390,7 @@ clipped_array : MaskedArray
     < `a_min` are replaced with `a_min`, and those > `a_max`
     with `a_max`.
 
-See Also
---------
-:ref:`ufuncs-output-type`
+
 
 Notes
 -----
@@ -21309,10 +20437,7 @@ FUNCTION: numpy.ma.clump_masked
         The list of slices, one for each continuous region of masked elements
         in `a`.
 
-    See Also
-    --------
-    flatnotmasked_edges, flatnotmasked_contiguous, notmasked_edges
-    notmasked_contiguous, clump_unmasked
+    
 
     Examples
     --------
@@ -21343,10 +20468,7 @@ FUNCTION: numpy.ma.clump_unmasked
         The list of slices, one for each continuous region of unmasked
         elements in `a`.
 
-    See Also
-    --------
-    flatnotmasked_edges, flatnotmasked_contiguous, notmasked_edges
-    notmasked_contiguous, clump_masked
+    
 
     Examples
     --------
@@ -21379,9 +20501,7 @@ Returns
 stacked : 2-D array
     The array formed by stacking the given arrays.
 
-See Also
---------
-stack, hstack, vstack, concatenate
+
 
 Examples
 --------
@@ -21515,9 +20635,7 @@ FUNCTION: numpy.ma.compress_cols
     compressed_array : ndarray
         The compressed array.
 
-    See Also
-    --------
-    compress_rowcols
+    
 
     Examples
     --------
@@ -21649,9 +20767,7 @@ FUNCTION: numpy.ma.compress_rows
     compressed_array : ndarray
         The compressed array.
 
-    See Also
-    --------
-    compress_rowcols
+    
 
     Examples
     --------
@@ -21674,9 +20790,7 @@ FUNCTION: numpy.ma.compressed
     This function is equivalent to calling the "compressed" method of a
     `ma.MaskedArray`, see `ma.MaskedArray.compressed` for details.
 
-    See Also
-    --------
-    ma.MaskedArray.compressed : Equivalent method.
+    
 
     Examples
     --------
@@ -21724,9 +20838,7 @@ FUNCTION: numpy.ma.concatenate
     result : MaskedArray
         The concatenated array with any masked entries preserved.
 
-    See Also
-    --------
-    numpy.concatenate : Equivalent function in the top-level NumPy module.
+    
 
     Examples
     --------
@@ -21774,9 +20886,6 @@ FUNCTION: numpy.ma.convolve
     out : MaskedArray
         Discrete, linear convolution of `a` and `v`.
 
-    See Also
-    --------
-    numpy.convolve : Equivalent function in the top-level NumPy module.
     
 
 ########################################
@@ -21798,10 +20907,7 @@ order : {'C', 'F', 'A', 'K'}, optional
     similar but have different default values for their order=
     arguments, and this function always passes sub-classes through.)
 
-See also
---------
-numpy.copy : Similar function with different default behavior
-numpy.copyto
+
 
 Notes
 -----
@@ -21882,10 +20988,7 @@ FUNCTION: numpy.ma.corrcoef
         If False, raises an exception.  Because `bias` is deprecated, this
         argument needs to be treated as keyword only to avoid a warning.
 
-    See Also
-    --------
-    numpy.corrcoef : Equivalent function in top-level NumPy module.
-    cov : Estimate the covariance matrix.
+    
 
     Examples
     --------
@@ -21926,9 +21029,7 @@ FUNCTION: numpy.ma.correlate
     out : MaskedArray
         Discrete cross-correlation of `a` and `v`.
 
-    See Also
-    --------
-    numpy.correlate : Equivalent function in the top-level NumPy module.
+    
 
     Examples
     --------
@@ -21991,9 +21092,7 @@ FUNCTION: numpy.ma.count
             axis removed. If the array is a 0-d array, or if `axis` is None, a
             scalar is returned.
 
-        See Also
-        --------
-        ma.count_masked : Count masked elements in array or along a given axis.
+        
 
         Examples
         --------
@@ -22041,9 +21140,7 @@ FUNCTION: numpy.ma.count_masked
         The total number of masked elements (axis=None) or the number
         of masked elements along each slice of the given axis.
 
-    See Also
-    --------
-    MaskedArray.count : Count non-masked elements.
+    
 
     Examples
     --------
@@ -22123,9 +21220,7 @@ FUNCTION: numpy.ma.cov
     ValueError
         Raised if some values are missing and `allow_masked` is False.
 
-    See Also
-    --------
-    numpy.cov
+    
 
     Examples
     --------
@@ -22168,10 +21263,6 @@ FUNCTION: numpy.ma.cumprod
         Arithmetic is modular when using integer types, and no error is
         raised on overflow.
 
-        See Also
-        --------
-        numpy.ndarray.cumprod : corresponding function for ndarrays
-        numpy.cumprod : equivalent function
         
 
 ########################################
@@ -22195,10 +21286,7 @@ FUNCTION: numpy.ma.cumsum
         Arithmetic is modular when using integer types, and no error is
         raised on overflow.
 
-        See Also
-        --------
-        numpy.ndarray.cumsum : corresponding function for ndarrays
-        numpy.cumsum : equivalent function
+        
 
         Examples
         --------
@@ -22273,9 +21361,7 @@ FUNCTION: numpy.ma.diag
     This function is the equivalent of `numpy.diag` that takes masked
     values into account, see `numpy.diag` for details.
 
-    See Also
-    --------
-    numpy.diag : Equivalent function for ndarrays.
+    
 
     Examples
     --------
@@ -22333,11 +21419,7 @@ Returns
 out : ndarray
     The 2-D output array.
 
-See Also
---------
-diag : MATLAB work-alike for 1-D and 2-D arrays.
-diagonal : Return specified diagonals.
-trace : Sum along diagonals.
+
 
 Examples
 --------
@@ -22371,9 +21453,7 @@ a future version the read-only restriction will be removed.
 
 Refer to :func:`numpy.diagonal` for full documentation.
 
-See Also
---------
-numpy.diagonal : equivalent function
+
 
 ########################################
 
@@ -22413,9 +21493,7 @@ FUNCTION: numpy.ma.diff
         `a` in most cases. A notable exception is `datetime64`, which
         results in a `timedelta64` output array.
 
-    See Also
-    --------
-    numpy.diff : Equivalent function in the top-level NumPy module.
+    
 
     Notes
     -----
@@ -22508,9 +21586,7 @@ FUNCTION: numpy.ma.dot
         conditions are not met, an exception is raised, instead of attempting
         to be flexible.
 
-    See Also
-    --------
-    numpy.dot : Equivalent function for ndarrays.
+    
 
     Examples
     --------
@@ -22561,15 +21637,7 @@ Returns
 stacked : ndarray
     The array formed by stacking the given arrays, will be at least 3-D.
 
-See Also
---------
-concatenate : Join a sequence of arrays along an existing axis.
-stack : Join a sequence of arrays along a new axis.
-block : Assemble an nd-array from nested lists of blocks.
-vstack : Stack arrays in sequence vertically (row wise).
-hstack : Stack arrays in sequence horizontally (column wise).
-column_stack : Stack 1-D arrays as columns into a 2-D array.
-dsplit : Split array along third axis.
+
 
 Examples
 --------
@@ -22603,9 +21671,7 @@ FUNCTION: numpy.ma.ediff1d
     This function is the equivalent of `numpy.ediff1d` that takes masked
     values into account, see `numpy.ediff1d` for details.
 
-    See Also
-    --------
-    numpy.ediff1d : Equivalent function for ndarrays.
+    
 
     Examples
     --------
@@ -22656,12 +21722,7 @@ out : MaskedArray
     Array of uninitialized (arbitrary) data of the given shape, dtype, and
     order.  Object arrays will be initialized to None.
 
-See Also
---------
-empty_like : Return an empty array with shape and type of input.
-ones : Return a new array setting values to one.
-zeros : Return a new array setting values to zero.
-full : Return a new array of given shape filled with value.
+
 
 Notes
 -----
@@ -22720,12 +21781,7 @@ out : MaskedArray
     Array of uninitialized (arbitrary) data with the same
     shape and type as `prototype`.
 
-See Also
---------
-ones_like : Return an array of ones with shape and type of input.
-zeros_like : Return an array of zeros with shape and type of input.
-full_like : Return a new array with shape of input filled with value.
-empty : Return a new uninitialized array.
+
 
 Notes
 -----
@@ -22775,9 +21831,7 @@ FUNCTION: numpy.ma.filled
     a : ndarray
         The filled array.
 
-    See Also
-    --------
-    compressed
+    
 
     Examples
     --------
@@ -22871,10 +21925,7 @@ FUNCTION: numpy.ma.flatnotmasked_contiguous
     slice_list : list
         A sorted sequence of `slice` objects (start index, end index).
 
-    See Also
-    --------
-    flatnotmasked_edges, notmasked_contiguous, notmasked_edges
-    clump_masked, clump_unmasked
+    
 
     Notes
     -----
@@ -22920,10 +21971,7 @@ FUNCTION: numpy.ma.flatnotmasked_edges
         The indices of first and last non-masked value in the array.
         Returns None if all values are masked.
 
-    See Also
-    --------
-    flatnotmasked_contiguous, notmasked_contiguous, notmasked_edges
-    clump_masked, clump_unmasked
+    
 
     Notes
     -----
@@ -23048,11 +22096,7 @@ Returns
 -------
 out: MaskedArray
 
-See also
---------
-ndarray.tobytes
-    Inverse of this operation, construct Python bytes from the raw data
-    bytes in the array.
+
 
 Notes
 -----
@@ -23103,9 +22147,7 @@ FUNCTION: numpy.ma.fromflex
     result : MaskedArray
         The constructed masked array.
 
-    See Also
-    --------
-    MaskedArray.toflex : Build a flexible-type array from a masked array.
+    
 
     Examples
     --------
@@ -23188,9 +22230,7 @@ fromfunction: MaskedArray
     `function`.  If `function` returns a scalar value, the shape of
     `fromfunction` would not match the `shape` parameter.
 
-See Also
---------
-indices, meshgrid
+
 
 Notes
 -----
@@ -23235,10 +22275,7 @@ FUNCTION: numpy.ma.getdata
         Whether to force the output to be a `pure` ndarray (False) or to
         return a subclass of ndarray if appropriate (True, default).
 
-    See Also
-    --------
-    getmask : Return the mask of a masked array, or nomask.
-    getmaskarray : Return the mask of a masked array, or full array of False.
+    
 
     Examples
     --------
@@ -23280,10 +22317,7 @@ FUNCTION: numpy.ma.getmask
     a : array_like
         Input `MaskedArray` for which the mask is required.
 
-    See Also
-    --------
-    getdata : Return the data of a masked array as an ndarray.
-    getmaskarray : Return the mask of a masked array, or full array of False.
+    
 
     Examples
     --------
@@ -23341,10 +22375,7 @@ FUNCTION: numpy.ma.getmaskarray
     arr : array_like
         Input `MaskedArray` for which the mask is required.
 
-    See Also
-    --------
-    getmask : Return the mask of a masked array, or nomask.
-    getdata : Return the data of a masked array as an ndarray.
+    
 
     Examples
     --------
@@ -23390,10 +22421,7 @@ FUNCTION: numpy.ma.harden_mask
         `~ma.MaskedArray.hardmask` to ``True`` (and returns the modified
         self).
 
-        See Also
-        --------
-        ma.MaskedArray.hardmask
-        ma.MaskedArray.soften_mask
+        
 
         
 
@@ -23407,9 +22435,7 @@ Please refer to the `split` documentation.  `hsplit` is equivalent
 to `split` with ``axis=1``, the array is always split along the second
 axis except for 1-D arrays, where it is split at ``axis=0``.
 
-See Also
---------
-split : Split an array into multiple sub-arrays of equal size.
+
 
 Examples
 --------
@@ -23504,17 +22530,7 @@ Returns
 stacked : ndarray
     The array formed by stacking the given arrays.
 
-See Also
---------
-concatenate : Join a sequence of arrays along an existing axis.
-stack : Join a sequence of arrays along a new axis.
-block : Assemble an nd-array from nested lists of blocks.
-vstack : Stack arrays in sequence vertically (row wise).
-dstack : Stack arrays in sequence depth wise (along third axis).
-column_stack : Stack 1-D arrays as columns into a 2-D array.
-hsplit : Split an array into multiple sub-arrays
-         horizontally (column-wise).
-unstack : Split an array into a tuple of sub-arrays along an axis.
+
 
 Examples
 --------
@@ -23613,9 +22629,7 @@ FUNCTION: numpy.ma.in1d
 
     We recommend using :func:`isin` instead of `in1d` for new code.
 
-    See Also
-    --------
-    isin       : Version of this function that preserves the shape of ar1.
+    
 
     Examples
     --------
@@ -23659,9 +22673,7 @@ grid : one MaskedArray or tuple of MaskedArrays
         ``grid[i].shape = (1, ..., 1, dimensions[i], 1, ..., 1)`` with
         dimensions[i] in the ith place
 
-See Also
---------
-mgrid, ogrid, meshgrid
+
 
 Notes
 -----
@@ -23743,12 +22755,7 @@ ValueError
     If both `a` and `b` are nonscalar and their last dimensions have
     different sizes.
 
-See Also
---------
-tensordot : Sum products over arbitrary axes.
-dot : Generalised matrix product, using second last dimension of `b`.
-vecdot : Vector dot product of two arrays.
-einsum : Einstein summation convention.
+
 
 Notes
 -----
@@ -23818,9 +22825,7 @@ FUNCTION: numpy.ma.intersect1d
 
     See `numpy.intersect1d` for more details.
 
-    See Also
-    --------
-    numpy.intersect1d : Equivalent function for ndarrays.
+    
 
     Examples
     --------
@@ -23854,10 +22859,7 @@ FUNCTION: numpy.ma.isMA
     result : bool
         True if `x` is a MaskedArray.
 
-    See Also
-    --------
-    isMA : Alias to isMaskedArray.
-    isarray : Alias to isMaskedArray.
+    
 
     Examples
     --------
@@ -23908,9 +22910,7 @@ FUNCTION: numpy.ma.is_mask
     result : bool
         True if `m.dtype.type` is MaskType, False otherwise.
 
-    See Also
-    --------
-    ma.isMaskedArray : Test whether input is an instance of MaskedArray.
+    
 
     Examples
     --------
@@ -24015,10 +23015,7 @@ FUNCTION: numpy.ma.isin
     The output is always a masked array of the same shape as `element`.
     See `numpy.isin` for more details.
 
-    See Also
-    --------
-    in1d       : Flattened version of this function.
-    numpy.isin : Equivalent function for ndarrays.
+    
 
     Examples
     --------
@@ -24042,9 +23039,7 @@ FUNCTION: numpy.ma.left_shift
     This is the masked array version of `numpy.left_shift`, for details
     see that function.
 
-    See Also
-    --------
-    numpy.left_shift
+    
 
     Examples
     --------
@@ -24210,10 +23205,7 @@ FUNCTION: numpy.ma.make_mask_none
     result : ndarray
         An ndarray of appropriate shape and dtype, filled with False.
 
-    See Also
-    --------
-    make_mask : Create a boolean mask from an array.
-    make_mask_descr : Construct a dtype description list from a given dtype.
+    
 
     Examples
     --------
@@ -24243,10 +23235,7 @@ FUNCTION: numpy.ma.mask_cols
 
     This function is a shortcut to ``mask_rowcols`` with `axis` equal to 1.
 
-    See Also
-    --------
-    mask_rowcols : Mask rows and/or columns of a 2D array.
-    masked_where : Mask where a condition is met.
+    
 
     Examples
     --------
@@ -24356,11 +23345,7 @@ FUNCTION: numpy.ma.mask_rowcols
     NotImplementedError
         If input array `a` is not 2D.
 
-    See Also
-    --------
-    mask_rows : Mask rows of a 2D array that contain masked values.
-    mask_cols : Mask cols of a 2D array that contain masked values.
-    masked_where : Mask where a condition is met.
+    
 
     Notes
     -----
@@ -24406,10 +23391,7 @@ FUNCTION: numpy.ma.mask_rows
 
     This function is a shortcut to ``mask_rowcols`` with `axis` equal to 0.
 
-    See Also
-    --------
-    mask_rowcols : Mask rows and/or columns of a 2D array.
-    masked_where : Mask where a condition is met.
+    
 
     Examples
     --------
@@ -24465,9 +23447,7 @@ FUNCTION: numpy.ma.masked_all
     a : MaskedArray
         A masked array with all data masked.
 
-    See Also
-    --------
-    masked_all_like : Empty masked array modelled on an existing array.
+    
 
     Notes
     -----
@@ -24528,9 +23508,7 @@ FUNCTION: numpy.ma.masked_all_like
     AttributeError
         If `arr` doesn't have a shape attribute (i.e. not an ndarray)
 
-    See Also
-    --------
-    masked_all : Empty masked array with all elements masked.
+    
 
     Notes
     -----
@@ -24579,10 +23557,7 @@ FUNCTION: numpy.ma.masked_equal
 
     For floating point arrays, consider using ``masked_values(x, value)``.
 
-    See Also
-    --------
-    masked_where : Mask where a condition is met.
-    masked_values : Mask using floating point equality.
+    
 
     Examples
     --------
@@ -24608,9 +23583,7 @@ FUNCTION: numpy.ma.masked_greater
     This function is a shortcut to ``masked_where``, with
     `condition` = (x > value).
 
-    See Also
-    --------
-    masked_where : Mask where a condition is met.
+    
 
     Examples
     --------
@@ -24636,9 +23609,7 @@ FUNCTION: numpy.ma.masked_greater_equal
     This function is a shortcut to ``masked_where``, with
     `condition` = (x >= value).
 
-    See Also
-    --------
-    masked_where : Mask where a condition is met.
+    
 
     Examples
     --------
@@ -24665,9 +23636,7 @@ FUNCTION: numpy.ma.masked_inside
     the interval [v1,v2] (v1 <= x <= v2).  The boundaries `v1` and `v2`
     can be given in either order.
 
-    See Also
-    --------
-    masked_where : Mask where a condition is met.
+    
 
     Notes
     -----
@@ -24704,9 +23673,7 @@ FUNCTION: numpy.ma.masked_invalid
     Only applies to arrays with a dtype where NaNs or infs make sense
     (i.e. floating point types), but accepts any array_like object.
 
-    See Also
-    --------
-    masked_where : Mask where a condition is met.
+    
 
     Examples
     --------
@@ -24734,9 +23701,7 @@ FUNCTION: numpy.ma.masked_less
     This function is a shortcut to ``masked_where``, with
     `condition` = (x < value).
 
-    See Also
-    --------
-    masked_where : Mask where a condition is met.
+    
 
     Examples
     --------
@@ -24762,9 +23727,7 @@ FUNCTION: numpy.ma.masked_less_equal
     This function is a shortcut to ``masked_where``, with
     `condition` = (x <= value).
 
-    See Also
-    --------
-    masked_where : Mask where a condition is met.
+    
 
     Examples
     --------
@@ -24790,9 +23753,7 @@ FUNCTION: numpy.ma.masked_not_equal
     This function is a shortcut to ``masked_where``, with
     `condition` = (x != value).
 
-    See Also
-    --------
-    masked_where : Mask where a condition is met.
+    
 
     Examples
     --------
@@ -24834,11 +23795,7 @@ FUNCTION: numpy.ma.masked_object
     result : MaskedArray
         The result of masking `x` where equal to `value`.
 
-    See Also
-    --------
-    masked_where : Mask where a condition is met.
-    masked_equal : Mask where equal to a given value (integers).
-    masked_values : Mask using floating point equality.
+    
 
     Examples
     --------
@@ -24882,9 +23839,7 @@ FUNCTION: numpy.ma.masked_outside
     the interval [v1,v2] (x < v1)|(x > v2).
     The boundaries `v1` and `v2` can be given in either order.
 
-    See Also
-    --------
-    masked_where : Mask where a condition is met.
+    
 
     Notes
     -----
@@ -24944,10 +23899,7 @@ FUNCTION: numpy.ma.masked_values
     result : MaskedArray
         The result of masking `x` where approximately equal to `value`.
 
-    See Also
-    --------
-    masked_where : Mask where a condition is met.
-    masked_equal : Mask where equal to a given value (integers).
+    
 
     Examples
     --------
@@ -25001,18 +23953,7 @@ FUNCTION: numpy.ma.masked_where
     result : MaskedArray
         The result of masking `a` where `condition` is True.
 
-    See Also
-    --------
-    masked_values : Mask using floating point equality.
-    masked_equal : Mask where equal to a given value.
-    masked_not_equal : Mask where *not* equal to a given value.
-    masked_less_equal : Mask where less than or equal to a given value.
-    masked_greater_equal : Mask where greater than or equal to a given value.
-    masked_less : Mask where less than a given value.
-    masked_greater : Mask where greater than a given value.
-    masked_inside : Mask inside a given interval.
-    masked_outside : Mask outside a given interval.
-    masked_invalid : Mask invalid values (NaNs or infs).
+    
 
     Examples
     --------
@@ -25110,10 +24051,7 @@ FUNCTION: numpy.ma.max
             New array holding the result.
             If ``out`` was specified, ``out`` is returned.
 
-        See Also
-        --------
-        ma.maximum_fill_value
-            Returns the maximum filling value for a given datatype.
+        
 
         Examples
         --------
@@ -25179,11 +24117,7 @@ FUNCTION: numpy.ma.maximum_fill_value
     TypeError
         If `obj` isn't a suitable numeric type.
 
-    See Also
-    --------
-    minimum_fill_value : The inverse function.
-    set_fill_value : Set the filling value of a masked array.
-    MaskedArray.fill_value : Return current fill value.
+    
 
     Examples
     --------
@@ -25220,11 +24154,7 @@ FUNCTION: numpy.ma.mean
 
         Refer to `numpy.mean` for full documentation.
 
-        See Also
-        --------
-        numpy.ndarray.mean : corresponding function for ndarrays
-        numpy.mean : Equivalent function
-        numpy.ma.average : Weighted average.
+        
 
         Examples
         --------
@@ -25280,9 +24210,7 @@ FUNCTION: numpy.ma.median
         Return data-type is `float64` for integers and floats smaller than
         `float64`, or the input data-type, otherwise.
 
-    See Also
-    --------
-    mean
+    
 
     Notes
     -----
@@ -25339,10 +24267,7 @@ FUNCTION: numpy.ma.min
             New array holding the result.
             If ``out`` was specified, ``out`` is returned.
 
-        See Also
-        --------
-        ma.minimum_fill_value
-            Returns the minimum filling value for a given datatype.
+        
 
         Examples
         --------
@@ -25401,11 +24326,7 @@ FUNCTION: numpy.ma.minimum_fill_value
     TypeError
         If `obj` isn't a suitable numeric type.
 
-    See Also
-    --------
-    maximum_fill_value : The inverse function.
-    set_fill_value : Set the filling value of a masked array.
-    MaskedArray.fill_value : Return current fill value.
+    
 
     Examples
     --------
@@ -25453,9 +24374,7 @@ FUNCTION: numpy.ma.ndenumerate
     compressed : bool, optional
         If True (default), masked elements are skipped.
 
-    See Also
-    --------
-    numpy.ndenumerate : Equivalent function ignoring any mask.
+    
 
     Examples
     --------
@@ -25513,11 +24432,7 @@ FUNCTION: numpy.ma.ndim
     number_of_dimensions : int
         The number of dimensions in `a`.  Scalars are zero-dimensional.
 
-    See Also
-    --------
-    ndarray.ndim : equivalent method
-    shape : dimensions of array
-    ndarray.shape : dimensions of array
+    
 
     Examples
     --------
@@ -25562,17 +24477,7 @@ FUNCTION: numpy.ma.nonzero
         tuple_of_arrays : tuple
             Indices of elements that are non-zero.
 
-        See Also
-        --------
-        numpy.nonzero :
-            Function operating on ndarrays.
-        flatnonzero :
-            Return indices that are non-zero in the flattened version of the input
-            array.
-        numpy.ndarray.nonzero :
-            Equivalent ndarray method.
-        count_nonzero :
-            Counts the number of non-zero elements in the input array.
+        
 
         Examples
         --------
@@ -25657,10 +24562,7 @@ FUNCTION: numpy.ma.notmasked_contiguous
 
         If the input is 2d and axis is specified, the result is a list of lists.
 
-    See Also
-    --------
-    flatnotmasked_edges, flatnotmasked_contiguous, notmasked_edges
-    clump_masked, clump_unmasked
+    
 
     Notes
     -----
@@ -25722,10 +24624,7 @@ FUNCTION: numpy.ma.notmasked_edges
         the array. If there are no masked data in the array, `edges` is a
         list of the first and last index.
 
-    See Also
-    --------
-    flatnotmasked_contiguous, flatnotmasked_edges, notmasked_contiguous
-    clump_masked, clump_unmasked
+    
 
     Examples
     --------
@@ -25779,12 +24678,7 @@ Returns
 out : MaskedArray
     Array of ones with the given shape, dtype, and order.
 
-See Also
---------
-ones_like : Return an array of ones with shape and type of input.
-empty : Return a new uninitialized array.
-zeros : Return a new array setting values to zero.
-full : Return a new array of given shape filled with value.
+
 
 Examples
 --------
@@ -25841,12 +24735,7 @@ Returns
 out : MaskedArray
     Array of ones with the same shape and type as `a`.
 
-See Also
---------
-empty_like : Return an empty array with shape and type of input.
-zeros_like : Return an array of zeros with shape and type of input.
-full_like : Return a new array with shape of input filled with value.
-ones : Return a new array setting values to one.
+
 
 Examples
 --------
@@ -25896,17 +24785,7 @@ Returns
 out : (M, N) ndarray
     ``out[i, j] = a[i] * b[j]``
 
-See also
---------
-inner
-einsum : ``einsum('i,j->ij', a.ravel(), b.ravel())`` is the equivalent.
-ufunc.outer : A generalization to dimensions other than 1D and other
-              operations. ``np.multiply.outer(a.ravel(), b.ravel())``
-              is the equivalent.
-linalg.outer : An Array API compatible variation of ``np.outer``,
-               which accepts 1-dimensional inputs only.
-tensordot : ``np.tensordot(a.ravel(), b.ravel(), axes=((), ()))``
-            is the equivalent.
+
 
 References
 ----------
@@ -26046,11 +24925,7 @@ RankWarning
     >>> import warnings
     >>> warnings.simplefilter('ignore', np.exceptions.RankWarning)
 
-See Also
---------
-polyval : Compute polynomial values.
-linalg.lstsq : Computes a least-squares fit.
-scipy.interpolate.UnivariateSpline : Computes spline fits.
+
 
 Notes
 -----
@@ -26143,9 +25018,7 @@ FUNCTION: numpy.ma.power
     This is the masked array version of `numpy.power`. For details see
     `numpy.power`.
 
-    See Also
-    --------
-    numpy.power
+    
 
     Notes
     -----
@@ -26198,10 +25071,6 @@ FUNCTION: numpy.ma.prod
         Arithmetic is modular when using integer types, and no error is raised
         on overflow.
 
-        See Also
-        --------
-        numpy.ndarray.prod : corresponding function for ndarrays
-        numpy.prod : equivalent function
         
 
 ########################################
@@ -26221,10 +25090,6 @@ FUNCTION: numpy.ma.product
         Arithmetic is modular when using integer types, and no error is raised
         on overflow.
 
-        See Also
-        --------
-        numpy.ndarray.prod : corresponding function for ndarrays
-        numpy.prod : equivalent function
         
 
 ########################################
@@ -26317,9 +25182,7 @@ FUNCTION: numpy.ma.put
     This function is equivalent to `MaskedArray.put`, see that method
     for details.
 
-    See Also
-    --------
-    MaskedArray.put
+    
 
     Examples
     --------
@@ -26355,9 +25218,7 @@ FUNCTION: numpy.ma.putmask
     This is the masked array version of `numpy.putmask`, for details see
     `numpy.putmask`.
 
-    See Also
-    --------
-    numpy.putmask
+    
 
     Notes
     -----
@@ -26447,9 +25308,7 @@ Repeat elements of an array.
 
 Refer to `numpy.repeat` for full documentation.
 
-See Also
---------
-numpy.repeat : equivalent function
+
 
 ########################################
 
@@ -26460,9 +25319,7 @@ FUNCTION: numpy.ma.reshape
 
     Refer to `MaskedArray.reshape` for full documentation.
 
-    See Also
-    --------
-    MaskedArray.reshape : equivalent function
+    
 
     Examples
     --------
@@ -26509,9 +25366,7 @@ FUNCTION: numpy.ma.resize
     data are stored in memory). If `x` is masked, the new array will be
     masked, and the new mask will be a repetition of the old one.
 
-    See Also
-    --------
-    numpy.resize : Equivalent function in the top level NumPy module.
+    
 
     Examples
     --------
@@ -26566,9 +25421,7 @@ FUNCTION: numpy.ma.right_shift
     This is the masked array version of `numpy.right_shift`, for details
     see that function.
 
-    See Also
-    --------
-    numpy.right_shift
+    
 
     Examples
     --------
@@ -26678,16 +25531,7 @@ Returns
 stacked : ndarray
     The array formed by stacking the given arrays, will be at least 2-D.
 
-See Also
---------
-concatenate : Join a sequence of arrays along an existing axis.
-stack : Join a sequence of arrays along a new axis.
-block : Assemble an nd-array from nested lists of blocks.
-hstack : Stack arrays in sequence horizontally (column wise).
-dstack : Stack arrays in sequence depth wise (along third axis).
-column_stack : Stack 1-D arrays as columns into a 2-D array.
-vsplit : Split an array into multiple sub-arrays vertically (row-wise).
-unstack : Split an array into a tuple of sub-arrays along an axis.
+
 
 Examples
 --------
@@ -26737,11 +25581,7 @@ FUNCTION: numpy.ma.set_fill_value
     None
         Nothing returned by this function.
 
-    See Also
-    --------
-    maximum_fill_value : Return the default fill value for a dtype.
-    MaskedArray.fill_value : Return current fill value.
-    MaskedArray.set_fill_value : Equivalent method.
+    
 
     Examples
     --------
@@ -26788,9 +25628,7 @@ FUNCTION: numpy.ma.setdiff1d
     The output is always a masked array. See `numpy.setdiff1d` for more
     details.
 
-    See Also
-    --------
-    numpy.setdiff1d : Equivalent function for ndarrays.
+    
 
     Examples
     --------
@@ -26812,9 +25650,7 @@ FUNCTION: numpy.ma.setxor1d
 
     The output is always a masked array. See `numpy.setxor1d` for more details.
 
-    See Also
-    --------
-    numpy.setxor1d : Equivalent function for ndarrays.
+    
 
     Examples
     --------
@@ -26846,11 +25682,7 @@ FUNCTION: numpy.ma.shape
         The elements of the shape tuple give the lengths of the
         corresponding array dimensions.
 
-    See Also
-    --------
-    len : ``len(a)`` is equivalent to ``np.shape(a)[0]`` for N-D arrays with
-          ``N>=1``.
-    ndarray.shape : Equivalent array method.
+    
 
     Examples
     --------
@@ -26896,11 +25728,7 @@ FUNCTION: numpy.ma.size
     element_count : int
         Number of elements along the specified axis.
 
-    See Also
-    --------
-    shape : dimensions of array
-    ndarray.shape : dimensions of array
-    ndarray.size : number of elements in array
+    
 
     Examples
     --------
@@ -26930,10 +25758,7 @@ FUNCTION: numpy.ma.soften_mask
         `~ma.MaskedArray.hardmask` to ``False`` (and returns the modified
         self).
 
-        See Also
-        --------
-        ma.MaskedArray.hardmask
-        ma.MaskedArray.harden_mask
+        
 
         
 
@@ -26949,9 +25774,7 @@ FUNCTION: numpy.ma.sort
 
     Refer to ``MaskedArray.sort`` for the full documentation
 
-    See Also
-    --------
-    MaskedArray.sort : equivalent method
+    
 
     Examples
     --------
@@ -26998,10 +25821,7 @@ Raises
 ValueError
     If `axis` is not None, and an axis being squeezed is not of length 1
 
-See Also
---------
-expand_dims : The inverse operation, adding entries of length one
-reshape : Insert, remove, and combine dimensions, and resize existing ones
+
 
 Examples
 --------
@@ -27072,12 +25892,7 @@ Returns
 stacked : ndarray
     The stacked array has one more dimension than the input arrays.
 
-See Also
---------
-concatenate : Join a sequence of arrays along an existing axis.
-block : Assemble an nd-array from nested lists of blocks.
-split : Split array into a list of multiple sub-arrays of equal size.
-unstack : Split an array into a tuple of sub-arrays along an axis.
+
 
 Examples
 --------
@@ -27121,10 +25936,6 @@ FUNCTION: numpy.ma.std
 
         Refer to `numpy.std` for full documentation.
 
-        See Also
-        --------
-        numpy.ndarray.std : corresponding function for ndarrays
-        numpy.std : Equivalent function
         
 
 ########################################
@@ -27139,10 +25950,7 @@ FUNCTION: numpy.ma.sum
 
         Refer to `numpy.sum` for full documentation.
 
-        See Also
-        --------
-        numpy.ndarray.sum : corresponding function for ndarrays
-        numpy.sum : equivalent function
+        
 
         Examples
         --------
@@ -27183,9 +25991,7 @@ Return a view of the array with `axis1` and `axis2` interchanged.
 
 Refer to `numpy.swapaxes` for full documentation.
 
-See Also
---------
-numpy.swapaxes : equivalent function
+
 
 ########################################
 
@@ -27206,9 +26012,7 @@ Return the sum along diagonals of the array.
 
 Refer to `numpy.trace` for full documentation.
 
-See Also
---------
-numpy.trace : equivalent function
+
 
 ########################################
 
@@ -27219,9 +26023,7 @@ FUNCTION: numpy.ma.transpose
 
     This function is exactly equivalent to `numpy.transpose`.
 
-    See Also
-    --------
-    numpy.transpose : Equivalent function in top-level NumPy module.
+    
 
     Examples
     --------
@@ -27255,9 +26057,7 @@ FUNCTION: numpy.ma.union1d
 
     The output is always a masked array. See `numpy.union1d` for more details.
 
-    See Also
-    --------
-    numpy.union1d : Equivalent function for ndarrays.
+    
 
     Examples
     --------
@@ -27281,9 +26081,7 @@ FUNCTION: numpy.ma.unique
     Masked values are considered the same element (masked). The output array
     is always a masked array. See `numpy.unique` for more details.
 
-    See Also
-    --------
-    numpy.unique : Equivalent function for ndarrays.
+    
 
     Examples
     --------
@@ -27344,9 +26142,7 @@ out : ndarray
     ``x^(N-1)``, the second ``x^(N-2)`` and so forth. If `increasing` is
     True, the columns are ``x^0, x^1, ..., x^(N-1)``.
 
-See Also
---------
-polynomial.polynomial.polyvander
+
 
 Examples
 --------
@@ -27460,10 +26256,7 @@ FUNCTION: numpy.ma.var
         If ``out=None``, returns a new array containing the variance;
         otherwise, a reference to the output array is returned.
 
-    See Also
-    --------
-    std, mean, nanmean, nanstd, nanvar
-    :ref:`ufuncs-output-type`
+    
 
     Notes
     -----
@@ -27590,10 +26383,7 @@ FUNCTION: numpy.ma.where
         elements from `x` where `condition` is True, and elements from `y`
         elsewhere.
 
-    See Also
-    --------
-    numpy.where : Equivalent function in the top-level NumPy module.
-    nonzero : The function that is called when x and y are omitted
+    
 
     Examples
     --------
@@ -27659,12 +26449,7 @@ Returns
 out : MaskedArray
     Array of zeros with the given shape, dtype, and order.
 
-See Also
---------
-zeros_like : Return an array of zeros with shape and type of input.
-empty : Return a new uninitialized array.
-ones : Return a new array setting values to one.
-full : Return a new array of given shape filled with value.
+
 
 Examples
 --------
@@ -27725,12 +26510,7 @@ Returns
 out : MaskedArray
     Array of zeros with the same shape and type as `a`.
 
-See Also
---------
-empty_like : Return an empty array with shape and type of input.
-ones_like : Return an array of ones with shape and type of input.
-full_like : Return a new array with shape of input filled with value.
-zeros : Return a new array setting values to zero.
+
 
 Examples
 --------
@@ -27816,9 +26596,6 @@ FUNCTION: numpy.ma.extras.normalize_axis_tuple
     ValueError
         If an axis is repeated
 
-    See also
-    --------
-    normalize_axis_index : normalizing a single scalar axis
     
 
 ########################################
@@ -27933,12 +26710,7 @@ where : array_like, optional
     For other keyword-only arguments, see the
     :ref:`ufunc docs <ufuncs.kwargs>`.
 
-See Also
---------
-numpy.clip :
-    Wrapper that makes the ``a_min`` and ``a_max`` arguments optional,
-    dispatching to one of `~numpy._core.umath.clip`,
-    `~numpy._core.umath.minimum`, and `~numpy._core.umath.maximum`.
+
 
 Returns
 -------
@@ -27990,9 +26762,7 @@ y : ndarray
     Output array of ints
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-str.count
+
 
 Examples
 --------
@@ -28051,9 +26821,7 @@ out : ndarray
     Output array of bools
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-str.endswith
+
 
 Examples
 --------
@@ -28109,9 +26877,7 @@ y : ndarray
     Output array of ints
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-str.find
+
 
 Examples
 --------
@@ -28158,9 +26924,7 @@ out : ndarray
     Output array of ints.  Raises :exc:`ValueError` if `x2` is not found.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-find, str.find
+
 
 Examples
 --------
@@ -28212,9 +26976,7 @@ y : ndarray
     Output array of ints
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-str.rfind
+
 
 ########################################
 
@@ -28254,9 +27016,7 @@ out : ndarray
     Output array of ints.  Raises :exc:`ValueError` if `x2` is not found.
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-rfind, str.rfind
+
 
 Examples
 --------
@@ -28307,9 +27067,7 @@ out : ndarray
     Output array of bools
     This is a scalar if both `x1` and `x2` are scalars.
 
-See Also
---------
-str.startswith
+
 
 ########################################
 
@@ -28414,9 +27172,7 @@ FUNCTION: numpy.ma.extras.ma.ntypes.issctype
     out : bool
         Boolean result of check whether `rep` is a scalar dtype.
 
-    See Also
-    --------
-    issubsctype, issubdtype, obj2sctype, sctype2char
+    
 
     Examples
     --------
@@ -28459,9 +27215,7 @@ FUNCTION: numpy.ma.extras.ma.ntypes.issubclass_
     out : bool
         Whether `arg1` is a subclass of `arg2` or not.
 
-    See Also
-    --------
-    issubsctype, issubdtype, issctype
+    
 
     Examples
     --------
@@ -28491,9 +27245,7 @@ FUNCTION: numpy.ma.extras.ma.ntypes.issubsctype
     out : bool
         The result.
 
-    See Also
-    --------
-    issctype, issubdtype, obj2sctype
+    
 
     Examples
     --------
@@ -28528,10 +27280,7 @@ FUNCTION: numpy.ma.extras.ma.ntypes.maximum_sctype
     out : dtype
         The highest precision data type of the same kind (`dtype.kind`) as `t`.
 
-    See Also
-    --------
-    obj2sctype, mintypecode, sctype2char
-    dtype
+    
 
     Examples
     --------
@@ -28573,9 +27322,7 @@ FUNCTION: numpy.ma.extras.ma.ntypes.obj2sctype
     dtype : dtype or Python type
         The data type of `rep`.
 
-    See Also
-    --------
-    sctype2char, issctype, issubsctype, issubdtype
+    
 
     Examples
     --------
@@ -28620,9 +27367,7 @@ FUNCTION: numpy.ma.extras.ma.ntypes.sctype2char
     ValueError
         If `sctype` is an object for which the type can not be inferred.
 
-    See Also
-    --------
-    obj2sctype, issctype, issubsctype, mintypecode
+    
 
     Examples
     --------
@@ -28787,12 +27532,7 @@ FUNCTION: numpy.lib.stride_tricks.as_strided
     -------
     view : ndarray
 
-    See also
-    --------
-    broadcast_to : broadcast an array to a given shape.
-    reshape : reshape an array.
-    lib.stride_tricks.sliding_window_view :
-        userfriendly and safe function for a creation of sliding window views.
+    
 
     Notes
     -----
@@ -29045,9 +27785,7 @@ FUNCTION: numpy.lib.format.open_memmap
     OSError
         If the file is not found or cannot be opened correctly.
 
-    See Also
-    --------
-    numpy.memmap
+    
 
     
 
@@ -29425,9 +28163,7 @@ FUNCTION: numpy.f2py.get_include
       * ``mymod-f2pywrappers.f`` (if it was generated in Step 1)
       * ``fortranobject.c``
 
-    See Also
-    --------
-    numpy.get_include : function that returns the numpy include directory
+    
 
     
 
@@ -30476,9 +29212,7 @@ FUNCTION: numpy.char.partition
     >>> np.char.partition(x, " ")
     array([['Numpy', ' ', 'is nice!']], dtype='<U8')
 
-    See Also
-    --------
-    str.partition
+    
 
     
 
@@ -30511,9 +29245,7 @@ FUNCTION: numpy.char.rpartition
         depending on input types. The output array will have an extra
         dimension with 3 elements per input element.
 
-    See Also
-    --------
-    str.rpartition
+    
 
     Examples
     --------
