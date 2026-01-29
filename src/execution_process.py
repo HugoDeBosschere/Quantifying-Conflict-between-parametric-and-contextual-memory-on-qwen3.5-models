@@ -250,7 +250,7 @@ if __name__ == "__main__":
         llm_client = LLMClient(config, model_name)
 
 
-        #run_control(args.task_id, llm_client)
+        run_control(args.task_id, llm_client)
         run_benchmark(args.task_id, llm_client)
         
 

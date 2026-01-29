@@ -219,42 +219,47 @@ def rescue_missing_result(code, full_response):
 
 def apply_ast_transformations(code):
     """
-    Parse le code, supprime les imports, convertit les returns globaux,
-    et régénère le code propre.
+    1. Supprime les imports (import x, from x import y) au niveau global.
+    2. Transforme les 'return x' de niveau 0 en 'result = x'.
     """
     try:
         tree = ast.parse(code)
         new_body = []
         
         for node in tree.body:
-            # --- SUPPRESSION DES IMPORTS ---
-            # Si le noeud est un import, on ne l'ajoute pas à la nouvelle liste.
-            # Il disparaît donc purement et simplement.
+            # A. Suppression des Imports
             if isinstance(node, (ast.Import, ast.ImportFrom)):
-                continue 
+                continue # On ne l'ajoute pas (suppression)
 
-            # --- TRANSFORMATION RETURN -> RESULT ---
+            # B. Transformation du Return (seulement niveau 0)
             elif isinstance(node, ast.Return) and node.value:
+                # Création manuelle du noeud d'assignation
                 assign = ast.Assign(
                     targets=[ast.Name(id='result', ctx=ast.Store())],
                     value=node.value
                 )
+                # IMPORTANT : On copie la localisation (ligne/colonne) de l'ancien 'return'
+                # vers le nouveau 'result ='. C'est ça qui évite le crash !
+                ast.copy_location(assign, node)
+                
                 new_body.append(assign)
 
-            # --- LE RESTE ON GARDE ---
+            # C. Conservation du reste
             else:
                 new_body.append(node)
         
         tree.body = new_body
         
-        # On régénère le code sous forme de string (Python 3.9+)
+        # --- FIX CRUCIAL ---
+        # Remplit les infos de lignes manquantes pour tous les noeuds créés/bougés
+        ast.fix_missing_locations(tree)
+        # -------------------
+        
         if hasattr(ast, "unparse"):
             return ast.unparse(tree)
             
     except SyntaxError:
-        # Si le code est cassé, on ne peut pas le transformer via AST.
-        # On le renvoie tel quel pour que le 'Slow Path' (nettoyage ligne par ligne) s'en occupe.
-        pass
+        pass 
     
     return code
 
