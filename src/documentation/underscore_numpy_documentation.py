@@ -27,12 +27,26 @@ def add_underscore(docstring,shorthand):
     return new_docstring
 
 def add_underscore_signature_full_doc(docstring):
+    """
+    The function used to add an underscore to the signature of a function in the generate_full_doc function.
+
+    docstring : str -> docstring that is parsed
+
+    Returns : 
+    new_text the docstring where the signature has an underscore. 
+    """
     new_text = re.sub(r"^(\w+)\(",r'\1_(',docstring)
     return new_text
 
 def add_underscore_signature(docstring):
     """
-    returns the signature of a function with an added underscore, if this signature exists
+    returns the signature of a function with an added underscore, if this signature exists.
+
+    docstring : str -> docstring that is parsed
+
+    Returns : 
+    new_signature : the signature of the function with an underscore if this signature exists. An empty str if it doesn't 
+
     """
     first_pattern = re.search(".*?(?=\n)", docstring)
     
@@ -49,8 +63,7 @@ def add_underscore_signature(docstring):
 
 def supress_see_also(docstring):
     """
-    adds an underscore to what is supposed to be functions in the see also section
-    another method would be entirely suppressing the see also section
+    Supress the see_also section of a docstring because it is too unpredictable and could compromise the coherence of a documentation
     There are approximately two types of See Also sections : 
     1st : cos, arctan, arcsin, emath.arccos
     2nd :   arctan2 : The "four quadrant" arctan of the angle formed by (`x`, `y`)
@@ -65,6 +78,14 @@ def supress_see_also(docstring):
     return new_see_also
 
 def corrupt_doc(doc_text,shorthand):
+    """
+    Function that corrupts a doc_text adding an underscore if it spots a pattern of the type shortand.(\w+)
+
+    doc_text : str this is the doc to corrupt
+    shortand : the shorthand of a module that we want to corrupt 
+
+    returns : str new_text the corrupted text 
+    """
     if not doc_text: return ""
     #print("here")
     #print(doc_text)
@@ -76,7 +97,12 @@ def corrupt_doc(doc_text,shorthand):
 # --- 2. The Crawler ---
 def generate_full_docs(list_module,list_shorthand, output_file):
     """
-    Maybe we should be able to add all the objects in the list_shorthand 
+    Generates the full corrupted doc at output_file by adding an underscore at all the relevant places (the function name
+    the signature of the function and the examples) and suppressing the see also section.
+
+    list_module : list of module names. the documentation of all the modules to corrupt. 
+    list_shorthand : the list of all the shorthands used in the documentation to spot where to corrupt the documentation (np for numpy of pd for pandas for example)
+    output_file : the destination of the created file 
     """
     # Set to keep track of functions we've already documented (to avoid duplicates)
     seen_functions = set()
@@ -158,7 +184,11 @@ def generate_full_docs(list_module,list_shorthand, output_file):
 def generate_ultra_minimal_docs(list_module,output_file):
     """
     Generate a doc with only the function names and nothing else
+
+    list_module : list of module names. the documentation of all the modules to corrupt. 
+    output_file : the destination of the created file 
     """
+
      # Set to keep track of functions we've already documented (to avoid duplicates)
     seen_functions = set()
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -226,6 +256,10 @@ def generate_ultra_minimal_docs(list_module,output_file):
 def generate_minimal_docs(list_module,output_file):
     """
     Generate a doc with the function names and the signature, when it exists
+
+    list_module : list of module names. the documentation of all the modules to corrupt. 
+    output_file : the destination of the created file 
+
     """
      # Set to keep track of functions we've already documented (to avoid duplicates)
     seen_functions = set()
