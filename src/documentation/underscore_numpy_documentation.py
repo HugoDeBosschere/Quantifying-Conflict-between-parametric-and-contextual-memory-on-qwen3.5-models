@@ -22,14 +22,17 @@ def add_underscore(docstring,shorthand):
     new_s the string where each expression of the type shortand.function(args) has a added underscore : shorthand.function_(args)
     """
     #print(f"voici le string {docstring}")
-    new_docstring = re.sub(shorthand + r"\.(\w+)", shorthand + r".\1_", docstring)  
-    #print(f"doc corrompue {new_docstring}")
+    
+    new_docstring = re.sub(shorthand + r"\.(\w+)", shorthand + r".\1_", docstring)
     return new_docstring
 
+def add_underscore_signature_full_doc(docstring):
+    new_text = re.sub(r"^(\w+)\(",r'\1_(',docstring)
+    return new_text
 
 def add_underscore_signature(docstring):
     """
-    adds an underscore to the signature of a function 
+    returns the signature of a function with an added underscore, if this signature exists
     """
     first_pattern = re.search(".*?(?=\n)", docstring)
     
@@ -38,13 +41,13 @@ def add_underscore_signature(docstring):
         if pattern:
             new_signature = re.sub(r"^(\w+)\(",r"\1_(", pattern.group(0))
         else:
-            new_signature = None 
+            new_signature = "" 
     else:
-        new_signature = None
+        new_signature = ""
     #print(f"Ceci est la nouvelle signature :{new_signature}")
     return new_signature
 
-def add_underscore_see_also(docstring):
+def supress_see_also(docstring):
     """
     adds an underscore to what is supposed to be functions in the see also section
     another method would be entirely suppressing the see also section
@@ -54,10 +57,11 @@ def add_underscore_see_also(docstring):
     and the positive `x`-axis.
             angle : Argument of complex values.
     """
-    pattern = re.search("See Also\n--------\n.*?(?=\n\n)",docstring,re.DOTALL)
-    print(f"pattern found : {pattern}")
-    new_see_also = re.sub(r"See Also\n--------\n(\w+),",r"\1_",pattern,docstring)
-    print(f"New see also:{new_see_also}")
+    new_see_also = re.sub("See Also\n-*\n*.*?(?=\n\n)","", docstring, flags=re.DOTALL)
+    new_see_also = re.sub(r"See also\n-*\n*.*?(?=\n\s*\n|$)","", new_see_also, flags=re.DOTALL)
+    new_see_also = re.sub(r"See Also\n-*\n*.*?(?=\n\s*\n|$)","", new_see_also, flags=re.DOTALL)
+    if new_see_also != "":
+        print(new_see_also)
     return new_see_also
 
 def corrupt_doc(doc_text,shorthand):
@@ -125,13 +129,18 @@ def generate_full_docs(list_module,list_shorthand, output_file):
                         new_doc = raw_doc
                         
                         if new_doc:
+                            
+                            new_doc = add_underscore_signature_full_doc(new_doc)
+                            
                             f.write(f"FUNCTION: {full_name}\n")
                             f.write("-" * (10 + len(full_name)) + "\n")
+                            new_doc = supress_see_also(new_doc)
                             for shorthand in list_shorthand:
                                 # Write to file in a clean format
                                 new_doc = corrupt_doc(new_doc,shorthand)
+                            
                         
-                            new_doc = add_underscore_signature(new_doc)
+                            
                             #new_doc = add_underscore_see_also(new_doc)
                             f.write(new_doc + "\n")
                             f.write("\n" + "#"*40 + "\n\n")
@@ -270,7 +279,7 @@ def generate_minimal_docs(list_module,output_file):
                         if new_doc:
                             modif = add_underscore_signature(new_doc)
                             if modif:
-                                print(f"modif dans la boucle : {modif}")
+                                #print(f"modif dans la boucle : {modif}")
                                 new_doc = modif
                             else:
                                 new_doc = ""
@@ -290,6 +299,6 @@ def generate_minimal_docs(list_module,output_file):
 
 
 if __name__ == "__main__":
-    #generate_full_docs([numpy,scipy,pandas,matplotlib.pyplot],["np","numpy"], "numpy_manual_underscore.txt")
-    #generate_ultra_minimal_docs([numpy],output_file="utlra_minimal_numpy.txt")
+    generate_full_docs([numpy],["np","numpy"], "numpy_manual_underscore.txt")
+    generate_ultra_minimal_docs([numpy],output_file="utlra_minimal_numpy.txt")
     generate_minimal_docs([numpy],output_file="minimal_numpy.txt")
