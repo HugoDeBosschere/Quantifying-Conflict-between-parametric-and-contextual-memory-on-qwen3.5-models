@@ -5,6 +5,7 @@ import os
 import sys
 import json
 from datetime import datetime
+from tqdm import tqdm
 from llmclient import LLMClient
 from cleaning import extract_code_and_fix, ensure_result_assignment, modify_lib
 
@@ -119,7 +120,6 @@ def evaluate_single_task(task, new_lib, llm_client):
         # stdout, stderr = execute_task_engine(task["code_context"], code)
         passed = "SUCCESS_MARKER" in stdout
     else:
-        print(f"Warning: Pas de 'code_context' pour {task_id}")
         passed = False
         stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
 
@@ -193,22 +193,35 @@ def run_control(first_task, llm_client) :
     input_path = os.path.join(base_dir, config["data"]["input_path"])
     output_path = os.path.join(base_dir, config["data"]["output_path"])
     print(f"Lecture : {input_path}")
-    
+
     if not os.path.exists(input_path):
         print(f"Erreur: Fichier introuvable -> {input_path}")
         return
 
+    # Count total lines for progress bar
+    with open(input_path, 'r', encoding='utf-8') as f:
+        total_tasks = sum(1 for line in f if line.strip())
+
+    total_evaluations = total_tasks * len(context_prompt_type_list)
+    print(f"Total tasks: {total_tasks}, Total evaluations: {total_evaluations}")
+
+    passed_count = 0
+    failed_count = 0
+
     with open(input_path, 'r', encoding='utf-8') as f_in, \
          open(output_path, 'a', encoding='utf-8') as f_out:
-        
+
+        # Main progress bar for all evaluations
+        pbar = tqdm(total=total_evaluations, desc="Benchmark Progress", unit="eval")
+
         for line in f_in:
             if not line.strip(): continue
-            
+
             # Chargement JSON
             try:
                 task = json.loads(line)
             except json.JSONDecodeError:
-                print("Ligne JSON invalide ignorée")
+                pbar.write("Ligne JSON invalide ignorée")
                 continue
             
             usual_lib = task.get("metadata", {}).get("library", "None")

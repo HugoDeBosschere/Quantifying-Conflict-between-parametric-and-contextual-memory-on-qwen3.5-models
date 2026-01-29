@@ -4,8 +4,8 @@ import os
 class LLMClient:
     def __init__(self, config, model_name):
         """
-        On injecte la config à l'initialisation.
-        config: dict contenant la section "llm" et "new_lib_injection"
+        Initialize the LLM client with support for both local CUDA inference and Ollama API.
+        config: dict containing "llm" and "new_lib_injection" sections
         """
         self.model_name = model_name
         self.api_url = config["llm"]["api_url"]
@@ -58,6 +58,6 @@ class LLMClient:
             response.raise_for_status()
             return response.json()['response']
         except Exception as e:
-            print(f"Erreur API : {e}")
+            print(f"API Error: {e}")
             return None
 
