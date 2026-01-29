@@ -5,7 +5,6 @@ import os
 import sys
 import json
 from datetime import datetime
-from tqdm import tqdm
 from llmclient import LLMClient
 from cleaning import extract_code_and_fix, ensure_result_assignment, modify_lib
 
@@ -202,17 +201,11 @@ def run_control(first_task, llm_client) :
     with open(input_path, 'r', encoding='utf-8') as f:
         total_tasks = sum(1 for line in f if line.strip())
 
-    total_evaluations = total_tasks * len(context_prompt_type_list)
-    print(f"Total tasks: {total_tasks}, Total evaluations: {total_evaluations}")
-
-    passed_count = 0
-    failed_count = 0
 
     with open(input_path, 'r', encoding='utf-8') as f_in, \
          open(output_path, 'a', encoding='utf-8') as f_out:
 
         # Main progress bar for all evaluations
-        pbar = tqdm(total=total_evaluations, desc="Benchmark Progress", unit="eval")
 
         for line in f_in:
             if not line.strip(): continue
@@ -221,7 +214,6 @@ def run_control(first_task, llm_client) :
             try:
                 task = json.loads(line)
             except json.JSONDecodeError:
-                pbar.write("Ligne JSON invalide ignorée")
                 continue
             
             usual_lib = task.get("metadata", {}).get("library", "None")
@@ -257,14 +249,21 @@ if __name__ == "__main__":
     # Liste noms de modèles
     list_model_name = config.get("llm", {}).get("model", [])
 
+    # liste différentes docu
+    docu = json.loads(config.get("new_lib_injection", {}).get("documentation", {}))
+    list_doc_name = docu.keys()
+
+    # boucle sur tout nos modèles
     for model_name in list_model_name :
+        # boucle sur nos différentes documentations
+        for doc_name in list_doc_name :
 
-        # --- INIT LLM CLIENT ---
-        llm_client = LLMClient(config, model_name)
+            # --- INIT LLM CLIENT ---
+            llm_client = LLMClient(config, model_name, doc_name)
 
 
-        run_control(args.task_id, llm_client)
-        run_benchmark(args.task_id, llm_client)
-        
+            run_control(args.task_id, llm_client)
+            run_benchmark(args.task_id, llm_client)
+            
 
 

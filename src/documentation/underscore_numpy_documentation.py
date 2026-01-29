@@ -1,14 +1,15 @@
 import numpy
 import inspect
 import types
+import tqdm
 from numpydoc.docscrape import NumpyDocString
 from inspect import signature
 import re 
 
-def add_underscore(s):
-    print(f"voici le string {s}")
-    new_s = re.sub(r"np\.(\w+)",r"np.\1_", s)  
-    return new_s
+# def add_underscore(s):
+#     print(f"voici le string {s}")
+#     new_s = re.sub(r"np\.(\w+)",r"np.\1_", s)  
+#     return new_s
 
 
 test_doc = numpy.acos.__doc__ 
