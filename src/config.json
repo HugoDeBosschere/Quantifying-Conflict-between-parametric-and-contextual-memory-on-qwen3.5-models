@@ -4,7 +4,8 @@
             "api_url"    : "http://localhost:11434/api/generate"
             },
     "data": {
-            "input_path" : "../data/ds1000_npy_modif.jsonl",
+            "origin_data" : "../data/ds1000_npy.jsonl",
+            "corrupted_data" : "../data/ds1000_npyOnly_corrupted_.jsonl",
             "output_path": "/usr/users/sdim/sdim_25/memory_code_eval/src/perf_review/results/result_try_4models.jsonl"
             },
     "new_lib_injection": {
@@ -14,19 +15,19 @@
             "documentation" :{
                 "fully_corrupted" : {
                                "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following doucmentation : ",
-                               "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/numpy_manual_underscore.txt"
+                               "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/full_doc_corrupted_numpy.txt"
                                 },
                 "real_doc" : {
                                "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following doucmentation : ",
-                               "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/numpy_manual_underscore.txt"
+                               "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/real_doc_numpy.txt"
                                 },
                 "minimal" : {
                                "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following doucmentation : ",
-                               "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/numpy_manual_underscore.txt"
+                               "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/minimal_numpy.txt"
                                 },
                 "ultra_minimal" : {
                                "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following doucmentation : ",
-                               "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/numpy_manual_underscore.txt"
+                               "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/ultra_minimal_numpy.txt"
                                 }  
                                 }
                         }

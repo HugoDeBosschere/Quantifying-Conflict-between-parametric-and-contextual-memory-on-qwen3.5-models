@@ -13,9 +13,9 @@ from config_loader import load_config
 config = load_config()
 
 
-#*-------------------------------------*
-# Functional evaluation of the LLM code#
-#*-------------------------------------*
+#*--------------------------------------*
+# Functional evaluation of the LLM code #
+#*--------------------------------------*
 
 
 
@@ -146,7 +146,7 @@ def evaluate_single_task(task, new_lib, llm_client):
 def run_benchmark(first_task, llm_client):
     """Lit le fichier d'entrée et traite chaque ligne"""
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    input_path = os.path.join(base_dir, config["data"]["input_path"])
+    input_path = os.path.join(base_dir, config["data"]["corrupted_data"])
     output_path = os.path.join(base_dir, config["data"]["output_path"])
     print(f"Lecture : {input_path}")
     
@@ -189,7 +189,7 @@ def run_control(first_task, llm_client) :
     """Lit le fichier d'entrée et traite chaque ligne"""
     print("CONTROL MODE")
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    input_path = os.path.join(base_dir, config["data"]["input_path"])
+    input_path = os.path.join(base_dir, config["data"]["origin_data"])
     output_path = os.path.join(base_dir, config["data"]["output_path"])
     print(f"Lecture : {input_path}")
 
@@ -250,7 +250,7 @@ if __name__ == "__main__":
     list_model_name = config.get("llm", {}).get("model", [])
 
     # liste différentes docu
-    docu = json.loads(config.get("new_lib_injection", {}).get("documentation", {}))
+    docu = config.get("new_lib_injection", {}).get("documentation", {})
     list_doc_name = docu.keys()
 
     # boucle sur tout nos modèles

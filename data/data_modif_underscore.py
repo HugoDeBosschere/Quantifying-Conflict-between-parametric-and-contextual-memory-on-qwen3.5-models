@@ -1,24 +1,53 @@
 import json 
-from itertools import islice
 import re
 
-def underscore_prompt_module(filename,list_shorthand):
+import json
+import re
+
+def underscore_prompt_module(filename, list_shorthand):
     """
-    dataset is a json containing a prompt argument that can be accessed 
+    Lit un fichier JSONL, modifie uniquement le champ 'prompt' pour ajouter
+    des underscores aux méthodes des bibliothèques spécifiées, et sauvegarde le résultat.
     """
-    n = len(filename)
-    print(f"taille du json: {n}")
-    new_filename = "ds1000_npy_modif.jsonl"
-    with open(new_filename,"w",encoding="utf-8") as new_f:
-        with open(filename,"r") as f:
-            for line in f:
-                new_line = line
+    print(f"Traitement du fichier : {filename}")
+    
+    new_filename = "ds1000_npy_modif_prompt.jsonl"
+    
+    with open(filename, "r", encoding="utf-8") as f_in, \
+         open(new_filename, "w", encoding="utf-8") as f_out:
+        
+        count = 0
+        for line in f_in:
+            line = line.strip()
+            if not line: continue # Sauter les lignes vides
+            
+            # 1. On transforme la ligne de texte en Dictionnaire Python
+            data = json.loads(line)
+            
+            # 2. On vérifie si la clé 'prompt' existe et on la modifie
+            if "prompt" in data:
+                current_prompt = data["prompt"]
+                
                 for sh in list_shorthand:
-        #print(f"voici le string {docstring}")
-                    new_line = re.sub(sh + r"\.(\w+)", sh + r".\1_", new_line)  
-        #print(f"doc corrompue {new_docstring}")
-                new_f.write(new_line)
-    return None
+                    # Regex expliquée :
+                    # re.escape(sh) -> protège les caractères spéciaux (ex: si sh est "np")
+                    # \.            -> cherche un vrai point
+                    # (\w+)         -> capture le nom de la fonction (ex: "array")
+                    pattern = re.escape(sh) + r"\.(\w+)"
+                    
+                    # Remplacement : on remet le préfixe, le point, le nom capturé (\1) et on ajoute "_"
+                    current_prompt = re.sub(pattern, rf"{sh}.\1_", current_prompt)
+                
+                # On met à jour le dictionnaire
+                data["prompt"] = current_prompt
+            
+            # 3. On retransforme le Dictionnaire en ligne JSON (string)
+            # ensure_ascii=False permet de garder les accents lisibles si il y en a
+            new_line = json.dumps(data, ensure_ascii=False)
+            f_out.write(new_line + "\n")
+            count += 1
+
+    print(f"Terminé ! {count} lignes traitées. Sauvegardé dans {new_filename}")
 
 if __name__ == '__main__':
-    underscore_prompt_module("ds1000_npy.jsonl",["numpy","np"])
+    underscore_prompt_module("data/ds1000_npy.jsonl", ["numpy", "np"])

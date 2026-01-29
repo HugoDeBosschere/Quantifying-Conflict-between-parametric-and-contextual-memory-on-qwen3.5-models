@@ -14,11 +14,13 @@ class LLMClient:
         self.custom_lib_path = config["new_lib_injection"]["custom_lib_path"]
         self.new_lib_name = config["new_lib_injection"]["name"]
         self.documentation = self.load_doc(config, doc_name)
-        self.model_metadata = self.load_model_metadata()
+        self.model_metadata = self.load_model_metadata(doc_name)
     
 
-    def load_model_metadata(self) :
+    def load_model_metadata(self, doc_name) :
+        
         return {"model_name" : self.model_name,
+                "doc_name" : doc_name,
                 "temperature" : self.temperature}
 
 
