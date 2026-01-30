@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 # --- CONFIGURATION ---
-INPUT_FILE = "/usr/users/sdim/sdim_25/memory_code_eval/src/perf_review/results/result_try_4models.jsonl"
+INPUT_FILE = "/usr/users/sdim/sdim_25/memory_code_eval/src/perf_review/results/result_4M_cleaned.jsonl"
 OUTPUT_DIR = "src/perf_review/results"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
