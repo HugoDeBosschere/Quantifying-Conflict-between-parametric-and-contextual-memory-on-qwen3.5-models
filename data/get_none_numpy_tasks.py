@@ -62,10 +62,10 @@ def filter_dataset_numpy_only(input_path, output_path):
 
 if __name__ == "__main__":
     # Tes chemins
-    input_path = "/usr/users/sdim/sdim_25/memory_code_eval/data/ds1000_npy_modif_prompt.jsonl"
+    input_path = "/usr/users/sdim/sdim_25/memory_code_eval/data/ds1000_npy.jsonl"
     
     # On crée un nom de fichier explicite pour la sortie
-    output_path = "/usr/users/sdim/sdim_25/memory_code_eval/data/ds1000_npyOnly_corrupted_.jsonl"
+    output_path = "/usr/users/sdim/sdim_25/memory_code_eval/data/ds1000_npyOnly.jsonl"
     
     filter_dataset_numpy_only(input_path, output_path)
 

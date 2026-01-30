@@ -1,207 +1,209 @@
 import json
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
+# --- CONFIGURATION ---
+INPUT_FILE = "/usr/users/sdim/sdim_25/memory_code_eval/src/perf_review/results/result_try_4models.jsonl"
+OUTPUT_DIR = "src/perf_review/results"
 
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-def perf_on_data(filepath):
-    """Récupération de résultats depuis un fichier result.jsonl et compte des succès"""
-    perf_dict = {}
-
+def load_data(filepath):
+    """Charge les données et retourne un dictionnaire imbriqué."""
+    data = {}
+    print(f"Chargement des données depuis {filepath}...")
     try:
-        with open(filepath, mode="r", encoding="utf-8") as f:
+        with open(filepath, 'r', encoding='utf-8') as f:
             for line in f:
-                if not line.strip(): continue
+                line = line.strip()
+                if not line: continue
                 try:
                     res = json.loads(line)
                 except json.JSONDecodeError:
                     continue
 
-                model_name = res.get("metadata", {}).get("model_name", "Unknown_Model")
+                meta = res.get("metadata", {})
+                model = meta.get("model_name", "Unknown")
+                pert = meta.get("perturbation_type", "Unknown")
+                passed = 1 if res.get("passed", False) else 0
                 
-                task_id = res.get("task_id")
-                is_passed = res.get("passed", False)
-
-                if model_name not in perf_dict:
-                    perf_dict[model_name] = {
-                        "success": 0,
-                        "success_control": 0,
-                        "tasks_id": set(),
-                        "tasks_id_control": set()
-                    }
-
                 if res.get("is_control", False):
-                    if task_id not in perf_dict[model_name]["tasks_id_control"]:
-                        if is_passed:
-                            perf_dict[model_name]["success_control"] += 1
-                        perf_dict[model_name]["tasks_id_control"].add(task_id)
+                    doc_type = "CONTROL"
                 else:
-                    if task_id not in perf_dict[model_name]["tasks_id"]:
-                        if is_passed:
-                            perf_dict[model_name]["success"] += 1
-                        perf_dict[model_name]["tasks_id"].add(task_id)
-                        
+                    doc_type = meta.get("doc_name", "Unknown_Doc")
+
+                if model not in data: data[model] = {}
+                if doc_type not in data[model]: data[model][doc_type] = {}
+                if pert not in data[model][doc_type]: 
+                    data[model][doc_type][pert] = {'success': 0, 'total': 0}
+
+                data[model][doc_type][pert]['success'] += passed
+                data[model][doc_type][pert]['total'] += 1
+                
     except FileNotFoundError:
-        print(f"Erreur : Le fichier {filepath} est introuvable.")
+        print(f"❌ Erreur : Fichier {filepath} introuvable.")
         return {}
+    return data
 
-    return perf_dict
-
-
-
-def plot_model_performance(perf_dict, output_filename):
-    if not perf_dict:
-        print("Aucune donnée à afficher.")
-        return
-
-    models = list(perf_dict.keys())
+def plot_1_global_performance(data):
+    """
+    Graph 1 : Performance Globale
+    Label : "XX% \n (Succès/Total)"
+    """
+    print("Génération du Graphique 1 (Global)...")
     
-    # Préparation des données pour le plot
-    # On calcule les pourcentages et on stocke les totaux pour l'affichage
-    main_scores = [] # % de réussite
-    main_labels = [] # Texte "X/Y"
-    
-    ctrl_scores = []
-    ctrl_labels = []
-    
-    has_control_data = False
+    models = sorted(list(data.keys()))
+    if not models: return
 
+    all_docs = set()
     for m in models:
-        data = perf_dict[m]
+        all_docs.update(data[m].keys())
+    
+    doc_types = ["CONTROL"] + sorted([d for d in all_docs if d != "CONTROL"])
+    
+    x = np.arange(len(models))
+    width = 0.85 / len(doc_types) # Un peu plus large pour faire tenir le texte
+
+    fig, ax = plt.subplots(figsize=(14, 8)) # Figure plus grande
+
+    for i, doc in enumerate(doc_types):
+        scores = []
+        labels = [] # Liste pour stocker nos labels personnalisés "XX% (N/T)"
+
+        for m in models:
+            if doc in data[m]:
+                total_succ = sum(p['success'] for p in data[m][doc].values())
+                total_cnt = sum(p['total'] for p in data[m][doc].values())
+                
+                if total_cnt > 0:
+                    pct = (total_succ / total_cnt * 100)
+                    # Création du label avec saut de ligne
+                    label_text = f"{pct:.0f}%\n({total_succ}/{total_cnt})"
+                else:
+                    pct = 0
+                    label_text = ""
+            else:
+                pct = 0
+                label_text = ""
+            
+            scores.append(pct)
+            labels.append(label_text)
         
-        # --- Données Principales ---
-        total_main = len(data["tasks_id"])
-        if total_main > 0:
-            succ_main = data["success"]
-            pct = (succ_main / total_main) * 100
-            main_scores.append(pct)
-            main_labels.append(f"{succ_main}/{total_main}")
-        else:
-            main_scores.append(0)
-            main_labels.append("N/A")
+        pos = x - 0.4 + width/2 + i*width
+        
+        # Style
+        color = 'gray' if doc == "CONTROL" else None
+        alpha = 0.6 if doc == "CONTROL" else 0.9
+        hatch = '//' if doc == "CONTROL" else ''
+        edgecolor = 'black'
+        
+        rects = ax.bar(pos, scores, width, label=doc, color=color, alpha=alpha, hatch=hatch, edgecolor=edgecolor)
+        
+        # --- C'EST ICI QUE ÇA SE JOUE ---
+        # On passe notre liste 'labels' à la fonction bar_label
+        ax.bar_label(rects, labels=labels, padding=3, fontsize=8, fontweight='bold')
 
-        # --- Données Témoins (Control) ---
-        total_ctrl = len(data["tasks_id_control"])
-        if total_ctrl > 0:
-            has_control_data = True
-            succ_ctrl = data["success_control"]
-            pct = (succ_ctrl / total_ctrl) * 100
-            ctrl_scores.append(pct)
-            ctrl_labels.append(f"{succ_ctrl}/{total_ctrl}")
-        else:
-            ctrl_scores.append(0)
-            ctrl_labels.append("")
-
-    # --- Création du Graphique ---
-    x = np.arange(len(models))  # Position des labels
-    width = 0.35  # Largeur des barres
-
-    fig, ax = plt.subplots(figsize=(12, 6))
-
-    # Barres principales
-    rects1 = ax.bar(x - width/2, main_scores, width, label='Dataset Standard', color='skyblue', edgecolor='black')
-
-    # Barres témoins (seulement si données présentes)
-    if has_control_data:
-        rects2 = ax.bar(x + width/2, ctrl_scores, width, label='Dataset Témoin (Control)', color='lightcoral', edgecolor='black')
-    else:
-        # Si pas de témoin, on centre les barres principales
-        ax.clear()
-        rects1 = ax.bar(x, main_scores, width, label='Dataset Standard', color='skyblue', edgecolor='black')
-
-    # Customisation
-    ax.set_ylabel('Précision (%)')
-    ax.set_title('Performance des Modèles (Succès / Total)')
+    ax.set_title('Performance Globale : Baseline vs Documentation', fontsize=16, fontweight='bold', pad=20)
+    ax.set_ylabel('Taux de Succès (%)')
     ax.set_xticks(x)
-    ax.set_xticklabels(models, rotation=45, ha='right')
-    ax.set_ylim(0, 105) # Marge en haut pour le texte
-    ax.legend()
-    ax.grid(axis='y', linestyle='--', alpha=0.7)
-
-    # Fonction pour ajouter les labels (ex: "45/100") au dessus des barres
-    def autolabel(rects, labels):
-        for rect, label in zip(rects, labels):
-            height = rect.get_height()
-            if label and label != "N/A":
-                ax.annotate(f'{height:.1f}%\n({label})',
-                            xy=(rect.get_x() + rect.get_width() / 2, height),
-                            xytext=(0, 3),  # 3 points de décalage vertical
-                            textcoords="offset points",
-                            ha='center', va='bottom', fontsize=9, fontweight='bold')
-
-    autolabel(rects1, main_labels)
-    if has_control_data:
-        autolabel(rects2, ctrl_labels)
+    ax.set_xticklabels(models, fontweight='bold', fontsize=11)
+    ax.set_ylim(0, 115) # Marge en haut augmentée pour le texte sur 2 lignes
+    ax.legend(title="Type de Documentation", loc='upper center', bbox_to_anchor=(0.5, -0.08), ncol=4, fontsize=10)
+    ax.grid(axis='y', linestyle='--', alpha=0.4)
 
     plt.tight_layout()
-    plt.savefig(output_filename)
+    filename = os.path.join(OUTPUT_DIR, "plot_global_comparison.png")
+    plt.savefig(filename, dpi=300)
+    plt.close()
+    print(f"✅ Sauvegardé : {filename}")
 
-
-## fonction de comptage mais qui ne comptabilise pas les tâches qui n'utilisent pas numpy dans leur reference code.
-
-
-def perf_on_relevant_data(filepath, useless_data_path):
-    """Récupération de résultats depuis un fichier result.jsonl et compte des succès"""
-    perf_dict = {}
-    try :
-        with open(useless_data_path, mode="r") as data :
-            ## TODO
-            useless_data = json.loads(data)
-    except FileNotFoundError:
-        print(f"Erreur : Le fichier {useless_data_path} est introuvable.")
-        return {}
+def plot_2_perturbation_breakdown(data):
+    """
+    Graph 2 : Détail par Perturbation
+    Label : "XX% \n (N/T)"
+    """
+    print("Génération du Graphique 2 (Détail Perturbations)...")
     
-    try:
-        with open(filepath, mode="r", encoding="utf-8") as f:
-            for line in f:
-                if not line.strip(): continue
-                try:
-                    res = json.loads(line)
-                except json.JSONDecodeError:
-                    continue
+    models = sorted(list(data.keys()))
+    if not models: return
 
-                model_name = res.get("metadata", {}).get("model_name", "Unknown_Model")
-                
-                task_id = res.get("task_id")
-                if task_id in useless_data :
-                    continue
-                
-                is_passed = res.get("passed", False)
+    # Perturbations et Docs
+    all_perts = set()
+    for m in data:
+        for d in data[m]:
+            all_perts.update(data[m][d].keys())
+    pert_types = sorted(list(all_perts))
+    
+    all_docs = set()
+    for m in models:
+        all_docs.update(data[m].keys())
+    doc_types = ["CONTROL"] + sorted([d for d in all_docs if d != "CONTROL"])
 
-                if model_name not in perf_dict:
-                    perf_dict[model_name] = {
-                        "success": 0,
-                        "success_control": 0,
-                        "tasks_id": set(),
-                        "tasks_id_control": set()
-                    }
+    n_models = len(models)
+    # On augmente la hauteur (7 par modèle) pour que ce soit lisible
+    fig, axes = plt.subplots(nrows=n_models, ncols=1, figsize=(14, 7 * n_models))
+    if n_models == 1: axes = [axes]
 
-                if res.get("is_control", False):
-                    if task_id not in perf_dict[model_name]["tasks_id_control"]:
-                        if is_passed:
-                            perf_dict[model_name]["success_control"] += 1
-                        perf_dict[model_name]["tasks_id_control"].add(task_id)
+    x = np.arange(len(pert_types))
+    width = 0.85 / len(doc_types)
+
+    for ax, model in zip(axes, models):
+        ax.set_title(f"Modèle : {model}", fontsize=14, pad=15, color='#333333', fontweight='bold')
+        
+        for i, doc in enumerate(doc_types):
+            scores = []
+            labels = []
+
+            for pert in pert_types:
+                if doc in data[model] and pert in data[model][doc]:
+                    stats = data[model][doc][pert]
+                    succ = stats['success']
+                    tot = stats['total']
+                    
+                    if tot > 0:
+                        pct = (succ / tot * 100)
+                        # Label compact pour le graph détaillé
+                        labels.append(f"{pct:.0f}%\n({succ}/{tot})")
+                    else:
+                        pct = 0
+                        labels.append("")
                 else:
-                    if task_id not in perf_dict[model_name]["tasks_id"]:
-                        if is_passed:
-                            perf_dict[model_name]["success"] += 1
-                        perf_dict[model_name]["tasks_id"].add(task_id)
-                        
-    except FileNotFoundError:
-        print(f"Erreur : Le fichier {filepath} est introuvable.")
-        return {}
+                    pct = 0
+                    labels.append("")
+                
+                scores.append(pct)
+            
+            pos = x - 0.4 + width/2 + i*width
+            
+            color = 'gray' if doc == "CONTROL" else None
+            alpha = 0.6 if doc == "CONTROL" else 0.9
+            label = doc if doc == "CONTROL" else f"{doc}"
+            
+            rects = ax.bar(pos, scores, width, label=label, color=color, alpha=alpha)
+            
+            # Affichage conditionnel pour ne pas surcharger si 0%
+            final_labels = [l if s > 0 else "" for l, s in zip(labels, scores)]
+            
+            ax.bar_label(rects, labels=final_labels, padding=2, fontsize=7)
 
-    return perf_dict
+        ax.set_xticks(x)
+        ax.set_xticklabels(pert_types, fontweight='bold')
+        ax.set_ylabel('Précision (%)')
+        ax.set_ylim(0, 115)
+        ax.grid(axis='y', linestyle=':', alpha=0.5)
+        ax.legend(loc='upper right', fontsize='small', framealpha=0.95)
 
-
-
-
-
+    plt.suptitle("Détail par Perturbation (Succès / Total)", fontsize=16, y=0.995)
+    plt.tight_layout()
+    
+    filename = os.path.join(OUTPUT_DIR, "plot_perturbation_breakdown.png")
+    plt.savefig(filename, dpi=300)
+    plt.close()
+    print(f"✅ Sauvegardé : {filename}")
 
 if __name__ == "__main__":
-    path = "/usr/users/sdim/sdim_25/memory_code_eval/src/perf_review/results/result_try.jsonl"
-    output_filename = "/usr/users/sdim/sdim_25/memory_code_eval/src/perf_review/results/test.png"
-    useless_data_path = ""
-
-    data = perf_on_data(path)
-    plot_model_performance(data, output_filename)
+    full_data = load_data(INPUT_FILE)
+    if full_data:
+        plot_1_global_performance(full_data)
+        plot_2_perturbation_breakdown(full_data)
