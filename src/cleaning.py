@@ -1,19 +1,14 @@
 import re
 import ast
 import textwrap
-import traceback # Indispensable pour voir les erreurs sans crasher
+import traceback 
 
 # ==============================================================================
 # 1. OUTILS BAS NIVEAU (INDENTATION & VALIDATION)
 # ==============================================================================
 
 def fix_unexpected_indent(code):
-    """
-    Corrige le cas où la première ligne est collée à gauche, 
-    mais la suite est indentée sans raison (escalier).
-    """
     try:
-        # Check rapide : si c'est déjà valide, on ne touche à rien
         try:
             ast.parse(code)
             return code
@@ -46,42 +41,57 @@ def fix_unexpected_indent(code):
             
     except Exception as e:
         print(f"⚠️ Warning: fix_unexpected_indent failed: {e}")
-        # En cas de crash, on renvoie le code tel quel
         return code
 
     return code
 
 def is_valid_and_useful_line(line):
+    """
+    Filtre ligne par ligne (Slow Path) quand l'AST global échoue.
+    """
     try:
         stripped = line.strip()
         
-        # 1. On garde tout ce qui a une assignation ou un mot clé
+        # 1. On garde les assignations, définitions, et mots-clés
         if "=" in stripped or stripped.startswith(("def ", "class ", "if ", "for ", "while ", "return", "import", "from", "with ")):
             return True
 
-        # --- SAUVETAGE MULTI-LIGNES ---
+        # SAUVETAGE MULTI-LIGNES (ex: éléments de liste terminant par virgule)
         if stripped.endswith(","):
             return True
 
-        # 2. Détection des déchets (Arrays, Nombres isolés)
-        if re.match(r"^\s*(\[|array|[\d\.-]|nan|inf|\(|$)", stripped):
+        # 2. Détection des déchets (Arrays, Nombres isolés, Appels de fonctions orphelins)
+        # Regex élargie pour attraper 'array', 'tensor', '[', '(', chiffres...
+        if re.match(r"^\s*(\[|array|tensor|DataFrame|[\d\.-]|nan|inf|\(|$)", stripped):
             try:
                 tree = ast.parse(stripped)
-                # Si c'est une expression isolée SANS virgule à la fin, on considère que c'est un print inutile
+                # Si c'est une expression isolée (pas d'assignation)
                 if len(tree.body) == 1 and isinstance(tree.body[0], ast.Expr):
-                    return False
+                    # On vérifie si c'est un print autorisé
+                    expr = tree.body[0].value
+                    if isinstance(expr, ast.Call):
+                        func_name = ""
+                        if isinstance(expr.func, ast.Name): func_name = expr.func.id
+                        elif isinstance(expr.func, ast.Attribute): func_name = expr.func.attr
+                        
+                        # Si c'est print, on garde. Sinon (array, tensor...), on jette.
+                        if func_name in {'print', 'show', 'plot', 'display'}:
+                            return True
+                        else:
+                            return False # C'est un array(...) inutile
+                    
+                    return False # C'est une valeur brute (ex: 50)
             except SyntaxError:
-                return False
+                return False # Syntaxe pourrie -> Poubelle
                 
     except Exception as e:
         print(f"⚠️ Warning: is_valid_and_useful_line failed on '{line}': {e}")
-        # Dans le doute, on GARDE la ligne (True) pour ne pas supprimer du code utile
         return True
 
     return True
 
 # ==============================================================================
-# 2. LOGIQUE D'EXTRACTION ET DE SAUVETAGE
+# 2. LOGIQUE D'EXTRACTION
 # ==============================================================================
 
 def get_raw_code_block(llm_response):
@@ -106,7 +116,6 @@ def get_raw_code_block(llm_response):
         
     except Exception as e:
         print(f"⚠️ Warning: get_raw_code_block failed: {e}")
-        # Fallback ultime : on renvoie tout
         return llm_response
 
 def rescue_missing_result(code, full_response):
@@ -120,9 +129,7 @@ def rescue_missing_result(code, full_response):
                     line.strip() for line in potential_lines 
                     if is_valid_and_useful_line(line) and not line.strip().startswith("#")
                 ]
-                
                 best_candidate = clean_candidates[-1] if clean_candidates else potential_lines[0].strip()
-                
                 print(f"🚑 Sauvetage réussi : '{best_candidate}'")
                 return code + "\n" + best_candidate
                 
@@ -132,13 +139,35 @@ def rescue_missing_result(code, full_response):
     return code
 
 # ==============================================================================
-# 3. TRANSFORMATIONS AST (SUPPRESSION IMPORT + RETURN -> RESULT)
+# 3. TRANSFORMATIONS AST (LE COEUR DU NETTOYAGE)
 # ==============================================================================
+
+def is_static_definition(value_node):
+    """
+    Détermine si une assignation (a = ...) est du hardcode pur (statique).
+    Retourne True si l'expression ne dépend d'aucune variable externe inconnue.
+    """
+    LIBRARY_WHITELIST = {
+        'np', 'numpy', 'pd', 'pandas', 'plt', 'math', 'scipy', 'sklearn', 
+        'tf', 'torch', 'datetime', 'random', 'json', 're', 'itertools', 'collections'
+    }
+    
+    for node in ast.walk(value_node):
+        # Si on trouve un nom de variable (Name)
+        if isinstance(node, ast.Name):
+            # Si ce nom n'est pas une librairie connue, c'est une dépendance (ex: 'a', 'x')
+            if node.id not in LIBRARY_WHITELIST:
+                return False # Ce n'est pas statique, ça dépend d'une variable
+                
+    return True
 
 def apply_ast_transformations(code):
     """
-    1. Supprime les imports (import x, from x import y) au niveau global.
-    2. Transforme les 'return x' de niveau 0 en 'result = x'.
+    Nettoyage intelligent via AST.
+    A. Supprime les imports.
+    B. Transforme 'return' en 'result ='.
+    C. Supprime les assignations statiques écrasantes (a = [1,2]).
+    D. Supprime les expressions orphelines (array([1,2])) sauf print/plot.
     """
     try:
         tree = ast.parse(code)
@@ -147,64 +176,87 @@ def apply_ast_transformations(code):
         for node in tree.body:
             # A. Suppression des Imports
             if isinstance(node, (ast.Import, ast.ImportFrom)):
-                continue # On ne l'ajoute pas (suppression)
+                continue 
 
-            # B. Transformation du Return (seulement niveau 0)
+            # B. Transformation du Return
             elif isinstance(node, ast.Return) and node.value:
-                # Création manuelle du noeud d'assignation
                 assign = ast.Assign(
                     targets=[ast.Name(id='result', ctx=ast.Store())],
                     value=node.value
                 )
-                # IMPORTANT : On copie la localisation pour éviter le crash lineno
                 ast.copy_location(assign, node)
                 new_body.append(assign)
 
-            # C. Conservation du reste
+            # C. Traitement des Assignations (Suppression constantes)
+            elif isinstance(node, ast.Assign):
+                targets_names = [t.id for t in node.targets if isinstance(t, ast.Name)]
+                
+                # Si on assigne 'result', on garde TOUJOURS
+                if 'result' in targets_names:
+                    new_body.append(node)
+                
+                # Sinon, est-ce une constante hardcodée ? (ex: a = [1, 2])
+                elif is_static_definition(node.value):
+                    # print(f"🚫 Suppression constante statique L{node.lineno}")
+                    continue 
+                else:
+                    new_body.append(node)
+
+            # D. Suppression des Expressions Orphelines (Le cas array([...]))
+            elif isinstance(node, ast.Expr):
+                keep_expr = False
+                
+                # On ne garde que les appels de fonctions autorisés (effets de bord)
+                if isinstance(node.value, ast.Call):
+                    func = node.value.func
+                    func_name = ""
+                    if isinstance(func, ast.Name): func_name = func.id
+                    elif isinstance(func, ast.Attribute): func_name = func.attr
+                    
+                    # WHITELIST : On ne garde que ça
+                    if func_name in {'print', 'show', 'plot', 'seed', 'compile', 'fit', 'append', 'extend', 'write', 'display'}:
+                        keep_expr = True
+                
+                if keep_expr:
+                    new_body.append(node)
+                else:
+                    # Ici, array([1,2]) est jeté car 'array' n'est pas dans la whitelist
+                    # print(f"Suppression expression orpheline L{node.lineno}")
+                    continue
+
+            # E. Le reste (For, While, If, Def...) on garde tout
             else:
                 new_body.append(node)
         
         tree.body = new_body
-        
-        # --- FIX CRUCIAL ---
-        # Remplit les infos de lignes manquantes pour tous les noeuds créés/bougés
         ast.fix_missing_locations(tree)
-        # -------------------
         
         if hasattr(ast, "unparse"):
             return ast.unparse(tree)
             
     except SyntaxError:
-        pass # Code non parsable, normal on passe la main
+        pass 
     except Exception as e:
-        # Erreur technique (ex: bug AST interne), on log mais on ne plante pas
         print(f"⚠️ Warning: apply_ast_transformations failed: {e}")
-        # traceback.print_exc() # Décommenter si besoin de debug intense
     
-    return code # On retourne le code original en cas d'échec
+    return code
 
 # ==============================================================================
-# 4. LE PIPELINE PRINCIPAL (L'ENTONNOIR)
+# 4. PIPELINE PRINCIPAL
 # ==============================================================================
 
 def extract_code_and_fix(llm_response):
-    # Sécurité maximale : Si tout plante, on renvoie au moins le raw string
     try:
         print("\n--- Réponse Brut du LLM ---")
         print(llm_response)
         print("---------------------------\n")
 
-        # 1. Extraction brute
         raw_code = get_raw_code_block(llm_response)
-        
-        # 2. Sauvetage éventuel (si 'result' manque)
         code_with_result = rescue_missing_result(raw_code, llm_response)
 
-        # 3. Tentative Fast Path (Nettoyage AST immédiat)
-        # On essaie d'enlever les imports tout de suite
+        # 3. Fast Path (AST Immédiat)
         potential_clean_code = apply_ast_transformations(code_with_result)
 
-        # On vérifie si le résultat est valide
         is_valid = False
         try:
             ast.parse(potential_clean_code)
@@ -214,49 +266,38 @@ def extract_code_and_fix(llm_response):
             is_valid = False
 
         if not is_valid:
-            print("Code invalide ou nettoyage AST échoué. Nettoyage ligne par ligne activé.")
-            
-            # 4. Nettoyage Ligne par Ligne (Slow Path / Fallback)
+            print("⚠️ Code invalide. Nettoyage ligne par ligne activé.")
             lines = code_with_result.split('\n')
             cleaned_lines = []
             for line in lines:
                 line_clean = line.rstrip()
-                
-                # Filtres Textuels basiques
                 if not line_clean.strip(): continue
                 if line_clean.strip().startswith(("import ", "from ")): continue
                 if "END SOLUTION" in line_clean: continue
                 if line_clean.strip() in ["```", "```python", "<code>", "</code>"]: continue
                 
-                # Filtre AST (Le Gardien)
                 if not is_valid_and_useful_line(line_clean):
                     continue
                 
                 cleaned_lines.append(line_clean)
             
             clean_code = "\n".join(cleaned_lines)
-            
-            # Fix indentation
             clean_code = fix_unexpected_indent(clean_code)
             
-            # 5. Transformation Sémantique Finale (Return -> Result)
-            # On réessaie l'AST une dernière fois sur le code propre
+            # On réessaie l'AST clean sur le résultat
             clean_code = apply_ast_transformations(clean_code)
 
         print(f"--- Code Final ---\n{clean_code}\n------------------")
         return clean_code
 
     except Exception as e:
-        print(f"CRITICAL ERROR in extract_code_and_fix: {e}")
+        print(f"❌ CRITICAL ERROR in extract_code_and_fix: {e}")
         traceback.print_exc()
-        # En cas de catastrophe nucléaire, on renvoie une réponse qui ne fera pas planter l'exec (mais échouera le test)
-        return llm_response # Ou "" si tu préfères
+        return llm_response
 
 # ==============================================================================
 # AUTRES OUTILS
 # ==============================================================================
-
-
 
 def ensure_result_assignment(code):
     try:
@@ -280,8 +321,6 @@ def ensure_result_assignment(code):
             
     return code
 
-
-
 def modify_lib(file_content, new_import_statement):
     try:
         pattern = r'(exec_context\s*=\s*r?""")(.*?)(import\s+numpy\s+as\s+np)(.*?""")'
@@ -298,7 +337,6 @@ def modify_lib(file_content, new_import_statement):
         else:
             print("Aucune occurrence trouvée dans exec_context.")
             return ""
-            
     except Exception as e:
         print(f"❌ CRITICAL ERROR in modify_lib: {e}")
         return ""
