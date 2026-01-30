@@ -261,9 +261,12 @@ if __name__ == "__main__":
             # --- INIT LLM CLIENT ---
             llm_client = LLMClient(config, model_name, doc_name)
 
-
-            run_control(args.task_id, llm_client)
-            run_benchmark(args.task_id, llm_client)
+            if model_name != "qwen2.5-coder:32b" and doc_name != "fully_corrupted" :
+                run_control(args.task_id, llm_client)
+            if doc_name == "fully_corrupted" : 
+                run_benchmark(402, llm_client)
+            else :
+                run_benchmark(args.task_id, llm_client)
             
 
 

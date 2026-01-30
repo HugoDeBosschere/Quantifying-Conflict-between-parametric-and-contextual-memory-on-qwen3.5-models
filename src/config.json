@@ -1,5 +1,5 @@
 {
-    "llm": {"model"      : ["gemma2:27b", "qwen2.5-coder:32b", "qwen2.5-coder", "codestral"],
+    "llm": {"model"      : ["qwen2.5-coder:32b", "qwen2.5-coder", "codestral"],
             "temperature":0,
             "api_url"    : "http://localhost:11434/api/generate"
             },
