@@ -253,22 +253,28 @@ if __name__ == "__main__":
     docu = config.get("new_lib_injection", {}).get("documentation", {})
     list_doc_name = docu.keys()
 
+    # liste différentes docu CONTROL
+    docu_control = config.get("real_lib", {}).get("documentation", {})
+    list_doc_name_control = docu_control.keys()
+
     # boucle sur tout nos modèles
     for model_name in list_model_name :
+        #TODO  à voir ce que je dois rajouter ici, et voir comment je pourrais pas mieux gérer ces histoires de llmclient
+        # boucle sur nos différentes documentations CONTROL
+        for doc_name in list_doc_name_control :
+
+            # --- INIT LLM CLIENT CONTROL---
+            llm_client = LLMClient(config, model_name, doc_name)
+
+            run_control(args.task_id, llm_client)
+
         # boucle sur nos différentes documentations
         for doc_name in list_doc_name :
-            if model_name != "qwen2.5-coder:32b" :
-                run_control(args.task_id, llm_client)
 
             # --- INIT LLM CLIENT ---
             llm_client = LLMClient(config, model_name, doc_name)
-                
-            if doc_name == "real_doc" and model_name == "qwen2.5-coder:32b": 
-                run_benchmark(332, llm_client)
-            elif (doc_name == "fully_corrupted" or doc_name == "real_doc") and model_name == "qwen2.5-coder:32b" :
-                continue
-            else :
-                run_benchmark(args.task_id, llm_client)
+
+            run_benchmark(args.task_id, llm_client)
             
 
 
