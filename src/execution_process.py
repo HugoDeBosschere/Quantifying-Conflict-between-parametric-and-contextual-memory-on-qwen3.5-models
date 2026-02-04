@@ -78,9 +78,9 @@ def execute_task_engine(code_context, llm_solution, llm_client):
             os.remove(script_path)
 
 
-#*----------------------------------------------------------------------*
-# Function that question the LLM, run the solution and return the result#
-#*----------------------------------------------------------------------*
+#*-----------------------------------------------------------------------------------------------------*
+# Function that question the LLM, run the solution on control and corrupted mode and return the result #
+#*-----------------------------------------------------------------------------------------------------*
 
 
 def evaluate_single_task(task, new_lib, llm_client):
@@ -114,6 +114,7 @@ def evaluate_single_task(task, new_lib, llm_client):
         new_context = modify_lib(task["code_context"], new_import)
         if new_context :
             stdout, stderr = execute_task_engine(new_context, code, llm_client)
+            stdout_control, stderr_control = execute_task_engine(task["code_context"], code, llm_client)
         else:
             stdout, stderr = "", ""
         # stdout, stderr = execute_task_engine(task["code_context"], code)
@@ -134,8 +135,65 @@ def evaluate_single_task(task, new_lib, llm_client):
         "llm_code": code,
         "stdout": stdout,
         "stderr": stderr,
+        "stdout_control": stdout_control,
+        "stderr_control": stderr_control,
         "full_response": raw_response
     }
+
+
+#*--------------------------------------------------------------------------------------------*
+# Function that question the LLM, run the solution on control mode with no counterfactual lib #
+#*--------------------------------------------------------------------------------------------*
+
+
+def evaluate_single_task_control(task, old_lib, llm_client):
+    """
+    Orchestre l'évaluation d'une seule tâche.
+    Input: Dictionnaire de la tâche (JSON)
+    Output: Dictionnaire de résultat complet
+    """
+    
+    # 1. Récupération ID (Gère le format simple ou metadata)
+    task_id = task.get("metadata", {}).get("problem_id", "") or task.get("task_id", "")
+    print(f"Traitement ID {task_id}...")
+
+    # 2. Appel LLM
+    raw_response = llm_client.query_llm(task['prompt'], old_lib)
+    if not raw_response:
+        return {
+            "task_id": task_id,
+            "passed": False,
+            "error": "LLM_API_FAILURE",
+            "llm_code": ""
+        }
+
+    # 3. Parsing
+    code = extract_code_and_fix(raw_response)
+
+    # 4. Exécution (si contexte présent)
+    if "code_context" in task:
+        stdout, stderr = execute_task_engine(task["code_context"], code, llm_client)
+        passed = "SUCCESS_MARKER" in stdout
+    else:
+        passed = False
+        stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
+
+    ## récupération des Metadonnées
+    metadata = task["metadata"] | llm_client.model_metadata
+    
+
+    # 5. Construction du résultat
+    return {
+        "task_id": task_id,
+        "metadata" : metadata,
+        "passed": passed,
+        "llm_code": code,
+        "stdout": stdout,
+        "stderr": stderr,
+        "full_response": raw_response,
+        "is_control": True
+    }
+
 
 
 #*-----------------------------------------------------------------------------------------------*
@@ -180,9 +238,9 @@ def run_benchmark(first_task, llm_client):
                 f_out.flush()
     
 
-#*-------------------------------------------------------------------------*
-# Function to run tests on the dataset with the RIGHT LIB as a control test#
-#*-------------------------------------------------------------------------*
+#*--------------------------------------------------------------------------*
+# Function to run tests on the dataset with the RIGHT LIB as a control test #
+#*--------------------------------------------------------------------------*
 
 
 def run_control(first_task, llm_client) :
@@ -221,8 +279,7 @@ def run_control(first_task, llm_client) :
             task_id = task.get("metadata", {}).get("problem_id", "") or task.get("task_id", "")
             if task_id and task_id > first_task :
                 # run on single task
-                result = evaluate_single_task(task, usual_lib.lower(), llm_client)
-                result["is_control"] = True
+                result = evaluate_single_task_control(task, usual_lib.lower(), llm_client)
 
                 # Feedback Console
                 status = "pass" if result["passed"] else "false"
