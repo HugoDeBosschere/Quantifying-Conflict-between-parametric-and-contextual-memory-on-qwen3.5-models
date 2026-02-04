@@ -5,3 +5,5 @@
 *.sbatch
 
 *.out
+
+config.json

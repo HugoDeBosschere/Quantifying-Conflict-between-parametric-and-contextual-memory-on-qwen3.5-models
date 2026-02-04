@@ -299,27 +299,6 @@ def extract_code_and_fix(llm_response):
 # AUTRES OUTILS
 # ==============================================================================
 
-def ensure_result_assignment(code):
-    try:
-        if "result =" not in code and "result=" not in code:
-            lines = code.split('\n')
-            last_line_idx = -1
-            
-            for i in range(len(lines) -1, -1, -1):
-                if lines[i].strip() and not lines[i].strip().startswith("#"):
-                    last_line_idx = i
-                    break
-            
-            if last_line_idx != -1:
-                line = lines[last_line_idx]
-                indent = line[:len(line) - len(line.lstrip())]
-                content = line.lstrip()
-                lines[last_line_idx] = f"{indent}result = {content}"
-                return "\n".join(lines)
-    except Exception as e:
-        print(f"⚠️ Warning: ensure_result_assignment failed: {e}")
-            
-    return code
 
 def modify_lib(file_content, new_import_statement):
     try:

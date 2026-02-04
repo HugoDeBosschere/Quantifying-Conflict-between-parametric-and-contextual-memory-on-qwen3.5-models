@@ -5,7 +5,7 @@ import os
 # --- CONFIGURATION ---
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL_NAME = "qwen2.5-coder:32b"  # Mets ici le modèle que tu comptes utiliser
-DOC_PATH = "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/corrupted_full_doc_numpy.txt" # Ton gros fichier de 30k lignes
+DOC_PATH = "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/corrupted_minimal_numpy.txt" # Ton gros fichier de 30k lignes
 
 def count_real_tokens(filepath, model):
     if not os.path.exists(filepath):

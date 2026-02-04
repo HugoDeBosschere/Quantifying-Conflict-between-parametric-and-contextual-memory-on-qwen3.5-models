@@ -6,7 +6,7 @@ import sys
 import json
 from datetime import datetime
 from llmclient import LLMClient
-from cleaning import extract_code_and_fix, ensure_result_assignment, modify_lib
+from cleaning import extract_code_and_fix, modify_lib
 
 ## LOAD the config file
 from config_loader import load_config
@@ -22,13 +22,10 @@ def execute_task_engine(code_context, llm_solution, llm_client):
     Construit le script final en combinant le moteur de test (JSON) et la solution (LLM).
     """
     
-    # 1. Nettoyage et préparation de la solution
-    clean_solution = ensure_result_assignment(llm_solution)
-    
-    # 2. Échappement : On transforme le code du LLM en chaîne de caractères Python valide
-    safe_solution_str = repr(clean_solution)
+    # 1. Échappement : On transforme le code du LLM en chaîne de caractères Python valide
+    safe_solution_str = repr(llm_solution)
 
-    # 3. Construction du script Python temporaire
+    # 2. Construction du script Python temporaire
     final_script = (
         "# --- 1. LE MOTEUR DE TEST (Issu du JSON) ---\n"
         f"{code_context}\n\n"
