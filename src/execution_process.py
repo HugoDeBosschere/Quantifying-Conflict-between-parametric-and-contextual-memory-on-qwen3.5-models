@@ -117,9 +117,11 @@ def evaluate_single_task(task, new_lib, llm_client):
             stdout, stderr = "", ""
         # stdout, stderr = execute_task_engine(task["code_context"], code)
         passed = "SUCCESS_MARKER" in stdout
+        control_passed = "SUCCESS_MARKER" in stdout_control
     else:
         passed = False
         stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
+        stdout_control, stderr_control = "", "MISSING_CONTEXT_IN_DATASET"
 
     ## récupération des Metadonnées
     metadata = task["metadata"] | llm_client.model_metadata
@@ -130,6 +132,7 @@ def evaluate_single_task(task, new_lib, llm_client):
         "task_id": task_id,
         "metadata" : metadata,
         "passed": passed,
+        "control_passed": control_passed,
         "llm_code": code,
         "stdout": stdout,
         "stderr": stderr,
