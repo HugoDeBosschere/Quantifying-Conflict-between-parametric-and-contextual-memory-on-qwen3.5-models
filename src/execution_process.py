@@ -333,3 +333,4 @@ if __name__ == "__main__":
             
 
 
+###TODO penser à clean les config et tout ce qui usage des chemins d'accès en créant un folder_path et des documentation name pour un peu plus de flexibilité
