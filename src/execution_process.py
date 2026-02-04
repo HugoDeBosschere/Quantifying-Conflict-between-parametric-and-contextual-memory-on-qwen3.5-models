@@ -17,8 +17,6 @@ config = load_config()
 # Functional evaluation of the LLM code #
 #*--------------------------------------*
 
-
-
 def execute_task_engine(code_context, llm_solution, llm_client):
     """
     Construit le script final en combinant le moteur de test (JSON) et la solution (LLM).
