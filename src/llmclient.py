@@ -13,6 +13,7 @@ class LLMClient:
         self.system_prompt = config["new_lib_injection"]["system_prompt"]
         self.custom_lib_path = config["new_lib_injection"]["custom_lib_path"]
         self.new_lib_name = config["new_lib_injection"]["name"]
+        self.num_ctx = config["llm"].get("num_ctx", 20000)
         self.documentation = self.load_doc(config, doc_name)
         self.model_metadata = self.load_model_metadata(doc_name)
     
@@ -55,6 +56,7 @@ class LLMClient:
                 "stream": False,
                 "options": {
                     "temperature": self.temperature,
+                    "num_ctx": self.num_ctx
                 }
             })
             response.raise_for_status()
