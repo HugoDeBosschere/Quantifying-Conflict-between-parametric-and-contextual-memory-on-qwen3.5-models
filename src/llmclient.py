@@ -42,14 +42,17 @@ class LLMClient:
 
 
     def query_llm(self, prompt_text, new_lib_name):
+        count_token=0
         print(f"Interrogation de {self.model_name}...")
         if self.new_lib_name == new_lib_name :
             full_prompt = f"{self.system_prompt}\n\n{self.documentation}\n\n{prompt_text}"
+            count_token = self.get_token_count(full_prompt)
         else :
             full_prompt = f"{self.system_prompt}\n\n{prompt_text}"
+            count_token = self.get_token_count(full_prompt)
 
         try:
-            response = requests.post(self.api_url, json={
+            response = requests.post(f"{self.api_url}/generate", json={
                 "model": self.model_name,
                 "system":self.system_prompt,
                 "prompt": full_prompt,
@@ -60,8 +63,28 @@ class LLMClient:
                 }
             })
             response.raise_for_status()
-            return response.json()['response']
+            return response.json()['response'], count_token
         except Exception as e:
             print(f"API Error: {e}")
-            return None
+            return None, 0
 
+    def get_token_count(self, prompt):
+        """
+        Interroge Ollama pour compter le nombre exact de tokens du prompt.
+        """
+        try:
+            response = requests.post(f"{self.api_url}/tokenize", json={
+                "model": self.model_name,
+                "content": prompt 
+            })
+            
+            if response.status_code == 200:
+                tokens = response.json().get('tokens', [])
+                return len(tokens)
+            else:
+                print(f"⚠️ Erreur comptage tokens: {response.text}")
+                return len(prompt) // 3 
+                
+        except Exception as e:
+            print(f"⚠️ Exception comptage: {e}")
+            return 0

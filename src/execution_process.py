@@ -90,7 +90,7 @@ def evaluate_single_task(task, new_lib, llm_client):
     print(f"Traitement ID {task_id}...")
 
     # 2. Appel LLM
-    raw_response = llm_client.query_llm(task['prompt'], new_lib)
+    raw_response, count_token = llm_client.query_llm(task['prompt'], new_lib)
     if not raw_response:
         return {
             "task_id": task_id,
@@ -121,7 +121,7 @@ def evaluate_single_task(task, new_lib, llm_client):
         stdout_control, stderr_control = "", "MISSING_CONTEXT_IN_DATASET"
 
     ## récupération des Metadonnées
-    metadata = task["metadata"] | llm_client.model_metadata
+    metadata = task["metadata"] | llm_client.model_metadata | {"token_count": count_token}
     
 
     # 5. Construction du résultat
@@ -156,7 +156,7 @@ def evaluate_single_task_control(task, old_lib, llm_client):
     print(f"Traitement ID {task_id}...")
 
     # 2. Appel LLM
-    raw_response = llm_client.query_llm(task['prompt'], old_lib)
+    raw_response, count_token = llm_client.query_llm(task['prompt'], old_lib)
     if not raw_response:
         return {
             "task_id": task_id,
@@ -177,7 +177,7 @@ def evaluate_single_task_control(task, old_lib, llm_client):
         stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
 
     ## récupération des Metadonnées
-    metadata = task["metadata"] | llm_client.model_metadata
+    metadata = task["metadata"] | llm_client.model_metadata | {"token_count": count_token}
     
 
     # 5. Construction du résultat

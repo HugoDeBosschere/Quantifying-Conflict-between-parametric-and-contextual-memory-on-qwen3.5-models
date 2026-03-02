@@ -6,4 +6,8 @@
 
 *.out
 
-config.json
+*config.json
+
+*.log
+
+*.err
