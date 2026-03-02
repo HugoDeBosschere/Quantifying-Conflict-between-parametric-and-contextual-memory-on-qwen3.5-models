@@ -2,59 +2,71 @@ import requests
 import os
 
 class LLMClient:
-    def __init__(self, config, model_name, doc_name):
+    def __init__(self, config, model_name, doc_name, mode="injection"):
         """
-        Initialize the LLM client with support for both local CUDA inference and Ollama API.
-        config: dict containing "llm" and "new_lib_injection" sections
+        config: dict containing "llm", "new_lib_injection" and "real_lib" sections
+        mode: "injection" (counterfactual lib) or "control" (real lib)
         """
+        lib_key = "new_lib_injection" if mode == "injection" else "real_lib"
+        lib_config = config[lib_key]
+
         self.model_name = model_name
+        self.mode = mode
         self.api_url = config["llm"]["api_url"]
         self.temperature = config["llm"]["temperature"]
-        self.system_prompt = config["new_lib_injection"]["system_prompt"]
-        self.custom_lib_path = config["new_lib_injection"]["custom_lib_path"]
-        self.new_lib_name = config["new_lib_injection"]["name"]
         self.num_ctx = config["llm"].get("num_ctx", 20000)
-        self.documentation = self.load_doc(config, doc_name)
-        self.model_metadata = self.load_model_metadata(doc_name)
-    
 
-    def load_model_metadata(self, doc_name) :
-        
-        return {"model_name" : self.model_name,
-                "doc_name" : doc_name,
-                "temperature" : self.temperature}
+        self.system_prompt = lib_config["system_prompt"]
+        self.custom_lib_path = lib_config.get("custom_lib_path")
+        self.lib_name = lib_config["name"]
 
+        self.documentation = self._load_doc(lib_config, doc_name)
+        self.model_metadata = self._build_metadata(doc_name)
 
-    def load_doc(self, config, doc_name) :
-        doc = []
-        doc.append(config.get("new_lib_injection", {}).get("documentation", {}).get(doc_name, {}).get("intro", ""))
-        doc_path = config.get("new_lib_injection", {}).get("documentation", {}).get(doc_name, {}).get("path", "")
-        
-        try :
-            if os.path.exists(doc_path) :
-                with open(doc_path, mode = "r", encoding="utf-8") as f :
-                    content = f.read()
-                    doc.append(content)
-                    return ''.join(doc)
+    def _build_metadata(self, doc_name):
+        return {
+            "model_name": self.model_name,
+            "doc_name": doc_name,
+            "mode": self.mode,
+            "temperature": self.temperature
+        }
+
+    def _load_doc(self, lib_config, doc_name):
+        doc_info = lib_config.get("documentation", {}).get(doc_name, {})
+        intro = doc_info.get("intro", "")
+        doc_path = doc_info.get("path", "")
+
+        if not doc_path:
+            return intro
+
+        try:
+            if os.path.exists(doc_path):
+                with open(doc_path, mode="r", encoding="utf-8") as f:
+                    return intro + f.read()
         except FileNotFoundError:
             print("THE DOCUMENTATION was not found")
-            return ""
 
+        return intro
 
-    def query_llm(self, prompt_text, new_lib_name):
-        count_token=0
+    def query_llm(self, prompt_text):
+        """
+        Envoie le prompt au LLM via Ollama.
+        Le system prompt est envoyé dans le champ 'system' (pas dupliqué dans 'prompt').
+        La documentation est incluse dans le prompt uniquement si elle existe.
+        """
         print(f"Interrogation de {self.model_name}...")
-        if self.new_lib_name == new_lib_name :
-            full_prompt = f"{self.system_prompt}\n\n{self.documentation}\n\n{prompt_text}"
-            count_token = self.get_token_count(full_prompt)
-        else :
-            full_prompt = f"{self.system_prompt}\n\n{prompt_text}"
-            count_token = self.get_token_count(full_prompt)
+
+        if self.documentation:
+            full_prompt = f"{self.documentation}\n\n{prompt_text}"
+        else:
+            full_prompt = prompt_text
+
+        count_token = self.get_token_count(full_prompt)
 
         try:
             response = requests.post(f"{self.api_url}/generate", json={
                 "model": self.model_name,
-                "system":self.system_prompt,
+                "system": self.system_prompt,
                 "prompt": full_prompt,
                 "stream": False,
                 "options": {
@@ -69,22 +81,17 @@ class LLMClient:
             return None, 0
 
     def get_token_count(self, prompt):
-        """
-        Interroge Ollama pour compter le nombre exact de tokens du prompt.
-        """
         try:
             response = requests.post(f"{self.api_url}/tokenize", json={
                 "model": self.model_name,
-                "content": prompt 
+                "content": prompt
             })
-            
             if response.status_code == 200:
                 tokens = response.json().get('tokens', [])
                 return len(tokens)
             else:
-                print(f"⚠️ Erreur comptage tokens: {response.text}")
-                return len(prompt) // 3 
-                
+                print(f"Token count error: {response.text}")
+                return len(prompt) // 3
         except Exception as e:
-            print(f"⚠️ Exception comptage: {e}")
+            print(f"Token count exception: {e}")
             return 0
