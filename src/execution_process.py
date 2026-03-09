@@ -76,7 +76,7 @@ def execute_task_engine(code_context, llm_solution, llm_client):
             [sys.executable, script_path],
             capture_output=True,
             text=True,
-            timeout=10,
+            timeout=60,
             env=env_execution
         )
         return result.stdout, result.stderr
