@@ -1,8 +1,9 @@
 {
-    "llm": {"model"      : ["qwen2.5-coder:32b"],
+    "llm": {"model"      : ["qwen2.5-coder:32b", "deepseek-coder:33b", "codellama:34b"],
             "temperature":0,
             "num_ctx": 16384,
-            "api_url"    : "http://localhost:11434/api"
+            "api_url"    : "http://localhost:11434/api",
+            "_model_suggestions_16k_ctx": ["qwen2.5-coder:14b", "qwen2.5-coder:7b", "deepseek-coder:33b", "deepseek-coder:6.7b", "codellama:34b", "codellama:13b", "qwen3-coder-next"]
             },
     "data": {
             "origin_data" : "../data/ds1000_npyOnly.jsonl",

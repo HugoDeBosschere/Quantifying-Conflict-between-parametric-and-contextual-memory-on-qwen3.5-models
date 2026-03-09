@@ -287,10 +287,12 @@ if __name__ == "__main__":
     list_doc_name_control = docu_control.keys()
 
     for model_name in list_model_name:
-        for doc_name in list_doc_name_control:
-            llm_client = LLMClient(config, model_name, doc_name, mode="control")
-            run_control(args.task_id, llm_client, output_path)
+        
+        # Run control mode with no counterfactual lib
+        llm_client_control = LLMClient(config, model_name, "nothing", mode="control")
+        run_control(args.task_id, llm_client_control, output_path)
 
+        # Run injection mode with each counterfactual lib
         for doc_name in list_doc_name:
             llm_client = LLMClient(config, model_name, doc_name, mode="injection")
             run_benchmark(args.task_id, llm_client, output_path)
