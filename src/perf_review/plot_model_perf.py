@@ -199,7 +199,10 @@ def plot_global_all_conditions(data: dict, output_dir: str) -> None:
     ax.set_xticks(xtick_pos)
     ax.set_xticklabels(xtick_labels, rotation=25, ha="right", fontsize=9)
     ax.set_ylim(0, 115)
-    # Titre court à l'intérieur du graphique (en haut, centré)
+    # Étiquettes de groupe (nom du modèle) sous chaque bloc de barres
+    for m_idx, m in enumerate(models):
+        center_x = group_centers[m_idx] + (n_series * step - bar_gap) / 2 - bar_width / 2
+        ax.text(center_x, -0.12, m, transform=ax.get_xaxis_transform(), fontsize=9, fontweight="bold", ha="center", va="top")
     ax.set_title("Performance par condition (control classique, minimal, ultra_minimal)", fontsize=12, fontweight="bold", pad=12)
     ax.grid(axis="y", linestyle="--", alpha=0.4)
     plt.tight_layout()
