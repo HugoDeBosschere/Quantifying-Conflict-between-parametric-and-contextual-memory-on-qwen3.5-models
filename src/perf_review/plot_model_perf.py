@@ -88,6 +88,27 @@ def load_data(filepath: str) -> dict:
             data[model][doc_type][pert]["success"] += passed
             data[model][doc_type][pert]["total"] += 1
 
+            # Pour les runs injection (doc minimal / ultra_minimal), alimenter aussi
+            # Control minimal / Control ultra_minimal via control_passed (même code exécuté avec la vraie lib).
+            if doc_type == "Doc minimal":
+                control_label = "Control minimal"
+                control_passed = 1 if res.get("control_passed", False) else 0
+                if control_label not in data[model]:
+                    data[model][control_label] = {}
+                if pert not in data[model][control_label]:
+                    data[model][control_label][pert] = {"success": 0, "total": 0}
+                data[model][control_label][pert]["success"] += control_passed
+                data[model][control_label][pert]["total"] += 1
+            elif doc_type == "Doc ultra_minimal":
+                control_label = "Control ultra_minimal"
+                control_passed = 1 if res.get("control_passed", False) else 0
+                if control_label not in data[model]:
+                    data[model][control_label] = {}
+                if pert not in data[model][control_label]:
+                    data[model][control_label][pert] = {"success": 0, "total": 0}
+                data[model][control_label][pert]["success"] += control_passed
+                data[model][control_label][pert]["total"] += 1
+
     print(f"   Modèles: {list(data.keys())}")
     for m in data:
         print(f"   Types pour {m}: {list(data[m].keys())}")

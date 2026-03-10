@@ -48,6 +48,15 @@ class LLMClient:
 
         return intro
 
+    def warm_up(self):
+        """
+        Envoie une requête minimale pour que Ollama charge le modèle en VRAM
+        avant le premier vrai task. Évite que le chargement (~2 min) bloque pendant le premier task.
+        """
+        print(f"[Warm-up] Chargement du modèle {self.model_name} sur Ollama...")
+        _, _ = self.query_llm("Say OK.")
+        print(f"[Warm-up] Modèle {self.model_name} prêt.")
+
     def query_llm(self, prompt_text):
         """
         Envoie le prompt au LLM via Ollama.
@@ -76,8 +85,15 @@ class LLMClient:
             })
             response.raise_for_status()
             return response.json()['response'], count_token
+        except requests.exceptions.HTTPError as e:
+            body = (response.text[:500] if getattr(response, "text", None) else "") or ""
+            code = getattr(response, "status_code", "?")
+            print(f"API Error [{self.model_name}] HTTP {code}: {e}")
+            if body:
+                print(f"  Response: {body}")
+            return None, 0
         except Exception as e:
-            print(f"API Error: {e}")
+            print(f"API Error [{self.model_name}]: {e}")
             return None, 0
 
     def get_token_count(self, prompt):

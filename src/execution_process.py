@@ -44,6 +44,7 @@ def setup_run_directory(config):
 def execute_task_engine(code_context, llm_solution, llm_client):
     """
     Construit le script final en combinant le moteur de test (JSON) et la solution (LLM).
+    Le timeout d'exécution (secondes) est lu depuis config["exec"]["timeout"], défaut 60.
     """
     safe_solution_str = repr(llm_solution)
 
@@ -71,12 +72,13 @@ def execute_task_engine(code_context, llm_solution, llm_client):
         current_pythonpath = env_execution.get("PYTHONPATH", "")
         env_execution["PYTHONPATH"] = llm_client.custom_lib_path + os.pathsep + current_pythonpath
 
+    timeout_sec = config.get("exec", {}).get("timeout", 60)
     try:
         result = subprocess.run(
             [sys.executable, script_path],
             capture_output=True,
             text=True,
-            timeout=60,
+            timeout=timeout_sec,
             env=env_execution
         )
         return result.stdout, result.stderr
@@ -287,9 +289,11 @@ if __name__ == "__main__":
     list_doc_name_control = docu_control.keys()
 
     for model_name in list_model_name:
-        
-        # Run control mode with no counterfactual lib
+        # Précharger le modèle sur Ollama avant les tasks (évite ~2 min de chargement sur le 1er task)
         llm_client_control = LLMClient(config, model_name, "nothing", mode="control")
+        llm_client_control.warm_up()
+
+        # Run control mode with no counterfactual lib
         run_control(args.task_id, llm_client_control, output_path)
 
         # Run injection mode with each counterfactual lib
