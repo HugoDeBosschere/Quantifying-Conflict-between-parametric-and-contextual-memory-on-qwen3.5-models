@@ -1,5 +1,7 @@
 import requests
 import os
+import time
+import sys
 
 class LLMClient:
     def __init__(self, config, model_name, doc_name, mode="injection"):
@@ -48,14 +50,76 @@ class LLMClient:
 
         return intro
 
-    def warm_up(self):
+    def _wait_for_server(self, timeout_sec=120, poll_interval=5):
+        """Attend qu'Ollama réponde (GET sur l'API). Retourne True si prêt, False si timeout."""
+        base_url = self.api_url.rstrip("/").replace("/api", "") or "http://localhost:11434"
+        deadline = time.monotonic() + timeout_sec
+        while time.monotonic() < deadline:
+            try:
+                r = requests.get(f"{base_url}/api/tags", timeout=5)
+                if r.status_code == 200:
+                    return True
+            except Exception:
+                pass
+            print(f"[Warm-up] Ollama pas encore prêt, nouvel essai dans {poll_interval}s...")
+            time.sleep(poll_interval)
+        return False
+
+    def warm_up(self, max_retries=10, retry_delay_sec=30, first_request_timeout=300):
         """
-        Envoie une requête minimale pour que Ollama charge le modèle en VRAM
-        avant le premier vrai task. Évite que le chargement (~2 min) bloque pendant le premier task.
+        Attend qu'Ollama soit prêt, puis envoie une requête minimale pour charger le modèle.
+        En cas d'échec après max_retries, quitte le processus (sys.exit(1)).
         """
-        print(f"[Warm-up] Chargement du modèle {self.model_name} sur Ollama...")
-        _, _ = self.query_llm("Say OK.")
-        print(f"[Warm-up] Modèle {self.model_name} prêt.")
+        print(f"[Warm-up] Attente du serveur Ollama...")
+        if not self._wait_for_server(timeout_sec=120):
+            print("[Warm-up] ERREUR: Ollama n'a pas répondu à temps. Arrêt.")
+            sys.exit(1)
+        print(f"[Warm-up] Serveur OK. Chargement du modèle {self.model_name}...")
+
+        for attempt in range(1, max_retries + 1):
+            response, _ = self._generate_minimal(timeout=first_request_timeout if attempt == 1 else 60)
+            if response is not None:
+                print(f"[Warm-up] Modèle {self.model_name} prêt.")
+                return
+            print(f"[Warm-up] Tentative {attempt}/{max_retries} échouée, nouvel essai dans {retry_delay_sec}s...")
+            if attempt < max_retries:
+                time.sleep(retry_delay_sec)
+
+        print(f"[Warm-up] ERREUR: Le modèle {self.model_name} n'a pas répondu après {max_retries} tentatives. Arrêt.")
+        sys.exit(1)
+
+    def _generate_minimal(self, timeout=300):
+        """
+        Une seule requête /api/generate avec prompt minimal (pas de tokenize avant).
+        Retourne (response_text, 0) ou (None, 0). Utilisé pour le warm-up.
+        """
+        try:
+            response = requests.post(
+                f"{self.api_url}/generate",
+                json={
+                    "model": self.model_name,
+                    "system": self.system_prompt,
+                    "prompt": "Say OK.",
+                    "stream": False,
+                    "options": {"temperature": self.temperature, "num_ctx": self.num_ctx},
+                },
+                timeout=timeout,
+            )
+            response.raise_for_status()
+            return response.json().get("response"), 0
+        except requests.exceptions.Timeout:
+            print(f"API Error [{self.model_name}] Timeout après {timeout}s")
+            return None, 0
+        except requests.exceptions.HTTPError as e:
+            body = (response.text[:500] if getattr(response, "text", None) else "") or ""
+            code = getattr(response, "status_code", "?")
+            print(f"API Error [{self.model_name}] HTTP {code}: {e}")
+            if body:
+                print(f"  Response: {body}")
+            return None, 0
+        except Exception as e:
+            print(f"API Error [{self.model_name}]: {e}")
+            return None, 0
 
     def query_llm(self, prompt_text):
         """

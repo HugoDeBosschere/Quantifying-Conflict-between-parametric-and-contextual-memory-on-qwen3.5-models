@@ -72,7 +72,7 @@ def execute_task_engine(code_context, llm_solution, llm_client):
         current_pythonpath = env_execution.get("PYTHONPATH", "")
         env_execution["PYTHONPATH"] = llm_client.custom_lib_path + os.pathsep + current_pythonpath
 
-    timeout_sec = config.get("exec", {}).get("timeout", 60)
+    timeout_sec = config.get("exec", {}).get("timeout", 120)
     try:
         result = subprocess.run(
             [sys.executable, script_path],
