@@ -134,8 +134,6 @@ class LLMClient:
         else:
             full_prompt = prompt_text
 
-        count_token = self.get_token_count(full_prompt)
-
         try:
             response = requests.post(f"{self.api_url}/generate", json={
                 "model": self.model_name,
@@ -148,7 +146,13 @@ class LLMClient:
                 }
             })
             response.raise_for_status()
-            return response.json()['response'], count_token
+            data = response.json()
+            # Token count : préférer la réponse Ollama (prompt_eval_count), sinon estimation
+            count_token = data.get("prompt_eval_count")
+            if count_token is None:
+                count_token = len(full_prompt) // 3
+
+            return data["response"], count_token
         except requests.exceptions.HTTPError as e:
             body = (response.text[:500] if getattr(response, "text", None) else "") or ""
             code = getattr(response, "status_code", "?")
@@ -161,17 +165,19 @@ class LLMClient:
             return None, 0
 
     def get_token_count(self, prompt):
+        """
+        Comptage de tokens via /api/tokenize (Ollama récent).
+        Utilisé uniquement en secours si besoin ; le flux principal utilise
+        prompt_eval_count renvoyé par /api/generate.
+        """
         try:
             response = requests.post(f"{self.api_url}/tokenize", json={
                 "model": self.model_name,
                 "content": prompt
             })
             if response.status_code == 200:
-                tokens = response.json().get('tokens', [])
+                tokens = response.json().get("tokens", [])
                 return len(tokens)
-            else:
-                print(f"Token count error: {response.text}")
-                return len(prompt) // 3
-        except Exception as e:
-            print(f"Token count exception: {e}")
-            return 0
+            return len(prompt) // 3
+        except Exception:
+            return len(prompt) // 3
