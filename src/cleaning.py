@@ -118,26 +118,6 @@ def get_raw_code_block(llm_response):
         print(f"⚠️ Warning: get_raw_code_block failed: {e}")
         return llm_response
 
-def rescue_missing_result(code, full_response):
-    try:
-        if "result =" not in code and "result=" not in code:
-            rescue_pattern = r"^\s*result\s*=.*"
-            potential_lines = re.findall(rescue_pattern, full_response, re.MULTILINE)
-            
-            if potential_lines:
-                clean_candidates = [
-                    line.strip() for line in potential_lines 
-                    if is_valid_and_useful_line(line) and not line.strip().startswith("#")
-                ]
-                best_candidate = clean_candidates[-1] if clean_candidates else potential_lines[0].strip()
-                print(f"🚑 Sauvetage réussi : '{best_candidate}'")
-                return code + "\n" + best_candidate
-                
-    except Exception as e:
-        print(f"⚠️ Warning: rescue_missing_result failed: {e}")
-        
-    return code
-
 # ==============================================================================
 # 3. TRANSFORMATIONS AST (LE COEUR DU NETTOYAGE)
 # ==============================================================================
@@ -189,16 +169,15 @@ def apply_ast_transformations(code):
 
             # C. Traitement des Assignations (Suppression constantes)
             elif isinstance(node, ast.Assign):
+                # Assignation à un subscript (ex: b[i] = 1, b[np.arange(n), a] = 1) → toujours garder
+                if any(not isinstance(t, ast.Name) for t in node.targets):
+                    new_body.append(node)
+                    continue
                 targets_names = [t.id for t in node.targets if isinstance(t, ast.Name)]
-                
-                # Si on assigne 'result', on garde TOUJOURS
                 if 'result' in targets_names:
                     new_body.append(node)
-                
-                # Sinon, est-ce une constante hardcodée ? (ex: a = [1, 2])
                 elif is_static_definition(node.value):
-                    # print(f"🚫 Suppression constante statique L{node.lineno}")
-                    continue 
+                    continue  # constante statique (ex: a = 1, a = [1,2])
                 else:
                     new_body.append(node)
 
@@ -252,7 +231,7 @@ def extract_code_and_fix(llm_response):
         print("---------------------------\n")
 
         raw_code = get_raw_code_block(llm_response)
-        code_with_result = rescue_missing_result(raw_code, llm_response)
+        code_with_result = raw_code  # pas de sauvetage : si le LLM omet l'assignation, c'est une erreur
 
         # 3. Fast Path (AST Immédiat)
         potential_clean_code = apply_ast_transformations(code_with_result)

@@ -15,3 +15,5 @@
 *.md
 
 results/*
+
+data_toshow/*
