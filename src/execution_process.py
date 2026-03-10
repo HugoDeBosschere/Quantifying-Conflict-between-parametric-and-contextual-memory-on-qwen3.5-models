@@ -118,7 +118,9 @@ def evaluate_single_task(task, llm_client):
         new_import = "import " + llm_client.lib_name + " as np"
         new_context = modify_lib(task["code_context"], new_import)
         if new_context:
+            # évaluation du LLm avec la lib contrefactuelle
             stdout, stderr = execute_task_engine(new_context, code, llm_client)
+            # évaluation du LLm avec la lib d'origine sachant que le problème et la lib qu'on lui a montré était contrefactuelle
             stdout_control, stderr_control = execute_task_engine(task["code_context"], code, llm_client)
         else:
             stdout, stderr = "", "MODIFY_LIB_FAILED"
@@ -289,14 +291,14 @@ if __name__ == "__main__":
     list_doc_name_control = docu_control.keys()
 
     for model_name in list_model_name:
-        # Précharger le modèle sur Ollama avant les tasks (évite ~2 min de chargement sur le 1er task)
-        llm_client_control = LLMClient(config, model_name, "nothing", mode="control")
-        llm_client_control.warm_up()
-
-        # Run control mode with no counterfactual lib
-        run_control(args.task_id, llm_client_control, output_path)
+        # Run control mode with each counterfactual lib
+        for doc_name in list_doc_name_control:
+            llm_client_control = LLMClient(config, model_name, doc_name, mode="control")
+            llm_client_control.warm_up()
+            run_control(args.task_id, llm_client_control, output_path)
 
         # Run injection mode with each counterfactual lib
         for doc_name in list_doc_name:
             llm_client = LLMClient(config, model_name, doc_name, mode="injection")
+            llm_client.warm_up()
             run_benchmark(args.task_id, llm_client, output_path)

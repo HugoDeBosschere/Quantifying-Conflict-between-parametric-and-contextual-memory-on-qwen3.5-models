@@ -2,7 +2,7 @@
     "exec": {
             "timeout": 120
             },
-    "llm": {"model"      : ["gemma3:12b", "qwen2.5-coder:32b"],
+    "llm": {"model"      : ["codestral", "devstral"],
             "temperature":0,
             "num_ctx": 30000,
             "api_url"    : "http://localhost:11434/api",
