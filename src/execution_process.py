@@ -8,8 +8,18 @@ from datetime import datetime
 from llmclient import LLMClient
 from cleaning import extract_code_and_fix, modify_lib
 
-from config_loader import load_config
-config = load_config()
+def load_config_from_path(config_path):
+    """Charge la configuration depuis un fichier JSON (chemin absolu ou relatif)."""
+    path = os.path.abspath(config_path)
+    if not os.path.exists(path):
+        print(f"ERREUR : Fichier de config introuvable : {path}")
+        sys.exit(1)
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except json.JSONDecodeError as e:
+        print(f"ERREUR : JSON invalide dans {path}\n{e}")
+        sys.exit(1)
 
 
 #*-----------------------*
@@ -41,7 +51,7 @@ def setup_run_directory(config):
 # Functional evaluation of the LLM code #
 #*--------------------------------------*
 
-def execute_task_engine(code_context, llm_solution, llm_client):
+def execute_task_engine(code_context, llm_solution, llm_client, config):
     """
     Construit le script final en combinant le moteur de test (JSON) et la solution (LLM).
     Le timeout d'exécution (secondes) est lu depuis config["exec"]["timeout"], défaut 60.
@@ -94,7 +104,7 @@ def execute_task_engine(code_context, llm_solution, llm_client):
 #*-----------------------------------------------------------------------------------------------------*
 
 
-def evaluate_single_task(task, llm_client):
+def evaluate_single_task(task, llm_client, config):
     """
     Orchestre l'évaluation d'une seule tâche en mode injection.
     Exécute le code à la fois avec la lib contrefactuelle ET avec la vraie lib (double test).
@@ -119,9 +129,9 @@ def evaluate_single_task(task, llm_client):
         new_context = modify_lib(task["code_context"], new_import)
         if new_context:
             # évaluation du LLm avec la lib contrefactuelle
-            stdout, stderr = execute_task_engine(new_context, code, llm_client)
+            stdout, stderr = execute_task_engine(new_context, code, llm_client, config)
             # évaluation du LLm avec la lib d'origine sachant que le problème et la lib qu'on lui a montré était contrefactuelle
-            stdout_control, stderr_control = execute_task_engine(task["code_context"], code, llm_client)
+            stdout_control, stderr_control = execute_task_engine(task["code_context"], code, llm_client, config)
         else:
             stdout, stderr = "", "MODIFY_LIB_FAILED"
             stdout_control, stderr_control = "", "MODIFY_LIB_FAILED"
@@ -154,7 +164,7 @@ def evaluate_single_task(task, llm_client):
 #*--------------------------------------------------------------------------------------------*
 
 
-def evaluate_single_task_control(task, llm_client):
+def evaluate_single_task_control(task, llm_client, config):
     """
     Orchestre l'évaluation d'une seule tâche en mode control (vraie lib, pas de contrefactuel).
     """
@@ -173,7 +183,7 @@ def evaluate_single_task_control(task, llm_client):
     code = extract_code_and_fix(raw_response)
 
     if "code_context" in task:
-        stdout, stderr = execute_task_engine(task["code_context"], code, llm_client)
+        stdout, stderr = execute_task_engine(task["code_context"], code, llm_client, config)
         passed = "SUCCESS_MARKER" in stdout
     else:
         passed = False
@@ -198,7 +208,7 @@ def evaluate_single_task_control(task, llm_client):
 #*-----------------------------------------------------------------------------------------------*
 
 
-def run_benchmark(first_task, llm_client, output_path):
+def run_benchmark(first_task, llm_client, output_path, config):
     """Lit le fichier d'entrée corrupted et traite chaque ligne (mode injection)."""
     base_dir = os.path.dirname(os.path.abspath(__file__))
     input_path = os.path.join(base_dir, config["data"]["corrupted_data"])
@@ -222,7 +232,7 @@ def run_benchmark(first_task, llm_client, output_path):
 
             task_id = task.get("metadata", {}).get("problem_id", "") or task.get("task_id", "")
             if task_id and task_id > first_task:
-                result = evaluate_single_task(task, llm_client)
+                result = evaluate_single_task(task, llm_client, config)
 
                 status = "pass" if result["passed"] else "false"
                 print(f"{status} {result['task_id']}")
@@ -236,7 +246,7 @@ def run_benchmark(first_task, llm_client, output_path):
 #*--------------------------------------------------------------------------*
 
 
-def run_control(first_task, llm_client, output_path):
+def run_control(first_task, llm_client, output_path, config):
     """Lit le fichier d'entrée origin et traite chaque ligne (mode control)."""
     print("CONTROL MODE")
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -260,7 +270,7 @@ def run_control(first_task, llm_client, output_path):
 
             task_id = task.get("metadata", {}).get("problem_id", "") or task.get("task_id", "")
             if task_id and task_id > first_task:
-                result = evaluate_single_task_control(task, llm_client)
+                result = evaluate_single_task_control(task, llm_client, config)
 
                 status = "pass" if result["passed"] else "false"
                 print(f"{status} {result['task_id']}")
@@ -276,9 +286,12 @@ def run_control(first_task, llm_client, output_path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Lancer l'évaluation DS-1000")
+    parser.add_argument("config", help="Chemin vers le fichier de config JSON")
     parser.add_argument("-t", "--task_id", type=int, default=0,
                         help="ID spécifique de la tâche à partir de laquelle relancer l'execution")
     args = parser.parse_args()
+
+    config = load_config_from_path(args.config)
 
     output_path = setup_run_directory(config)
 
@@ -295,10 +308,10 @@ if __name__ == "__main__":
         for doc_name in list_doc_name_control:
             llm_client_control = LLMClient(config, model_name, doc_name, mode="control")
             llm_client_control.warm_up()
-            run_control(args.task_id, llm_client_control, output_path)
+            run_control(args.task_id, llm_client_control, output_path, config)
 
         # Run injection mode with each counterfactual lib
         for doc_name in list_doc_name:
             llm_client = LLMClient(config, model_name, doc_name, mode="injection")
             llm_client.warm_up()
-            run_benchmark(args.task_id, llm_client, output_path)
+            run_benchmark(args.task_id, llm_client, output_path, config)
