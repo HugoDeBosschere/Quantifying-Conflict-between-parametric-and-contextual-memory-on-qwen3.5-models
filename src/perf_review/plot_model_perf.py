@@ -42,10 +42,13 @@ def _doc_type_label(res: dict) -> str:
         return "Control minimal"
     if is_control and doc_name == "ultra_minimal":
         return "Control ultra_minimal"
+    # Pas de "Control explanation" : seul le cas injection avec doc explanation existe
     if not is_control and doc_name == "minimal":
         return "Doc minimal"
     if not is_control and doc_name == "ultra_minimal":
         return "Doc ultra_minimal"
+    if not is_control and doc_name == "explanation":
+        return "Doc explanation"
     # Autres cas (autres doc_name ou combinaisons)
     if is_control:
         return f"Control ({doc_name or 'other'})"
@@ -112,6 +115,15 @@ def load_data(filepath: str) -> dict:
                     data[model][eval_orig_label][pert] = {"success": 0, "total": 0}
                 data[model][eval_orig_label][pert]["success"] += cp
                 data[model][eval_orig_label][pert]["total"] += 1
+            elif doc_type == "Doc explanation":
+                eval_orig_label = "Doc explanation (éval. lib d'origine)"
+                cp = 1 if res.get("control_passed", False) else 0
+                if eval_orig_label not in data[model]:
+                    data[model][eval_orig_label] = {}
+                if pert not in data[model][eval_orig_label]:
+                    data[model][eval_orig_label][pert] = {"success": 0, "total": 0}
+                data[model][eval_orig_label][pert]["success"] += cp
+                data[model][eval_orig_label][pert]["total"] += 1
 
     print(f"   Modèles: {list(data.keys())}")
     for m in data:
@@ -137,18 +149,35 @@ GLOBAL_SERIES = [
     ("Control ultra_minimal", {"color": "gainsboro", "alpha": 0.95, "hatch": "xx", "edgecolor": "black"}),
     ("Doc ultra_minimal", {"color": "coral", "alpha": 0.9, "hatch": "", "edgecolor": "black"}),
     ("Doc ultra_minimal (éval. lib d'origine)", {"color": "coral", "alpha": 0.5, "hatch": "..", "edgecolor": "black"}),
+    ("Doc explanation", {"color": "seagreen", "alpha": 0.9, "hatch": "", "edgecolor": "black"}),
+    ("Doc explanation (éval. lib d'origine)", {"color": "seagreen", "alpha": 0.5, "hatch": "..", "edgecolor": "black"}),
 ]
+
+
+def _series_with_data(data: dict, models: list, series_list: list) -> list:
+    """Ne garde que les séries (label, style) pour lesquelles au moins un modèle a des données (total > 0)."""
+    return [
+        (label, style)
+        for label, style in series_list
+        if any(_agg(data[m], label)[1] > 0 for m in models)
+    ]
 
 
 def plot_global_all_conditions(data: dict, output_dir: str) -> None:
     """Un seul graphique : run_control (Control classique/minimal/ultra_minimal) et injection
     (Doc minimal/ultra_minimal + Doc minimal/ultra_minimal éval. lib d'origine). Barres espacées.
+    N'affiche que les types de doc qui ont des données dans le fichier résultat.
     """
     models = sorted(data.keys())
     if not models:
         return
 
-    n_series = len(GLOBAL_SERIES)
+    active_series = _series_with_data(data, models, GLOBAL_SERIES)
+    if not active_series:
+        print("⚠ Aucune série avec données, plot global ignoré.")
+        return
+
+    n_series = len(active_series)
     n_models = len(models)
     # Espacement : un bloc par modèle, dans chaque bloc 5 barres avec un peu d'écart
     bar_width = 0.5
@@ -167,7 +196,7 @@ def plot_global_all_conditions(data: dict, output_dir: str) -> None:
 
     for m_idx, m in enumerate(models):
         base = group_centers[m_idx]
-        for i, (label, style) in enumerate(GLOBAL_SERIES):
+        for i, (label, style) in enumerate(active_series):
             pos = base + i * step
             x_positions.append(pos)
             s, t = _agg(data[m], label)
@@ -189,7 +218,7 @@ def plot_global_all_conditions(data: dict, output_dir: str) -> None:
     # Dessiner les barres une par une pour garder les styles par série
     for i in range(len(x_positions)):
         idx_series = i % n_series
-        style = GLOBAL_SERIES[idx_series][1]
+        style = active_series[idx_series][1]
         rects = ax.bar(
             x_positions[i],
             all_scores[i],
@@ -219,67 +248,88 @@ def plot_global_all_conditions(data: dict, output_dir: str) -> None:
     print(f"✅ Sauvegardé : {out}")
 
 
-def _perturbation_data_one(data: dict, models: list, *doc_labels: str) -> tuple:
+def _perturbation_data_one(data: dict, models: list, *doc_labels: str) -> set:
     """Récupère pert_types pour les séries données."""
     all_perts = set()
     for m in data:
         for d in doc_labels:
             if d in data[m]:
                 all_perts.update(data[m][d].keys())
-    return sorted(all_perts)
+    return all_perts
+
+
+def _row_has_data(data: dict, models: list, control_label: str | None, doc_label: str, doc_orig_label: str) -> bool:
+    """True si au moins un modèle a des données pour au moins une des séries de la row (control optionnel)."""
+    labels = [doc_label, doc_orig_label]
+    if control_label is not None:
+        labels.append(control_label)
+    for m in models:
+        for label in labels:
+            if label in data[m] and any(p["total"] > 0 for p in data[m][label].values()):
+                return True
+    return False
+
+
+# Config des rows par type de doc : (control ou None, doc, doc_éval_orig, titre, couleur). None = pas de control pour ce doc (ex. explanation).
+DOC_ROWS_CONFIG = [
+    ("Control minimal", "Doc minimal", "Doc minimal (éval. lib d'origine)", "Minimal — run_control vs injection (éval. lib mod. / lib d'origine)", "steelblue"),
+    ("Control ultra_minimal", "Doc ultra_minimal", "Doc ultra_minimal (éval. lib d'origine)", "Ultra_minimal — run_control vs injection (éval. lib mod. / lib d'origine)", "coral"),
+    (None, "Doc explanation", "Doc explanation (éval. lib d'origine)", "Explanation — injection (éval. lib mod. / lib d'origine)", "seagreen"),
+]
 
 
 def plot_combined_perturbation_minimal_ultra(data: dict, output_dir: str) -> None:
-    """Deux sous-graphiques : Minimal et Ultra_minimal. Pour chaque : run_control (Control), injection (Doc), injection éval. lib d'origine."""
+    """Sous-graphiques par type de doc (Minimal, Ultra_minimal, Explanation). Pour chaque : run_control (Control), injection (Doc), injection éval. lib d'origine.
+    N'affiche que les types de doc qui ont des données dans le fichier résultat.
+    """
     models = sorted(data.keys())
     if not models:
         return
 
-    perts_min = set(
-        _perturbation_data_one(
-            data,
-            models,
-            "Control minimal",
-            "Doc minimal",
-            "Doc minimal (éval. lib d'origine)",
-        )
-    )
-    perts_ultra = set(
-        _perturbation_data_one(
-            data,
-            models,
-            "Control ultra_minimal",
-            "Doc ultra_minimal",
-            "Doc ultra_minimal (éval. lib d'origine)",
-        )
-    )
-    pert_types = sorted(perts_min | perts_ultra)
+    # Ne garder que les rows qui ont des données
+    rows_config = [
+        (control_label, doc_label, doc_orig_label, row_title, doc_color)
+        for control_label, doc_label, doc_orig_label, row_title, doc_color in DOC_ROWS_CONFIG
+        if _row_has_data(data, models, control_label, doc_label, doc_orig_label)
+    ]
+    if not rows_config:
+        print("⚠ Aucune row (minimal/ultra_minimal/explanation) avec données, plot perturbation ignoré.")
+        return
+
+    all_perts = set()
+    for control_label, doc_label, doc_orig_label, _t, _c in rows_config:
+        labels = [doc_label, doc_orig_label]
+        if control_label is not None:
+            labels.append(control_label)
+        all_perts |= _perturbation_data_one(data, models, *labels)
+    pert_types = sorted(all_perts)
     if not pert_types:
         return
 
+    n_rows = len(rows_config)
     n_models = len(models)
-    fig, axes = plt.subplots(nrows=2, ncols=max(1, n_models), figsize=(max(14, 4 * n_models), 10))
-    if n_models == 1:
-        axes = axes.reshape(2, 1)
+    fig, axes = plt.subplots(nrows=n_rows, ncols=max(1, n_models), figsize=(max(14, 4 * n_models), 4 * n_rows))
+    if n_models == 1 and n_rows == 1:
+        axes = np.array([[axes]])
+    elif n_models == 1:
+        axes = axes.reshape(-1, 1)
+    elif n_rows == 1:
+        axes = axes.reshape(1, -1)
 
     x = np.arange(len(pert_types))
     width = 0.26
 
-    rows_config = [
-        ("Control minimal", "Doc minimal", "Doc minimal (éval. lib d'origine)", "Minimal — run_control vs injection (éval. lib mod. / lib d'origine)", "steelblue"),
-        ("Control ultra_minimal", "Doc ultra_minimal", "Doc ultra_minimal (éval. lib d'origine)", "Ultra_minimal — run_control vs injection (éval. lib mod. / lib d'origine)", "coral"),
-    ]
     for row, (control_label, doc_label, doc_orig_label, row_title, doc_color) in enumerate(rows_config):
+        has_control = control_label is not None
         for col, model in enumerate(models):
             ax = axes[row, col]
             sc_list, sd_list, so_list = [], [], []
             lc_list, ld_list, lo_list = [], [], []
+            series_spec = [(doc_label, sd_list, ld_list), (doc_orig_label, so_list, lo_list)]
+            if has_control:
+                series_spec.insert(0, (control_label, sc_list, lc_list))
             for pert in pert_types:
-                for label, s_list, l_list in [
-                    (control_label, sc_list, lc_list),
-                    (doc_label, sd_list, ld_list),
-                    (doc_orig_label, so_list, lo_list),
-                ]:
+                for label, s_list, l_list in series_spec:
                     if label in data[model] and pert in data[model][label]:
                         st = data[model][label][pert]
                         s, t = st["success"], st["total"]
@@ -290,15 +340,21 @@ def plot_combined_perturbation_minimal_ultra(data: dict, output_dir: str) -> Non
                         s_list.append(0)
                         l_list.append("")
 
-            pos_c = x - width
-            pos_d = x
-            pos_o = x + width
-            r_c = ax.bar(pos_c, sc_list, width, label=control_label, color="gray", alpha=0.7, hatch="//")
-            r_d = ax.bar(pos_d, sd_list, width, label=doc_label, color=doc_color, alpha=0.9)
-            r_o = ax.bar(pos_o, so_list, width, label=doc_orig_label, color=doc_color, alpha=0.5, hatch="..")
-            ax.bar_label(r_c, labels=[l if v > 0 else "" for l, v in zip(lc_list, sc_list)], padding=1, fontsize=6)
-            ax.bar_label(r_d, labels=[l if v > 0 else "" for l, v in zip(ld_list, sd_list)], padding=1, fontsize=6)
-            ax.bar_label(r_o, labels=[l if v > 0 else "" for l, v in zip(lo_list, so_list)], padding=1, fontsize=6)
+            if has_control:
+                pos_c, pos_d, pos_o = x - width, x, x + width
+                r_c = ax.bar(pos_c, sc_list, width, label=control_label, color="gray", alpha=0.7, hatch="//")
+                r_d = ax.bar(pos_d, sd_list, width, label=doc_label, color=doc_color, alpha=0.9)
+                r_o = ax.bar(pos_o, so_list, width, label=doc_orig_label, color=doc_color, alpha=0.5, hatch="..")
+                ax.bar_label(r_c, labels=[l if v > 0 else "" for l, v in zip(lc_list, sc_list)], padding=1, fontsize=6)
+                ax.bar_label(r_d, labels=[l if v > 0 else "" for l, v in zip(ld_list, sd_list)], padding=1, fontsize=6)
+                ax.bar_label(r_o, labels=[l if v > 0 else "" for l, v in zip(lo_list, so_list)], padding=1, fontsize=6)
+            else:
+                pos_d = x - width / 2
+                pos_o = x + width / 2
+                r_d = ax.bar(pos_d, sd_list, width, label=doc_label, color=doc_color, alpha=0.9)
+                r_o = ax.bar(pos_o, so_list, width, label=doc_orig_label, color=doc_color, alpha=0.5, hatch="..")
+                ax.bar_label(r_d, labels=[l if v > 0 else "" for l, v in zip(ld_list, sd_list)], padding=1, fontsize=6)
+                ax.bar_label(r_o, labels=[l if v > 0 else "" for l, v in zip(lo_list, so_list)], padding=1, fontsize=6)
             # Titre compact pour éviter les chevauchements : seulement le nom du modèle
             ax.set_title(model, fontsize=9, fontweight="bold")
             ax.set_xticks(x)
