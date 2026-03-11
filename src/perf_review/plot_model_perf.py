@@ -205,10 +205,11 @@ def plot_global_all_conditions(data: dict, output_dir: str) -> None:
     ax.set_xticks(xtick_pos)
     ax.set_xticklabels(xtick_labels, rotation=25, ha="right", fontsize=9)
     ax.set_ylim(0, 115)
-    # Étiquettes de groupe (nom du modèle) sous chaque bloc de barres
+    # Étiquettes de groupe (nom du modèle) AU-DESSUS des barres pour éviter le chevauchement avec les labels d'axe
+    top_y = ax.get_ylim()[1] - 3
     for m_idx, m in enumerate(models):
         center_x = group_centers[m_idx] + (n_series * step - bar_gap) / 2 - bar_width / 2
-        ax.text(center_x, -0.12, m, transform=ax.get_xaxis_transform(), fontsize=9, fontweight="bold", ha="center", va="top")
+        ax.text(center_x, top_y, m, fontsize=9, fontweight="bold", ha="center", va="top")
     ax.set_title("Performance par condition — run_control (contexte orig.) vs injection (éval. lib modifiée / lib d'origine)", fontsize=11, fontweight="bold", pad=12)
     ax.grid(axis="y", linestyle="--", alpha=0.4)
     plt.tight_layout()
@@ -234,10 +235,25 @@ def plot_combined_perturbation_minimal_ultra(data: dict, output_dir: str) -> Non
     if not models:
         return
 
-    pert_types = sorted(set(
-        _perturbation_data_one(data, models, "Control minimal", "Doc minimal", "Doc minimal (éval. lib d'origine)")
-        | set(_perturbation_data_one(data, models, "Control ultra_minimal", "Doc ultra_minimal", "Doc ultra_minimal (éval. lib d'origine)"))
-    ))
+    perts_min = set(
+        _perturbation_data_one(
+            data,
+            models,
+            "Control minimal",
+            "Doc minimal",
+            "Doc minimal (éval. lib d'origine)",
+        )
+    )
+    perts_ultra = set(
+        _perturbation_data_one(
+            data,
+            models,
+            "Control ultra_minimal",
+            "Doc ultra_minimal",
+            "Doc ultra_minimal (éval. lib d'origine)",
+        )
+    )
+    pert_types = sorted(perts_min | perts_ultra)
     if not pert_types:
         return
 
@@ -283,7 +299,8 @@ def plot_combined_perturbation_minimal_ultra(data: dict, output_dir: str) -> Non
             ax.bar_label(r_c, labels=[l if v > 0 else "" for l, v in zip(lc_list, sc_list)], padding=1, fontsize=6)
             ax.bar_label(r_d, labels=[l if v > 0 else "" for l, v in zip(ld_list, sd_list)], padding=1, fontsize=6)
             ax.bar_label(r_o, labels=[l if v > 0 else "" for l, v in zip(lo_list, so_list)], padding=1, fontsize=6)
-            ax.set_title(f"{row_title} — {model}", fontsize=10, fontweight="bold")
+            # Titre compact pour éviter les chevauchements : seulement le nom du modèle
+            ax.set_title(model, fontsize=9, fontweight="bold")
             ax.set_xticks(x)
             ax.set_xticklabels(pert_types, rotation=20, ha="right")
             ax.set_ylabel("Précision (%)")
