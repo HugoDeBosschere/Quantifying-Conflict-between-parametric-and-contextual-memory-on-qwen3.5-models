@@ -10,6 +10,13 @@ class CapitalizeNumPy:
         self._target = target_module
 
     def __getattr__(self, name):
+        # Comportement strict : seule la première lettre en majuscule est acceptée
+        if not name or not name[0].isupper():
+            raise AttributeError(
+                f"module 'numpy' has no attribute {name!r}. "
+                f"Use capitalized names (e.g. np.Array, np.Mean)."
+            )
+
         real_name = name[0].lower() + name[1:]
         real_attr = getattr(self._target, real_name)
 

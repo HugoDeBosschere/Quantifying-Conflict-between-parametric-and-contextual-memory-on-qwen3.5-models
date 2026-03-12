@@ -49,21 +49,25 @@ def test_array_creation():
     print("  OK np.array_v2() == numpy.array()")
 
 
-def test_acces_sans_suffixe():
-    """np.add (sans _v2) doit quand même donner numpy.add (rétrocompat)."""
-    assert np.add(1, 2) == real_np.add(1, 2)
-    print("  OK np.add() sans suffixe fonctionne")
+def test_acces_sans_suffixe_raise():
+    """np.add (sans _v2) doit lever AttributeError (comportement strict)."""
+    try:
+        _ = np.add(1, 2)
+        assert False, "np.add devrait lever AttributeError"
+    except AttributeError as e:
+        assert "add" in str(e) and "_v2" in str(e)
+    print("  OK np.add() sans suffixe lève AttributeError")
 
 
 def run_all():
-    print("Validation WrapV2Numpy (suffixe '_v2')")
+    print("Validation WrapV2Numpy (suffixe '_v2', mode strict)")
     print("-" * 50)
     test_ufunc_simple()
     test_ufunc_array()
     test_sous_module()
     test_constante()
     test_array_creation()
-    test_acces_sans_suffixe()
+    test_acces_sans_suffixe_raise()
     print("-" * 50)
     print("Tous les tests _v2 sont passés.")
 

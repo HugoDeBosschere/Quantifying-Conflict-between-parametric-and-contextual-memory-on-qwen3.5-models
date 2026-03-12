@@ -66,8 +66,18 @@ def test_random_submodule():
     print("  OK np.Random.Seed() / np.Random.Rand() == numpy.random")
 
 
+def test_acces_sans_majuscule_raise():
+    """np.array (sans majuscule) doit lever AttributeError (comportement strict)."""
+    try:
+        _ = np.array([1, 2, 3])
+        assert False, "np.array devrait lever AttributeError"
+    except AttributeError as e:
+        assert "array" in str(e) and ("capitalized" in str(e).lower() or "Capitalized" in str(e))
+    print("  OK np.array() sans majuscule lève AttributeError")
+
+
 def run_all():
-    print("Validation WrapCapitalizeNumpy (première lettre majuscule)")
+    print("Validation WrapCapitalizeNumpy (première lettre majuscule, mode strict)")
     print("-" * 50)
     test_ufunc_simple()
     test_ufunc_array()
@@ -76,6 +86,7 @@ def run_all():
     test_array_creation()
     test_linspace()
     test_random_submodule()
+    test_acces_sans_majuscule_raise()
     print("-" * 50)
     print("Tous les tests capitalize sont passés.")
 

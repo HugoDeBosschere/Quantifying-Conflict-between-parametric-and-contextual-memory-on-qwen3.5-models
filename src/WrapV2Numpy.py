@@ -12,20 +12,22 @@ class V2NumPy:
         self._target = target_module
 
     def __getattr__(self, name):
-        # Seuls les noms se terminant par _v2 sont transformés
-        if name.endswith(V2_SUFFIX):
-            real_name = name[: -len(V2_SUFFIX)]
-        else:
-            real_name = name
+        # Comportement strict : seuls les noms se terminant par _v2 sont acceptés
+        if not name.endswith(V2_SUFFIX):
+            raise AttributeError(
+                f"module 'numpy' has no attribute {name!r}. "
+                f"Use the _v2 suffix (e.g. np.{name}_v2)."
+            )
 
+        real_name = name[: -len(V2_SUFFIX)]
         real_attr = getattr(self._target, real_name)
 
-        # CAS 1 : Sous-module (ex: np.linalg)
+        # CAS 1 : Sous-module (ex: np.linalg_v2)
         if isinstance(real_attr, types.ModuleType):
             return V2NumPy(real_attr)
 
         # CAS 2 : Fonction / ufunc (ex: np.add_v2 -> np.add)
-        # CAS 3 : Constante (ex: np.pi, np.nan)
+        # CAS 3 : Constante (ex: np.pi_v2 -> np.pi)
         return real_attr
 
     def __dir__(self):
