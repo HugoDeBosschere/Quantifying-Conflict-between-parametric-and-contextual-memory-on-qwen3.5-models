@@ -1,5 +1,5 @@
 """
-Lance la validation des deux wrappers (underscore et _v2).
+Lance la validation des trois wrappers (underscore, _v2 et capitalize).
 À exécuter depuis la racine du projet : python tests/run_wrapper_validation.py
 """
 import subprocess
@@ -26,14 +26,17 @@ def main():
 
     underscore_script = os.path.join(TESTS_DIR, "underscore", "test_wrapper_underscore.py")
     v2_script = os.path.join(TESTS_DIR, "v2", "test_wrapper_v2.py")
+    capitalize_script = os.path.join(TESTS_DIR, "capitalize", "test_wrapper_capitalize.py")
 
     ok_underscore = run_script(underscore_script)
     print()
     ok_v2 = run_script(v2_script)
+    print()
+    ok_capitalize = run_script(capitalize_script)
 
     print()
     print("=" * 60)
-    if ok_underscore and ok_v2:
+    if ok_underscore and ok_v2 and ok_capitalize:
         print("Résultat : toutes les validations sont passées.")
         sys.exit(0)
     else:
