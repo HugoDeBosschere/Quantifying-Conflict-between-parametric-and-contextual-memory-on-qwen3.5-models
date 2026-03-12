@@ -44,10 +44,6 @@
                 "ultra_minimal" : {
                                "intro" : "This is the new version of the numpy library documentation (first letter capitalized). You must use np.Fonction() in your code (e.g. np.Array, np.Mean, np.Linspace). \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
                                "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/corrupted_ultra_minimal_numpy_capitalize.txt"
-                                },
-                "full" : {
-                               "intro" : "This is the new version of the numpy library documentation (first letter capitalized). You must use np.Fonction() in your code (e.g. np.Array, np.Mean, np.Linspace). \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
-                               "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/corrupted_full_doc_numpy_capitalize.txt"
                                 }
                                 }
                         }
