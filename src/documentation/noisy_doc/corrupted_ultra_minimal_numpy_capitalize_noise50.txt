@@ -1,0 +1,637 @@
+Reference Documentation for numpy 
+============================================================
+
+FUNCTION: numpy.Abs
+-------------------
+FUNCTION: numpy.Add
+-------------------
+FUNCTION: numpy.Arcsin
+----------------------
+FUNCTION: numpy.Binary_repr
+---------------------------
+FUNCTION: numpy.Bitwise_xor
+---------------------------
+FUNCTION: numpy.Ceil
+--------------------
+FUNCTION: numpy.Cos
+-------------------
+FUNCTION: numpy.Deg2rad
+-----------------------
+FUNCTION: numpy.Degrees
+-----------------------
+FUNCTION: numpy.Diag_indices
+----------------------------
+FUNCTION: numpy.Divide
+----------------------
+FUNCTION: numpy.Equal
+---------------------
+FUNCTION: numpy.Exp
+-------------------
+FUNCTION: numpy.Eye
+-------------------
+FUNCTION: numpy.Floor
+---------------------
+FUNCTION: numpy.Full
+--------------------
+FUNCTION: numpy.Gcd
+-------------------
+FUNCTION: numpy.Greater
+-----------------------
+FUNCTION: numpy.Indices
+-----------------------
+FUNCTION: numpy.Isfinite
+------------------------
+FUNCTION: numpy.Isinf
+---------------------
+FUNCTION: numpy.Isnan
+---------------------
+FUNCTION: numpy.Less
+--------------------
+FUNCTION: numpy.Logical_and
+---------------------------
+FUNCTION: numpy.Logical_not
+---------------------------
+FUNCTION: numpy.Logical_or
+--------------------------
+FUNCTION: numpy.Maximum
+-----------------------
+FUNCTION: numpy.Minimum
+-----------------------
+FUNCTION: numpy.Multiply
+------------------------
+FUNCTION: numpy.Ones
+--------------------
+FUNCTION: numpy.Rad2deg
+-----------------------
+FUNCTION: numpy.Radians
+-----------------------
+FUNCTION: numpy.Sin
+-------------------
+FUNCTION: numpy.Sqrt
+--------------------
+FUNCTION: numpy.Square
+----------------------
+FUNCTION: numpy.Subtract
+------------------------
+FUNCTION: numpy.Trapz
+---------------------
+FUNCTION: numpy.Tril_indices
+----------------------------
+FUNCTION: numpy.Triu_indices
+----------------------------
+FUNCTION: numpy.ma.Filled
+-------------------------
+FUNCTION: numpy.ma.Masked_invalid
+---------------------------------
+FUNCTION: numpy.ma.Masked_where
+-------------------------------
+FUNCTION: numpy.lib.stride_tricks.As_strided
+--------------------------------------------
+FUNCTION: numpy.testing.assert_no_warnings
+------------------------------------------
+FUNCTION: numpy.expm1
+---------------------
+FUNCTION: numpy.polynomial.hermite_e.hermeval
+---------------------------------------------
+FUNCTION: numpy.polynomial.laguerre.lagline
+-------------------------------------------
+FUNCTION: numpy.polynomial.legendre.legpow
+------------------------------------------
+FUNCTION: numpy.strings.count
+-----------------------------
+FUNCTION: numpy.testing.assert_almost_equal
+-------------------------------------------
+FUNCTION: numpy.f2py.f2py2e.crackfortran.getlincoef
+---------------------------------------------------
+FUNCTION: numpy.show_config
+---------------------------
+FUNCTION: numpy.ma.sort
+-----------------------
+FUNCTION: numpy.format_float_positional
+---------------------------------------
+FUNCTION: numpy.fmin
+--------------------
+FUNCTION: numpy.tan
+-------------------
+FUNCTION: numpy.polynomial.legendre.leggrid3d
+---------------------------------------------
+FUNCTION: numpy.polynomial.legendre.poly2leg
+--------------------------------------------
+FUNCTION: numpy.f2py.symbolic.as_real
+-------------------------------------
+FUNCTION: numpy.float_power
+---------------------------
+FUNCTION: numpy.polynomial.polynomial.polymulx
+----------------------------------------------
+FUNCTION: numpy.ctypeslib.ndpointer
+-----------------------------------
+FUNCTION: numpy.ma.setxor1d
+---------------------------
+FUNCTION: numpy.polynomial.legendre.legline
+-------------------------------------------
+FUNCTION: numpy.ma.extras.ma.ntypes.english_capitalize
+------------------------------------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermevander
+------------------------------------------------
+FUNCTION: numpy.asarray_chkfinite
+---------------------------------
+FUNCTION: numpy.strings.partition
+---------------------------------
+FUNCTION: numpy.f2py.f2py2e.crackfortran.traverse
+-------------------------------------------------
+FUNCTION: numpy.ctypeslib.as_ctypes
+-----------------------------------
+FUNCTION: numpy.ma.array
+------------------------
+FUNCTION: numpy.strings.lower
+-----------------------------
+FUNCTION: numpy.polynomial.legendre.legfromroots
+------------------------------------------------
+FUNCTION: numpy.ma.append
+-------------------------
+FUNCTION: numpy.char.asarray
+----------------------------
+FUNCTION: numpy.spacing
+-----------------------
+FUNCTION: numpy.ma.make_mask
+----------------------------
+FUNCTION: numpy.typename
+------------------------
+FUNCTION: numpy.ma.default_fill_value
+-------------------------------------
+FUNCTION: numpy.ma.choose
+-------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermefromroots
+---------------------------------------------------
+FUNCTION: numpy.hamming
+-----------------------
+FUNCTION: numpy.testing.run_threaded
+------------------------------------
+FUNCTION: numpy.ma.isin
+-----------------------
+FUNCTION: numpy.printoptions
+----------------------------
+FUNCTION: numpy.polynomial.hermite.hermline
+-------------------------------------------
+FUNCTION: numpy.ma.dot
+----------------------
+FUNCTION: numpy.polynomial.polynomial.polyfit
+---------------------------------------------
+FUNCTION: numpy.matvec
+----------------------
+FUNCTION: numpy.heaviside
+-------------------------
+FUNCTION: numpy.f2py.f2py2e.crackfortran.character_backward_compatibility_hook
+------------------------------------------------------------------------------
+FUNCTION: numpy.polynomial.legendre.legval3d
+--------------------------------------------
+FUNCTION: numpy.polynomial.hermite.hermgauss
+--------------------------------------------
+FUNCTION: numpy.reciprocal
+--------------------------
+FUNCTION: numpy.testing.assert_allclose
+---------------------------------------
+FUNCTION: numpy.ma.extras.ma.ntypes.issubsctype
+-----------------------------------------------
+FUNCTION: numpy.ma.flatnotmasked_contiguous
+-------------------------------------------
+FUNCTION: numpy.strings.rindex
+------------------------------
+FUNCTION: numpy.ma.getmask
+--------------------------
+FUNCTION: numpy.ma.corrcoef
+---------------------------
+FUNCTION: numpy.polynomial.legendre.leg2poly
+--------------------------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermegrid3d
+------------------------------------------------
+FUNCTION: numpy.mod
+-------------------
+FUNCTION: numpy.f2py.f2py2e.crackfortran.crackline
+--------------------------------------------------
+FUNCTION: numpy.strings.translate
+---------------------------------
+FUNCTION: numpy.char.partition
+------------------------------
+FUNCTION: numpy.strings.rjust
+-----------------------------
+FUNCTION: numpy.lib.add_newdoc
+------------------------------
+FUNCTION: numpy.ma.left_shift
+-----------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermemul
+---------------------------------------------
+FUNCTION: numpy.polynomial.legendre.legint
+------------------------------------------
+FUNCTION: numpy.polynomial.chebyshev.chebroots
+----------------------------------------------
+FUNCTION: numpy.lcm
+-------------------
+FUNCTION: numpy.polynomial.legendre.legvander
+---------------------------------------------
+FUNCTION: numpy.ctypeslib.as_array
+----------------------------------
+FUNCTION: numpy.polynomial.chebyshev.chebgrid3d
+-----------------------------------------------
+FUNCTION: numpy.ma.median
+-------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermeint
+---------------------------------------------
+FUNCTION: numpy.logaddexp2
+--------------------------
+FUNCTION: numpy.polynomial.legendre.legcompanion
+------------------------------------------------
+FUNCTION: numpy.polynomial.chebyshev.chebgrid2d
+-----------------------------------------------
+FUNCTION: numpy.polynomial.legendre.legder
+------------------------------------------
+FUNCTION: numpy.f2py.symbolic.as_integer
+----------------------------------------
+FUNCTION: numpy.ma.masked_object
+--------------------------------
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.array_function_from_dispatcher
+-------------------------------------------------------------------------------
+FUNCTION: numpy.strings.expandtabs
+----------------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermegauss
+-----------------------------------------------
+FUNCTION: numpy.char.join
+-------------------------
+FUNCTION: numpy.polynomial.laguerre.lagmulx
+-------------------------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermefit
+---------------------------------------------
+FUNCTION: numpy.ma.where
+------------------------
+FUNCTION: numpy.ma.max
+----------------------
+FUNCTION: numpy.f2py.f2py2e.crackfortran.myeval
+-----------------------------------------------
+FUNCTION: numpy.strings.center
+------------------------------
+FUNCTION: numpy.f2py.symbolic.as_term_coeff
+-------------------------------------------
+FUNCTION: numpy.f2py.symbolic.as_deref
+--------------------------------------
+FUNCTION: numpy.sinh
+--------------------
+FUNCTION: numpy.identity
+------------------------
+FUNCTION: numpy.testing.assert_equal
+------------------------------------
+FUNCTION: numpy.strings.istitle
+-------------------------------
+FUNCTION: numpy.log2
+--------------------
+FUNCTION: numpy.ma.mask_rowcols
+-------------------------------
+FUNCTION: numpy.ma.make_mask_descr
+----------------------------------
+FUNCTION: numpy.polynomial.laguerre.lagval2d
+--------------------------------------------
+FUNCTION: numpy.bitwise_count
+-----------------------------
+FUNCTION: numpy.testing.assert_string_equal
+-------------------------------------------
+FUNCTION: numpy.f2py.f2py2e.crackfortran.readfortrancode
+--------------------------------------------------------
+FUNCTION: numpy.char.split
+--------------------------
+FUNCTION: numpy.f2py.f2py2e.crackfortran.param_eval
+---------------------------------------------------
+FUNCTION: numpy.strings.mod
+---------------------------
+FUNCTION: numpy.arctan
+----------------------
+FUNCTION: numpy.rec.fromrecords
+-------------------------------
+FUNCTION: numpy.f2py.symbolic.as_string
+---------------------------------------
+FUNCTION: numpy.polynomial.hermite.hermsub
+------------------------------------------
+FUNCTION: numpy.f2py.rules.func2subr.show
+-----------------------------------------
+FUNCTION: numpy.ma.inner
+------------------------
+FUNCTION: numpy.strings.rfind
+-----------------------------
+FUNCTION: numpy.acos
+--------------------
+FUNCTION: numpy.polynomial.chebyshev.chebpts2
+---------------------------------------------
+FUNCTION: numpy.cbrt
+--------------------
+FUNCTION: numpy.ma.ediff1d
+--------------------------
+FUNCTION: numpy.polynomial.chebyshev.cheb2poly
+----------------------------------------------
+FUNCTION: numpy.polynomial.laguerre.lagfromroots
+------------------------------------------------
+FUNCTION: numpy.less_equal
+--------------------------
+FUNCTION: numpy.polynomial.laguerre.laggauss
+--------------------------------------------
+FUNCTION: numpy.seterr
+----------------------
+FUNCTION: numpy.matmul
+----------------------
+FUNCTION: numpy.testing.rundocs
+-------------------------------
+FUNCTION: numpy.testing.temppath
+--------------------------------
+FUNCTION: numpy.lib.format.write_array
+--------------------------------------
+FUNCTION: numpy.strings.rstrip
+------------------------------
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.routsign2map
+--------------------------------------------------------------
+FUNCTION: numpy.ma.take
+-----------------------
+FUNCTION: numpy.polynomial.polynomial.polyroots
+-----------------------------------------------
+FUNCTION: numpy.polynomial.chebyshev.chebfit
+--------------------------------------------
+FUNCTION: numpy.ma.extras.ma.getargspec
+---------------------------------------
+FUNCTION: numpy.f2py.symbolic.replace_parenthesis
+-------------------------------------------------
+FUNCTION: numpy.ma.extras.ma.ntypes.issctype
+--------------------------------------------
+FUNCTION: numpy.testing.jiffies
+-------------------------------
+FUNCTION: numpy.polynomial.laguerre.lagpow
+------------------------------------------
+FUNCTION: numpy.polynomial.legendre.legsub
+------------------------------------------
+FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzevars
+----------------------------------------------------
+FUNCTION: numpy.ma.apply_over_axes
+----------------------------------
+FUNCTION: numpy.copysign
+------------------------
+FUNCTION: numpy.polynomial.legendre.legvander2d
+-----------------------------------------------
+FUNCTION: numpy.asmatrix
+------------------------
+FUNCTION: numpy.mintypecode
+---------------------------
+FUNCTION: numpy.load
+--------------------
+FUNCTION: numpy.mask_indices
+----------------------------
+FUNCTION: numpy.polynomial.chebyshev.chebvander2d
+-------------------------------------------------
+FUNCTION: numpy.f2py.symbolic.fromstring
+----------------------------------------
+FUNCTION: numpy.polynomial.laguerre.lagdiv
+------------------------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermevander2d
+--------------------------------------------------
+FUNCTION: numpy.polynomial.legendre.legfit
+------------------------------------------
+FUNCTION: numpy.testing.overrides.get_overridable_numpy_ufuncs
+--------------------------------------------------------------
+FUNCTION: numpy.lib.format.read_array_header_2_0
+------------------------------------------------
+FUNCTION: numpy.polynomial.laguerre.laggrid3d
+---------------------------------------------
+FUNCTION: numpy.ma.notmasked_edges
+----------------------------------
+FUNCTION: numpy.polynomial.polynomial.polyder
+---------------------------------------------
+FUNCTION: numpy.tanh
+--------------------
+FUNCTION: numpy.ma.extras.issequence
+------------------------------------
+FUNCTION: numpy.ma.convolve
+---------------------------
+FUNCTION: numpy.ma.ptp
+----------------------
+FUNCTION: numpy.lib.format.header_data_from_array_1_0
+-----------------------------------------------------
+FUNCTION: numpy.iterable
+------------------------
+FUNCTION: numpy.vecdot
+----------------------
+FUNCTION: numpy.log
+-------------------
+FUNCTION: numpy.ma.minimum_fill_value
+-------------------------------------
+FUNCTION: numpy.ma.argsort
+--------------------------
+FUNCTION: numpy.testing.assert_array_max_ulp
+--------------------------------------------
+FUNCTION: numpy.polynomial.laguerre.lagroots
+--------------------------------------------
+FUNCTION: numpy.f2py.f2py2e.crackfortran.markinnerspaces
+--------------------------------------------------------
+FUNCTION: numpy.f2py.rules.buildmodule
+--------------------------------------
+FUNCTION: numpy.strings.decode
+------------------------------
+FUNCTION: numpy.polynomial.polyutils.getdomain
+----------------------------------------------
+FUNCTION: numpy.polynomial.legendre.legvander3d
+-----------------------------------------------
+FUNCTION: numpy.ma.extras.ma.get_object_signature
+-------------------------------------------------
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.verify_matching_signatures
+---------------------------------------------------------------------------
+FUNCTION: numpy.get_include
+---------------------------
+FUNCTION: numpy.polynomial.legendre.legmul
+------------------------------------------
+FUNCTION: numpy.ma.ndenumerate
+------------------------------
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getctype
+----------------------------------------------------------
+FUNCTION: numpy.char.rpartition
+-------------------------------
+FUNCTION: numpy.isdtype
+-----------------------
+FUNCTION: numpy.char.rsplit
+---------------------------
+FUNCTION: numpy.polynomial.chebyshev.chebsub
+--------------------------------------------
+FUNCTION: numpy.ma.setdiff1d
+----------------------------
+FUNCTION: numpy.hypot
+---------------------
+FUNCTION: numpy.lib.introspect.opt_func_info
+--------------------------------------------
+FUNCTION: numpy.ma.is_mask
+--------------------------
+FUNCTION: numpy.ma.transpose
+----------------------------
+FUNCTION: numpy.testing.check_support_sve
+-----------------------------------------
+FUNCTION: numpy.set_printoptions
+--------------------------------
+FUNCTION: numpy.polynomial.polynomial.polyval2d
+-----------------------------------------------
+FUNCTION: numpy.testing.assert_array_equal
+------------------------------------------
+FUNCTION: numpy.ma.extras.normalize_axis_tuple
+----------------------------------------------
+FUNCTION: numpy.f2py.f2py2e.crackfortran.param_parse
+----------------------------------------------------
+FUNCTION: numpy.row_stack
+-------------------------
+FUNCTION: numpy.f2py.symbolic.as_numer_denom
+--------------------------------------------
+FUNCTION: numpy.acosh
+---------------------
+FUNCTION: numpy.polynomial.polynomial.polygrid3d
+------------------------------------------------
+FUNCTION: numpy.ma.masked_inside
+--------------------------------
+FUNCTION: numpy.lib.format.descr_to_dtype
+-----------------------------------------
+FUNCTION: numpy.polynomial.legendre.legval2d
+--------------------------------------------
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.sign2map
+----------------------------------------------------------
+FUNCTION: numpy.ma.compress_cols
+--------------------------------
+FUNCTION: numpy.ma.flatnotmasked_edges
+--------------------------------------
+FUNCTION: numpy.polynomial.laguerre.lagint
+------------------------------------------
+FUNCTION: numpy.pow
+-------------------
+FUNCTION: numpy.tri
+-------------------
+FUNCTION: numpy.strings.isdecimal
+---------------------------------
+FUNCTION: numpy.fmax
+--------------------
+FUNCTION: numpy.ma.flatten_structured_array
+-------------------------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermemulx
+----------------------------------------------
+FUNCTION: numpy.fmod
+--------------------
+FUNCTION: numpy.strings.lstrip
+------------------------------
+FUNCTION: numpy.ma.extras.ma.umath.startswith
+---------------------------------------------
+FUNCTION: numpy.polynomial.hermite.hermint
+------------------------------------------
+FUNCTION: numpy.polynomial.laguerre.lagfit
+------------------------------------------
+FUNCTION: numpy.ma.unique
+-------------------------
+FUNCTION: numpy.ma.extras.ma.umath.clip
+---------------------------------------
+FUNCTION: numpy.polynomial.laguerre.lagvander2d
+-----------------------------------------------
+FUNCTION: numpy.geterr
+----------------------
+FUNCTION: numpy.ma.union1d
+--------------------------
+FUNCTION: numpy.fromfunction
+----------------------------
+FUNCTION: numpy.polynomial.hermite.hermroots
+--------------------------------------------
+FUNCTION: numpy.frexp
+---------------------
+FUNCTION: numpy.ma.apply_along_axis
+-----------------------------------
+FUNCTION: numpy.polynomial.polynomial.polysub
+---------------------------------------------
+FUNCTION: numpy.loadtxt
+-----------------------
+FUNCTION: numpy.polynomial.hermite.hermcompanion
+------------------------------------------------
+FUNCTION: numpy.testing.print_assert_equal
+------------------------------------------
+FUNCTION: numpy.ma.extras.ma.umath.rindex
+-----------------------------------------
+FUNCTION: numpy.ma.vander
+-------------------------
+FUNCTION: numpy.conj
+--------------------
+FUNCTION: numpy.polynomial.chebyshev.chebder
+--------------------------------------------
+FUNCTION: numpy.f2py.symbolic.as_array
+--------------------------------------
+FUNCTION: numpy.polynomial.chebyshev.chebval3d
+----------------------------------------------
+FUNCTION: numpy.polynomial.hermite.hermgrid3d
+---------------------------------------------
+FUNCTION: numpy.polynomial.hermite.herm2poly
+--------------------------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermeder
+---------------------------------------------
+FUNCTION: numpy.testing.overrides.allows_array_ufunc_override
+-------------------------------------------------------------
+FUNCTION: numpy.ma.allclose
+---------------------------
+FUNCTION: numpy.ma.cov
+----------------------
+FUNCTION: numpy.ma.extras.ma.umath.count
+----------------------------------------
+FUNCTION: numpy.testing.decorate_methods
+----------------------------------------
+FUNCTION: numpy.lib.format.drop_metadata
+----------------------------------------
+FUNCTION: numpy.polynomial.polynomial.polymul
+---------------------------------------------
+FUNCTION: numpy.char.splitlines
+-------------------------------
+FUNCTION: numpy.ma.allequal
+---------------------------
+FUNCTION: numpy.polynomial.chebyshev.chebpts1
+---------------------------------------------
+FUNCTION: numpy.strings.islower
+-------------------------------
+FUNCTION: numpy.ma.power
+------------------------
+FUNCTION: numpy.ma.isMA
+-----------------------
+FUNCTION: numpy.genfromtxt
+--------------------------
+FUNCTION: numpy.arctan2
+-----------------------
+FUNCTION: numpy.ma.masked_outside
+---------------------------------
+FUNCTION: numpy.polynomial.chebyshev.chebdiv
+--------------------------------------------
+FUNCTION: numpy.polynomial.hermite_e.poly2herme
+-----------------------------------------------
+FUNCTION: numpy.isfortran
+-------------------------
+FUNCTION: numpy.ma.masked_less_equal
+------------------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermeline
+----------------------------------------------
+FUNCTION: numpy.lib.format.read_magic
+-------------------------------------
+FUNCTION: numpy.polynomial.laguerre.lagvander
+---------------------------------------------
+FUNCTION: numpy.rec.array
+-------------------------
+FUNCTION: numpy.f2py.symbolic.as_apply
+--------------------------------------
+FUNCTION: numpy.testing.memusage
+--------------------------------
+FUNCTION: numpy.polynomial.polyutils.mapparms
+---------------------------------------------
+FUNCTION: numpy.strings.endswith
+--------------------------------
+FUNCTION: numpy.ma.extras.ma.formatargspec
+------------------------------------------
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.f2cexpr
+---------------------------------------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermepow
+---------------------------------------------
+FUNCTION: numpy.ma.compressed
+-----------------------------
+FUNCTION: numpy.strings.isnumeric
+---------------------------------
+FUNCTION: numpy.polynomial.hermite.poly2herm
+--------------------------------------------
+FUNCTION: numpy.polynomial.chebyshev.chebval
+--------------------------------------------
+FUNCTION: numpy.ma.masked_less
+------------------------------
