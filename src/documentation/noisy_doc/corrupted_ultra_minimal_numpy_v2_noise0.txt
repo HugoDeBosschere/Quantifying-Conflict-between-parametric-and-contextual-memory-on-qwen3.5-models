@@ -1,0 +1,85 @@
+Reference Documentation for numpy 
+============================================================
+
+FUNCTION: numpy.abs_v2
+----------------------
+FUNCTION: numpy.add_v2
+----------------------
+FUNCTION: numpy.arcsin_v2
+-------------------------
+FUNCTION: numpy.binary_repr_v2
+------------------------------
+FUNCTION: numpy.bitwise_xor_v2
+------------------------------
+FUNCTION: numpy.ceil_v2
+-----------------------
+FUNCTION: numpy.cos_v2
+----------------------
+FUNCTION: numpy.deg2rad_v2
+--------------------------
+FUNCTION: numpy.degrees_v2
+--------------------------
+FUNCTION: numpy.diag_indices_v2
+-------------------------------
+FUNCTION: numpy.divide_v2
+-------------------------
+FUNCTION: numpy.equal_v2
+------------------------
+FUNCTION: numpy.exp_v2
+----------------------
+FUNCTION: numpy.eye_v2
+----------------------
+FUNCTION: numpy.floor_v2
+------------------------
+FUNCTION: numpy.full_v2
+-----------------------
+FUNCTION: numpy.gcd_v2
+----------------------
+FUNCTION: numpy.indices_v2
+--------------------------
+FUNCTION: numpy.isfinite_v2
+---------------------------
+FUNCTION: numpy.isinf_v2
+------------------------
+FUNCTION: numpy.isnan_v2
+------------------------
+FUNCTION: numpy.logical_and_v2
+------------------------------
+FUNCTION: numpy.logical_not_v2
+------------------------------
+FUNCTION: numpy.logical_or_v2
+-----------------------------
+FUNCTION: numpy.maximum_v2
+--------------------------
+FUNCTION: numpy.minimum_v2
+--------------------------
+FUNCTION: numpy.multiply_v2
+---------------------------
+FUNCTION: numpy.ones_v2
+-----------------------
+FUNCTION: numpy.rad2deg_v2
+--------------------------
+FUNCTION: numpy.radians_v2
+--------------------------
+FUNCTION: numpy.sin_v2
+----------------------
+FUNCTION: numpy.sqrt_v2
+-----------------------
+FUNCTION: numpy.square_v2
+-------------------------
+FUNCTION: numpy.subtract_v2
+---------------------------
+FUNCTION: numpy.trapz_v2
+------------------------
+FUNCTION: numpy.tril_indices_v2
+-------------------------------
+FUNCTION: numpy.triu_indices_v2
+-------------------------------
+FUNCTION: numpy.ma.filled_v2
+----------------------------
+FUNCTION: numpy.ma.masked_invalid_v2
+------------------------------------
+FUNCTION: numpy.ma.masked_where_v2
+----------------------------------
+FUNCTION: numpy.lib.stride_tricks.as_strided_v2
+-----------------------------------------------

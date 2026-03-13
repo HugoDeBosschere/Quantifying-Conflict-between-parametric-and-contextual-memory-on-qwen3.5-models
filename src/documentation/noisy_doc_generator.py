@@ -448,7 +448,7 @@ def generate_all_docs(perturbation_key, noise_ratio, ds1000_path,
     interest_file = os.path.join(
         output_dir, f"interest_functions_{perturbation_key}.txt"
     )
-    with open(interest_file, 'w') as f:
+    with open(interest_file, 'w', encoding='utf-8') as f:
         for func_name in sorted(interest_set):
             f.write(func_name + "\n")
     print(f"\nInterest functions list saved to: {interest_file}")
@@ -457,6 +457,7 @@ def generate_all_docs(perturbation_key, noise_ratio, ds1000_path,
     print(f"  - {os.path.basename(full_path)}")
     print(f"  - {os.path.basename(minimal_path)}")
     print(f"  - {os.path.basename(ultra_path)}")
+    print(f"  - {os.path.basename(interest_file)}  (liste des {len(interest_set)} fonctions d'intérêt)")
 
     return stats, interest_set
 
