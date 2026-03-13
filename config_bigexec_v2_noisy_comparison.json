@@ -1,0 +1,82 @@
+{
+    "exec": {
+            "timeout": 120
+            },
+    "llm": {"model"      : ["qwen2.5-coder:32b"],
+            "temperature":0,
+            "num_ctx": 30000,
+            "api_url"    : "http://localhost:11434/api",
+            "_comment_models": "Comparaison des perfs selon le bruit de doc (minimal + ultra_minimal, noise 0→100)",
+            "_model_suggestions_16k_ctx": ["qwen2.5-coder:14b", "qwen2.5-coder:7b", "deepseek-coder:33b", "deepseek-coder:6.7b", "codellama:34b", "codellama:13b", "qwen3-coder-next"]
+            },
+    "data": {
+            "origin_data" : "../data/ds1000_npyOnly.jsonl",
+            "corrupted_data" : "../data/ds1000_npyOnly_corrupted_v2.jsonl"
+            },
+    "real_lib": {
+            "name"           : "Numpy",
+            "custom_lib_path": null,
+            "system_prompt"  : "You are a Python Data Science expert.\n Complete the code between Markdowns to solve the problem.\n IMPORTANT CONSTRAINTS:\n 1. Assume that input data (arrays) is ALREADY LOADED.\n2. Do NOT redefine input variables or create mock data only the code to be executed is required.\n 3. Do NOT import standard libraries.\n 4. Do not import functions from standard librairies \n 5. Return ONLY the code inside a markdown block.\n 6. the numpy function you use must all start with 'np.'\n 7. Be aware of which variable you should modify \n IMPORTANT: The generated code must be strictly executable Python. Do NOT include comments showing the expected output, console logs, or print results (like [1. 2. 3.] or array(...)) inside the code block. This causes SyntaxErrors. ",
+            "documentation" :{
+                "nothing" : {
+                               "intro" : "",
+                               "path" : ""
+                                },
+                "minimal" : {
+                               "intro" : "Here is a minimal version of the numpy library documentation that you can use to complete the code.",
+                               "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/real_minimal_numpy.txt"
+                        },
+                "ultra_minimal" : {
+                               "intro" : "Here is an ultra minimal version of the numpy library documentation that you can use to complete the code.",
+                               "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/real_ultra_minimal_numpy.txt"
+                        }
+                        }
+                        },
+    "new_lib_injection": {
+            "name"           : "WrapV2Numpy",
+            "custom_lib_path": "/usr/users/sdim/sdim_25/memory_code_eval/src",
+            "system_prompt"  : "You are a Python Data Science expert.\n Complete the code between Markdowns to solve the problem.\n IMPORTANT CONSTRAINTS:\n 1. Assume that input data (arrays) is ALREADY LOADED.\n2. Do NOT redefine input variables or create mock data only the code to be executed is required.\n 3. Do NOT import standard libraries.\n 4. Do not import functions from standard librairies \n 5. Return ONLY the code inside a markdown block.\n 6. the numpy function you use must all start with 'np.' (with the _v2 suffix: e.g. np.add_v2, np.mean_v2).\n 7. Be aware of which variable you should modify \n IMPORTANT: The generated code must be strictly executable Python. Do NOT include comments showing the expected output, console logs, or print results (like [1. 2. 3.] or array(...)) inside the code block. This causes SyntaxErrors. ",
+            "documentation" :{
+                "minimal_noise0" : {
+                    "intro" : "Documentation numpy _v2 (noise 0%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_minimal_numpy_v2_noise0.txt"
+                },
+                "minimal_noise25" : {
+                    "intro" : "Documentation numpy _v2 (noise 25%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_minimal_numpy_v2_noise25.txt"
+                },
+                "minimal_noise50" : {
+                    "intro" : "Documentation numpy _v2 (noise 50%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_minimal_numpy_v2_noise50.txt"
+                },
+                "minimal_noise75" : {
+                    "intro" : "Documentation numpy _v2 (noise 75%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_minimal_numpy_v2_noise75.txt"
+                },
+                "minimal_noise100" : {
+                    "intro" : "Documentation numpy _v2 (noise 100%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_minimal_numpy_v2_noise100.txt"
+                },
+                "ultra_minimal_noise0" : {
+                    "intro" : "Documentation numpy _v2 ultra-minimal (noise 0%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_ultra_minimal_numpy_v2_noise0.txt"
+                },
+                "ultra_minimal_noise25" : {
+                    "intro" : "Documentation numpy _v2 ultra-minimal (noise 25%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_ultra_minimal_numpy_v2_noise25.txt"
+                },
+                "ultra_minimal_noise50" : {
+                    "intro" : "Documentation numpy _v2 ultra-minimal (noise 50%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_ultra_minimal_numpy_v2_noise50.txt"
+                },
+                "ultra_minimal_noise75" : {
+                    "intro" : "Documentation numpy _v2 ultra-minimal (noise 75%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_ultra_minimal_numpy_v2_noise75.txt"
+                },
+                "ultra_minimal_noise100" : {
+                    "intro" : "Documentation numpy _v2 ultra-minimal (noise 100%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_ultra_minimal_numpy_v2_noise100.txt"
+                }
+                                }
+                        }
+}
