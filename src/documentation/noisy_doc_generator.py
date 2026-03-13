@@ -5,9 +5,11 @@ LLM performance with varying documentation density.
 Concept:
     - Interest functions: numpy functions actually used in DS1000 exercises
       (extracted from reference_code, prompt, and optionally LLM results)
-      → these are MODIFIED according to the perturbation (e.g. _v2, capitalize)
     - Noise functions: other numpy functions not directly used in exercises
-      → these appear with their REAL (unmodified) numpy documentation
+    - ALL included functions (interest + noise) are MODIFIED according to the
+      chosen perturbation (e.g. _v2, underscore, capitalize). Only the
+      SELECTION of which functions apparaissent comme « bruit » dépend de
+      noise_ratio, plus la distinction interest / noise utilisée dans les stats.
     - noise_ratio controls what fraction of non-interest functions are included:
         0.0 → only interest functions (modified), no noise
         0.5 → interest functions (modified) + 50% of other functions (unmodified)
@@ -250,8 +252,10 @@ def select_functions(all_functions, interest_set, noise_ratio, seed=42):
     Split functions into interest/noise, select noise subset,
     and return the combined list to include in the doc.
 
-    Interest functions will be MODIFIED (perturbation applied).
-    Noise functions will appear with their REAL numpy documentation.
+    Interest functions will be marked as such (is_interest=True) for stats.
+    Both interest and noise functions will later be MODIFIED according to the
+    chosen perturbation; noise_ratio only controls which extra functions are
+    added as « bruit ».
 
     Returns:
         selected : list of (prefix, name, obj, is_interest) tuples
@@ -294,7 +298,8 @@ def generate_noisy_full_doc(selected_functions, perturbation_key,
                             list_shorthand, output_file):
     """
     Generate full doc (name + signature + full docstring).
-    Interest functions are MODIFIED, noise functions use REAL numpy doc.
+    All included functions (interest + noise) are MODIFIED according to the
+    perturbation.
     """
     p = PERTURBATIONS[perturbation_key]
 
@@ -307,15 +312,12 @@ def generate_noisy_full_doc(selected_functions, perturbation_key,
             if not raw_doc:
                 continue
 
-            if is_interest:
-                display_name = p["modify_func_name"](name)
-                new_doc = p["modify_signature_full"](raw_doc)
-                new_doc = supress_see_also(new_doc)
-                for sh in list_shorthand:
-                    new_doc = p["modify_doc_text"](new_doc, sh)
-            else:
-                display_name = name
-                new_doc = supress_see_also(raw_doc)
+            # Toutes les fonctions (intérêt et bruit) sont perturbées
+            display_name = p["modify_func_name"](name)
+            new_doc = p["modify_signature_full"](raw_doc)
+            new_doc = supress_see_also(new_doc)
+            for sh in list_shorthand:
+                new_doc = p["modify_doc_text"](new_doc, sh)
 
             full_name = f"{prefix}.{display_name}"
             f.write(f"FUNCTION: {full_name}\n")
@@ -340,7 +342,8 @@ def generate_noisy_minimal_doc(selected_functions, perturbation_key,
                                output_file):
     """
     Generate minimal doc (name + first-line signature).
-    Interest functions are MODIFIED, noise functions use REAL signature.
+    All included functions (interest + noise) are MODIFIED according to the
+    perturbation.
     """
     p = PERTURBATIONS[perturbation_key]
 
@@ -353,12 +356,9 @@ def generate_noisy_minimal_doc(selected_functions, perturbation_key,
             if not raw_doc:
                 continue
 
-            if is_interest:
-                display_name = p["modify_func_name"](name)
-                sig = p["extract_modify_signature"](raw_doc)
-            else:
-                display_name = name
-                sig = _extract_real_signature(raw_doc)
+            # Toutes les fonctions (intérêt et bruit) sont perturbées
+            display_name = p["modify_func_name"](name)
+            sig = p["extract_modify_signature"](raw_doc)
 
             full_name = f"{prefix}.{display_name}"
 
@@ -374,7 +374,8 @@ def generate_noisy_ultra_minimal_doc(selected_functions, perturbation_key,
                                      output_file):
     """
     Generate ultra-minimal doc (name only).
-    Interest functions are MODIFIED, noise functions use REAL name.
+    All included functions (interest + noise) are MODIFIED according to the
+    perturbation.
     """
     p = PERTURBATIONS[perturbation_key]
 
@@ -387,10 +388,8 @@ def generate_noisy_ultra_minimal_doc(selected_functions, perturbation_key,
             if not raw_doc:
                 continue
 
-            if is_interest:
-                display_name = p["modify_func_name"](name)
-            else:
-                display_name = name
+            # Toutes les fonctions (intérêt et bruit) sont perturbées
+            display_name = p["modify_func_name"](name)
 
             full_name = f"{prefix}.{display_name}"
             f.write(f"FUNCTION: {full_name}\n")
