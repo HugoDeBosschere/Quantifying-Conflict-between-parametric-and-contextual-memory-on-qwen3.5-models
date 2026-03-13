@@ -289,6 +289,18 @@ if __name__ == "__main__":
     parser.add_argument("config", help="Chemin vers le fichier de config JSON")
     parser.add_argument("-t", "--task_id", type=int, default=0,
                         help="ID spécifique de la tâche à partir de laquelle relancer l'execution")
+    parser.add_argument("--model", help="Ne lancer que ce modèle précis (sinon tous)")
+    parser.add_argument("--doc", help="Ne lancer que cette documentation (clé dans config)")
+    parser.add_argument(
+        "--control_only",
+        action="store_true",
+        help="Ne lancer que le mode control (vraie librairie)",
+    )
+    parser.add_argument(
+        "--injection_only",
+        action="store_true",
+        help="Ne lancer que le mode injection (lib contrefactuelle)",
+    )
     args = parser.parse_args()
 
     config = load_config_from_path(args.config)
@@ -298,20 +310,38 @@ if __name__ == "__main__":
     list_model_name = config.get("llm", {}).get("model", [])
 
     docu = config.get("new_lib_injection", {}).get("documentation", {})
-    list_doc_name = docu.keys()
+    list_doc_name = list(docu.keys())
 
     docu_control = config.get("real_lib", {}).get("documentation", {})
-    list_doc_name_control = docu_control.keys()
+    list_doc_name_control = list(docu_control.keys())
+
+    # Flags de mode : par défaut on lance control + injection.
+    run_control_mode = not args.injection_only
+    run_injection_mode = not args.control_only
 
     for model_name in list_model_name:
-        # Run control mode with each counterfactual lib
-        for doc_name in list_doc_name_control:
-            llm_client_control = LLMClient(config, model_name, doc_name, mode="control")
-            llm_client_control.warm_up()
-            run_control(args.task_id, llm_client_control, output_path, config)
+        # Filtre optionnel sur le modèle
+        if args.model and model_name != args.model:
+            continue
 
-        # Run injection mode with each counterfactual lib
-        for doc_name in list_doc_name:
-            llm_client = LLMClient(config, model_name, doc_name, mode="injection")
-            llm_client.warm_up()
-            run_benchmark(args.task_id, llm_client, output_path, config)
+        # Run control mode with each real-lib doc
+        if run_control_mode:
+            for doc_name in list_doc_name_control:
+                if args.doc and doc_name != args.doc:
+                    continue
+                llm_client_control = LLMClient(
+                    config, model_name, doc_name, mode="control"
+                )
+                llm_client_control.warm_up()
+                run_control(args.task_id, llm_client_control, output_path, config)
+
+        # Run injection mode with each counterfactual-lib doc
+        if run_injection_mode:
+            for doc_name in list_doc_name:
+                if args.doc and doc_name != args.doc:
+                    continue
+                llm_client = LLMClient(
+                    config, model_name, doc_name, mode="injection"
+                )
+                llm_client.warm_up()
+                run_benchmark(args.task_id, llm_client, output_path, config)

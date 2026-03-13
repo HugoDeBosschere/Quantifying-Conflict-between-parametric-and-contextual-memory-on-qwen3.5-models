@@ -135,16 +135,21 @@ class LLMClient:
             full_prompt = prompt_text
 
         try:
-            response = requests.post(f"{self.api_url}/generate", json={
-                "model": self.model_name,
-                "system": self.system_prompt,
-                "prompt": full_prompt,
-                "stream": False,
-                "options": {
-                    "temperature": self.temperature,
-                    "num_ctx": self.num_ctx
-                }
-            })
+            # Timeout dur : 600s pour éviter de bloquer un job entier sur une seule requête
+            response = requests.post(
+                f"{self.api_url}/generate",
+                json={
+                    "model": self.model_name,
+                    "system": self.system_prompt,
+                    "prompt": full_prompt,
+                    "stream": False,
+                    "options": {
+                        "temperature": self.temperature,
+                        "num_ctx": self.num_ctx,
+                    },
+                },
+                timeout=600,
+            )
             response.raise_for_status()
             data = response.json()
             # Token count : préférer la réponse Ollama (prompt_eval_count), sinon estimation
@@ -153,6 +158,9 @@ class LLMClient:
                 count_token = len(full_prompt) // 3
 
             return data["response"], count_token
+        except requests.exceptions.Timeout:
+            print(f"API Error [{self.model_name}] Timeout après 600s")
+            return None, 0
         except requests.exceptions.HTTPError as e:
             body = (response.text[:500] if getattr(response, "text", None) else "") or ""
             code = getattr(response, "status_code", "?")
