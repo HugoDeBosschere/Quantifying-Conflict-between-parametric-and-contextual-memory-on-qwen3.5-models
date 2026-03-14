@@ -22,14 +22,17 @@ from datetime import datetime
 # ============================================================
 
 def load_results(path):
-    """Load all entries from a results.jsonl file."""
+    """Load all entries from a results.jsonl file. Normalise chaque entrée avec metadata au moins {}."""
     entries = []
     with open(path, 'r', encoding='utf-8') as f:
         for line in f:
             line = line.strip()
             if not line:
                 continue
-            entries.append(json.loads(line))
+            e = json.loads(line)
+            if "metadata" not in e:
+                e["metadata"] = {}
+            entries.append(e)
     return entries
 
 
@@ -190,17 +193,49 @@ def compute_np_function_usage(entries, only_passed=False):
     return counter
 
 
+def detect_unknown_model_and_api_failures(entries):
+    """
+    Détecte les lignes à problème de qualité :
+    - model_name manquant ou "Unknown"
+    - error == "LLM_API_FAILURE"
+    Retourne (unknown_model_entries, api_failure_entries).
+    """
+    unknown_model = []
+    api_failure = []
+    for e in entries:
+        meta = e.get("metadata") or {}
+        model = meta.get("model_name")
+        if model is None or (isinstance(model, str) and (not model.strip() or model.strip().lower() == "unknown")):
+            unknown_model.append({
+                "task_id": e.get("task_id"),
+                "error": e.get("error"),
+                "has_metadata": bool(meta),
+            })
+        if e.get("error") == "LLM_API_FAILURE":
+            api_failure.append({
+                "task_id": e.get("task_id"),
+                "model": meta.get("model_name", "?"),
+                "doc": meta.get("doc_name", "?"),
+                "mode": meta.get("mode", "?"),
+            })
+    return unknown_model, api_failure
+
+
 def compute_error_categories(entries):
     """Categorize errors from failed entries by (model, doc, mode)."""
     cats = defaultdict(lambda: Counter())
     for e in entries:
         if e.get('passed'):
             continue
+        meta = e.get('metadata') or {}
         key = (
-            e['metadata'].get('model_name', '?'),
-            e['metadata'].get('doc_name', '?'),
-            e['metadata'].get('mode', '?'),
+            meta.get('model_name', '?'),
+            meta.get('doc_name', '?'),
+            meta.get('mode', '?'),
         )
+        if e.get('error') == 'LLM_API_FAILURE':
+            cats[key]['llm_api_failure'] += 1
+            continue
         stdout = e.get('stdout', '')
         stderr = e.get('stderr', '')
         combined = stdout + stderr
@@ -258,6 +293,32 @@ def write_report(entries, output_path, source_path):
     n_injection = len(entries) - n_control
     w(f"  Control entries:   {n_control}")
     w(f"  Injection entries: {n_injection}")
+
+    # ---- 0. DATA QUALITY: Unknown model / LLM_API_FAILURE ----
+    section("0. DATA QUALITY — Unknown model & LLM_API_FAILURE")
+
+    unknown_model_entries, api_failure_entries = detect_unknown_model_and_api_failures(entries)
+    w(f"  Entries with missing or 'Unknown' model_name: {len(unknown_model_entries)}")
+    if unknown_model_entries:
+        subsection("Détail (task_id, error)")
+        for u in unknown_model_entries[:30]:
+            w(f"    task_id={u['task_id']}  error={u.get('error', '')!r}  has_metadata={u['has_metadata']}")
+        if len(unknown_model_entries) > 30:
+            w(f"    ... et {len(unknown_model_entries) - 30} autres")
+    w()
+    w(f"  Entries with error LLM_API_FAILURE: {len(api_failure_entries)}")
+    if api_failure_entries:
+        subsection("Répartition par (model, doc, mode)")
+        by_key = defaultdict(int)
+        for a in api_failure_entries:
+            by_key[(a['model'], a['doc'], a['mode'])] += 1
+        for (model, doc, mode), count in sorted(by_key.items()):
+            w(f"    {model:25s} | {doc:15s} | {mode:10s} : {count}")
+        subsection("Exemples (task_id, model, doc) — premiers 20")
+        for a in api_failure_entries[:20]:
+            w(f"    task_id={a['task_id']}  model={a['model']}  doc={a['doc']}  mode={a['mode']}")
+        if len(api_failure_entries) > 20:
+            w(f"    ... et {len(api_failure_entries) - 20} autres")
 
     # ---- 1. GLOBAL STATS ----
     section("1. GLOBAL PASS RATES")

@@ -80,7 +80,10 @@ def load_data(filepath: str) -> dict:
                 continue
 
             meta = res.get("metadata", {})
-            model = meta.get("model_name", "Unknown")
+            model = meta.get("model_name") or ""
+            if not model or model.strip() == "":
+                # Lignes sans metadata (ex. anciennes LLM_API_FAILURE) : on ignore pour le plot
+                continue
             pert = meta.get("perturbation_type", "Unknown")
             passed = 1 if res.get("passed", False) else 0
             doc_type = _doc_type_label(res)

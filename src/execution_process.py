@@ -114,8 +114,10 @@ def evaluate_single_task(task, llm_client, config):
 
     raw_response, count_token = llm_client.query_llm(task['prompt'])
     if not raw_response:
+        metadata = task["metadata"] | llm_client.model_metadata | {"token_count": count_token or 0}
         return {
             "task_id": task_id,
+            "metadata": metadata,
             "passed": False,
             "control_passed": False,
             "error": "LLM_API_FAILURE",
@@ -173,11 +175,14 @@ def evaluate_single_task_control(task, llm_client, config):
 
     raw_response, count_token = llm_client.query_llm(task['prompt'])
     if not raw_response:
+        metadata = task["metadata"] | llm_client.model_metadata | {"token_count": count_token or 0}
         return {
             "task_id": task_id,
+            "metadata": metadata,
             "passed": False,
             "error": "LLM_API_FAILURE",
-            "llm_code": ""
+            "llm_code": "",
+            "is_control": True
         }
 
     code = extract_code_and_fix(raw_response)
