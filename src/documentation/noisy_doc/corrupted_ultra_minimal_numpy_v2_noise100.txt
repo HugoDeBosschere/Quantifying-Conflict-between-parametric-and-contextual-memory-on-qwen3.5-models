@@ -3,16 +3,8 @@ Reference Documentation for numpy
 
 FUNCTION: numpy.abs_v2
 ----------------------
-FUNCTION: numpy.add_v2
-----------------------
 FUNCTION: numpy.arcsin_v2
 -------------------------
-FUNCTION: numpy.binary_repr_v2
-------------------------------
-FUNCTION: numpy.bitwise_xor_v2
-------------------------------
-FUNCTION: numpy.ceil_v2
------------------------
 FUNCTION: numpy.cos_v2
 ----------------------
 FUNCTION: numpy.deg2rad_v2
@@ -21,37 +13,19 @@ FUNCTION: numpy.degrees_v2
 --------------------------
 FUNCTION: numpy.diag_indices_v2
 -------------------------------
-FUNCTION: numpy.divide_v2
--------------------------
-FUNCTION: numpy.equal_v2
-------------------------
 FUNCTION: numpy.exp_v2
-----------------------
-FUNCTION: numpy.eye_v2
 ----------------------
 FUNCTION: numpy.floor_v2
 ------------------------
-FUNCTION: numpy.full_v2
------------------------
 FUNCTION: numpy.gcd_v2
 ----------------------
 FUNCTION: numpy.indices_v2
 --------------------------
-FUNCTION: numpy.isfinite_v2
----------------------------
-FUNCTION: numpy.isinf_v2
-------------------------
 FUNCTION: numpy.isnan_v2
 ------------------------
 FUNCTION: numpy.logical_and_v2
 ------------------------------
-FUNCTION: numpy.logical_not_v2
-------------------------------
-FUNCTION: numpy.logical_or_v2
------------------------------
 FUNCTION: numpy.maximum_v2
---------------------------
-FUNCTION: numpy.minimum_v2
 --------------------------
 FUNCTION: numpy.multiply_v2
 ---------------------------
@@ -59,34 +33,20 @@ FUNCTION: numpy.ones_v2
 -----------------------
 FUNCTION: numpy.rad2deg_v2
 --------------------------
-FUNCTION: numpy.radians_v2
---------------------------
 FUNCTION: numpy.sin_v2
 ----------------------
 FUNCTION: numpy.sqrt_v2
 -----------------------
-FUNCTION: numpy.square_v2
--------------------------
-FUNCTION: numpy.subtract_v2
----------------------------
-FUNCTION: numpy.trapz_v2
-------------------------
-FUNCTION: numpy.tril_indices_v2
--------------------------------
-FUNCTION: numpy.triu_indices_v2
--------------------------------
 FUNCTION: numpy.ma.filled_v2
 ----------------------------
-FUNCTION: numpy.ma.masked_invalid_v2
-------------------------------------
 FUNCTION: numpy.ma.masked_where_v2
 ----------------------------------
-FUNCTION: numpy.lib.stride_tricks.as_strided_v2
------------------------------------------------
 FUNCTION: numpy.acos_v2
 -----------------------
 FUNCTION: numpy.acosh_v2
 ------------------------
+FUNCTION: numpy.add_v2
+----------------------
 FUNCTION: numpy.arcsinh_v2
 --------------------------
 FUNCTION: numpy.arctan_v2
@@ -103,6 +63,8 @@ FUNCTION: numpy.bartlett_v2
 ---------------------------
 FUNCTION: numpy.base_repr_v2
 ----------------------------
+FUNCTION: numpy.binary_repr_v2
+------------------------------
 FUNCTION: numpy.bitwise_and_v2
 ------------------------------
 FUNCTION: numpy.bitwise_count_v2
@@ -115,6 +77,8 @@ FUNCTION: numpy.bitwise_or_v2
 -----------------------------
 FUNCTION: numpy.bitwise_right_shift_v2
 --------------------------------------
+FUNCTION: numpy.bitwise_xor_v2
+------------------------------
 FUNCTION: numpy.blackman_v2
 ---------------------------
 FUNCTION: numpy.bmat_v2
@@ -123,18 +87,26 @@ FUNCTION: numpy.broadcast_shapes_v2
 -----------------------------------
 FUNCTION: numpy.cbrt_v2
 -----------------------
+FUNCTION: numpy.ceil_v2
+-----------------------
 FUNCTION: numpy.conj_v2
 -----------------------
 FUNCTION: numpy.copysign_v2
 ---------------------------
 FUNCTION: numpy.cosh_v2
 -----------------------
+FUNCTION: numpy.divide_v2
+-------------------------
 FUNCTION: numpy.divmod_v2
 -------------------------
+FUNCTION: numpy.equal_v2
+------------------------
 FUNCTION: numpy.exp2_v2
 -----------------------
 FUNCTION: numpy.expm1_v2
 ------------------------
+FUNCTION: numpy.eye_v2
+----------------------
 FUNCTION: numpy.fabs_v2
 -----------------------
 FUNCTION: numpy.float_power_v2
@@ -157,6 +129,8 @@ FUNCTION: numpy.fromfunction_v2
 -------------------------------
 FUNCTION: numpy.fromregex_v2
 ----------------------------
+FUNCTION: numpy.full_v2
+-----------------------
 FUNCTION: numpy.genfromtxt_v2
 -----------------------------
 FUNCTION: numpy.get_include_v2
@@ -187,8 +161,12 @@ FUNCTION: numpy.info_v2
 -----------------------
 FUNCTION: numpy.isdtype_v2
 --------------------------
+FUNCTION: numpy.isfinite_v2
+---------------------------
 FUNCTION: numpy.isfortran_v2
 ----------------------------
+FUNCTION: numpy.isinf_v2
+------------------------
 FUNCTION: numpy.isnat_v2
 ------------------------
 FUNCTION: numpy.isscalar_v2
@@ -223,6 +201,10 @@ FUNCTION: numpy.logaddexp_v2
 ----------------------------
 FUNCTION: numpy.logaddexp2_v2
 -----------------------------
+FUNCTION: numpy.logical_not_v2
+------------------------------
+FUNCTION: numpy.logical_or_v2
+-----------------------------
 FUNCTION: numpy.logical_xor_v2
 ------------------------------
 FUNCTION: numpy.mask_indices_v2
@@ -231,6 +213,8 @@ FUNCTION: numpy.matmul_v2
 -------------------------
 FUNCTION: numpy.matvec_v2
 -------------------------
+FUNCTION: numpy.minimum_v2
+--------------------------
 FUNCTION: numpy.mintypecode_v2
 ------------------------------
 FUNCTION: numpy.mod_v2
@@ -249,6 +233,8 @@ FUNCTION: numpy.pow_v2
 ----------------------
 FUNCTION: numpy.printoptions_v2
 -------------------------------
+FUNCTION: numpy.radians_v2
+--------------------------
 FUNCTION: numpy.reciprocal_v2
 -----------------------------
 FUNCTION: numpy.require_v2
@@ -277,12 +263,22 @@ FUNCTION: numpy.sinh_v2
 -----------------------
 FUNCTION: numpy.spacing_v2
 --------------------------
+FUNCTION: numpy.square_v2
+-------------------------
+FUNCTION: numpy.subtract_v2
+---------------------------
 FUNCTION: numpy.tan_v2
 ----------------------
 FUNCTION: numpy.tanh_v2
 -----------------------
+FUNCTION: numpy.trapz_v2
+------------------------
 FUNCTION: numpy.tri_v2
 ----------------------
+FUNCTION: numpy.tril_indices_v2
+-------------------------------
+FUNCTION: numpy.triu_indices_v2
+-------------------------------
 FUNCTION: numpy.trunc_v2
 ------------------------
 FUNCTION: numpy.typename_v2
@@ -881,6 +877,8 @@ FUNCTION: numpy.ma.masked_greater_equal_v2
 ------------------------------------------
 FUNCTION: numpy.ma.masked_inside_v2
 -----------------------------------
+FUNCTION: numpy.ma.masked_invalid_v2
+------------------------------------
 FUNCTION: numpy.ma.masked_less_v2
 ---------------------------------
 FUNCTION: numpy.ma.masked_less_equal_v2
@@ -1017,6 +1015,8 @@ FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.verify_matching_signatures_v2
 ------------------------------------------------------------------------------
 FUNCTION: numpy.lib.add_newdoc_v2
 ---------------------------------
+FUNCTION: numpy.lib.stride_tricks.as_strided_v2
+-----------------------------------------------
 FUNCTION: numpy.lib.introspect.opt_func_info_v2
 -----------------------------------------------
 FUNCTION: numpy.lib.format.descr_to_dtype_v2

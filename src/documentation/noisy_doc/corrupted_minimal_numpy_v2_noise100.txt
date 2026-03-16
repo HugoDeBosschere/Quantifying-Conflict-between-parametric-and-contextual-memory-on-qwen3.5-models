@@ -5,25 +5,9 @@ FUNCTION: numpy.abs_v2
 ----------------------
 absolute_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
-FUNCTION: numpy.add_v2
-----------------------
-add_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
 FUNCTION: numpy.arcsin_v2
 -------------------------
 arcsin_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.binary_repr_v2
-------------------------------
-
-########################################
-FUNCTION: numpy.bitwise_xor_v2
-------------------------------
-bitwise_xor_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.ceil_v2
------------------------
-ceil_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
 FUNCTION: numpy.cos_v2
 ----------------------
@@ -41,29 +25,13 @@ FUNCTION: numpy.diag_indices_v2
 -------------------------------
 
 ########################################
-FUNCTION: numpy.divide_v2
--------------------------
-divide_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.equal_v2
-------------------------
-equal_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
 FUNCTION: numpy.exp_v2
 ----------------------
 exp_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
-FUNCTION: numpy.eye_v2
-----------------------
-
-########################################
 FUNCTION: numpy.floor_v2
 ------------------------
 floor_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.full_v2
------------------------
-
 ########################################
 FUNCTION: numpy.gcd_v2
 ----------------------
@@ -73,14 +41,6 @@ FUNCTION: numpy.indices_v2
 --------------------------
 
 ########################################
-FUNCTION: numpy.isfinite_v2
----------------------------
-isfinite_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.isinf_v2
-------------------------
-isinf_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
 FUNCTION: numpy.isnan_v2
 ------------------------
 isnan_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
@@ -89,21 +49,9 @@ FUNCTION: numpy.logical_and_v2
 ------------------------------
 logical_and_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
-FUNCTION: numpy.logical_not_v2
-------------------------------
-logical_not_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.logical_or_v2
------------------------------
-logical_or_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
 FUNCTION: numpy.maximum_v2
 --------------------------
 maximum_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.minimum_v2
---------------------------
-minimum_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
 FUNCTION: numpy.multiply_v2
 ---------------------------
@@ -117,10 +65,6 @@ FUNCTION: numpy.rad2deg_v2
 --------------------------
 rad2deg_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
-FUNCTION: numpy.radians_v2
---------------------------
-radians_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
 FUNCTION: numpy.sin_v2
 ----------------------
 sin_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
@@ -129,40 +73,12 @@ FUNCTION: numpy.sqrt_v2
 -----------------------
 sqrt_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
-FUNCTION: numpy.square_v2
--------------------------
-square_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.subtract_v2
----------------------------
-subtract_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.trapz_v2
-------------------------
-
-########################################
-FUNCTION: numpy.tril_indices_v2
--------------------------------
-
-########################################
-FUNCTION: numpy.triu_indices_v2
--------------------------------
-
-########################################
 FUNCTION: numpy.ma.filled_v2
 ----------------------------
 
 ########################################
-FUNCTION: numpy.ma.masked_invalid_v2
-------------------------------------
-
-########################################
 FUNCTION: numpy.ma.masked_where_v2
 ----------------------------------
-
-########################################
-FUNCTION: numpy.lib.stride_tricks.as_strided_v2
------------------------------------------------
 
 ########################################
 FUNCTION: numpy.acos_v2
@@ -172,6 +88,10 @@ arccos_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=N
 FUNCTION: numpy.acosh_v2
 ------------------------
 arccosh_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.add_v2
+----------------------
+add_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
 FUNCTION: numpy.arcsinh_v2
 --------------------------
@@ -205,6 +125,10 @@ FUNCTION: numpy.base_repr_v2
 ----------------------------
 
 ########################################
+FUNCTION: numpy.binary_repr_v2
+------------------------------
+
+########################################
 FUNCTION: numpy.bitwise_and_v2
 ------------------------------
 bitwise_and_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
@@ -229,6 +153,10 @@ FUNCTION: numpy.bitwise_right_shift_v2
 --------------------------------------
 right_shift_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
+FUNCTION: numpy.bitwise_xor_v2
+------------------------------
+bitwise_xor_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
 FUNCTION: numpy.blackman_v2
 ---------------------------
 
@@ -245,6 +173,10 @@ FUNCTION: numpy.cbrt_v2
 -----------------------
 cbrt_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
+FUNCTION: numpy.ceil_v2
+-----------------------
+ceil_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
 FUNCTION: numpy.conj_v2
 -----------------------
 conjugate_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
@@ -257,9 +189,17 @@ FUNCTION: numpy.cosh_v2
 -----------------------
 cosh_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
+FUNCTION: numpy.divide_v2
+-------------------------
+divide_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
 FUNCTION: numpy.divmod_v2
 -------------------------
 divmod_v2(x1, x2[, out1, out2], / [, out=(None, None)], *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.equal_v2
+------------------------
+equal_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
 FUNCTION: numpy.exp2_v2
 -----------------------
@@ -268,6 +208,10 @@ exp2_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=Non
 FUNCTION: numpy.expm1_v2
 ------------------------
 expm1_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.eye_v2
+----------------------
+
 ########################################
 FUNCTION: numpy.fabs_v2
 -----------------------
@@ -311,6 +255,10 @@ FUNCTION: numpy.fromfunction_v2
 ########################################
 FUNCTION: numpy.fromregex_v2
 ----------------------------
+
+########################################
+FUNCTION: numpy.full_v2
+-----------------------
 
 ########################################
 FUNCTION: numpy.genfromtxt_v2
@@ -373,9 +321,17 @@ FUNCTION: numpy.isdtype_v2
 --------------------------
 
 ########################################
+FUNCTION: numpy.isfinite_v2
+---------------------------
+isfinite_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
 FUNCTION: numpy.isfortran_v2
 ----------------------------
 
+########################################
+FUNCTION: numpy.isinf_v2
+------------------------
+isinf_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
 FUNCTION: numpy.isnat_v2
 ------------------------
@@ -445,6 +401,14 @@ FUNCTION: numpy.logaddexp2_v2
 -----------------------------
 logaddexp2_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
+FUNCTION: numpy.logical_not_v2
+------------------------------
+logical_not_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.logical_or_v2
+-----------------------------
+logical_or_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
 FUNCTION: numpy.logical_xor_v2
 ------------------------------
 logical_xor_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
@@ -460,6 +424,10 @@ matmul_v2(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, su
 FUNCTION: numpy.matvec_v2
 -------------------------
 matvec_v2(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
+########################################
+FUNCTION: numpy.minimum_v2
+--------------------------
+minimum_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
 FUNCTION: numpy.mintypecode_v2
 ------------------------------
@@ -496,6 +464,10 @@ power_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dty
 FUNCTION: numpy.printoptions_v2
 -------------------------------
 
+########################################
+FUNCTION: numpy.radians_v2
+--------------------------
+radians_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
 FUNCTION: numpy.reciprocal_v2
 -----------------------------
@@ -553,6 +525,14 @@ FUNCTION: numpy.spacing_v2
 --------------------------
 spacing_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
+FUNCTION: numpy.square_v2
+-------------------------
+square_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.subtract_v2
+---------------------------
+subtract_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
 FUNCTION: numpy.tan_v2
 ----------------------
 tan_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
@@ -561,8 +541,20 @@ FUNCTION: numpy.tanh_v2
 -----------------------
 tanh_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
+FUNCTION: numpy.trapz_v2
+------------------------
+
+########################################
 FUNCTION: numpy.tri_v2
 ----------------------
+
+########################################
+FUNCTION: numpy.tril_indices_v2
+-------------------------------
+
+########################################
+FUNCTION: numpy.triu_indices_v2
+-------------------------------
 
 ########################################
 FUNCTION: numpy.trunc_v2
@@ -1761,6 +1753,10 @@ FUNCTION: numpy.ma.masked_inside_v2
 -----------------------------------
 
 ########################################
+FUNCTION: numpy.ma.masked_invalid_v2
+------------------------------------
+
+########################################
 FUNCTION: numpy.ma.masked_less_v2
 ---------------------------------
 
@@ -2031,6 +2027,10 @@ FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.verify_matching_signatures_v2
 ########################################
 FUNCTION: numpy.lib.add_newdoc_v2
 ---------------------------------
+
+########################################
+FUNCTION: numpy.lib.stride_tricks.as_strided_v2
+-----------------------------------------------
 
 ########################################
 FUNCTION: numpy.lib.introspect.opt_func_info_v2
