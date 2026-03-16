@@ -1,0 +1,34 @@
+This document describes the **rules of the modified NumPy-like library with the `_v2` suffix** you must use to solve the problems.
+
+You will NOT use standard NumPy symbols. You must strictly follow the rules below.
+
+1. Renamed NumPy API with a `_v2` suffix
+   - Every NumPy function, method or attribute that normally appears without a suffix is renamed by adding `_v2` at the end.
+   - You must always call the `_v2` versions, never the original NumPy names.
+   - Examples of name changes:
+     - `np.array`      → `np.array_v2`
+     - `np.linspace`   → `np.linspace_v2`
+     - `np.abs` / `np.absolute` → `np.abs_v2` / `np.absolute_v2`
+     - `np.newaxis`    → `np.newaxis_v2`
+     - `np.arccos`     → `np.arccos_v2`
+
+2. How to write code with the `_v2` library
+   - Import as usual, but always use the `_v2` symbols in your code:
+     - `import numpy as np`
+     - Correct: `x = np.array_v2([1, 2, 3])`
+     - Incorrect: `x = np.array([1, 2, 3])`  (this is NOT allowed)
+   - When in doubt, take the standard NumPy name and add the `_v2` suffix.
+   - Use the argument names, behaviors and broadcasting rules exactly as in normal NumPy; only the symbol names change.
+
+3. Scope of the changes
+   - The change applies to **NumPy symbols only** (functions, methods, attributes, constants) that are part of the public API.
+   - Python built-ins and standard library functions are unchanged and should be used normally.
+   - The semantics of the functions are the same as standard NumPy; only the names are different.
+
+4. Critical requirements
+   - Never call the non-`_v2` NumPy functions (e.g., `np.array`, `np.linspace`, `np.abs`, `np.newaxis`, etc.).
+   - Assume the evaluation environment only exposes the `_v2` versions. Using the original names may cause your solution to fail.
+   - If you are unsure about a NumPy call, search for its `_v2` version in the provided documentation (e.g., look for `numpy.function_name_v2`).
+
+Always write your final code using these `_v2` NumPy symbols only.
+

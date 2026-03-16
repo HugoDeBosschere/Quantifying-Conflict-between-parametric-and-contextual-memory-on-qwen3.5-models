@@ -50,10 +50,17 @@ def _injection_doc_sort_key(doc_name: str) -> tuple:
 
 def load_noisy_doc_data(filepath: str) -> tuple[dict, list]:
     """
-    Charge results.jsonl et construit data[model][doc_label] = {'success': int, 'total': int}.
+    Charge results.jsonl et construit data[model][doc_label] = {
+        'success': int, 'total': int,            # métrique injection (lib contrefactuelle)
+        'cp_success': int, 'cp_total': int       # métrique control_passed (lib d'origine)
+    }.
     Retourne (data, ordered_doc_labels) pour un ordre d'affichage cohérent.
     """
-    data = defaultdict(lambda: defaultdict(lambda: {"success": 0, "total": 0}))
+    data = defaultdict(
+        lambda: defaultdict(
+            lambda: {"success": 0, "total": 0, "cp_success": 0, "cp_total": 0}
+        )
+    )
 
     if not os.path.isfile(filepath):
         print(f"❌ Fichier introuvable : {filepath}", file=sys.stderr)
@@ -75,9 +82,19 @@ def load_noisy_doc_data(filepath: str) -> tuple[dict, list]:
             doc_name = meta.get("doc_name") or ""
             is_control = res.get("is_control", False)
             label = _normalize_doc_label(doc_name, is_control)
-            data[model][label]["total"] += 1
+            entry = data[model][label]
+
+            # Métrique principale : succès dans le mode courant (ici surtout injection)
+            entry["total"] += 1
             if res.get("passed", False):
-                data[model][label]["success"] += 1
+                entry["success"] += 1
+
+            # Métrique control_passed : même code évalué avec la vraie lib Numpy.
+            # On ne la renseigne que pour les lignes injection (is_control=False).
+            if not is_control:
+                entry["cp_total"] += 1
+                if res.get("control_passed", False):
+                    entry["cp_success"] += 1
 
     # Ordre d'affichage : controls d'abord (nothing, minimal, ultra_minimal), puis injection par famille et noise
     control_order = ["Control: nothing", "Control: minimal", "Control: ultra_minimal"]
@@ -136,8 +153,12 @@ def plot_noisy_doc_histogram(data: dict, ordered_labels: list, output_path: str)
     """
     Histogramme : abscisse = docs (controls + injection), ordonnée = taux de réussite.
     - Couleurs : controls (gris), minimal_* (bleu), ultra_minimal_* (orange).
+    - Deux métriques par doc (quand dispo) :
+        * Succès avec la librairie vue par le LLM (lib contrefactuelle) -> passed
+        * Succès du même code évalué avec la vraie Numpy          -> control_passed
+      affichées comme deux barres côte à côte.
     - Texte au-dessus de chaque barre : "success/total" (ex. 65/159).
-    - Une barre par (modèle, doc) ; si plusieurs modèles, barres groupées par doc.
+    - Une paire de barres par (modèle, doc) ; si plusieurs modèles, groupes par doc.
     """
     models = sorted(data.keys())
     if not models or not ordered_labels:
@@ -152,43 +173,90 @@ def plot_noisy_doc_histogram(data: dict, ordered_labels: list, output_path: str)
     n_docs = len(labels_with_data)
     n_models = len(models)
     x = np.arange(n_docs)
-    total_width = 0.8
-    bar_width = total_width / n_models if n_models else total_width
-    offset = (np.arange(n_models) - (n_models - 1) / 2) * bar_width if n_models > 1 else 0
+    total_width = 0.8  # largeur totale par doc (toutes barres/modèles confondus)
+    bar_width_model = total_width / n_models if n_models else total_width
+    offset_model = (
+        (np.arange(n_models) - (n_models - 1) / 2) * bar_width_model if n_models > 1 else np.array([0])
+    )
+
+    # À l'intérieur d'un modèle, on affiche deux barres (passed vs control_passed)
+    # qu'on décale légèrement l'une de l'autre.
+    delta_metric = bar_width_model * 0.25
 
     fig, ax = plt.subplots(figsize=(max(10, n_docs * 0.5), 6))
     # Hachures pour distinguer les modèles quand il y en a plusieurs
     hatches = ["", "//", "\\\\", "xx", "++"][: max(1, n_models)]
 
     for i, model in enumerate(models):
-        rates = []
-        counts = []  # (success, total) pour le texte
+        rates_passed = []
+        counts_passed = []  # (success, total)
+        rates_cp = []
+        counts_cp = []  # (cp_success, cp_total)
         colors = []
         for lb in labels_with_data:
             st = data[model].get(lb, {"success": 0, "total": 0})
-            s, t = st["success"], st["total"]
-            r = (s / t * 100) if t else 0
-            rates.append(r)
-            counts.append((s, t))
+            s, t = st.get("success", 0), st.get("total", 0)
+            scp, tcp = st.get("cp_success", 0), st.get("cp_total", 0)
+
+            r_passed = (s / t * 100) if t else 0
+            r_cp = (scp / tcp * 100) if tcp else 0
+
+            rates_passed.append(r_passed)
+            counts_passed.append((s, t))
+
+            rates_cp.append(r_cp)
+            counts_cp.append((scp, tcp))
             colors.append(_color_for_doc_label(lb))
 
-        pos = x + (offset[i] if n_models > 1 else 0)
-        bars = ax.bar(
-            pos, rates,
-            width=bar_width,
+        pos_center = x + (offset_model[i] if n_models > 1 else 0)
+        pos_passed = pos_center - delta_metric
+        pos_cp = pos_center + delta_metric
+
+        # Barres pour passed (lib contrefactuelle)
+        bars_passed = ax.bar(
+            pos_passed,
+            rates_passed,
+            width=bar_width_model * 0.45,
             color=colors,
             edgecolor="white",
             linewidth=0.8,
             hatch=hatches[i] if n_models > 1 else None,
         )
 
-        # Texte "success/total" au-dessus de chaque barre
-        for j, (bar, (s, t)) in enumerate(zip(bars, counts)):
+        # Barres pour control_passed (lib d'origine), même couleur mais plus claire + hachures
+        bars_cp = ax.bar(
+            pos_cp,
+            rates_cp,
+            width=bar_width_model * 0.45,
+            color=colors,
+            edgecolor="white",
+            linewidth=0.8,
+            alpha=0.55,
+            hatch=".." if n_models == 1 else (hatches[i] + ".."),
+        )
+
+        # Texte "success/total" au-dessus de chaque barre (passed)
+        for bar, (s, t) in zip(bars_passed, counts_passed):
             height = bar.get_height()
             ax.text(
                 bar.get_x() + bar.get_width() / 2,
                 height + 1.5,
                 f"{s}/{t}",
+                ha="center",
+                va="bottom",
+                fontsize=7,
+                rotation=0,
+            )
+
+        # Texte "cp_success/cp_total" au-dessus de chaque barre (control_passed)
+        for bar, (scp, tcp) in zip(bars_cp, counts_cp):
+            if tcp == 0:
+                continue
+            height = bar.get_height()
+            ax.text(
+                bar.get_x() + bar.get_width() / 2,
+                height + 1.5,
+                f"{scp}/{tcp}",
                 ha="center",
                 va="bottom",
                 fontsize=7,
@@ -210,14 +278,32 @@ def plot_noisy_doc_histogram(data: dict, ordered_labels: list, output_path: str)
         Patch(facecolor="#3498db", edgecolor="white", label="Injection: minimal"),
         Patch(facecolor="#e67e22", edgecolor="white", label="Injection: ultra_minimal"),
     ]
+
+    # Légende pour les deux métriques (passed vs control_passed)
+    metric_patches = [
+        Patch(facecolor="white", edgecolor="black", label="Succès (lib contrefactuelle)", hatch=""),
+        Patch(facecolor="white", edgecolor="black", label="Succès control_passed (lib d'origine)", hatch=".."),
+    ]
+
     if n_models > 1:
         model_patches = [
             Patch(facecolor="lightgray", edgecolor="gray", label=m, hatch=hatches[i])
             for i, m in enumerate(models)
         ]
-        ax.legend(handles=legend_elements + model_patches, loc="upper right", fontsize=7, ncol=1, title="Type de doc | Modèle")
+        ax.legend(
+            handles=legend_elements + metric_patches + model_patches,
+            loc="upper right",
+            fontsize=7,
+            ncol=1,
+            title="Type de doc | Métrique | Modèle",
+        )
     else:
-        ax.legend(handles=legend_elements, loc="upper right", fontsize=7, title="Type de doc")
+        ax.legend(
+            handles=legend_elements + metric_patches,
+            loc="upper right",
+            fontsize=7,
+            title="Type de doc | Métrique",
+        )
 
     ax.set_title("Réussite par documentation (controls + injection bruitée)")
     fig.tight_layout()
