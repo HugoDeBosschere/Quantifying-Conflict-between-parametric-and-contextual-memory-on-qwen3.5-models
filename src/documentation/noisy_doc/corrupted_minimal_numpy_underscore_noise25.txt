@@ -1,439 +1,391 @@
 Reference Documentation for numpy 
 ============================================================
 
-FUNCTION: numpy.abs_
---------------------
-absolute_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.add_
---------------------
-add_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.arcsin_
------------------------
-arcsin_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.binary_repr_
-----------------------------
-
-########################################
-FUNCTION: numpy.bitwise_xor_
-----------------------------
-bitwise_xor_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.ceil_
----------------------
-ceil_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.cos_
---------------------
-cos_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.deg2rad_
-------------------------
-deg2rad_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.degrees_
-------------------------
-degrees_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.diag_indices_
------------------------------
-
-########################################
-FUNCTION: numpy.divide_
------------------------
-divide_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.equal_
-----------------------
-equal_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.exp_
---------------------
-exp_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.eye_
---------------------
-
-########################################
-FUNCTION: numpy.floor_
-----------------------
-floor_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.full_
----------------------
-
-########################################
-FUNCTION: numpy.gcd_
---------------------
-gcd_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.indices_
-------------------------
-
-########################################
-FUNCTION: numpy.isfinite_
--------------------------
-isfinite_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.isinf_
-----------------------
-isinf_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.isnan_
-----------------------
-isnan_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.logical_and_
-----------------------------
-logical_and_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.logical_not_
-----------------------------
-logical_not_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.logical_or_
----------------------------
-logical_or_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.maximum_
-------------------------
-maximum_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.minimum_
-------------------------
-minimum_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.multiply_
--------------------------
-multiply_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.ones_
----------------------
-
-########################################
-FUNCTION: numpy.rad2deg_
-------------------------
-rad2deg_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.radians_
-------------------------
-radians_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.sin_
---------------------
-sin_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.sqrt_
----------------------
-sqrt_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.square_
------------------------
-square_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.subtract_
--------------------------
-subtract_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.trapz_
-----------------------
-
-########################################
-FUNCTION: numpy.tril_indices_
------------------------------
-
-########################################
-FUNCTION: numpy.triu_indices_
------------------------------
-
-########################################
-FUNCTION: numpy.ma.filled_
---------------------------
-
-########################################
-FUNCTION: numpy.ma.masked_invalid_
-----------------------------------
-
-########################################
-FUNCTION: numpy.ma.masked_where_
---------------------------------
-
-########################################
-FUNCTION: numpy.lib.stride_tricks.as_strided_
----------------------------------------------
-
-########################################
-FUNCTION: numpy.testing.assert_equal_
--------------------------------------
-
-########################################
-FUNCTION: numpy.expm1_
-----------------------
-expm1_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
 FUNCTION: numpy.polynomial.hermite_e.hermeroots_
 ------------------------------------------------
-
-########################################
-FUNCTION: numpy.polynomial.laguerre.laggrid3d_
-----------------------------------------------
-
-########################################
-FUNCTION: numpy.polynomial.legendre.legmul_
--------------------------------------------
-
-########################################
-FUNCTION: numpy.strings.capitalize_
------------------------------------
-
-########################################
-FUNCTION: numpy.testing.assert__
---------------------------------
-
-########################################
-FUNCTION: numpy.seterr_
------------------------
-
-########################################
-FUNCTION: numpy.ma.shape_
--------------------------
-
-########################################
-FUNCTION: numpy.format_float_positional_
-----------------------------------------
-
-########################################
-FUNCTION: numpy.fmin_
----------------------
-fmin_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.sinh_
----------------------
-sinh_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.polynomial.legendre.leggauss_
----------------------------------------------
-
-########################################
-FUNCTION: numpy.polynomial.legendre.legvander3d_
-------------------------------------------------
-
-########################################
-FUNCTION: numpy.f2py.symbolic.as_number_
-----------------------------------------
-
-########################################
-FUNCTION: numpy.float_power_
-----------------------------
-float_power_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.polynomial.polynomial.polyline_
------------------------------------------------
-
-########################################
-FUNCTION: numpy.ctypeslib.ndpointer_
-------------------------------------
-
-########################################
-FUNCTION: numpy.ma.set_fill_value_
-----------------------------------
-
-########################################
-FUNCTION: numpy.polynomial.legendre.leggrid3d_
-----------------------------------------------
-
-########################################
-FUNCTION: numpy.ma.extras.ma.umath.rindex_
-------------------------------------------
-rindex_(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.f2py.rules.func2subr.show_
-------------------------------------------
-
-########################################
-FUNCTION: numpy.polynomial.hermite_e.hermeval2d_
-------------------------------------------------
-
-########################################
-FUNCTION: numpy.asarray_chkfinite_
-----------------------------------
-
-########################################
-FUNCTION: numpy.strings.mod_
-----------------------------
-
-########################################
-FUNCTION: numpy.ctypeslib.as_ctypes_
-------------------------------------
-
-########################################
-FUNCTION: numpy.ma.apply_over_axes_
------------------------------------
-
-########################################
-FUNCTION: numpy.strings.isupper_
---------------------------------
-isupper_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.polynomial.legendre.legdiv_
--------------------------------------------
-
-########################################
-FUNCTION: numpy.ma.allclose_
-----------------------------
-
-########################################
-FUNCTION: numpy.char.asarray_
------------------------------
-
-########################################
-FUNCTION: numpy.signbit_
-------------------------
-signbit_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.ma.isin_
-------------------------
-
-########################################
-FUNCTION: numpy.tri_
---------------------
-
-########################################
-FUNCTION: numpy.ma.count_masked_
---------------------------------
-
-########################################
-FUNCTION: numpy.ma.asarray_
----------------------------
-
-########################################
-FUNCTION: numpy.polynomial.hermite_e.hermediv_
-----------------------------------------------
-
-########################################
-FUNCTION: numpy.greater_equal_
-------------------------------
-greater_equal_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.array_function_dispatch_
--------------------------------------------------------------------------
-
-########################################
-FUNCTION: numpy.testing.memusage_
----------------------------------
-
-########################################
-FUNCTION: numpy.ma.is_mask_
----------------------------
-
-########################################
-FUNCTION: numpy.positive_
--------------------------
-positive_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.polynomial.hermite.hermgrid3d_
-----------------------------------------------
-
-########################################
-FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_routsign2map_
-------------------------------------------------------------------
-
-########################################
-FUNCTION: numpy.ma.diag_
-------------------------
-
-########################################
-FUNCTION: numpy.polynomial.polynomial.polyder_
-----------------------------------------------
-
-########################################
-FUNCTION: numpy.mask_indices_
------------------------------
-
-########################################
-FUNCTION: numpy.hanning_
-------------------------
 
 ########################################
 FUNCTION: numpy.polynomial.legendre.legval_
 -------------------------------------------
 
 ########################################
-FUNCTION: numpy.polynomial.hermite.hermfit_
--------------------------------------------
+FUNCTION: numpy.diag_indices_
+-----------------------------
 
 ########################################
-FUNCTION: numpy.pow_
---------------------
-power_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.vecmat_
------------------------
-vecmat_(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
-########################################
-FUNCTION: numpy.f2py.f2py2e.crackfortran.updatevars_
-----------------------------------------------------
+FUNCTION: numpy.polynomial.legendre.leggrid2d_
+----------------------------------------------
 
 ########################################
-FUNCTION: numpy.ma.extras.ma.ntypes.issctype_
----------------------------------------------
-
-########################################
-FUNCTION: numpy.ma.ediff1d_
----------------------------
-
-########################################
-FUNCTION: numpy.strings.replace_
+FUNCTION: numpy.ma.getmaskarray_
 --------------------------------
 
 ########################################
-FUNCTION: numpy.ma.fromflex_
+FUNCTION: numpy.ma.allclose_
 ----------------------------
 
 ########################################
-FUNCTION: numpy.ma.concatenate_
--------------------------------
+FUNCTION: numpy.testing.assert_raises_
+--------------------------------------
 
 ########################################
-FUNCTION: numpy.polynomial.polynomial.polyvander2d_
----------------------------------------------------
+FUNCTION: numpy.polynomial.laguerre.laggrid3d_
+----------------------------------------------
 
 ########################################
-FUNCTION: numpy.polynomial.hermite_e.hermegauss_
+FUNCTION: numpy.radians_
+------------------------
+radians_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.arctan_
+-----------------------
+arctan_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermeval2d_
 ------------------------------------------------
-
-########################################
-FUNCTION: numpy.f2py.f2py2e.filter_files_
------------------------------------------
 
 ########################################
 FUNCTION: numpy.matvec_
 -----------------------
 matvec_(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
 ########################################
+FUNCTION: numpy.polynomial.chebyshev.chebfromroots_
+---------------------------------------------------
+
+########################################
+FUNCTION: numpy.arcsin_
+-----------------------
+arcsin_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.lib.format.read_array_header_2_0_
+-------------------------------------------------
+
+########################################
+FUNCTION: numpy.bitwise_count_
+------------------------------
+bitwise_count_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.mask_indices_
+-----------------------------
+
+########################################
+FUNCTION: numpy.testing.print_assert_equal_
+-------------------------------------------
+
+########################################
+FUNCTION: numpy.strings.isupper_
+--------------------------------
+isupper_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_routsign2map_
+------------------------------------------------------------------
+
+########################################
+FUNCTION: numpy.hanning_
+------------------------
+
+########################################
+FUNCTION: numpy.float_power_
+----------------------------
+float_power_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.logical_and_
+----------------------------
+logical_and_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermediv_
+----------------------------------------------
+
+########################################
+FUNCTION: numpy.exp_
+--------------------
+exp_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.log2_
+---------------------
+log2_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ones_
+---------------------
+
+########################################
+FUNCTION: numpy.divide_
+-----------------------
+divide_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.sin_
+--------------------
+sin_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.testing.assert_equal_
+-------------------------------------
+
+########################################
+FUNCTION: numpy.char.join_
+--------------------------
+
+########################################
+FUNCTION: numpy.bitwise_xor_
+----------------------------
+bitwise_xor_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.hypot_
+----------------------
+hypot_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ceil_
+---------------------
+ceil_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.triu_indices_
+-----------------------------
+
+########################################
+FUNCTION: numpy.binary_repr_
+----------------------------
+
+########################################
+FUNCTION: numpy.full_
+---------------------
+
+########################################
+FUNCTION: numpy.vecmat_
+-----------------------
+vecmat_(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
+########################################
+FUNCTION: numpy.testing.assert_array_almost_equal_
+--------------------------------------------------
+
+########################################
+FUNCTION: numpy.ma.max_
+-----------------------
+
+########################################
+FUNCTION: numpy.char.array_
+---------------------------
+
+########################################
+FUNCTION: numpy.polynomial.laguerre.lagdiv_
+-------------------------------------------
+
+########################################
+FUNCTION: numpy.char.split_
+---------------------------
+
+########################################
+FUNCTION: numpy.polynomial.polynomial.polyvander2d_
+---------------------------------------------------
+
+########################################
+FUNCTION: numpy.ma.isin_
+------------------------
+
+########################################
+FUNCTION: numpy.ma.apply_over_axes_
+-----------------------------------
+
+########################################
+FUNCTION: numpy.strings.capitalize_
+-----------------------------------
+
+########################################
+FUNCTION: numpy.ma.diag_
+------------------------
+
+########################################
+FUNCTION: numpy.testing.assert_array_less_
+------------------------------------------
+
+########################################
 FUNCTION: numpy.strings.swapcase_
 ---------------------------------
 
 ########################################
-FUNCTION: numpy.char.partition_
--------------------------------
+FUNCTION: numpy.ma.masked_invalid_
+----------------------------------
+
+########################################
+FUNCTION: numpy.eye_
+--------------------
+
+########################################
+FUNCTION: numpy.asarray_chkfinite_
+----------------------------------
+
+########################################
+FUNCTION: numpy.f2py.f2py2e.crackfortran.param_parse_
+-----------------------------------------------------
+
+########################################
+FUNCTION: numpy.ma.ediff1d_
+---------------------------
+
+########################################
+FUNCTION: numpy.abs_
+--------------------
+absolute_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ma.filled_
+--------------------------
+
+########################################
+FUNCTION: numpy.tri_
+--------------------
+
+########################################
+FUNCTION: numpy.strings.partition_
+----------------------------------
+
+########################################
+FUNCTION: numpy.trapz_
+----------------------
 
 ########################################
 FUNCTION: numpy.strings.rfind_
 ------------------------------
 
 ########################################
+FUNCTION: numpy.rec.fromarrays_
+-------------------------------
+
+########################################
+FUNCTION: numpy.strings.rjust_
+------------------------------
+
+########################################
+FUNCTION: numpy.square_
+-----------------------
+square_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.polynomial.hermite.hermpow_
+-------------------------------------------
+
+########################################
+FUNCTION: numpy.testing.assert__
+--------------------------------
+
+########################################
+FUNCTION: numpy.f2py.symbolic.as_array_
+---------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.legadd_
+-------------------------------------------
+
+########################################
+FUNCTION: numpy.ctypeslib.as_ctypes_
+------------------------------------
+
+########################################
+FUNCTION: numpy.f2py.f2py2e.crackfortran.updatevars_
+----------------------------------------------------
+
+########################################
+FUNCTION: numpy.f2py.f2py2e.crackfortran.crackline_
+---------------------------------------------------
+
+########################################
+FUNCTION: numpy.strings.isnumeric_
+----------------------------------
+isnumeric_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
 FUNCTION: numpy.ma.is_masked_
 -----------------------------
 
 ########################################
-FUNCTION: numpy.polynomial.hermite_e.hermeint_
+FUNCTION: numpy.isinf_
+----------------------
+isinf_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ctypeslib.as_array_
+-----------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.chebyshev.chebpow_
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.logical_xor_
+----------------------------
+logical_xor_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.char.splitlines_
+--------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.polynomial.polyline_
+-----------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermegauss_
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.ma.size_
+------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.legmul_
+-------------------------------------------
+
+########################################
+FUNCTION: numpy.seterr_
+-----------------------
+
+########################################
+FUNCTION: numpy.cbrt_
+---------------------
+cbrt_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.acos_
+---------------------
+arccos_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.f2py.f2py2e.filter_files_
+-----------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermeder_
 ----------------------------------------------
 
 ########################################
-FUNCTION: numpy.polynomial.legendre.leggrid2d_
+FUNCTION: numpy.positive_
+-------------------------
+positive_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ma.mask_cols_
+-----------------------------
+
+########################################
+FUNCTION: numpy.f2py.symbolic.as_string_
+----------------------------------------
+
+########################################
+FUNCTION: numpy.subtract_
+-------------------------
+subtract_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ma.masked_less_equal_
+-------------------------------------
+
+########################################
+FUNCTION: numpy.ma.left_shift_
+------------------------------
+
+########################################
+FUNCTION: numpy.char.asarray_
+-----------------------------
+
+########################################
+FUNCTION: numpy.ma.extras.ma.ntypes.issctype_
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.char.partition_
+-------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermeint_
 ----------------------------------------------
 
 ########################################
@@ -441,72 +393,104 @@ FUNCTION: numpy.polynomial.chebyshev.chebpts1_
 ----------------------------------------------
 
 ########################################
-FUNCTION: numpy.kaiser_
------------------------
+FUNCTION: numpy.format_float_positional_
+----------------------------------------
 
 ########################################
-FUNCTION: numpy.polynomial.legendre.legval2d_
----------------------------------------------
-
-########################################
-FUNCTION: numpy.ctypeslib.as_array_
------------------------------------
-
-########################################
-FUNCTION: numpy.polynomial.chebyshev.chebgauss_
------------------------------------------------
-
-########################################
-FUNCTION: numpy.ma.max_
------------------------
-
-########################################
-FUNCTION: numpy.polynomial.hermite_e.hermegrid2d_
--------------------------------------------------
-
-########################################
-FUNCTION: numpy.log2_
----------------------
-log2_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.polynomial.legendre.leg2poly_
----------------------------------------------
-
-########################################
-FUNCTION: numpy.polynomial.chebyshev.chebfromroots_
----------------------------------------------------
-
-########################################
-FUNCTION: numpy.polynomial.legendre.legadd_
--------------------------------------------
-
-########################################
-FUNCTION: numpy.ma.masked_less_equal_
--------------------------------------
-
+FUNCTION: numpy.gcd_
+--------------------
+gcd_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
 FUNCTION: numpy.ma.extras.ma.ntypes.sctype2char_
 ------------------------------------------------
 
 ########################################
-FUNCTION: numpy.strings.encode_
--------------------------------
-
-########################################
-FUNCTION: numpy.polynomial.hermite_e.hermefit_
+FUNCTION: numpy.polynomial.polynomial.polyder_
 ----------------------------------------------
 
 ########################################
-FUNCTION: numpy.char.join_
---------------------------
+FUNCTION: numpy.polynomial.legendre.legdiv_
+-------------------------------------------
+
+########################################
+FUNCTION: numpy.ldexp_
+----------------------
+ldexp_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.floor_
+----------------------
+floor_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.signbit_
+------------------------
+signbit_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.polynomial.legendre.leggrid3d_
+----------------------------------------------
+
+########################################
+FUNCTION: numpy.ma.concatenate_
+-------------------------------
 
 ########################################
 FUNCTION: numpy.polynomial.laguerre.lagline_
 --------------------------------------------
 
 ########################################
-FUNCTION: numpy.polynomial.hermite_e.hermeder_
-----------------------------------------------
+FUNCTION: numpy.kaiser_
+-----------------------
+
+########################################
+FUNCTION: numpy.expm1_
+----------------------
+expm1_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.isfinite_
+-------------------------
+isfinite_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ma.set_fill_value_
+----------------------------------
+
+########################################
+FUNCTION: numpy.ma.shape_
+-------------------------
+
+########################################
+FUNCTION: numpy.greater_equal_
+------------------------------
+greater_equal_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ma.is_mask_
+---------------------------
+
+########################################
+FUNCTION: numpy.testing.memusage_
+---------------------------------
+
+########################################
+FUNCTION: numpy.strings.replace_
+--------------------------------
+
+########################################
+FUNCTION: numpy.minimum_
+------------------------
+minimum_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.strings.mod_
+----------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.legvander3d_
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.lib.format.dtype_to_descr_
+------------------------------------------
+
+########################################
+FUNCTION: numpy.indices_
+------------------------
 
 ########################################
 FUNCTION: numpy.ma.unique_
@@ -517,171 +501,187 @@ FUNCTION: numpy.ma.masked_outside_
 ----------------------------------
 
 ########################################
-FUNCTION: numpy.f2py.symbolic.as_string_
-----------------------------------------
+FUNCTION: numpy.polynomial.hermite_e.hermegrid2d_
+-------------------------------------------------
 
 ########################################
-FUNCTION: numpy.f2py.symbolic.as_array_
----------------------------------------
-
-########################################
-FUNCTION: numpy.sign_
----------------------
-sign_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.hypot_
+FUNCTION: numpy.isnan_
 ----------------------
-hypot_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+isnan_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
-FUNCTION: numpy.testing.assert_array_less_
-------------------------------------------
-
-########################################
-FUNCTION: numpy.strings.isnumeric_
-----------------------------------
-isnumeric_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.log10_
-----------------------
-log10_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.ma.mask_cols_
------------------------------
-
-########################################
-FUNCTION: numpy.ma.left_shift_
-------------------------------
-
-########################################
-FUNCTION: numpy.lib.format.dtype_to_descr_
-------------------------------------------
-
-########################################
-FUNCTION: numpy.polynomial.laguerre.lagsub_
--------------------------------------------
-
-########################################
-FUNCTION: numpy.bitwise_count_
-------------------------------
-bitwise_count_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.testing.assert_raises_
---------------------------------------
-
-########################################
-FUNCTION: numpy.char.array_
----------------------------
-
-########################################
-FUNCTION: numpy.char.split_
----------------------------
-
-########################################
-FUNCTION: numpy.ma.extras.ma.doc_note_
---------------------------------------
-
-########################################
-FUNCTION: numpy.strings.lower_
-------------------------------
-
-########################################
-FUNCTION: numpy.f2py.f2py2e.crackfortran.crackline_
----------------------------------------------------
-
-########################################
-FUNCTION: numpy.arctan_
------------------------
-arctan_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.rec.fromarrays_
--------------------------------
-
-########################################
-FUNCTION: numpy.f2py.symbolic.as_real_
---------------------------------------
-
-########################################
-FUNCTION: numpy.testing.assert_array_almost_equal_
---------------------------------------------------
-
-########################################
-FUNCTION: numpy.polynomial.hermite.hermpow_
--------------------------------------------
-
-########################################
-FUNCTION: numpy.ma.getmaskarray_
---------------------------------
-
-########################################
-FUNCTION: numpy.strings.partition_
-----------------------------------
-
-########################################
-FUNCTION: numpy.acos_
+FUNCTION: numpy.sqrt_
 ---------------------
-arccos_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+sqrt_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
-FUNCTION: numpy.polynomial.chebyshev.chebpow_
+FUNCTION: numpy.polynomial.legendre.legval2d_
 ---------------------------------------------
 
 ########################################
-FUNCTION: numpy.cbrt_
----------------------
-cbrt_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+FUNCTION: numpy.ma.fromflex_
+----------------------------
+
 ########################################
-FUNCTION: numpy.ma.diff_
+FUNCTION: numpy.equal_
+----------------------
+equal_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ctypeslib.ndpointer_
+------------------------------------
+
+########################################
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.array_function_dispatch_
+-------------------------------------------------------------------------
+
+########################################
+FUNCTION: numpy.maximum_
 ------------------------
+maximum_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.polynomial.hermite.hermgrid3d_
+----------------------------------------------
 
 ########################################
 FUNCTION: numpy.polynomial.hermite.hermweight_
 ----------------------------------------------
 
 ########################################
-FUNCTION: numpy.polynomial.laguerre.lagdiv_
--------------------------------------------
+FUNCTION: numpy.ma.count_masked_
+--------------------------------
 
 ########################################
-FUNCTION: numpy.ldexp_
-----------------------
-ldexp_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+FUNCTION: numpy.ma.diff_
+------------------------
+
+########################################
+FUNCTION: numpy.ma.masked_where_
+--------------------------------
+
+########################################
+FUNCTION: numpy.f2py.symbolic.as_real_
+--------------------------------------
+
+########################################
+FUNCTION: numpy.ma.asarray_
+---------------------------
+
 ########################################
 FUNCTION: numpy.polynomial.laguerre.lagfit_
 -------------------------------------------
 
 ########################################
-FUNCTION: numpy.f2py.f2py2e.crackfortran.param_parse_
------------------------------------------------------
+FUNCTION: numpy.lib.stride_tricks.as_strided_
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.add_
+--------------------
+add_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.f2py.rules.func2subr.show_
+------------------------------------------
+
+########################################
+FUNCTION: numpy.strings.encode_
+-------------------------------
+
+########################################
+FUNCTION: numpy.sinh_
+---------------------
+sinh_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.polynomial.hermite.hermfit_
+-------------------------------------------
 
 ########################################
 FUNCTION: numpy.set_printoptions_
 ---------------------------------
 
 ########################################
-FUNCTION: numpy.logical_xor_
-----------------------------
-logical_xor_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-########################################
-FUNCTION: numpy.testing.print_assert_equal_
+FUNCTION: numpy.polynomial.laguerre.lagsub_
 -------------------------------------------
 
 ########################################
-FUNCTION: numpy.lib.format.read_array_header_2_0_
--------------------------------------------------
+FUNCTION: numpy.sign_
+---------------------
+sign_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.polynomial.legendre.leg2poly_
+---------------------------------------------
 
 ########################################
-FUNCTION: numpy.strings.rjust_
-------------------------------
+FUNCTION: numpy.f2py.symbolic.as_number_
+----------------------------------------
+
+########################################
+FUNCTION: numpy.fmin_
+---------------------
+fmin_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.logical_or_
+---------------------------
+logical_or_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.deg2rad_
+------------------------
+deg2rad_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.degrees_
+------------------------
+degrees_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.pow_
+--------------------
+power_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermefit_
+----------------------------------------------
+
+########################################
+FUNCTION: numpy.logical_not_
+----------------------------
+logical_not_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.polynomial.chebyshev.chebgauss_
+-----------------------------------------------
 
 ########################################
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.modsign2map_
 --------------------------------------------------------------
 
 ########################################
-FUNCTION: numpy.ma.size_
-------------------------
+FUNCTION: numpy.log10_
+----------------------
+log10_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.multiply_
+-------------------------
+multiply_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ma.extras.ma.doc_note_
+--------------------------------------
 
 ########################################
-FUNCTION: numpy.char.splitlines_
---------------------------------
+FUNCTION: numpy.tril_indices_
+-----------------------------
 
+########################################
+FUNCTION: numpy.polynomial.legendre.leggauss_
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.ma.extras.ma.umath.rindex_
+------------------------------------------
+rindex_(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.strings.lower_
+------------------------------
+
+########################################
+FUNCTION: numpy.cos_
+--------------------
+cos_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.rad2deg_
+------------------------
+rad2deg_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 ########################################
