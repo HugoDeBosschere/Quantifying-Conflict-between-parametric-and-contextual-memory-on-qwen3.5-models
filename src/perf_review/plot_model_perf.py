@@ -32,27 +32,35 @@ def find_repo_root():
 
 
 def _doc_type_label(res: dict) -> str:
-    """Un label par (is_control, doc_name) pour les comparaisons voulues."""
+    """
+    Un label de haut niveau par (is_control, doc_name), avec un regroupement
+    léger pour les familles que l'on suit explicitement (minimal/ultra/explanation*).
+
+    Tout nouveau doc_name sera tout de même tracé, avec un label dérivé automatiquement.
+    """
     meta = res.get("metadata", {})
-    doc_name = meta.get("doc_name") or ""
+    doc_name = (meta.get("doc_name") or "").strip()
     is_control = res.get("is_control", False)
-    if is_control and doc_name in (None, "", "nothing"):
+
+    if is_control and doc_name in ("", "nothing", None):
         return "Control classique"
     if is_control and doc_name == "minimal":
         return "Control minimal"
     if is_control and doc_name == "ultra_minimal":
         return "Control ultra_minimal"
+
     # Pas de "Control explanation" : seul le cas injection avec doc explanation existe
     if not is_control and doc_name == "minimal":
         return "Doc minimal"
     if not is_control and doc_name == "ultra_minimal":
         return "Doc ultra_minimal"
-    if not is_control and doc_name == "explanation":
+    if not is_control and doc_name.startswith("explanation"):
         return "Doc explanation"
-    # Autres cas (autres doc_name ou combinaisons)
-    if is_control:
-        return f"Control ({doc_name or 'other'})"
-    return doc_name or "Other"
+
+    # Autres cas (nouveaux noms de doc) : on construit un label générique
+    prefix = "Control" if is_control else "Doc"
+    name = doc_name or "other"
+    return f"{prefix} {name}"
 
 
 def load_data(filepath: str) -> dict:
@@ -143,27 +151,40 @@ def _agg(model_data: dict, doc_type: str) -> tuple[int, int]:
     return s, t
 
 
-# Ordre et style : run_control (contexte d'origine) vs injection (lib modifiée) vs injection éval. lib d'origine
-GLOBAL_SERIES = [
-    ("Control classique", {"color": "gray", "alpha": 0.9, "hatch": "//", "edgecolor": "black"}),
-    ("Control minimal", {"color": "lightgray", "alpha": 0.9, "hatch": "\\\\", "edgecolor": "black"}),
-    ("Doc minimal", {"color": "steelblue", "alpha": 0.9, "hatch": "", "edgecolor": "black"}),
-    ("Doc minimal (éval. lib d'origine)", {"color": "steelblue", "alpha": 0.5, "hatch": "..", "edgecolor": "black"}),
-    ("Control ultra_minimal", {"color": "gainsboro", "alpha": 0.95, "hatch": "xx", "edgecolor": "black"}),
-    ("Doc ultra_minimal", {"color": "coral", "alpha": 0.9, "hatch": "", "edgecolor": "black"}),
-    ("Doc ultra_minimal (éval. lib d'origine)", {"color": "coral", "alpha": 0.5, "hatch": "..", "edgecolor": "black"}),
-    ("Doc explanation", {"color": "seagreen", "alpha": 0.9, "hatch": "", "edgecolor": "black"}),
-    ("Doc explanation (éval. lib d'origine)", {"color": "seagreen", "alpha": 0.5, "hatch": "..", "edgecolor": "black"}),
-]
+def _style_for_doc_type(label: str) -> dict:
+    """
+    Donne un style (couleur, hatch, etc.) pour un label de doc.
+    Si on ne connaît pas explicitement le label, on choisit une couleur par défaut
+    en fonction de son préfixe (Control / Doc).
+    """
+    base = {
+        "color": "gray",
+        "alpha": 0.9,
+        "hatch": "",
+        "edgecolor": "black",
+    }
 
+    mapping = {
+        "Control classique": {"color": "gray", "alpha": 0.9, "hatch": "//"},
+        "Control minimal": {"color": "lightgray", "alpha": 0.9, "hatch": "\\\\"},
+        "Control ultra_minimal": {"color": "gainsboro", "alpha": 0.95, "hatch": "xx"},
+        "Doc minimal": {"color": "steelblue", "alpha": 0.9, "hatch": ""},
+        "Doc minimal (éval. lib d'origine)": {"color": "steelblue", "alpha": 0.5, "hatch": ".."},
+        "Doc ultra_minimal": {"color": "coral", "alpha": 0.9, "hatch": ""},
+        "Doc ultra_minimal (éval. lib d'origine)": {"color": "coral", "alpha": 0.5, "hatch": ".."},
+        "Doc explanation": {"color": "seagreen", "alpha": 0.9, "hatch": ""},
+        "Doc explanation (éval. lib d'origine)": {"color": "seagreen", "alpha": 0.5, "hatch": ".."},
+    }
 
-def _series_with_data(data: dict, models: list, series_list: list) -> list:
-    """Ne garde que les séries (label, style) pour lesquelles au moins un modèle a des données (total > 0)."""
-    return [
-        (label, style)
-        for label, style in series_list
-        if any(_agg(data[m], label)[1] > 0 for m in models)
-    ]
+    if label.startswith("Control "):
+        return {"color": "gray", "alpha": 0.85, "hatch": "//", "edgecolor": "black"}
+    if label.startswith("Doc "):
+        return {"color": "steelblue", "alpha": 0.85, "hatch": "", "edgecolor": "black"}
+
+    style = mapping.get(label, base)
+    merged = base.copy()
+    merged.update(style)
+    return merged
 
 
 def plot_global_all_conditions(data: dict, output_dir: str) -> None:
@@ -175,7 +196,15 @@ def plot_global_all_conditions(data: dict, output_dir: str) -> None:
     if not models:
         return
 
-    active_series = _series_with_data(data, models, GLOBAL_SERIES)
+    # Séries dynamiques : on parcourt tous les doc_types présents dans les données
+    all_doc_types = set()
+    for m in models:
+        all_doc_types.update(data[m].keys())
+
+    active_series = []
+    for label in sorted(all_doc_types):
+        if any(_agg(data[m], label)[1] > 0 for m in models):
+            active_series.append((label, _style_for_doc_type(label)))
     if not active_series:
         print("⚠ Aucune série avec données, plot global ignoré.")
         return

@@ -69,6 +69,33 @@ Cela permet de voir si le LLM suit réellement la doc contrefactuelle (erreurs a
     - Suffixe `_v2` (`WrapV2Numpy`), underscore (`WrapUnderscoreNumpy`), capitalisation (`WrapCapitalizeNumpy`), etc.
   - La doc contrefactuelle explique comment utiliser ces fonctions.
 
+---
+
+## Format d’une ligne DS-1000 (dataset d’entrée)
+
+Les fichiers DS-1000 sont des **JSONL** : une ligne = un problème. Exemple simplifié d’entrée typique (dans `ds1000_npyOnly.jsonl`) :
+
+```json
+{
+  "prompt": "Given a 1D NumPy array x with possible NaN values, remove all NaNs and return the cleaned array.",
+  "reference_code": "x = x[~np.isnan(x)]",
+  "metadata": {
+    "problem_id": 300,
+    "library_problem_id": 9,
+    "library": "Numpy",
+    "test_case_cnt": 2,
+    "perturbation_type": "Origin",
+    "perturbation_origin_id": 9
+  },
+  "code_context": "def test_execution(solution_code):\n    # génération des données et assertions...\n    pass\n"
+}
+```
+
+- **`prompt`** : énoncé textuel du problème envoyé au LLM.
+- **`reference_code`** : solution de référence (non utilisée par le LLM, mais utile pour inspection).
+- **`metadata`** : identifiants DS-1000 + type de perturbation.
+- **`code_context`** : moteur de tests (génération d’inputs + assertions), dans lequel on injecte la solution du LLM.
+
 - **Scripts d’analyse (`src/perf_review/*.py`)**
   - `plot_model_perf.py` :
     - Regroupe les résultats par **modèle** et par **type de documentation** :
@@ -230,35 +257,52 @@ avec à chaque fois :
 
 ### Schéma d’une ligne de `results.jsonl`
 
-Une ligne typique (control) :
+Les résultats sont aussi en **JSONL** : une ligne = un problème + un modèle + une doc. Exemple typique pour un run injection :
 
-- **Clés de haut niveau** :
-  - `task_id` : identifiant de la tâche (souvent `problem_id` DS-1000).
-  - `metadata` : dictionnaire avec :
-    - `problem_id`, `library_problem_id`, `library` (souvent `"Numpy"`),
-    - `test_case_cnt` : nombre de tests unitaires,
-    - `perturbation_type` : `Origin`, `Semantic`, `Surface`, `Difficult-Rewrite`, etc.,
-    - `perturbation_origin_id` : id DS-1000,
-    - `model_name` : nom du modèle (ex. `"qwen2.5-coder:32b"`),
-    - `doc_name` : clé de doc utilisée (`nothing`, `minimal`, `minimal_noise25`, …),
-    - `mode` : `"control"` ou `"injection"`,
-    - `temperature` : température du LLM,
-    - `token_count` : décompte de tokens (soit fourni par Ollama, soit estimé).
-  - `passed` : booléen, **succès des tests dans le mode courant** :
-    - en mode control : succès avec la vraie Numpy (baseline).
-    - en mode injection : succès avec la librairie contrefactuelle.
-  - `control_passed` (seulement pour injection) :
-    - booléen, succès de **la même solution** mais évaluée avec la vraie librairie d’origine.
-  - `llm_code` : code final nettoyé (celui exécuté).
-  - `stdout`, `stderr` : sorties de l’exécution dans le mode courant.
-  - `stdout_control`, `stderr_control` : sorties de l’exécution de contrôle (pour injection uniquement).
-  - `full_response` : réponse brute du LLM (incluant souvent le markdown).
-  - `is_control` : `true` pour les runs control, `false` pour injection.
+```json
+{
+  "task_id": 300,
+  "metadata": {
+    "problem_id": 300,
+    "library_problem_id": 9,
+    "library": "Numpy",
+    "test_case_cnt": 2,
+    "perturbation_type": "Origin",
+    "perturbation_origin_id": 9,
+    "model_name": "qwen2.5-coder:32b",
+    "doc_name": "minimal_noise25",
+    "mode": "injection",
+    "temperature": 0,
+    "token_count": 381
+  },
+  "passed": true,
+  "control_passed": false,
+  "llm_code": "x = x[~np.isnan_v2(x)]",
+  "stdout": "SUCCESS_MARKER\n",
+  "stderr": "",
+  "stdout_control": "EXEC_ERROR: module 'numpy' has no attribute 'isnan_v2'\n",
+  "stderr_control": "Traceback (most recent call last): ...",
+  "full_response": "```python\nx = x[~np.isnan_v2(x)]\n```",
+  "is_control": false
+}
+```
+
+- **`task_id`** : identifiant de la tâche (souvent `problem_id` DS-1000).
+- **`metadata`** : recopie les métadonnées du dataset + ajoute les infos LLM (`model_name`, `doc_name`, `mode`, `temperature`, `token_count`).
+- **`passed`** : succès de la solution dans le **mode courant** :
+  - en mode control : succès avec la vraie Numpy (baseline).
+  - en mode injection : succès avec la librairie contrefactuelle.
+- **`control_passed`** (injection uniquement) : succès de **la même solution** réévaluée avec la vraie Numpy.
+- **`llm_code`** : code final nettoyé et exécuté.
+- **`stdout` / `stderr`** : sorties de l’exécution dans le mode courant.
+- **`stdout_control` / `stderr_control`** : sorties de l’exécution de contrôle (pour injection).
+- **`full_response`** : réponse brute du LLM telle que renvoyée par Ollama.
+- **`is_control`** : `true` pour les lignes mode control, `false` pour les lignes injection.
 
 En cas d’échec de l’API LLM :
-- `error` : `"LLM_API_FAILURE"`.
-- `passed` : `false`, `control_passed` : `false`.
-- `metadata` est **toujours rempli** (modèle, doc, etc.), ce qui permet des sanity-checks robustes.
+- **`error`** vaut `"LLM_API_FAILURE"`,
+- `passed` et `control_passed` sont à `false`,
+- mais `metadata` reste **toujours rempli**, ce qui permet de faire des sanity-checks robustes.
 
 ---
 
