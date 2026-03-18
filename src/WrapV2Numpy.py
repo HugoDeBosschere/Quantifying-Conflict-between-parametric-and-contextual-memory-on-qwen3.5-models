@@ -13,27 +13,28 @@ class V2NumPy:
 
     def __getattr__(self, name):
         # Comportement strict : seuls les noms se terminant par _v2 sont acceptés
+        try:
+            attr = getattr(self._target, name)
+            print(f"attr is : {attr}")
+            if isinstance(attr, types.ModuleType):
+                print("we are in the isisnstance")
+                return V2NumPy(attr) 
+
+        except:
+            if not name.endswith(V2_SUFFIX):
+                raise AttributeError(
+                    f"module 'numpy' has no attribute {name!r}. "
+                    f"Use the _v2 suffix (e.g. np.{name}_v2)."
+                )
+            
+            print("Nouvelle fonction dans le try !")
+            real_name = name[: -len(V2_SUFFIX)]
+            real_attr = getattr(self._target, real_name)
+
+            return real_attr
         
-
-
-
-        # CAS 1 : Sous-module (ex: np.linalg_v2)
-        if isinstance(name, types.ModuleType):
-            return V2NumPy(name)
         
-        if not name.endswith(V2_SUFFIX):
-            raise AttributeError(
-                f"module 'numpy' has no attribute {name!r}. "
-                f"Use the _v2 suffix (e.g. np.{name}_v2)."
-            )
-        print("Nouvelle fonction  vraiemnt !")
-        real_name = name[: -len(V2_SUFFIX)]
-        real_attr = getattr(self._target, real_name)
-
-        # CAS 2 : Fonction / ufunc (ex: np.add_v2 -> np.add)
-        # CAS 3 : Constante (ex: np.pi_v2 -> np.pi)
-        return real_attr
-
+        
     def __dir__(self):
         return dir(self._target)
 
