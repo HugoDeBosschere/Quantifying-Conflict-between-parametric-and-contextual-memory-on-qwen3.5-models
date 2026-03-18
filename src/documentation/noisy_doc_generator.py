@@ -303,11 +303,17 @@ def generate_noisy_full_doc(selected_functions, perturbation_key,
     """
     p = PERTURBATIONS[perturbation_key]
 
+    # Tri alphabétique sur le nom affiché (après perturbation) pour être fidèle aux docs réelles
+    selected_functions_sorted = sorted(
+        selected_functions,
+        key=lambda t: f"{t[0]}.{p['modify_func_name'](t[1])}",
+    )
+
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("Reference Documentation for numpy \n")
         f.write("=" * 60 + "\n\n")
 
-        for prefix, name, obj, is_interest in tqdm.tqdm(selected_functions, desc="full"):
+        for prefix, name, obj, is_interest in tqdm.tqdm(selected_functions_sorted, desc="full"):
             raw_doc = obj.__doc__
             if not raw_doc:
                 continue
@@ -347,11 +353,17 @@ def generate_noisy_minimal_doc(selected_functions, perturbation_key,
     """
     p = PERTURBATIONS[perturbation_key]
 
+    # Tri alphabétique sur le nom affiché (après perturbation)
+    selected_functions_sorted = sorted(
+        selected_functions,
+        key=lambda t: f"{t[0]}.{p['modify_func_name'](t[1])}",
+    )
+
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("Reference Documentation for numpy \n")
         f.write("=" * 60 + "\n\n")
 
-        for prefix, name, obj, is_interest in tqdm.tqdm(selected_functions, desc="minimal"):
+        for prefix, name, obj, is_interest in tqdm.tqdm(selected_functions_sorted, desc="minimal"):
             raw_doc = obj.__doc__
             if not raw_doc:
                 continue
@@ -379,11 +391,17 @@ def generate_noisy_ultra_minimal_doc(selected_functions, perturbation_key,
     """
     p = PERTURBATIONS[perturbation_key]
 
+    # Tri alphabétique sur le nom affiché (après perturbation)
+    selected_functions_sorted = sorted(
+        selected_functions,
+        key=lambda t: f"{t[0]}.{p['modify_func_name'](t[1])}",
+    )
+
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write("Reference Documentation for numpy \n")
         f.write("=" * 60 + "\n\n")
 
-        for prefix, name, obj, is_interest in tqdm.tqdm(selected_functions, desc="ultra_minimal"):
+        for prefix, name, obj, is_interest in tqdm.tqdm(selected_functions_sorted, desc="ultra_minimal"):
             raw_doc = obj.__doc__
             if not raw_doc:
                 continue

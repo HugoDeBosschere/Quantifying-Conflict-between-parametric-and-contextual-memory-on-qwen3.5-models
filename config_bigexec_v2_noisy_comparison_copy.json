@@ -38,43 +38,43 @@
             "system_prompt"  : "You are a Python Data Science expert.\n Complete the code between Markdowns to solve the problem.\n IMPORTANT CONSTRAINTS:\n 1. Assume that input data (arrays) is ALREADY LOADED.\n2. Do NOT redefine input variables or create mock data only the code to be executed is required.\n 3. Do NOT import standard libraries.\n 4. Do not import functions from standard librairies \n 5. Return ONLY the code inside a markdown block.\n 6. the numpy function you use must all start with 'np.' (with the _v2 suffix: e.g. np.add_v2, np.mean_v2).\n 7. Be aware of which variable you should modify \n IMPORTANT: The generated code must be strictly executable Python. Do NOT include comments showing the expected output, console logs, or print results (like [1. 2. 3.] or array(...)) inside the code block. This causes SyntaxErrors. ",
             "documentation" :{
                 "minimal_noise0" : {
-                    "intro" : "Documentation numpy _v2 (noise 0%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
                     "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_minimal_numpy_v2_noise0.txt"
                 },
                 "minimal_noise25" : {
-                    "intro" : "Documentation numpy _v2 (noise 25%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
                     "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_minimal_numpy_v2_noise25.txt"
                 },
                 "minimal_noise50" : {
-                    "intro" : "Documentation numpy _v2 (noise 50%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
                     "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_minimal_numpy_v2_noise50.txt"
                 },
                 "minimal_noise75" : {
-                    "intro" : "Documentation numpy _v2 (noise 75%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
                     "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_minimal_numpy_v2_noise75.txt"
                 },
                 "minimal_noise100" : {
-                    "intro" : "Documentation numpy _v2 (noise 100%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
                     "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_minimal_numpy_v2_noise100.txt"
                 },
                 "ultra_minimal_noise0" : {
-                    "intro" : "Documentation numpy _v2 ultra-minimal (noise 0%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
                     "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_ultra_minimal_numpy_v2_noise0.txt"
                 },
                 "ultra_minimal_noise25" : {
-                    "intro" : "Documentation numpy _v2 ultra-minimal (noise 25%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
                     "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_ultra_minimal_numpy_v2_noise25.txt"
                 },
                 "ultra_minimal_noise50" : {
-                    "intro" : "Documentation numpy _v2 ultra-minimal (noise 50%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
                     "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_ultra_minimal_numpy_v2_noise50.txt"
                 },
                 "ultra_minimal_noise75" : {
-                    "intro" : "Documentation numpy _v2 ultra-minimal (noise 75%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
                     "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_ultra_minimal_numpy_v2_noise75.txt"
                 },
                 "ultra_minimal_noise100" : {
-                    "intro" : "Documentation numpy _v2 ultra-minimal (noise 100%%). Use np.fonction_v2() in your code. Take into account the updates in this documentation.",
+                    "intro" : "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
                     "path" : "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/noisy_doc/corrupted_ultra_minimal_numpy_v2_noise100.txt"
                 }
                                 }

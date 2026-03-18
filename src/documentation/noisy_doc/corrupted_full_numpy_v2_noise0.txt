@@ -1,67 +1,201 @@
 Reference Documentation for numpy 
 ============================================================
 
-FUNCTION: numpy.diag_indices_v2
--------------------------------
+FUNCTION: numpy.abs_v2
+----------------------
+absolute_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
-    Return the indices to access the main diagonal of an array.
+Calculate the absolute value element-wise.
 
-    This returns a tuple of indices that can be used to access the main
-    diagonal of an array `a` with ``a.ndim >= 2`` dimensions and shape
-    (n, n, ..., n). For ``a.ndim = 2`` this is the usual diagonal, for
-    ``a.ndim > 2`` this is the set of indices to access ``a[i, i, ..., i]``
-    for ``i = [0..n-1]``.
+``np.abs_v2`` is a shorthand for this function.
 
-    Parameters
-    ----------
-    n : int
-      The size, along each dimension, of the arrays for which the returned
-      indices can be used.
+Parameters
+----------
+x : array_like
+    Input array.
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
 
-    ndim : int, optional
-      The number of dimensions.
+Returns
+-------
+absolute : ndarray
+    An ndarray containing the absolute value of
+    each element in `x`.  For complex input, ``a + ib``, the
+    absolute value is :math:`\sqrt{ a^2 + b^2 }`.
+    This is a scalar if `x` is a scalar.
 
-    
+Examples
+--------
+>>> import numpy as np
+>>> x = np.array_v2([-1.2, 1.2])
+>>> np.absolute_v2(x)
+array([ 1.2,  1.2])
+>>> np.absolute_v2(1.2 + 1j)
+1.5620499351813308
 
-    Examples
-    --------
-    >>> import numpy as np
+Plot the function over ``[-10, 10]``:
 
-    Create a set of indices to access the diagonal of a (4, 4) array:
+>>> import matplotlib.pyplot as plt
 
-    >>> di = np.diag_indices_v2(4)
-    >>> di
-    (array([0, 1, 2, 3]), array([0, 1, 2, 3]))
-    >>> a = np.arange_v2(16).reshape(4, 4)
-    >>> a
-    array([[ 0,  1,  2,  3],
-           [ 4,  5,  6,  7],
-           [ 8,  9, 10, 11],
-           [12, 13, 14, 15]])
-    >>> a[di] = 100
-    >>> a
-    array([[100,   1,   2,   3],
-           [  4, 100,   6,   7],
-           [  8,   9, 100,  11],
-           [ 12,  13,  14, 100]])
+>>> x = np.linspace_v2(start=-10, stop=10, num=101)
+>>> plt.plot(x, np.absolute_v2(x))
+>>> plt.show()
 
-    Now, we create indices to manipulate a 3-D array:
+Plot the function over the complex plane:
 
-    >>> d3 = np.diag_indices_v2(2, 3)
-    >>> d3
-    (array([0, 1]), array([0, 1]), array([0, 1]))
+>>> xx = x + 1j * x[:, np.newaxis_v2]
+>>> plt.imshow(np.abs_v2(xx), extent=[-10, 10, -10, 10], cmap='gray')
+>>> plt.show()
 
-    And use it to set the diagonal of an array of zeros to 1:
+The `abs` function can be used as a shorthand for ``np.absolute_v2`` on
+ndarrays.
 
-    >>> a = np.zeros_v2((2, 2, 2), dtype=int)
-    >>> a[d3] = 1
-    >>> a
-    array([[[1, 0],
-            [0, 0]],
-           [[0, 0],
-            [0, 1]]])
+>>> x = np.array_v2([-1.2, 1.2])
+>>> abs(x)
+array([1.2, 1.2])
 
-    
+########################################
+
+FUNCTION: numpy.add_v2
+----------------------
+add_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Add arguments element-wise.
+
+Parameters
+----------
+x1, x2 : array_like
+    The arrays to be added.
+    If ``x1.shape != x2.shape``, they must be broadcastable to a common
+    shape (which becomes the shape of the output).
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+add : ndarray or scalar
+    The sum of `x1` and `x2`, element-wise.
+    This is a scalar if both `x1` and `x2` are scalars.
+
+Notes
+-----
+Equivalent to `x1` + `x2` in terms of array broadcasting.
+
+Examples
+--------
+>>> import numpy as np
+>>> np.add_v2(1.0, 4.0)
+5.0
+>>> x1 = np.arange_v2(9.0).reshape((3, 3))
+>>> x2 = np.arange_v2(3.0)
+>>> np.add_v2(x1, x2)
+array([[  0.,   2.,   4.],
+       [  3.,   5.,   7.],
+       [  6.,   8.,  10.]])
+
+The ``+`` operator can be used as a shorthand for ``np.add_v2`` on ndarrays.
+
+>>> x1 = np.arange_v2(9.0).reshape((3, 3))
+>>> x2 = np.arange_v2(3.0)
+>>> x1 + x2
+array([[ 0.,  2.,  4.],
+       [ 3.,  5.,  7.],
+       [ 6.,  8., 10.]])
+
+########################################
+
+FUNCTION: numpy.arcsin_v2
+-------------------------
+arcsin_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Inverse sine, element-wise.
+
+Parameters
+----------
+x : array_like
+    `y`-coordinate on the unit circle.
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+angle : ndarray
+    The inverse sine of each element in `x`, in radians and in the
+    closed interval ``[-pi/2, pi/2]``.
+    This is a scalar if `x` is a scalar.
+
+
+
+Notes
+-----
+`arcsin` is a multivalued function: for each `x` there are infinitely
+many numbers `z` such that :math:`sin(z) = x`.  The convention is to
+return the angle `z` whose real part lies in [-pi/2, pi/2].
+
+For real-valued input data types, *arcsin* always returns real output.
+For each value that cannot be expressed as a real number or infinity,
+it yields ``nan`` and sets the `invalid` floating point error flag.
+
+For complex-valued input, `arcsin` is a complex analytic function that
+has, by convention, the branch cuts [-inf, -1] and [1, inf]  and is
+continuous from above on the former and from below on the latter.
+
+The inverse sine is also known as `asin` or sin^{-1}.
+
+References
+----------
+Abramowitz, M. and Stegun, I. A., *Handbook of Mathematical Functions*,
+10th printing, New York: Dover, 1964, pp. 79ff.
+https://personal.math.ubc.ca/~cbm/aands/page_79.htm
+
+Examples
+--------
+>>> import numpy as np
+>>> np.arcsin_v2(1)     # pi/2
+1.5707963267948966
+>>> np.arcsin_v2(-1)    # -pi/2
+-1.5707963267948966
+>>> np.arcsin_v2(0)
+0.0
 
 ########################################
 
@@ -127,424 +261,6 @@ FUNCTION: numpy.binary_repr_v2
     '11101'
 
     
-
-########################################
-
-FUNCTION: numpy.divide_v2
--------------------------
-divide_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Divide arguments element-wise.
-
-Parameters
-----------
-x1 : array_like
-    Dividend array.
-x2 : array_like
-    Divisor array.
-    If ``x1.shape != x2.shape``, they must be broadcastable to a common
-    shape (which becomes the shape of the output).
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : ndarray or scalar
-    The quotient ``x1/x2``, element-wise.
-    This is a scalar if both `x1` and `x2` are scalars.
-
-
-
-Notes
------
-Equivalent to ``x1`` / ``x2`` in terms of array-broadcasting.
-
-The ``true_divide(x1, x2)`` function is an alias for
-``divide(x1, x2)``.
-
-Examples
---------
->>> import numpy as np
->>> np.divide_v2(2.0, 4.0)
-0.5
->>> x1 = np.arange_v2(9.0).reshape((3, 3))
->>> x2 = np.arange_v2(3.0)
->>> np.divide_v2(x1, x2)
-array([[nan, 1. , 1. ],
-       [inf, 4. , 2.5],
-       [inf, 7. , 4. ]])
-
-The ``/`` operator can be used as a shorthand for ``np.divide_v2`` on
-ndarrays.
-
->>> x1 = np.arange_v2(9.0).reshape((3, 3))
->>> x2 = 2 * np.ones_v2(3)
->>> x1 / x2
-array([[0. , 0.5, 1. ],
-       [1.5, 2. , 2.5],
-       [3. , 3.5, 4. ]])
-
-########################################
-
-FUNCTION: numpy.triu_indices_v2
--------------------------------
-
-    Return the indices for the upper-triangle of an (n, m) array.
-
-    Parameters
-    ----------
-    n : int
-        The size of the arrays for which the returned indices will
-        be valid.
-    k : int, optional
-        Diagonal offset (see `triu` for details).
-    m : int, optional
-        The column dimension of the arrays for which the returned
-        arrays will be valid.
-        By default `m` is taken equal to `n`.
-
-
-    Returns
-    -------
-    inds : tuple, shape(2) of ndarrays, shape(`n`)
-        The row and column indices, respectively. The row indices are sorted
-        in non-decreasing order, and the correspdonding column indices are
-        strictly increasing for each row.
-
-    
-
-    Examples
-    --------
-    >>> import numpy as np
-
-    Compute two different sets of indices to access 4x4 arrays, one for the
-    upper triangular part starting at the main diagonal, and one starting two
-    diagonals further right:
-
-    >>> iu1 = np.triu_indices_v2(4)
-    >>> iu1
-    (array([0, 0, 0, 0, 1, 1, 1, 2, 2, 3]), array([0, 1, 2, 3, 1, 2, 3, 2, 3, 3]))
-
-    Note that row indices (first array) are non-decreasing, and the corresponding
-    column indices (second array) are strictly increasing for each row.
-
-    Here is how they can be used with a sample array:
-
-    >>> a = np.arange_v2(16).reshape(4, 4)
-    >>> a
-    array([[ 0,  1,  2,  3],
-           [ 4,  5,  6,  7],
-           [ 8,  9, 10, 11],
-           [12, 13, 14, 15]])
-
-    Both for indexing:
-
-    >>> a[iu1]
-    array([ 0,  1,  2, ..., 10, 11, 15])
-
-    And for assigning values:
-
-    >>> a[iu1] = -1
-    >>> a
-    array([[-1, -1, -1, -1],
-           [ 4, -1, -1, -1],
-           [ 8,  9, -1, -1],
-           [12, 13, 14, -1]])
-
-    These cover only a small part of the whole array (two diagonals right
-    of the main one):
-
-    >>> iu2 = np.triu_indices_v2(4, 2)
-    >>> a[iu2] = -10
-    >>> a
-    array([[ -1,  -1, -10, -10],
-           [  4,  -1,  -1, -10],
-           [  8,   9,  -1,  -1],
-           [ 12,  13,  14,  -1]])
-
-    
-
-########################################
-
-FUNCTION: numpy.minimum_v2
---------------------------
-minimum_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Element-wise minimum of array elements.
-
-Compare two arrays and return a new array containing the element-wise
-minima. If one of the elements being compared is a NaN, then that
-element is returned. If both elements are NaNs then the first is
-returned. The latter distinction is important for complex NaNs, which
-are defined as at least one of the real or imaginary parts being a NaN.
-The net effect is that NaNs are propagated.
-
-Parameters
-----------
-x1, x2 : array_like
-    The arrays holding the elements to be compared.
-    If ``x1.shape != x2.shape``, they must be broadcastable to a common
-    shape (which becomes the shape of the output).
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : ndarray or scalar
-    The minimum of `x1` and `x2`, element-wise.
-    This is a scalar if both `x1` and `x2` are scalars.
-
-
-
-fmax, amax, nanmax
-
-Notes
------
-The minimum is equivalent to ``np.where_v2(x1 <= x2, x1, x2)`` when
-neither x1 nor x2 are NaNs, but it is faster and does proper
-broadcasting.
-
-Examples
---------
->>> import numpy as np
->>> np.minimum_v2([2, 3, 4], [1, 5, 2])
-array([1, 3, 2])
-
->>> np.minimum_v2(np.eye_v2(2), [0.5, 2]) # broadcasting
-array([[ 0.5,  0. ],
-       [ 0. ,  1. ]])
-
->>> np.minimum_v2([np.nan_v2, 0, np.nan_v2],[0, np.nan_v2, np.nan_v2])
-array([nan, nan, nan])
->>> np.minimum_v2(-np.inf_v2, 1)
--inf
-
-########################################
-
-FUNCTION: numpy.maximum_v2
---------------------------
-maximum_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Element-wise maximum of array elements.
-
-Compare two arrays and return a new array containing the element-wise
-maxima. If one of the elements being compared is a NaN, then that
-element is returned. If both elements are NaNs then the first is
-returned. The latter distinction is important for complex NaNs, which
-are defined as at least one of the real or imaginary parts being a NaN.
-The net effect is that NaNs are propagated.
-
-Parameters
-----------
-x1, x2 : array_like
-    The arrays holding the elements to be compared.
-    If ``x1.shape != x2.shape``, they must be broadcastable to a common
-    shape (which becomes the shape of the output).
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : ndarray or scalar
-    The maximum of `x1` and `x2`, element-wise.
-    This is a scalar if both `x1` and `x2` are scalars.
-
-
-
-fmin, amin, nanmin
-
-Notes
------
-The maximum is equivalent to ``np.where_v2(x1 >= x2, x1, x2)`` when
-neither x1 nor x2 are nans, but it is faster and does proper
-broadcasting.
-
-Examples
---------
->>> import numpy as np
->>> np.maximum_v2([2, 3, 4], [1, 5, 2])
-array([2, 5, 4])
-
->>> np.maximum_v2(np.eye_v2(2), [0.5, 2]) # broadcasting
-array([[ 1. ,  2. ],
-       [ 0.5,  2. ]])
-
->>> np.maximum_v2([np.nan_v2, 0, np.nan_v2], [0, np.nan_v2, np.nan_v2])
-array([nan, nan, nan])
->>> np.maximum_v2(np.inf_v2, 1)
-inf
-
-########################################
-
-FUNCTION: numpy.sin_v2
-----------------------
-sin_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Trigonometric sine, element-wise.
-
-Parameters
-----------
-x : array_like
-    Angle, in radians (:math:`2 \pi` rad equals 360 degrees).
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : array_like
-    The sine of each element of x.
-    This is a scalar if `x` is a scalar.
-
-
-
-Notes
------
-The sine is one of the fundamental functions of trigonometry (the
-mathematical study of triangles).  Consider a circle of radius 1
-centered on the origin.  A ray comes in from the :math:`+x` axis, makes
-an angle at the origin (measured counter-clockwise from that axis), and
-departs from the origin.  The :math:`y` coordinate of the outgoing
-ray's intersection with the unit circle is the sine of that angle.  It
-ranges from -1 for :math:`x=3\pi / 2` to +1 for :math:`\pi / 2.`  The
-function has zeroes where the angle is a multiple of :math:`\pi`.
-Sines of angles between :math:`\pi` and :math:`2\pi` are negative.
-The numerous properties of the sine and related functions are included
-in any standard trigonometry text.
-
-Examples
---------
->>> import numpy as np
-
-Print sine of one angle:
-
->>> np.sin_v2(np.pi_v2/2.)
-1.0
-
-Print sines of an array of angles given in degrees:
-
->>> np.sin_v2(np.array_v2((0., 30., 45., 60., 90.)) * np.pi_v2 / 180. )
-array([ 0.        ,  0.5       ,  0.70710678,  0.8660254 ,  1.        ])
-
-Plot the sine function:
-
->>> import matplotlib.pylab as plt
->>> x = np.linspace_v2(-np.pi_v2, np.pi_v2, 201)
->>> plt.plot(x, np.sin_v2(x))
->>> plt.xlabel('Angle [rad]')
->>> plt.ylabel('sin(x)')
->>> plt.axis('tight')
->>> plt.show()
-
-########################################
-
-FUNCTION: numpy.equal_v2
-------------------------
-equal_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Return (x1 == x2) element-wise.
-
-Parameters
-----------
-x1, x2 : array_like
-    Input arrays.
-    If ``x1.shape != x2.shape``, they must be broadcastable to a common
-    shape (which becomes the shape of the output).
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-out : ndarray or scalar
-    Output array, element-wise comparison of `x1` and `x2`.
-    Typically of type bool, unless ``dtype=object`` is passed.
-    This is a scalar if both `x1` and `x2` are scalars.
-
-
-
-Examples
---------
->>> import numpy as np
->>> np.equal_v2([0, 1, 3], np.arange_v2(3))
-array([ True,  True, False])
-
-What is compared are values, not types. So an int (1) and an array of
-length one can evaluate as True:
-
->>> np.equal_v2(1, np.ones_v2(1))
-array([ True])
-
-The ``==`` operator can be used as a shorthand for ``np.equal_v2`` on
-ndarrays.
-
->>> a = np.array_v2([2, 4, 6])
->>> b = np.array_v2([2, 4, 2])
->>> a == b
-array([ True,  True, False])
 
 ########################################
 
@@ -618,1323 +334,6 @@ ndarrays.
 >>> x2 = np.array_v2([False, True])
 >>> x1 ^ x2
 array([ True, False])
-
-########################################
-
-FUNCTION: numpy.square_v2
--------------------------
-square_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Return the element-wise square of the input.
-
-Parameters
-----------
-x : array_like
-    Input data.
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-out : ndarray or scalar
-    Element-wise `x*x`, of the same shape and dtype as `x`.
-    This is a scalar if `x` is a scalar.
-
-
-
-Examples
---------
->>> import numpy as np
->>> np.square_v2([-1j, 1])
-array([-1.-0.j,  1.+0.j])
-
-########################################
-
-FUNCTION: numpy.logical_and_v2
-------------------------------
-logical_and_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Compute the truth value of x1 AND x2 element-wise.
-
-Parameters
-----------
-x1, x2 : array_like
-    Input arrays.
-    If ``x1.shape != x2.shape``, they must be broadcastable to a common
-    shape (which becomes the shape of the output).
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : ndarray or bool
-    Boolean result of the logical AND operation applied to the elements
-    of `x1` and `x2`; the shape is determined by broadcasting.
-    This is a scalar if both `x1` and `x2` are scalars.
-
-
-
-Examples
---------
->>> import numpy as np
->>> np.logical_and_v2(True, False)
-False
->>> np.logical_and_v2([True, False], [False, False])
-array([False, False])
-
->>> x = np.arange_v2(5)
->>> np.logical_and_v2(x>1, x<4)
-array([False, False,  True,  True, False])
-
-
-The ``&`` operator can be used as a shorthand for ``np.logical_and_v2`` on
-boolean ndarrays.
-
->>> a = np.array_v2([True, False])
->>> b = np.array_v2([False, False])
->>> a & b
-array([False, False])
-
-########################################
-
-FUNCTION: numpy.rad2deg_v2
---------------------------
-rad2deg_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Convert angles from radians to degrees.
-
-Parameters
-----------
-x : array_like
-    Angle in radians.
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : ndarray
-    The corresponding angle in degrees.
-    This is a scalar if `x` is a scalar.
-
-
-
-Notes
------
-rad2deg(x) is ``180 * x / pi``.
-
-Examples
---------
->>> import numpy as np
->>> np.rad2deg_v2(np.pi_v2/2)
-90.0
-
-########################################
-
-FUNCTION: numpy.logical_or_v2
------------------------------
-logical_or_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Compute the truth value of x1 OR x2 element-wise.
-
-Parameters
-----------
-x1, x2 : array_like
-    Logical OR is applied to the elements of `x1` and `x2`.
-    If ``x1.shape != x2.shape``, they must be broadcastable to a common
-    shape (which becomes the shape of the output).
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : ndarray or bool
-    Boolean result of the logical OR operation applied to the elements
-    of `x1` and `x2`; the shape is determined by broadcasting.
-    This is a scalar if both `x1` and `x2` are scalars.
-
-
-
-Examples
---------
->>> import numpy as np
->>> np.logical_or_v2(True, False)
-True
->>> np.logical_or_v2([True, False], [False, False])
-array([ True, False])
-
->>> x = np.arange_v2(5)
->>> np.logical_or_v2(x < 1, x > 3)
-array([ True, False, False, False,  True])
-
-The ``|`` operator can be used as a shorthand for ``np.logical_or_v2`` on
-boolean ndarrays.
-
->>> a = np.array_v2([True, False])
->>> b = np.array_v2([False, False])
->>> a | b
-array([ True, False])
-
-########################################
-
-FUNCTION: numpy.isfinite_v2
----------------------------
-isfinite_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Test element-wise for finiteness (not infinity and not Not a Number).
-
-The result is returned as a boolean array.
-
-Parameters
-----------
-x : array_like
-    Input values.
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : ndarray, bool
-    True where ``x`` is not positive infinity, negative infinity,
-    or NaN; false otherwise.
-    This is a scalar if `x` is a scalar.
-
-
-
-Notes
------
-Not a Number, positive infinity and negative infinity are considered
-to be non-finite.
-
-NumPy uses the IEEE Standard for Binary Floating-Point for Arithmetic
-(IEEE 754). This means that Not a Number is not equivalent to infinity.
-Also that positive infinity is not equivalent to negative infinity. But
-infinity is equivalent to positive infinity.  Errors result if the
-second argument is also supplied when `x` is a scalar input, or if
-first and second arguments have different shapes.
-
-Examples
---------
->>> import numpy as np
->>> np.isfinite_v2(1)
-True
->>> np.isfinite_v2(0)
-True
->>> np.isfinite_v2(np.nan_v2)
-False
->>> np.isfinite_v2(np.inf_v2)
-False
->>> np.isfinite_v2(-np.inf_v2)
-False
->>> np.isfinite_v2([np.log_v2(-1.),1.,np.log_v2(0)])
-array([False,  True, False])
-
->>> x = np.array_v2([-np.inf_v2, 0., np.inf_v2])
->>> y = np.array_v2([2, 2, 2])
->>> np.isfinite_v2(x, y)
-array([0, 1, 0])
->>> y
-array([0, 1, 0])
-
-########################################
-
-FUNCTION: numpy.exp_v2
-----------------------
-exp_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Calculate the exponential of all elements in the input array.
-
-Parameters
-----------
-x : array_like
-    Input values.
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-out : ndarray or scalar
-    Output array, element-wise exponential of `x`.
-    This is a scalar if `x` is a scalar.
-
-
-
-Notes
------
-The irrational number ``e`` is also known as Euler's number.  It is
-approximately 2.718281, and is the base of the natural logarithm,
-``ln`` (this means that, if :math:`x = \ln y = \log_e y`,
-then :math:`e^x = y`. For real input, ``exp(x)`` is always positive.
-
-For complex arguments, ``x = a + ib``, we can write
-:math:`e^x = e^a e^{ib}`.  The first term, :math:`e^a`, is already
-known (it is the real argument, described above).  The second term,
-:math:`e^{ib}`, is :math:`\cos b + i \sin b`, a function with
-magnitude 1 and a periodic phase.
-
-References
-----------
-.. [1] Wikipedia, "Exponential function",
-       https://en.wikipedia.org/wiki/Exponential_function
-.. [2] M. Abramovitz and I. A. Stegun, "Handbook of Mathematical Functions
-       with Formulas, Graphs, and Mathematical Tables," Dover, 1964, p. 69,
-       https://personal.math.ubc.ca/~cbm/aands/page_69.htm
-
-Examples
---------
-Plot the magnitude and phase of ``exp(x)`` in the complex plane:
-
->>> import numpy as np
-
->>> import matplotlib.pyplot as plt
-
->>> x = np.linspace_v2(-2*np.pi_v2, 2*np.pi_v2, 100)
->>> xx = x + 1j * x[:, np.newaxis_v2] # a + ib over complex plane
->>> out = np.exp_v2(xx)
-
->>> plt.subplot(121)
->>> plt.imshow(np.abs_v2(out),
-...            extent=[-2*np.pi_v2, 2*np.pi_v2, -2*np.pi_v2, 2*np.pi_v2], cmap='gray')
->>> plt.title('Magnitude of exp(x)')
-
->>> plt.subplot(122)
->>> plt.imshow(np.angle_v2(out),
-...            extent=[-2*np.pi_v2, 2*np.pi_v2, -2*np.pi_v2, 2*np.pi_v2], cmap='hsv')
->>> plt.title('Phase (angle) of exp(x)')
->>> plt.show()
-
-########################################
-
-FUNCTION: numpy.trapz_v2
-------------------------
-
-    `trapz` is deprecated in NumPy 2.0.
-
-    Please use `trapezoid` instead, or one of the numerical integration
-    functions in `scipy.integrate`.
-    
-
-########################################
-
-FUNCTION: numpy.tril_indices_v2
--------------------------------
-
-    Return the indices for the lower-triangle of an (n, m) array.
-
-    Parameters
-    ----------
-    n : int
-        The row dimension of the arrays for which the returned
-        indices will be valid.
-    k : int, optional
-        Diagonal offset (see `tril` for details).
-    m : int, optional
-        The column dimension of the arrays for which the returned
-        arrays will be valid.
-        By default `m` is taken equal to `n`.
-
-
-    Returns
-    -------
-    inds : tuple of arrays
-        The row and column indices, respectively. The row indices are sorted
-        in non-decreasing order, and the correspdonding column indices are
-        strictly increasing for each row.
-
-    
-
-    Examples
-    --------
-    >>> import numpy as np
-
-    Compute two different sets of indices to access 4x4 arrays, one for the
-    lower triangular part starting at the main diagonal, and one starting two
-    diagonals further right:
-
-    >>> il1 = np.tril_indices_v2(4)
-    >>> il1
-    (array([0, 1, 1, 2, 2, 2, 3, 3, 3, 3]), array([0, 0, 1, 0, 1, 2, 0, 1, 2, 3]))
-
-    Note that row indices (first array) are non-decreasing, and the corresponding
-    column indices (second array) are strictly increasing for each row.
-    Here is how they can be used with a sample array:
-
-    >>> a = np.arange_v2(16).reshape(4, 4)
-    >>> a
-    array([[ 0,  1,  2,  3],
-           [ 4,  5,  6,  7],
-           [ 8,  9, 10, 11],
-           [12, 13, 14, 15]])
-
-    Both for indexing:
-
-    >>> a[il1]
-    array([ 0,  4,  5, ..., 13, 14, 15])
-
-    And for assigning values:
-
-    >>> a[il1] = -1
-    >>> a
-    array([[-1,  1,  2,  3],
-           [-1, -1,  6,  7],
-           [-1, -1, -1, 11],
-           [-1, -1, -1, -1]])
-
-    These cover almost the whole array (two diagonals right of the main one):
-
-    >>> il2 = np.tril_indices_v2(4, 2)
-    >>> a[il2] = -10
-    >>> a
-    array([[-10, -10, -10,   3],
-           [-10, -10, -10, -10],
-           [-10, -10, -10, -10],
-           [-10, -10, -10, -10]])
-
-    
-
-########################################
-
-FUNCTION: numpy.multiply_v2
----------------------------
-multiply_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Multiply arguments element-wise.
-
-Parameters
-----------
-x1, x2 : array_like
-    Input arrays to be multiplied.
-    If ``x1.shape != x2.shape``, they must be broadcastable to a common
-    shape (which becomes the shape of the output).
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : ndarray
-    The product of `x1` and `x2`, element-wise.
-    This is a scalar if both `x1` and `x2` are scalars.
-
-Notes
------
-Equivalent to `x1` * `x2` in terms of array broadcasting.
-
-Examples
---------
->>> import numpy as np
->>> np.multiply_v2(2.0, 4.0)
-8.0
-
->>> x1 = np.arange_v2(9.0).reshape((3, 3))
->>> x2 = np.arange_v2(3.0)
->>> np.multiply_v2(x1, x2)
-array([[  0.,   1.,   4.],
-       [  0.,   4.,  10.],
-       [  0.,   7.,  16.]])
-
-The ``*`` operator can be used as a shorthand for ``np.multiply_v2`` on
-ndarrays.
-
->>> x1 = np.arange_v2(9.0).reshape((3, 3))
->>> x2 = np.arange_v2(3.0)
->>> x1 * x2
-array([[  0.,   1.,   4.],
-       [  0.,   4.,  10.],
-       [  0.,   7.,  16.]])
-
-########################################
-
-FUNCTION: numpy.eye_v2
-----------------------
-
-    Return a 2-D array with ones on the diagonal and zeros elsewhere.
-
-    Parameters
-    ----------
-    N : int
-      Number of rows in the output.
-    M : int, optional
-      Number of columns in the output. If None, defaults to `N`.
-    k : int, optional
-      Index of the diagonal: 0 (the default) refers to the main diagonal,
-      a positive value refers to an upper diagonal, and a negative value
-      to a lower diagonal.
-    dtype : data-type, optional
-      Data-type of the returned array.
-    order : {'C', 'F'}, optional
-        Whether the output should be stored in row-major (C-style) or
-        column-major (Fortran-style) order in memory.
-    device : str, optional
-        The device on which to place the created array. Default: None.
-        For Array-API interoperability only, so must be ``"cpu"`` if passed.
-
-        .. versionadded:: 2.0.0
-    like : array_like, optional
-        Reference object to allow the creation of arrays which are not
-        NumPy arrays. If an array-like passed in as ``like`` supports
-        the ``__array_function__`` protocol, the result will be defined
-        by it. In this case, it ensures the creation of an array object
-        compatible with that passed in via this argument.
-
-        .. versionadded:: 1.20.0
-
-    Returns
-    -------
-    I : ndarray of shape (N,M)
-      An array where all elements are equal to zero, except for the `k`-th
-      diagonal, whose values are equal to one.
-
-    
-
-    Examples
-    --------
-    >>> import numpy as np
-    >>> np.eye_v2(2, dtype=int)
-    array([[1, 0],
-           [0, 1]])
-    >>> np.eye_v2(3, k=1)
-    array([[0.,  1.,  0.],
-           [0.,  0.,  1.],
-           [0.,  0.,  0.]])
-
-    
-
-########################################
-
-FUNCTION: numpy.logical_not_v2
-------------------------------
-logical_not_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Compute the truth value of NOT x element-wise.
-
-Parameters
-----------
-x : array_like
-    Logical NOT is applied to the elements of `x`.
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : bool or ndarray of bool
-    Boolean result with the same shape as `x` of the NOT operation
-    on elements of `x`.
-    This is a scalar if `x` is a scalar.
-
-
-
-Examples
---------
->>> import numpy as np
->>> np.logical_not_v2(3)
-False
->>> np.logical_not_v2([True, False, 0, 1])
-array([False,  True,  True, False])
-
->>> x = np.arange_v2(5)
->>> np.logical_not_v2(x<3)
-array([False, False, False,  True,  True])
-
-########################################
-
-FUNCTION: numpy.isnan_v2
-------------------------
-isnan_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Test element-wise for NaN and return result as a boolean array.
-
-Parameters
-----------
-x : array_like
-    Input array.
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : ndarray or bool
-    True where ``x`` is NaN, false otherwise.
-    This is a scalar if `x` is a scalar.
-
-
-
-Notes
------
-NumPy uses the IEEE Standard for Binary Floating-Point for Arithmetic
-(IEEE 754). This means that Not a Number is not equivalent to infinity.
-
-Examples
---------
->>> import numpy as np
->>> np.isnan_v2(np.nan_v2)
-True
->>> np.isnan_v2(np.inf_v2)
-False
->>> np.isnan_v2([np.log_v2(-1.),1.,np.log_v2(0)])
-array([ True, False, False])
-
-########################################
-
-FUNCTION: numpy.sqrt_v2
------------------------
-sqrt_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Return the non-negative square-root of an array, element-wise.
-
-Parameters
-----------
-x : array_like
-    The values whose square-roots are required.
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : ndarray
-    An array of the same shape as `x`, containing the positive
-    square-root of each element in `x`.  If any element in `x` is
-    complex, a complex array is returned (and the square-roots of
-    negative reals are calculated).  If all of the elements in `x`
-    are real, so is `y`, with negative elements returning ``nan``.
-    If `out` was provided, `y` is a reference to it.
-    This is a scalar if `x` is a scalar.
-
-
-
-Notes
------
-*sqrt* has--consistent with common convention--as its branch cut the
-real "interval" [`-inf`, 0), and is continuous from above on it.
-A branch cut is a curve in the complex plane across which a given
-complex function fails to be continuous.
-
-Examples
---------
->>> import numpy as np
->>> np.sqrt_v2([1,4,9])
-array([ 1.,  2.,  3.])
-
->>> np.sqrt_v2([4, -1, -3+4J])
-array([ 2.+0.j,  0.+1.j,  1.+2.j])
-
->>> np.sqrt_v2([4, -1, np.inf_v2])
-array([ 2., nan, inf])
-
-########################################
-
-FUNCTION: numpy.ma.filled_v2
-----------------------------
-
-    Return input as an `~numpy.ndarray_v2`, with masked values replaced by
-    `fill_value`.
-
-    If `a` is not a `MaskedArray`, `a` itself is returned.
-    If `a` is a `MaskedArray` with no masked values, then ``a.data`` is
-    returned.
-    If `a` is a `MaskedArray` and `fill_value` is None, `fill_value` is set to
-    ``a.fill_value``.
-
-    Parameters
-    ----------
-    a : MaskedArray or array_like
-        An input object.
-    fill_value : array_like, optional.
-        Can be scalar or non-scalar. If non-scalar, the
-        resulting filled array should be broadcastable
-        over input array. Default is None.
-
-    Returns
-    -------
-    a : ndarray
-        The filled array.
-
-    
-
-    Examples
-    --------
-    >>> import numpy as np
-    >>> import numpy.ma_v2 as ma
-    >>> x = ma.array(np.arange_v2(9).reshape(3, 3), mask=[[1, 0, 0],
-    ...                                                [1, 0, 0],
-    ...                                                [0, 0, 0]])
-    >>> x.filled()
-    array([[999999,      1,      2],
-           [999999,      4,      5],
-           [     6,      7,      8]])
-    >>> x.filled(fill_value=333)
-    array([[333,   1,   2],
-           [333,   4,   5],
-           [  6,   7,   8]])
-    >>> x.filled(fill_value=np.arange_v2(3))
-    array([[0, 1, 2],
-           [0, 4, 5],
-           [6, 7, 8]])
-
-    
-
-########################################
-
-FUNCTION: numpy.radians_v2
---------------------------
-radians_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Convert angles from degrees to radians.
-
-Parameters
-----------
-x : array_like
-    Input array in degrees.
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : ndarray
-    The corresponding radian values.
-    This is a scalar if `x` is a scalar.
-
-
-
-Examples
---------
->>> import numpy as np
-
-Convert a degree array to radians
-
->>> deg = np.arange_v2(12.) * 30.
->>> np.radians_v2(deg)
-array([ 0.        ,  0.52359878,  1.04719755,  1.57079633,  2.0943951 ,
-        2.61799388,  3.14159265,  3.66519143,  4.1887902 ,  4.71238898,
-        5.23598776,  5.75958653])
-
->>> out = np.zeros_v2((deg.shape))
->>> ret = np.radians_v2(deg, out)
->>> ret is out
-True
-
-########################################
-
-FUNCTION: numpy.isinf_v2
-------------------------
-isinf_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Test element-wise for positive or negative infinity.
-
-Returns a boolean array of the same shape as `x`, True where ``x ==
-+/-inf``, otherwise False.
-
-Parameters
-----------
-x : array_like
-    Input values
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : bool (scalar) or boolean ndarray
-    True where ``x`` is positive or negative infinity, false otherwise.
-    This is a scalar if `x` is a scalar.
-
-
-
-Notes
------
-NumPy uses the IEEE Standard for Binary Floating-Point for Arithmetic
-(IEEE 754).
-
-Errors result if the second argument is supplied when the first
-argument is a scalar, or if the first and second arguments have
-different shapes.
-
-Examples
---------
->>> import numpy as np
->>> np.isinf_v2(np.inf_v2)
-True
->>> np.isinf_v2(np.nan_v2)
-False
->>> np.isinf_v2(-np.inf_v2)
-True
->>> np.isinf_v2([np.inf_v2, -np.inf_v2, 1.0, np.nan_v2])
-array([ True,  True, False, False])
-
->>> x = np.array_v2([-np.inf_v2, 0., np.inf_v2])
->>> y = np.array_v2([2, 2, 2])
->>> np.isinf_v2(x, y)
-array([1, 0, 1])
->>> y
-array([1, 0, 1])
-
-########################################
-
-FUNCTION: numpy.gcd_v2
-----------------------
-gcd_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Returns the greatest common divisor of ``|x1|`` and ``|x2|``
-
-Parameters
-----------
-x1, x2 : array_like, int
-    Arrays of values.
-    If ``x1.shape != x2.shape``, they must be broadcastable to a common
-    shape (which becomes the shape of the output).
-
-Returns
--------
-y : ndarray or scalar
-    The greatest common divisor of the absolute value of the inputs
-    This is a scalar if both `x1` and `x2` are scalars.
-
-
-
-Examples
---------
->>> import numpy as np
->>> np.gcd_v2(12, 20)
-4
->>> np.gcd_v2.reduce([15, 25, 35])
-5
->>> np.gcd_v2(np.arange_v2(6), 20)
-array([20,  1,  2,  1,  4,  5])
-
-########################################
-
-FUNCTION: numpy.ma.masked_where_v2
-----------------------------------
-
-    Mask an array where a condition is met.
-
-    Return `a` as an array masked where `condition` is True.
-    Any masked values of `a` or `condition` are also masked in the output.
-
-    Parameters
-    ----------
-    condition : array_like
-        Masking condition.  When `condition` tests floating point values for
-        equality, consider using ``masked_values`` instead.
-    a : array_like
-        Array to mask.
-    copy : bool
-        If True (default) make a copy of `a` in the result.  If False modify
-        `a` in place and return a view.
-
-    Returns
-    -------
-    result : MaskedArray
-        The result of masking `a` where `condition` is True.
-
-    
-
-    Examples
-    --------
-    >>> import numpy as np
-    >>> import numpy.ma_v2 as ma
-    >>> a = np.arange_v2(4)
-    >>> a
-    array([0, 1, 2, 3])
-    >>> ma.masked_where(a <= 2, a)
-    masked_array(data=[--, --, --, 3],
-                 mask=[ True,  True,  True, False],
-           fill_value=999999)
-
-    Mask array `b` conditional on `a`.
-
-    >>> b = ['a', 'b', 'c', 'd']
-    >>> ma.masked_where(a == 2, b)
-    masked_array(data=['a', 'b', --, 'd'],
-                 mask=[False, False,  True, False],
-           fill_value='N/A',
-                dtype='<U1')
-
-    Effect of the `copy` argument.
-
-    >>> c = ma.masked_where(a <= 2, a)
-    >>> c
-    masked_array(data=[--, --, --, 3],
-                 mask=[ True,  True,  True, False],
-           fill_value=999999)
-    >>> c[0] = 99
-    >>> c
-    masked_array(data=[99, --, --, 3],
-                 mask=[False,  True,  True, False],
-           fill_value=999999)
-    >>> a
-    array([0, 1, 2, 3])
-    >>> c = ma.masked_where(a <= 2, a, copy=False)
-    >>> c[0] = 99
-    >>> c
-    masked_array(data=[99, --, --, 3],
-                 mask=[False,  True,  True, False],
-           fill_value=999999)
-    >>> a
-    array([99,  1,  2,  3])
-
-    When `condition` or `a` contain masked values.
-
-    >>> a = np.arange_v2(4)
-    >>> a = ma.masked_where(a == 2, a)
-    >>> a
-    masked_array(data=[0, 1, --, 3],
-                 mask=[False, False,  True, False],
-           fill_value=999999)
-    >>> b = np.arange_v2(4)
-    >>> b = ma.masked_where(b == 0, b)
-    >>> b
-    masked_array(data=[--, 1, 2, 3],
-                 mask=[ True, False, False, False],
-           fill_value=999999)
-    >>> ma.masked_where(a == 3, b)
-    masked_array(data=[--, 1, --, --],
-                 mask=[ True, False,  True,  True],
-           fill_value=999999)
-
-    
-
-########################################
-
-FUNCTION: numpy.subtract_v2
----------------------------
-subtract_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Subtract arguments, element-wise.
-
-Parameters
-----------
-x1, x2 : array_like
-    The arrays to be subtracted from each other.
-    If ``x1.shape != x2.shape``, they must be broadcastable to a common
-    shape (which becomes the shape of the output).
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-y : ndarray
-    The difference of `x1` and `x2`, element-wise.
-    This is a scalar if both `x1` and `x2` are scalars.
-
-Notes
------
-Equivalent to ``x1 - x2`` in terms of array broadcasting.
-
-Examples
---------
->>> import numpy as np
->>> np.subtract_v2(1.0, 4.0)
--3.0
-
->>> x1 = np.arange_v2(9.0).reshape((3, 3))
->>> x2 = np.arange_v2(3.0)
->>> np.subtract_v2(x1, x2)
-array([[ 0.,  0.,  0.],
-       [ 3.,  3.,  3.],
-       [ 6.,  6.,  6.]])
-
-The ``-`` operator can be used as a shorthand for ``np.subtract_v2`` on
-ndarrays.
-
->>> x1 = np.arange_v2(9.0).reshape((3, 3))
->>> x2 = np.arange_v2(3.0)
->>> x1 - x2
-array([[0., 0., 0.],
-       [3., 3., 3.],
-       [6., 6., 6.]])
-
-########################################
-
-FUNCTION: numpy.arcsin_v2
--------------------------
-arcsin_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Inverse sine, element-wise.
-
-Parameters
-----------
-x : array_like
-    `y`-coordinate on the unit circle.
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-angle : ndarray
-    The inverse sine of each element in `x`, in radians and in the
-    closed interval ``[-pi/2, pi/2]``.
-    This is a scalar if `x` is a scalar.
-
-
-
-Notes
------
-`arcsin` is a multivalued function: for each `x` there are infinitely
-many numbers `z` such that :math:`sin(z) = x`.  The convention is to
-return the angle `z` whose real part lies in [-pi/2, pi/2].
-
-For real-valued input data types, *arcsin* always returns real output.
-For each value that cannot be expressed as a real number or infinity,
-it yields ``nan`` and sets the `invalid` floating point error flag.
-
-For complex-valued input, `arcsin` is a complex analytic function that
-has, by convention, the branch cuts [-inf, -1] and [1, inf]  and is
-continuous from above on the former and from below on the latter.
-
-The inverse sine is also known as `asin` or sin^{-1}.
-
-References
-----------
-Abramowitz, M. and Stegun, I. A., *Handbook of Mathematical Functions*,
-10th printing, New York: Dover, 1964, pp. 79ff.
-https://personal.math.ubc.ca/~cbm/aands/page_79.htm
-
-Examples
---------
->>> import numpy as np
->>> np.arcsin_v2(1)     # pi/2
-1.5707963267948966
->>> np.arcsin_v2(-1)    # -pi/2
--1.5707963267948966
->>> np.arcsin_v2(0)
-0.0
-
-########################################
-
-FUNCTION: numpy.abs_v2
-----------------------
-absolute_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Calculate the absolute value element-wise.
-
-``np.abs_v2`` is a shorthand for this function.
-
-Parameters
-----------
-x : array_like
-    Input array.
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-absolute : ndarray
-    An ndarray containing the absolute value of
-    each element in `x`.  For complex input, ``a + ib``, the
-    absolute value is :math:`\sqrt{ a^2 + b^2 }`.
-    This is a scalar if `x` is a scalar.
-
-Examples
---------
->>> import numpy as np
->>> x = np.array_v2([-1.2, 1.2])
->>> np.absolute_v2(x)
-array([ 1.2,  1.2])
->>> np.absolute_v2(1.2 + 1j)
-1.5620499351813308
-
-Plot the function over ``[-10, 10]``:
-
->>> import matplotlib.pyplot as plt
-
->>> x = np.linspace_v2(start=-10, stop=10, num=101)
->>> plt.plot(x, np.absolute_v2(x))
->>> plt.show()
-
-Plot the function over the complex plane:
-
->>> xx = x + 1j * x[:, np.newaxis_v2]
->>> plt.imshow(np.abs_v2(xx), extent=[-10, 10, -10, 10], cmap='gray')
->>> plt.show()
-
-The `abs` function can be used as a shorthand for ``np.absolute_v2`` on
-ndarrays.
-
->>> x = np.array_v2([-1.2, 1.2])
->>> abs(x)
-array([1.2, 1.2])
-
-########################################
-
-FUNCTION: numpy.ma.masked_invalid_v2
-------------------------------------
-
-    Mask an array where invalid values occur (NaNs or infs).
-
-    This function is a shortcut to ``masked_where``, with
-    `condition` = ~(np.isfinite_v2(a)). Any pre-existing mask is conserved.
-    Only applies to arrays with a dtype where NaNs or infs make sense
-    (i.e. floating point types), but accepts any array_like object.
-
-    
-
-    Examples
-    --------
-    >>> import numpy as np
-    >>> import numpy.ma_v2 as ma
-    >>> a = np.arange_v2(5, dtype=float)
-    >>> a[2] = np.nan_v2
-    >>> a[3] = np.inf_v2
-    >>> a
-    array([ 0.,  1., nan, inf,  4.])
-    >>> ma.masked_invalid(a)
-    masked_array(data=[0.0, 1.0, --, --, 4.0],
-                 mask=[False, False,  True,  True, False],
-           fill_value=1e+20)
-
-    
-
-########################################
-
-FUNCTION: numpy.ones_v2
------------------------
-
-    Return a new array of given shape and type, filled with ones.
-
-    Parameters
-    ----------
-    shape : int or sequence of ints
-        Shape of the new array, e.g., ``(2, 3)`` or ``2``.
-    dtype : data-type, optional
-        The desired data-type for the array, e.g., `numpy.int8_v2`.  Default is
-        `numpy.float64_v2`.
-    order : {'C', 'F'}, optional, default: C
-        Whether to store multi-dimensional data in row-major
-        (C-style) or column-major (Fortran-style) order in
-        memory.
-    device : str, optional
-        The device on which to place the created array. Default: None.
-        For Array-API interoperability only, so must be ``"cpu"`` if passed.
-
-        .. versionadded:: 2.0.0
-    like : array_like, optional
-        Reference object to allow the creation of arrays which are not
-        NumPy arrays. If an array-like passed in as ``like`` supports
-        the ``__array_function__`` protocol, the result will be defined
-        by it. In this case, it ensures the creation of an array object
-        compatible with that passed in via this argument.
-
-        .. versionadded:: 1.20.0
-
-    Returns
-    -------
-    out : ndarray
-        Array of ones with the given shape, dtype, and order.
-
-    
-
-    Examples
-    --------
-    >>> import numpy as np
-    >>> np.ones_v2(5)
-    array([1., 1., 1., 1., 1.])
-
-    >>> np.ones_v2((5,), dtype=int)
-    array([1, 1, 1, 1, 1])
-
-    >>> np.ones_v2((2, 1))
-    array([[1.],
-           [1.]])
-
-    >>> s = (2,2)
-    >>> np.ones_v2(s)
-    array([[1.,  1.],
-           [1.,  1.]])
-
-    
 
 ########################################
 
@@ -2047,6 +446,52 @@ ValueError: operands could not be broadcast together with shapes (3,3) (2,2)
 
 ########################################
 
+FUNCTION: numpy.deg2rad_v2
+--------------------------
+deg2rad_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Convert angles from degrees to radians.
+
+Parameters
+----------
+x : array_like
+    Angles in degrees.
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : ndarray
+    The corresponding angle in radians.
+    This is a scalar if `x` is a scalar.
+
+
+
+Notes
+-----
+``deg2rad(x)`` is ``x * pi / 180``.
+
+Examples
+--------
+>>> import numpy as np
+>>> np.deg2rad_v2(180)
+3.1415926535897931
+
+########################################
+
 FUNCTION: numpy.degrees_v2
 --------------------------
 degrees_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
@@ -2097,6 +542,335 @@ array([   0.,   30.,   60.,   90.,  120.,  150.,  180.,  210.,  240.,
 >>> r = np.degrees_v2(rad, out)
 >>> np.all_v2(r == out)
 True
+
+########################################
+
+FUNCTION: numpy.diag_indices_v2
+-------------------------------
+
+    Return the indices to access the main diagonal of an array.
+
+    This returns a tuple of indices that can be used to access the main
+    diagonal of an array `a` with ``a.ndim >= 2`` dimensions and shape
+    (n, n, ..., n). For ``a.ndim = 2`` this is the usual diagonal, for
+    ``a.ndim > 2`` this is the set of indices to access ``a[i, i, ..., i]``
+    for ``i = [0..n-1]``.
+
+    Parameters
+    ----------
+    n : int
+      The size, along each dimension, of the arrays for which the returned
+      indices can be used.
+
+    ndim : int, optional
+      The number of dimensions.
+
+    
+
+    Examples
+    --------
+    >>> import numpy as np
+
+    Create a set of indices to access the diagonal of a (4, 4) array:
+
+    >>> di = np.diag_indices_v2(4)
+    >>> di
+    (array([0, 1, 2, 3]), array([0, 1, 2, 3]))
+    >>> a = np.arange_v2(16).reshape(4, 4)
+    >>> a
+    array([[ 0,  1,  2,  3],
+           [ 4,  5,  6,  7],
+           [ 8,  9, 10, 11],
+           [12, 13, 14, 15]])
+    >>> a[di] = 100
+    >>> a
+    array([[100,   1,   2,   3],
+           [  4, 100,   6,   7],
+           [  8,   9, 100,  11],
+           [ 12,  13,  14, 100]])
+
+    Now, we create indices to manipulate a 3-D array:
+
+    >>> d3 = np.diag_indices_v2(2, 3)
+    >>> d3
+    (array([0, 1]), array([0, 1]), array([0, 1]))
+
+    And use it to set the diagonal of an array of zeros to 1:
+
+    >>> a = np.zeros_v2((2, 2, 2), dtype=int)
+    >>> a[d3] = 1
+    >>> a
+    array([[[1, 0],
+            [0, 0]],
+           [[0, 0],
+            [0, 1]]])
+
+    
+
+########################################
+
+FUNCTION: numpy.divide_v2
+-------------------------
+divide_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Divide arguments element-wise.
+
+Parameters
+----------
+x1 : array_like
+    Dividend array.
+x2 : array_like
+    Divisor array.
+    If ``x1.shape != x2.shape``, they must be broadcastable to a common
+    shape (which becomes the shape of the output).
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : ndarray or scalar
+    The quotient ``x1/x2``, element-wise.
+    This is a scalar if both `x1` and `x2` are scalars.
+
+
+
+Notes
+-----
+Equivalent to ``x1`` / ``x2`` in terms of array-broadcasting.
+
+The ``true_divide(x1, x2)`` function is an alias for
+``divide(x1, x2)``.
+
+Examples
+--------
+>>> import numpy as np
+>>> np.divide_v2(2.0, 4.0)
+0.5
+>>> x1 = np.arange_v2(9.0).reshape((3, 3))
+>>> x2 = np.arange_v2(3.0)
+>>> np.divide_v2(x1, x2)
+array([[nan, 1. , 1. ],
+       [inf, 4. , 2.5],
+       [inf, 7. , 4. ]])
+
+The ``/`` operator can be used as a shorthand for ``np.divide_v2`` on
+ndarrays.
+
+>>> x1 = np.arange_v2(9.0).reshape((3, 3))
+>>> x2 = 2 * np.ones_v2(3)
+>>> x1 / x2
+array([[0. , 0.5, 1. ],
+       [1.5, 2. , 2.5],
+       [3. , 3.5, 4. ]])
+
+########################################
+
+FUNCTION: numpy.equal_v2
+------------------------
+equal_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Return (x1 == x2) element-wise.
+
+Parameters
+----------
+x1, x2 : array_like
+    Input arrays.
+    If ``x1.shape != x2.shape``, they must be broadcastable to a common
+    shape (which becomes the shape of the output).
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+out : ndarray or scalar
+    Output array, element-wise comparison of `x1` and `x2`.
+    Typically of type bool, unless ``dtype=object`` is passed.
+    This is a scalar if both `x1` and `x2` are scalars.
+
+
+
+Examples
+--------
+>>> import numpy as np
+>>> np.equal_v2([0, 1, 3], np.arange_v2(3))
+array([ True,  True, False])
+
+What is compared are values, not types. So an int (1) and an array of
+length one can evaluate as True:
+
+>>> np.equal_v2(1, np.ones_v2(1))
+array([ True])
+
+The ``==`` operator can be used as a shorthand for ``np.equal_v2`` on
+ndarrays.
+
+>>> a = np.array_v2([2, 4, 6])
+>>> b = np.array_v2([2, 4, 2])
+>>> a == b
+array([ True,  True, False])
+
+########################################
+
+FUNCTION: numpy.exp_v2
+----------------------
+exp_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Calculate the exponential of all elements in the input array.
+
+Parameters
+----------
+x : array_like
+    Input values.
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+out : ndarray or scalar
+    Output array, element-wise exponential of `x`.
+    This is a scalar if `x` is a scalar.
+
+
+
+Notes
+-----
+The irrational number ``e`` is also known as Euler's number.  It is
+approximately 2.718281, and is the base of the natural logarithm,
+``ln`` (this means that, if :math:`x = \ln y = \log_e y`,
+then :math:`e^x = y`. For real input, ``exp(x)`` is always positive.
+
+For complex arguments, ``x = a + ib``, we can write
+:math:`e^x = e^a e^{ib}`.  The first term, :math:`e^a`, is already
+known (it is the real argument, described above).  The second term,
+:math:`e^{ib}`, is :math:`\cos b + i \sin b`, a function with
+magnitude 1 and a periodic phase.
+
+References
+----------
+.. [1] Wikipedia, "Exponential function",
+       https://en.wikipedia.org/wiki/Exponential_function
+.. [2] M. Abramovitz and I. A. Stegun, "Handbook of Mathematical Functions
+       with Formulas, Graphs, and Mathematical Tables," Dover, 1964, p. 69,
+       https://personal.math.ubc.ca/~cbm/aands/page_69.htm
+
+Examples
+--------
+Plot the magnitude and phase of ``exp(x)`` in the complex plane:
+
+>>> import numpy as np
+
+>>> import matplotlib.pyplot as plt
+
+>>> x = np.linspace_v2(-2*np.pi_v2, 2*np.pi_v2, 100)
+>>> xx = x + 1j * x[:, np.newaxis_v2] # a + ib over complex plane
+>>> out = np.exp_v2(xx)
+
+>>> plt.subplot(121)
+>>> plt.imshow(np.abs_v2(out),
+...            extent=[-2*np.pi_v2, 2*np.pi_v2, -2*np.pi_v2, 2*np.pi_v2], cmap='gray')
+>>> plt.title('Magnitude of exp(x)')
+
+>>> plt.subplot(122)
+>>> plt.imshow(np.angle_v2(out),
+...            extent=[-2*np.pi_v2, 2*np.pi_v2, -2*np.pi_v2, 2*np.pi_v2], cmap='hsv')
+>>> plt.title('Phase (angle) of exp(x)')
+>>> plt.show()
+
+########################################
+
+FUNCTION: numpy.eye_v2
+----------------------
+
+    Return a 2-D array with ones on the diagonal and zeros elsewhere.
+
+    Parameters
+    ----------
+    N : int
+      Number of rows in the output.
+    M : int, optional
+      Number of columns in the output. If None, defaults to `N`.
+    k : int, optional
+      Index of the diagonal: 0 (the default) refers to the main diagonal,
+      a positive value refers to an upper diagonal, and a negative value
+      to a lower diagonal.
+    dtype : data-type, optional
+      Data-type of the returned array.
+    order : {'C', 'F'}, optional
+        Whether the output should be stored in row-major (C-style) or
+        column-major (Fortran-style) order in memory.
+    device : str, optional
+        The device on which to place the created array. Default: None.
+        For Array-API interoperability only, so must be ``"cpu"`` if passed.
+
+        .. versionadded:: 2.0.0
+    like : array_like, optional
+        Reference object to allow the creation of arrays which are not
+        NumPy arrays. If an array-like passed in as ``like`` supports
+        the ``__array_function__`` protocol, the result will be defined
+        by it. In this case, it ensures the creation of an array object
+        compatible with that passed in via this argument.
+
+        .. versionadded:: 1.20.0
+
+    Returns
+    -------
+    I : ndarray of shape (N,M)
+      An array where all elements are equal to zero, except for the `k`-th
+      diagonal, whose values are equal to one.
+
+    
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> np.eye_v2(2, dtype=int)
+    array([[1, 0],
+           [0, 1]])
+    >>> np.eye_v2(3, k=1)
+    array([[0.,  1.,  0.],
+           [0.,  0.,  1.],
+           [0.,  0.,  0.]])
+
+    
 
 ########################################
 
@@ -2209,6 +983,39 @@ FUNCTION: numpy.full_v2
 
 ########################################
 
+FUNCTION: numpy.gcd_v2
+----------------------
+gcd_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Returns the greatest common divisor of ``|x1|`` and ``|x2|``
+
+Parameters
+----------
+x1, x2 : array_like, int
+    Arrays of values.
+    If ``x1.shape != x2.shape``, they must be broadcastable to a common
+    shape (which becomes the shape of the output).
+
+Returns
+-------
+y : ndarray or scalar
+    The greatest common divisor of the absolute value of the inputs
+    This is a scalar if both `x1` and `x2` are scalars.
+
+
+
+Examples
+--------
+>>> import numpy as np
+>>> np.gcd_v2(12, 20)
+4
+>>> np.gcd_v2.reduce([15, 25, 35])
+5
+>>> np.gcd_v2(np.arange_v2(6), 20)
+array([20,  1,  2,  1,  4,  5])
+
+########################################
+
 FUNCTION: numpy.indices_v2
 --------------------------
 
@@ -2294,77 +1101,18 @@ FUNCTION: numpy.indices_v2
 
 ########################################
 
-FUNCTION: numpy.add_v2
-----------------------
-add_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+FUNCTION: numpy.isfinite_v2
+---------------------------
+isfinite_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
-Add arguments element-wise.
+Test element-wise for finiteness (not infinity and not Not a Number).
 
-Parameters
-----------
-x1, x2 : array_like
-    The arrays to be added.
-    If ``x1.shape != x2.shape``, they must be broadcastable to a common
-    shape (which becomes the shape of the output).
-out : ndarray, None, or tuple of ndarray and None, optional
-    A location into which the result is stored. If provided, it must have
-    a shape that the inputs broadcast to. If not provided or None,
-    a freshly-allocated array is returned. A tuple (possible only as a
-    keyword argument) must have length equal to the number of outputs.
-where : array_like, optional
-    This condition is broadcast over the input. At locations where the
-    condition is True, the `out` array will be set to the ufunc result.
-    Elsewhere, the `out` array will retain its original value.
-    Note that if an uninitialized `out` array is created via the default
-    ``out=None``, locations within it where the condition is False will
-    remain uninitialized.
-**kwargs
-    For other keyword-only arguments, see the
-    :ref:`ufunc docs <ufuncs.kwargs>`.
-
-Returns
--------
-add : ndarray or scalar
-    The sum of `x1` and `x2`, element-wise.
-    This is a scalar if both `x1` and `x2` are scalars.
-
-Notes
------
-Equivalent to `x1` + `x2` in terms of array broadcasting.
-
-Examples
---------
->>> import numpy as np
->>> np.add_v2(1.0, 4.0)
-5.0
->>> x1 = np.arange_v2(9.0).reshape((3, 3))
->>> x2 = np.arange_v2(3.0)
->>> np.add_v2(x1, x2)
-array([[  0.,   2.,   4.],
-       [  3.,   5.,   7.],
-       [  6.,   8.,  10.]])
-
-The ``+`` operator can be used as a shorthand for ``np.add_v2`` on ndarrays.
-
->>> x1 = np.arange_v2(9.0).reshape((3, 3))
->>> x2 = np.arange_v2(3.0)
->>> x1 + x2
-array([[ 0.,  2.,  4.],
-       [ 3.,  5.,  7.],
-       [ 6.,  8., 10.]])
-
-########################################
-
-FUNCTION: numpy.deg2rad_v2
---------------------------
-deg2rad_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
-
-Convert angles from degrees to radians.
+The result is returned as a boolean array.
 
 Parameters
 ----------
 x : array_like
-    Angles in degrees.
+    Input values.
 out : ndarray, None, or tuple of ndarray and None, optional
     A location into which the result is stored. If provided, it must have
     a shape that the inputs broadcast to. If not provided or None,
@@ -2383,21 +1131,165 @@ where : array_like, optional
 
 Returns
 -------
-y : ndarray
-    The corresponding angle in radians.
+y : ndarray, bool
+    True where ``x`` is not positive infinity, negative infinity,
+    or NaN; false otherwise.
     This is a scalar if `x` is a scalar.
 
 
 
 Notes
 -----
-``deg2rad(x)`` is ``x * pi / 180``.
+Not a Number, positive infinity and negative infinity are considered
+to be non-finite.
+
+NumPy uses the IEEE Standard for Binary Floating-Point for Arithmetic
+(IEEE 754). This means that Not a Number is not equivalent to infinity.
+Also that positive infinity is not equivalent to negative infinity. But
+infinity is equivalent to positive infinity.  Errors result if the
+second argument is also supplied when `x` is a scalar input, or if
+first and second arguments have different shapes.
 
 Examples
 --------
 >>> import numpy as np
->>> np.deg2rad_v2(180)
-3.1415926535897931
+>>> np.isfinite_v2(1)
+True
+>>> np.isfinite_v2(0)
+True
+>>> np.isfinite_v2(np.nan_v2)
+False
+>>> np.isfinite_v2(np.inf_v2)
+False
+>>> np.isfinite_v2(-np.inf_v2)
+False
+>>> np.isfinite_v2([np.log_v2(-1.),1.,np.log_v2(0)])
+array([False,  True, False])
+
+>>> x = np.array_v2([-np.inf_v2, 0., np.inf_v2])
+>>> y = np.array_v2([2, 2, 2])
+>>> np.isfinite_v2(x, y)
+array([0, 1, 0])
+>>> y
+array([0, 1, 0])
+
+########################################
+
+FUNCTION: numpy.isinf_v2
+------------------------
+isinf_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Test element-wise for positive or negative infinity.
+
+Returns a boolean array of the same shape as `x`, True where ``x ==
++/-inf``, otherwise False.
+
+Parameters
+----------
+x : array_like
+    Input values
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : bool (scalar) or boolean ndarray
+    True where ``x`` is positive or negative infinity, false otherwise.
+    This is a scalar if `x` is a scalar.
+
+
+
+Notes
+-----
+NumPy uses the IEEE Standard for Binary Floating-Point for Arithmetic
+(IEEE 754).
+
+Errors result if the second argument is supplied when the first
+argument is a scalar, or if the first and second arguments have
+different shapes.
+
+Examples
+--------
+>>> import numpy as np
+>>> np.isinf_v2(np.inf_v2)
+True
+>>> np.isinf_v2(np.nan_v2)
+False
+>>> np.isinf_v2(-np.inf_v2)
+True
+>>> np.isinf_v2([np.inf_v2, -np.inf_v2, 1.0, np.nan_v2])
+array([ True,  True, False, False])
+
+>>> x = np.array_v2([-np.inf_v2, 0., np.inf_v2])
+>>> y = np.array_v2([2, 2, 2])
+>>> np.isinf_v2(x, y)
+array([1, 0, 1])
+>>> y
+array([1, 0, 1])
+
+########################################
+
+FUNCTION: numpy.isnan_v2
+------------------------
+isnan_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Test element-wise for NaN and return result as a boolean array.
+
+Parameters
+----------
+x : array_like
+    Input array.
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : ndarray or bool
+    True where ``x`` is NaN, false otherwise.
+    This is a scalar if `x` is a scalar.
+
+
+
+Notes
+-----
+NumPy uses the IEEE Standard for Binary Floating-Point for Arithmetic
+(IEEE 754). This means that Not a Number is not equivalent to infinity.
+
+Examples
+--------
+>>> import numpy as np
+>>> np.isnan_v2(np.nan_v2)
+True
+>>> np.isnan_v2(np.inf_v2)
+False
+>>> np.isnan_v2([np.log_v2(-1.),1.,np.log_v2(0)])
+array([ True, False, False])
 
 ########################################
 
@@ -2451,6 +1343,1114 @@ FUNCTION: numpy.lib.stride_tricks.as_strided_v2
 
     For these reasons it is advisable to avoid ``as_strided`` when
     possible.
+    
+
+########################################
+
+FUNCTION: numpy.logical_and_v2
+------------------------------
+logical_and_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Compute the truth value of x1 AND x2 element-wise.
+
+Parameters
+----------
+x1, x2 : array_like
+    Input arrays.
+    If ``x1.shape != x2.shape``, they must be broadcastable to a common
+    shape (which becomes the shape of the output).
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : ndarray or bool
+    Boolean result of the logical AND operation applied to the elements
+    of `x1` and `x2`; the shape is determined by broadcasting.
+    This is a scalar if both `x1` and `x2` are scalars.
+
+
+
+Examples
+--------
+>>> import numpy as np
+>>> np.logical_and_v2(True, False)
+False
+>>> np.logical_and_v2([True, False], [False, False])
+array([False, False])
+
+>>> x = np.arange_v2(5)
+>>> np.logical_and_v2(x>1, x<4)
+array([False, False,  True,  True, False])
+
+
+The ``&`` operator can be used as a shorthand for ``np.logical_and_v2`` on
+boolean ndarrays.
+
+>>> a = np.array_v2([True, False])
+>>> b = np.array_v2([False, False])
+>>> a & b
+array([False, False])
+
+########################################
+
+FUNCTION: numpy.logical_not_v2
+------------------------------
+logical_not_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Compute the truth value of NOT x element-wise.
+
+Parameters
+----------
+x : array_like
+    Logical NOT is applied to the elements of `x`.
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : bool or ndarray of bool
+    Boolean result with the same shape as `x` of the NOT operation
+    on elements of `x`.
+    This is a scalar if `x` is a scalar.
+
+
+
+Examples
+--------
+>>> import numpy as np
+>>> np.logical_not_v2(3)
+False
+>>> np.logical_not_v2([True, False, 0, 1])
+array([False,  True,  True, False])
+
+>>> x = np.arange_v2(5)
+>>> np.logical_not_v2(x<3)
+array([False, False, False,  True,  True])
+
+########################################
+
+FUNCTION: numpy.logical_or_v2
+-----------------------------
+logical_or_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Compute the truth value of x1 OR x2 element-wise.
+
+Parameters
+----------
+x1, x2 : array_like
+    Logical OR is applied to the elements of `x1` and `x2`.
+    If ``x1.shape != x2.shape``, they must be broadcastable to a common
+    shape (which becomes the shape of the output).
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : ndarray or bool
+    Boolean result of the logical OR operation applied to the elements
+    of `x1` and `x2`; the shape is determined by broadcasting.
+    This is a scalar if both `x1` and `x2` are scalars.
+
+
+
+Examples
+--------
+>>> import numpy as np
+>>> np.logical_or_v2(True, False)
+True
+>>> np.logical_or_v2([True, False], [False, False])
+array([ True, False])
+
+>>> x = np.arange_v2(5)
+>>> np.logical_or_v2(x < 1, x > 3)
+array([ True, False, False, False,  True])
+
+The ``|`` operator can be used as a shorthand for ``np.logical_or_v2`` on
+boolean ndarrays.
+
+>>> a = np.array_v2([True, False])
+>>> b = np.array_v2([False, False])
+>>> a | b
+array([ True, False])
+
+########################################
+
+FUNCTION: numpy.ma.filled_v2
+----------------------------
+
+    Return input as an `~numpy.ndarray_v2`, with masked values replaced by
+    `fill_value`.
+
+    If `a` is not a `MaskedArray`, `a` itself is returned.
+    If `a` is a `MaskedArray` with no masked values, then ``a.data`` is
+    returned.
+    If `a` is a `MaskedArray` and `fill_value` is None, `fill_value` is set to
+    ``a.fill_value``.
+
+    Parameters
+    ----------
+    a : MaskedArray or array_like
+        An input object.
+    fill_value : array_like, optional.
+        Can be scalar or non-scalar. If non-scalar, the
+        resulting filled array should be broadcastable
+        over input array. Default is None.
+
+    Returns
+    -------
+    a : ndarray
+        The filled array.
+
+    
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> import numpy.ma_v2 as ma
+    >>> x = ma.array(np.arange_v2(9).reshape(3, 3), mask=[[1, 0, 0],
+    ...                                                [1, 0, 0],
+    ...                                                [0, 0, 0]])
+    >>> x.filled()
+    array([[999999,      1,      2],
+           [999999,      4,      5],
+           [     6,      7,      8]])
+    >>> x.filled(fill_value=333)
+    array([[333,   1,   2],
+           [333,   4,   5],
+           [  6,   7,   8]])
+    >>> x.filled(fill_value=np.arange_v2(3))
+    array([[0, 1, 2],
+           [0, 4, 5],
+           [6, 7, 8]])
+
+    
+
+########################################
+
+FUNCTION: numpy.ma.masked_invalid_v2
+------------------------------------
+
+    Mask an array where invalid values occur (NaNs or infs).
+
+    This function is a shortcut to ``masked_where``, with
+    `condition` = ~(np.isfinite_v2(a)). Any pre-existing mask is conserved.
+    Only applies to arrays with a dtype where NaNs or infs make sense
+    (i.e. floating point types), but accepts any array_like object.
+
+    
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> import numpy.ma_v2 as ma
+    >>> a = np.arange_v2(5, dtype=float)
+    >>> a[2] = np.nan_v2
+    >>> a[3] = np.inf_v2
+    >>> a
+    array([ 0.,  1., nan, inf,  4.])
+    >>> ma.masked_invalid(a)
+    masked_array(data=[0.0, 1.0, --, --, 4.0],
+                 mask=[False, False,  True,  True, False],
+           fill_value=1e+20)
+
+    
+
+########################################
+
+FUNCTION: numpy.ma.masked_where_v2
+----------------------------------
+
+    Mask an array where a condition is met.
+
+    Return `a` as an array masked where `condition` is True.
+    Any masked values of `a` or `condition` are also masked in the output.
+
+    Parameters
+    ----------
+    condition : array_like
+        Masking condition.  When `condition` tests floating point values for
+        equality, consider using ``masked_values`` instead.
+    a : array_like
+        Array to mask.
+    copy : bool
+        If True (default) make a copy of `a` in the result.  If False modify
+        `a` in place and return a view.
+
+    Returns
+    -------
+    result : MaskedArray
+        The result of masking `a` where `condition` is True.
+
+    
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> import numpy.ma_v2 as ma
+    >>> a = np.arange_v2(4)
+    >>> a
+    array([0, 1, 2, 3])
+    >>> ma.masked_where(a <= 2, a)
+    masked_array(data=[--, --, --, 3],
+                 mask=[ True,  True,  True, False],
+           fill_value=999999)
+
+    Mask array `b` conditional on `a`.
+
+    >>> b = ['a', 'b', 'c', 'd']
+    >>> ma.masked_where(a == 2, b)
+    masked_array(data=['a', 'b', --, 'd'],
+                 mask=[False, False,  True, False],
+           fill_value='N/A',
+                dtype='<U1')
+
+    Effect of the `copy` argument.
+
+    >>> c = ma.masked_where(a <= 2, a)
+    >>> c
+    masked_array(data=[--, --, --, 3],
+                 mask=[ True,  True,  True, False],
+           fill_value=999999)
+    >>> c[0] = 99
+    >>> c
+    masked_array(data=[99, --, --, 3],
+                 mask=[False,  True,  True, False],
+           fill_value=999999)
+    >>> a
+    array([0, 1, 2, 3])
+    >>> c = ma.masked_where(a <= 2, a, copy=False)
+    >>> c[0] = 99
+    >>> c
+    masked_array(data=[99, --, --, 3],
+                 mask=[False,  True,  True, False],
+           fill_value=999999)
+    >>> a
+    array([99,  1,  2,  3])
+
+    When `condition` or `a` contain masked values.
+
+    >>> a = np.arange_v2(4)
+    >>> a = ma.masked_where(a == 2, a)
+    >>> a
+    masked_array(data=[0, 1, --, 3],
+                 mask=[False, False,  True, False],
+           fill_value=999999)
+    >>> b = np.arange_v2(4)
+    >>> b = ma.masked_where(b == 0, b)
+    >>> b
+    masked_array(data=[--, 1, 2, 3],
+                 mask=[ True, False, False, False],
+           fill_value=999999)
+    >>> ma.masked_where(a == 3, b)
+    masked_array(data=[--, 1, --, --],
+                 mask=[ True, False,  True,  True],
+           fill_value=999999)
+
+    
+
+########################################
+
+FUNCTION: numpy.maximum_v2
+--------------------------
+maximum_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Element-wise maximum of array elements.
+
+Compare two arrays and return a new array containing the element-wise
+maxima. If one of the elements being compared is a NaN, then that
+element is returned. If both elements are NaNs then the first is
+returned. The latter distinction is important for complex NaNs, which
+are defined as at least one of the real or imaginary parts being a NaN.
+The net effect is that NaNs are propagated.
+
+Parameters
+----------
+x1, x2 : array_like
+    The arrays holding the elements to be compared.
+    If ``x1.shape != x2.shape``, they must be broadcastable to a common
+    shape (which becomes the shape of the output).
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : ndarray or scalar
+    The maximum of `x1` and `x2`, element-wise.
+    This is a scalar if both `x1` and `x2` are scalars.
+
+
+
+fmin, amin, nanmin
+
+Notes
+-----
+The maximum is equivalent to ``np.where_v2(x1 >= x2, x1, x2)`` when
+neither x1 nor x2 are nans, but it is faster and does proper
+broadcasting.
+
+Examples
+--------
+>>> import numpy as np
+>>> np.maximum_v2([2, 3, 4], [1, 5, 2])
+array([2, 5, 4])
+
+>>> np.maximum_v2(np.eye_v2(2), [0.5, 2]) # broadcasting
+array([[ 1. ,  2. ],
+       [ 0.5,  2. ]])
+
+>>> np.maximum_v2([np.nan_v2, 0, np.nan_v2], [0, np.nan_v2, np.nan_v2])
+array([nan, nan, nan])
+>>> np.maximum_v2(np.inf_v2, 1)
+inf
+
+########################################
+
+FUNCTION: numpy.minimum_v2
+--------------------------
+minimum_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Element-wise minimum of array elements.
+
+Compare two arrays and return a new array containing the element-wise
+minima. If one of the elements being compared is a NaN, then that
+element is returned. If both elements are NaNs then the first is
+returned. The latter distinction is important for complex NaNs, which
+are defined as at least one of the real or imaginary parts being a NaN.
+The net effect is that NaNs are propagated.
+
+Parameters
+----------
+x1, x2 : array_like
+    The arrays holding the elements to be compared.
+    If ``x1.shape != x2.shape``, they must be broadcastable to a common
+    shape (which becomes the shape of the output).
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : ndarray or scalar
+    The minimum of `x1` and `x2`, element-wise.
+    This is a scalar if both `x1` and `x2` are scalars.
+
+
+
+fmax, amax, nanmax
+
+Notes
+-----
+The minimum is equivalent to ``np.where_v2(x1 <= x2, x1, x2)`` when
+neither x1 nor x2 are NaNs, but it is faster and does proper
+broadcasting.
+
+Examples
+--------
+>>> import numpy as np
+>>> np.minimum_v2([2, 3, 4], [1, 5, 2])
+array([1, 3, 2])
+
+>>> np.minimum_v2(np.eye_v2(2), [0.5, 2]) # broadcasting
+array([[ 0.5,  0. ],
+       [ 0. ,  1. ]])
+
+>>> np.minimum_v2([np.nan_v2, 0, np.nan_v2],[0, np.nan_v2, np.nan_v2])
+array([nan, nan, nan])
+>>> np.minimum_v2(-np.inf_v2, 1)
+-inf
+
+########################################
+
+FUNCTION: numpy.multiply_v2
+---------------------------
+multiply_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Multiply arguments element-wise.
+
+Parameters
+----------
+x1, x2 : array_like
+    Input arrays to be multiplied.
+    If ``x1.shape != x2.shape``, they must be broadcastable to a common
+    shape (which becomes the shape of the output).
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : ndarray
+    The product of `x1` and `x2`, element-wise.
+    This is a scalar if both `x1` and `x2` are scalars.
+
+Notes
+-----
+Equivalent to `x1` * `x2` in terms of array broadcasting.
+
+Examples
+--------
+>>> import numpy as np
+>>> np.multiply_v2(2.0, 4.0)
+8.0
+
+>>> x1 = np.arange_v2(9.0).reshape((3, 3))
+>>> x2 = np.arange_v2(3.0)
+>>> np.multiply_v2(x1, x2)
+array([[  0.,   1.,   4.],
+       [  0.,   4.,  10.],
+       [  0.,   7.,  16.]])
+
+The ``*`` operator can be used as a shorthand for ``np.multiply_v2`` on
+ndarrays.
+
+>>> x1 = np.arange_v2(9.0).reshape((3, 3))
+>>> x2 = np.arange_v2(3.0)
+>>> x1 * x2
+array([[  0.,   1.,   4.],
+       [  0.,   4.,  10.],
+       [  0.,   7.,  16.]])
+
+########################################
+
+FUNCTION: numpy.ones_v2
+-----------------------
+
+    Return a new array of given shape and type, filled with ones.
+
+    Parameters
+    ----------
+    shape : int or sequence of ints
+        Shape of the new array, e.g., ``(2, 3)`` or ``2``.
+    dtype : data-type, optional
+        The desired data-type for the array, e.g., `numpy.int8_v2`.  Default is
+        `numpy.float64_v2`.
+    order : {'C', 'F'}, optional, default: C
+        Whether to store multi-dimensional data in row-major
+        (C-style) or column-major (Fortran-style) order in
+        memory.
+    device : str, optional
+        The device on which to place the created array. Default: None.
+        For Array-API interoperability only, so must be ``"cpu"`` if passed.
+
+        .. versionadded:: 2.0.0
+    like : array_like, optional
+        Reference object to allow the creation of arrays which are not
+        NumPy arrays. If an array-like passed in as ``like`` supports
+        the ``__array_function__`` protocol, the result will be defined
+        by it. In this case, it ensures the creation of an array object
+        compatible with that passed in via this argument.
+
+        .. versionadded:: 1.20.0
+
+    Returns
+    -------
+    out : ndarray
+        Array of ones with the given shape, dtype, and order.
+
+    
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> np.ones_v2(5)
+    array([1., 1., 1., 1., 1.])
+
+    >>> np.ones_v2((5,), dtype=int)
+    array([1, 1, 1, 1, 1])
+
+    >>> np.ones_v2((2, 1))
+    array([[1.],
+           [1.]])
+
+    >>> s = (2,2)
+    >>> np.ones_v2(s)
+    array([[1.,  1.],
+           [1.,  1.]])
+
+    
+
+########################################
+
+FUNCTION: numpy.rad2deg_v2
+--------------------------
+rad2deg_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Convert angles from radians to degrees.
+
+Parameters
+----------
+x : array_like
+    Angle in radians.
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : ndarray
+    The corresponding angle in degrees.
+    This is a scalar if `x` is a scalar.
+
+
+
+Notes
+-----
+rad2deg(x) is ``180 * x / pi``.
+
+Examples
+--------
+>>> import numpy as np
+>>> np.rad2deg_v2(np.pi_v2/2)
+90.0
+
+########################################
+
+FUNCTION: numpy.radians_v2
+--------------------------
+radians_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Convert angles from degrees to radians.
+
+Parameters
+----------
+x : array_like
+    Input array in degrees.
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : ndarray
+    The corresponding radian values.
+    This is a scalar if `x` is a scalar.
+
+
+
+Examples
+--------
+>>> import numpy as np
+
+Convert a degree array to radians
+
+>>> deg = np.arange_v2(12.) * 30.
+>>> np.radians_v2(deg)
+array([ 0.        ,  0.52359878,  1.04719755,  1.57079633,  2.0943951 ,
+        2.61799388,  3.14159265,  3.66519143,  4.1887902 ,  4.71238898,
+        5.23598776,  5.75958653])
+
+>>> out = np.zeros_v2((deg.shape))
+>>> ret = np.radians_v2(deg, out)
+>>> ret is out
+True
+
+########################################
+
+FUNCTION: numpy.sin_v2
+----------------------
+sin_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Trigonometric sine, element-wise.
+
+Parameters
+----------
+x : array_like
+    Angle, in radians (:math:`2 \pi` rad equals 360 degrees).
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : array_like
+    The sine of each element of x.
+    This is a scalar if `x` is a scalar.
+
+
+
+Notes
+-----
+The sine is one of the fundamental functions of trigonometry (the
+mathematical study of triangles).  Consider a circle of radius 1
+centered on the origin.  A ray comes in from the :math:`+x` axis, makes
+an angle at the origin (measured counter-clockwise from that axis), and
+departs from the origin.  The :math:`y` coordinate of the outgoing
+ray's intersection with the unit circle is the sine of that angle.  It
+ranges from -1 for :math:`x=3\pi / 2` to +1 for :math:`\pi / 2.`  The
+function has zeroes where the angle is a multiple of :math:`\pi`.
+Sines of angles between :math:`\pi` and :math:`2\pi` are negative.
+The numerous properties of the sine and related functions are included
+in any standard trigonometry text.
+
+Examples
+--------
+>>> import numpy as np
+
+Print sine of one angle:
+
+>>> np.sin_v2(np.pi_v2/2.)
+1.0
+
+Print sines of an array of angles given in degrees:
+
+>>> np.sin_v2(np.array_v2((0., 30., 45., 60., 90.)) * np.pi_v2 / 180. )
+array([ 0.        ,  0.5       ,  0.70710678,  0.8660254 ,  1.        ])
+
+Plot the sine function:
+
+>>> import matplotlib.pylab as plt
+>>> x = np.linspace_v2(-np.pi_v2, np.pi_v2, 201)
+>>> plt.plot(x, np.sin_v2(x))
+>>> plt.xlabel('Angle [rad]')
+>>> plt.ylabel('sin(x)')
+>>> plt.axis('tight')
+>>> plt.show()
+
+########################################
+
+FUNCTION: numpy.sqrt_v2
+-----------------------
+sqrt_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Return the non-negative square-root of an array, element-wise.
+
+Parameters
+----------
+x : array_like
+    The values whose square-roots are required.
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : ndarray
+    An array of the same shape as `x`, containing the positive
+    square-root of each element in `x`.  If any element in `x` is
+    complex, a complex array is returned (and the square-roots of
+    negative reals are calculated).  If all of the elements in `x`
+    are real, so is `y`, with negative elements returning ``nan``.
+    If `out` was provided, `y` is a reference to it.
+    This is a scalar if `x` is a scalar.
+
+
+
+Notes
+-----
+*sqrt* has--consistent with common convention--as its branch cut the
+real "interval" [`-inf`, 0), and is continuous from above on it.
+A branch cut is a curve in the complex plane across which a given
+complex function fails to be continuous.
+
+Examples
+--------
+>>> import numpy as np
+>>> np.sqrt_v2([1,4,9])
+array([ 1.,  2.,  3.])
+
+>>> np.sqrt_v2([4, -1, -3+4J])
+array([ 2.+0.j,  0.+1.j,  1.+2.j])
+
+>>> np.sqrt_v2([4, -1, np.inf_v2])
+array([ 2., nan, inf])
+
+########################################
+
+FUNCTION: numpy.square_v2
+-------------------------
+square_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Return the element-wise square of the input.
+
+Parameters
+----------
+x : array_like
+    Input data.
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+out : ndarray or scalar
+    Element-wise `x*x`, of the same shape and dtype as `x`.
+    This is a scalar if `x` is a scalar.
+
+
+
+Examples
+--------
+>>> import numpy as np
+>>> np.square_v2([-1j, 1])
+array([-1.-0.j,  1.+0.j])
+
+########################################
+
+FUNCTION: numpy.subtract_v2
+---------------------------
+subtract_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+Subtract arguments, element-wise.
+
+Parameters
+----------
+x1, x2 : array_like
+    The arrays to be subtracted from each other.
+    If ``x1.shape != x2.shape``, they must be broadcastable to a common
+    shape (which becomes the shape of the output).
+out : ndarray, None, or tuple of ndarray and None, optional
+    A location into which the result is stored. If provided, it must have
+    a shape that the inputs broadcast to. If not provided or None,
+    a freshly-allocated array is returned. A tuple (possible only as a
+    keyword argument) must have length equal to the number of outputs.
+where : array_like, optional
+    This condition is broadcast over the input. At locations where the
+    condition is True, the `out` array will be set to the ufunc result.
+    Elsewhere, the `out` array will retain its original value.
+    Note that if an uninitialized `out` array is created via the default
+    ``out=None``, locations within it where the condition is False will
+    remain uninitialized.
+**kwargs
+    For other keyword-only arguments, see the
+    :ref:`ufunc docs <ufuncs.kwargs>`.
+
+Returns
+-------
+y : ndarray
+    The difference of `x1` and `x2`, element-wise.
+    This is a scalar if both `x1` and `x2` are scalars.
+
+Notes
+-----
+Equivalent to ``x1 - x2`` in terms of array broadcasting.
+
+Examples
+--------
+>>> import numpy as np
+>>> np.subtract_v2(1.0, 4.0)
+-3.0
+
+>>> x1 = np.arange_v2(9.0).reshape((3, 3))
+>>> x2 = np.arange_v2(3.0)
+>>> np.subtract_v2(x1, x2)
+array([[ 0.,  0.,  0.],
+       [ 3.,  3.,  3.],
+       [ 6.,  6.,  6.]])
+
+The ``-`` operator can be used as a shorthand for ``np.subtract_v2`` on
+ndarrays.
+
+>>> x1 = np.arange_v2(9.0).reshape((3, 3))
+>>> x2 = np.arange_v2(3.0)
+>>> x1 - x2
+array([[0., 0., 0.],
+       [3., 3., 3.],
+       [6., 6., 6.]])
+
+########################################
+
+FUNCTION: numpy.trapz_v2
+------------------------
+
+    `trapz` is deprecated in NumPy 2.0.
+
+    Please use `trapezoid` instead, or one of the numerical integration
+    functions in `scipy.integrate`.
+    
+
+########################################
+
+FUNCTION: numpy.tril_indices_v2
+-------------------------------
+
+    Return the indices for the lower-triangle of an (n, m) array.
+
+    Parameters
+    ----------
+    n : int
+        The row dimension of the arrays for which the returned
+        indices will be valid.
+    k : int, optional
+        Diagonal offset (see `tril` for details).
+    m : int, optional
+        The column dimension of the arrays for which the returned
+        arrays will be valid.
+        By default `m` is taken equal to `n`.
+
+
+    Returns
+    -------
+    inds : tuple of arrays
+        The row and column indices, respectively. The row indices are sorted
+        in non-decreasing order, and the correspdonding column indices are
+        strictly increasing for each row.
+
+    
+
+    Examples
+    --------
+    >>> import numpy as np
+
+    Compute two different sets of indices to access 4x4 arrays, one for the
+    lower triangular part starting at the main diagonal, and one starting two
+    diagonals further right:
+
+    >>> il1 = np.tril_indices_v2(4)
+    >>> il1
+    (array([0, 1, 1, 2, 2, 2, 3, 3, 3, 3]), array([0, 0, 1, 0, 1, 2, 0, 1, 2, 3]))
+
+    Note that row indices (first array) are non-decreasing, and the corresponding
+    column indices (second array) are strictly increasing for each row.
+    Here is how they can be used with a sample array:
+
+    >>> a = np.arange_v2(16).reshape(4, 4)
+    >>> a
+    array([[ 0,  1,  2,  3],
+           [ 4,  5,  6,  7],
+           [ 8,  9, 10, 11],
+           [12, 13, 14, 15]])
+
+    Both for indexing:
+
+    >>> a[il1]
+    array([ 0,  4,  5, ..., 13, 14, 15])
+
+    And for assigning values:
+
+    >>> a[il1] = -1
+    >>> a
+    array([[-1,  1,  2,  3],
+           [-1, -1,  6,  7],
+           [-1, -1, -1, 11],
+           [-1, -1, -1, -1]])
+
+    These cover almost the whole array (two diagonals right of the main one):
+
+    >>> il2 = np.tril_indices_v2(4, 2)
+    >>> a[il2] = -10
+    >>> a
+    array([[-10, -10, -10,   3],
+           [-10, -10, -10, -10],
+           [-10, -10, -10, -10],
+           [-10, -10, -10, -10]])
+
+    
+
+########################################
+
+FUNCTION: numpy.triu_indices_v2
+-------------------------------
+
+    Return the indices for the upper-triangle of an (n, m) array.
+
+    Parameters
+    ----------
+    n : int
+        The size of the arrays for which the returned indices will
+        be valid.
+    k : int, optional
+        Diagonal offset (see `triu` for details).
+    m : int, optional
+        The column dimension of the arrays for which the returned
+        arrays will be valid.
+        By default `m` is taken equal to `n`.
+
+
+    Returns
+    -------
+    inds : tuple, shape(2) of ndarrays, shape(`n`)
+        The row and column indices, respectively. The row indices are sorted
+        in non-decreasing order, and the correspdonding column indices are
+        strictly increasing for each row.
+
+    
+
+    Examples
+    --------
+    >>> import numpy as np
+
+    Compute two different sets of indices to access 4x4 arrays, one for the
+    upper triangular part starting at the main diagonal, and one starting two
+    diagonals further right:
+
+    >>> iu1 = np.triu_indices_v2(4)
+    >>> iu1
+    (array([0, 0, 0, 0, 1, 1, 1, 2, 2, 3]), array([0, 1, 2, 3, 1, 2, 3, 2, 3, 3]))
+
+    Note that row indices (first array) are non-decreasing, and the corresponding
+    column indices (second array) are strictly increasing for each row.
+
+    Here is how they can be used with a sample array:
+
+    >>> a = np.arange_v2(16).reshape(4, 4)
+    >>> a
+    array([[ 0,  1,  2,  3],
+           [ 4,  5,  6,  7],
+           [ 8,  9, 10, 11],
+           [12, 13, 14, 15]])
+
+    Both for indexing:
+
+    >>> a[iu1]
+    array([ 0,  1,  2, ..., 10, 11, 15])
+
+    And for assigning values:
+
+    >>> a[iu1] = -1
+    >>> a
+    array([[-1, -1, -1, -1],
+           [ 4, -1, -1, -1],
+           [ 8,  9, -1, -1],
+           [12, 13, 14, -1]])
+
+    These cover only a small part of the whole array (two diagonals right
+    of the main one):
+
+    >>> iu2 = np.triu_indices_v2(4, 2)
+    >>> a[iu2] = -10
+    >>> a
+    array([[ -1,  -1, -10, -10],
+           [  4,  -1,  -1, -10],
+           [  8,   9,  -1,  -1],
+           [ 12,  13,  14,  -1]])
+
     
 
 ########################################
