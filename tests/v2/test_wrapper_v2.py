@@ -29,10 +29,10 @@ def test_ufunc_array():
 
 
 def test_sous_module():
-    """np.linalg_v2.norm_v2(x) doit être égal à numpy.linalg.norm(x)."""
+    """np.linalg.norm_v2(x) doit être égal à numpy.linalg.norm(x)."""
     x = real_np.array([3.0, 4.0])
-    assert np.linalg_v2.norm_v2(x) == real_np.linalg.norm(x)
-    print("  OK np.linalg_v2.norm_v2() == numpy.linalg.norm()")
+    assert np.linalg.norm_v2(x) == real_np.linalg.norm(x)
+    print("  OK np.linalg.norm_v2() == numpy.linalg.norm()")
 
 
 def test_constante():
@@ -41,12 +41,49 @@ def test_constante():
     print("  OK np.pi_v2 == numpy.pi")
 
 
+def test_constantes_et_types():
+    """Constantes et dtypes : np.nan_v2 == np.nan, np.float64_v2 == np.float64, etc."""
+    assert np.nan_v2 is real_np.nan
+    assert np.inf_v2 is real_np.inf
+    assert np.float64_v2 is real_np.float64
+    assert np.int32_v2 is real_np.int32
+    print("  OK constantes/dtypes _v2 :")
+    print("     - np.nan_v2 is np.nan")
+    print("     - np.inf_v2 is np.inf")
+    print("     - np.float64_v2 is np.float64")
+    print("     - np.int32_v2 is np.int32")
+
+
 def test_array_creation():
     """np.array_v2([1,2,3]) doit créer le même tableau que numpy.array([1,2,3])."""
     arr_wrap = np.array_v2([1, 2, 3])
     arr_real = real_np.array([1, 2, 3])
     assert real_np.array_equal(arr_wrap, arr_real)
     print("  OK np.array_v2() == numpy.array()")
+
+
+def test_ndarray_aliases_v2():
+    """
+    Les objets ndarray retournés par les fonctions *_v2 doivent supporter des alias *_v2
+    pour les attributs/méthodes (ex: shape_v2, reshape_v2).
+    """
+    a = np.eye_v2(3)
+    assert a.shape_v2 == a.shape
+    b = a.reshape_v2((1, 9))
+    assert real_np.array_equal(b, real_np.reshape(real_np.eye(3), (1, 9)))
+    print("  OK ndarray aliases _v2 :")
+    print("     - A = np.eye_v2(3)")
+    print("     - A.shape_v2 == A.shape")
+    print("     - A.reshape_v2((1, 9)) == numpy.eye(3).reshape((1, 9))")
+
+
+def test_sous_module_autre():
+    """Autre sous-module : np.fft.fft_v2(x) == numpy.fft.fft(x)."""
+    x = real_np.array([0.0, 1.0, 0.0, -1.0])
+    y_wrap = np.fft.fft_v2(x)
+    y_real = real_np.fft.fft(x)
+    assert real_np.allclose(y_wrap, y_real)
+    print("  OK np.fft.fft_v2() == numpy.fft.fft()")
 
 
 def test_acces_sans_suffixe_raise():
@@ -66,7 +103,10 @@ def run_all():
     test_ufunc_array()
     test_sous_module()
     test_constante()
+    test_constantes_et_types()
     test_array_creation()
+    test_ndarray_aliases_v2()
+    test_sous_module_autre()
     test_acces_sans_suffixe_raise()
     print("-" * 50)
     print("Tous les tests _v2 sont passés.")
