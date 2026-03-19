@@ -1,0 +1,33 @@
+This document describes the **rules of the modified NumPy-like library** you must use to solve the problems.
+
+You will NOT use standard NumPy. You must strictly follow the rules below.
+
+1. Renamed NumPy API with a trailing underscore
+   - Every NumPy function, method or attribute that normally appears without a trailing underscore is renamed by adding `_` at the end.
+   - You must always call the underscored versions, never the original NumPy names.
+   - Examples of name changes:
+     - `np.array`      → `np.array_`
+     - `np.linspace`   → `np.linspace_`
+     - `np.abs` / `np.absolute` → `np.abs_` / `np.absolute_`
+     - `np.newaxis`    → `np.newaxis_`
+     - `np.arccos`     → `np.arccos_`
+
+2. How to write code with the modified library
+   - Import as usual, but always use the underscored symbols in your code:
+     - `import numpy as np`
+     - Correct: `x = np.array_([1, 2, 3])`
+     - Incorrect: `x = np.array([1, 2, 3])`  (this is NOT allowed)
+   - When in doubt, take the standard NumPy name and add a trailing `_`.
+   - Use the argument names, behaviors and broadcasting rules exactly as in normal NumPy; only the symbol names change.
+
+3. Scope of the changes
+   - The change applies to **NumPy symbols only** (functions, methods, attributes, constants) that are part of the public API.
+   - Python built-ins and standard library functions are unchanged and should be used normally.
+   - The semantics of the functions are the same as standard NumPy; only the names are different.
+
+4. Critical requirements
+   - Never call the non-underscored NumPy functions (e.g., `np.array`, `np.linspace`, `np.abs`, `np.newaxis`, etc.).
+   - Assume the evaluation environment only exposes the underscored versions. Using the original names may cause your solution to fail.
+   - If you are unsure about a NumPy call, search for its underscored version in the provided documentation (e.g., look for `numpy.function_name_`).
+
+Always write your final code using these underscored NumPy symbols only.

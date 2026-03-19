@@ -1,0 +1,167 @@
+Reference Documentation for numpy 
+============================================================
+
+FUNCTION: numpy.abs_
+--------------------
+absolute_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.add_
+--------------------
+add_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.arcsin_
+-----------------------
+arcsin_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.binary_repr_
+----------------------------
+
+########################################
+FUNCTION: numpy.bitwise_xor_
+----------------------------
+bitwise_xor_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ceil_
+---------------------
+ceil_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.cos_
+--------------------
+cos_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.deg2rad_
+------------------------
+deg2rad_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.degrees_
+------------------------
+degrees_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.diag_indices_
+-----------------------------
+
+########################################
+FUNCTION: numpy.divide_
+-----------------------
+divide_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.equal_
+----------------------
+equal_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.exp_
+--------------------
+exp_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.eye_
+--------------------
+
+########################################
+FUNCTION: numpy.floor_
+----------------------
+floor_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.full_
+---------------------
+
+########################################
+FUNCTION: numpy.gcd_
+--------------------
+gcd_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.indices_
+------------------------
+
+########################################
+FUNCTION: numpy.isfinite_
+-------------------------
+isfinite_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.isinf_
+----------------------
+isinf_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.isnan_
+----------------------
+isnan_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.lib.stride_tricks.as_strided_
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.logical_and_
+----------------------------
+logical_and_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.logical_not_
+----------------------------
+logical_not_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.logical_or_
+---------------------------
+logical_or_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ma.filled_
+--------------------------
+
+########################################
+FUNCTION: numpy.ma.masked_invalid_
+----------------------------------
+
+########################################
+FUNCTION: numpy.ma.masked_where_
+--------------------------------
+
+########################################
+FUNCTION: numpy.maximum_
+------------------------
+maximum_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.minimum_
+------------------------
+minimum_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.multiply_
+-------------------------
+multiply_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ones_
+---------------------
+
+########################################
+FUNCTION: numpy.rad2deg_
+------------------------
+rad2deg_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.radians_
+------------------------
+radians_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.sin_
+--------------------
+sin_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.sqrt_
+---------------------
+sqrt_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.square_
+-----------------------
+square_(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.subtract_
+-------------------------
+subtract_(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.trapz_
+----------------------
+
+########################################
+FUNCTION: numpy.tril_indices_
+-----------------------------
+
+########################################
+FUNCTION: numpy.triu_indices_
+-----------------------------
+
+########################################

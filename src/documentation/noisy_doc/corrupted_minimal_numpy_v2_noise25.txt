@@ -1,0 +1,687 @@
+Reference Documentation for numpy 
+============================================================
+
+FUNCTION: numpy.abs_v2
+----------------------
+absolute_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.acos_v2
+-----------------------
+arccos_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.add_v2
+----------------------
+add_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.arcsin_v2
+-------------------------
+arcsin_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.arctan_v2
+-------------------------
+arctan_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.asarray_chkfinite_v2
+------------------------------------
+
+########################################
+FUNCTION: numpy.binary_repr_v2
+------------------------------
+
+########################################
+FUNCTION: numpy.bitwise_count_v2
+--------------------------------
+bitwise_count_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.bitwise_xor_v2
+------------------------------
+bitwise_xor_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.cbrt_v2
+-----------------------
+cbrt_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ceil_v2
+-----------------------
+ceil_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.char.array_v2
+-----------------------------
+
+########################################
+FUNCTION: numpy.char.asarray_v2
+-------------------------------
+
+########################################
+FUNCTION: numpy.char.join_v2
+----------------------------
+
+########################################
+FUNCTION: numpy.char.partition_v2
+---------------------------------
+
+########################################
+FUNCTION: numpy.char.split_v2
+-----------------------------
+
+########################################
+FUNCTION: numpy.char.splitlines_v2
+----------------------------------
+
+########################################
+FUNCTION: numpy.cos_v2
+----------------------
+cos_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ctypeslib.as_array_v2
+-------------------------------------
+
+########################################
+FUNCTION: numpy.ctypeslib.as_ctypes_v2
+--------------------------------------
+
+########################################
+FUNCTION: numpy.ctypeslib.ndpointer_v2
+--------------------------------------
+
+########################################
+FUNCTION: numpy.deg2rad_v2
+--------------------------
+deg2rad_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.degrees_v2
+--------------------------
+degrees_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.diag_indices_v2
+-------------------------------
+
+########################################
+FUNCTION: numpy.divide_v2
+-------------------------
+divide_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.equal_v2
+------------------------
+equal_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.exp_v2
+----------------------
+exp_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.expm1_v2
+------------------------
+expm1_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.eye_v2
+----------------------
+
+########################################
+FUNCTION: numpy.f2py.f2py2e.crackfortran.crackline_v2
+-----------------------------------------------------
+
+########################################
+FUNCTION: numpy.f2py.f2py2e.crackfortran.param_parse_v2
+-------------------------------------------------------
+
+########################################
+FUNCTION: numpy.f2py.f2py2e.crackfortran.updatevars_v2
+------------------------------------------------------
+
+########################################
+FUNCTION: numpy.f2py.f2py2e.filter_files_v2
+-------------------------------------------
+
+########################################
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_routsign2map_v2
+--------------------------------------------------------------------
+
+########################################
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.modsign2map_v2
+----------------------------------------------------------------
+
+########################################
+FUNCTION: numpy.f2py.rules.func2subr.show_v2
+--------------------------------------------
+
+########################################
+FUNCTION: numpy.f2py.symbolic.as_array_v2
+-----------------------------------------
+
+########################################
+FUNCTION: numpy.f2py.symbolic.as_number_v2
+------------------------------------------
+
+########################################
+FUNCTION: numpy.f2py.symbolic.as_real_v2
+----------------------------------------
+
+########################################
+FUNCTION: numpy.f2py.symbolic.as_string_v2
+------------------------------------------
+
+########################################
+FUNCTION: numpy.float_power_v2
+------------------------------
+float_power_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.floor_v2
+------------------------
+floor_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.fmin_v2
+-----------------------
+fmin_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.format_float_positional_v2
+------------------------------------------
+
+########################################
+FUNCTION: numpy.full_v2
+-----------------------
+
+########################################
+FUNCTION: numpy.gcd_v2
+----------------------
+gcd_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.greater_equal_v2
+--------------------------------
+greater_equal_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.hanning_v2
+--------------------------
+
+########################################
+FUNCTION: numpy.hypot_v2
+------------------------
+hypot_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.indices_v2
+--------------------------
+
+########################################
+FUNCTION: numpy.isfinite_v2
+---------------------------
+isfinite_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.isinf_v2
+------------------------
+isinf_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.isnan_v2
+------------------------
+isnan_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.kaiser_v2
+-------------------------
+
+########################################
+FUNCTION: numpy.ldexp_v2
+------------------------
+ldexp_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.lib.format.dtype_to_descr_v2
+--------------------------------------------
+
+########################################
+FUNCTION: numpy.lib.format.read_array_header_2_0_v2
+---------------------------------------------------
+
+########################################
+FUNCTION: numpy.lib.stride_tricks.as_strided_v2
+-----------------------------------------------
+
+########################################
+FUNCTION: numpy.log10_v2
+------------------------
+log10_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.log2_v2
+-----------------------
+log2_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.logical_and_v2
+------------------------------
+logical_and_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.logical_not_v2
+------------------------------
+logical_not_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.logical_or_v2
+-----------------------------
+logical_or_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.logical_xor_v2
+------------------------------
+logical_xor_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ma.allclose_v2
+------------------------------
+
+########################################
+FUNCTION: numpy.ma.apply_over_axes_v2
+-------------------------------------
+
+########################################
+FUNCTION: numpy.ma.asarray_v2
+-----------------------------
+
+########################################
+FUNCTION: numpy.ma.concatenate_v2
+---------------------------------
+
+########################################
+FUNCTION: numpy.ma.count_masked_v2
+----------------------------------
+
+########################################
+FUNCTION: numpy.ma.diag_v2
+--------------------------
+
+########################################
+FUNCTION: numpy.ma.diff_v2
+--------------------------
+
+########################################
+FUNCTION: numpy.ma.ediff1d_v2
+-----------------------------
+
+########################################
+FUNCTION: numpy.ma.extras.ma.doc_note_v2
+----------------------------------------
+
+########################################
+FUNCTION: numpy.ma.extras.ma.ntypes.issctype_v2
+-----------------------------------------------
+
+########################################
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.array_function_dispatch_v2
+---------------------------------------------------------------------------
+
+########################################
+FUNCTION: numpy.ma.extras.ma.ntypes.sctype2char_v2
+--------------------------------------------------
+
+########################################
+FUNCTION: numpy.ma.extras.ma.umath.rindex_v2
+--------------------------------------------
+rindex_v2(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ma.filled_v2
+----------------------------
+
+########################################
+FUNCTION: numpy.ma.fromflex_v2
+------------------------------
+
+########################################
+FUNCTION: numpy.ma.getmaskarray_v2
+----------------------------------
+
+########################################
+FUNCTION: numpy.ma.is_mask_v2
+-----------------------------
+
+########################################
+FUNCTION: numpy.ma.is_masked_v2
+-------------------------------
+
+########################################
+FUNCTION: numpy.ma.isin_v2
+--------------------------
+
+########################################
+FUNCTION: numpy.ma.left_shift_v2
+--------------------------------
+
+########################################
+FUNCTION: numpy.ma.mask_cols_v2
+-------------------------------
+
+########################################
+FUNCTION: numpy.ma.masked_invalid_v2
+------------------------------------
+
+########################################
+FUNCTION: numpy.ma.masked_less_equal_v2
+---------------------------------------
+
+########################################
+FUNCTION: numpy.ma.masked_outside_v2
+------------------------------------
+
+########################################
+FUNCTION: numpy.ma.masked_where_v2
+----------------------------------
+
+########################################
+FUNCTION: numpy.ma.max_v2
+-------------------------
+
+########################################
+FUNCTION: numpy.ma.set_fill_value_v2
+------------------------------------
+
+########################################
+FUNCTION: numpy.ma.shape_v2
+---------------------------
+
+########################################
+FUNCTION: numpy.ma.size_v2
+--------------------------
+
+########################################
+FUNCTION: numpy.ma.unique_v2
+----------------------------
+
+########################################
+FUNCTION: numpy.mask_indices_v2
+-------------------------------
+
+########################################
+FUNCTION: numpy.matvec_v2
+-------------------------
+matvec_v2(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
+########################################
+FUNCTION: numpy.maximum_v2
+--------------------------
+maximum_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.minimum_v2
+--------------------------
+minimum_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.multiply_v2
+---------------------------
+multiply_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.ones_v2
+-----------------------
+
+########################################
+FUNCTION: numpy.polynomial.chebyshev.chebfromroots_v2
+-----------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.chebyshev.chebgauss_v2
+-------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.chebyshev.chebpow_v2
+-----------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.chebyshev.chebpts1_v2
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite.hermfit_v2
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite.hermgrid3d_v2
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite.hermpow_v2
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite.hermweight_v2
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermeder_v2
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermediv_v2
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermefit_v2
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermegauss_v2
+--------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermegrid2d_v2
+---------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermeint_v2
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermeroots_v2
+--------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.hermite_e.hermeval2d_v2
+--------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.laguerre.lagdiv_v2
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.laguerre.lagfit_v2
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.laguerre.laggrid3d_v2
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.laguerre.lagline_v2
+----------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.laguerre.lagsub_v2
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.leg2poly_v2
+-----------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.legadd_v2
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.legdiv_v2
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.leggauss_v2
+-----------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.leggrid2d_v2
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.leggrid3d_v2
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.legmul_v2
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.legval2d_v2
+-----------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.legval_v2
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.legendre.legvander3d_v2
+--------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.polynomial.polyder_v2
+------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.polynomial.polyline_v2
+-------------------------------------------------
+
+########################################
+FUNCTION: numpy.polynomial.polynomial.polyvander2d_v2
+-----------------------------------------------------
+
+########################################
+FUNCTION: numpy.positive_v2
+---------------------------
+positive_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.pow_v2
+----------------------
+power_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.rad2deg_v2
+--------------------------
+rad2deg_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.radians_v2
+--------------------------
+radians_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.rec.fromarrays_v2
+---------------------------------
+
+########################################
+FUNCTION: numpy.set_printoptions_v2
+-----------------------------------
+
+########################################
+FUNCTION: numpy.seterr_v2
+-------------------------
+
+########################################
+FUNCTION: numpy.sign_v2
+-----------------------
+sign_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.signbit_v2
+--------------------------
+signbit_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.sin_v2
+----------------------
+sin_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.sinh_v2
+-----------------------
+sinh_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.sqrt_v2
+-----------------------
+sqrt_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.square_v2
+-------------------------
+square_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.strings.capitalize_v2
+-------------------------------------
+
+########################################
+FUNCTION: numpy.strings.encode_v2
+---------------------------------
+
+########################################
+FUNCTION: numpy.strings.isnumeric_v2
+------------------------------------
+isnumeric_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.strings.isupper_v2
+----------------------------------
+isupper_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.strings.lower_v2
+--------------------------------
+
+########################################
+FUNCTION: numpy.strings.mod_v2
+------------------------------
+
+########################################
+FUNCTION: numpy.strings.partition_v2
+------------------------------------
+
+########################################
+FUNCTION: numpy.strings.replace_v2
+----------------------------------
+
+########################################
+FUNCTION: numpy.strings.rfind_v2
+--------------------------------
+
+########################################
+FUNCTION: numpy.strings.rjust_v2
+--------------------------------
+
+########################################
+FUNCTION: numpy.strings.swapcase_v2
+-----------------------------------
+
+########################################
+FUNCTION: numpy.subtract_v2
+---------------------------
+subtract_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+########################################
+FUNCTION: numpy.testing.assert__v2
+----------------------------------
+
+########################################
+FUNCTION: numpy.testing.assert_array_almost_equal_v2
+----------------------------------------------------
+
+########################################
+FUNCTION: numpy.testing.assert_array_less_v2
+--------------------------------------------
+
+########################################
+FUNCTION: numpy.testing.assert_equal_v2
+---------------------------------------
+
+########################################
+FUNCTION: numpy.testing.assert_raises_v2
+----------------------------------------
+
+########################################
+FUNCTION: numpy.testing.memusage_v2
+-----------------------------------
+
+########################################
+FUNCTION: numpy.testing.print_assert_equal_v2
+---------------------------------------------
+
+########################################
+FUNCTION: numpy.trapz_v2
+------------------------
+
+########################################
+FUNCTION: numpy.tri_v2
+----------------------
+
+########################################
+FUNCTION: numpy.tril_indices_v2
+-------------------------------
+
+########################################
+FUNCTION: numpy.triu_indices_v2
+-------------------------------
+
+########################################
+FUNCTION: numpy.vecmat_v2
+-------------------------
+vecmat_v2(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
+########################################
