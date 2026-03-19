@@ -54,7 +54,7 @@ class _ObjectAttributeV2Normalizer(ast.NodeTransformer):
         )
 
 
-def normalize_v2_object_attributes(code: str) -> str:
+def normalize_object_attributes(code: str) -> str:
     """
     Parse le code, exige que tous les attributs/méthodes d'objets
     utilisent `_v2`, enlève ce suffixe, puis retourne le code normalisé.

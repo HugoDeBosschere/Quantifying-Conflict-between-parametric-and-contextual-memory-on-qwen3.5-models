@@ -8,6 +8,7 @@ from datetime import datetime
 from llmclient import LLMClient
 from cleaning import extract_code_and_fix, modify_lib
 
+
 def load_config_from_path(config_path):
     """Charge la configuration depuis un fichier JSON (chemin absolu ou relatif)."""
     path = os.path.abspath(config_path)
@@ -111,6 +112,17 @@ def evaluate_single_task(task, llm_client, config):
     """
     task_id = task.get("metadata", {}).get("problem_id", "") or task.get("task_id", "")
     print(f"Traitement ID {task_id}...")
+
+    # chargement du module de nettoyage via AST pour les modules de fonction:
+    ast_cleaning_module = config.get("new_lib_injection", {}).get("ast_cleaning_module", None)
+    if ast_cleaning_module:
+        import importlib
+        ast_cleaning_module = importlib.import_module(ast_cleaning_module)
+        normalize_object_attributes = getattr(ast_cleaning_module, "normalize_object_attributes")
+    else:
+        normalize_object_attributes = None
+    assert normalize_object_attributes is not None, "ast_cleaning_module is not set"
+    
 
     raw_response, count_token = llm_client.query_llm(task['prompt'])
     if not raw_response:
@@ -319,6 +331,15 @@ if __name__ == "__main__":
 
     docu_control = config.get("real_lib", {}).get("documentation", {})
     list_doc_name_control = list(docu_control.keys())
+
+    ast_cleaning_module = config.get("new_lib_injection", {}).get("ast_cleaning_module", None)
+    if ast_cleaning_module:
+        import importlib
+        ast_cleaning_module = importlib.import_module(ast_cleaning_module)
+        normalize_object_attributes = getattr(ast_cleaning_module, "normalize_object_attributes")
+    else:
+        normalize_object_attributes = None
+    assert normalize_object_attributes is not None, "ast_cleaning_module is not set"
 
     # Flags de mode : par défaut on lance control + injection.
     run_control_mode = not args.injection_only
