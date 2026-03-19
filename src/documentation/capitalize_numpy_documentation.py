@@ -74,25 +74,25 @@ def write_capitalize_extra_full(f, extras):
         f.write(f"ALIAS: numpy.{alias}\nMaps to: numpy.{name}\n")
         if first:
             f.write(f"Definition: {first}\n")
-        f.write(f"Example: np.{alias}\n" + "#" * 40 + "\n")
+        f.write(f"Example: np.{alias}\n\n")
     for name, first in extras["dtypes"]:
         alias = capitalize_first(name)
         f.write(f"ALIAS: numpy.{alias}\nMaps to: numpy.{name}\n")
         if first:
             f.write(f"Definition: {first}\n")
-        f.write(f"Example: np.{alias}\n" + "#" * 40 + "\n")
+        f.write(f"Example: np.{alias}\n\n")
     for name, first in extras["ndarray_attrs"]:
         alias = capitalize_first(name)
         f.write(f"ALIAS: <ndarray>.{alias}\nMaps to: <ndarray>.{name}\n")
         if first:
             f.write(f"Definition: {first}\n")
-        f.write(f"Example: A.{alias}\n" + "#" * 40 + "\n")
+        f.write(f"Example: A.{alias}\n\n")
     for name, first in extras["ndarray_methods"]:
         alias = capitalize_first(name)
         f.write(f"ALIAS: <ndarray>.{alias}(...)\nMaps to: <ndarray>.{name}(...)\n")
         if first:
             f.write(f"Definition: {first}\n")
-        f.write(f"Example: A.{alias}(...)\n" + "#" * 40 + "\n")
+        f.write(f"Example: A.{alias}(...)\n\n")
 
 
 def write_capitalize_extra_minimal(f, extras):
@@ -103,7 +103,7 @@ def write_capitalize_extra_minimal(f, extras):
             alias = capitalize_first(name)
             prefix = "numpy" if bucket in {"constants", "dtypes"} else "ndarray"
             sig = "(...)" if bucket == "ndarray_methods" else ""
-            f.write(f"FUNCTION: {prefix}.{alias}\n\n{alias}{sig}\n" + "#" * 40 + "\n")
+            f.write(f"FUNCTION: {prefix}.{alias}\n\n{alias}{sig}\n\n")
 
 
 def write_capitalize_extra_ultra(f, extras):
@@ -246,7 +246,7 @@ def generate_full_docs(list_module, list_shorthand, output_file):
                                 new_doc = corrupt_doc(new_doc, shorthand)
 
                             f.write(new_doc + "\n")
-                            f.write("\n" + "#" * 40 + "\n\n")
+                            f.write("\n")
 
                     elif isinstance(obj, types.ModuleType):
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
@@ -358,7 +358,7 @@ def generate_minimal_docs(list_module, output_file):
                             f.write(f"FUNCTION: {full_name}\n")
                             f.write("\n")
                             f.write(new_doc + "\n")
-                            f.write("#" * 40 + "\n")
+                            f.write("\n")
 
                     elif isinstance(obj, types.ModuleType):
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:

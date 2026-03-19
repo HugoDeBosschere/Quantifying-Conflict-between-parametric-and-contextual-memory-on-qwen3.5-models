@@ -86,28 +86,28 @@ def write_underscore_extra_full(f, extras):
         if first:
             f.write(f"Definition: {first}\n")
         f.write(f"Example: np.{name}_\n")
-        f.write("#" * 40 + "\n")
+        f.write("\n")
     for name, first in extras["dtypes"]:
         f.write(f"ALIAS: numpy.{name}_\n")
         f.write(f"Maps to: numpy.{name}\n")
         if first:
             f.write(f"Definition: {first}\n")
         f.write(f"Example: np.{name}_\n")
-        f.write("#" * 40 + "\n")
+        f.write("\n")
     for name, first in extras["ndarray_attrs"]:
         f.write(f"ALIAS: <ndarray>.{name}_\n")
         f.write(f"Maps to: <ndarray>.{name}\n")
         if first:
             f.write(f"Definition: {first}\n")
         f.write(f"Example: A.{name}_\n")
-        f.write("#" * 40 + "\n")
+        f.write("\n")
     for name, first in extras["ndarray_methods"]:
         f.write(f"ALIAS: <ndarray>.{name}_(...)\n")
         f.write(f"Maps to: <ndarray>.{name}(...)\n")
         if first:
             f.write(f"Definition: {first}\n")
         f.write(f"Example: A.{name}_(...)\n")
-        f.write("#" * 40 + "\n")
+        f.write("\n")
     f.write("\n")
 
 
@@ -288,7 +288,7 @@ def generate_full_docs(list_module,list_shorthand, output_file):
                             
                             #new_doc = add_underscore_see_also(new_doc)
                             f.write(new_doc + "\n")
-                            f.write("\n" + "#"*40 + "\n\n")
+                            f.write("\n")
                             
                     # B. IF IT IS A SUB-MODULE: Add to stack to crawl later
                     elif isinstance(obj, types.ModuleType):
@@ -446,7 +446,7 @@ def generate_minimal_docs(list_module,output_file):
                             f.write(f"FUNCTION: {full_name}\n")
                             f.write("\n")
                             f.write(new_doc + "\n")
-                            f.write("#"*40 + "\n")                                      
+                            f.write("\n")
                     # B. IF IT IS A SUB-MODULE: Add to stack to crawl later
                     elif isinstance(obj, types.ModuleType):
                         # Only crawl submodules that belong to numpy (avoid crawling 'sys' or 'os')
@@ -600,7 +600,7 @@ def generate_real_minimal_docs(list_module,output_file):
                         f.write(f"FUNCTION: {full_name}\n")
                         f.write("\n")
                         f.write(name + signature + "\n")
-                        f.write("#"*40 + "\n")
+                        f.write("\n")
                     # B. IF IT IS A SUB-MODULE: Add to stack to crawl later
                     elif isinstance(obj, types.ModuleType):
                         # Only crawl submodules that belong to numpy (avoid crawling 'sys' or 'os')
@@ -674,7 +674,7 @@ def generate_real_doc(list_module, output_file):
                             f.write("\n")
                             new_doc = supress_see_also(new_doc)
                             f.write(new_doc + "\n")
-                            f.write("\n" + "#"*40 + "\n\n")
+                            f.write("\n")
                             
                     # B. IF IT IS A SUB-MODULE: Add to stack to crawl later
                     elif isinstance(obj, types.ModuleType):

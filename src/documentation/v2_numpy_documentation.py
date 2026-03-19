@@ -97,7 +97,7 @@ def write_v2_extra_elements_full_doc(f, extras):
         if first_line:
             f.write(f"Definition: {first_line}\n")
         f.write(f"Example: np.{name}_v2\n")
-        f.write("#" * 40 + "\n")
+        f.write("\n")
     f.write("\n")
 
     f.write("NUMPY DTYPES\n")
@@ -108,7 +108,7 @@ def write_v2_extra_elements_full_doc(f, extras):
         if first_line:
             f.write(f"Definition: {first_line}\n")
         f.write(f"Example: np.{name}_v2\n")
-        f.write("#" * 40 + "\n")
+        f.write("\n")
     f.write("\n")
 
     f.write("NDARRAY ATTRIBUTES / METHODS\n")
@@ -119,14 +119,14 @@ def write_v2_extra_elements_full_doc(f, extras):
         if first_line:
             f.write(f"Definition: {first_line}\n")
         f.write(f"Example: A.{name}_v2\n")
-        f.write("#" * 40 + "\n")
+        f.write("\n")
     for name, first_line in extras["ndarray_methods"]:
         f.write(f"ALIAS: <ndarray>.{name}_v2(...)\n")
         f.write(f"Maps to: <ndarray>.{name}(...)\n")
         if first_line:
             f.write(f"Definition: {first_line}\n")
         f.write(f"Example: A.{name}_v2(...)\n")
-        f.write("#" * 40 + "\n")
+        f.write("\n")
     f.write("\n")
 
 
@@ -139,25 +139,25 @@ def write_v2_extra_elements_minimal_doc(f, extras):
         f.write(f"FUNCTION: numpy.{name}_v2\n")
         f.write("\n")
         f.write(f"{name}_v2\n")
-        f.write("#" * 40 + "\n")
+        f.write("\n")
 
     for name, _ in extras["dtypes"]:
         f.write(f"FUNCTION: numpy.{name}_v2\n")
         f.write("\n")
         f.write(f"{name}_v2\n")
-        f.write("#" * 40 + "\n")
+        f.write("\n")
 
     for name, _ in extras["ndarray_attrs"]:
         f.write(f"FUNCTION: ndarray.{name}_v2\n")
         f.write("\n")
         f.write(f"{name}_v2\n")
-        f.write("#" * 40 + "\n")
+        f.write("\n")
 
     for name, _ in extras["ndarray_methods"]:
         f.write(f"FUNCTION: ndarray.{name}_v2\n")
         f.write("\n")
         f.write(f"{name}_v2(...)\n")
-        f.write("#" * 40 + "\n")
+        f.write("\n")
 
 
 def write_v2_extra_elements_ultra_minimal_doc(f, extras):
@@ -316,7 +316,7 @@ def generate_full_docs(list_module, list_shorthand, output_file):
                                 new_doc = corrupt_doc(new_doc, shorthand)
                             
                             f.write(new_doc + "\n")
-                            f.write("\n" + "#"*40 + "\n\n")
+                            f.write("\n")
                             
                     elif isinstance(obj, types.ModuleType):
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
@@ -436,7 +436,7 @@ def generate_minimal_docs(list_module, output_file):
                             f.write(f"FUNCTION: {full_name}\n")
                             f.write("\n")
                             f.write(new_doc + "\n")
-                            f.write("#"*40 + "\n")                                      
+                            f.write("\n")
                     elif isinstance(obj, types.ModuleType):
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
                             stack.append((obj, f"{prefix}.{name}"))
@@ -559,7 +559,7 @@ def generate_real_minimal_docs(list_module, output_file):
                         f.write(f"FUNCTION: {full_name}\n")
                         f.write("\n")
                         f.write(name + signature_str + "\n")
-                        f.write("#"*40 + "\n")
+                        f.write("\n")
                     elif isinstance(obj, types.ModuleType):
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
                             stack.append((obj, f"{prefix}.{name}"))
@@ -614,7 +614,7 @@ def generate_real_doc(list_module, output_file):
                             f.write("\n")
                             new_doc = supress_see_also(new_doc)
                             f.write(new_doc + "\n")
-                            f.write("\n" + "#"*40 + "\n\n")
+                            f.write("\n")
                             
                     elif isinstance(obj, types.ModuleType):
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
