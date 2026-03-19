@@ -221,50 +221,6 @@ def apply_ast_transformations(code):
     return code
 
 
-# ==============================================================================
-# 3b. ENFORCEMENT HELPERS (ex: suffixe _v2)
-# ==============================================================================
-
-
-class V2SuffixViolation(Exception):
-    """Raised when a function/method call does not respect the _v2 suffix convention."""
-
-
-class V2SuffixEnforcer(ast.NodeVisitor):
-    """
-    Parcourt l'AST et lève une erreur dès qu'un appel de fonction/méthode
-    ne se termine pas par '_v2'. À utiliser pour les perturbations de type '_v2'.
-
-    - np.add(...)      → violation
-    - np.add_v2(...)   → OK
-    - x.reshape(...)   → violation
-    - x.reshape_v2(...)→ OK
-    """
-
-    def visit_Call(self, node: ast.Call):
-        func = node.func
-        # On ne traite que les accès de type attribut (np.xxx, obj.xxx)
-        if isinstance(func, ast.Attribute):
-            name = func.attr
-            if not name.endswith("_v2"):
-                # ast.unparse n'est pas dispo sur toutes les versions, on reste simple
-                raise V2SuffixViolation(
-                    f"Call to '{name}' without _v2 suffix is forbidden in _v2 perturbation."
-                )
-        self.generic_visit(node)
-
-
-def enforce_v2_suffix_on_code(code: str) -> None:
-    """
-    Analyse le code avec l'AST et lève V2SuffixViolation si une fonction/méthode
-    ne respecte pas le suffixe '_v2'. Ne modifie pas le code : c'est un pur check.
-    """
-    try:
-        tree = ast.parse(code)
-    except SyntaxError:
-        # Si le code est déjà invalide, on laisse le pipeline de nettoyage gérer
-        return
-    V2SuffixEnforcer().visit(tree)
 
 # ==============================================================================
 # 4. PIPELINE PRINCIPAL
