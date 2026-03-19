@@ -1,6 +1,7 @@
 import numpy
 import inspect
 import types
+import os
 from inspect import signature
 import re 
 import scipy
@@ -136,25 +137,25 @@ def write_v2_extra_elements_minimal_doc(f, extras):
 
     for name, _ in extras["constants"]:
         f.write(f"FUNCTION: numpy.{name}_v2\n")
-        f.write("-" * (10 + len(f"numpy.{name}_v2")) + "\n")
+        f.write("\n")
         f.write(f"{name}_v2\n")
         f.write("#" * 40 + "\n")
 
     for name, _ in extras["dtypes"]:
         f.write(f"FUNCTION: numpy.{name}_v2\n")
-        f.write("-" * (10 + len(f"numpy.{name}_v2")) + "\n")
+        f.write("\n")
         f.write(f"{name}_v2\n")
         f.write("#" * 40 + "\n")
 
     for name, _ in extras["ndarray_attrs"]:
         f.write(f"FUNCTION: ndarray.{name}_v2\n")
-        f.write("-" * (10 + len(f"ndarray.{name}_v2")) + "\n")
+        f.write("\n")
         f.write(f"{name}_v2\n")
         f.write("#" * 40 + "\n")
 
     for name, _ in extras["ndarray_methods"]:
         f.write(f"FUNCTION: ndarray.{name}_v2\n")
-        f.write("-" * (10 + len(f"ndarray.{name}_v2")) + "\n")
+        f.write("\n")
         f.write(f"{name}_v2(...)\n")
         f.write("#" * 40 + "\n")
 
@@ -166,19 +167,19 @@ def write_v2_extra_elements_ultra_minimal_doc(f, extras):
 
     for name, _ in extras["constants"]:
         f.write(f"FUNCTION: numpy.{name}_v2\n")
-        f.write("-" * (10 + len(f"numpy.{name}_v2")) + "\n")
+        f.write("\n")
 
     for name, _ in extras["dtypes"]:
         f.write(f"FUNCTION: numpy.{name}_v2\n")
-        f.write("-" * (10 + len(f"numpy.{name}_v2")) + "\n")
+        f.write("\n")
 
     for name, _ in extras["ndarray_attrs"]:
         f.write(f"FUNCTION: ndarray.{name}_v2\n")
-        f.write("-" * (10 + len(f"ndarray.{name}_v2")) + "\n")
+        f.write("\n")
 
     for name, _ in extras["ndarray_methods"]:
         f.write(f"FUNCTION: ndarray.{name}_v2\n")
-        f.write("-" * (10 + len(f"ndarray.{name}_v2")) + "\n")
+        f.write("\n")
 
 
 def add_v2_suffix(docstring, shorthand):
@@ -309,7 +310,7 @@ def generate_full_docs(list_module, list_shorthand, output_file):
                             new_doc = add_v2_signature_full_doc(new_doc)
                             
                             f.write(f"FUNCTION: {full_name}\n")
-                            f.write("-" * (10 + len(full_name)) + "\n")
+                            f.write("\n")
                             new_doc = supress_see_also(new_doc)
                             for shorthand in list_shorthand:
                                 new_doc = corrupt_doc(new_doc, shorthand)
@@ -371,7 +372,7 @@ def generate_ultra_minimal_docs(list_module, output_file):
                         new_doc = test_doc
                         
                         f.write(f"FUNCTION: {full_name}\n")
-                        f.write("-" * (10 + len(full_name)) + "\n")
+                        f.write("\n")
                                                                                                               
                     elif isinstance(obj, types.ModuleType):
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
@@ -433,7 +434,7 @@ def generate_minimal_docs(list_module, output_file):
                             else:
                                 new_doc = ""
                             f.write(f"FUNCTION: {full_name}\n")
-                            f.write("-" * (10 + len(full_name)) + "\n")
+                            f.write("\n")
                             f.write(new_doc + "\n")
                             f.write("#"*40 + "\n")                                      
                     elif isinstance(obj, types.ModuleType):
@@ -489,7 +490,7 @@ def generate_real_ultra_minimal_docs(list_module, output_file):
                         new_doc = test_doc
                         
                         f.write(f"FUNCTION: {full_name}\n")
-                        f.write("-" * (10 + len(full_name)) + "\n")
+                        f.write("\n")
                                                                                                               
                     elif isinstance(obj, types.ModuleType):
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
@@ -556,7 +557,7 @@ def generate_real_minimal_docs(list_module, output_file):
                             signature_str = "(...)"
 
                         f.write(f"FUNCTION: {full_name}\n")
-                        f.write("-" * (10 + len(full_name)) + "\n")
+                        f.write("\n")
                         f.write(name + signature_str + "\n")
                         f.write("#"*40 + "\n")
                     elif isinstance(obj, types.ModuleType):
@@ -610,7 +611,7 @@ def generate_real_doc(list_module, output_file):
                         
                         if new_doc:
                             f.write(f"FUNCTION: {full_name}\n")
-                            f.write("-" * (10 + len(full_name)) + "\n")
+                            f.write("\n")
                             new_doc = supress_see_also(new_doc)
                             f.write(new_doc + "\n")
                             f.write("\n" + "#"*40 + "\n\n")
@@ -624,9 +625,10 @@ def generate_real_doc(list_module, output_file):
 
 
 if __name__ == "__main__":
-    generate_full_docs([numpy], ["np", "numpy"], "corrupted_full_doc_numpy_v2.txt")
-    generate_ultra_minimal_docs([numpy], output_file="corrupted_ultra_minimal_numpy_v2.txt")
-    generate_minimal_docs([numpy], output_file="corrupted_minimal_numpy_v2.txt")
-    generate_real_ultra_minimal_docs([numpy], output_file="real_ultra_minimal_numpy.txt")
-    generate_real_minimal_docs([numpy], output_file="real_minimal_numpy.txt")
-    generate_real_doc([numpy], output_file="real_doc_numpy.txt")
+    output_dir = os.path.dirname(os.path.abspath(__file__))
+    generate_full_docs([numpy], ["np", "numpy"], os.path.join(output_dir, "corrupted_full_doc_numpy_v2.txt"))
+    generate_ultra_minimal_docs([numpy], output_file=os.path.join(output_dir, "corrupted_ultra_minimal_numpy_v2.txt"))
+    generate_minimal_docs([numpy], output_file=os.path.join(output_dir, "corrupted_minimal_numpy_v2.txt"))
+    generate_real_ultra_minimal_docs([numpy], output_file=os.path.join(output_dir, "real_ultra_minimal_numpy.txt"))
+    generate_real_minimal_docs([numpy], output_file=os.path.join(output_dir, "real_minimal_numpy.txt"))
+    generate_real_doc([numpy], output_file=os.path.join(output_dir, "real_doc_numpy.txt"))
