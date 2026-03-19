@@ -50,6 +50,11 @@ class _ObjectAttributeCapitalizeNormalizer(ast.NodeTransformer):
         if _is_numpy_root(node):
             return node
 
+        # Cas particulier : en NumPy, `.T` (transposée) doit rester majuscule.
+        # Sans ça, l'un-капиталisation convertirait `.T` en `.t`, ce qui casse la sémantique.
+        if node.attr == "T":
+            return node
+
         if node.attr and node.attr[0].isupper():
             node.attr = _uncapitalize_first(node.attr)
             return node
