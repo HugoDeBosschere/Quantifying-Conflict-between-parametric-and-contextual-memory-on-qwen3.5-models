@@ -1,6 +1,7 @@
 import numpy
 import inspect
 import types
+import os
 from numpydoc.docscrape import NumpyDocString
 from inspect import signature
 import re 
@@ -11,6 +12,129 @@ import tqdm
 
 
 test_doc = numpy.acos.__doc__ 
+
+
+def _first_doc_line(doc):
+    if not doc:
+        return ""
+    for line in doc.splitlines():
+        line = line.strip()
+        if line:
+            return line
+    return ""
+
+
+def discover_underscore_extra_elements():
+    """Discover constants/dtypes/ndarray attrs+methods dynamically (no hardcoded list)."""
+    constants = []
+    dtypes = []
+    ndarray_attrs = []
+    ndarray_methods = []
+
+    for name in sorted(dir(numpy)):
+        if name.startswith("_"):
+            continue
+        try:
+            obj = getattr(numpy, name)
+        except Exception:
+            continue
+
+        if inspect.isfunction(obj) or isinstance(obj, numpy.ufunc) or isinstance(obj, types.ModuleType):
+            continue
+
+        if isinstance(obj, type):
+            try:
+                if issubclass(obj, numpy.generic):
+                    dtypes.append((name, _first_doc_line(getattr(obj, "__doc__", ""))))
+            except Exception:
+                pass
+            continue
+
+        try:
+            is_scalar_like = numpy.isscalar(obj) or obj is None
+        except Exception:
+            is_scalar_like = obj is None
+        if is_scalar_like:
+            constants.append((name, _first_doc_line(getattr(obj, "__doc__", ""))))
+
+    for name in sorted(dir(numpy.ndarray)):
+        if name.startswith("_"):
+            continue
+        try:
+            obj = getattr(numpy.ndarray, name)
+        except Exception:
+            continue
+        if callable(obj):
+            ndarray_methods.append((name, _first_doc_line(getattr(obj, "__doc__", ""))))
+        else:
+            ndarray_attrs.append((name, _first_doc_line(getattr(obj, "__doc__", ""))))
+
+    return {
+        "constants": constants,
+        "dtypes": dtypes,
+        "ndarray_attrs": ndarray_attrs,
+        "ndarray_methods": ndarray_methods,
+    }
+
+
+def write_underscore_extra_full(f, extras):
+    f.write("EXTRA ALIASES (constants, dtypes, ndarray attrs/methods)\n")
+    f.write("=" * 60 + "\n\n")
+    for name, first in extras["constants"]:
+        f.write(f"ALIAS: numpy.{name}_\n")
+        f.write(f"Maps to: numpy.{name}\n")
+        if first:
+            f.write(f"Definition: {first}\n")
+        f.write(f"Example: np.{name}_\n")
+        f.write("#" * 40 + "\n")
+    for name, first in extras["dtypes"]:
+        f.write(f"ALIAS: numpy.{name}_\n")
+        f.write(f"Maps to: numpy.{name}\n")
+        if first:
+            f.write(f"Definition: {first}\n")
+        f.write(f"Example: np.{name}_\n")
+        f.write("#" * 40 + "\n")
+    for name, first in extras["ndarray_attrs"]:
+        f.write(f"ALIAS: <ndarray>.{name}_\n")
+        f.write(f"Maps to: <ndarray>.{name}\n")
+        if first:
+            f.write(f"Definition: {first}\n")
+        f.write(f"Example: A.{name}_\n")
+        f.write("#" * 40 + "\n")
+    for name, first in extras["ndarray_methods"]:
+        f.write(f"ALIAS: <ndarray>.{name}_(...)\n")
+        f.write(f"Maps to: <ndarray>.{name}(...)\n")
+        if first:
+            f.write(f"Definition: {first}\n")
+        f.write(f"Example: A.{name}_(...)\n")
+        f.write("#" * 40 + "\n")
+    f.write("\n")
+
+
+def write_underscore_extra_minimal(f, extras):
+    f.write("EXTRA ALIASES (minimal)\n")
+    f.write("=" * 60 + "\n\n")
+    for name, _ in extras["constants"]:
+        f.write(f"FUNCTION: numpy.{name}_\n\n{name}_\n#"+ "#" * 39 + "\n")
+    for name, _ in extras["dtypes"]:
+        f.write(f"FUNCTION: numpy.{name}_\n\n{name}_\n#"+ "#" * 39 + "\n")
+    for name, _ in extras["ndarray_attrs"]:
+        f.write(f"FUNCTION: ndarray.{name}_\n\n{name}_\n#"+ "#" * 39 + "\n")
+    for name, _ in extras["ndarray_methods"]:
+        f.write(f"FUNCTION: ndarray.{name}_\n\n{name}_(...)\n#"+ "#" * 39 + "\n")
+
+
+def write_underscore_extra_ultra(f, extras):
+    f.write("EXTRA ALIASES (ultra-minimal)\n")
+    f.write("=" * 60 + "\n\n")
+    for name, _ in extras["constants"]:
+        f.write(f"FUNCTION: numpy.{name}_\n\n")
+    for name, _ in extras["dtypes"]:
+        f.write(f"FUNCTION: numpy.{name}_\n\n")
+    for name, _ in extras["ndarray_attrs"]:
+        f.write(f"FUNCTION: ndarray.{name}_\n\n")
+    for name, _ in extras["ndarray_methods"]:
+        f.write(f"FUNCTION: ndarray.{name}_\n\n")
 
 
 def add_underscore(docstring,shorthand):
@@ -100,6 +224,7 @@ def generate_full_docs(list_module,list_shorthand, output_file):
     """
     # Set to keep track of functions we've already documented (to avoid duplicates)
     seen_functions = set()
+    extras = discover_underscore_extra_elements()
     with open(output_file, 'w', encoding='utf-8') as f:
         for base_module in tqdm.tqdm(list_module):
             f.write(f"Reference Documentation for {base_module.__name__} \n")
@@ -153,7 +278,7 @@ def generate_full_docs(list_module,list_shorthand, output_file):
                             new_doc = add_underscore_signature_full_doc(new_doc)
                             
                             f.write(f"FUNCTION: {full_name}\n")
-                            f.write("-" * (10 + len(full_name)) + "\n")
+                            f.write("\n")
                             new_doc = supress_see_also(new_doc)
                             for shorthand in list_shorthand:
                                 # Write to file in a clean format
@@ -170,6 +295,9 @@ def generate_full_docs(list_module,list_shorthand, output_file):
                         # Only crawl submodules that belong to numpy (avoid crawling 'sys' or 'os')
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
                             stack.append((obj, f"{prefix}.{name}"))
+
+            if getattr(base_module, "__name__", "") == "numpy":
+                write_underscore_extra_full(f, extras)
             
     print(f"Documentation generated in {output_file}")
     print(f"Total unique functions documented: {len(seen_functions)}")
@@ -184,6 +312,7 @@ def generate_ultra_minimal_docs(list_module,output_file):
 
      # Set to keep track of functions we've already documented (to avoid duplicates)
     seen_functions = set()
+    extras = discover_underscore_extra_elements()
     with open(output_file, 'w', encoding='utf-8') as f:
         for base_module in tqdm.tqdm(list_module):
             f.write(f"Reference Documentation for {base_module.__name__} \n")
@@ -234,13 +363,16 @@ def generate_ultra_minimal_docs(list_module,output_file):
                         
                     
                         f.write(f"FUNCTION: {full_name}\n")
-                        f.write("-" * (10 + len(full_name)) + "\n")
+                        f.write("\n")
                                                                                                               
                     # B. IF IT IS A SUB-MODULE: Add to stack to crawl later
                     elif isinstance(obj, types.ModuleType):
                         # Only crawl submodules that belong to numpy (avoid crawling 'sys' or 'os')
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
                             stack.append((obj, f"{prefix}.{name}"))
+
+            if getattr(base_module, "__name__", "") == "numpy":
+                write_underscore_extra_ultra(f, extras)
             
     print(f"Documentation generated in {output_file}")
     print(f"Total unique functions documented: {len(seen_functions)}")
@@ -256,6 +388,7 @@ def generate_minimal_docs(list_module,output_file):
     """
      # Set to keep track of functions we've already documented (to avoid duplicates)
     seen_functions = set()
+    extras = discover_underscore_extra_elements()
     with open(output_file, 'w', encoding='utf-8') as f:
         for base_module in tqdm.tqdm(list_module):
             f.write(f"Reference Documentation for {base_module.__name__} \n")
@@ -311,7 +444,7 @@ def generate_minimal_docs(list_module,output_file):
                             else:
                                 new_doc = ""
                             f.write(f"FUNCTION: {full_name}\n")
-                            f.write("-" * (10 + len(full_name)) + "\n")
+                            f.write("\n")
                             f.write(new_doc + "\n")
                             f.write("#"*40 + "\n")                                      
                     # B. IF IT IS A SUB-MODULE: Add to stack to crawl later
@@ -319,6 +452,9 @@ def generate_minimal_docs(list_module,output_file):
                         # Only crawl submodules that belong to numpy (avoid crawling 'sys' or 'os')
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
                             stack.append((obj, f"{prefix}.{name}"))
+
+            if getattr(base_module, "__name__", "") == "numpy":
+                write_underscore_extra_minimal(f, extras)
             
     print(f"Documentation generated in {output_file}")
     print(f"Total unique functions documented: {len(seen_functions)}")
@@ -384,7 +520,7 @@ def generate_real_ultra_minimal_docs(list_module,output_file):
                         
                     
                         f.write(f"FUNCTION: {full_name}\n")
-                        f.write("-" * (10 + len(full_name)) + "\n")
+                        f.write("\n")
                                                                                                               
                     # B. IF IT IS A SUB-MODULE: Add to stack to crawl later
                     elif isinstance(obj, types.ModuleType):
@@ -448,13 +584,23 @@ def generate_real_minimal_docs(list_module,output_file):
                         
 
 
-                        signature = inspect.signature(obj)
-                        signature = str(signature)
-                        if signature:
-                            f.write(f"FUNCTION: {full_name}\n")
-                            f.write("-" * (10 + len(full_name)) + "\n")
-                            f.write(name + signature + "\n")
-                            f.write("#"*40 + "\n")                                      
+                        signature = ""
+                        try:
+                            signature = str(inspect.signature(obj))
+                        except (ValueError, TypeError):
+                            raw_doc = obj.__doc__
+                            if raw_doc:
+                                first_line = re.search(".*?(?=\n)", raw_doc)
+                                if first_line:
+                                    maybe_sig = re.search(r"(\w+)\(.*", first_line.group(0))
+                                    if maybe_sig:
+                                        signature = maybe_sig.group(0).replace(name, "", 1)
+                        if not signature:
+                            signature = "(...)"
+                        f.write(f"FUNCTION: {full_name}\n")
+                        f.write("\n")
+                        f.write(name + signature + "\n")
+                        f.write("#"*40 + "\n")
                     # B. IF IT IS A SUB-MODULE: Add to stack to crawl later
                     elif isinstance(obj, types.ModuleType):
                         # Only crawl submodules that belong to numpy (avoid crawling 'sys' or 'os')
@@ -525,7 +671,7 @@ def generate_real_doc(list_module, output_file):
                         if new_doc:
                             
                             f.write(f"FUNCTION: {full_name}\n")
-                            f.write("-" * (10 + len(full_name)) + "\n")
+                            f.write("\n")
                             new_doc = supress_see_also(new_doc)
                             f.write(new_doc + "\n")
                             f.write("\n" + "#"*40 + "\n\n")
@@ -543,9 +689,10 @@ def generate_real_doc(list_module, output_file):
 
 
 if __name__ == "__main__":
-    generate_real_doc([numpy],'real_full_doc_numpy.txt')
-    generate_full_docs([numpy],["np","numpy"], "corrupted_full_doc_numpy.txt")
-    generate_ultra_minimal_docs([numpy],output_file="corrupted_ultra_minimal_numpy.txt")
-    generate_minimal_docs([numpy],output_file="corrupted_minimal_numpy.txt")
-    generate_real_ultra_minimal_docs([numpy],output_file="real_ultra_minimal_numpy.txt")
-    generate_real_minimal_docs([numpy],output_file="real_minimal_numpy.txt")
+    output_dir = os.path.dirname(os.path.abspath(__file__))
+    generate_real_doc([numpy], os.path.join(output_dir, "real_full_doc_numpy.txt"))
+    generate_full_docs([numpy], ["np", "numpy"], os.path.join(output_dir, "corrupted_full_doc_numpy.txt"))
+    generate_ultra_minimal_docs([numpy], output_file=os.path.join(output_dir, "corrupted_ultra_minimal_numpy.txt"))
+    generate_minimal_docs([numpy], output_file=os.path.join(output_dir, "corrupted_minimal_numpy.txt"))
+    generate_real_ultra_minimal_docs([numpy], output_file=os.path.join(output_dir, "real_ultra_minimal_numpy.txt"))
+    generate_real_minimal_docs([numpy], output_file=os.path.join(output_dir, "real_minimal_numpy.txt"))

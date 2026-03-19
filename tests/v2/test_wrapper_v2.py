@@ -96,7 +96,6 @@ def test_sous_module_avec_suffix_au_milieu():
         _ = np.fft_v2.fft(x)
         assert False, "np.fft_v2.fft devrait lever AttributeError"
     except AttributeError as e:
-        assert "np.fft_v2.fft"
         print("  OK np.fft_v2.fft lève une AttributeError")
 
 def run_all():
