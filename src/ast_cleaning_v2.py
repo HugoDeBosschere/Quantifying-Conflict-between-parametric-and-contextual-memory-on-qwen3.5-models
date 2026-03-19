@@ -49,7 +49,7 @@ class _ObjectAttributeV2Normalizer(ast.NodeTransformer):
             node.attr = node.attr[: -len("_v2")]
             return node
 
-        raise V2ObjectAttributeError(
+        raise ObjectAttributeError(
             f"Object attribute/method '{node.attr}' is missing required _v2 suffix."
         )
 

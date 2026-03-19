@@ -10,9 +10,8 @@ On vérifie ici, en isolation :
 import importlib.util
 import os
 
-
 _project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-_module_path = os.path.join(_project_root, "src", "ast_cleaning.py")
+_module_path = os.path.join(_project_root, "src", "ast_cleaning_v2.py")
 
 _spec = importlib.util.spec_from_file_location("project_ast_tools", _module_path)
 if _spec is None or _spec.loader is None:
@@ -20,8 +19,8 @@ if _spec is None or _spec.loader is None:
 project_ast_tools = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(project_ast_tools)
 
-normalize_v2_object_attributes = project_ast_tools.normalize_v2_object_attributes
-V2ObjectAttributeError = project_ast_tools.V2ObjectAttributeError
+normalize_v2_object_attributes = project_ast_tools.normalize_object_attributes
+ObjectAttributeError = project_ast_tools.ObjectAttributeError
 
 
 def test_shape_v2_is_normalized():
@@ -53,8 +52,8 @@ def test_missing_shape_suffix_raises():
     code = "result = A.shape"
     try:
         normalize_v2_object_attributes(code)
-        assert False, "Expected V2ObjectAttributeError for A.shape"
-    except V2ObjectAttributeError as e:
+        assert False, "Expected ObjectAttributeError for A.shape"
+    except ObjectAttributeError as e:
         assert "shape" in str(e)
     print("  OK A.shape sans suffixe -> erreur")
 
@@ -63,8 +62,8 @@ def test_missing_method_suffix_raises():
     code = "result = A.reshape((1, 9))"
     try:
         normalize_v2_object_attributes(code)
-        assert False, "Expected V2ObjectAttributeError for A.reshape((1, 9))"
-    except V2ObjectAttributeError as e:
+        assert False, "Expected ObjectAttributeError for A.reshape((1, 9))"
+    except ObjectAttributeError as e:
         assert "reshape" in str(e)
     print("  OK A.reshape(...) sans suffixe -> erreur")
 
@@ -80,8 +79,8 @@ def test_of_elt_that_should_raise_error():
     code = "result = A.shape"
     try:
         normalize_v2_object_attributes(code)
-        assert False, "Expected V2ObjectAttributeError for A.shape"
-    except V2ObjectAttributeError as e:
+        assert False, "Expected ObjectAttributeError for A.shape"
+    except ObjectAttributeError as e:
         assert "shape" in str(e)
     print("  OK A.shape sans suffixe -> erreur")
 
@@ -90,8 +89,8 @@ def test_of_elt_that_should_raise_error2():
     code = "result = A.T_v2.shape"
     try:
         normalize_v2_object_attributes(code)
-        assert False, "Expected V2ObjectAttributeError for A.T_v2.shape"
-    except V2ObjectAttributeError as e:
+        assert False, "Expected ObjectAttributeError for A.T_v2.shape"
+    except ObjectAttributeError as e:
         assert "shape" in str(e)
     print("  OK A.T_v2.shape sans suffixe -> erreur")
 
@@ -100,8 +99,8 @@ def test_of_elt_that_should_raise_error3():
     code = "result = A.T.shape_v2"
     try:
         normalize_v2_object_attributes(code)
-        assert False, "Expected V2ObjectAttributeError for A.T.shape_v2"
-    except V2ObjectAttributeError as e:
+        assert False, "Expected ObjectAttributeError for A.T.shape_v2"
+    except ObjectAttributeError as e:
         assert "T" in str(e)
     print("  OK A.T.shape_v2 sans suffixe -> erreur")
 
@@ -117,8 +116,8 @@ def test_of_np_and_method_is_left_unchanged_that_raise_error() :
     code = "result = np.array([1, 2, 3]).reshape((1, 3))"
     try:
         normalize_v2_object_attributes(code)
-        assert False, "Expected V2ObjectAttributeError for np.array([1, 2, 3]).reshape((1, 3))"
-    except V2ObjectAttributeError as e:
+        assert False, "Expected ObjectAttributeError for np.array([1, 2, 3]).reshape((1, 3))"
+    except ObjectAttributeError as e:
         assert "reshape" in str(e)
     print("  OK np.array([1, 2, 3]).reshape((1, 3)) sans suffixe -> erreur")
 
