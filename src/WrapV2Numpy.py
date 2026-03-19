@@ -4,6 +4,8 @@ import sys
 
 V2_SUFFIX = "_v2"
 
+class ModuleWithSuffixError(ValueError):
+    "A module was given with _v2 suffix, which is not what was asked"
 
 class V2NumPy:
     """Proxy qui redirige les appels np.fonction_v2 vers numpy.fonction."""
@@ -21,6 +23,9 @@ class V2NumPy:
                 return V2NumPy(attr) 
 
         except:
+            if isinstance(attr, types.ModuleType):
+                raise ModuleWithSuffixError
+
             if not name.endswith(V2_SUFFIX):
                 raise AttributeError(
                     f"module 'numpy' has no attribute {name!r}. "
