@@ -1,0 +1,3195 @@
+Reference Documentation for numpy 
+============================================================
+
+FUNCTION: numpy.abs
+
+absolute(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.acos
+
+acosarccos(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.acosh
+
+acosharccosh(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.add
+
+add(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.arcsin
+
+arcsin(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.arcsinh
+
+arcsinh(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.arctan
+
+arctan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.arctan2
+
+arctan2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.arctanh
+
+arctanh(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.asarray_chkfinite
+
+asarray_chkfinite(a, dtype=None, order=None)
+
+FUNCTION: numpy.asmatrix
+
+asmatrix(data, dtype=None)
+
+FUNCTION: numpy.bartlett
+
+bartlett(M)
+
+FUNCTION: numpy.base_repr
+
+base_repr(number, base=2, padding=0)
+
+FUNCTION: numpy.binary_repr
+
+binary_repr(num, width=None)
+
+FUNCTION: numpy.bitwise_and
+
+bitwise_and(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.bitwise_count
+
+bitwise_count(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.bitwise_invert
+
+bitwise_invertinvert(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.bitwise_left_shift
+
+bitwise_left_shiftleft_shift(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.bitwise_or
+
+bitwise_or(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.bitwise_right_shift
+
+bitwise_right_shiftright_shift(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.bitwise_xor
+
+bitwise_xor(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.blackman
+
+blackman(M)
+
+FUNCTION: numpy.bmat
+
+bmat(obj, ldict=None, gdict=None)
+
+FUNCTION: numpy.broadcast_shapes
+
+broadcast_shapes(*args)
+
+FUNCTION: numpy.cbrt
+
+cbrt(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ceil
+
+ceil(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.conj
+
+conjugate(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.copysign
+
+copysign(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.cos
+
+cos(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.cosh
+
+cosh(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.deg2rad
+
+deg2rad(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.degrees
+
+degrees(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.diag_indices
+
+diag_indices(n, ndim=2)
+
+FUNCTION: numpy.divide
+
+divide(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.divmod
+
+divmod(x1, x2[, out1, out2], / [, out=(None, None)], *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.equal
+
+equal(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.exp
+
+exp(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.exp2
+
+exp2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.expm1
+
+expm1(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.eye
+
+eye(N, M=None, k=0, dtype=<class 'float'>, order='C', *, device=None, like=None)
+
+FUNCTION: numpy.fabs
+
+fabs(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.float_power
+
+float_power(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.floor
+
+floor(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.floor_divide
+
+floor_divide(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.fmax
+
+fmax(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.fmin
+
+fmin(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.fmod
+
+fmod(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.format_float_positional
+
+format_float_positional(x, precision=None, unique=True, fractional=True, trim='k', sign=False, pad_left=None, pad_right=None, min_digits=None)
+
+FUNCTION: numpy.format_float_scientific
+
+format_float_scientific(x, precision=None, unique=True, trim='k', sign=False, pad_left=None, exp_digits=None, min_digits=None)
+
+FUNCTION: numpy.frexp
+
+frexp(x[, out1, out2], / [, out=(None, None)], *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.fromfunction
+
+fromfunction(function, shape, *, dtype=<class 'float'>, like=None, **kwargs)
+
+FUNCTION: numpy.fromregex
+
+fromregex(file, regexp, dtype, encoding=None)
+
+FUNCTION: numpy.full
+
+full(shape, fill_value, dtype=None, order='C', *, device=None, like=None)
+
+FUNCTION: numpy.gcd
+
+gcd(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.genfromtxt
+
+genfromtxt(fname, dtype=<class 'float'>, comments='#', delimiter=None, skip_header=0, skip_footer=0, converters=None, missing_values=None, filling_values=None, usecols=None, names=None, excludelist=None, deletechars=" !#$%&'()*+,-./:;<=>?@[\\]^{|}~", replace_space='_', autostrip=False, case_sensitive=True, defaultfmt='f%i', unpack=None, usemask=False, loose=True, invalid_raise=True, max_rows=None, encoding=None, *, ndmin=0, like=None)
+
+FUNCTION: numpy.get_include
+
+get_include()
+
+FUNCTION: numpy.get_printoptions
+
+get_printoptions()
+
+FUNCTION: numpy.getbufsize
+
+getbufsize()
+
+FUNCTION: numpy.geterr
+
+geterr()
+
+FUNCTION: numpy.geterrcall
+
+geterrcall()
+
+FUNCTION: numpy.greater
+
+greater(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.greater_equal
+
+greater_equal(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.hamming
+
+hamming(M)
+
+FUNCTION: numpy.hanning
+
+hanning(M)
+
+FUNCTION: numpy.heaviside
+
+heaviside(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.hypot
+
+hypot(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.identity
+
+identity(n, dtype=None, *, like=None)
+
+FUNCTION: numpy.indices
+
+indices(dimensions, dtype=<class 'int'>, sparse=False)
+
+FUNCTION: numpy.info
+
+info(object=None, maxwidth=76, output=None, toplevel='numpy')
+
+FUNCTION: numpy.isdtype
+
+isdtype(dtype, kind)
+
+FUNCTION: numpy.isfinite
+
+isfinite(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.isfortran
+
+isfortran(a)
+
+FUNCTION: numpy.isinf
+
+isinf(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.isnan
+
+isnan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.isnat
+
+isnat(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.isscalar
+
+isscalar(element)
+
+FUNCTION: numpy.issubdtype
+
+issubdtype(arg1, arg2)
+
+FUNCTION: numpy.iterable
+
+iterable(y)
+
+FUNCTION: numpy.kaiser
+
+kaiser(M, beta)
+
+FUNCTION: numpy.lcm
+
+lcm(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ldexp
+
+ldexp(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.less
+
+less(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.less_equal
+
+less_equal(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.load
+
+load(file, mmap_mode=None, allow_pickle=False, fix_imports=True, encoding='ASCII', *, max_header_size=10000)
+
+FUNCTION: numpy.loadtxt
+
+loadtxt(fname, dtype=<class 'float'>, comments='#', delimiter=None, converters=None, skiprows=0, usecols=None, unpack=False, ndmin=0, encoding=None, max_rows=None, *, quotechar=None, like=None)
+
+FUNCTION: numpy.log
+
+log(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.log10
+
+log10(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.log1p
+
+log1p(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.log2
+
+log2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.logaddexp
+
+logaddexp(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.logaddexp2
+
+logaddexp2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.logical_and
+
+logical_and(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.logical_not
+
+logical_not(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.logical_or
+
+logical_or(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.logical_xor
+
+logical_xor(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.mask_indices
+
+mask_indices(n, mask_func, k=0)
+
+FUNCTION: numpy.matmul
+
+matmul(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
+
+FUNCTION: numpy.matvec
+
+matvec(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
+
+FUNCTION: numpy.maximum
+
+maximum(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.minimum
+
+minimum(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.mintypecode
+
+mintypecode(typechars, typeset='GDFgdf', default='d')
+
+FUNCTION: numpy.mod
+
+modremainder(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.modf
+
+modf(x[, out1, out2], / [, out=(None, None)], *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.multiply
+
+multiply(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.negative
+
+negative(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.nextafter
+
+nextafter(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.not_equal
+
+not_equal(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ones
+
+ones(shape, dtype=None, order='C', *, device=None, like=None)
+
+FUNCTION: numpy.positive
+
+positive(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.pow
+
+power(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.printoptions
+
+printoptions(*args, **kwargs)
+
+FUNCTION: numpy.rad2deg
+
+rad2deg(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.radians
+
+radians(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.reciprocal
+
+reciprocal(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.require
+
+require(a, dtype=None, requirements=None, *, like=None)
+
+FUNCTION: numpy.rint
+
+rint(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.row_stack
+
+row_stack(tup, *, dtype=None, casting='same_kind')
+
+FUNCTION: numpy.set_printoptions
+
+set_printoptions(precision=None, threshold=None, edgeitems=None, linewidth=None, suppress=None, nanstr=None, infstr=None, formatter=None, sign=None, floatmode=None, *, legacy=None, override_repr=None)
+
+FUNCTION: numpy.setbufsize
+
+setbufsize(size)
+
+FUNCTION: numpy.seterr
+
+seterr(all=None, divide=None, over=None, under=None, invalid=None)
+
+FUNCTION: numpy.seterrcall
+
+seterrcall(func)
+
+FUNCTION: numpy.show_config
+
+show_config(mode='stdout')
+
+FUNCTION: numpy.show_runtime
+
+show_runtime()
+
+FUNCTION: numpy.sign
+
+sign(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.signbit
+
+signbit(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.sin
+
+sin(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.sinh
+
+sinh(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.spacing
+
+spacing(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.sqrt
+
+sqrt(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.square
+
+square(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.subtract
+
+subtract(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.tan
+
+tan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.tanh
+
+tanh(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.trapz
+
+trapz(y, x=None, dx=1.0, axis=-1)
+
+FUNCTION: numpy.tri
+
+tri(N, M=None, k=0, dtype=<class 'float'>, *, like=None)
+
+FUNCTION: numpy.tril_indices
+
+tril_indices(n, k=0, m=None)
+
+FUNCTION: numpy.triu_indices
+
+triu_indices(n, k=0, m=None)
+
+FUNCTION: numpy.trunc
+
+trunc(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.typename
+
+typename(char)
+
+FUNCTION: numpy.vecdot
+
+vecdot(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
+
+FUNCTION: numpy.vecmat
+
+vecmat(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
+
+FUNCTION: numpy.testing.assert_
+
+assert_(val, msg='')
+
+FUNCTION: numpy.testing.assert_allclose
+
+assert_allclose(actual, desired, rtol=1e-07, atol=0, equal_nan=True, err_msg='', verbose=True, *, strict=False)
+
+FUNCTION: numpy.testing.assert_almost_equal
+
+assert_almost_equal(actual, desired, decimal=7, err_msg='', verbose=True)
+
+FUNCTION: numpy.testing.assert_approx_equal
+
+assert_approx_equal(actual, desired, significant=7, err_msg='', verbose=True)
+
+FUNCTION: numpy.testing.assert_array_almost_equal
+
+assert_array_almost_equal(actual, desired, decimal=6, err_msg='', verbose=True)
+
+FUNCTION: numpy.testing.assert_array_almost_equal_nulp
+
+assert_array_almost_equal_nulp(x, y, nulp=1)
+
+FUNCTION: numpy.testing.assert_array_compare
+
+assert_array_compare(comparison, x, y, err_msg='', verbose=True, header='', precision=6, equal_nan=True, equal_inf=True, *, strict=False, names=('ACTUAL', 'DESIRED'))
+
+FUNCTION: numpy.testing.assert_array_equal
+
+assert_array_equal(actual, desired, err_msg='', verbose=True, *, strict=False)
+
+FUNCTION: numpy.testing.assert_array_less
+
+assert_array_less(x, y, err_msg='', verbose=True, *, strict=False)
+
+FUNCTION: numpy.testing.assert_array_max_ulp
+
+assert_array_max_ulp(a, b, maxulp=1, dtype=None)
+
+FUNCTION: numpy.testing.assert_equal
+
+assert_equal(actual, desired, err_msg='', verbose=True, *, strict=False)
+
+FUNCTION: numpy.testing.assert_no_gc_cycles
+
+assert_no_gc_cycles(*args, **kwargs)
+
+FUNCTION: numpy.testing.assert_no_warnings
+
+assert_no_warnings(*args, **kwargs)
+
+FUNCTION: numpy.testing.assert_raises
+
+assert_raises(*args, **kwargs)
+
+FUNCTION: numpy.testing.assert_raises_regex
+
+assert_raises_regex(exception_class, expected_regexp, *args, **kwargs)
+
+FUNCTION: numpy.testing.assert_string_equal
+
+assert_string_equal(actual, desired)
+
+FUNCTION: numpy.testing.assert_warns
+
+assert_warns(warning_class, *args, **kwargs)
+
+FUNCTION: numpy.testing.break_cycles
+
+break_cycles()
+
+FUNCTION: numpy.testing.build_err_msg
+
+build_err_msg(arrays, err_msg, header='Items are not equal:', verbose=True, names=('ACTUAL', 'DESIRED'), precision=8)
+
+FUNCTION: numpy.testing.check_support_sve
+
+check_support_sve(__cache=[])
+
+FUNCTION: numpy.testing.decorate_methods
+
+decorate_methods(cls, decorator, testmatch=None)
+
+FUNCTION: numpy.testing.jiffies
+
+jiffies(_proc_pid_stat='/proc/3997892/stat', _load_time=[])
+
+FUNCTION: numpy.testing.measure
+
+measure(code_str, times=1, label=None)
+
+FUNCTION: numpy.testing.memusage
+
+memusage(_proc_pid_stat='/proc/3997892/stat')
+
+FUNCTION: numpy.testing.print_assert_equal
+
+print_assert_equal(test_string, actual, desired)
+
+FUNCTION: numpy.testing.run_threaded
+
+run_threaded(func, max_workers=8, pass_count=False, pass_barrier=False, outer_iterations=1, prepare_args=None)
+
+FUNCTION: numpy.testing.rundocs
+
+rundocs(filename=None, raise_on_error=True)
+
+FUNCTION: numpy.testing.runstring
+
+runstring(astr, dict)
+
+FUNCTION: numpy.testing.tempdir
+
+tempdir(*args, **kwargs)
+
+FUNCTION: numpy.testing.temppath
+
+temppath(*args, **kwargs)
+
+FUNCTION: numpy.testing.overrides.allows_array_function_override
+
+allows_array_function_override(func)
+
+FUNCTION: numpy.testing.overrides.allows_array_ufunc_override
+
+allows_array_ufunc_override(func)
+
+FUNCTION: numpy.testing.overrides.get_overridable_numpy_array_functions
+
+get_overridable_numpy_array_functions()
+
+FUNCTION: numpy.testing.overrides.get_overridable_numpy_ufuncs
+
+get_overridable_numpy_ufuncs()
+
+FUNCTION: numpy.testing.extbuild.build
+
+build(cfile, outputfilename, compile_extra, link_extra, include_dirs, libraries, library_dirs)
+
+FUNCTION: numpy.testing.extbuild.build_and_import_extension
+
+build_and_import_extension(modname, functions, *, prologue='', build_dir=None, include_dirs=[], more_init='')
+
+FUNCTION: numpy.testing.extbuild.compile_extension_module
+
+compile_extension_module(name, builddir, include_dirs, source_string, libraries=[], library_dirs=[])
+
+FUNCTION: numpy.testing.extbuild.get_so_suffix
+
+get_so_suffix()
+
+FUNCTION: numpy.strings.capitalize
+
+capitalize(a)
+
+FUNCTION: numpy.strings.center
+
+center(a, width, fillchar=' ')
+
+FUNCTION: numpy.strings.count
+
+count(a, sub, start=0, end=None)
+
+FUNCTION: numpy.strings.decode
+
+decode(a, encoding=None, errors=None)
+
+FUNCTION: numpy.strings.encode
+
+encode(a, encoding=None, errors=None)
+
+FUNCTION: numpy.strings.endswith
+
+endswith(a, suffix, start=0, end=None)
+
+FUNCTION: numpy.strings.expandtabs
+
+expandtabs(a, tabsize=8)
+
+FUNCTION: numpy.strings.find
+
+find(a, sub, start=0, end=None)
+
+FUNCTION: numpy.strings.index
+
+index(a, sub, start=0, end=None)
+
+FUNCTION: numpy.strings.isalnum
+
+isalnum(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.isalpha
+
+isalpha(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.isdecimal
+
+isdecimal(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.isdigit
+
+isdigit(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.islower
+
+islower(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.isnumeric
+
+isnumeric(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.isspace
+
+isspace(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.istitle
+
+istitle(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.isupper
+
+isupper(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.ljust
+
+ljust(a, width, fillchar=' ')
+
+FUNCTION: numpy.strings.lower
+
+lower(a)
+
+FUNCTION: numpy.strings.lstrip
+
+lstrip(a, chars=None)
+
+FUNCTION: numpy.strings.mod
+
+mod(a, values)
+
+FUNCTION: numpy.strings.multiply
+
+multiply(a, i)
+
+FUNCTION: numpy.strings.partition
+
+partition(a, sep)
+
+FUNCTION: numpy.strings.replace
+
+replace(a, old, new, count=-1)
+
+FUNCTION: numpy.strings.rfind
+
+rfind(a, sub, start=0, end=None)
+
+FUNCTION: numpy.strings.rindex
+
+rindex(a, sub, start=0, end=None)
+
+FUNCTION: numpy.strings.rjust
+
+rjust(a, width, fillchar=' ')
+
+FUNCTION: numpy.strings.rpartition
+
+rpartition(a, sep)
+
+FUNCTION: numpy.strings.rstrip
+
+rstrip(a, chars=None)
+
+FUNCTION: numpy.strings.startswith
+
+startswith(a, prefix, start=0, end=None)
+
+FUNCTION: numpy.strings.str_len
+
+str_len(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.strip
+
+strip(a, chars=None)
+
+FUNCTION: numpy.strings.swapcase
+
+swapcase(a)
+
+FUNCTION: numpy.strings.title
+
+title(a)
+
+FUNCTION: numpy.strings.translate
+
+translate(a, table, deletechars=None)
+
+FUNCTION: numpy.strings.upper
+
+upper(a)
+
+FUNCTION: numpy.strings.zfill
+
+zfill(a, width)
+
+FUNCTION: numpy.rec.array
+
+array(obj, dtype=None, shape=None, offset=0, strides=None, formats=None, names=None, titles=None, aligned=False, byteorder=None, copy=True)
+
+FUNCTION: numpy.rec.find_duplicate
+
+find_duplicate(list)
+
+FUNCTION: numpy.rec.fromarrays
+
+fromarrays(arrayList, dtype=None, shape=None, formats=None, names=None, titles=None, aligned=False, byteorder=None)
+
+FUNCTION: numpy.rec.fromfile
+
+fromfile(fd, dtype=None, shape=None, offset=0, formats=None, names=None, titles=None, aligned=False, byteorder=None)
+
+FUNCTION: numpy.rec.fromrecords
+
+fromrecords(recList, dtype=None, shape=None, formats=None, names=None, titles=None, aligned=False, byteorder=None)
+
+FUNCTION: numpy.rec.fromstring
+
+fromstring(datastring, dtype=None, shape=None, offset=0, formats=None, names=None, titles=None, aligned=False, byteorder=None)
+
+FUNCTION: numpy.polynomial.set_default_printstyle
+
+set_default_printstyle(style)
+
+FUNCTION: numpy.polynomial.polyutils.as_series
+
+as_series(alist, trim=True)
+
+FUNCTION: numpy.polynomial.polyutils.format_float
+
+format_float(x, parens=False)
+
+FUNCTION: numpy.polynomial.polyutils.getdomain
+
+getdomain(x)
+
+FUNCTION: numpy.polynomial.polyutils.mapdomain
+
+mapdomain(x, old, new)
+
+FUNCTION: numpy.polynomial.polyutils.mapparms
+
+mapparms(old, new)
+
+FUNCTION: numpy.polynomial.polyutils.trimcoef
+
+trimcoef(c, tol=0)
+
+FUNCTION: numpy.polynomial.polyutils.trimseq
+
+trimseq(seq)
+
+FUNCTION: numpy.polynomial.polynomial.polyadd
+
+polyadd(c1, c2)
+
+FUNCTION: numpy.polynomial.polynomial.polycompanion
+
+polycompanion(c)
+
+FUNCTION: numpy.polynomial.polynomial.polyder
+
+polyder(c, m=1, scl=1, axis=0)
+
+FUNCTION: numpy.polynomial.polynomial.polydiv
+
+polydiv(c1, c2)
+
+FUNCTION: numpy.polynomial.polynomial.polyfit
+
+polyfit(x, y, deg, rcond=None, full=False, w=None)
+
+FUNCTION: numpy.polynomial.polynomial.polyfromroots
+
+polyfromroots(roots)
+
+FUNCTION: numpy.polynomial.polynomial.polygrid2d
+
+polygrid2d(x, y, c)
+
+FUNCTION: numpy.polynomial.polynomial.polygrid3d
+
+polygrid3d(x, y, z, c)
+
+FUNCTION: numpy.polynomial.polynomial.polyint
+
+polyint(c, m=1, k=[], lbnd=0, scl=1, axis=0)
+
+FUNCTION: numpy.polynomial.polynomial.polyline
+
+polyline(off, scl)
+
+FUNCTION: numpy.polynomial.polynomial.polymul
+
+polymul(c1, c2)
+
+FUNCTION: numpy.polynomial.polynomial.polymulx
+
+polymulx(c)
+
+FUNCTION: numpy.polynomial.polynomial.polypow
+
+polypow(c, pow, maxpower=None)
+
+FUNCTION: numpy.polynomial.polynomial.polyroots
+
+polyroots(c)
+
+FUNCTION: numpy.polynomial.polynomial.polysub
+
+polysub(c1, c2)
+
+FUNCTION: numpy.polynomial.polynomial.polyval
+
+polyval(x, c, tensor=True)
+
+FUNCTION: numpy.polynomial.polynomial.polyval2d
+
+polyval2d(x, y, c)
+
+FUNCTION: numpy.polynomial.polynomial.polyval3d
+
+polyval3d(x, y, z, c)
+
+FUNCTION: numpy.polynomial.polynomial.polyvalfromroots
+
+polyvalfromroots(x, r, tensor=True)
+
+FUNCTION: numpy.polynomial.polynomial.polyvander
+
+polyvander(x, deg)
+
+FUNCTION: numpy.polynomial.polynomial.polyvander2d
+
+polyvander2d(x, y, deg)
+
+FUNCTION: numpy.polynomial.polynomial.polyvander3d
+
+polyvander3d(x, y, z, deg)
+
+FUNCTION: numpy.polynomial.legendre.leg2poly
+
+leg2poly(c)
+
+FUNCTION: numpy.polynomial.legendre.legadd
+
+legadd(c1, c2)
+
+FUNCTION: numpy.polynomial.legendre.legcompanion
+
+legcompanion(c)
+
+FUNCTION: numpy.polynomial.legendre.legder
+
+legder(c, m=1, scl=1, axis=0)
+
+FUNCTION: numpy.polynomial.legendre.legdiv
+
+legdiv(c1, c2)
+
+FUNCTION: numpy.polynomial.legendre.legfit
+
+legfit(x, y, deg, rcond=None, full=False, w=None)
+
+FUNCTION: numpy.polynomial.legendre.legfromroots
+
+legfromroots(roots)
+
+FUNCTION: numpy.polynomial.legendre.leggauss
+
+leggauss(deg)
+
+FUNCTION: numpy.polynomial.legendre.leggrid2d
+
+leggrid2d(x, y, c)
+
+FUNCTION: numpy.polynomial.legendre.leggrid3d
+
+leggrid3d(x, y, z, c)
+
+FUNCTION: numpy.polynomial.legendre.legint
+
+legint(c, m=1, k=[], lbnd=0, scl=1, axis=0)
+
+FUNCTION: numpy.polynomial.legendre.legline
+
+legline(off, scl)
+
+FUNCTION: numpy.polynomial.legendre.legmul
+
+legmul(c1, c2)
+
+FUNCTION: numpy.polynomial.legendre.legmulx
+
+legmulx(c)
+
+FUNCTION: numpy.polynomial.legendre.legpow
+
+legpow(c, pow, maxpower=16)
+
+FUNCTION: numpy.polynomial.legendre.legroots
+
+legroots(c)
+
+FUNCTION: numpy.polynomial.legendre.legsub
+
+legsub(c1, c2)
+
+FUNCTION: numpy.polynomial.legendre.legval
+
+legval(x, c, tensor=True)
+
+FUNCTION: numpy.polynomial.legendre.legval2d
+
+legval2d(x, y, c)
+
+FUNCTION: numpy.polynomial.legendre.legval3d
+
+legval3d(x, y, z, c)
+
+FUNCTION: numpy.polynomial.legendre.legvander
+
+legvander(x, deg)
+
+FUNCTION: numpy.polynomial.legendre.legvander2d
+
+legvander2d(x, y, deg)
+
+FUNCTION: numpy.polynomial.legendre.legvander3d
+
+legvander3d(x, y, z, deg)
+
+FUNCTION: numpy.polynomial.legendre.legweight
+
+legweight(x)
+
+FUNCTION: numpy.polynomial.legendre.poly2leg
+
+poly2leg(pol)
+
+FUNCTION: numpy.polynomial.laguerre.lag2poly
+
+lag2poly(c)
+
+FUNCTION: numpy.polynomial.laguerre.lagadd
+
+lagadd(c1, c2)
+
+FUNCTION: numpy.polynomial.laguerre.lagcompanion
+
+lagcompanion(c)
+
+FUNCTION: numpy.polynomial.laguerre.lagder
+
+lagder(c, m=1, scl=1, axis=0)
+
+FUNCTION: numpy.polynomial.laguerre.lagdiv
+
+lagdiv(c1, c2)
+
+FUNCTION: numpy.polynomial.laguerre.lagfit
+
+lagfit(x, y, deg, rcond=None, full=False, w=None)
+
+FUNCTION: numpy.polynomial.laguerre.lagfromroots
+
+lagfromroots(roots)
+
+FUNCTION: numpy.polynomial.laguerre.laggauss
+
+laggauss(deg)
+
+FUNCTION: numpy.polynomial.laguerre.laggrid2d
+
+laggrid2d(x, y, c)
+
+FUNCTION: numpy.polynomial.laguerre.laggrid3d
+
+laggrid3d(x, y, z, c)
+
+FUNCTION: numpy.polynomial.laguerre.lagint
+
+lagint(c, m=1, k=[], lbnd=0, scl=1, axis=0)
+
+FUNCTION: numpy.polynomial.laguerre.lagline
+
+lagline(off, scl)
+
+FUNCTION: numpy.polynomial.laguerre.lagmul
+
+lagmul(c1, c2)
+
+FUNCTION: numpy.polynomial.laguerre.lagmulx
+
+lagmulx(c)
+
+FUNCTION: numpy.polynomial.laguerre.lagpow
+
+lagpow(c, pow, maxpower=16)
+
+FUNCTION: numpy.polynomial.laguerre.lagroots
+
+lagroots(c)
+
+FUNCTION: numpy.polynomial.laguerre.lagsub
+
+lagsub(c1, c2)
+
+FUNCTION: numpy.polynomial.laguerre.lagval
+
+lagval(x, c, tensor=True)
+
+FUNCTION: numpy.polynomial.laguerre.lagval2d
+
+lagval2d(x, y, c)
+
+FUNCTION: numpy.polynomial.laguerre.lagval3d
+
+lagval3d(x, y, z, c)
+
+FUNCTION: numpy.polynomial.laguerre.lagvander
+
+lagvander(x, deg)
+
+FUNCTION: numpy.polynomial.laguerre.lagvander2d
+
+lagvander2d(x, y, deg)
+
+FUNCTION: numpy.polynomial.laguerre.lagvander3d
+
+lagvander3d(x, y, z, deg)
+
+FUNCTION: numpy.polynomial.laguerre.lagweight
+
+lagweight(x)
+
+FUNCTION: numpy.polynomial.laguerre.poly2lag
+
+poly2lag(pol)
+
+FUNCTION: numpy.polynomial.hermite_e.herme2poly
+
+herme2poly(c)
+
+FUNCTION: numpy.polynomial.hermite_e.hermeadd
+
+hermeadd(c1, c2)
+
+FUNCTION: numpy.polynomial.hermite_e.hermecompanion
+
+hermecompanion(c)
+
+FUNCTION: numpy.polynomial.hermite_e.hermeder
+
+hermeder(c, m=1, scl=1, axis=0)
+
+FUNCTION: numpy.polynomial.hermite_e.hermediv
+
+hermediv(c1, c2)
+
+FUNCTION: numpy.polynomial.hermite_e.hermefit
+
+hermefit(x, y, deg, rcond=None, full=False, w=None)
+
+FUNCTION: numpy.polynomial.hermite_e.hermefromroots
+
+hermefromroots(roots)
+
+FUNCTION: numpy.polynomial.hermite_e.hermegauss
+
+hermegauss(deg)
+
+FUNCTION: numpy.polynomial.hermite_e.hermegrid2d
+
+hermegrid2d(x, y, c)
+
+FUNCTION: numpy.polynomial.hermite_e.hermegrid3d
+
+hermegrid3d(x, y, z, c)
+
+FUNCTION: numpy.polynomial.hermite_e.hermeint
+
+hermeint(c, m=1, k=[], lbnd=0, scl=1, axis=0)
+
+FUNCTION: numpy.polynomial.hermite_e.hermeline
+
+hermeline(off, scl)
+
+FUNCTION: numpy.polynomial.hermite_e.hermemul
+
+hermemul(c1, c2)
+
+FUNCTION: numpy.polynomial.hermite_e.hermemulx
+
+hermemulx(c)
+
+FUNCTION: numpy.polynomial.hermite_e.hermepow
+
+hermepow(c, pow, maxpower=16)
+
+FUNCTION: numpy.polynomial.hermite_e.hermeroots
+
+hermeroots(c)
+
+FUNCTION: numpy.polynomial.hermite_e.hermesub
+
+hermesub(c1, c2)
+
+FUNCTION: numpy.polynomial.hermite_e.hermeval
+
+hermeval(x, c, tensor=True)
+
+FUNCTION: numpy.polynomial.hermite_e.hermeval2d
+
+hermeval2d(x, y, c)
+
+FUNCTION: numpy.polynomial.hermite_e.hermeval3d
+
+hermeval3d(x, y, z, c)
+
+FUNCTION: numpy.polynomial.hermite_e.hermevander
+
+hermevander(x, deg)
+
+FUNCTION: numpy.polynomial.hermite_e.hermevander2d
+
+hermevander2d(x, y, deg)
+
+FUNCTION: numpy.polynomial.hermite_e.hermevander3d
+
+hermevander3d(x, y, z, deg)
+
+FUNCTION: numpy.polynomial.hermite_e.hermeweight
+
+hermeweight(x)
+
+FUNCTION: numpy.polynomial.hermite_e.poly2herme
+
+poly2herme(pol)
+
+FUNCTION: numpy.polynomial.hermite.herm2poly
+
+herm2poly(c)
+
+FUNCTION: numpy.polynomial.hermite.hermadd
+
+hermadd(c1, c2)
+
+FUNCTION: numpy.polynomial.hermite.hermcompanion
+
+hermcompanion(c)
+
+FUNCTION: numpy.polynomial.hermite.hermder
+
+hermder(c, m=1, scl=1, axis=0)
+
+FUNCTION: numpy.polynomial.hermite.hermdiv
+
+hermdiv(c1, c2)
+
+FUNCTION: numpy.polynomial.hermite.hermfit
+
+hermfit(x, y, deg, rcond=None, full=False, w=None)
+
+FUNCTION: numpy.polynomial.hermite.hermfromroots
+
+hermfromroots(roots)
+
+FUNCTION: numpy.polynomial.hermite.hermgauss
+
+hermgauss(deg)
+
+FUNCTION: numpy.polynomial.hermite.hermgrid2d
+
+hermgrid2d(x, y, c)
+
+FUNCTION: numpy.polynomial.hermite.hermgrid3d
+
+hermgrid3d(x, y, z, c)
+
+FUNCTION: numpy.polynomial.hermite.hermint
+
+hermint(c, m=1, k=[], lbnd=0, scl=1, axis=0)
+
+FUNCTION: numpy.polynomial.hermite.hermline
+
+hermline(off, scl)
+
+FUNCTION: numpy.polynomial.hermite.hermmul
+
+hermmul(c1, c2)
+
+FUNCTION: numpy.polynomial.hermite.hermmulx
+
+hermmulx(c)
+
+FUNCTION: numpy.polynomial.hermite.hermpow
+
+hermpow(c, pow, maxpower=16)
+
+FUNCTION: numpy.polynomial.hermite.hermroots
+
+hermroots(c)
+
+FUNCTION: numpy.polynomial.hermite.hermsub
+
+hermsub(c1, c2)
+
+FUNCTION: numpy.polynomial.hermite.hermval
+
+hermval(x, c, tensor=True)
+
+FUNCTION: numpy.polynomial.hermite.hermval2d
+
+hermval2d(x, y, c)
+
+FUNCTION: numpy.polynomial.hermite.hermval3d
+
+hermval3d(x, y, z, c)
+
+FUNCTION: numpy.polynomial.hermite.hermvander
+
+hermvander(x, deg)
+
+FUNCTION: numpy.polynomial.hermite.hermvander2d
+
+hermvander2d(x, y, deg)
+
+FUNCTION: numpy.polynomial.hermite.hermvander3d
+
+hermvander3d(x, y, z, deg)
+
+FUNCTION: numpy.polynomial.hermite.hermweight
+
+hermweight(x)
+
+FUNCTION: numpy.polynomial.hermite.poly2herm
+
+poly2herm(pol)
+
+FUNCTION: numpy.polynomial.chebyshev.cheb2poly
+
+cheb2poly(c)
+
+FUNCTION: numpy.polynomial.chebyshev.chebadd
+
+chebadd(c1, c2)
+
+FUNCTION: numpy.polynomial.chebyshev.chebcompanion
+
+chebcompanion(c)
+
+FUNCTION: numpy.polynomial.chebyshev.chebder
+
+chebder(c, m=1, scl=1, axis=0)
+
+FUNCTION: numpy.polynomial.chebyshev.chebdiv
+
+chebdiv(c1, c2)
+
+FUNCTION: numpy.polynomial.chebyshev.chebfit
+
+chebfit(x, y, deg, rcond=None, full=False, w=None)
+
+FUNCTION: numpy.polynomial.chebyshev.chebfromroots
+
+chebfromroots(roots)
+
+FUNCTION: numpy.polynomial.chebyshev.chebgauss
+
+chebgauss(deg)
+
+FUNCTION: numpy.polynomial.chebyshev.chebgrid2d
+
+chebgrid2d(x, y, c)
+
+FUNCTION: numpy.polynomial.chebyshev.chebgrid3d
+
+chebgrid3d(x, y, z, c)
+
+FUNCTION: numpy.polynomial.chebyshev.chebint
+
+chebint(c, m=1, k=[], lbnd=0, scl=1, axis=0)
+
+FUNCTION: numpy.polynomial.chebyshev.chebinterpolate
+
+chebinterpolate(func, deg, args=())
+
+FUNCTION: numpy.polynomial.chebyshev.chebline
+
+chebline(off, scl)
+
+FUNCTION: numpy.polynomial.chebyshev.chebmul
+
+chebmul(c1, c2)
+
+FUNCTION: numpy.polynomial.chebyshev.chebmulx
+
+chebmulx(c)
+
+FUNCTION: numpy.polynomial.chebyshev.chebpow
+
+chebpow(c, pow, maxpower=16)
+
+FUNCTION: numpy.polynomial.chebyshev.chebpts1
+
+chebpts1(npts)
+
+FUNCTION: numpy.polynomial.chebyshev.chebpts2
+
+chebpts2(npts)
+
+FUNCTION: numpy.polynomial.chebyshev.chebroots
+
+chebroots(c)
+
+FUNCTION: numpy.polynomial.chebyshev.chebsub
+
+chebsub(c1, c2)
+
+FUNCTION: numpy.polynomial.chebyshev.chebval
+
+chebval(x, c, tensor=True)
+
+FUNCTION: numpy.polynomial.chebyshev.chebval2d
+
+chebval2d(x, y, c)
+
+FUNCTION: numpy.polynomial.chebyshev.chebval3d
+
+chebval3d(x, y, z, c)
+
+FUNCTION: numpy.polynomial.chebyshev.chebvander
+
+chebvander(x, deg)
+
+FUNCTION: numpy.polynomial.chebyshev.chebvander2d
+
+chebvander2d(x, y, deg)
+
+FUNCTION: numpy.polynomial.chebyshev.chebvander3d
+
+chebvander3d(x, y, z, deg)
+
+FUNCTION: numpy.polynomial.chebyshev.chebweight
+
+chebweight(x)
+
+FUNCTION: numpy.polynomial.chebyshev.poly2cheb
+
+poly2cheb(pol)
+
+FUNCTION: numpy.ma.allclose
+
+allclose(a, b, masked_equal=True, rtol=1e-05, atol=1e-08)
+
+FUNCTION: numpy.ma.allequal
+
+allequal(a, b, fill_value=True)
+
+FUNCTION: numpy.ma.append
+
+append(a, b, axis=None)
+
+FUNCTION: numpy.ma.apply_along_axis
+
+apply_along_axis(func1d, axis, arr, *args, **kwargs)
+
+FUNCTION: numpy.ma.apply_over_axes
+
+apply_over_axes(func, a, axes)
+
+FUNCTION: numpy.ma.argsort
+
+argsort(a, axis=<no value>, kind=None, order=None, endwith=True, fill_value=None, *, stable=None)
+
+FUNCTION: numpy.ma.array
+
+array(data, dtype=None, copy=False, order=None, mask=np.False_, fill_value=None, keep_mask=True, hard_mask=False, shrink=True, subok=True, ndmin=0)
+
+FUNCTION: numpy.ma.asanyarray
+
+asanyarray(a, dtype=None)
+
+FUNCTION: numpy.ma.asarray
+
+asarray(a, dtype=None, order=None)
+
+FUNCTION: numpy.ma.average
+
+average(a, axis=None, weights=None, returned=False, *, keepdims=<no value>)
+
+FUNCTION: numpy.ma.choose
+
+choose(indices, choices, out=None, mode='raise')
+
+FUNCTION: numpy.ma.clump_masked
+
+clump_masked(a)
+
+FUNCTION: numpy.ma.clump_unmasked
+
+clump_unmasked(a)
+
+FUNCTION: numpy.ma.common_fill_value
+
+common_fill_value(a, b)
+
+FUNCTION: numpy.ma.compress_cols
+
+compress_cols(a)
+
+FUNCTION: numpy.ma.compress_nd
+
+compress_nd(x, axis=None)
+
+FUNCTION: numpy.ma.compress_rowcols
+
+compress_rowcols(x, axis=None)
+
+FUNCTION: numpy.ma.compress_rows
+
+compress_rows(a)
+
+FUNCTION: numpy.ma.compressed
+
+compressed(x)
+
+FUNCTION: numpy.ma.concatenate
+
+concatenate(arrays, axis=0)
+
+FUNCTION: numpy.ma.convolve
+
+convolve(a, v, mode='full', propagate_mask=True)
+
+FUNCTION: numpy.ma.corrcoef
+
+corrcoef(x, y=None, rowvar=True, bias=<no value>, allow_masked=True, ddof=<no value>)
+
+FUNCTION: numpy.ma.correlate
+
+correlate(a, v, mode='valid', propagate_mask=True)
+
+FUNCTION: numpy.ma.count_masked
+
+count_masked(arr, axis=None)
+
+FUNCTION: numpy.ma.cov
+
+cov(x, y=None, rowvar=True, bias=False, allow_masked=True, ddof=None)
+
+FUNCTION: numpy.ma.default_fill_value
+
+default_fill_value(obj)
+
+FUNCTION: numpy.ma.diag
+
+diag(v, k=0)
+
+FUNCTION: numpy.ma.diff
+
+diff(a, /, n=1, axis=-1, prepend=<no value>, append=<no value>)
+
+FUNCTION: numpy.ma.dot
+
+dot(a, b, strict=False, out=None)
+
+FUNCTION: numpy.ma.ediff1d
+
+ediff1d(arr, to_end=None, to_begin=None)
+
+FUNCTION: numpy.ma.filled
+
+filled(a, fill_value=None)
+
+FUNCTION: numpy.ma.fix_invalid
+
+fix_invalid(a, mask=np.False_, copy=True, fill_value=None)
+
+FUNCTION: numpy.ma.flatnotmasked_contiguous
+
+flatnotmasked_contiguous(a)
+
+FUNCTION: numpy.ma.flatnotmasked_edges
+
+flatnotmasked_edges(a)
+
+FUNCTION: numpy.ma.flatten_mask
+
+flatten_mask(mask)
+
+FUNCTION: numpy.ma.flatten_structured_array
+
+flatten_structured_array(a)
+
+FUNCTION: numpy.ma.fromflex
+
+fromflex(fxarray)
+
+FUNCTION: numpy.ma.getdata
+
+getdata(a, subok=True)
+
+FUNCTION: numpy.ma.getmask
+
+getmask(a)
+
+FUNCTION: numpy.ma.getmaskarray
+
+getmaskarray(arr)
+
+FUNCTION: numpy.ma.in1d
+
+in1d(ar1, ar2, assume_unique=False, invert=False)
+
+FUNCTION: numpy.ma.inner
+
+inner(a, b)
+
+FUNCTION: numpy.ma.intersect1d
+
+intersect1d(ar1, ar2, assume_unique=False)
+
+FUNCTION: numpy.ma.isMA
+
+isMA(x)
+
+FUNCTION: numpy.ma.is_mask
+
+is_mask(m)
+
+FUNCTION: numpy.ma.is_masked
+
+is_masked(x)
+
+FUNCTION: numpy.ma.isin
+
+isin(element, test_elements, assume_unique=False, invert=False)
+
+FUNCTION: numpy.ma.left_shift
+
+left_shift(a, n)
+
+FUNCTION: numpy.ma.make_mask
+
+make_mask(m, copy=False, shrink=True, dtype=<class 'numpy.bool'>)
+
+FUNCTION: numpy.ma.make_mask_descr
+
+make_mask_descr(ndtype)
+
+FUNCTION: numpy.ma.make_mask_none
+
+make_mask_none(newshape, dtype=None)
+
+FUNCTION: numpy.ma.mask_cols
+
+mask_cols(a, axis=<no value>)
+
+FUNCTION: numpy.ma.mask_or
+
+mask_or(m1, m2, copy=False, shrink=True)
+
+FUNCTION: numpy.ma.mask_rowcols
+
+mask_rowcols(a, axis=None)
+
+FUNCTION: numpy.ma.mask_rows
+
+mask_rows(a, axis=<no value>)
+
+FUNCTION: numpy.ma.masked_all
+
+masked_all(shape, dtype=<class 'float'>)
+
+FUNCTION: numpy.ma.masked_all_like
+
+masked_all_like(arr)
+
+FUNCTION: numpy.ma.masked_equal
+
+masked_equal(x, value, copy=True)
+
+FUNCTION: numpy.ma.masked_greater
+
+masked_greater(x, value, copy=True)
+
+FUNCTION: numpy.ma.masked_greater_equal
+
+masked_greater_equal(x, value, copy=True)
+
+FUNCTION: numpy.ma.masked_inside
+
+masked_inside(x, v1, v2, copy=True)
+
+FUNCTION: numpy.ma.masked_invalid
+
+masked_invalid(a, copy=True)
+
+FUNCTION: numpy.ma.masked_less
+
+masked_less(x, value, copy=True)
+
+FUNCTION: numpy.ma.masked_less_equal
+
+masked_less_equal(x, value, copy=True)
+
+FUNCTION: numpy.ma.masked_not_equal
+
+masked_not_equal(x, value, copy=True)
+
+FUNCTION: numpy.ma.masked_object
+
+masked_object(x, value, copy=True, shrink=True)
+
+FUNCTION: numpy.ma.masked_outside
+
+masked_outside(x, v1, v2, copy=True)
+
+FUNCTION: numpy.ma.masked_values
+
+masked_values(x, value, rtol=1e-05, atol=1e-08, copy=True, shrink=True)
+
+FUNCTION: numpy.ma.masked_where
+
+masked_where(condition, a, copy=True)
+
+FUNCTION: numpy.ma.max
+
+max(obj, axis=None, out=None, fill_value=None, keepdims=<no value>)
+
+FUNCTION: numpy.ma.maximum_fill_value
+
+maximum_fill_value(obj)
+
+FUNCTION: numpy.ma.median
+
+median(a, axis=None, out=None, overwrite_input=False, keepdims=False)
+
+FUNCTION: numpy.ma.min
+
+min(obj, axis=None, out=None, fill_value=None, keepdims=<no value>)
+
+FUNCTION: numpy.ma.minimum_fill_value
+
+minimum_fill_value(obj)
+
+FUNCTION: numpy.ma.ndenumerate
+
+ndenumerate(a, compressed=True)
+
+FUNCTION: numpy.ma.ndim
+
+ndim(obj)
+
+FUNCTION: numpy.ma.notmasked_contiguous
+
+notmasked_contiguous(a, axis=None)
+
+FUNCTION: numpy.ma.notmasked_edges
+
+notmasked_edges(a, axis=None)
+
+FUNCTION: numpy.ma.outer
+
+outer(a, b)
+
+FUNCTION: numpy.ma.polyfit
+
+polyfit(x, y, deg, rcond=None, full=False, w=None, cov=False)
+
+FUNCTION: numpy.ma.power
+
+power(a, b, third=None)
+
+FUNCTION: numpy.ma.ptp
+
+ptp(obj, axis=None, out=None, fill_value=None, keepdims=<no value>)
+
+FUNCTION: numpy.ma.put
+
+put(a, indices, values, mode='raise')
+
+FUNCTION: numpy.ma.putmask
+
+putmask(a, mask, values)
+
+FUNCTION: numpy.ma.reshape
+
+reshape(a, new_shape, order='C')
+
+FUNCTION: numpy.ma.resize
+
+resize(x, new_shape)
+
+FUNCTION: numpy.ma.right_shift
+
+right_shift(a, n)
+
+FUNCTION: numpy.ma.round
+
+round(a, decimals=0, out=None)
+
+FUNCTION: numpy.ma.set_fill_value
+
+set_fill_value(a, fill_value)
+
+FUNCTION: numpy.ma.setdiff1d
+
+setdiff1d(ar1, ar2, assume_unique=False)
+
+FUNCTION: numpy.ma.setxor1d
+
+setxor1d(ar1, ar2, assume_unique=False)
+
+FUNCTION: numpy.ma.shape
+
+shape(obj)
+
+FUNCTION: numpy.ma.size
+
+size(obj, axis=None)
+
+FUNCTION: numpy.ma.sort
+
+sort(a, axis=-1, kind=None, order=None, endwith=True, fill_value=None, *, stable=None)
+
+FUNCTION: numpy.ma.take
+
+take(a, indices, axis=None, out=None, mode='raise')
+
+FUNCTION: numpy.ma.transpose
+
+transpose(a, axes=None)
+
+FUNCTION: numpy.ma.union1d
+
+union1d(ar1, ar2)
+
+FUNCTION: numpy.ma.unique
+
+unique(ar1, return_index=False, return_inverse=False)
+
+FUNCTION: numpy.ma.vander
+
+vander(x, n=None)
+
+FUNCTION: numpy.ma.where
+
+where(condition, x=<no value>, y=<no value>)
+
+FUNCTION: numpy.ma.extras.flatten_inplace
+
+flatten_inplace(seq)
+
+FUNCTION: numpy.ma.extras.get_masked_subclass
+
+get_masked_subclass(*arrays)
+
+FUNCTION: numpy.ma.extras.issequence
+
+issequence(seq)
+
+FUNCTION: numpy.ma.extras.normalize_axis_tuple
+
+normalize_axis_tuple(axis, ndim, argname=None, allow_duplicate=False)
+
+FUNCTION: numpy.ma.extras.ma.doc_note
+
+doc_note(initialdoc, note)
+
+FUNCTION: numpy.ma.extras.ma.formatargspec
+
+formatargspec(args, varargs=None, varkw=None, defaults=None, formatarg=<class 'str'>, formatvarargs=<function <lambda> at 0x7f16410740d0>, formatvarkw=<function <lambda> at 0x7f1641074160>, formatvalue=<function <lambda> at 0x7f16410741f0>, join=<function joinseq at 0x7f1641017f40>)
+
+FUNCTION: numpy.ma.extras.ma.fromfile
+
+fromfile(file, dtype=<class 'float'>, count=-1, sep='')
+
+FUNCTION: numpy.ma.extras.ma.get_fill_value
+
+get_fill_value(a)
+
+FUNCTION: numpy.ma.extras.ma.get_object_signature
+
+get_object_signature(obj)
+
+FUNCTION: numpy.ma.extras.ma.getargspec
+
+getargspec(func)
+
+FUNCTION: numpy.ma.extras.ma.is_string_or_list_of_strings
+
+is_string_or_list_of_strings(val)
+
+FUNCTION: numpy.ma.extras.ma.set_module
+
+set_module(module)
+
+FUNCTION: numpy.ma.extras.ma.umath.clip
+
+clip(x1, x2, x3, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.umath.count
+
+count(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.umath.endswith
+
+endswith(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.umath.find
+
+find(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.umath.index
+
+index(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.umath.rfind
+
+rfind(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.umath.rindex
+
+rindex(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.umath.startswith
+
+startswith(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.ntypes.english_capitalize
+
+english_capitalize(s)
+
+FUNCTION: numpy.ma.extras.ma.ntypes.english_lower
+
+english_lower(s)
+
+FUNCTION: numpy.ma.extras.ma.ntypes.english_upper
+
+english_upper(s)
+
+FUNCTION: numpy.ma.extras.ma.ntypes.issctype
+
+issctype(rep)
+
+FUNCTION: numpy.ma.extras.ma.ntypes.issubclass_
+
+issubclass_(arg1, arg2)
+
+FUNCTION: numpy.ma.extras.ma.ntypes.issubsctype
+
+issubsctype(arg1, arg2)
+
+FUNCTION: numpy.ma.extras.ma.ntypes.maximum_sctype
+
+maximum_sctype(t)
+
+FUNCTION: numpy.ma.extras.ma.ntypes.obj2sctype
+
+obj2sctype(rep, default=None)
+
+FUNCTION: numpy.ma.extras.ma.ntypes.sctype2char
+
+sctype2char(sctype)
+
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.array_function_dispatch
+
+array_function_dispatch(dispatcher=None, module=None, verify=True, docs_from_dispatcher=False)
+
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.array_function_from_dispatcher
+
+array_function_from_dispatcher(implementation, module=None, verify=True, docs_from_dispatcher=True)
+
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.finalize_array_function_like
+
+finalize_array_function_like(public_api)
+
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.get_array_function_like_doc
+
+get_array_function_like_doc(public_api, docstring_template='')
+
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.verify_matching_signatures
+
+verify_matching_signatures(implementation, dispatcher)
+
+FUNCTION: numpy.lib.add_newdoc
+
+add_newdoc(place, obj, doc, warn_on_python=True)
+
+FUNCTION: numpy.lib.stride_tricks.as_strided
+
+as_strided(x, shape=None, strides=None, subok=False, writeable=True)
+
+FUNCTION: numpy.lib.introspect.opt_func_info
+
+opt_func_info(func_name=None, signature=None)
+
+FUNCTION: numpy.lib.format.descr_to_dtype
+
+descr_to_dtype(descr)
+
+FUNCTION: numpy.lib.format.drop_metadata
+
+drop_metadata(dtype, /)
+
+FUNCTION: numpy.lib.format.dtype_to_descr
+
+dtype_to_descr(dtype)
+
+FUNCTION: numpy.lib.format.header_data_from_array_1_0
+
+header_data_from_array_1_0(array)
+
+FUNCTION: numpy.lib.format.isfileobj
+
+isfileobj(f)
+
+FUNCTION: numpy.lib.format.magic
+
+magic(major, minor)
+
+FUNCTION: numpy.lib.format.open_memmap
+
+open_memmap(filename, mode='r+', dtype=None, shape=None, fortran_order=False, version=None, *, max_header_size=10000)
+
+FUNCTION: numpy.lib.format.read_array
+
+read_array(fp, allow_pickle=False, pickle_kwargs=None, *, max_header_size=10000)
+
+FUNCTION: numpy.lib.format.read_array_header_1_0
+
+read_array_header_1_0(fp, max_header_size=10000)
+
+FUNCTION: numpy.lib.format.read_array_header_2_0
+
+read_array_header_2_0(fp, max_header_size=10000)
+
+FUNCTION: numpy.lib.format.read_magic
+
+read_magic(fp)
+
+FUNCTION: numpy.lib.format.write_array
+
+write_array(fp, array, version=None, allow_pickle=True, pickle_kwargs=None)
+
+FUNCTION: numpy.lib.format.write_array_header_1_0
+
+write_array_header_1_0(fp, d)
+
+FUNCTION: numpy.lib.format.write_array_header_2_0
+
+write_array_header_2_0(fp, d)
+
+FUNCTION: numpy.lib.array_utils.byte_bounds
+
+byte_bounds(a)
+
+FUNCTION: numpy.fft.fftfreq
+
+fftfreq(n, d=1.0, device=None)
+
+FUNCTION: numpy.fft.rfftfreq
+
+rfftfreq(n, d=1.0, device=None)
+
+FUNCTION: numpy.f2py.get_include
+
+get_include()
+
+FUNCTION: numpy.f2py.main
+
+main()
+
+FUNCTION: numpy.f2py.run_main
+
+run_main(comline_list)
+
+FUNCTION: numpy.f2py.use_rules.applyrules
+
+applyrules(rules, d, var={})
+
+FUNCTION: numpy.f2py.use_rules.buildusevar
+
+buildusevar(name, realname, vars, usemodulename)
+
+FUNCTION: numpy.f2py.use_rules.buildusevars
+
+buildusevars(m, r)
+
+FUNCTION: numpy.f2py.use_rules.dictappend
+
+dictappend(rd, ar)
+
+FUNCTION: numpy.f2py.use_rules.gentitle
+
+gentitle(name)
+
+FUNCTION: numpy.f2py.use_rules.hasnote
+
+hasnote(var)
+
+FUNCTION: numpy.f2py.use_rules.outmess
+
+outmess(t)
+
+FUNCTION: numpy.f2py.symbolic.as_apply
+
+as_apply(func, *args, **kwargs)
+
+FUNCTION: numpy.f2py.symbolic.as_array
+
+as_array(obj)
+
+FUNCTION: numpy.f2py.symbolic.as_complex
+
+as_complex(real, imag=0)
+
+FUNCTION: numpy.f2py.symbolic.as_deref
+
+as_deref(expr)
+
+FUNCTION: numpy.f2py.symbolic.as_eq
+
+as_eq(left, right)
+
+FUNCTION: numpy.f2py.symbolic.as_expr
+
+as_expr(obj)
+
+FUNCTION: numpy.f2py.symbolic.as_factors
+
+as_factors(obj)
+
+FUNCTION: numpy.f2py.symbolic.as_ge
+
+as_ge(left, right)
+
+FUNCTION: numpy.f2py.symbolic.as_gt
+
+as_gt(left, right)
+
+FUNCTION: numpy.f2py.symbolic.as_integer
+
+as_integer(obj, kind=4)
+
+FUNCTION: numpy.f2py.symbolic.as_le
+
+as_le(left, right)
+
+FUNCTION: numpy.f2py.symbolic.as_lt
+
+as_lt(left, right)
+
+FUNCTION: numpy.f2py.symbolic.as_ne
+
+as_ne(left, right)
+
+FUNCTION: numpy.f2py.symbolic.as_number
+
+as_number(obj, kind=4)
+
+FUNCTION: numpy.f2py.symbolic.as_numer_denom
+
+as_numer_denom(obj)
+
+FUNCTION: numpy.f2py.symbolic.as_real
+
+as_real(obj, kind=4)
+
+FUNCTION: numpy.f2py.symbolic.as_ref
+
+as_ref(expr)
+
+FUNCTION: numpy.f2py.symbolic.as_string
+
+as_string(obj, kind=1)
+
+FUNCTION: numpy.f2py.symbolic.as_symbol
+
+as_symbol(obj)
+
+FUNCTION: numpy.f2py.symbolic.as_term_coeff
+
+as_term_coeff(obj)
+
+FUNCTION: numpy.f2py.symbolic.as_terms
+
+as_terms(obj)
+
+FUNCTION: numpy.f2py.symbolic.as_ternary
+
+as_ternary(cond, expr1, expr2)
+
+FUNCTION: numpy.f2py.symbolic.eliminate_quotes
+
+eliminate_quotes(s)
+
+FUNCTION: numpy.f2py.symbolic.ewarn
+
+ewarn(message)
+
+FUNCTION: numpy.f2py.symbolic.fromstring
+
+fromstring(s, language=<Language.C: 2>)
+
+FUNCTION: numpy.f2py.symbolic.insert_quotes
+
+insert_quotes(s, d)
+
+FUNCTION: numpy.f2py.symbolic.normalize
+
+normalize(obj)
+
+FUNCTION: numpy.f2py.symbolic.replace_parenthesis
+
+replace_parenthesis(s)
+
+FUNCTION: numpy.f2py.symbolic.unreplace_parenthesis
+
+unreplace_parenthesis(s, d)
+
+FUNCTION: numpy.f2py.rules.buildapi
+
+buildapi(rout)
+
+FUNCTION: numpy.f2py.rules.buildmodule
+
+buildmodule(m, um)
+
+FUNCTION: numpy.f2py.rules.debugcapi
+
+debugcapi(var)
+
+FUNCTION: numpy.f2py.rules.errmess
+
+errmess(s: str) -> None
+
+FUNCTION: numpy.f2py.rules.getargs2
+
+getargs2(rout)
+
+FUNCTION: numpy.f2py.rules.hascallstatement
+
+hascallstatement(rout)
+
+FUNCTION: numpy.f2py.rules.hasexternals
+
+hasexternals(rout)
+
+FUNCTION: numpy.f2py.rules.hasinitvalue
+
+hasinitvalue(var)
+
+FUNCTION: numpy.f2py.rules.hasresultnote
+
+hasresultnote(rout)
+
+FUNCTION: numpy.f2py.rules.isarray
+
+isarray(var)
+
+FUNCTION: numpy.f2py.rules.isarrayofstrings
+
+isarrayofstrings(var)
+
+FUNCTION: numpy.f2py.rules.isattr_value
+
+isattr_value(var)
+
+FUNCTION: numpy.f2py.rules.ischaracter
+
+ischaracter(var)
+
+FUNCTION: numpy.f2py.rules.ischaracter_or_characterarray
+
+ischaracter_or_characterarray(var)
+
+FUNCTION: numpy.f2py.rules.ischaracterarray
+
+ischaracterarray(var)
+
+FUNCTION: numpy.f2py.rules.iscomplex
+
+iscomplex(var)
+
+FUNCTION: numpy.f2py.rules.iscomplexarray
+
+iscomplexarray(var)
+
+FUNCTION: numpy.f2py.rules.iscomplexfunction
+
+iscomplexfunction(rout)
+
+FUNCTION: numpy.f2py.rules.iscomplexfunction_warn
+
+iscomplexfunction_warn(rout)
+
+FUNCTION: numpy.f2py.rules.isdummyroutine
+
+isdummyroutine(rout)
+
+FUNCTION: numpy.f2py.rules.isexternal
+
+isexternal(var)
+
+FUNCTION: numpy.f2py.rules.isfunction
+
+isfunction(rout)
+
+FUNCTION: numpy.f2py.rules.isfunction_wrap
+
+isfunction_wrap(rout)
+
+FUNCTION: numpy.f2py.rules.isint1
+
+isint1(var)
+
+FUNCTION: numpy.f2py.rules.isint1array
+
+isint1array(var)
+
+FUNCTION: numpy.f2py.rules.isintent_aux
+
+isintent_aux(var)
+
+FUNCTION: numpy.f2py.rules.isintent_c
+
+isintent_c(var)
+
+FUNCTION: numpy.f2py.rules.isintent_callback
+
+isintent_callback(var)
+
+FUNCTION: numpy.f2py.rules.isintent_copy
+
+isintent_copy(var)
+
+FUNCTION: numpy.f2py.rules.isintent_hide
+
+isintent_hide(var)
+
+FUNCTION: numpy.f2py.rules.isintent_inout
+
+isintent_inout(var)
+
+FUNCTION: numpy.f2py.rules.isintent_nothide
+
+isintent_nothide(var)
+
+FUNCTION: numpy.f2py.rules.isintent_out
+
+isintent_out(var)
+
+FUNCTION: numpy.f2py.rules.isintent_overwrite
+
+isintent_overwrite(var)
+
+FUNCTION: numpy.f2py.rules.islogical
+
+islogical(var)
+
+FUNCTION: numpy.f2py.rules.islong_complex
+
+islong_complex(var)
+
+FUNCTION: numpy.f2py.rules.islong_double
+
+islong_double(var)
+
+FUNCTION: numpy.f2py.rules.islong_doublefunction
+
+islong_doublefunction(rout)
+
+FUNCTION: numpy.f2py.rules.islong_long
+
+islong_long(var)
+
+FUNCTION: numpy.f2py.rules.islong_longfunction
+
+islong_longfunction(rout)
+
+FUNCTION: numpy.f2py.rules.ismoduleroutine
+
+ismoduleroutine(rout)
+
+FUNCTION: numpy.f2py.rules.isoptional
+
+isoptional(var)
+
+FUNCTION: numpy.f2py.rules.isrequired
+
+isrequired(var)
+
+FUNCTION: numpy.f2py.rules.isscalar
+
+isscalar(var)
+
+FUNCTION: numpy.f2py.rules.issigned_long_longarray
+
+issigned_long_longarray(var)
+
+FUNCTION: numpy.f2py.rules.isstring
+
+isstring(var)
+
+FUNCTION: numpy.f2py.rules.isstringarray
+
+isstringarray(var)
+
+FUNCTION: numpy.f2py.rules.isstringfunction
+
+isstringfunction(rout)
+
+FUNCTION: numpy.f2py.rules.issubroutine
+
+issubroutine(rout)
+
+FUNCTION: numpy.f2py.rules.issubroutine_wrap
+
+issubroutine_wrap(rout)
+
+FUNCTION: numpy.f2py.rules.isthreadsafe
+
+isthreadsafe(rout)
+
+FUNCTION: numpy.f2py.rules.isunsigned
+
+isunsigned(var)
+
+FUNCTION: numpy.f2py.rules.isunsigned_char
+
+isunsigned_char(var)
+
+FUNCTION: numpy.f2py.rules.isunsigned_chararray
+
+isunsigned_chararray(var)
+
+FUNCTION: numpy.f2py.rules.isunsigned_long_long
+
+isunsigned_long_long(var)
+
+FUNCTION: numpy.f2py.rules.isunsigned_long_longarray
+
+isunsigned_long_longarray(var)
+
+FUNCTION: numpy.f2py.rules.isunsigned_short
+
+isunsigned_short(var)
+
+FUNCTION: numpy.f2py.rules.isunsigned_shortarray
+
+isunsigned_shortarray(var)
+
+FUNCTION: numpy.f2py.rules.l_and
+
+l_and(*f)
+
+FUNCTION: numpy.f2py.rules.l_not
+
+l_not(f)
+
+FUNCTION: numpy.f2py.rules.l_or
+
+l_or(*f)
+
+FUNCTION: numpy.f2py.rules.replace
+
+replace(str, d, defaultsep='')
+
+FUNCTION: numpy.f2py.rules.requiresf90wrapper
+
+requiresf90wrapper(rout)
+
+FUNCTION: numpy.f2py.rules.stripcomma
+
+stripcomma(s)
+
+FUNCTION: numpy.f2py.rules.func2subr.assubr
+
+assubr(rout)
+
+FUNCTION: numpy.f2py.rules.func2subr.createfuncwrapper
+
+createfuncwrapper(rout, signature=0)
+
+FUNCTION: numpy.f2py.rules.func2subr.createsubrwrapper
+
+createsubrwrapper(rout, signature=0)
+
+FUNCTION: numpy.f2py.rules.func2subr.getfortranname
+
+getfortranname(rout)
+
+FUNCTION: numpy.f2py.rules.func2subr.isintent_in
+
+isintent_in(var)
+
+FUNCTION: numpy.f2py.rules.func2subr.islogicalfunction
+
+islogicalfunction(rout)
+
+FUNCTION: numpy.f2py.rules.func2subr.show
+
+show(object, stream=None, indent=1, width=80, depth=None, *, compact=False, sort_dicts=True, underscore_numbers=False)
+
+FUNCTION: numpy.f2py.rules.func2subr.useiso_c_binding
+
+useiso_c_binding(rout)
+
+FUNCTION: numpy.f2py.rules.func2subr.var2fixfortran
+
+var2fixfortran(vars, a, fa=None, f90mode=None)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.buildhooks
+
+buildhooks(pymod)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.containscommon
+
+containscommon(rout)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.findf90modules
+
+findf90modules(m)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.get_f2py_modulename
+
+get_f2py_modulename(source)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getcallprotoargument
+
+getcallprotoargument(rout, cb_map={})
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getcallstatement
+
+getcallstatement(rout)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getdimension
+
+getdimension(var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getpymethoddef
+
+getpymethoddef(rout)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getrestdoc
+
+getrestdoc(rout)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getuseblocks
+
+getuseblocks(pymod)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getusercode
+
+getusercode(rout)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getusercode1
+
+getusercode1(rout)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.hasbody
+
+hasbody(rout)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.hascommon
+
+hascommon(rout)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isallocatable
+
+isallocatable(var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.iscstyledirective
+
+iscstyledirective(f2py_line)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isdouble
+
+isdouble(var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isinteger
+
+isinteger(var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isintent_inplace
+
+isintent_inplace(var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.ismodule
+
+ismodule(rout)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isprivate
+
+isprivate(var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isroutine
+
+isroutine(rout)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isstring_or_stringarray
+
+isstring_or_stringarray(var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isvariable
+
+isvariable(var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.process_f2cmap_dict
+
+process_f2cmap_dict(f2cmap_all, new_map, c2py_map, verbose=False)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.undo_rmbadname
+
+undo_rmbadname(names)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.undo_rmbadname1
+
+undo_rmbadname1(name)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_routsign2map
+
+cb_routsign2map(rout, um)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_sign2map
+
+cb_sign2map(a, var, index=None)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.common_sign2map
+
+common_sign2map(a, var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.f2cexpr
+
+f2cexpr(expr)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.get_elsize
+
+get_elsize(var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getarrdims
+
+getarrdims(a, var, verbose=0)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getarrdocsign
+
+getarrdocsign(a, var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getctype
+
+getctype(var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getinit
+
+getinit(a, var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getpydocsign
+
+getpydocsign(a, var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getstrlength
+
+getstrlength(var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.load_f2cmap_file
+
+load_f2cmap_file(f2cmap_file)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.markoutercomma
+
+markoutercomma(line, comma=',')
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.modsign2map
+
+modsign2map(m)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.routsign2map
+
+routsign2map(rout)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.sign2map
+
+sign2map(a, var)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.buildcallback
+
+buildcallback(rout, um)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.buildcallbacks
+
+buildcallbacks(m)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.getargs
+
+getargs(rout)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.cfuncs.append_needs
+
+append_needs(need, flag=1)
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.cfuncs.buildcfuncs
+
+buildcfuncs()
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.cfuncs.get_needs
+
+get_needs()
+
+FUNCTION: numpy.f2py.rules.common_rules.buildhooks
+
+buildhooks(m)
+
+FUNCTION: numpy.f2py.rules.common_rules.findcommonblocks
+
+findcommonblocks(block, top=1)
+
+FUNCTION: numpy.f2py.rules.common_rules.rmbadname
+
+rmbadname(names)
+
+FUNCTION: numpy.f2py.f2py2e.buildmodules
+
+buildmodules(lst)
+
+FUNCTION: numpy.f2py.f2py2e.callcrackfortran
+
+callcrackfortran(files, options)
+
+FUNCTION: numpy.f2py.f2py2e.dict_append
+
+dict_append(d_out, d_in)
+
+FUNCTION: numpy.f2py.f2py2e.f2py_build_generator
+
+f2py_build_generator(name)
+
+FUNCTION: numpy.f2py.f2py2e.f2py_parser
+
+f2py_parser()
+
+FUNCTION: numpy.f2py.f2py2e.filter_files
+
+filter_files(prefix, suffix, files, remove_prefix=None)
+
+FUNCTION: numpy.f2py.f2py2e.get_newer_options
+
+get_newer_options(iline)
+
+FUNCTION: numpy.f2py.f2py2e.get_prefix
+
+get_prefix(module)
+
+FUNCTION: numpy.f2py.f2py2e.make_f2py_compile_parser
+
+make_f2py_compile_parser()
+
+FUNCTION: numpy.f2py.f2py2e.preparse_sysargv
+
+preparse_sysargv()
+
+FUNCTION: numpy.f2py.f2py2e.run_compile
+
+run_compile()
+
+FUNCTION: numpy.f2py.f2py2e.scaninputline
+
+scaninputline(inputline)
+
+FUNCTION: numpy.f2py.f2py2e.validate_modulename
+
+validate_modulename(pyf_files, modulename='untitled')
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzeargs
+
+analyzeargs(block)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzebody
+
+analyzebody(block, args, tab='')
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzecommon
+
+analyzecommon(block)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzeline
+
+analyzeline(m, case, line)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzevars
+
+analyzevars(block)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.appenddecl
+
+appenddecl(decl, decl2, force=1)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.appendmultiline
+
+appendmultiline(group, context_name, ml)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.buildimplicitrules
+
+buildimplicitrules(block)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.character_backward_compatibility_hook
+
+character_backward_compatibility_hook(item, parents, result, *args, **kwargs)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.common2fortran
+
+common2fortran(common, tab='')
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.crack2fortran
+
+crack2fortran(block)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.crack2fortrangen
+
+crack2fortrangen(block, tab='\n', as_interface=False)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.crackfortran
+
+crackfortran(files)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.crackline
+
+crackline(line, reset=0)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.cracktypespec
+
+cracktypespec(typespec, selector)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.cracktypespec0
+
+cracktypespec0(typespec, ll)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.determineexprtype
+
+determineexprtype(expr, vars, rules={})
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.expr2name
+
+expr2name(a, block, args=[])
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.get_parameters
+
+get_parameters(vars, global_params={})
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.get_sorted_names
+
+get_sorted_names(vars)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.get_usedict
+
+get_usedict(block)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.get_useparameters
+
+get_useparameters(block, param_map=None)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.getblockname
+
+getblockname(block, unknown='unknown')
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.getlincoef
+
+getlincoef(e, xset)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.is_free_format
+
+is_free_format(fname)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.markinnerspaces
+
+markinnerspaces(line)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.markouterparen
+
+markouterparen(line)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.myeval
+
+myeval(e, g=None, l=None)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.openhook
+
+openhook(filename, mode)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.outmess
+
+outmess(line, flag=1)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.param_eval
+
+param_eval(v, g_params, params, dimspec=None)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.param_parse
+
+param_parse(d, params)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.parse_name_for_bind
+
+parse_name_for_bind(line)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.postcrack
+
+postcrack(block, args=None, tab='')
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.postcrack2
+
+postcrack2(block, tab='', param_map=None)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.readfortrancode
+
+readfortrancode(ffile, dowithline=<function pprint at 0x7f15c675fd00>, istop=1)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.removespaces
+
+removespaces(expr)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.reset_global_f2py_vars
+
+reset_global_f2py_vars()
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.rmbadname1
+
+rmbadname1(name)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.setattrspec
+
+setattrspec(decl, attr, force=0)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.setcharselector
+
+setcharselector(decl, sel, force=0)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.setkindselector
+
+setkindselector(decl, sel, force=0)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.setmesstext
+
+setmesstext(block)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.sortvarnames
+
+sortvarnames(vars)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.split_by_unquoted
+
+split_by_unquoted(line, characters)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.traverse
+
+traverse(obj, visit, parents=[], result=None, *args, **kwargs)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.true_intent_list
+
+true_intent_list(var)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.unmarkouterparen
+
+unmarkouterparen(line)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.updatevars
+
+updatevars(typespec, selector, attrspec, entitydecl)
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.use2fortran
+
+use2fortran(use, tab='')
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.vars2fortran
+
+vars2fortran(block, vars, args, tab='', as_interface=False)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.containsmodule
+
+containsmodule(block)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.flatlist
+
+flatlist(lst)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.get_kind
+
+get_kind(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.getmultilineblock
+
+getmultilineblock(rout, blockname, comment=1, counter=0)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.hasassumedshape
+
+hasassumedshape(rout)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.hasinitvalueasstring
+
+hasinitvalueasstring(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.hasvariables
+
+hasvariables(rout)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isfalse
+
+isfalse(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isintent_aligned16
+
+isintent_aligned16(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isintent_aligned4
+
+isintent_aligned4(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isintent_aligned8
+
+isintent_aligned8(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isintent_cache
+
+isintent_cache(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.ismutable
+
+ismutable(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isreal
+
+isreal(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.issigned_array
+
+issigned_array(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.issigned_chararray
+
+issigned_chararray(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.issigned_shortarray
+
+issigned_shortarray(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.istrue
+
+istrue(var)
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isunsignedarray
+
+isunsignedarray(var)
+
+FUNCTION: numpy.f2py.diagnose.run
+
+run()
+
+FUNCTION: numpy.f2py.diagnose.run_command
+
+run_command(cmd)
+
+FUNCTION: numpy.ctypeslib.as_array
+
+as_array(obj, shape=None)
+
+FUNCTION: numpy.ctypeslib.as_ctypes
+
+as_ctypes(obj)
+
+FUNCTION: numpy.ctypeslib.as_ctypes_type
+
+as_ctypes_type(dtype)
+
+FUNCTION: numpy.ctypeslib.load_library
+
+load_library(libname, loader_path)
+
+FUNCTION: numpy.ctypeslib.ndpointer
+
+ndpointer(dtype=None, ndim=None, shape=None, flags=None)
+
+FUNCTION: numpy.char.array
+
+array(obj, itemsize=None, copy=True, unicode=None, order=None)
+
+FUNCTION: numpy.char.asarray
+
+asarray(obj, itemsize=None, unicode=None, order=None)
+
+FUNCTION: numpy.char.join
+
+join(sep, seq)
+
+FUNCTION: numpy.char.multiply
+
+multiply(a, i)
+
+FUNCTION: numpy.char.partition
+
+partition(a, sep)
+
+FUNCTION: numpy.char.rpartition
+
+rpartition(a, sep)
+
+FUNCTION: numpy.char.rsplit
+
+rsplit(a, sep=None, maxsplit=None)
+
+FUNCTION: numpy.char.split
+
+split(a, sep=None, maxsplit=None)
+
+FUNCTION: numpy.char.splitlines
+
+splitlines(a, keepends=None)
+

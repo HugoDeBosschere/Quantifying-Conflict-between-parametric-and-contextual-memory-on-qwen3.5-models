@@ -143,6 +143,18 @@ def evaluate_single_task(task, llm_client, config):
     #cleaning propre à la perturbation
     try :
         code = normalize_object_attributes(extracted_code)
+    except (SyntaxError, IndentationError) as e:
+        return {
+            "task_id": task_id,
+            "metadata": metadata,
+            "passed": False,
+            "control_passed": False,
+            "llm_code": extracted_code,
+            "error": "SYNTAX_ERROR",
+            "stderr": f"SyntaxError: {e}",
+            "stderr_control": f"SyntaxError: {e}",
+            "full_response": raw_response
+        }
     except ast_cleaning_module.ObjectAttributeError as e:
         passed = False
         print(f"Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type {e}")

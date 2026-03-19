@@ -1,0 +1,1878 @@
+Reference Documentation for numpy 
+============================================================
+
+FUNCTION: numpy.abs_v2
+
+FUNCTION: numpy.acos_v2
+
+FUNCTION: numpy.acosh_v2
+
+FUNCTION: numpy.add_v2
+
+FUNCTION: numpy.arcsin_v2
+
+FUNCTION: numpy.arcsinh_v2
+
+FUNCTION: numpy.arctan_v2
+
+FUNCTION: numpy.arctan2_v2
+
+FUNCTION: numpy.arctanh_v2
+
+FUNCTION: numpy.asarray_chkfinite_v2
+
+FUNCTION: numpy.asmatrix_v2
+
+FUNCTION: numpy.bartlett_v2
+
+FUNCTION: numpy.base_repr_v2
+
+FUNCTION: numpy.binary_repr_v2
+
+FUNCTION: numpy.bitwise_and_v2
+
+FUNCTION: numpy.bitwise_count_v2
+
+FUNCTION: numpy.bitwise_invert_v2
+
+FUNCTION: numpy.bitwise_left_shift_v2
+
+FUNCTION: numpy.bitwise_or_v2
+
+FUNCTION: numpy.bitwise_right_shift_v2
+
+FUNCTION: numpy.bitwise_xor_v2
+
+FUNCTION: numpy.blackman_v2
+
+FUNCTION: numpy.bmat_v2
+
+FUNCTION: numpy.broadcast_shapes_v2
+
+FUNCTION: numpy.cbrt_v2
+
+FUNCTION: numpy.ceil_v2
+
+FUNCTION: numpy.conj_v2
+
+FUNCTION: numpy.copysign_v2
+
+FUNCTION: numpy.cos_v2
+
+FUNCTION: numpy.cosh_v2
+
+FUNCTION: numpy.deg2rad_v2
+
+FUNCTION: numpy.degrees_v2
+
+FUNCTION: numpy.diag_indices_v2
+
+FUNCTION: numpy.divide_v2
+
+FUNCTION: numpy.divmod_v2
+
+FUNCTION: numpy.equal_v2
+
+FUNCTION: numpy.exp_v2
+
+FUNCTION: numpy.exp2_v2
+
+FUNCTION: numpy.expm1_v2
+
+FUNCTION: numpy.eye_v2
+
+FUNCTION: numpy.fabs_v2
+
+FUNCTION: numpy.float_power_v2
+
+FUNCTION: numpy.floor_v2
+
+FUNCTION: numpy.floor_divide_v2
+
+FUNCTION: numpy.fmax_v2
+
+FUNCTION: numpy.fmin_v2
+
+FUNCTION: numpy.fmod_v2
+
+FUNCTION: numpy.format_float_positional_v2
+
+FUNCTION: numpy.format_float_scientific_v2
+
+FUNCTION: numpy.frexp_v2
+
+FUNCTION: numpy.fromfunction_v2
+
+FUNCTION: numpy.fromregex_v2
+
+FUNCTION: numpy.full_v2
+
+FUNCTION: numpy.gcd_v2
+
+FUNCTION: numpy.genfromtxt_v2
+
+FUNCTION: numpy.get_include_v2
+
+FUNCTION: numpy.get_printoptions_v2
+
+FUNCTION: numpy.getbufsize_v2
+
+FUNCTION: numpy.geterr_v2
+
+FUNCTION: numpy.geterrcall_v2
+
+FUNCTION: numpy.greater_v2
+
+FUNCTION: numpy.greater_equal_v2
+
+FUNCTION: numpy.hamming_v2
+
+FUNCTION: numpy.hanning_v2
+
+FUNCTION: numpy.heaviside_v2
+
+FUNCTION: numpy.hypot_v2
+
+FUNCTION: numpy.identity_v2
+
+FUNCTION: numpy.indices_v2
+
+FUNCTION: numpy.info_v2
+
+FUNCTION: numpy.isdtype_v2
+
+FUNCTION: numpy.isfinite_v2
+
+FUNCTION: numpy.isfortran_v2
+
+FUNCTION: numpy.isinf_v2
+
+FUNCTION: numpy.isnan_v2
+
+FUNCTION: numpy.isnat_v2
+
+FUNCTION: numpy.isscalar_v2
+
+FUNCTION: numpy.issubdtype_v2
+
+FUNCTION: numpy.iterable_v2
+
+FUNCTION: numpy.kaiser_v2
+
+FUNCTION: numpy.lcm_v2
+
+FUNCTION: numpy.ldexp_v2
+
+FUNCTION: numpy.less_v2
+
+FUNCTION: numpy.less_equal_v2
+
+FUNCTION: numpy.load_v2
+
+FUNCTION: numpy.loadtxt_v2
+
+FUNCTION: numpy.log_v2
+
+FUNCTION: numpy.log10_v2
+
+FUNCTION: numpy.log1p_v2
+
+FUNCTION: numpy.log2_v2
+
+FUNCTION: numpy.logaddexp_v2
+
+FUNCTION: numpy.logaddexp2_v2
+
+FUNCTION: numpy.logical_and_v2
+
+FUNCTION: numpy.logical_not_v2
+
+FUNCTION: numpy.logical_or_v2
+
+FUNCTION: numpy.logical_xor_v2
+
+FUNCTION: numpy.mask_indices_v2
+
+FUNCTION: numpy.matmul_v2
+
+FUNCTION: numpy.matvec_v2
+
+FUNCTION: numpy.maximum_v2
+
+FUNCTION: numpy.minimum_v2
+
+FUNCTION: numpy.mintypecode_v2
+
+FUNCTION: numpy.mod_v2
+
+FUNCTION: numpy.modf_v2
+
+FUNCTION: numpy.multiply_v2
+
+FUNCTION: numpy.negative_v2
+
+FUNCTION: numpy.nextafter_v2
+
+FUNCTION: numpy.not_equal_v2
+
+FUNCTION: numpy.ones_v2
+
+FUNCTION: numpy.positive_v2
+
+FUNCTION: numpy.pow_v2
+
+FUNCTION: numpy.printoptions_v2
+
+FUNCTION: numpy.rad2deg_v2
+
+FUNCTION: numpy.radians_v2
+
+FUNCTION: numpy.reciprocal_v2
+
+FUNCTION: numpy.require_v2
+
+FUNCTION: numpy.rint_v2
+
+FUNCTION: numpy.row_stack_v2
+
+FUNCTION: numpy.set_printoptions_v2
+
+FUNCTION: numpy.setbufsize_v2
+
+FUNCTION: numpy.seterr_v2
+
+FUNCTION: numpy.seterrcall_v2
+
+FUNCTION: numpy.show_config_v2
+
+FUNCTION: numpy.show_runtime_v2
+
+FUNCTION: numpy.sign_v2
+
+FUNCTION: numpy.signbit_v2
+
+FUNCTION: numpy.sin_v2
+
+FUNCTION: numpy.sinh_v2
+
+FUNCTION: numpy.spacing_v2
+
+FUNCTION: numpy.sqrt_v2
+
+FUNCTION: numpy.square_v2
+
+FUNCTION: numpy.subtract_v2
+
+FUNCTION: numpy.tan_v2
+
+FUNCTION: numpy.tanh_v2
+
+FUNCTION: numpy.trapz_v2
+
+FUNCTION: numpy.tri_v2
+
+FUNCTION: numpy.tril_indices_v2
+
+FUNCTION: numpy.triu_indices_v2
+
+FUNCTION: numpy.trunc_v2
+
+FUNCTION: numpy.typename_v2
+
+FUNCTION: numpy.vecdot_v2
+
+FUNCTION: numpy.vecmat_v2
+
+FUNCTION: numpy.testing.assert__v2
+
+FUNCTION: numpy.testing.assert_allclose_v2
+
+FUNCTION: numpy.testing.assert_almost_equal_v2
+
+FUNCTION: numpy.testing.assert_approx_equal_v2
+
+FUNCTION: numpy.testing.assert_array_almost_equal_v2
+
+FUNCTION: numpy.testing.assert_array_almost_equal_nulp_v2
+
+FUNCTION: numpy.testing.assert_array_compare_v2
+
+FUNCTION: numpy.testing.assert_array_equal_v2
+
+FUNCTION: numpy.testing.assert_array_less_v2
+
+FUNCTION: numpy.testing.assert_array_max_ulp_v2
+
+FUNCTION: numpy.testing.assert_equal_v2
+
+FUNCTION: numpy.testing.assert_no_gc_cycles_v2
+
+FUNCTION: numpy.testing.assert_no_warnings_v2
+
+FUNCTION: numpy.testing.assert_raises_v2
+
+FUNCTION: numpy.testing.assert_raises_regex_v2
+
+FUNCTION: numpy.testing.assert_string_equal_v2
+
+FUNCTION: numpy.testing.assert_warns_v2
+
+FUNCTION: numpy.testing.break_cycles_v2
+
+FUNCTION: numpy.testing.build_err_msg_v2
+
+FUNCTION: numpy.testing.check_support_sve_v2
+
+FUNCTION: numpy.testing.decorate_methods_v2
+
+FUNCTION: numpy.testing.jiffies_v2
+
+FUNCTION: numpy.testing.measure_v2
+
+FUNCTION: numpy.testing.memusage_v2
+
+FUNCTION: numpy.testing.print_assert_equal_v2
+
+FUNCTION: numpy.testing.run_threaded_v2
+
+FUNCTION: numpy.testing.rundocs_v2
+
+FUNCTION: numpy.testing.runstring_v2
+
+FUNCTION: numpy.testing.tempdir_v2
+
+FUNCTION: numpy.testing.temppath_v2
+
+FUNCTION: numpy.testing.overrides.allows_array_function_override_v2
+
+FUNCTION: numpy.testing.overrides.allows_array_ufunc_override_v2
+
+FUNCTION: numpy.testing.overrides.get_overridable_numpy_array_functions_v2
+
+FUNCTION: numpy.testing.overrides.get_overridable_numpy_ufuncs_v2
+
+FUNCTION: numpy.testing.extbuild.build_v2
+
+FUNCTION: numpy.testing.extbuild.build_and_import_extension_v2
+
+FUNCTION: numpy.testing.extbuild.compile_extension_module_v2
+
+FUNCTION: numpy.testing.extbuild.get_so_suffix_v2
+
+FUNCTION: numpy.strings.capitalize_v2
+
+FUNCTION: numpy.strings.center_v2
+
+FUNCTION: numpy.strings.count_v2
+
+FUNCTION: numpy.strings.decode_v2
+
+FUNCTION: numpy.strings.encode_v2
+
+FUNCTION: numpy.strings.endswith_v2
+
+FUNCTION: numpy.strings.expandtabs_v2
+
+FUNCTION: numpy.strings.find_v2
+
+FUNCTION: numpy.strings.index_v2
+
+FUNCTION: numpy.strings.isalnum_v2
+
+FUNCTION: numpy.strings.isalpha_v2
+
+FUNCTION: numpy.strings.isdecimal_v2
+
+FUNCTION: numpy.strings.isdigit_v2
+
+FUNCTION: numpy.strings.islower_v2
+
+FUNCTION: numpy.strings.isnumeric_v2
+
+FUNCTION: numpy.strings.isspace_v2
+
+FUNCTION: numpy.strings.istitle_v2
+
+FUNCTION: numpy.strings.isupper_v2
+
+FUNCTION: numpy.strings.ljust_v2
+
+FUNCTION: numpy.strings.lower_v2
+
+FUNCTION: numpy.strings.lstrip_v2
+
+FUNCTION: numpy.strings.mod_v2
+
+FUNCTION: numpy.strings.multiply_v2
+
+FUNCTION: numpy.strings.partition_v2
+
+FUNCTION: numpy.strings.replace_v2
+
+FUNCTION: numpy.strings.rfind_v2
+
+FUNCTION: numpy.strings.rindex_v2
+
+FUNCTION: numpy.strings.rjust_v2
+
+FUNCTION: numpy.strings.rpartition_v2
+
+FUNCTION: numpy.strings.rstrip_v2
+
+FUNCTION: numpy.strings.startswith_v2
+
+FUNCTION: numpy.strings.str_len_v2
+
+FUNCTION: numpy.strings.strip_v2
+
+FUNCTION: numpy.strings.swapcase_v2
+
+FUNCTION: numpy.strings.title_v2
+
+FUNCTION: numpy.strings.translate_v2
+
+FUNCTION: numpy.strings.upper_v2
+
+FUNCTION: numpy.strings.zfill_v2
+
+FUNCTION: numpy.rec.array_v2
+
+FUNCTION: numpy.rec.find_duplicate_v2
+
+FUNCTION: numpy.rec.fromarrays_v2
+
+FUNCTION: numpy.rec.fromfile_v2
+
+FUNCTION: numpy.rec.fromrecords_v2
+
+FUNCTION: numpy.rec.fromstring_v2
+
+FUNCTION: numpy.polynomial.set_default_printstyle_v2
+
+FUNCTION: numpy.polynomial.polyutils.as_series_v2
+
+FUNCTION: numpy.polynomial.polyutils.format_float_v2
+
+FUNCTION: numpy.polynomial.polyutils.getdomain_v2
+
+FUNCTION: numpy.polynomial.polyutils.mapdomain_v2
+
+FUNCTION: numpy.polynomial.polyutils.mapparms_v2
+
+FUNCTION: numpy.polynomial.polyutils.trimcoef_v2
+
+FUNCTION: numpy.polynomial.polyutils.trimseq_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyadd_v2
+
+FUNCTION: numpy.polynomial.polynomial.polycompanion_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyder_v2
+
+FUNCTION: numpy.polynomial.polynomial.polydiv_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyfit_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyfromroots_v2
+
+FUNCTION: numpy.polynomial.polynomial.polygrid2d_v2
+
+FUNCTION: numpy.polynomial.polynomial.polygrid3d_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyint_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyline_v2
+
+FUNCTION: numpy.polynomial.polynomial.polymul_v2
+
+FUNCTION: numpy.polynomial.polynomial.polymulx_v2
+
+FUNCTION: numpy.polynomial.polynomial.polypow_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyroots_v2
+
+FUNCTION: numpy.polynomial.polynomial.polysub_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyval_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyval2d_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyval3d_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyvalfromroots_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyvander_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyvander2d_v2
+
+FUNCTION: numpy.polynomial.polynomial.polyvander3d_v2
+
+FUNCTION: numpy.polynomial.legendre.leg2poly_v2
+
+FUNCTION: numpy.polynomial.legendre.legadd_v2
+
+FUNCTION: numpy.polynomial.legendre.legcompanion_v2
+
+FUNCTION: numpy.polynomial.legendre.legder_v2
+
+FUNCTION: numpy.polynomial.legendre.legdiv_v2
+
+FUNCTION: numpy.polynomial.legendre.legfit_v2
+
+FUNCTION: numpy.polynomial.legendre.legfromroots_v2
+
+FUNCTION: numpy.polynomial.legendre.leggauss_v2
+
+FUNCTION: numpy.polynomial.legendre.leggrid2d_v2
+
+FUNCTION: numpy.polynomial.legendre.leggrid3d_v2
+
+FUNCTION: numpy.polynomial.legendre.legint_v2
+
+FUNCTION: numpy.polynomial.legendre.legline_v2
+
+FUNCTION: numpy.polynomial.legendre.legmul_v2
+
+FUNCTION: numpy.polynomial.legendre.legmulx_v2
+
+FUNCTION: numpy.polynomial.legendre.legpow_v2
+
+FUNCTION: numpy.polynomial.legendre.legroots_v2
+
+FUNCTION: numpy.polynomial.legendre.legsub_v2
+
+FUNCTION: numpy.polynomial.legendre.legval_v2
+
+FUNCTION: numpy.polynomial.legendre.legval2d_v2
+
+FUNCTION: numpy.polynomial.legendre.legval3d_v2
+
+FUNCTION: numpy.polynomial.legendre.legvander_v2
+
+FUNCTION: numpy.polynomial.legendre.legvander2d_v2
+
+FUNCTION: numpy.polynomial.legendre.legvander3d_v2
+
+FUNCTION: numpy.polynomial.legendre.legweight_v2
+
+FUNCTION: numpy.polynomial.legendre.poly2leg_v2
+
+FUNCTION: numpy.polynomial.laguerre.lag2poly_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagadd_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagcompanion_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagder_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagdiv_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagfit_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagfromroots_v2
+
+FUNCTION: numpy.polynomial.laguerre.laggauss_v2
+
+FUNCTION: numpy.polynomial.laguerre.laggrid2d_v2
+
+FUNCTION: numpy.polynomial.laguerre.laggrid3d_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagint_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagline_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagmul_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagmulx_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagpow_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagroots_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagsub_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagval_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagval2d_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagval3d_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagvander_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagvander2d_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagvander3d_v2
+
+FUNCTION: numpy.polynomial.laguerre.lagweight_v2
+
+FUNCTION: numpy.polynomial.laguerre.poly2lag_v2
+
+FUNCTION: numpy.polynomial.hermite_e.herme2poly_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermeadd_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermecompanion_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermeder_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermediv_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermefit_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermefromroots_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermegauss_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermegrid2d_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermegrid3d_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermeint_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermeline_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermemul_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermemulx_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermepow_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermeroots_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermesub_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermeval_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermeval2d_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermeval3d_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermevander_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermevander2d_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermevander3d_v2
+
+FUNCTION: numpy.polynomial.hermite_e.hermeweight_v2
+
+FUNCTION: numpy.polynomial.hermite_e.poly2herme_v2
+
+FUNCTION: numpy.polynomial.hermite.herm2poly_v2
+
+FUNCTION: numpy.polynomial.hermite.hermadd_v2
+
+FUNCTION: numpy.polynomial.hermite.hermcompanion_v2
+
+FUNCTION: numpy.polynomial.hermite.hermder_v2
+
+FUNCTION: numpy.polynomial.hermite.hermdiv_v2
+
+FUNCTION: numpy.polynomial.hermite.hermfit_v2
+
+FUNCTION: numpy.polynomial.hermite.hermfromroots_v2
+
+FUNCTION: numpy.polynomial.hermite.hermgauss_v2
+
+FUNCTION: numpy.polynomial.hermite.hermgrid2d_v2
+
+FUNCTION: numpy.polynomial.hermite.hermgrid3d_v2
+
+FUNCTION: numpy.polynomial.hermite.hermint_v2
+
+FUNCTION: numpy.polynomial.hermite.hermline_v2
+
+FUNCTION: numpy.polynomial.hermite.hermmul_v2
+
+FUNCTION: numpy.polynomial.hermite.hermmulx_v2
+
+FUNCTION: numpy.polynomial.hermite.hermpow_v2
+
+FUNCTION: numpy.polynomial.hermite.hermroots_v2
+
+FUNCTION: numpy.polynomial.hermite.hermsub_v2
+
+FUNCTION: numpy.polynomial.hermite.hermval_v2
+
+FUNCTION: numpy.polynomial.hermite.hermval2d_v2
+
+FUNCTION: numpy.polynomial.hermite.hermval3d_v2
+
+FUNCTION: numpy.polynomial.hermite.hermvander_v2
+
+FUNCTION: numpy.polynomial.hermite.hermvander2d_v2
+
+FUNCTION: numpy.polynomial.hermite.hermvander3d_v2
+
+FUNCTION: numpy.polynomial.hermite.hermweight_v2
+
+FUNCTION: numpy.polynomial.hermite.poly2herm_v2
+
+FUNCTION: numpy.polynomial.chebyshev.cheb2poly_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebadd_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebcompanion_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebder_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebdiv_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebfit_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebfromroots_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebgauss_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebgrid2d_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebgrid3d_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebint_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebinterpolate_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebline_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebmul_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebmulx_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebpow_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebpts1_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebpts2_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebroots_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebsub_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebval_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebval2d_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebval3d_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebvander_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebvander2d_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebvander3d_v2
+
+FUNCTION: numpy.polynomial.chebyshev.chebweight_v2
+
+FUNCTION: numpy.polynomial.chebyshev.poly2cheb_v2
+
+FUNCTION: numpy.ma.allclose_v2
+
+FUNCTION: numpy.ma.allequal_v2
+
+FUNCTION: numpy.ma.append_v2
+
+FUNCTION: numpy.ma.apply_along_axis_v2
+
+FUNCTION: numpy.ma.apply_over_axes_v2
+
+FUNCTION: numpy.ma.argsort_v2
+
+FUNCTION: numpy.ma.array_v2
+
+FUNCTION: numpy.ma.asanyarray_v2
+
+FUNCTION: numpy.ma.asarray_v2
+
+FUNCTION: numpy.ma.average_v2
+
+FUNCTION: numpy.ma.choose_v2
+
+FUNCTION: numpy.ma.clump_masked_v2
+
+FUNCTION: numpy.ma.clump_unmasked_v2
+
+FUNCTION: numpy.ma.common_fill_value_v2
+
+FUNCTION: numpy.ma.compress_cols_v2
+
+FUNCTION: numpy.ma.compress_nd_v2
+
+FUNCTION: numpy.ma.compress_rowcols_v2
+
+FUNCTION: numpy.ma.compress_rows_v2
+
+FUNCTION: numpy.ma.compressed_v2
+
+FUNCTION: numpy.ma.concatenate_v2
+
+FUNCTION: numpy.ma.convolve_v2
+
+FUNCTION: numpy.ma.corrcoef_v2
+
+FUNCTION: numpy.ma.correlate_v2
+
+FUNCTION: numpy.ma.count_masked_v2
+
+FUNCTION: numpy.ma.cov_v2
+
+FUNCTION: numpy.ma.default_fill_value_v2
+
+FUNCTION: numpy.ma.diag_v2
+
+FUNCTION: numpy.ma.diff_v2
+
+FUNCTION: numpy.ma.dot_v2
+
+FUNCTION: numpy.ma.ediff1d_v2
+
+FUNCTION: numpy.ma.filled_v2
+
+FUNCTION: numpy.ma.fix_invalid_v2
+
+FUNCTION: numpy.ma.flatnotmasked_contiguous_v2
+
+FUNCTION: numpy.ma.flatnotmasked_edges_v2
+
+FUNCTION: numpy.ma.flatten_mask_v2
+
+FUNCTION: numpy.ma.flatten_structured_array_v2
+
+FUNCTION: numpy.ma.fromflex_v2
+
+FUNCTION: numpy.ma.getdata_v2
+
+FUNCTION: numpy.ma.getmask_v2
+
+FUNCTION: numpy.ma.getmaskarray_v2
+
+FUNCTION: numpy.ma.in1d_v2
+
+FUNCTION: numpy.ma.inner_v2
+
+FUNCTION: numpy.ma.intersect1d_v2
+
+FUNCTION: numpy.ma.isMA_v2
+
+FUNCTION: numpy.ma.is_mask_v2
+
+FUNCTION: numpy.ma.is_masked_v2
+
+FUNCTION: numpy.ma.isin_v2
+
+FUNCTION: numpy.ma.left_shift_v2
+
+FUNCTION: numpy.ma.make_mask_v2
+
+FUNCTION: numpy.ma.make_mask_descr_v2
+
+FUNCTION: numpy.ma.make_mask_none_v2
+
+FUNCTION: numpy.ma.mask_cols_v2
+
+FUNCTION: numpy.ma.mask_or_v2
+
+FUNCTION: numpy.ma.mask_rowcols_v2
+
+FUNCTION: numpy.ma.mask_rows_v2
+
+FUNCTION: numpy.ma.masked_all_v2
+
+FUNCTION: numpy.ma.masked_all_like_v2
+
+FUNCTION: numpy.ma.masked_equal_v2
+
+FUNCTION: numpy.ma.masked_greater_v2
+
+FUNCTION: numpy.ma.masked_greater_equal_v2
+
+FUNCTION: numpy.ma.masked_inside_v2
+
+FUNCTION: numpy.ma.masked_invalid_v2
+
+FUNCTION: numpy.ma.masked_less_v2
+
+FUNCTION: numpy.ma.masked_less_equal_v2
+
+FUNCTION: numpy.ma.masked_not_equal_v2
+
+FUNCTION: numpy.ma.masked_object_v2
+
+FUNCTION: numpy.ma.masked_outside_v2
+
+FUNCTION: numpy.ma.masked_values_v2
+
+FUNCTION: numpy.ma.masked_where_v2
+
+FUNCTION: numpy.ma.max_v2
+
+FUNCTION: numpy.ma.maximum_fill_value_v2
+
+FUNCTION: numpy.ma.median_v2
+
+FUNCTION: numpy.ma.min_v2
+
+FUNCTION: numpy.ma.minimum_fill_value_v2
+
+FUNCTION: numpy.ma.ndenumerate_v2
+
+FUNCTION: numpy.ma.ndim_v2
+
+FUNCTION: numpy.ma.notmasked_contiguous_v2
+
+FUNCTION: numpy.ma.notmasked_edges_v2
+
+FUNCTION: numpy.ma.outer_v2
+
+FUNCTION: numpy.ma.polyfit_v2
+
+FUNCTION: numpy.ma.power_v2
+
+FUNCTION: numpy.ma.ptp_v2
+
+FUNCTION: numpy.ma.put_v2
+
+FUNCTION: numpy.ma.putmask_v2
+
+FUNCTION: numpy.ma.reshape_v2
+
+FUNCTION: numpy.ma.resize_v2
+
+FUNCTION: numpy.ma.right_shift_v2
+
+FUNCTION: numpy.ma.round_v2
+
+FUNCTION: numpy.ma.set_fill_value_v2
+
+FUNCTION: numpy.ma.setdiff1d_v2
+
+FUNCTION: numpy.ma.setxor1d_v2
+
+FUNCTION: numpy.ma.shape_v2
+
+FUNCTION: numpy.ma.size_v2
+
+FUNCTION: numpy.ma.sort_v2
+
+FUNCTION: numpy.ma.take_v2
+
+FUNCTION: numpy.ma.transpose_v2
+
+FUNCTION: numpy.ma.union1d_v2
+
+FUNCTION: numpy.ma.unique_v2
+
+FUNCTION: numpy.ma.vander_v2
+
+FUNCTION: numpy.ma.where_v2
+
+FUNCTION: numpy.ma.extras.flatten_inplace_v2
+
+FUNCTION: numpy.ma.extras.get_masked_subclass_v2
+
+FUNCTION: numpy.ma.extras.issequence_v2
+
+FUNCTION: numpy.ma.extras.normalize_axis_tuple_v2
+
+FUNCTION: numpy.ma.extras.ma.doc_note_v2
+
+FUNCTION: numpy.ma.extras.ma.formatargspec_v2
+
+FUNCTION: numpy.ma.extras.ma.fromfile_v2
+
+FUNCTION: numpy.ma.extras.ma.get_fill_value_v2
+
+FUNCTION: numpy.ma.extras.ma.get_object_signature_v2
+
+FUNCTION: numpy.ma.extras.ma.getargspec_v2
+
+FUNCTION: numpy.ma.extras.ma.is_string_or_list_of_strings_v2
+
+FUNCTION: numpy.ma.extras.ma.set_module_v2
+
+FUNCTION: numpy.ma.extras.ma.umath.clip_v2
+
+FUNCTION: numpy.ma.extras.ma.umath.count_v2
+
+FUNCTION: numpy.ma.extras.ma.umath.endswith_v2
+
+FUNCTION: numpy.ma.extras.ma.umath.find_v2
+
+FUNCTION: numpy.ma.extras.ma.umath.index_v2
+
+FUNCTION: numpy.ma.extras.ma.umath.rfind_v2
+
+FUNCTION: numpy.ma.extras.ma.umath.rindex_v2
+
+FUNCTION: numpy.ma.extras.ma.umath.startswith_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.english_capitalize_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.english_lower_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.english_upper_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.issctype_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.issubclass__v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.issubsctype_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.maximum_sctype_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.obj2sctype_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.sctype2char_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.array_function_dispatch_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.array_function_from_dispatcher_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.finalize_array_function_like_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.get_array_function_like_doc_v2
+
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.verify_matching_signatures_v2
+
+FUNCTION: numpy.lib.add_newdoc_v2
+
+FUNCTION: numpy.lib.stride_tricks.as_strided_v2
+
+FUNCTION: numpy.lib.introspect.opt_func_info_v2
+
+FUNCTION: numpy.lib.format.descr_to_dtype_v2
+
+FUNCTION: numpy.lib.format.drop_metadata_v2
+
+FUNCTION: numpy.lib.format.dtype_to_descr_v2
+
+FUNCTION: numpy.lib.format.header_data_from_array_1_0_v2
+
+FUNCTION: numpy.lib.format.isfileobj_v2
+
+FUNCTION: numpy.lib.format.magic_v2
+
+FUNCTION: numpy.lib.format.open_memmap_v2
+
+FUNCTION: numpy.lib.format.read_array_v2
+
+FUNCTION: numpy.lib.format.read_array_header_1_0_v2
+
+FUNCTION: numpy.lib.format.read_array_header_2_0_v2
+
+FUNCTION: numpy.lib.format.read_magic_v2
+
+FUNCTION: numpy.lib.format.write_array_v2
+
+FUNCTION: numpy.lib.format.write_array_header_1_0_v2
+
+FUNCTION: numpy.lib.format.write_array_header_2_0_v2
+
+FUNCTION: numpy.lib.array_utils.byte_bounds_v2
+
+FUNCTION: numpy.fft.fftfreq_v2
+
+FUNCTION: numpy.fft.rfftfreq_v2
+
+FUNCTION: numpy.f2py.get_include_v2
+
+FUNCTION: numpy.f2py.main_v2
+
+FUNCTION: numpy.f2py.run_main_v2
+
+FUNCTION: numpy.f2py.use_rules.applyrules_v2
+
+FUNCTION: numpy.f2py.use_rules.buildusevar_v2
+
+FUNCTION: numpy.f2py.use_rules.buildusevars_v2
+
+FUNCTION: numpy.f2py.use_rules.dictappend_v2
+
+FUNCTION: numpy.f2py.use_rules.gentitle_v2
+
+FUNCTION: numpy.f2py.use_rules.hasnote_v2
+
+FUNCTION: numpy.f2py.use_rules.outmess_v2
+
+FUNCTION: numpy.f2py.symbolic.as_apply_v2
+
+FUNCTION: numpy.f2py.symbolic.as_array_v2
+
+FUNCTION: numpy.f2py.symbolic.as_complex_v2
+
+FUNCTION: numpy.f2py.symbolic.as_deref_v2
+
+FUNCTION: numpy.f2py.symbolic.as_eq_v2
+
+FUNCTION: numpy.f2py.symbolic.as_expr_v2
+
+FUNCTION: numpy.f2py.symbolic.as_factors_v2
+
+FUNCTION: numpy.f2py.symbolic.as_ge_v2
+
+FUNCTION: numpy.f2py.symbolic.as_gt_v2
+
+FUNCTION: numpy.f2py.symbolic.as_integer_v2
+
+FUNCTION: numpy.f2py.symbolic.as_le_v2
+
+FUNCTION: numpy.f2py.symbolic.as_lt_v2
+
+FUNCTION: numpy.f2py.symbolic.as_ne_v2
+
+FUNCTION: numpy.f2py.symbolic.as_number_v2
+
+FUNCTION: numpy.f2py.symbolic.as_numer_denom_v2
+
+FUNCTION: numpy.f2py.symbolic.as_real_v2
+
+FUNCTION: numpy.f2py.symbolic.as_ref_v2
+
+FUNCTION: numpy.f2py.symbolic.as_string_v2
+
+FUNCTION: numpy.f2py.symbolic.as_symbol_v2
+
+FUNCTION: numpy.f2py.symbolic.as_term_coeff_v2
+
+FUNCTION: numpy.f2py.symbolic.as_terms_v2
+
+FUNCTION: numpy.f2py.symbolic.as_ternary_v2
+
+FUNCTION: numpy.f2py.symbolic.eliminate_quotes_v2
+
+FUNCTION: numpy.f2py.symbolic.ewarn_v2
+
+FUNCTION: numpy.f2py.symbolic.fromstring_v2
+
+FUNCTION: numpy.f2py.symbolic.insert_quotes_v2
+
+FUNCTION: numpy.f2py.symbolic.normalize_v2
+
+FUNCTION: numpy.f2py.symbolic.replace_parenthesis_v2
+
+FUNCTION: numpy.f2py.symbolic.unreplace_parenthesis_v2
+
+FUNCTION: numpy.f2py.rules.buildapi_v2
+
+FUNCTION: numpy.f2py.rules.buildmodule_v2
+
+FUNCTION: numpy.f2py.rules.debugcapi_v2
+
+FUNCTION: numpy.f2py.rules.errmess_v2
+
+FUNCTION: numpy.f2py.rules.getargs2_v2
+
+FUNCTION: numpy.f2py.rules.hascallstatement_v2
+
+FUNCTION: numpy.f2py.rules.hasexternals_v2
+
+FUNCTION: numpy.f2py.rules.hasinitvalue_v2
+
+FUNCTION: numpy.f2py.rules.hasresultnote_v2
+
+FUNCTION: numpy.f2py.rules.isarray_v2
+
+FUNCTION: numpy.f2py.rules.isarrayofstrings_v2
+
+FUNCTION: numpy.f2py.rules.isattr_value_v2
+
+FUNCTION: numpy.f2py.rules.ischaracter_v2
+
+FUNCTION: numpy.f2py.rules.ischaracter_or_characterarray_v2
+
+FUNCTION: numpy.f2py.rules.ischaracterarray_v2
+
+FUNCTION: numpy.f2py.rules.iscomplex_v2
+
+FUNCTION: numpy.f2py.rules.iscomplexarray_v2
+
+FUNCTION: numpy.f2py.rules.iscomplexfunction_v2
+
+FUNCTION: numpy.f2py.rules.iscomplexfunction_warn_v2
+
+FUNCTION: numpy.f2py.rules.isdummyroutine_v2
+
+FUNCTION: numpy.f2py.rules.isexternal_v2
+
+FUNCTION: numpy.f2py.rules.isfunction_v2
+
+FUNCTION: numpy.f2py.rules.isfunction_wrap_v2
+
+FUNCTION: numpy.f2py.rules.isint1_v2
+
+FUNCTION: numpy.f2py.rules.isint1array_v2
+
+FUNCTION: numpy.f2py.rules.isintent_aux_v2
+
+FUNCTION: numpy.f2py.rules.isintent_c_v2
+
+FUNCTION: numpy.f2py.rules.isintent_callback_v2
+
+FUNCTION: numpy.f2py.rules.isintent_copy_v2
+
+FUNCTION: numpy.f2py.rules.isintent_hide_v2
+
+FUNCTION: numpy.f2py.rules.isintent_inout_v2
+
+FUNCTION: numpy.f2py.rules.isintent_nothide_v2
+
+FUNCTION: numpy.f2py.rules.isintent_out_v2
+
+FUNCTION: numpy.f2py.rules.isintent_overwrite_v2
+
+FUNCTION: numpy.f2py.rules.islogical_v2
+
+FUNCTION: numpy.f2py.rules.islong_complex_v2
+
+FUNCTION: numpy.f2py.rules.islong_double_v2
+
+FUNCTION: numpy.f2py.rules.islong_doublefunction_v2
+
+FUNCTION: numpy.f2py.rules.islong_long_v2
+
+FUNCTION: numpy.f2py.rules.islong_longfunction_v2
+
+FUNCTION: numpy.f2py.rules.ismoduleroutine_v2
+
+FUNCTION: numpy.f2py.rules.isoptional_v2
+
+FUNCTION: numpy.f2py.rules.isrequired_v2
+
+FUNCTION: numpy.f2py.rules.isscalar_v2
+
+FUNCTION: numpy.f2py.rules.issigned_long_longarray_v2
+
+FUNCTION: numpy.f2py.rules.isstring_v2
+
+FUNCTION: numpy.f2py.rules.isstringarray_v2
+
+FUNCTION: numpy.f2py.rules.isstringfunction_v2
+
+FUNCTION: numpy.f2py.rules.issubroutine_v2
+
+FUNCTION: numpy.f2py.rules.issubroutine_wrap_v2
+
+FUNCTION: numpy.f2py.rules.isthreadsafe_v2
+
+FUNCTION: numpy.f2py.rules.isunsigned_v2
+
+FUNCTION: numpy.f2py.rules.isunsigned_char_v2
+
+FUNCTION: numpy.f2py.rules.isunsigned_chararray_v2
+
+FUNCTION: numpy.f2py.rules.isunsigned_long_long_v2
+
+FUNCTION: numpy.f2py.rules.isunsigned_long_longarray_v2
+
+FUNCTION: numpy.f2py.rules.isunsigned_short_v2
+
+FUNCTION: numpy.f2py.rules.isunsigned_shortarray_v2
+
+FUNCTION: numpy.f2py.rules.l_and_v2
+
+FUNCTION: numpy.f2py.rules.l_not_v2
+
+FUNCTION: numpy.f2py.rules.l_or_v2
+
+FUNCTION: numpy.f2py.rules.replace_v2
+
+FUNCTION: numpy.f2py.rules.requiresf90wrapper_v2
+
+FUNCTION: numpy.f2py.rules.stripcomma_v2
+
+FUNCTION: numpy.f2py.rules.func2subr.assubr_v2
+
+FUNCTION: numpy.f2py.rules.func2subr.createfuncwrapper_v2
+
+FUNCTION: numpy.f2py.rules.func2subr.createsubrwrapper_v2
+
+FUNCTION: numpy.f2py.rules.func2subr.getfortranname_v2
+
+FUNCTION: numpy.f2py.rules.func2subr.isintent_in_v2
+
+FUNCTION: numpy.f2py.rules.func2subr.islogicalfunction_v2
+
+FUNCTION: numpy.f2py.rules.func2subr.show_v2
+
+FUNCTION: numpy.f2py.rules.func2subr.useiso_c_binding_v2
+
+FUNCTION: numpy.f2py.rules.func2subr.var2fixfortran_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.buildhooks_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.containscommon_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.findf90modules_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.get_f2py_modulename_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getcallprotoargument_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getcallstatement_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getdimension_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getpymethoddef_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getrestdoc_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getuseblocks_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getusercode_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.getusercode1_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.hasbody_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.hascommon_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isallocatable_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.iscstyledirective_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isdouble_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isinteger_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isintent_inplace_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.ismodule_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isprivate_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isroutine_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isstring_or_stringarray_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.isvariable_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.process_f2cmap_dict_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.undo_rmbadname_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.undo_rmbadname1_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_routsign2map_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_sign2map_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.common_sign2map_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.f2cexpr_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.get_elsize_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getarrdims_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getarrdocsign_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getctype_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getinit_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getpydocsign_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getstrlength_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.load_f2cmap_file_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.markoutercomma_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.modsign2map_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.routsign2map_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.sign2map_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.buildcallback_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.buildcallbacks_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.getargs_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.cfuncs.append_needs_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.cfuncs.buildcfuncs_v2
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.cfuncs.get_needs_v2
+
+FUNCTION: numpy.f2py.rules.common_rules.buildhooks_v2
+
+FUNCTION: numpy.f2py.rules.common_rules.findcommonblocks_v2
+
+FUNCTION: numpy.f2py.rules.common_rules.rmbadname_v2
+
+FUNCTION: numpy.f2py.f2py2e.buildmodules_v2
+
+FUNCTION: numpy.f2py.f2py2e.callcrackfortran_v2
+
+FUNCTION: numpy.f2py.f2py2e.dict_append_v2
+
+FUNCTION: numpy.f2py.f2py2e.f2py_build_generator_v2
+
+FUNCTION: numpy.f2py.f2py2e.f2py_parser_v2
+
+FUNCTION: numpy.f2py.f2py2e.filter_files_v2
+
+FUNCTION: numpy.f2py.f2py2e.get_newer_options_v2
+
+FUNCTION: numpy.f2py.f2py2e.get_prefix_v2
+
+FUNCTION: numpy.f2py.f2py2e.make_f2py_compile_parser_v2
+
+FUNCTION: numpy.f2py.f2py2e.preparse_sysargv_v2
+
+FUNCTION: numpy.f2py.f2py2e.run_compile_v2
+
+FUNCTION: numpy.f2py.f2py2e.scaninputline_v2
+
+FUNCTION: numpy.f2py.f2py2e.validate_modulename_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzeargs_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzebody_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzecommon_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzeline_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzevars_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.appenddecl_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.appendmultiline_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.buildimplicitrules_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.character_backward_compatibility_hook_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.common2fortran_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.crack2fortran_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.crack2fortrangen_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.crackfortran_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.crackline_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.cracktypespec_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.cracktypespec0_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.determineexprtype_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.expr2name_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.get_parameters_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.get_sorted_names_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.get_usedict_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.get_useparameters_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.getblockname_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.getlincoef_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.is_free_format_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.markinnerspaces_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.markouterparen_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.myeval_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.openhook_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.outmess_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.param_eval_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.param_parse_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.parse_name_for_bind_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.postcrack_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.postcrack2_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.readfortrancode_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.removespaces_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.reset_global_f2py_vars_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.rmbadname1_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.setattrspec_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.setcharselector_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.setkindselector_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.setmesstext_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.sortvarnames_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.split_by_unquoted_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.traverse_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.true_intent_list_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.unmarkouterparen_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.updatevars_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.use2fortran_v2
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.vars2fortran_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.containsmodule_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.flatlist_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.get_kind_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.getmultilineblock_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.hasassumedshape_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.hasinitvalueasstring_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.hasvariables_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isfalse_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isintent_aligned16_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isintent_aligned4_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isintent_aligned8_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isintent_cache_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.ismutable_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isreal_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.issigned_array_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.issigned_chararray_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.issigned_shortarray_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.istrue_v2
+
+FUNCTION: numpy.f2py.f2py2e.auxfuncs.isunsignedarray_v2
+
+FUNCTION: numpy.f2py.diagnose.run_v2
+
+FUNCTION: numpy.f2py.diagnose.run_command_v2
+
+FUNCTION: numpy.ctypeslib.as_array_v2
+
+FUNCTION: numpy.ctypeslib.as_ctypes_v2
+
+FUNCTION: numpy.ctypeslib.as_ctypes_type_v2
+
+FUNCTION: numpy.ctypeslib.load_library_v2
+
+FUNCTION: numpy.ctypeslib.ndpointer_v2
+
+FUNCTION: numpy.char.array_v2
+
+FUNCTION: numpy.char.asarray_v2
+
+FUNCTION: numpy.char.join_v2
+
+FUNCTION: numpy.char.multiply_v2
+
+FUNCTION: numpy.char.partition_v2
+
+FUNCTION: numpy.char.rpartition_v2
+
+FUNCTION: numpy.char.rsplit_v2
+
+FUNCTION: numpy.char.split_v2
+
+FUNCTION: numpy.char.splitlines_v2
+
+EXTRA ALIASES (ultra-minimal)
+============================================================
+
+FUNCTION: numpy.False__v2
+
+FUNCTION: numpy.True__v2
+
+FUNCTION: numpy.e_v2
+
+FUNCTION: numpy.euler_gamma_v2
+
+FUNCTION: numpy.inf_v2
+
+FUNCTION: numpy.little_endian_v2
+
+FUNCTION: numpy.nan_v2
+
+FUNCTION: numpy.newaxis_v2
+
+FUNCTION: numpy.pi_v2
+
+FUNCTION: numpy.bool_v2
+
+FUNCTION: numpy.bool__v2
+
+FUNCTION: numpy.byte_v2
+
+FUNCTION: numpy.bytes__v2
+
+FUNCTION: numpy.cdouble_v2
+
+FUNCTION: numpy.character_v2
+
+FUNCTION: numpy.clongdouble_v2
+
+FUNCTION: numpy.complex128_v2
+
+FUNCTION: numpy.complex256_v2
+
+FUNCTION: numpy.complex64_v2
+
+FUNCTION: numpy.complexfloating_v2
+
+FUNCTION: numpy.csingle_v2
+
+FUNCTION: numpy.datetime64_v2
+
+FUNCTION: numpy.double_v2
+
+FUNCTION: numpy.flexible_v2
+
+FUNCTION: numpy.float128_v2
+
+FUNCTION: numpy.float16_v2
+
+FUNCTION: numpy.float32_v2
+
+FUNCTION: numpy.float64_v2
+
+FUNCTION: numpy.floating_v2
+
+FUNCTION: numpy.generic_v2
+
+FUNCTION: numpy.half_v2
+
+FUNCTION: numpy.inexact_v2
+
+FUNCTION: numpy.int16_v2
+
+FUNCTION: numpy.int32_v2
+
+FUNCTION: numpy.int64_v2
+
+FUNCTION: numpy.int8_v2
+
+FUNCTION: numpy.int__v2
+
+FUNCTION: numpy.intc_v2
+
+FUNCTION: numpy.integer_v2
+
+FUNCTION: numpy.intp_v2
+
+FUNCTION: numpy.long_v2
+
+FUNCTION: numpy.longdouble_v2
+
+FUNCTION: numpy.longlong_v2
+
+FUNCTION: numpy.number_v2
+
+FUNCTION: numpy.object__v2
+
+FUNCTION: numpy.record_v2
+
+FUNCTION: numpy.short_v2
+
+FUNCTION: numpy.signedinteger_v2
+
+FUNCTION: numpy.single_v2
+
+FUNCTION: numpy.str__v2
+
+FUNCTION: numpy.timedelta64_v2
+
+FUNCTION: numpy.ubyte_v2
+
+FUNCTION: numpy.uint_v2
+
+FUNCTION: numpy.uint16_v2
+
+FUNCTION: numpy.uint32_v2
+
+FUNCTION: numpy.uint64_v2
+
+FUNCTION: numpy.uint8_v2
+
+FUNCTION: numpy.uintc_v2
+
+FUNCTION: numpy.uintp_v2
+
+FUNCTION: numpy.ulong_v2
+
+FUNCTION: numpy.ulonglong_v2
+
+FUNCTION: numpy.unsignedinteger_v2
+
+FUNCTION: numpy.ushort_v2
+
+FUNCTION: numpy.void_v2
+
+FUNCTION: ndarray.T_v2
+
+FUNCTION: ndarray.base_v2
+
+FUNCTION: ndarray.ctypes_v2
+
+FUNCTION: ndarray.data_v2
+
+FUNCTION: ndarray.device_v2
+
+FUNCTION: ndarray.dtype_v2
+
+FUNCTION: ndarray.flags_v2
+
+FUNCTION: ndarray.flat_v2
+
+FUNCTION: ndarray.imag_v2
+
+FUNCTION: ndarray.itemset_v2
+
+FUNCTION: ndarray.itemsize_v2
+
+FUNCTION: ndarray.mT_v2
+
+FUNCTION: ndarray.nbytes_v2
+
+FUNCTION: ndarray.ndim_v2
+
+FUNCTION: ndarray.newbyteorder_v2
+
+FUNCTION: ndarray.ptp_v2
+
+FUNCTION: ndarray.real_v2
+
+FUNCTION: ndarray.shape_v2
+
+FUNCTION: ndarray.size_v2
+
+FUNCTION: ndarray.strides_v2
+
+FUNCTION: ndarray.all_v2
+
+FUNCTION: ndarray.any_v2
+
+FUNCTION: ndarray.argmax_v2
+
+FUNCTION: ndarray.argmin_v2
+
+FUNCTION: ndarray.argpartition_v2
+
+FUNCTION: ndarray.argsort_v2
+
+FUNCTION: ndarray.astype_v2
+
+FUNCTION: ndarray.byteswap_v2
+
+FUNCTION: ndarray.choose_v2
+
+FUNCTION: ndarray.clip_v2
+
+FUNCTION: ndarray.compress_v2
+
+FUNCTION: ndarray.conj_v2
+
+FUNCTION: ndarray.conjugate_v2
+
+FUNCTION: ndarray.copy_v2
+
+FUNCTION: ndarray.cumprod_v2
+
+FUNCTION: ndarray.cumsum_v2
+
+FUNCTION: ndarray.diagonal_v2
+
+FUNCTION: ndarray.dot_v2
+
+FUNCTION: ndarray.dump_v2
+
+FUNCTION: ndarray.dumps_v2
+
+FUNCTION: ndarray.fill_v2
+
+FUNCTION: ndarray.flatten_v2
+
+FUNCTION: ndarray.getfield_v2
+
+FUNCTION: ndarray.item_v2
+
+FUNCTION: ndarray.max_v2
+
+FUNCTION: ndarray.mean_v2
+
+FUNCTION: ndarray.min_v2
+
+FUNCTION: ndarray.nonzero_v2
+
+FUNCTION: ndarray.partition_v2
+
+FUNCTION: ndarray.prod_v2
+
+FUNCTION: ndarray.put_v2
+
+FUNCTION: ndarray.ravel_v2
+
+FUNCTION: ndarray.repeat_v2
+
+FUNCTION: ndarray.reshape_v2
+
+FUNCTION: ndarray.resize_v2
+
+FUNCTION: ndarray.round_v2
+
+FUNCTION: ndarray.searchsorted_v2
+
+FUNCTION: ndarray.setfield_v2
+
+FUNCTION: ndarray.setflags_v2
+
+FUNCTION: ndarray.sort_v2
+
+FUNCTION: ndarray.squeeze_v2
+
+FUNCTION: ndarray.std_v2
+
+FUNCTION: ndarray.sum_v2
+
+FUNCTION: ndarray.swapaxes_v2
+
+FUNCTION: ndarray.take_v2
+
+FUNCTION: ndarray.to_device_v2
+
+FUNCTION: ndarray.tobytes_v2
+
+FUNCTION: ndarray.tofile_v2
+
+FUNCTION: ndarray.tolist_v2
+
+FUNCTION: ndarray.tostring_v2
+
+FUNCTION: ndarray.trace_v2
+
+FUNCTION: ndarray.transpose_v2
+
+FUNCTION: ndarray.var_v2
+
+FUNCTION: ndarray.view_v2
+
