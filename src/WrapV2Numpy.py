@@ -4,8 +4,12 @@ import sys
 
 V2_SUFFIX = "_v2"
 
-class ModuleWithSuffixError(ValueError):
+class ModuleWithSuffixError(AttributeError):
     "A module was given with _v2 suffix, which is not what was asked"
+
+class MissingSuffixError(AttributeError):
+    """Raised when a non-module numpy attribute is accessed without the _v2 suffix."""
+
 
 class V2NumPy:
     """Proxy qui redirige les appels np.fonction_v2 vers numpy.fonction."""
@@ -20,22 +24,27 @@ class V2NumPy:
             print(f"attr is : {attr}")
             if isinstance(attr, types.ModuleType):
                 print("we are in the isisnstance")
-                return V2NumPy(attr) 
+                return V2NumPy(attr)
+            raise MissingSuffixError
 
-        except:
-            if isinstance(attr, types.ModuleType):
-                raise ModuleWithSuffixError
+        except AttributeError:
 
             if not name.endswith(V2_SUFFIX):
-                raise AttributeError(
+                raise MissingSuffixError(
                     f"module 'numpy' has no attribute {name!r}. "
                     f"Use the _v2 suffix (e.g. np.{name}_v2)."
                 )
             
             print("Nouvelle fonction dans le try !")
             real_name = name[: -len(V2_SUFFIX)]
-            real_attr = getattr(self._target, real_name)
 
+            
+
+            real_attr = getattr(self._target, real_name)
+            print(f"real attr : {real_attr}")
+            if isinstance(real_attr, types.ModuleType):
+                raise ModuleWithSuffixError
+            
             return real_attr
         
         

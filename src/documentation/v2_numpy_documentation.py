@@ -537,13 +537,28 @@ def generate_real_minimal_docs(list_module, output_file):
                         seen_functions.add(obj)
                         
                         full_name = f"{prefix}.{name}"
-                        signature_obj = inspect.signature(obj)
-                        signature_str = str(signature_obj)
-                        if signature_str:
-                            f.write(f"FUNCTION: {full_name}\n")
-                            f.write("-" * (10 + len(full_name)) + "\n")
-                            f.write(name + signature_str + "\n")
-                            f.write("#"*40 + "\n")                                      
+                        signature_str = ""
+                        try:
+                            signature_obj = inspect.signature(obj)
+                            signature_str = str(signature_obj)
+                        except (ValueError, TypeError):
+                            # Certaines ufunc numpy ne sont pas supportées par inspect.signature
+                            # Fallback sur la première ligne de docstring (si possible)
+                            raw_doc = obj.__doc__
+                            if raw_doc:
+                                first_line = re.search(".*?(?=\n)", raw_doc)
+                                if first_line:
+                                    maybe_sig = re.search(r"(\w+)\(.*", first_line.group(0))
+                                    if maybe_sig:
+                                        signature_str = maybe_sig.group(0).replace(name, "", 1)
+
+                        if not signature_str:
+                            signature_str = "(...)"
+
+                        f.write(f"FUNCTION: {full_name}\n")
+                        f.write("-" * (10 + len(full_name)) + "\n")
+                        f.write(name + signature_str + "\n")
+                        f.write("#"*40 + "\n")
                     elif isinstance(obj, types.ModuleType):
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
                             stack.append((obj, f"{prefix}.{name}"))
