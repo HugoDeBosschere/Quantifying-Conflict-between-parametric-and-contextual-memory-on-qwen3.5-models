@@ -8,7 +8,7 @@ import ast
 #==============================================================================
 
 
-class V2ObjectAttributeError(ValueError):
+class ObjectAttributeError(ValueError):
     """Raised when an object attribute/method does not use the required `_v2` suffix."""
 
 

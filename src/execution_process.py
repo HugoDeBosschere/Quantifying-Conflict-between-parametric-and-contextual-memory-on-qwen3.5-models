@@ -122,11 +122,12 @@ def evaluate_single_task(task, llm_client, config):
     else:
         normalize_object_attributes = None
     assert normalize_object_attributes is not None, "ast_cleaning_module is not set"
-    
+
 
     raw_response, count_token = llm_client.query_llm(task['prompt'])
+    metadata = task["metadata"] | llm_client.model_metadata | {"token_count": count_token or 0}
+
     if not raw_response:
-        metadata = task["metadata"] | llm_client.model_metadata | {"token_count": count_token or 0}
         return {
             "task_id": task_id,
             "metadata": metadata,
@@ -136,8 +137,42 @@ def evaluate_single_task(task, llm_client, config):
             "llm_code": ""
         }
 
-    code = extract_code_and_fix(raw_response)
+    #cleaning de forme
+    extracted_code = extract_code_and_fix(raw_response)
 
+    #cleaning propre à la perturbation
+    try :
+        code = normalize_object_attributes(extracted_code)
+    except ast_cleaning_module.ObjectAttributeError as e:
+        passed = False
+        print(f"Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type {e}")
+        code = extracted_code
+        stdout, stderr = "", "MODULE_WITH_SUFFIX_ERROR"
+
+        if "code_context" in task:
+            stdout_control, stderr_control = execute_task_engine(task["code_context"], code, llm_client, config)
+            control_passed = "SUCCESS_MARKER" in stdout_control
+        else:
+            passed = False
+            control_passed = False
+            stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
+            stdout_control, stderr_control = "", "MISSING_CONTEXT_IN_DATASET"
+        
+
+        return {
+            "task_id": task_id,
+            "metadata": metadata,
+            "passed": passed,
+            "control_passed": control_passed,
+            "llm_code": code,
+            "stdout": stdout,
+            "stderr": stderr,
+            "stdout_control": stdout_control,
+            "stderr_control": stderr_control,
+            "full_response": raw_response
+        }
+
+    # on procède aux évaluations fonctionnelles maintenant qu ele code a été validé par l'AST
     if "code_context" in task:
         new_import = "import " + llm_client.lib_name + " as np"
         new_context = modify_lib(task["code_context"], new_import)
@@ -157,7 +192,6 @@ def evaluate_single_task(task, llm_client, config):
         stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
         stdout_control, stderr_control = "", "MISSING_CONTEXT_IN_DATASET"
 
-    metadata = task["metadata"] | llm_client.model_metadata | {"token_count": count_token}
 
     return {
         "task_id": task_id,
@@ -331,15 +365,6 @@ if __name__ == "__main__":
 
     docu_control = config.get("real_lib", {}).get("documentation", {})
     list_doc_name_control = list(docu_control.keys())
-
-    ast_cleaning_module = config.get("new_lib_injection", {}).get("ast_cleaning_module", None)
-    if ast_cleaning_module:
-        import importlib
-        ast_cleaning_module = importlib.import_module(ast_cleaning_module)
-        normalize_object_attributes = getattr(ast_cleaning_module, "normalize_object_attributes")
-    else:
-        normalize_object_attributes = None
-    assert normalize_object_attributes is not None, "ast_cleaning_module is not set"
 
     # Flags de mode : par défaut on lance control + injection.
     run_control_mode = not args.injection_only
