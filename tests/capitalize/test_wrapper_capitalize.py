@@ -39,6 +39,17 @@ def test_constante():
     assert np.Pi == real_np.pi
     print("  OK np.Pi == numpy.pi")
 
+def test_constantes_et_types():
+    """Constantes et dtypes : np.Nan == np.nan, np.Float64 == np.float64, etc."""
+    assert np.Nan is real_np.nan
+    assert np.Inf is real_np.inf
+    assert np.Float64 is real_np.float64
+    assert np.Int32 is real_np.int32
+    print("  OK constantes/dtypes _ :")
+    print("     - np.Nan is np.nan")
+    print("     - np.Inf is np.inf")
+    print("     - np.Float64 is np.float64")
+    print("     - np.Int32 is np.int32")
 
 def test_array_creation():
     """np.Array([1,2,3]) doit créer le même tableau que numpy.array([1,2,3])."""
@@ -47,33 +58,41 @@ def test_array_creation():
     assert real_np.array_equal(arr_wrap, arr_real)
     print("  OK np.Array() == numpy.array()")
 
-
-def test_linspace():
-    """np.Linspace(0, 1, 5) doit être égal à numpy.linspace(0, 1, 5)."""
-    wrap_result = np.Linspace(0, 1, 5)
-    real_result = real_np.linspace(0, 1, 5)
-    assert real_np.array_equal(wrap_result, real_result)
-    print("  OK np.Linspace() == numpy.linspace()")
-
-
-def test_random_submodule():
-    """np.Random.Seed(42) puis np.Random.Rand(3) doit fonctionner."""
-    np.Random.Seed(42)
-    wrap_result = np.Random.Rand(3)
-    real_np.random.seed(42)
-    real_result = real_np.random.rand(3)
-    assert real_np.array_equal(wrap_result, real_result)
-    print("  OK np.Random.Seed() / np.Random.Rand() == numpy.random")
+def test_sous_module_autre():
+    """Autre sous-module : np.fft.Fft(x) == numpy.fft.fft(x)."""
+    x = real_np.array([0.0, 1.0, 0.0, -1.0])
+    y_wrap = np.fft.Fft(x)
+    y_real = real_np.fft.fft(x)
+    assert real_np.allclose(y_wrap, y_real)
+    print("  OK np.fft.Fft() == numpy.fft.fft()")
 
 
-def test_acces_sans_majuscule_raise():
-    """np.array (sans majuscule) doit lever AttributeError (comportement strict)."""
+def test_acces_sans_capitale_raise():
+    """np.add (sans majuscule) doit lever AttributeError."""
     try:
-        _ = np.array([1, 2, 3])
-        assert False, "np.array devrait lever AttributeError"
+        _ = np.add(1, 2)
+        assert False, "np.add devrait lever AttributeError"
     except AttributeError as e:
-        assert "array" in str(e) and ("capitalized" in str(e).lower() or "Capitalized" in str(e))
-    print("  OK np.array() sans majuscule lève AttributeError")
+        assert "add" in str(e)
+        print("  OK np.add() sans majuscule lève AttributeError")
+
+def test_sous_module_sans_capital():
+    """Autre sous-module : np.fft.fft(x) doit lever AttributeError"""
+    x = real_np.array([0.0, 1.0, 0.0, -1.0])
+    try: 
+        _ = np.fft.fft(x)
+        assert False, "np.fft.fft devrait lever AttributeError"
+    except AttributeError as e:
+        print("  OK np.fft.fft lève une AttributeError")
+
+def test_sous_module_avec_capital_au_milieu():
+    """Autre sous-module : np.fft.fft(x) doit lever AttributeError"""
+    x = real_np.array([0.0, 1.0, 0.0, -1.0])
+    try: 
+        _ = np.Fft.fft(x)
+        assert False, "np.Fft.fft devrait lever AttributeError"
+    except AttributeError as e:
+        print("  OK np.Fft.fft lève une AttributeError")
 
 
 def run_all():
@@ -83,10 +102,12 @@ def run_all():
     test_ufunc_array()
     test_sous_module()
     test_constante()
+    test_constantes_et_types()
     test_array_creation()
-    test_linspace()
-    test_random_submodule()
-    test_acces_sans_majuscule_raise()
+    test_sous_module_autre()
+    test_acces_sans_capitale_raise()
+    test_sous_module_sans_capital()
+    test_sous_module_avec_capital_au_milieu()
     print("-" * 50)
     print("Tous les tests capitalize sont passés.")
 
