@@ -2,6 +2,50 @@ import json
 import re
 
 
+def _capitalize_first(name: str) -> str:
+    if not name:
+        return name
+    return name[0].upper() + name[1:]
+
+
+def _transform_code_block_capitalize(block: str) -> str:
+    """
+    Corrompt les accès attributaires dans un bloc de code:
+    - np.mean -> np.Mean
+    - a.max -> a.Max
+    - A.shape -> A.Shape
+    Cas spécial: .T est conservé tel quel.
+    """
+    attr_pattern = re.compile(r"(?<![\w])([A-Za-z_]\w*)\.([A-Za-z_]\w*)")
+
+    def repl(match: re.Match) -> str:
+        obj = match.group(1)
+        attr = match.group(2)
+        if attr.startswith("__") and attr.endswith("__"):
+            return match.group(0)
+        if attr == "T":
+            return match.group(0)
+        if attr and attr[0].isupper():
+            return match.group(0)
+        return f"{obj}.{_capitalize_first(attr)}"
+
+    return attr_pattern.sub(repl, block)
+
+
+def _corrupt_prompt_capitalize(prompt: str) -> str:
+    """
+    Corrompt uniquement le code dans les balises <code>...</code> du prompt.
+    """
+    code_block_pattern = re.compile(r"<code>\n?(.*?)\n?</code>", flags=re.DOTALL)
+
+    def repl(match: re.Match) -> str:
+        original = match.group(1)
+        transformed = _transform_code_block_capitalize(original)
+        return f"<code>\n{transformed}\n</code>"
+
+    return code_block_pattern.sub(repl, prompt)
+
+
 def capitalize_prompt_module(filename, list_shorthand):
     """
     Lit un fichier JSONL, modifie uniquement le champ 'prompt' pour mettre en
@@ -26,14 +70,7 @@ def capitalize_prompt_module(filename, list_shorthand):
             if "prompt" in data:
                 current_prompt = data["prompt"]
 
-                for sh in list_shorthand:
-                    pattern = re.escape(sh) + r"\.(\w+)"
-
-                    def capitalize_match(m, _sh=sh):
-                        func_name = m.group(1)
-                        return f"{_sh}.{func_name[0].upper()}{func_name[1:]}"
-
-                    current_prompt = re.sub(pattern, capitalize_match, current_prompt)
+                current_prompt = _corrupt_prompt_capitalize(current_prompt)
 
                 data["prompt"] = current_prompt
 

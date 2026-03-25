@@ -2,6 +2,42 @@ import json
 import re
 
 
+def _transform_code_block_v2(block: str) -> str:
+    """
+    Corrompt les accès attributaires dans un bloc de code:
+    - np.mean -> np.mean_v2
+    - a.max -> a.max_v2
+    - A.shape -> A.shape_v2
+    Ne modifie pas les attributs déjà suffixés _v2 ni les dunder.
+    """
+    attr_pattern = re.compile(r"(?<![\w])([A-Za-z_]\w*)\.([A-Za-z_]\w*)")
+
+    def repl(match: re.Match) -> str:
+        obj = match.group(1)
+        attr = match.group(2)
+        if attr.startswith("__") and attr.endswith("__"):
+            return match.group(0)
+        if attr.endswith("_v2"):
+            return match.group(0)
+        return f"{obj}.{attr}_v2"
+
+    return attr_pattern.sub(repl, block)
+
+
+def _corrupt_prompt_v2(prompt: str) -> str:
+    """
+    Corrompt uniquement le code dans les balises <code>...</code> du prompt.
+    """
+    code_block_pattern = re.compile(r"<code>\n?(.*?)\n?</code>", flags=re.DOTALL)
+
+    def repl(match: re.Match) -> str:
+        original = match.group(1)
+        transformed = _transform_code_block_v2(original)
+        return f"<code>\n{transformed}\n</code>"
+
+    return code_block_pattern.sub(repl, prompt)
+
+
 def v2_prompt_module(filename, list_shorthand):
     """
     Lit un fichier JSONL, modifie uniquement le champ 'prompt' pour ajouter
@@ -25,10 +61,7 @@ def v2_prompt_module(filename, list_shorthand):
             if "prompt" in data:
                 current_prompt = data["prompt"]
 
-                for sh in list_shorthand:
-                    # np.array -> np.array_v2, numpy.mean -> numpy.mean_v2
-                    pattern = re.escape(sh) + r"\.(\w+)"
-                    current_prompt = re.sub(pattern, rf"{sh}.\1_v2", current_prompt)
+                current_prompt = _corrupt_prompt_v2(current_prompt)
 
                 data["prompt"] = current_prompt
 

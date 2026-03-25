@@ -158,7 +158,6 @@ def evaluate_single_task(task, llm_client, config):
     except ast_cleaning_module.ObjectAttributeError as e:
         passed = False
         print(f"Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type {e}")
-        code = extracted_code
         stdout, stderr = "", "MODULE_WITH_SUFFIX_ERROR"
 
         if "code_context" in task:
@@ -176,7 +175,7 @@ def evaluate_single_task(task, llm_client, config):
             "metadata": metadata,
             "passed": passed,
             "control_passed": control_passed,
-            "llm_code": code,
+            "llm_code": extracted_code,
             "stdout": stdout,
             "stderr": stderr,
             "stdout_control": stdout_control,
