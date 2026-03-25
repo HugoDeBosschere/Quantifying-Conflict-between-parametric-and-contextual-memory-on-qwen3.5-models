@@ -23,6 +23,26 @@ def load_config_from_path(config_path):
         sys.exit(1)
 
 
+def _exec_pass_at(config) -> int:
+    """Nombre max de tirages LLM par tâche (pass@k). Défaut 1 = comportement historique."""
+    k = config.get("exec", {}).get("pass_at", 1)
+    try:
+        k = int(k)
+    except (TypeError, ValueError):
+        k = 1
+    return max(1, k)
+
+
+def _options_extra_for_pass_at_attempt(base_seed, attempt: int, pass_at: int):
+    """
+    Si pass_at > 1 et une seed de base est fixée, décale la seed par tentative pour ne pas
+    répéter le même tirage à chaque essai.
+    """
+    if pass_at <= 1 or attempt <= 1 or base_seed is None:
+        return None
+    return {"seed": int(base_seed) + attempt - 1}
+
+
 #*-----------------------*
 # Run directory management #
 #*-----------------------*
@@ -109,9 +129,16 @@ def evaluate_single_task(task, llm_client, config):
     """
     Orchestre l'évaluation d'une seule tâche en mode injection.
     Exécute le code à la fois avec la lib contrefactuelle ET avec la vraie lib (double test).
+
+    Si exec.pass_at = k > 1 (pass@k), on interroge le LLM jusqu'à obtenir passed=True sur la lib
+    contrefactuelle ou jusqu'à k tentatives ; on enregistre la première réponse réussie.
     """
     task_id = task.get("metadata", {}).get("problem_id", "") or task.get("task_id", "")
-    print(f"Traitement ID {task_id}...")
+    pass_at = _exec_pass_at(config)
+    msg_task = f"Traitement ID {task_id}..."
+    if pass_at > 1:
+        msg_task += f" (pass@{pass_at})"
+    print(msg_task)
 
     # chargement du module de nettoyage via AST pour les modules de fonction:
     ast_cleaning_module = config.get("new_lib_injection", {}).get("ast_cleaning_module", None)
@@ -123,98 +150,138 @@ def evaluate_single_task(task, llm_client, config):
         normalize_object_attributes = None
     assert normalize_object_attributes is not None, "ast_cleaning_module is not set"
 
+    base_seed = llm_client.seed
+    last_result = None
 
-    raw_response, count_token = llm_client.query_llm(task['prompt'])
-    metadata = task["metadata"] | llm_client.model_metadata | {"token_count": count_token or 0}
-
-    if not raw_response:
-        return {
-            "task_id": task_id,
-            "metadata": metadata,
-            "passed": False,
-            "control_passed": False,
-            "error": "LLM_API_FAILURE",
-            "llm_code": ""
+    for attempt in range(1, pass_at + 1):
+        if pass_at > 1:
+            print(f"  tentative {attempt}/{pass_at}")
+        options_extra = _options_extra_for_pass_at_attempt(base_seed, attempt, pass_at)
+        raw_response, count_token = llm_client.query_llm(
+            task["prompt"], options_extra=options_extra
+        )
+        metadata = task["metadata"] | llm_client.model_metadata | {
+            "token_count": count_token or 0,
+            "pass_at": pass_at,
+            "pass_at_attempt": attempt,
         }
 
-    #cleaning de forme
-    extracted_code = extract_code_and_fix(raw_response)
+        if not raw_response:
+            last_result = {
+                "task_id": task_id,
+                "metadata": metadata | {"pass_at_success": False},
+                "passed": False,
+                "control_passed": False,
+                "error": "LLM_API_FAILURE",
+                "llm_code": "",
+            }
+            continue
 
-    #cleaning propre à la perturbation
-    try :
-        code = normalize_object_attributes(extracted_code)
-    except (SyntaxError, IndentationError) as e:
-        return {
-            "task_id": task_id,
-            "metadata": metadata,
-            "passed": False,
-            "control_passed": False,
-            "llm_code": extracted_code,
-            "error": "SYNTAX_ERROR",
-            "stderr": f"SyntaxError: {e}",
-            "stderr_control": f"SyntaxError: {e}",
-            "full_response": raw_response
-        }
-    except ast_cleaning_module.ObjectAttributeError as e:
-        passed = False
-        print(f"Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type {e}")
-        stdout, stderr = "", "MODULE_WITH_SUFFIX_ERROR"
+        extracted_code = extract_code_and_fix(raw_response)
+
+        try:
+            code = normalize_object_attributes(extracted_code)
+        except (SyntaxError, IndentationError) as e:
+            last_result = {
+                "task_id": task_id,
+                "metadata": metadata | {"pass_at_success": False},
+                "passed": False,
+                "control_passed": False,
+                "llm_code": extracted_code,
+                "error": "SYNTAX_ERROR",
+                "stderr": f"SyntaxError: {e}",
+                "stderr_control": f"SyntaxError: {e}",
+                "full_response": raw_response,
+            }
+            continue
+        except ast_cleaning_module.ObjectAttributeError as e:
+            print(
+                "Une méthode ne comportait pas la perturbation, erreur "
+                f"{e} (tentative {attempt}/{pass_at})"
+            )
+            stdout, stderr = "", "MODULE_WITH_SUFFIX_ERROR"
+            if "code_context" in task:
+                stdout_control, stderr_control = execute_task_engine(
+                    task["code_context"], extracted_code, llm_client, config
+                )
+                control_passed = "SUCCESS_MARKER" in stdout_control
+            else:
+                control_passed = False
+                stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
+                stdout_control, stderr_control = "", "MISSING_CONTEXT_IN_DATASET"
+
+            last_result = {
+                "task_id": task_id,
+                "metadata": metadata | {"pass_at_success": False},
+                "passed": False,
+                "control_passed": control_passed,
+                "llm_code": extracted_code,
+                "stdout": stdout,
+                "stderr": stderr,
+                "stdout_control": stdout_control,
+                "stderr_control": stderr_control,
+                "full_response": raw_response,
+            }
+            continue
 
         if "code_context" in task:
-            stdout_control, stderr_control = execute_task_engine(task["code_context"], code, llm_client, config)
+            new_import = "import " + llm_client.lib_name + " as np"
+            new_context = modify_lib(task["code_context"], new_import)
+            if new_context:
+                stdout, stderr = execute_task_engine(new_context, code, llm_client, config)
+                stdout_control, stderr_control = execute_task_engine(
+                    task["code_context"], code, llm_client, config
+                )
+            else:
+                stdout, stderr = "", "MODIFY_LIB_FAILED"
+                stdout_control, stderr_control = "", "MODIFY_LIB_FAILED"
+            passed = "SUCCESS_MARKER" in stdout
             control_passed = "SUCCESS_MARKER" in stdout_control
         else:
             passed = False
             control_passed = False
             stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
             stdout_control, stderr_control = "", "MISSING_CONTEXT_IN_DATASET"
-        
 
-        return {
+        if passed:
+            return {
+                "task_id": task_id,
+                "metadata": metadata | {"pass_at_success": True},
+                "passed": True,
+                "control_passed": control_passed,
+                "llm_code": code,
+                "stdout": stdout,
+                "stderr": stderr,
+                "stdout_control": stdout_control,
+                "stderr_control": stderr_control,
+                "full_response": raw_response,
+            }
+
+        last_result = {
             "task_id": task_id,
-            "metadata": metadata,
-            "passed": passed,
+            "metadata": metadata | {"pass_at_success": False},
+            "passed": False,
             "control_passed": control_passed,
-            "llm_code": extracted_code,
+            "llm_code": code,
             "stdout": stdout,
             "stderr": stderr,
             "stdout_control": stdout_control,
             "stderr_control": stderr_control,
-            "full_response": raw_response
+            "full_response": raw_response,
         }
 
-    # on procède aux évaluations fonctionnelles maintenant qu ele code a été validé par l'AST
-    if "code_context" in task:
-        new_import = "import " + llm_client.lib_name + " as np"
-        new_context = modify_lib(task["code_context"], new_import)
-        if new_context:
-            # évaluation du LLm avec la lib contrefactuelle
-            stdout, stderr = execute_task_engine(new_context, code, llm_client, config)
-            # évaluation du LLm avec la lib d'origine sachant que le problème et la lib qu'on lui a montré était contrefactuelle
-            stdout_control, stderr_control = execute_task_engine(task["code_context"], code, llm_client, config)
-        else:
-            stdout, stderr = "", "MODIFY_LIB_FAILED"
-            stdout_control, stderr_control = "", "MODIFY_LIB_FAILED"
-        passed = "SUCCESS_MARKER" in stdout
-        control_passed = "SUCCESS_MARKER" in stdout_control
-    else:
-        passed = False
-        control_passed = False
-        stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
-        stdout_control, stderr_control = "", "MISSING_CONTEXT_IN_DATASET"
-
+    if last_result is not None:
+        return last_result
 
     return {
         "task_id": task_id,
-        "metadata": metadata,
-        "passed": passed,
-        "control_passed": control_passed,
-        "llm_code": code,
-        "stdout": stdout,
-        "stderr": stderr,
-        "stdout_control": stdout_control,
-        "stderr_control": stderr_control,
-        "full_response": raw_response
+        "metadata": task["metadata"]
+        | llm_client.model_metadata
+        | {"pass_at": pass_at, "pass_at_success": False},
+        "passed": False,
+        "control_passed": False,
+        "error": "NO_ATTEMPT",
+        "llm_code": "",
     }
 
 
@@ -226,42 +293,86 @@ def evaluate_single_task(task, llm_client, config):
 def evaluate_single_task_control(task, llm_client, config):
     """
     Orchestre l'évaluation d'une seule tâche en mode control (vraie lib, pas de contrefactuel).
+    Même logique pass@k que l'injection : jusqu'à exec.pass_at tirages ou premier SUCCESS_MARKER.
     """
     task_id = task.get("metadata", {}).get("problem_id", "") or task.get("task_id", "")
-    print(f"Traitement ID {task_id}...")
+    pass_at = _exec_pass_at(config)
+    msg_task = f"Traitement ID {task_id}..."
+    if pass_at > 1:
+        msg_task += f" (pass@{pass_at})"
+    print(msg_task)
 
-    raw_response, count_token = llm_client.query_llm(task['prompt'])
-    if not raw_response:
-        metadata = task["metadata"] | llm_client.model_metadata | {"token_count": count_token or 0}
-        return {
-            "task_id": task_id,
-            "metadata": metadata,
-            "passed": False,
-            "error": "LLM_API_FAILURE",
-            "llm_code": "",
-            "is_control": True
+    base_seed = llm_client.seed
+    last_result = None
+
+    for attempt in range(1, pass_at + 1):
+        if pass_at > 1:
+            print(f"  tentative {attempt}/{pass_at}")
+        options_extra = _options_extra_for_pass_at_attempt(base_seed, attempt, pass_at)
+        raw_response, count_token = llm_client.query_llm(
+            task["prompt"], options_extra=options_extra
+        )
+        metadata = task["metadata"] | llm_client.model_metadata | {
+            "token_count": count_token or 0,
+            "pass_at": pass_at,
+            "pass_at_attempt": attempt,
         }
 
-    code = extract_code_and_fix(raw_response)
+        if not raw_response:
+            last_result = {
+                "task_id": task_id,
+                "metadata": metadata | {"pass_at_success": False},
+                "passed": False,
+                "error": "LLM_API_FAILURE",
+                "llm_code": "",
+                "is_control": True,
+            }
+            continue
 
-    if "code_context" in task:
-        stdout, stderr = execute_task_engine(task["code_context"], code, llm_client, config)
-        passed = "SUCCESS_MARKER" in stdout
-    else:
-        passed = False
-        stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
+        code = extract_code_and_fix(raw_response)
 
-    metadata = task["metadata"] | llm_client.model_metadata | {"token_count": count_token}
+        if "code_context" in task:
+            stdout, stderr = execute_task_engine(task["code_context"], code, llm_client, config)
+            passed = "SUCCESS_MARKER" in stdout
+        else:
+            passed = False
+            stdout, stderr = "", "MISSING_CONTEXT_IN_DATASET"
+
+        if passed:
+            return {
+                "task_id": task_id,
+                "metadata": metadata | {"pass_at_success": True},
+                "passed": True,
+                "llm_code": code,
+                "stdout": stdout,
+                "stderr": stderr,
+                "full_response": raw_response,
+                "is_control": True,
+            }
+
+        last_result = {
+            "task_id": task_id,
+            "metadata": metadata | {"pass_at_success": False},
+            "passed": False,
+            "llm_code": code,
+            "stdout": stdout,
+            "stderr": stderr,
+            "full_response": raw_response,
+            "is_control": True,
+        }
+
+    if last_result is not None:
+        return last_result
 
     return {
         "task_id": task_id,
-        "metadata": metadata,
-        "passed": passed,
-        "llm_code": code,
-        "stdout": stdout,
-        "stderr": stderr,
-        "full_response": raw_response,
-        "is_control": True
+        "metadata": task["metadata"]
+        | llm_client.model_metadata
+        | {"pass_at": pass_at, "pass_at_success": False},
+        "passed": False,
+        "error": "NO_ATTEMPT",
+        "llm_code": "",
+        "is_control": True,
     }
 
 

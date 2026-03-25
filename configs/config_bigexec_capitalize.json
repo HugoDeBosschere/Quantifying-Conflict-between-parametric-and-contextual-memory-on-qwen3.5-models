@@ -1,6 +1,7 @@
 {
     "exec": {
-        "timeout": 120
+        "timeout": 120,
+        "pass_at": 1
     },
     "llm": {
         "model": [

@@ -72,10 +72,12 @@ class LLMClient:
             return None
         return None
 
-    def _ollama_options(self):
+    def _ollama_options(self, options_extra=None):
         opts = {"temperature": self.temperature, "num_ctx": self.num_ctx}
         if self.seed is not None:
             opts["seed"] = self.seed
+        if options_extra:
+            opts.update(options_extra)
         return opts
 
     def _load_doc(self, lib_config, doc_name):
@@ -146,7 +148,7 @@ class LLMClient:
                     "system": self.system_prompt,
                     "prompt": "Say OK.",
                     "stream": False,
-                    "options": self._ollama_options(),
+                    "options": self._ollama_options(None),
                 },
                 timeout=timeout,
             )
@@ -166,11 +168,14 @@ class LLMClient:
             print(f"API Error [{self.model_name}]: {e}")
             return None, 0
 
-    def query_llm(self, prompt_text):
+    def query_llm(self, prompt_text, *, options_extra=None):
         """
         Envoie le prompt au LLM via Ollama.
         Le system prompt est envoyé dans le champ 'system' (pas dupliqué dans 'prompt').
         La documentation est incluse dans le prompt uniquement si elle existe.
+
+        options_extra : dict fusionné dans les options Ollama pour cet appel uniquement
+        (ex. {"seed": 43} pour varier les tirages en pass@k tout en gardant une seed de base).
         """
         print(f"Interrogation de {self.model_name}...")
 
@@ -188,7 +193,7 @@ class LLMClient:
                     "system": self.system_prompt,
                     "prompt": full_prompt,
                     "stream": False,
-                    "options": self._ollama_options(),
+                    "options": self._ollama_options(options_extra),
                 },
                 timeout=600,
             )
