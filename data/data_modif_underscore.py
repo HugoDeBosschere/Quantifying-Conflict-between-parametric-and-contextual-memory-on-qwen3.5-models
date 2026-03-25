@@ -75,7 +75,7 @@ def underscore_prompt_module(filename, list_shorthand):
     print(f"Traitement du fichier : {filename}")
     
     out_dir = os.path.dirname(os.path.abspath(filename))
-    new_filename = os.path.join(out_dir, "ds1000_npy_modif_prompt.jsonl")
+    new_filename = os.path.join(out_dir, "ds1000_npyOnly_corrupted_underscore.jsonl")
     
     with open(filename, "r", encoding="utf-8") as f_in, \
          open(new_filename, "w", encoding="utf-8") as f_out:
@@ -106,4 +106,4 @@ def underscore_prompt_module(filename, list_shorthand):
     print(f"Terminé ! {count} lignes traitées. Sauvegardé dans {new_filename}")
 
 if __name__ == '__main__':
-    underscore_prompt_module("data/ds1000_npy.jsonl", ["numpy", "np"])
+    underscore_prompt_module("data/ds1000_npyOnly.jsonl", ["numpy", "np"])

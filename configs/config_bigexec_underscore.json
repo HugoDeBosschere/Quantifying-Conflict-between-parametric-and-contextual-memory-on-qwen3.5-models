@@ -15,7 +15,7 @@
     },
     "data": {
         "origin_data": "../data/ds1000_npyOnly.jsonl",
-        "corrupted_data": "../data/ds1000_npyOnly_corrupted_.jsonl"
+        "corrupted_data": "../data/ds1000_npyOnly_corrupted_underscore.jsonl"
     },
     "real_lib": {
         "name": "Numpy",
