@@ -15,8 +15,10 @@ class LLMClient:
         self.model_name = model_name
         self.mode = mode
         self.api_url = config["llm"]["api_url"]
-        self.temperature = config["llm"]["temperature"]
+        self.temperature_config = config["llm"]["temperature"]
+        self.temperature = self._resolve_temperature(self.temperature_config)
         self.num_ctx = config["llm"].get("num_ctx", 20000)
+        self.seed = self._resolve_seed(config["llm"].get("seed"))
 
         self.system_prompt = lib_config["system_prompt"]
         self.custom_lib_path = lib_config.get("custom_lib_path")
@@ -30,8 +32,51 @@ class LLMClient:
             "model_name": self.model_name,
             "doc_name": doc_name,
             "mode": self.mode,
-            "temperature": self.temperature
+            "temperature": self.temperature,
+            "seed": self.seed,
         }
+
+    def _resolve_temperature(self, temperature_cfg):
+        """Résout la température à utiliser pour `self.model_name`."""
+        if isinstance(temperature_cfg, (int, float)):
+            return float(temperature_cfg)
+        if isinstance(temperature_cfg, dict):
+            # Priorité : clé exacte du modèle, puis `default`.
+            if self.model_name in temperature_cfg:
+                return float(temperature_cfg[self.model_name])
+            if "default" in temperature_cfg:
+                return float(temperature_cfg["default"])
+            # Fallback : première valeur numérique trouvée (évite crash si config incomplète)
+            for v in temperature_cfg.values():
+                if isinstance(v, (int, float)):
+                    return float(v)
+            return 0.0
+        # Type inattendu : on fallback à 0
+        return 0.0
+
+    def _resolve_seed(self, seed_cfg):
+        """Résout la seed pour `self.model_name`, ou None si non configurée."""
+        if seed_cfg is None:
+            return None
+        if isinstance(seed_cfg, bool):
+            return None
+        if isinstance(seed_cfg, (int, float)):
+            return int(seed_cfg)
+        if isinstance(seed_cfg, dict):
+            if self.model_name in seed_cfg:
+                v = seed_cfg[self.model_name]
+                return None if v is None else int(v)
+            if "default" in seed_cfg:
+                v = seed_cfg["default"]
+                return None if v is None else int(v)
+            return None
+        return None
+
+    def _ollama_options(self):
+        opts = {"temperature": self.temperature, "num_ctx": self.num_ctx}
+        if self.seed is not None:
+            opts["seed"] = self.seed
+        return opts
 
     def _load_doc(self, lib_config, doc_name):
         doc_info = lib_config.get("documentation", {}).get(doc_name, {})
@@ -101,7 +146,7 @@ class LLMClient:
                     "system": self.system_prompt,
                     "prompt": "Say OK.",
                     "stream": False,
-                    "options": {"temperature": self.temperature, "num_ctx": self.num_ctx},
+                    "options": self._ollama_options(),
                 },
                 timeout=timeout,
             )
@@ -143,10 +188,7 @@ class LLMClient:
                     "system": self.system_prompt,
                     "prompt": full_prompt,
                     "stream": False,
-                    "options": {
-                        "temperature": self.temperature,
-                        "num_ctx": self.num_ctx,
-                    },
+                    "options": self._ollama_options(),
                 },
                 timeout=600,
             )

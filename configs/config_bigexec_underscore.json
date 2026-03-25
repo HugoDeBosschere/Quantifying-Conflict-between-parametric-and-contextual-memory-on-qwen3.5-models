@@ -9,8 +9,15 @@
             "codestral",
             "devstral"
         ],
-        "temperature": 0,
+        "temperature": {
+            "default": 0.3,
+            "gemma3:12b": 0.3,
+            "qwen2.5-coder:32b": 0.3,
+            "codestral": 0.3,
+            "devstral": 0.3
+        },
         "num_ctx": 30000,
+        "seed": 42,
         "api_url": "http://localhost:11434/api"
     },
     "data": {
