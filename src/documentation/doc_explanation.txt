@@ -22,6 +22,7 @@ You will NOT use standard NumPy. You must strictly follow the rules below.
 
 3. Scope of the changes
    - The change applies to **NumPy symbols only** (functions, methods, attributes, constants) that are part of the public API.
+   - This includes not only callable functions/methods but also constants and objects such as `np.pi` and dtype/type objects such as `np.float64` (and any similar `np.float*` symbol used in the tasks): you must use the symbol name in its **underscored** form according to this perturbation.
    - Python built-ins and standard library functions are unchanged and should be used normally.
    - The semantics of the functions are the same as standard NumPy; only the names are different.
 
