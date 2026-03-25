@@ -2,6 +2,8 @@ import json
 import os
 import re
 
+_SKIP_SINGLE_LETTER_ATTR = frozenset({("i", "e"), ("e", "g")})
+
 
 def _transform_code_block_underscore(block: str) -> str:
     """
@@ -20,6 +22,8 @@ def _transform_code_block_underscore(block: str) -> str:
     )
 
     def _maybe_us(obj: str, attr: str) -> str:
+        if len(obj) == 1 and len(attr) == 1 and (obj, attr) in _SKIP_SINGLE_LETTER_ATTR:
+            return f"{obj}.{attr}"
         if attr.startswith("__") and attr.endswith("__"):
             return f"{obj}.{attr}"
         if attr.endswith("_"):
@@ -40,14 +44,25 @@ def _transform_code_block_underscore(block: str) -> str:
 
 def _corrupt_prompt_underscore(prompt: str) -> str:
     """
-    Corrompt uniquement le code dans les balises <code>...</code> du prompt.
+    Corrompt le code dans les blocs <code> (voir _corrupt_prompt_v2 pour les variantes DS1000).
+    Corrompt aussi l'énoncé avant « \\nA:\\n » (sessions >>> / In [..]:).
     """
-    code_block_pattern = re.compile(r"<code>\n?(.*?)\n?</code>", flags=re.DOTALL)
+    marker = "\nA:\n"
+    if marker in prompt:
+        stem, rest = prompt.split(marker, 1)
+        stem = _transform_code_block_underscore(stem)
+        prompt = stem + marker + rest
+
+    code_block_pattern = re.compile(
+        r"<code>\n?(?P<body>.*?)(?:(?P<close>\n?</code>)|(?=\n\s*#{1,3}\s+BEGIN\s+SOLUTION)|(?P<eos>\Z))",
+        flags=re.DOTALL,
+    )
 
     def repl(match: re.Match) -> str:
-        original = match.group(1)
-        transformed = _transform_code_block_underscore(original)
-        return f"<code>\n{transformed}\n</code>"
+        transformed = _transform_code_block_underscore(match.group("body"))
+        if match.group("close"):
+            return f"<code>\n{transformed}\n</code>"
+        return f"<code>\n{transformed}\n"
 
     return code_block_pattern.sub(repl, prompt)
 

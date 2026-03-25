@@ -2,6 +2,9 @@ import json
 import os
 import re
 
+# Abréviations latines courantes : « i.e. », « e.g. » — sinon i.e → i.e_v2 (faux positif).
+_SKIP_SINGLE_LETTER_ATTR = frozenset({("i", "e"), ("e", "g")})
+
 
 def _transform_code_block_v2(block: str) -> str:
     """
@@ -21,6 +24,8 @@ def _transform_code_block_v2(block: str) -> str:
     )
 
     def _maybe_v2(obj: str, attr: str) -> str:
+        if len(obj) == 1 and len(attr) == 1 and (obj, attr) in _SKIP_SINGLE_LETTER_ATTR:
+            return f"{obj}.{attr}"
         if attr.startswith("__") and attr.endswith("__"):
             return f"{obj}.{attr}"
         if attr.endswith("_v2"):
@@ -41,14 +46,32 @@ def _transform_code_block_v2(block: str) -> str:
 
 def _corrupt_prompt_v2(prompt: str) -> str:
     """
-    Corrompt uniquement le code dans les balises <code>...</code> du prompt.
+    Corrompt le code dans les blocs <code>.
+
+    Cas DS1000 :
+    - paire classique <code> ... </code>
+    - bloc ouvert sans </code>, qui se termine par une ligne du type
+      « ### BEGIN SOLUTION » (indentation possible) — le marqueur n'est pas modifié.
+
+    Corrompt aussi l'énoncé avant « \\nA:\\n » (ex. sessions >>> ou In [..]:),
+    qui n'est pas dans des balises <code>.
     """
-    code_block_pattern = re.compile(r"<code>\n?(.*?)\n?</code>", flags=re.DOTALL)
+    marker = "\nA:\n"
+    if marker in prompt:
+        stem, rest = prompt.split(marker, 1)
+        stem = _transform_code_block_v2(stem)
+        prompt = stem + marker + rest
+
+    code_block_pattern = re.compile(
+        r"<code>\n?(?P<body>.*?)(?:(?P<close>\n?</code>)|(?=\n\s*#{1,3}\s+BEGIN\s+SOLUTION)|(?P<eos>\Z))",
+        flags=re.DOTALL,
+    )
 
     def repl(match: re.Match) -> str:
-        original = match.group(1)
-        transformed = _transform_code_block_v2(original)
-        return f"<code>\n{transformed}\n</code>"
+        transformed = _transform_code_block_v2(match.group("body"))
+        if match.group("close"):
+            return f"<code>\n{transformed}\n</code>"
+        return f"<code>\n{transformed}\n"
 
     return code_block_pattern.sub(repl, prompt)
 

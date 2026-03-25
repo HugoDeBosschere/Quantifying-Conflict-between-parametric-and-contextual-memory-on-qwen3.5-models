@@ -2,6 +2,8 @@ import json
 import os
 import re
 
+_SKIP_SINGLE_LETTER_ATTR = frozenset({("i", "e"), ("e", "g")})
+
 
 def _capitalize_first(name: str) -> str:
     if not name:
@@ -26,6 +28,8 @@ def _transform_code_block_capitalize(block: str) -> str:
     )
 
     def _maybe_cap(obj: str, attr: str) -> str:
+        if len(obj) == 1 and len(attr) == 1 and (obj, attr) in _SKIP_SINGLE_LETTER_ATTR:
+            return f"{obj}.{attr}"
         if attr.startswith("__") and attr.endswith("__"):
             return f"{obj}.{attr}"
         if attr == "T":
@@ -48,14 +52,25 @@ def _transform_code_block_capitalize(block: str) -> str:
 
 def _corrupt_prompt_capitalize(prompt: str) -> str:
     """
-    Corrompt uniquement le code dans les balises <code>...</code> du prompt.
+    Corrompt le code dans les blocs <code> (voir data_modif_v2 pour les variantes DS1000).
+    Corrompt aussi l'énoncé avant « \\nA:\\n » (sessions >>> / In [..]:).
     """
-    code_block_pattern = re.compile(r"<code>\n?(.*?)\n?</code>", flags=re.DOTALL)
+    marker = "\nA:\n"
+    if marker in prompt:
+        stem, rest = prompt.split(marker, 1)
+        stem = _transform_code_block_capitalize(stem)
+        prompt = stem + marker + rest
+
+    code_block_pattern = re.compile(
+        r"<code>\n?(?P<body>.*?)(?:(?P<close>\n?</code>)|(?=\n\s*#{1,3}\s+BEGIN\s+SOLUTION)|(?P<eos>\Z))",
+        flags=re.DOTALL,
+    )
 
     def repl(match: re.Match) -> str:
-        original = match.group(1)
-        transformed = _transform_code_block_capitalize(original)
-        return f"<code>\n{transformed}\n</code>"
+        transformed = _transform_code_block_capitalize(match.group("body"))
+        if match.group("close"):
+            return f"<code>\n{transformed}\n</code>"
+        return f"<code>\n{transformed}\n"
 
     return code_block_pattern.sub(repl, prompt)
 
