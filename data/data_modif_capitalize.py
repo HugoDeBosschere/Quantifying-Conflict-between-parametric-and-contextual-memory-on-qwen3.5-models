@@ -1,4 +1,5 @@
 import json
+import os
 import re
 
 
@@ -14,20 +15,33 @@ def _transform_code_block_capitalize(block: str) -> str:
     - np.mean -> np.Mean
     - a.max -> a.Max
     - A.shape -> A.Shape
+    - f(...).reshape -> f(...).Reshape (chaînage après parenthèse / crochets)
+
     Cas spécial: .T est conservé tel quel.
     """
-    attr_pattern = re.compile(r"(?<![\w])([A-Za-z_]\w*)\.([A-Za-z_]\w*)")
+    attr_pattern = re.compile(
+        r"(?<![\w])(?P<id>[A-Za-z_]\w*)\.(?P<idattr>[A-Za-z_]\w*)"
+        r"|(?P<closepar>\))\.(?P<parenattr>[A-Za-z_]\w*)"
+        r"|(?P<closebr>\])\.(?P<brackattr>[A-Za-z_]\w*)"
+    )
+
+    def _maybe_cap(obj: str, attr: str) -> str:
+        if attr.startswith("__") and attr.endswith("__"):
+            return f"{obj}.{attr}"
+        if attr == "T":
+            return f"{obj}.{attr}"
+        if attr and attr[0].isupper():
+            return f"{obj}.{attr}"
+        return f"{obj}.{_capitalize_first(attr)}"
 
     def repl(match: re.Match) -> str:
-        obj = match.group(1)
-        attr = match.group(2)
-        if attr.startswith("__") and attr.endswith("__"):
-            return match.group(0)
-        if attr == "T":
-            return match.group(0)
-        if attr and attr[0].isupper():
-            return match.group(0)
-        return f"{obj}.{_capitalize_first(attr)}"
+        if match.group("id") is not None:
+            return _maybe_cap(match.group("id"), match.group("idattr"))
+        if match.group("closepar") is not None:
+            return _maybe_cap(match.group("closepar"), match.group("parenattr"))
+        if match.group("closebr") is not None:
+            return _maybe_cap(match.group("closebr"), match.group("brackattr"))
+        return match.group(0)
 
     return attr_pattern.sub(repl, block)
 
@@ -54,7 +68,8 @@ def capitalize_prompt_module(filename, list_shorthand):
     """
     print(f"Traitement du fichier : {filename}")
 
-    new_filename = "ds1000_npyOnly_corrupted_capitalize.jsonl"
+    out_dir = os.path.dirname(os.path.abspath(filename))
+    new_filename = os.path.join(out_dir, "ds1000_npyOnly_corrupted_capitalize.jsonl")
 
     with open(filename, "r", encoding="utf-8") as f_in, \
          open(new_filename, "w", encoding="utf-8") as f_out:

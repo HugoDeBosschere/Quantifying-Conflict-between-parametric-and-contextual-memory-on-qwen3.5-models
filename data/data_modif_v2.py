@@ -1,4 +1,5 @@
 import json
+import os
 import re
 
 
@@ -8,18 +9,32 @@ def _transform_code_block_v2(block: str) -> str:
     - np.mean -> np.mean_v2
     - a.max -> a.max_v2
     - A.shape -> A.shape_v2
+    - f(...).reshape -> f(...).reshape_v2 (chaînage après parenthèse)
+    - a[i].reshape -> a[i].reshape_v2 (chaînage après crochets)
+
     Ne modifie pas les attributs déjà suffixés _v2 ni les dunder.
     """
-    attr_pattern = re.compile(r"(?<![\w])([A-Za-z_]\w*)\.([A-Za-z_]\w*)")
+    attr_pattern = re.compile(
+        r"(?<![\w])(?P<id>[A-Za-z_]\w*)\.(?P<idattr>[A-Za-z_]\w*)"
+        r"|(?P<closepar>\))\.(?P<parenattr>[A-Za-z_]\w*)"
+        r"|(?P<closebr>\])\.(?P<brackattr>[A-Za-z_]\w*)"
+    )
+
+    def _maybe_v2(obj: str, attr: str) -> str:
+        if attr.startswith("__") and attr.endswith("__"):
+            return f"{obj}.{attr}"
+        if attr.endswith("_v2"):
+            return f"{obj}.{attr}"
+        return f"{obj}.{attr}_v2"
 
     def repl(match: re.Match) -> str:
-        obj = match.group(1)
-        attr = match.group(2)
-        if attr.startswith("__") and attr.endswith("__"):
-            return match.group(0)
-        if attr.endswith("_v2"):
-            return match.group(0)
-        return f"{obj}.{attr}_v2"
+        if match.group("id") is not None:
+            return _maybe_v2(match.group("id"), match.group("idattr"))
+        if match.group("closepar") is not None:
+            return _maybe_v2(match.group("closepar"), match.group("parenattr"))
+        if match.group("closebr") is not None:
+            return _maybe_v2(match.group("closebr"), match.group("brackattr"))
+        return match.group(0)
 
     return attr_pattern.sub(repl, block)
 
@@ -45,7 +60,9 @@ def v2_prompt_module(filename, list_shorthand):
     """
     print(f"Traitement du fichier : {filename}")
 
-    new_filename = "ds1000_npyOnly_corrupted_v2.jsonl"
+    # Sortie à côté du fichier source (ex. data/ds1000_npyOnly.jsonl → data/ds1000_..._v2.jsonl)
+    out_dir = os.path.dirname(os.path.abspath(filename))
+    new_filename = os.path.join(out_dir, "ds1000_npyOnly_corrupted_v2.jsonl")
 
     with open(filename, "r", encoding="utf-8") as f_in, \
          open(new_filename, "w", encoding="utf-8") as f_out:

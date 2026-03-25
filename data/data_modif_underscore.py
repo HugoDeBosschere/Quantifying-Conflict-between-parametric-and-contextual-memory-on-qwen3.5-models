@@ -1,7 +1,5 @@
-import json 
-import re
-
 import json
+import os
 import re
 
 
@@ -11,18 +9,31 @@ def _transform_code_block_underscore(block: str) -> str:
     - np.mean -> np.mean_
     - a.max -> a.max_
     - A.shape -> A.shape_
+    - f(...).reshape -> f(...).reshape_ (chaînage après parenthèse / crochets)
+
     Ne modifie pas les attributs déjà suffixés "_" ni les dunder.
     """
-    attr_pattern = re.compile(r"(?<![\w])([A-Za-z_]\w*)\.([A-Za-z_]\w*)")
+    attr_pattern = re.compile(
+        r"(?<![\w])(?P<id>[A-Za-z_]\w*)\.(?P<idattr>[A-Za-z_]\w*)"
+        r"|(?P<closepar>\))\.(?P<parenattr>[A-Za-z_]\w*)"
+        r"|(?P<closebr>\])\.(?P<brackattr>[A-Za-z_]\w*)"
+    )
+
+    def _maybe_us(obj: str, attr: str) -> str:
+        if attr.startswith("__") and attr.endswith("__"):
+            return f"{obj}.{attr}"
+        if attr.endswith("_"):
+            return f"{obj}.{attr}"
+        return f"{obj}.{attr}_"
 
     def repl(match: re.Match) -> str:
-        obj = match.group(1)
-        attr = match.group(2)
-        if attr.startswith("__") and attr.endswith("__"):
-            return match.group(0)
-        if attr.endswith("_"):
-            return match.group(0)
-        return f"{obj}.{attr}_"
+        if match.group("id") is not None:
+            return _maybe_us(match.group("id"), match.group("idattr"))
+        if match.group("closepar") is not None:
+            return _maybe_us(match.group("closepar"), match.group("parenattr"))
+        if match.group("closebr") is not None:
+            return _maybe_us(match.group("closebr"), match.group("brackattr"))
+        return match.group(0)
 
     return attr_pattern.sub(repl, block)
 
@@ -48,7 +59,8 @@ def underscore_prompt_module(filename, list_shorthand):
     """
     print(f"Traitement du fichier : {filename}")
     
-    new_filename = "ds1000_npy_modif_prompt.jsonl"
+    out_dir = os.path.dirname(os.path.abspath(filename))
+    new_filename = os.path.join(out_dir, "ds1000_npy_modif_prompt.jsonl")
     
     with open(filename, "r", encoding="utf-8") as f_in, \
          open(new_filename, "w", encoding="utf-8") as f_out:
