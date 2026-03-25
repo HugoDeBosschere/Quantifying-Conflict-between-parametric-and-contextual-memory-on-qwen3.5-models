@@ -1,0 +1,291 @@
+SANITY CHECK REPORT
+Generated: 2026-03-12 22:41:57
+Source:    results/qwen_gemma_codestral_devstral_underscore_docs/results.jsonl
+Entries:   3180
+
+  Control entries:   1908
+  Injection entries: 1272
+
+======================================================================
+  1. GLOBAL PASS RATES
+======================================================================
+
+  control     :  985/1908  ( 51.6%)
+  injection   :  163/1272  ( 12.8%)
+
+======================================================================
+  2. PASS RATES BY MODEL / DOC / MODE
+======================================================================
+
+
+  [codestral]
+    control    | minimal         :   78/ 159  ( 49.1%)
+    injection  | minimal         :   17/ 159  ( 10.7%)
+    control    | nothing         :   85/ 159  ( 53.5%)
+    control    | ultra_minimal   :   81/ 159  ( 50.9%)
+    injection  | ultra_minimal   :   17/ 159  ( 10.7%)
+
+  [devstral]
+    control    | minimal         :   85/ 159  ( 53.5%)
+    injection  | minimal         :   30/ 159  ( 18.9%)
+    control    | nothing         :   80/ 159  ( 50.3%)
+    control    | ultra_minimal   :   83/ 159  ( 52.2%)
+    injection  | ultra_minimal   :   26/ 159  ( 16.4%)
+
+  [gemma3:12b]
+    control    | minimal         :   68/ 159  ( 42.8%)
+    injection  | minimal         :    8/ 159  (  5.0%)
+    control    | nothing         :   68/ 159  ( 42.8%)
+    control    | ultra_minimal   :   67/ 159  ( 42.1%)
+    injection  | ultra_minimal   :    6/ 159  (  3.8%)
+
+  [qwen2.5-coder:32b]
+    control    | minimal         :   94/ 159  ( 59.1%)
+    injection  | minimal         :   36/ 159  ( 22.6%)
+    control    | nothing         :   98/ 159  ( 61.6%)
+    control    | ultra_minimal   :   98/ 159  ( 61.6%)
+    injection  | ultra_minimal   :   23/ 159  ( 14.5%)
+
+======================================================================
+  3. ANOMALY: passed=True AND control_passed=True (injection)
+======================================================================
+
+  Total: 68 entries pass both wrapper and real numpy
+    - Using np.xxx calls (might be method-only or compatible): 0
+    - Using NO np.xxx calls (pure array methods/python):       68
+
+--- Breakdown by model / doc ---
+
+    codestral                 | minimal         : 13
+    codestral                 | ultra_minimal   : 14
+    devstral                  | minimal         : 7
+    devstral                  | ultra_minimal   : 7
+    gemma3:12b                | minimal         : 8
+    gemma3:12b                | ultra_minimal   : 6
+    qwen2.5-coder:32b         | minimal         : 7
+    qwen2.5-coder:32b         | ultra_minimal   : 6
+
+--- Examples: passed both, no np.xxx calls (first 10) ---
+
+    task=301, model=gemma3:12b, doc=minimal
+      code: B = A.reshape(-1, ncol)
+
+    task=302, model=gemma3:12b, doc=minimal
+      code: B = A.reshape(nrow, -1)
+
+    task=331, model=gemma3:12b, doc=minimal
+      code: def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a % b)
+num = numerator
+den = denominator
+common_divisor
+
+    task=334, model=gemma3:12b, doc=minimal
+      code: result = (a + b + c) / 3
+
+    task=377, model=gemma3:12b, doc=minimal
+      code: a_np = a.numpy()
+
+    task=386, model=gemma3:12b, doc=minimal
+      code: result = []
+for i in range(a.shape[0] - 1):
+    for j in range(a.shape[1] - 1):
+        result.append(a[i:i + 2, j:j + 2
+
+    task=399, model=gemma3:12b, doc=minimal
+      code: B = pd.Series(index=A.index)
+B.iloc[0] = a * A.iloc[0]
+if len(A) > 1:
+    B.iloc[1] = a * A.iloc[1] + b * B.iloc[0]
+    
+
+    task=489, model=gemma3:12b, doc=minimal
+      code: arr_temp = arr.copy()
+mask1 = arr_temp < -10
+mask2 = arr_temp >= 15
+mask3 = ~(mask1 | mask2)
+arr[mask1] = 0
+arr[mask2] =
+
+    task=301, model=gemma3:12b, doc=ultra_minimal
+      code: B = A.reshape(-1, ncol)
+
+    task=302, model=gemma3:12b, doc=ultra_minimal
+      code: B = A.reshape(nrow, -1)
+
+
+======================================================================
+  4. PASSED WITHOUT ANY np.xxx CALL (all modes)
+======================================================================
+
+  Total: 166 entries passed without np.xxx calls
+
+--- Breakdown by mode / model / doc ---
+
+    control    | codestral                 | minimal         : 13
+    control    | codestral                 | nothing         : 9
+    control    | codestral                 | ultra_minimal   : 13
+    control    | devstral                  | minimal         : 8
+    control    | devstral                  | nothing         : 10
+    control    | devstral                  | ultra_minimal   : 9
+    control    | gemma3:12b                | minimal         : 5
+    control    | gemma3:12b                | nothing         : 1
+    control    | gemma3:12b                | ultra_minimal   : 7
+    control    | qwen2.5-coder:32b         | minimal         : 10
+    control    | qwen2.5-coder:32b         | nothing         : 6
+    control    | qwen2.5-coder:32b         | ultra_minimal   : 7
+    injection  | codestral                 | minimal         : 13
+    injection  | codestral                 | ultra_minimal   : 14
+    injection  | devstral                  | minimal         : 7
+    injection  | devstral                  | ultra_minimal   : 7
+    injection  | gemma3:12b                | minimal         : 8
+    injection  | gemma3:12b                | ultra_minimal   : 6
+    injection  | qwen2.5-coder:32b         | minimal         : 7
+    injection  | qwen2.5-coder:32b         | ultra_minimal   : 6
+
+--- Unique task_ids that never use np (across all entries) ---
+
+    task 301: 18 times
+    task 302: 17 times
+    task 377: 17 times
+    task 489: 17 times
+    task 303: 14 times
+    task 334: 12 times
+    task 490: 9 times
+    task 399: 9 times
+    task 386: 8 times
+    task 467: 6 times
+    task 450: 6 times
+    task 368: 5 times
+    task 381: 5 times
+    task 383: 5 times
+    task 331: 4 times
+    task 382: 4 times
+    task 398: 4 times
+    task 358: 3 times
+    task 508: 2 times
+    task 453: 1 times
+
+======================================================================
+  5. ANOMALY: INJECTION passed=True, control_passed=False
+======================================================================
+
+  Total: 95 entries
+
+--- Breakdown by model / doc ---
+
+    codestral                 | minimal         : 4
+    codestral                 | ultra_minimal   : 3
+    devstral                  | minimal         : 23
+    devstral                  | ultra_minimal   : 19
+    qwen2.5-coder:32b         | minimal         : 29
+    qwen2.5-coder:32b         | ultra_minimal   : 17
+
+--- Examples (first 5) ---
+
+    task=292, model=qwen2.5-coder:32b, doc=minimal
+      np calls: ['isnan_']
+      code: x = x[~np.isnan_(x)]
+
+    task=294, model=qwen2.5-coder:32b, doc=minimal
+      np calls: ['isnan_']
+      code: result = [list(filter(lambda v: not np.isnan_(v), sublist)) for sublist in x]
+
+    task=300, model=qwen2.5-coder:32b, doc=minimal
+      np calls: ['percentile_']
+      code: result = np.percentile_(a, p)
+
+    task=304, model=qwen2.5-coder:32b, doc=minimal
+      np calls: ['flip_', 'reshape_']
+      code: n_elements_to_keep = len(A) // ncol * ncol
+A_reversed = np.flip_(A[-n_elements_to_keep:])
+B = np.reshape_(A_reversed, (-
+
+    task=317, model=qwen2.5-coder:32b, doc=minimal
+      np calls: ['array_']
+      code: result = np.array_(a)
+
+
+======================================================================
+  6. PERTURBATION ADOPTION IN INJECTION CODE
+======================================================================
+
+
+--- By model / doc: how often does the LLM use perturbation patterns? ---
+
+  model                     | doc             | total |  _v2 |    _ |  Cap | norm | no_np
+  --------------------------+-----------------+-------+------+------+------+------+------
+  codestral                 | minimal         |   157 |    0 |   15 |    0 |  125 |    24
+  codestral                 | ultra_minimal   |   157 |    0 |   13 |    0 |  127 |    24
+  devstral                  | minimal         |   157 |    0 |   65 |    0 |   93 |    13
+  devstral                  | ultra_minimal   |   157 |    0 |   47 |    0 |  107 |    18
+  gemma3:12b                | minimal         |   158 |    0 |    9 |    0 |  128 |    23
+  gemma3:12b                | ultra_minimal   |   158 |    0 |    7 |    0 |  132 |    22
+  qwen2.5-coder:32b         | minimal         |   155 |    0 |   82 |    0 |   83 |    15
+  qwen2.5-coder:32b         | ultra_minimal   |   158 |    0 |   42 |    0 |  118 |    11
+
+======================================================================
+  7. ERROR CATEGORIES (failed entries)
+======================================================================
+
+  model                     | doc             | mode       | attribut | index_er |    other | syntax_e | type_err | value_er | wrong_an
+  ---------------------------------------------------------------------------------------------------------------------------------------
+  codestral                 | minimal         | control    |        0 |        1 |       24 |        1 |        5 |        4 |       46
+  codestral                 | minimal         | injection  |      111 |        0 |       17 |        1 |        4 |        2 |        7
+  codestral                 | nothing         | control    |        1 |        1 |       24 |        0 |        4 |        6 |       38
+  codestral                 | ultra_minimal   | control    |        1 |        0 |       27 |        0 |        5 |        5 |       40
+  codestral                 | ultra_minimal   | injection  |      114 |        0 |       18 |        0 |        4 |        1 |        5
+  devstral                  | minimal         | control    |        1 |        3 |       22 |        0 |       10 |       10 |       28
+  devstral                  | minimal         | injection  |       87 |        1 |       20 |        0 |        5 |        2 |       14
+  devstral                  | nothing         | control    |        1 |        3 |       26 |        0 |       11 |       10 |       28
+  devstral                  | ultra_minimal   | control    |        1 |        3 |       22 |        0 |        9 |       10 |       31
+  devstral                  | ultra_minimal   | injection  |      102 |        1 |       17 |        0 |        4 |        1 |        8
+  gemma3:12b                | minimal         | control    |        1 |        2 |       23 |        0 |        8 |       11 |       46
+  gemma3:12b                | minimal         | injection  |      119 |        0 |       14 |        1 |        4 |        3 |       10
+  gemma3:12b                | nothing         | control    |        1 |        1 |       22 |        1 |        9 |       12 |       45
+  gemma3:12b                | ultra_minimal   | control    |        1 |        2 |       25 |        0 |        6 |       11 |       47
+  gemma3:12b                | ultra_minimal   | injection  |      122 |        1 |       15 |        1 |        4 |        3 |        7
+  qwen2.5-coder:32b         | minimal         | control    |        1 |        1 |       20 |        3 |        6 |        5 |       29
+  qwen2.5-coder:32b         | minimal         | injection  |       80 |        0 |       20 |        1 |        3 |        0 |       19
+  qwen2.5-coder:32b         | nothing         | control    |        1 |        0 |       20 |        2 |        4 |        4 |       30
+  qwen2.5-coder:32b         | ultra_minimal   | control    |        2 |        0 |       17 |        3 |        4 |        4 |       31
+  qwen2.5-coder:32b         | ultra_minimal   | injection  |      112 |        0 |       14 |        2 |        2 |        1 |        5
+
+======================================================================
+  8. MOST USED np.xxx FUNCTIONS (in passed entries)
+======================================================================
+
+  Top 30 functions used in passing solutions:
+
+    np.array                          :   81 times
+    np.isnan                          :   59 times
+    np.argsort                        :   58 times
+    np.zeros                          :   55 times
+    np.arange                         :   48 times
+    np.unravel_index                  :   47 times
+    np.max                            :   39 times
+    np.pad                            :   37 times
+    np.mean                           :   37 times
+    np.sum                            :   37 times
+    np.nan                            :   33 times
+    np.linalg                         :   33 times
+    np.diag                           :   29 times
+    np.argmax                         :   27 times
+    np.any                            :   26 times
+    np.insert                         :   24 times
+    np.sqrt                           :   23 times
+    np.radians                        :   22 times
+    np.array_equal                    :   22 times
+    np.where                          :   22 times
+    np.sin                            :   21 times
+    np.all                            :   21 times
+    np.isin                           :   21 times
+    np.abs                            :   20 times
+    np.take_along_axis                :   20 times
+    np.eye                            :   19 times
+    np.isnan_                         :   19 times
+    np.inf                            :   18 times
+    np.delete                         :   17 times
+    np.random                         :   17 times

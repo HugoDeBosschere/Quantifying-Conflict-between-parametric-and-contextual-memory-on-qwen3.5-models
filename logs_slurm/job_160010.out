@@ -1,0 +1,364 @@
+==========================================
+Job ID       : 160010
+Date début   : Thu Mar 19 19:41:48 CET 2026
+Noeud        : sh07
+==========================================
+[1/4] Activation de l'environnement virtuel...
+[2/4] Démarrage du serveur Ollama...
+-> Serveur lancé avec PID: 608765
+-> Pause de 15 secondes pour laisser le temps au serveur de démarrer...
+-> Vérification des modèles disponibles :
+NAME                 ID              SIZE      MODIFIED    
+devstral:latest      9bd74193e939    14 GB     9 days ago     
+codestral:latest     0898a8b286d5    12 GB     9 days ago     
+gemma3:12b           f4031aab637d    8.1 GB    9 days ago     
+qwen2.5-coder:32b    b92d6a0bd47e    19 GB     6 weeks ago    
+[3/4] Lancement du script d'évaluation...
+♨️  Préchauffage des modèles (Loading into RAM)...
+-> Chargement de gemma3:12b...
+   gemma3:12b chargé.
+-> Chargement de qwen2.5-coder:32b...
+   qwen2.5-coder:32b chargé.
+-> Chargement de codestral...
+   codestral chargé.
+-> Chargement de devstral...
+   devstral chargé.
+✅ Tous les modèles chargés ! Lancement du script Python (config: configs/config_bigexec_v2.json)...
+[RUN] Dossier de résultats : /usr/users/sdim/sdim_25/memory_code_eval/results/run_2026-03-19_19-44-42
+[Warm-up] Attente du serveur Ollama...
+[Warm-up] Serveur OK. Chargement du modèle gemma3:12b...
+[Warm-up] Modèle gemma3:12b prêt.
+CONTROL MODE
+Lecture : /usr/users/sdim/sdim_25/memory_code_eval/src/../data/ds1000_npyOnly.jsonl
+Traitement ID 292...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+x = np.nan_to_num(x)
+x = np.delete(x, np.where(np.isnan(x)))
+```
+---------------------------
+
+--- Code Final ---
+x = np.nan_to_num(x)
+x = np.delete(x, np.where(np.isnan(x)))
+------------------
+false 292
+Traitement ID 293...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+x = np.nan_to_num(x, nan=np.inf)
+```
+---------------------------
+
+--- Code Final ---
+x = np.nan_to_num(x, nan=np.inf)
+------------------
+pass 293
+Traitement ID 294...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = [np.nan_to_num(row).tolist() for row in x]
+```
+---------------------------
+
+--- Code Final ---
+result = [np.nan_to_num(row).tolist() for row in x]
+------------------
+false 294
+Traitement ID 295...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros((len(a), np.max(a) + 1), dtype=int)
+b[np.arange(len(a)), a] = 1
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros((len(a), np.max(a) + 1), dtype=int)
+b[np.arange(len(a)), a] = 1
+------------------
+pass 295
+Traitement ID 296...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros((len(a), np.max(a) + 1), dtype=int)
+b[np.arange(len(a)), a] = 1
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros((len(a), np.max(a) + 1), dtype=int)
+b[np.arange(len(a)), a] = 1
+------------------
+pass 296
+Traitement ID 297...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros((len(a), np.max(a) + 1 + 1), dtype=int)
+b[np.arange(len(a)), a + 1] = 1
+```
+
+
+---------------------------
+
+--- Code Final ---
+b = np.zeros((len(a), np.max(a) + 1 + 1), dtype=int)
+b[np.arange(len(a)), a + 1] = 1
+------------------
+false 297
+Traitement ID 298...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros((len(np.unique(a)), len(a)))
+a_unique = np.unique(a)
+for i, val in enumerate(a_unique):
+    index = np.where(a == val)[0][0]
+    b[i, index] = 1
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros((len(np.unique(a)), len(a)))
+a_unique = np.unique(a)
+for (i, val) in enumerate(a_unique):
+    index = np.where(a == val)[0][0]
+    b[i, index] = 1
+------------------
+false 298
+Traitement ID 299...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros((a.shape[0]*a.shape[1], np.max(a)+1), dtype=int)
+for i in range(a.shape[0]):
+    for j in range(a.shape[1]):
+        b[i*a.shape[1] + j, a[i,j]] = 1
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros((a.shape[0] * a.shape[1], np.max(a) + 1), dtype=int)
+for i in range(a.shape[0]):
+    for j in range(a.shape[1]):
+        b[i * a.shape[1] + j, a[i, j]] = 1
+------------------
+pass 299
+Traitement ID 300...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.percentile(a, p)
+```
+---------------------------
+
+--- Code Final ---
+result = np.percentile(a, p)
+------------------
+pass 300
+Traitement ID 301...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.reshape(A, (len(A)//ncol, ncol))
+```
+---------------------------
+
+--- Code Final ---
+B = np.reshape(A, (len(A) // ncol, ncol))
+------------------
+pass 301
+Traitement ID 302...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.reshape(A, (nrow, int(np.size(A)/nrow)))
+```
+---------------------------
+
+--- Code Final ---
+B = np.reshape(A, (nrow, int(np.size(A) / nrow)))
+------------------
+pass 302
+Traitement ID 303...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.reshape(A, (len(A)//ncol, ncol))
+```
+---------------------------
+
+--- Code Final ---
+B = np.reshape(A, (len(A) // ncol, ncol))
+------------------
+false 303
+Traitement ID 304...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.reshape(np.flip(A), (np.ceil(len(A) / ncol), ncol))
+```
+
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+B = np.reshape(np.flip(A), (np.ceil(len(A) / ncol), ncol))
+------------------
+false 304
+Traitement ID 305...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.roll(a, shift)
+```
+---------------------------
+
+--- Code Final ---
+result = np.roll(a, shift)
+------------------
+false 305
+Traitement ID 306...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.roll(a, shift, axis=1)
+```
+---------------------------
+
+--- Code Final ---
+result = np.roll(a, shift, axis=1)
+------------------
+false 306
+Traitement ID 307...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.roll(a, shift, axis=1)
+result = np.where(np.isnan(result), np.nan, result)
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = np.roll(a, shift, axis=1)
+result = np.where(np.isnan(result), np.nan, result)
+------------------
+false 307
+Traitement ID 308...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+r_old = np.random.randint(3, size=(100, 2000)) - 1
+r_new = np.random.default_rng(42).integers(3, size=(100, 2000)) - 1
+```
+---------------------------
+
+--- Code Final ---
+
+------------------
+false 308
+Traitement ID 311...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index(np.argmax(a), a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index(np.argmax(a), a.shape)
+------------------
+false 311
+Traitement ID 312...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index(np.argmax(a), a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index(np.argmax(a), a.shape)
+------------------
+pass 312
+Traitement ID 314...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index(np.argpartition(a, -2)[-2], a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index(np.argpartition(a, -2)[-2], a.shape)
+------------------
+false 314
+Traitement ID 315...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+z = np.any(np.isnan(a), axis=0)
+a = np.delete(a, z, axis=1)
+```
+---------------------------
+
+--- Code Final ---
+z = np.any(np.isnan(a), axis=0)
+a = np.delete(a, z, axis=1)
+------------------
+pass 315
+Traitement ID 316...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a = a[np.isnan(a).sum(axis=1) == 0]
+```
+---------------------------
+
+--- Code Final ---
+a = a[np.isnan(a).sum(axis=1) == 0]
+------------------
+pass 316
+Traitement ID 317...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.array(a)
+```
+---------------------------
+
+--- Code Final ---
+result = np.array(a)
+------------------

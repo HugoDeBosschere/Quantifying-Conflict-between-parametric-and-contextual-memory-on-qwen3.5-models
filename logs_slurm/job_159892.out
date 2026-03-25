@@ -1,0 +1,3630 @@
+==========================================
+Job ID       : 159892
+Date début   : Thu Mar 19 15:55:16 CET 2026
+Noeud        : sh07
+==========================================
+[1/4] Activation de l'environnement virtuel...
+[2/4] Démarrage du serveur Ollama...
+-> Serveur lancé avec PID: 603784
+-> Pause de 15 secondes pour laisser le temps au serveur de démarrer...
+-> Vérification des modèles disponibles :
+NAME                 ID              SIZE      MODIFIED    
+devstral:latest      9bd74193e939    14 GB     8 days ago     
+codestral:latest     0898a8b286d5    12 GB     8 days ago     
+gemma3:12b           f4031aab637d    8.1 GB    9 days ago     
+qwen2.5-coder:32b    b92d6a0bd47e    19 GB     6 weeks ago    
+[3/4] Lancement du script d'évaluation...
+♨️  Préchauffage des modèles (Loading into RAM)...
+-> Chargement de gemma3:12b...
+   gemma3:12b chargé.
+-> Chargement de qwen2.5-coder:32b...
+   qwen2.5-coder:32b chargé.
+-> Chargement de codestral...
+   codestral chargé.
+-> Chargement de devstral...
+   devstral chargé.
+✅ Tous les modèles chargés ! Lancement du script Python (config: config.json)...
+[RUN] Dossier de résultats : /usr/users/sdim/sdim_25/memory_code_eval/results/run_2026-03-19_15-58-22
+[Warm-up] Attente du serveur Ollama...
+[Warm-up] Serveur OK. Chargement du modèle gemma3:12b...
+[Warm-up] Modèle gemma3:12b prêt.
+CONTROL MODE
+Lecture : /usr/users/sdim/sdim_25/memory_code_eval/src/../data/ds1000_npyOnly.jsonl
+Traitement ID 292...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+x = np.nan_to_num(x)
+x = np.delete(x, np.where(np.isnan(x)))
+```
+---------------------------
+
+--- Code Final ---
+x = np.nan_to_num(x)
+x = np.delete(x, np.where(np.isnan(x)))
+------------------
+false 292
+Traitement ID 293...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+x = np.nan_to_num(x, nan=np.inf)
+```
+---------------------------
+
+--- Code Final ---
+x = np.nan_to_num(x, nan=np.inf)
+------------------
+pass 293
+Traitement ID 294...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = [np.nan_to_num(row).tolist() for row in x]
+```
+---------------------------
+
+--- Code Final ---
+result = [np.nan_to_num(row).tolist() for row in x]
+------------------
+false 294
+Traitement ID 295...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros((len(a), np.max(a) + 1), dtype=int)
+b[np.arange(len(a)), a] = 1
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros((len(a), np.max(a) + 1), dtype=int)
+b[np.arange(len(a)), a] = 1
+------------------
+pass 295
+Traitement ID 296...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros((len(a), np.max(a) + 1), dtype=int)
+b[np.arange(len(a)), a] = 1
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros((len(a), np.max(a) + 1), dtype=int)
+b[np.arange(len(a)), a] = 1
+------------------
+pass 296
+Traitement ID 297...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros((len(a), np.max(a) + 1 + 1), dtype=int)
+b[np.arange(len(a)), a + 1] = 1
+```
+
+
+---------------------------
+
+--- Code Final ---
+b = np.zeros((len(a), np.max(a) + 1 + 1), dtype=int)
+b[np.arange(len(a)), a + 1] = 1
+------------------
+false 297
+Traitement ID 298...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros((len(np.unique(a)), len(a)))
+a_unique = np.unique(a)
+for i, val in enumerate(a_unique):
+    index = np.where(a == val)[0][0]
+    b[i, index] = 1
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros((len(np.unique(a)), len(a)))
+a_unique = np.unique(a)
+for (i, val) in enumerate(a_unique):
+    index = np.where(a == val)[0][0]
+    b[i, index] = 1
+------------------
+false 298
+Traitement ID 299...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros((a.shape[0]*a.shape[1], np.max(a)+1), dtype=int)
+for i in range(a.shape[0]):
+    for j in range(a.shape[1]):
+        b[i*a.shape[1] + j, a[i,j]] = 1
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros((a.shape[0] * a.shape[1], np.max(a) + 1), dtype=int)
+for i in range(a.shape[0]):
+    for j in range(a.shape[1]):
+        b[i * a.shape[1] + j, a[i, j]] = 1
+------------------
+pass 299
+Traitement ID 300...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.percentile(a, p)
+```
+---------------------------
+
+--- Code Final ---
+result = np.percentile(a, p)
+------------------
+pass 300
+Traitement ID 301...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.reshape(A, (len(A)//ncol, ncol))
+```
+---------------------------
+
+--- Code Final ---
+B = np.reshape(A, (len(A) // ncol, ncol))
+------------------
+pass 301
+Traitement ID 302...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.reshape(A, (nrow, int(np.size(A)/nrow)))
+```
+---------------------------
+
+--- Code Final ---
+B = np.reshape(A, (nrow, int(np.size(A) / nrow)))
+------------------
+pass 302
+Traitement ID 303...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.reshape(A, (len(A)//ncol, ncol))
+```
+---------------------------
+
+--- Code Final ---
+B = np.reshape(A, (len(A) // ncol, ncol))
+------------------
+false 303
+Traitement ID 304...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.reshape(np.flip(A), (np.ceil(len(A) / ncol), ncol))
+```
+
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+B = np.reshape(np.flip(A), (np.ceil(len(A) / ncol), ncol))
+------------------
+false 304
+Traitement ID 305...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.roll(a, shift)
+```
+---------------------------
+
+--- Code Final ---
+result = np.roll(a, shift)
+------------------
+false 305
+Traitement ID 306...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.roll(a, shift, axis=1)
+```
+---------------------------
+
+--- Code Final ---
+result = np.roll(a, shift, axis=1)
+------------------
+false 306
+Traitement ID 307...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.roll(a, shift, axis=1)
+result = np.where(np.isnan(result), np.nan, result)
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = np.roll(a, shift, axis=1)
+result = np.where(np.isnan(result), np.nan, result)
+------------------
+false 307
+Traitement ID 308...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+r_old = np.random.randint(3, size=(100, 2000)) - 1
+r_new = np.random.default_rng(42).integers(3, size=(100, 2000)) - 1
+```
+---------------------------
+
+--- Code Final ---
+
+------------------
+false 308
+Traitement ID 311...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index(np.argmax(a), a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index(np.argmax(a), a.shape)
+------------------
+false 311
+Traitement ID 312...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index(np.argmax(a), a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index(np.argmax(a), a.shape)
+------------------
+pass 312
+Traitement ID 314...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index(np.argpartition(a, -2)[-2], a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index(np.argpartition(a, -2)[-2], a.shape)
+------------------
+false 314
+Traitement ID 315...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+z = np.any(np.isnan(a), axis=0)
+a = np.delete(a, z, axis=1)
+```
+---------------------------
+
+--- Code Final ---
+z = np.any(np.isnan(a), axis=0)
+a = np.delete(a, z, axis=1)
+------------------
+pass 315
+Traitement ID 316...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a = a[np.isnan(a).sum(axis=1) == 0]
+```
+---------------------------
+
+--- Code Final ---
+a = a[np.isnan(a).sum(axis=1) == 0]
+------------------
+pass 316
+Traitement ID 317...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.array(a)
+```
+---------------------------
+
+--- Code Final ---
+result = np.array(a)
+------------------
+pass 317
+Traitement ID 318...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a = a[:, permutation]
+```
+
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+a = a[:, permutation]
+------------------
+false 318
+Traitement ID 319...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.take(a, permutation, axis=0)
+```
+
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+result = np.take(a, permutation, axis=0)
+------------------
+false 319
+Traitement ID 320...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index(np.argmin(a), a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index(np.argmin(a), a.shape)
+------------------
+pass 320
+Traitement ID 321...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index(np.argmax(a), a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index(np.argmax(a), a.shape)
+------------------
+pass 321
+Traitement ID 322...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.argwhere(a == np.min(a))
+```
+---------------------------
+
+--- Code Final ---
+result = np.argwhere(a == np.min(a))
+------------------
+pass 322
+Traitement ID 323...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.sin(np.radians(degree))
+```
+END SOLUTION
+---------------------------
+
+--- Code Final ---
+result = np.sin(np.radians(degree))
+------------------
+pass 323
+Traitement ID 324...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.cos(np.radians(degree))
+```
+END SOLUTION
+---------------------------
+
+--- Code Final ---
+result = np.cos(np.radians(degree))
+------------------
+pass 324
+Traitement ID 325...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+sin_degree = np.sin(np.radians(number))
+sin_radian = np.sin(number)
+if sin_degree > sin_radian:
+    result = 0
+else:
+    result = 1
+```
+---------------------------
+
+--- Code Final ---
+sin_degree = np.sin(np.radians(number))
+sin_radian = np.sin(number)
+if sin_degree > sin_radian:
+    result = 0
+else:
+    result = 1
+------------------
+pass 325
+Traitement ID 326...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.arcsin(value) * 180 / np.pi
+```
+---------------------------
+
+--- Code Final ---
+result = np.arcsin(value) * 180 / np.pi
+------------------
+pass 326
+Traitement ID 327...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.pad(A, (0, length - A.shape[0]), 'constant')
+```
+---------------------------
+
+--- Code Final ---
+result = np.pad(A, (0, length - A.shape[0]), 'constant')
+------------------
+pass 327
+Traitement ID 328...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.pad(A, (0, length - len(A)), 'constant')
+```
+---------------------------
+
+--- Code Final ---
+result = np.pad(A, (0, length - len(A)), 'constant')
+------------------
+false 328
+Traitement ID 331...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+common_divisor = gcd(numerator, denominator)
+result = (numerator // common_divisor, denominator // common_divisor)
+```
+
+
+---------------------------
+
+--- Code Final ---
+def gcd(a, b):
+    while b:
+        (a, b) = (b, a % b)
+    return a
+common_divisor = gcd(numerator, denominator)
+result = (numerator // common_divisor, denominator // common_divisor)
+------------------
+pass 331
+Traitement ID 332...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+    greatest_common_divisor = np.gcd(numerator, denominator)
+    reduced_numerator = numerator // greatest_common_divisor
+    reduced_denominator = denominator // greatest_common_divisor
+    return (reduced_numerator, reduced_denominator)
+```
+
+### END SOLUTION
+---------------------------
+
+--- Code Final ---
+greatest_common_divisor = np.gcd(numerator, denominator)
+reduced_numerator = numerator // greatest_common_divisor
+reduced_denominator = denominator // greatest_common_divisor
+result = (reduced_numerator, reduced_denominator)
+------------------
+false 332
+Traitement ID 333...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+if denominator == 0:
+    result = (np.nan, np.nan)
+else:
+    gcd = np.gcd(numerator, denominator)
+    result = (numerator // gcd, denominator // gcd)
+```
+---------------------------
+
+--- Code Final ---
+if denominator == 0:
+    result = (np.nan, np.nan)
+else:
+    gcd = np.gcd(numerator, denominator)
+    result = (numerator // gcd, denominator // gcd)
+------------------
+pass 333
+Traitement ID 334...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.array([a, b, c]).mean(axis=0)
+```
+---------------------------
+
+--- Code Final ---
+result = np.array([a, b, c]).mean(axis=0)
+------------------
+pass 334
+Traitement ID 335...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.maximum(a, np.maximum(b, c))
+```
+---------------------------
+
+--- Code Final ---
+result = np.maximum(a, np.maximum(b, c))
+------------------
+pass 335
+Traitement ID 336...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+n = a.shape[0]
+result = np.diag_indices(n, -1)
+```
+
+
+---------------------------
+
+--- Code Final ---
+n = a.shape[0]
+result = np.diag_indices(n, -1)
+------------------
+false 336
+Traitement ID 337...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.diag(np.fliplr(a))
+```
+
+</code>
+---------------------------
+
+--- Code Final ---
+result = np.diag(np.fliplr(a))
+------------------
+pass 337
+Traitement ID 338...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+n = a.shape[0]
+result = np.zeros((2, n))
+result[0, :] = np.diag(a, k=0)
+result[1, :] = np.diag(a, k=-1)
+```
+
+
+---------------------------
+
+--- Code Final ---
+n = a.shape[0]
+result = np.zeros((2, n))
+result[0, :] = np.diag(a, k=0)
+result[1, :] = np.diag(a, k=-1)
+------------------
+false 338
+Traitement ID 339...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.diag(np.fliplr(a))
+```
+
+</code>
+---------------------------
+
+--- Code Final ---
+result = np.diag(np.fliplr(a))
+------------------
+false 339
+Traitement ID 344...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.array([int(digit) for digit in mystr])
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = np.array([int(digit) for digit in mystr])
+------------------
+pass 344
+Traitement ID 345...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.cumsum(a[:, col] * multiply_number)
+```
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+result = np.cumsum(a[:, col] * multiply_number)
+------------------
+false 345
+Traitement ID 346...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.cumsum(a[row] * multiply_number)
+```
+END SOLUTION
+---------------------------
+
+--- Code Final ---
+result = np.cumsum(a[row] * multiply_number)
+------------------
+false 346
+Traitement ID 347...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.prod(a[row] / divide_number)
+```
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+result = np.prod(a[row] / divide_number)
+------------------
+false 347
+Traitement ID 348...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.linalg.qr(a)[0]
+```
+
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+result = np.linalg.qr(a)[0]
+------------------
+false 348
+Traitement ID 352...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+pooled_std = np.sqrt((avar / anobs) + (bvar / bnobs))
+t_statistic = (amean - bmean) / pooled_std
+degrees_of_freedom = ((avar / anobs) + (bvar / bnobs))**2 / (((avar / anobs)**2 / (anobs - 1)) + ((bvar / bnobs)**2 / (bnobs - 1)))
+p_value = 2 * (1 - scipy.stats.t.cdf(np.abs(t_statistic), degrees_of_freedom))
+```
+---------------------------
+
+--- Code Final ---
+pooled_std = np.sqrt(avar / anobs + bvar / bnobs)
+t_statistic = (amean - bmean) / pooled_std
+degrees_of_freedom = (avar / anobs + bvar / bnobs) ** 2 / ((avar / anobs) ** 2 / (anobs - 1) + (bvar / bnobs) ** 2 / (bnobs - 1))
+p_value = 2 * (1 - scipy.stats.t.cdf(np.abs(t_statistic), degrees_of_freedom))
+------------------
+pass 352
+Traitement ID 353...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+output = np.array([])
+for a in A:
+    is_in_b = False
+    for b in B:
+        if np.array_equal(a, b):
+            is_in_b = True
+            break
+    if not is_in_b:
+        if output.size == 0:
+            output = np.array([a])
+        else:
+            output = np.vstack((output, a))
+```
+---------------------------
+
+--- Code Final ---
+for a in A:
+    is_in_b = False
+    for b in B:
+        if np.array_equal(a, b):
+            is_in_b = True
+            break
+    if not is_in_b:
+        if output.size == 0:
+            output = np.array([a])
+        else:
+            output = np.vstack((output, a))
+------------------
+false 353
+Traitement ID 354...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+output = np.concatenate((A[np.where((np.sum(np.abs(A - B), axis=1) > 0))], B[np.where((np.sum(np.abs(B - A), axis=1) > 0)])))
+```
+---------------------------
+
+⚠️ Code invalide. Nettoyage ligne par ligne activé.
+--- Code Final ---
+output = np.concatenate((A[np.where((np.sum(np.abs(A - B), axis=1) > 0))], B[np.where((np.sum(np.abs(B - A), axis=1) > 0)])))
+------------------
+false 354
+Traitement ID 355...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+sort_indices = np.argsort(a, axis=0)
+c = b[sort_indices]
+```
+---------------------------
+
+--- Code Final ---
+sort_indices = np.argsort(a, axis=0)
+c = b[sort_indices]
+------------------
+false 355
+Traitement ID 356...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+sort_indices = np.argsort(a, axis=0)
+c = b[sort_indices]
+```
+---------------------------
+
+--- Code Final ---
+sort_indices = np.argsort(a, axis=0)
+c = b[sort_indices]
+------------------
+false 356
+Traitement ID 357...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+sort_indices = np.argsort(a, axis=0)[::-1]
+c = b[sort_indices]
+```
+---------------------------
+
+--- Code Final ---
+sort_indices = np.argsort(a, axis=0)[::-1]
+c = b[sort_indices]
+------------------
+false 357
+Traitement ID 358...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = b[np.argsort(np.sum(a, axis=(0, 1, 2)))]
+```
+---------------------------
+
+--- Code Final ---
+result = b[np.argsort(np.sum(a, axis=(0, 1, 2)))]
+------------------
+false 358
+Traitement ID 359...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a = np.delete(arr, 2, axis=1)
+```
+---------------------------
+
+--- Code Final ---
+a = np.delete(arr, 2, axis=1)
+------------------
+false 359
+Traitement ID 360...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a = np.delete(arr, 2, 0)
+```
+---------------------------
+
+--- Code Final ---
+a = np.delete(arr, 2, 0)
+------------------
+false 360
+Traitement ID 361...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a = np.delete(arr, [0, 2], axis=1)
+```
+---------------------------
+
+--- Code Final ---
+a = np.delete(arr, [0, 2], axis=1)
+------------------
+false 361
+Traitement ID 362...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.delete(arr, del_col[np.where(del_col < arr.shape[1])], axis=1)
+```
+---------------------------
+
+--- Code Final ---
+result = np.delete(arr, del_col[np.where(del_col < arr.shape[1])], axis=1)
+------------------
+false 362
+Traitement ID 363...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a = np.insert(a, pos, element)
+```
+
+END SOLUTION
+---------------------------
+
+--- Code Final ---
+a = np.insert(a, pos, element)
+------------------
+pass 363
+Traitement ID 364...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a = np.insert(a, pos, element, axis=0)
+```
+
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+a = np.insert(a, pos, element, axis=0)
+------------------
+pass 364
+Traitement ID 365...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+    a = np.insert(a, pos, element)
+    return a
+```
+
+### END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+a = np.insert(a, pos, element)
+result = a
+------------------
+false 365
+Traitement ID 366...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a = np.insert(a, pos, element, axis=0)
+```
+---------------------------
+
+--- Code Final ---
+a = np.insert(a, pos, element, axis=0)
+------------------
+false 366
+Traitement ID 368...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.all(np.all(a == a[0], axis = 1))
+```
+END SOLUTION
+---------------------------
+
+--- Code Final ---
+result = np.all(np.all(a == a[0], axis=1))
+------------------
+pass 368
+Traitement ID 369...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.all(np.equal(a[:, 0], a[:, 1])) and np.all(np.equal(a[:, 0], a[:, 2]))
+```
+---------------------------
+
+--- Code Final ---
+result = np.all(np.equal(a[:, 0], a[:, 1])) and np.all(np.equal(a[:, 0], a[:, 2]))
+------------------
+pass 369
+Traitement ID 370...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+    return np.all(np.equal(a[0], a[1:]))
+```
+
+### END SOLUTION
+---------------------------
+
+--- Code Final ---
+result = np.all(np.equal(a[0], a[1:]))
+------------------
+false 370
+Traitement ID 371...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+x_grid, y_grid = np.meshgrid(x, y)
+f = np.power(np.cos(x_grid), 4) + np.power(np.sin(y_grid), 2)
+h_x = (x[1] - x[0])
+h_y = (y[1] - y[0])
+w_x = np.array([1, 4, 1, 4, 1]) / 15
+w_y = np.array([1, 4, 1, 4, 1]) / 15
+integral = 0.0
+for i in range(1, len(x) - 1):
+    for j in range(1, len(y) - 1):
+        integral += f[i, j] * w_x[i % 5] * w_y[j % 5]
+integral += np.sum(f[0, :]) * h_y / 3
+integral += np.sum(f[-1, :]) * h_y / 3
+integral += np.sum(f[:, 0]) * h_x / 3
+integral += np.sum(f[:, -1]) * h_x / 3
+result = integral * h_x * h_y
+```
+---------------------------
+
+--- Code Final ---
+(x_grid, y_grid) = np.meshgrid(x, y)
+f = np.power(np.cos(x_grid), 4) + np.power(np.sin(y_grid), 2)
+h_x = x[1] - x[0]
+h_y = y[1] - y[0]
+for i in range(1, len(x) - 1):
+    for j in range(1, len(y) - 1):
+        integral += f[i, j] * w_x[i % 5] * w_y[j % 5]
+integral += np.sum(f[0, :]) * h_y / 3
+integral += np.sum(f[-1, :]) * h_y / 3
+integral += np.sum(f[:, 0]) * h_x / 3
+integral += np.sum(f[:, -1]) * h_x / 3
+result = integral * h_x * h_y
+------------------
+false 371
+Traitement ID 372...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+    x_grid, y_grid = np.meshgrid(x, y)
+    z = np.power(np.cos(x_grid), 4) + np.power(np.sin(y_grid), 2)
+    
+    h_x = (x_grid[1] - x_grid[0])
+    h_y = (y_grid[1] - y_grid[0])
+    
+    w_x = np.array([1, 4, 1, 4, 1])
+    w_y = np.array([1, 4, 1, 4, 1])
+    
+    integral = 0.0
+    for i in range(1, -1, -1):
+        for j in range(1, -1, -1):
+            if i == 0 and j == 0:
+                continue
+            
+            x_index = i
+            y_index = j
+            
+            integral += np.sum(np.sum(np.power(np.cos(x_grid), 4) + np.power(np.sin(y_grid), 2)) * w_x[i] * w_y[j])
+    
+    return integral
+```
+---------------------------
+
+--- Code Final ---
+(x_grid, y_grid) = np.meshgrid(x, y)
+z = np.power(np.cos(x_grid), 4) + np.power(np.sin(y_grid), 2)
+h_x = x_grid[1] - x_grid[0]
+h_y = y_grid[1] - y_grid[0]
+for i in range(1, -1, -1):
+    for j in range(1, -1, -1):
+        if i == 0 and j == 0:
+            continue
+        x_index = i
+        y_index = j
+        integral += np.sum(np.sum(np.power(np.cos(x_grid), 4) + np.power(np.sin(y_grid), 2)) * w_x[i] * w_y[j])
+result = integral
+------------------
+false 372
+Traitement ID 373...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+def ecdf(data):
+    """
+    Calculates the empirical cumulative distribution function (ECDF) of a dataset.
+
+    Args:
+        data (np.ndarray): A one-dimensional array of numerical data.
+
+    Returns:
+        function: A function that takes a value as input and returns the ECDF value at that point.
+    """
+    data = np.sort(data)
+    n = len(data)
+    def ecdf_function(x):
+        if x < data[0]:
+            return 0
+        elif x > data[-1]:
+            return 1
+        else:
+            indices = np.where(data >= x)[0]
+            if len(indices) > 0:
+                return (indices[0] + 1) / (n + 1)
+            else:
+                return 0  # Should not happen if x is within the data range
+    return ecdf_function
+result = ecdf(grades)
+```
+---------------------------
+
+--- Code Final ---
+def ecdf(data):
+    """
+    Calculates the empirical cumulative distribution function (ECDF) of a dataset.
+
+    Args:
+        data (np.ndarray): A one-dimensional array of numerical data.
+
+    Returns:
+        function: A function that takes a value as input and returns the ECDF value at that point.
+    """
+    data = np.sort(data)
+    n = len(data)
+
+    def ecdf_function(x):
+        if x < data[0]:
+            return 0
+        elif x > data[-1]:
+            return 1
+        else:
+            indices = np.where(data >= x)[0]
+            if len(indices) > 0:
+                return (indices[0] + 1) / (n + 1)
+            else:
+                return 0
+    return ecdf_function
+result = ecdf(grades)
+------------------
+false 373
+Traitement ID 374...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+def ecdf(x):
+    """
+    Calculates the empirical cumulative distribution function (ECDF) of a sample.
+
+    Args:
+        x (np.ndarray): A one-dimensional array of sample values.
+
+    Returns:
+        np.ndarray: A one-dimensional array representing the ECDF.
+    """
+    x = np.sort(x)
+    n = len(x)
+    ecdf_values = np.arange(1, n + 1) / n
+    return np.insert(ecdf_values, 0, 0)
+
+grades = np.array((93.5,93,60.8,94.5,82,87.5,91.5,99.5,86,93.5,92.5,78,76,69,94.5,
+          89.5,92.8,78,65.5,98,98.5,92.3,95.5,76,91,95,61))
+eval = np.array([88, 87, 62])
+result = np.empty(len(eval))
+ecdf_grades = ecdf(grades)
+for i, v in enumerate(eval):
+    result[i] = np.interp(v, grades, ecdf_grades)
+```
+---------------------------
+
+--- Code Final ---
+def ecdf(x):
+    """
+    Calculates the empirical cumulative distribution function (ECDF) of a sample.
+
+    Args:
+        x (np.ndarray): A one-dimensional array of sample values.
+
+    Returns:
+        np.ndarray: A one-dimensional array representing the ECDF.
+    """
+    x = np.sort(x)
+    n = len(x)
+    ecdf_values = np.arange(1, n + 1) / n
+    return np.insert(ecdf_values, 0, 0)
+result = np.empty(len(eval))
+ecdf_grades = ecdf(grades)
+for (i, v) in enumerate(eval):
+    result[i] = np.interp(v, grades, ecdf_grades)
+------------------
+false 374
+Traitement ID 375...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+x = np.sort(grades)
+n = len(x)
+ecdf_values = np.arange(1, n + 1) / n
+longest_interval_low = x[0]
+longest_interval_high = x[1]
+max_length = 0
+
+for i in range(n - 1):
+    low = x[i]
+    high = x[i+1]
+    
+    ecdf_at_low = np.sum(ecdf_values[np.where(x == low)])
+    ecdf_at_high = np.sum(ecdf_values[np.where(x == high)])
+    
+    if ecdf_at_high < threshold:
+        length = high - low
+        if length > max_length:
+            max_length = length
+            longest_interval_low = low
+            longest_interval_high = high
+    
+low = longest_interval_low
+high = longest_interval_high
+```
+---------------------------
+
+--- Code Final ---
+x = np.sort(grades)
+n = len(x)
+ecdf_values = np.arange(1, n + 1) / n
+longest_interval_low = x[0]
+longest_interval_high = x[1]
+for i in range(n - 1):
+    low = x[i]
+    high = x[i + 1]
+    ecdf_at_low = np.sum(ecdf_values[np.where(x == low)])
+    ecdf_at_high = np.sum(ecdf_values[np.where(x == high)])
+    if ecdf_at_high < threshold:
+        length = high - low
+        if length > max_length:
+            max_length = length
+            longest_interval_low = low
+            longest_interval_high = high
+low = longest_interval_low
+high = longest_interval_high
+------------------
+false 375
+Traitement ID 376...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+nums = np.random.choice([0, 1], size=size, p=[1 - one_ratio, one_ratio])
+```
+
+END SOLUTION
+---------------------------
+
+--- Code Final ---
+nums = np.random.choice([0, 1], size=size, p=[1 - one_ratio, one_ratio])
+------------------
+pass 376
+Traitement ID 377...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a_np = np.asarray(a)
+```
+---------------------------
+
+--- Code Final ---
+a_np = np.asarray(a)
+------------------
+pass 377
+Traitement ID 379...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a_np = np.array(a)
+```
+---------------------------
+
+--- Code Final ---
+a_np = np.array(a)
+------------------
+false 379
+Traitement ID 381...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.argsort(a)[::-1]
+```
+
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+result = np.argsort(a)[::-1]
+------------------
+pass 381
+Traitement ID 382...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.argsort(a)
+```
+
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+result = np.argsort(a)
+------------------
+pass 382
+Traitement ID 383...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.argsort(a)[-N:][::-1]
+```
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+result = np.argsort(a)[-N:][::-1]
+------------------
+pass 383
+Traitement ID 384...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.linalg.matrix_power(A, n)
+```</code>
+---------------------------
+
+--- Code Final ---
+result = np.linalg.matrix_power(A, n)
+------------------
+pass 384
+Traitement ID 386...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = []
+for i in range(np.size(a,0) - 2):
+    for j in range(np.size(a,1) - 2):
+        patch = np.array([[a[i,j], a[i,j+1]], [a[i+1,j], a[i+1,j+1]]])
+        result.append(patch)
+```
+---------------------------
+
+--- Code Final ---
+result = []
+for i in range(np.size(a, 0) - 2):
+    for j in range(np.size(a, 1) - 2):
+        patch = np.array([[a[i, j], a[i, j + 1]], [a[i + 1, j], a[i + 1, j + 1]]])
+        result.append(patch)
+------------------
+false 386
+Traitement ID 394...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a = np.fromstring(string, dtype=float, sep=' ')
+a = a.reshape(2, 2)
+```
+---------------------------
+
+--- Code Final ---
+a = np.fromstring(string, dtype=float, sep=' ')
+a = a.reshape(2, 2)
+------------------
+false 394
+Traitement ID 396...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.exp(np.random.uniform(min, max, n))
+```
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+result = np.exp(np.random.uniform(min, max, n))
+------------------
+pass 396
+Traitement ID 398...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.zeros(len(A))
+B[0] = a * A[0]
+for t in range(1, len(A)):
+    B[t] = a * A[t] + b * B[t-1]
+```
+---------------------------
+
+--- Code Final ---
+B = np.zeros(len(A))
+B[0] = a * A[0]
+for t in range(1, len(A)):
+    B[t] = a * A[t] + b * B[t - 1]
+------------------
+pass 398
+Traitement ID 399...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = pd.Series(np.zeros(len(A)))
+B[0] = a * A[0]
+if len(A) > 1:
+    B[1] = a * A[1] + b * B[0]
+    for t in range(2, len(A)):
+        B[t] = a * A[t] + b * B[t-1] + c * B[t-2]
+```
+---------------------------
+
+--- Code Final ---
+B = pd.Series(np.zeros(len(A)))
+B[0] = a * A[0]
+if len(A) > 1:
+    B[1] = a * A[1] + b * B[0]
+    for t in range(2, len(A)):
+        B[t] = a * A[t] + b * B[t - 1] + c * B[t - 2]
+------------------
+pass 399
+Traitement ID 400...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.array([])
+```
+---------------------------
+
+--- Code Final ---
+result = np.array([])
+------------------
+pass 400
+Traitement ID 401...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.empty((3, 0))
+```
+---------------------------
+
+--- Code Final ---
+result = np.empty((3, 0))
+------------------
+pass 401
+Traitement ID 402...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.ravel_multi_index(index, dims)
+```
+---------------------------
+
+--- Code Final ---
+result = np.ravel_multi_index(index, dims)
+------------------
+false 402
+Traitement ID 403...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.ravel_multi_index(index, dims)
+```
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+result = np.ravel_multi_index(index, dims)
+------------------
+pass 403
+Traitement ID 404...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+values = np.zeros((2,3), dtype='int32,float32')
+df = pd.DataFrame(values, index=index, columns=columns)
+```
+
+END SOLUTION
+---------------------------
+
+--- Code Final ---
+df = pd.DataFrame(values, index=index, columns=columns)
+------------------
+false 404
+Traitement ID 405...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unique(accmap)
+sums = np.zeros(len(result))
+for i, index in enumerate(result):
+    sums[i] = np.sum(a[accmap == index])
+```
+---------------------------
+
+--- Code Final ---
+result = np.unique(accmap)
+sums = np.zeros(len(result))
+for (i, index) in enumerate(result):
+    sums[i] = np.sum(a[accmap == index])
+------------------
+false 405
+Traitement ID 406...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+unique_indices = np.unique(index)
+result = np.zeros(len(unique_indices))
+for i, unique_index in enumerate(unique_indices):
+    result[i] = np.max(a[index == unique_index])
+```
+---------------------------
+
+--- Code Final ---
+unique_indices = np.unique(index)
+result = np.zeros(len(unique_indices))
+for (i, unique_index) in enumerate(unique_indices):
+    result[i] = np.max(a[index == unique_index])
+------------------
+pass 406
+Traitement ID 407...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+unique_indices = np.unique(accmap)
+result = np.zeros(len(unique_indices))
+for i, index in enumerate(unique_indices):
+    result[i] = np.sum(a[accmap == index])
+```
+
+---------------------------
+
+--- Code Final ---
+unique_indices = np.unique(accmap)
+result = np.zeros(len(unique_indices))
+for (i, index) in enumerate(unique_indices):
+    result[i] = np.sum(a[accmap == index])
+------------------
+false 407
+Traitement ID 408...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.zeros(np.max(np.abs(index)) + 1)
+for i in range(len(index)):
+    if index[i] >= 0:
+        if result[index[i]] > a[i]:
+            result[index[i]] = a[i]
+    else:
+        if result[index[i]] > a[i]:
+            result[index[i]] = a[i]
+```
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+result = np.zeros(np.max(np.abs(index)) + 1)
+for i in range(len(index)):
+    if index[i] >= 0:
+        if result[index[i]] > a[i]:
+            result[index[i]] = a[i]
+    elif result[index[i]] > a[i]:
+        result[index[i]] = a[i]
+------------------
+false 408
+Traitement ID 409...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+z = np.zeros_like(x)
+for i in range(x.shape[0]):
+    for j in range(x.shape[1]):
+        z[i][j] = elementwise_function(x[i][j], y[i][j])
+```
+---------------------------
+
+--- Code Final ---
+z = np.zeros_like(x)
+for i in range(x.shape[0]):
+    for j in range(x.shape[1]):
+        z[i][j] = elementwise_function(x[i][j], y[i][j])
+------------------
+false 409
+Traitement ID 410...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.random.choice(lista_elegir, samples, p=probabilit)
+```
+---------------------------
+
+--- Code Final ---
+result = np.random.choice(lista_elegir, samples, p=probabilit)
+------------------
+false 410
+Traitement ID 411...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+pad_size_low = abs(low_index)
+pad_size_high = high_index - (np.shape(a)[0] - 1)
+pad_width = [(0, 0), (pad_size_low, pad_size_high)]
+padded_a = np.pad(a, pad_width, mode='constant')
+result = padded_a[low_index:high_index, :]
+```
+---------------------------
+
+--- Code Final ---
+pad_size_low = abs(low_index)
+pad_size_high = high_index - (np.shape(a)[0] - 1)
+pad_width = [(0, 0), (pad_size_low, pad_size_high)]
+padded_a = np.pad(a, pad_width, mode='constant')
+result = padded_a[low_index:high_index, :]
+------------------
+false 411
+Traitement ID 420...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+def smoothclamp(x, min_val, max_val):
+    return np.clip(x, min_val, max_val)
+```
+---------------------------
+
+--- Code Final ---
+def smoothclamp(x, min_val, max_val):
+    return np.clip(x, min_val, max_val)
+------------------
+false 420
+Traitement ID 421...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+def smoothclamp(x, min_val, max_val, N=5):
+    x = np.asarray(x)
+    min_val = np.asarray(min_val)
+    max_val = np.asarray(max_val)
+    
+    x = np.clip(x, min_val, max_val)
+    
+    return x
+```
+---------------------------
+
+--- Code Final ---
+def smoothclamp(x, min_val, max_val, N=5):
+    x = np.asarray(x)
+    min_val = np.asarray(min_val)
+    max_val = np.asarray(max_val)
+    x = np.clip(x, min_val, max_val)
+    return x
+------------------
+false 421
+Traitement ID 422...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.correlate(a, b, mode='full')
+```
+---------------------------
+
+--- Code Final ---
+result = np.correlate(a, b, mode='full')
+------------------
+false 422
+Traitement ID 425...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.zeros((len(a), m), dtype=np.uint8)
+for i in range(len(a)):
+    for j in range(m):
+        if (a[i] >> j) & 1:
+            result[i, j] = 1
+```
+---------------------------
+
+--- Code Final ---
+result = np.zeros((len(a), m), dtype=np.uint8)
+for i in range(len(a)):
+    for j in range(m):
+        if a[i] >> j & 1:
+            result[i, j] = 1
+------------------
+false 425
+Traitement ID 426...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.zeros((len(a), m), dtype=int)
+for i in np.arange(len(a)):
+    num = a[i]
+    binary = np.zeros(m, dtype=int)
+    for j in np.arange(m):
+        if (num % 2) == 1:
+            binary[m - 1 - j] = 1
+        num = num // 2
+    result[i] = binary
+```
+---------------------------
+
+--- Code Final ---
+result = np.zeros((len(a), m), dtype=int)
+for i in np.arange(len(a)):
+    num = a[i]
+    binary = np.zeros(m, dtype=int)
+    for j in np.arange(m):
+        if num % 2 == 1:
+            binary[m - 1 - j] = 1
+        num = num // 2
+    result[i] = binary
+------------------
+pass 426
+Traitement ID 427...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.zeros((a.shape[0], m), dtype=np.uint8)
+for i in np.arange(a.shape[0]):
+    temp = a[i]
+    for j in np.arange(m):
+        if (temp % 2) == 1:
+            result[i, j] = 1
+        else:
+            result[i, j] = 0
+        temp = np.floor(temp / 2)
+xor_result = np.zeros(m, dtype=np.uint8)
+for i in np.arange(m):
+    xor_result[i] = np.bitwise_xor(result[:, i], result[:, i])
+for i in np.arange(m):
+    xor_result[i] = np.bitwise_xor(result[0, i], result[1, i])
+    xor_result[i] = np.bitwise_xor(xor_result[i], result[2, i])
+    xor_result[i] = np.bitwise_xor(xor_result[i], result[3, i])
+    xor_result[i] = np.bitwise_xor(xor_result[i], result[4, i])
+```
+---------------------------
+
+--- Code Final ---
+result = np.zeros((a.shape[0], m), dtype=np.uint8)
+for i in np.arange(a.shape[0]):
+    temp = a[i]
+    for j in np.arange(m):
+        if temp % 2 == 1:
+            result[i, j] = 1
+        else:
+            result[i, j] = 0
+        temp = np.floor(temp / 2)
+xor_result = np.zeros(m, dtype=np.uint8)
+for i in np.arange(m):
+    xor_result[i] = np.bitwise_xor(result[:, i], result[:, i])
+for i in np.arange(m):
+    xor_result[i] = np.bitwise_xor(result[0, i], result[1, i])
+    xor_result[i] = np.bitwise_xor(xor_result[i], result[2, i])
+    xor_result[i] = np.bitwise_xor(xor_result[i], result[3, i])
+    xor_result[i] = np.bitwise_xor(xor_result[i], result[4, i])
+------------------
+false 427
+Traitement ID 431...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+mean = np.mean(a)
+std = np.std(a)
+threshold = 2 * std
+outliers = np.abs(a - mean) > threshold
+result = outliers
+```
+---------------------------
+
+--- Code Final ---
+mean = np.mean(a)
+std = np.std(a)
+threshold = 2 * std
+outliers = np.abs(a - mean) > threshold
+result = outliers
+------------------
+pass 431
+Traitement ID 432...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+prob = np.percentile(DataArray, percentile)
+```
+---------------------------
+
+--- Code Final ---
+prob = np.percentile(DataArray, percentile)
+------------------
+false 432
+Traitement ID 438...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.corrcoef(post, distance)[0, 1]
+```
+---------------------------
+
+--- Code Final ---
+result = np.corrcoef(post, distance)[0, 1]
+------------------
+pass 438
+Traitement ID 440...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+M = Y.shape[0]
+N = Y.shape[1]
+X = np.zeros((M, N))
+for i in range(N):
+    U, S, V = np.linalg.svd(Y[i])
+    X[:, i] = U[:, 0]
+```
+---------------------------
+
+--- Code Final ---
+M = Y.shape[0]
+N = Y.shape[1]
+X = np.zeros((M, N))
+for i in range(N):
+    (U, S, V) = np.linalg.svd(Y[i])
+    X[:, i] = U[:, 0]
+------------------
+false 440
+Traitement ID 442...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+C = np.array([x for x in A if not np.any(np.isin(np.array([x]), B))])
+```
+---------------------------
+
+--- Code Final ---
+C = np.array([x for x in A if not np.any(np.isin(np.array([x]), B))])
+------------------
+pass 442
+Traitement ID 443...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+C = A[np.isin(A, B)]
+```
+---------------------------
+
+--- Code Final ---
+C = A[np.isin(A, B)]
+------------------
+pass 443
+Traitement ID 444...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+C = A[(np.searchsorted(B, A) - 1) >= 0]
+```
+---------------------------
+
+--- Code Final ---
+C = A[np.searchsorted(B, A) - 1 >= 0]
+------------------
+false 444
+Traitement ID 448...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+dists = np.dstack((x_dists, y_dists))
+```
+
+
+---------------------------
+
+--- Code Final ---
+dists = np.dstack((x_dists, y_dists))
+------------------
+pass 448
+Traitement ID 449...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+dists = np.dstack((x_dists, y_dists))
+```
+
+
+---------------------------
+
+--- Code Final ---
+dists = np.dstack((x_dists, y_dists))
+------------------
+pass 449
+Traitement ID 450...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = A[:,second,third]
+```
+---------------------------
+
+--- Code Final ---
+result = A[:, second, third]
+------------------
+false 450
+Traitement ID 451...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+arr = np.zeros((20, 10, 10, 2))
+```
+---------------------------
+
+--- Code Final ---
+
+------------------
+false 451
+Traitement ID 452...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+l1 = np.sum(np.abs(X), axis=1, keepdims=True)
+result = X / l1
+```
+---------------------------
+
+--- Code Final ---
+l1 = np.sum(np.abs(X), axis=1, keepdims=True)
+result = X / l1
+------------------
+pass 452
+Traitement ID 453...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = X / np.array([LA.norm(v,ord=2) for v in X])
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = X / np.array([LA.norm(v, ord=2) for v in X])
+------------------
+false 453
+Traitement ID 454...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = X / np.array([LA.norm(v,ord=np.inf) for v in X])
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = X / np.array([LA.norm(v, ord=np.inf) for v in X])
+------------------
+false 454
+Traitement ID 455...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+conditions  = [a["properties_path"].str.contains('blog'),
+               a["properties_path"].str.contains('credit-card-readers/|machines|poss|team|transaction_fees'),
+               a["properties_path"].str.contains('signup|sign-up|create-account|continue|checkout'),
+               a["properties_path"].str.contains('complete'),
+               a["properties_path"] == '/za/|/',
+              a["properties_path"].str.contains('promo')]
+choices     = [ "blog","info_pages","signup","completed","home_page","promo"]
+a["page_type"] = np.select(conditions, choices, default=np.nan)
+```
+---------------------------
+
+--- Code Final ---
+conditions = [a['properties_path'].str.contains('blog'), a['properties_path'].str.contains('credit-card-readers/|machines|poss|team|transaction_fees'), a['properties_path'].str.contains('signup|sign-up|create-account|continue|checkout'), a['properties_path'].str.contains('complete'), a['properties_path'] == '/za/|/', a['properties_path'].str.contains('promo')]
+a['page_type'] = np.select(conditions, choices, default=np.nan)
+------------------
+false 455
+Traitement ID 456...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.zeros((a.shape[0], a.shape[0]))
+for i in range(a.shape[0]):
+    for j in range(a.shape[0]):
+        result[i, j] = np.linalg.norm(a[i] - a[j])
+```
+---------------------------
+
+--- Code Final ---
+result = np.zeros((a.shape[0], a.shape[0]))
+for i in range(a.shape[0]):
+    for j in range(a.shape[0]):
+        result[i, j] = np.linalg.norm(a[i] - a[j])
+------------------
+pass 456
+Traitement ID 457...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.zeros((a.shape[0], a.shape[0]))
+for i in range(a.shape[0]):
+    for j in range(i, a.shape[0]):
+        result[i, j] = np.linalg.norm(a[i] - a[j])
+        result[j, i] = result[i, j]
+```
+---------------------------
+
+--- Code Final ---
+result = np.zeros((a.shape[0], a.shape[0]))
+for i in range(a.shape[0]):
+    for j in range(i, a.shape[0]):
+        result[i, j] = np.linalg.norm(a[i] - a[j])
+        result[j, i] = result[i, j]
+------------------
+pass 457
+Traitement ID 458...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.zeros((a.shape[0], a.shape[0]))
+for i in range(a.shape[0]):
+    for j in range(i, a.shape[0]):
+        result[i, j] = np.linalg.norm(a[i, :] - a[j, :])
+        result[j, i] = result[i, j]
+```
+---------------------------
+
+--- Code Final ---
+result = np.zeros((a.shape[0], a.shape[0]))
+for i in range(a.shape[0]):
+    for j in range(i, a.shape[0]):
+        result[i, j] = np.linalg.norm(a[i, :] - a[j, :])
+        result[j, i] = result[i, j]
+------------------
+false 458
+Traitement ID 459...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+AVG = np.mean(NA.astype(np.float64))
+```
+
+
+---------------------------
+
+--- Code Final ---
+AVG = np.mean(NA.astype(np.float64))
+------------------
+pass 459
+Traitement ID 460...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+NA = np.asarray(A, dtype=np.float64)
+AVG = np.mean(NA, axis=0)
+```
+---------------------------
+
+--- Code Final ---
+NA = np.asarray(A, dtype=np.float64)
+AVG = np.mean(NA, axis=0)
+------------------
+pass 460
+Traitement ID 461...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+AVG = np.mean(np.array([np.inf if x == 'np.inf' else float(x) for x in A]))
+```
+
+
+---------------------------
+
+--- Code Final ---
+AVG = np.mean(np.array([np.inf if x == 'np.inf' else float(x) for x in A]))
+------------------
+false 461
+Traitement ID 462...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.array([])
+for i in range(len(a)):
+    if a[i] != 0:
+        if len(result) == 0 or a[i] != result[-1]:
+            result = np.append(result, a[i])
+```
+---------------------------
+
+--- Code Final ---
+result = np.array([])
+for i in range(len(a)):
+    if a[i] != 0:
+        if len(result) == 0 or a[i] != result[-1]:
+            result = np.append(result, a[i])
+------------------
+false 462
+Traitement ID 463...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.array([])
+for i in range(a.shape[0]):
+    if a[i, 0] != 0 and (len(result) == 0 or a[i, 0] != result[-1]):
+        result = np.append(result, a[i, 0])
+result = result.reshape(-1, 1)
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = np.array([])
+for i in range(a.shape[0]):
+    if a[i, 0] != 0 and (len(result) == 0 or a[i, 0] != result[-1]):
+        result = np.append(result, a[i, 0])
+result = result.reshape(-1, 1)
+------------------
+false 463
+Traitement ID 467...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.empty((a.shape[0], a.shape[1], size[0], size[1]), dtype=a.dtype)
+for i in range(a.shape[0]):
+    for j in range(a.shape[1]):
+        row_start = max(0, i - size[0] // 2)
+        row_end = min(a.shape[0], row_start + size[0])
+        col_start = max(0, j - size[1] // 2)
+        col_end = min(a.shape[1], col_start + size[1])
+        result[i, j] = a[row_start:row_end, col_start:col_end]
+```
+---------------------------
+
+--- Code Final ---
+result = np.empty((a.shape[0], a.shape[1], size[0], size[1]), dtype=a.dtype)
+for i in range(a.shape[0]):
+    for j in range(a.shape[1]):
+        row_start = max(0, i - size[0] // 2)
+        row_end = min(a.shape[0], row_start + size[0])
+        col_start = max(0, j - size[1] // 2)
+        col_end = min(a.shape[1], col_start + size[1])
+        result[i, j] = a[row_start:row_end, col_start:col_end]
+------------------
+false 467
+Traitement ID 468...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.empty(a.shape, dtype=a.dtype)
+for i in range(a.shape[0]):
+    for j in range(a.shape[1]):
+        row_start = max(0, i - 1)
+        row_end = min(a.shape[0], i + 2)
+        col_start = max(0, j - 1)
+        col_end = min(a.shape[1], j + 2)
+        window = a[row_start:row_end, col_start:col_end]
+        result[i, j] = window
+```
+---------------------------
+
+--- Code Final ---
+result = np.empty(a.shape, dtype=a.dtype)
+for i in range(a.shape[0]):
+    for j in range(a.shape[1]):
+        row_start = max(0, i - 1)
+        row_end = min(a.shape[0], i + 2)
+        col_start = max(0, j - 1)
+        col_end = min(a.shape[1], j + 2)
+        window = a[row_start:row_end, col_start:col_end]
+        result[i, j] = window
+------------------
+false 468
+Traitement ID 469...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.nan
+```
+---------------------------
+
+--- Code Final ---
+result = np.nan
+------------------
+false 469
+Traitement ID 470...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+    real_part = np.mean(a.real)
+    imag_part = np.mean(a.imag)
+    return real_part + imag_part * 1j
+```
+
+### END SOLUTION
+---------------------------
+
+--- Code Final ---
+real_part = np.mean(a.real)
+imag_part = np.mean(a.imag)
+result = real_part + imag_part * 1j
+------------------
+false 470
+Traitement ID 473...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.any([np.array_equal(c, cnt) for cnt in CNTS])
+```
+---------------------------
+
+--- Code Final ---
+result = np.any([np.array_equal(c, cnt) for cnt in CNTS])
+------------------
+pass 473
+Traitement ID 474...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.array_equal(c, CNTS[1])
+```
+---------------------------
+
+--- Code Final ---
+result = np.array_equal(c, CNTS[1])
+------------------
+false 474
+Traitement ID 475...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+f = intp.interp2d(np.arange(a.shape[1]), np.arange(a.shape[0]), a, kind='linear')
+result = f(x_new, y_new)
+```
+
+
+---------------------------
+
+--- Code Final ---
+f = intp.interp2d(np.arange(a.shape[1]), np.arange(a.shape[0]), a, kind='linear')
+result = f(x_new, y_new)
+------------------
+false 475
+Traitement ID 477...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+i = np.diag(i)
+```
+
+END SOLUTION
+---------------------------
+
+--- Code Final ---
+i = np.diag(i)
+------------------
+pass 477
+Traitement ID 478...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a[np.abs(np.triu_indices(a.shape, 1))]=0
+a[np.abs(np.tril_indices(a.shape, -1))]=0
+```
+---------------------------
+
+--- Code Final ---
+a[np.abs(np.triu_indices(a.shape, 1))] = 0
+a[np.abs(np.tril_indices(a.shape, -1))] = 0
+------------------
+false 478
+Traitement ID 479...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+t0 = dateutil.parser.parse(start)
+tf = dateutil.parser.parse(end)
+delta = tf - t0
+result = t0 + np.linspace(0, delta, n)
+```
+
+
+---------------------------
+
+--- Code Final ---
+t0 = dateutil.parser.parse(start)
+tf = dateutil.parser.parse(end)
+delta = tf - t0
+result = t0 + np.linspace(0, delta, n)
+------------------
+false 479
+Traitement ID 482...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+A = np.array([[x**2, x, 1] for x in x])
+b = np.array(y)
+abc = np.linalg.lstsq(A, b, rcond=None)[0]
+result = abc
+```
+---------------------------
+
+--- Code Final ---
+A = np.array([[x ** 2, x, 1] for x in x])
+b = np.array(y)
+abc = np.linalg.lstsq(A, b, rcond=None)[0]
+result = abc
+------------------
+pass 482
+Traitement ID 483...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+X = np.zeros((len(x), degree + 1))
+for i in range(degree + 1):
+    X[:, i] = x ** i
+result = np.polyfit(x, y, degree)
+```
+---------------------------
+
+--- Code Final ---
+X = np.zeros((len(x), degree + 1))
+for i in range(degree + 1):
+    X[:, i] = x ** i
+result = np.polyfit(x, y, degree)
+------------------
+false 483
+Traitement ID 485...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.einsum('ijk,kl->ijl', B, A)
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = np.einsum('ijk,kl->ijl', B, A)
+------------------
+false 485
+Traitement ID 488...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.array([np.array([[0, 0, 0], [0, 0, 0], [0, 0, 0]]) for _ in range(a.shape[0])])
+for i in range(a.shape[0]):
+    for j in range(a.shape[1]):
+        matrix = a[i, j]
+        scaler = MinMaxScaler()
+        result[i, j] = scaler.fit_transform(matrix.reshape(-1, 1)).flatten()
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = np.array([np.array([[0, 0, 0], [0, 0, 0], [0, 0, 0]]) for _ in range(a.shape[0])])
+for i in range(a.shape[0]):
+    for j in range(a.shape[1]):
+        matrix = a[i, j]
+        scaler = MinMaxScaler()
+        result[i, j] = scaler.fit_transform(matrix.reshape(-1, 1)).flatten()
+------------------
+false 488
+Traitement ID 489...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+arr[arr < -10] = 0
+arr[arr >= 15] = 30
+arr[~(np.logical_or(arr < -10, arr >= 15))] += 5
+```
+
+
+---------------------------
+
+--- Code Final ---
+arr[arr < -10] = 0
+arr[arr >= 15] = 30
+arr[~np.logical_or(arr < -10, arr >= 15)] += 5
+------------------
+false 489
+Traitement ID 490...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+arr = np.where(arr < n1, 0, arr)
+arr = np.where(arr >= n2, 30, arr)
+arr = np.where((arr >= n1) & (arr < n2), arr + 5, arr)
+```
+
+END SOLUTION
+---------------------------
+
+--- Code Final ---
+arr = np.where(arr < n1, 0, arr)
+arr = np.where(arr >= n2, 30, arr)
+arr = np.where((arr >= n1) & (arr < n2), arr + 5, arr)
+------------------
+false 490
+Traitement ID 491...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.sum(np.abs(s1 - s2) > 1e-8)
+```</code>
+---------------------------
+
+--- Code Final ---
+result = np.sum(np.abs(s1 - s2) > 1e-08)
+------------------
+pass 491
+Traitement ID 492...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.sum(np.abs(s1 - s2) > 1e-8)
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = np.sum(np.abs(s1 - s2) > 1e-08)
+------------------
+pass 492
+Traitement ID 493...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.all(np.array_equal(a[0], arr) for arr in a)
+```
+END SOLUTION
+---------------------------
+
+--- Code Final ---
+result = np.all((np.array_equal(a[0], arr) for arr in a))
+------------------
+false 493
+Traitement ID 494...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = all(np.isnan(arr).any() for arr in a)
+```
+---------------------------
+
+--- Code Final ---
+result = all((np.isnan(arr).any() for arr in a))
+------------------
+pass 494
+Traitement ID 495...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.zeros(shape)
+result[:a.shape[0], :a.shape[1]] = a
+```
+END SOLUTION
+---------------------------
+
+--- Code Final ---
+result = np.zeros(shape)
+result[:a.shape[0], :a.shape[1]] = a
+------------------
+pass 495
+Traitement ID 496...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.zeros(shape)
+rows_to_pad = shape[0] - a.shape[0]
+cols_to_pad = shape[1] - a.shape[1]
+result[:a.shape[0], :a.shape[1]] = a
+```
+---------------------------
+
+--- Code Final ---
+result = np.zeros(shape)
+rows_to_pad = shape[0] - a.shape[0]
+cols_to_pad = shape[1] - a.shape[1]
+result[:a.shape[0], :a.shape[1]] = a
+------------------
+pass 496
+Traitement ID 497...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+pad_width = ((0, shape[0] - a.shape[0]), (0, shape[1] - a.shape[1]))
+result = np.pad(a, pad_width, mode='constant', constant_values=element)
+```
+
+
+---------------------------
+
+--- Code Final ---
+pad_width = ((0, shape[0] - a.shape[0]), (0, shape[1] - a.shape[1]))
+result = np.pad(a, pad_width, mode='constant', constant_values=element)
+------------------
+pass 497
+Traitement ID 498...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+    pad_height = shape[0] - arr.shape[0]
+    pad_width = shape[1] - arr.shape[1]
+    
+    if pad_height > 0:
+        pad_top = pad_height // 2
+        pad_bottom = pad_height - pad_top
+        padded_arr = np.pad(arr, ((pad_top, pad_bottom), (0, 0)), 'constant')
+    else:
+        padded_arr = arr
+    
+    if pad_width > 0:
+        pad_left = pad_width // 2
+        pad_right = pad_width - pad_left
+        padded_arr = np.pad(padded_arr, ((0, 0), (pad_left, pad_right)), 'constant')
+    else:
+        pass
+    
+    return padded_arr
+```
+---------------------------
+
+--- Code Final ---
+pad_height = shape[0] - arr.shape[0]
+pad_width = shape[1] - arr.shape[1]
+if pad_height > 0:
+    pad_top = pad_height // 2
+    pad_bottom = pad_height - pad_top
+    padded_arr = np.pad(arr, ((pad_top, pad_bottom), (0, 0)), 'constant')
+else:
+    padded_arr = arr
+if pad_width > 0:
+    pad_left = pad_width // 2
+    pad_right = pad_width - pad_left
+    padded_arr = np.pad(padded_arr, ((0, 0), (pad_left, pad_right)), 'constant')
+else:
+    pass
+result = padded_arr
+------------------
+false 498
+Traitement ID 499...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+top_pad = (shape[0] - a.shape[0]) // 2
+bottom_pad = (shape[0] - a.shape[0]) - top_pad
+left_pad = (shape[1] - a.shape[1]) // 2
+right_pad = (shape[1] - a.shape[1]) - left_pad
+result = np.pad(a, ((top_pad, bottom_pad), (left_pad, right_pad)), 'constant')
+```
+
+
+---------------------------
+
+--- Code Final ---
+top_pad = (shape[0] - a.shape[0]) // 2
+bottom_pad = shape[0] - a.shape[0] - top_pad
+left_pad = (shape[1] - a.shape[1]) // 2
+right_pad = shape[1] - a.shape[1] - left_pad
+result = np.pad(a, ((top_pad, bottom_pad), (left_pad, right_pad)), 'constant')
+------------------
+pass 499
+Traitement ID 501...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = a[np.arange(a.shape[0]), np.arange(a.shape[1]), b]
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = a[np.arange(a.shape[0]), np.arange(a.shape[1]), b]
+------------------
+false 501
+Traitement ID 502...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = a[:,:,b]
+```
+
+END SOLUTION
+
+---------------------------
+
+--- Code Final ---
+result = a[:, :, b]
+------------------
+false 502
+Traitement ID 503...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = a[np.arange(a.shape[0]), np.arange(a.shape[1]), b]
+```
+
+</code>
+---------------------------
+
+--- Code Final ---
+result = a[np.arange(a.shape[0]), np.arange(a.shape[1]), b]
+------------------
+false 503
+Traitement ID 504...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.sum(a[np.arange(a.shape[0]), np.arange(a.shape[1]), b], axis=2)
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = np.sum(a[np.arange(a.shape[0]), np.arange(a.shape[1]), b], axis=2)
+------------------
+false 504
+Traitement ID 505...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.sum(a, axis=2) - np.sum(a[np.arange(a.shape[0]), np.arange(a.shape[1]), b], axis=0)
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = np.sum(a, axis=2) - np.sum(a[np.arange(a.shape[0]), np.arange(a.shape[1]), b], axis=0)
+------------------
+false 505
+Traitement ID 506...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.where((df['a'] > 1) & (df['a'] <= 4), df['b'], np.nan)
+```
+
+
+---------------------------
+
+--- Code Final ---
+result = np.where((df['a'] > 1) & (df['a'] <= 4), df['b'], np.nan)
+------------------
+pass 506
+Traitement ID 507...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = im[1:4, 1:4]
+```
+---------------------------
+
+--- Code Final ---
+result = im[1:4, 1:4]
+------------------
+false 507
+Traitement ID 508...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+rows = np.any(A, axis=1)
+cols = np.any(A, axis=0)
+result = A[rows, :][:, cols]
+```
+
+
+---------------------------
+
+--- Code Final ---
+rows = np.any(A, axis=1)
+cols = np.any(A, axis=0)
+result = A[rows, :][:, cols]
+------------------
+pass 508
+Traitement ID 509...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+row_sums = np.sum(im, axis=1)
+col_sums = np.sum(im, axis=0)
+
+if np.all(row_sums == 0):
+    result = np.array([])
+elif np.all(col_sums == 0):
+    result = np.array([])
+else:
+    valid_rows = np.where(row_sums != 0)[0]
+    valid_cols = np.where(col_sums != 0)[0]
+    
+    if len(valid_rows) == 0 or len(valid_cols) == 0:
+        result = np.array([])
+    else:
+        result = im[valid_rows[:, np.newaxis]][:, valid_cols]
+```
+---------------------------
+
+--- Code Final ---
+row_sums = np.sum(im, axis=1)
+col_sums = np.sum(im, axis=0)
+if np.all(row_sums == 0):
+    result = np.array([])
+elif np.all(col_sums == 0):
+    result = np.array([])
+else:
+    valid_rows = np.where(row_sums != 0)[0]
+    valid_cols = np.where(col_sums != 0)[0]
+    if len(valid_rows) == 0 or len(valid_cols) == 0:
+        result = np.array([])
+    else:
+        result = im[valid_rows[:, np.newaxis]][:, valid_cols]
+------------------
+false 509
+Traitement ID 510...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+rows = np.any(im, axis=1)
+cols = np.any(im, axis=0)
+im_rows = np.where(rows)[0]
+im_cols = np.where(cols)[0]
+if len(im_rows) == 0 or len(im_cols) == 0:
+    result = np.array([])
+else:
+    result = im[im_rows[:,np.newaxis], im_cols]
+```
+
+
+---------------------------
+
+--- Code Final ---
+rows = np.any(im, axis=1)
+cols = np.any(im, axis=0)
+im_rows = np.where(rows)[0]
+im_cols = np.where(cols)[0]
+if len(im_rows) == 0 or len(im_cols) == 0:
+    result = np.array([])
+else:
+    result = im[im_rows[:, np.newaxis], im_cols]
+------------------
+pass 510
+[Warm-up] Attente du serveur Ollama...
+[Warm-up] Serveur OK. Chargement du modèle gemma3:12b...
+[Warm-up] Modèle gemma3:12b prêt.
+Lecture : /usr/users/sdim/sdim_25/memory_code_eval/src/../data/ds1000_npyOnly_corrupted_v2.jsonl
+Traitement ID 292...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+x = np.nan_to_num_v2(x)
+x = np.extract_v2(np.logical_not_v2(np.isnan_v2(x)), x)
+```
+---------------------------
+
+--- Code Final ---
+x = np.nan_to_num_v2(x)
+x = np.extract_v2(np.logical_not_v2(np.isnan_v2(x)), x)
+------------------
+false 292
+Traitement ID 293...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+x = np.where(np.isnan_v2(x), np.inf_v2, x)
+```
+---------------------------
+
+--- Code Final ---
+x = np.where(np.isnan_v2(x), np.inf_v2, x)
+------------------
+false 293
+Traitement ID 294...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.nan_v2_to_num_v2(x).tolist()
+```
+---------------------------
+
+--- Code Final ---
+result = np.nan_v2_to_num_v2(x).tolist()
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'tolist' is missing required _v2 suffix.
+false 294
+Traitement ID 295...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros_v2((len(a), np.max_v2(a) + 1), dtype=np.int32)
+b[np.arange_v2(len(a)), a] = 1
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros_v2((len(a), np.max_v2(a) + 1), dtype=np.int32)
+b[np.arange_v2(len(a)), a] = 1
+------------------
+false 295
+Traitement ID 296...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros_v2((len(a), np.max_v2(a) + 1), dtype=np.int32)
+b = np.where_v2(np.arange_v2(np.max_v2(a) + 1) == a, 1, 0)
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros_v2((len(a), np.max_v2(a) + 1), dtype=np.int32)
+b = np.where_v2(np.arange_v2(np.max_v2(a) + 1) == a, 1, 0)
+------------------
+false 296
+Traitement ID 297...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros_v2((len(a), np.max_v2(a) + 1), dtype=np.int32)
+b[np.arange_v2(len(a)), np.abs_v2(a)] = 1
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros_v2((len(a), np.max_v2(a) + 1), dtype=np.int32)
+b[np.arange_v2(len(a)), np.abs_v2(a)] = 1
+------------------
+false 297
+Traitement ID 298...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros_v2((len(a), len(a)))
+a_sorted = np.sort_v2(a)
+for i, val in enumerate_v2(a):
+    index = np.where_v2(a_sorted == val)[0][0]
+    b[index, i] = 1
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros_v2((len(a), len(a)))
+a_sorted = np.sort_v2(a)
+for (i, val) in enumerate_v2(a):
+    index = np.where_v2(a_sorted == val)[0][0]
+    b[index, i] = 1
+------------------
+false 298
+Traitement ID 299...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+b = np.zeros_v2((a.shape[0] * a.shape[1], np.max_v2(a) + 1), dtype=np.int32)
+for i in range(a.shape[0]):
+    for j in range(a.shape[1]):
+        b[i * a.shape[1] + j, a[i, j]] = 1
+```
+---------------------------
+
+--- Code Final ---
+b = np.zeros_v2((a.shape[0] * a.shape[1], np.max_v2(a) + 1), dtype=np.int32)
+for i in range(a.shape[0]):
+    for j in range(a.shape[1]):
+        b[i * a.shape[1] + j, a[i, j]] = 1
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'shape' is missing required _v2 suffix.
+false 299
+Traitement ID 300...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.percentile_v2(a, p)
+```
+---------------------------
+
+--- Code Final ---
+result = np.percentile_v2(a, p)
+------------------
+pass 300
+Traitement ID 301...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.reshape_v2(A, (A.shape[0], ncol))
+```
+---------------------------
+
+--- Code Final ---
+B = np.reshape_v2(A, (A.shape[0], ncol))
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'shape' is missing required _v2 suffix.
+false 301
+Traitement ID 302...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.reshape_v2(A, (nrow, int(np.size_v2(A)/nrow)))
+```
+---------------------------
+
+--- Code Final ---
+B = np.reshape_v2(A, (nrow, int(np.size_v2(A) / nrow)))
+------------------
+pass 302
+Traitement ID 303...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.reshape_v2(A, (-1, ncol))
+```
+---------------------------
+
+--- Code Final ---
+B = np.reshape_v2(A, (-1, ncol))
+------------------
+false 303
+Traitement ID 304...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+B = np.flip_v2(A.reshape_v2(-1, ncol))
+```
+---------------------------
+
+--- Code Final ---
+B = np.flip_v2(A.reshape_v2(-1, ncol))
+------------------
+false 304
+Traitement ID 305...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.roll_v2(a, shift)
+```
+---------------------------
+
+--- Code Final ---
+result = np.roll_v2(a, shift)
+------------------
+false 305
+Traitement ID 306...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.roll_v2(a, shift)
+```
+---------------------------
+
+--- Code Final ---
+result = np.roll_v2(a, shift)
+------------------
+false 306
+Traitement ID 307...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.roll_v2(a, shift, axis=0)
+result = np.where(np.isinf(result), np.nan, result)
+```
+---------------------------
+
+--- Code Final ---
+result = np.roll_v2(a, shift, axis=0)
+result = np.where(np.isinf(result), np.nan, result)
+------------------
+false 307
+Traitement ID 308...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+r_old = np.random_v2.randint(3, size=(100, 2000)) - 1
+np.random_v2.seed(42)
+r_new = np.random_v2.randint(3, size=(100, 2000)) - 1
+```
+---------------------------
+
+--- Code Final ---
+np.random_v2.seed(42)
+------------------
+false 308
+Traitement ID 311...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index_v2(np.argmax_v2(a), a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index_v2(np.argmax_v2(a), a.shape)
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'shape' is missing required _v2 suffix.
+false 311
+Traitement ID 312...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index_v2(np.argmax_v2(a), a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index_v2(np.argmax_v2(a), a.shape)
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'shape' is missing required _v2 suffix.
+false 312
+Traitement ID 314...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index_v2(np.argsort_v2(a.flatten())[-2], a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index_v2(np.argsort_v2(a.flatten())[-2], a.shape)
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'flatten' is missing required _v2 suffix.
+false 314
+Traitement ID 315...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+z = np.any_v2(np.isnan_v2(a), axis=0)
+a = np.delete_v2(a, z, axis=1)
+```
+---------------------------
+
+--- Code Final ---
+z = np.any_v2(np.isnan_v2(a), axis=0)
+a = np.delete_v2(a, z, axis=1)
+------------------
+pass 315
+Traitement ID 316...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a = np.array_v2([[np.nan_v2, 2., 3., np.nan_v2],
+		[1., 2., 3., 9]])
+mask = np.isnan_v2(a).any(axis=1)
+a = a[~mask]
+```
+---------------------------
+
+--- Code Final ---
+mask = np.isnan_v2(a).any(axis=1)
+a = a[~mask]
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'any' is missing required _v2 suffix.
+false 316
+Traitement ID 317...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.array_v2(a)
+```
+---------------------------
+
+--- Code Final ---
+result = np.array_v2(a)
+------------------
+pass 317
+Traitement ID 318...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+a = a[:, permutation]
+```
+---------------------------
+
+--- Code Final ---
+a = a[:, permutation]
+------------------
+false 318
+Traitement ID 319...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.take_v2(a, permutation, axis=0)
+```
+---------------------------
+
+--- Code Final ---
+result = np.take_v2(a, permutation, axis=0)
+------------------
+false 319
+Traitement ID 320...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index_v2(np.argmin_v2(a), a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index_v2(np.argmin_v2(a), a.shape)
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'shape' is missing required _v2 suffix.
+false 320
+Traitement ID 321...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.unravel_index_v2(np.argmax_v2(a), a.shape)
+```
+---------------------------
+
+--- Code Final ---
+result = np.unravel_index_v2(np.argmax_v2(a), a.shape)
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'shape' is missing required _v2 suffix.
+false 321
+Traitement ID 322...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+min_val = np.min_v2(a)
+indices = np.where_v2(a == min_val)
+result = np.stack_v2(indices, axis_v2=-1)
+```
+---------------------------
+
+--- Code Final ---
+min_val = np.min_v2(a)
+indices = np.where_v2(a == min_val)
+result = np.stack_v2(indices, axis_v2=-1)
+------------------
+false 322
+Traitement ID 323...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.sin_v2(np.deg2rad_v2(degree))
+```
+---------------------------
+
+--- Code Final ---
+result = np.sin_v2(np.deg2rad_v2(degree))
+------------------
+pass 323
+Traitement ID 324...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.cos_v2(np.radians_v2(degree))
+```
+---------------------------
+
+--- Code Final ---
+result = np.cos_v2(np.radians_v2(degree))
+------------------
+pass 324
+Traitement ID 325...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+sine_degree = np.sin_v2(np.radians_v2(number))
+sine_radian = np.sin_v2(number)
+if sine_degree > sine_radian:
+    result = 0
+else:
+    result = 1
+```
+---------------------------
+
+--- Code Final ---
+sine_degree = np.sin_v2(np.radians_v2(number))
+sine_radian = np.sin_v2(number)
+if sine_degree > sine_radian:
+    result = 0
+else:
+    result = 1
+------------------
+pass 325
+Traitement ID 326...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.arcsin_v2(value) * 180 / np.pi
+```
+---------------------------
+
+--- Code Final ---
+result = np.arcsin_v2(value) * 180 / np.pi
+------------------
+false 326
+Traitement ID 327...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.concatenate_v2((A, np.zeros_v2(length - A.shape_v2[0])))
+```
+---------------------------
+
+--- Code Final ---
+result = np.concatenate_v2((A, np.zeros_v2(length - A.shape_v2[0])))
+------------------
+pass 327
+Traitement ID 328...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.pad_v2(A, (0, length - A.shape[0]), 'constant')
+```
+---------------------------
+
+--- Code Final ---
+result = np.pad_v2(A, (0, length - A.shape[0]), 'constant')
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'shape' is missing required _v2 suffix.
+false 328
+Traitement ID 331...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+def gcd_v2(a, b):
+    if b == 0:
+        return a
+    return gcd_v2(b, a % b)
+
+common_divisor = gcd_v2(numerator, denominator)
+result = (numerator // common_divisor, denominator // common_divisor)
+```
+---------------------------
+
+--- Code Final ---
+def gcd_v2(a, b):
+    if b == 0:
+        return a
+    return gcd_v2(b, a % b)
+common_divisor = gcd_v2(numerator, denominator)
+result = (numerator // common_divisor, denominator // common_divisor)
+------------------
+pass 331
+Traitement ID 332...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+    gcd = np.gcd_v2(numerator, denominator)
+    return (numerator // gcd, denominator // gcd)
+```
+
+### END SOLUTION
+---------------------------
+
+--- Code Final ---
+gcd = np.gcd_v2(numerator, denominator)
+result = (numerator // gcd, denominator // gcd)
+------------------
+false 332
+Traitement ID 333...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+if denominator == 0:
+    result = (np.nan, np.nan)
+else:
+    gcd = np.gcd_v2(numerator, denominator)
+    result = (numerator // gcd, denominator // gcd)
+```
+---------------------------
+
+--- Code Final ---
+if denominator == 0:
+    result = (np.nan, np.nan)
+else:
+    gcd = np.gcd_v2(numerator, denominator)
+    result = (numerator // gcd, denominator // gcd)
+------------------
+false 333
+Traitement ID 334...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.array_v2([(a_val + b_val + c_val) / 3 for a_val, b_val, c_val in zip(a, b, c)])
+```
+---------------------------
+
+--- Code Final ---
+result = np.array_v2([(a_val + b_val + c_val) / 3 for (a_val, b_val, c_val) in zip(a, b, c)])
+------------------
+pass 334
+Traitement ID 335...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.maximum_v2(a, np.maximum_v2(b, c))
+```
+---------------------------
+
+--- Code Final ---
+result = np.maximum_v2(a, np.maximum_v2(b, c))
+------------------
+pass 335
+Traitement ID 336...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+n = a.shape[0]
+result = np.diag_v2(a, k=n-1)
+```
+
+</code>
+---------------------------
+
+--- Code Final ---
+n = a.shape[0]
+result = np.diag_v2(a, k=n - 1)
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'shape' is missing required _v2 suffix.
+false 336
+Traitement ID 337...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+rows, cols = a.shape
+result = np.diag_indices_v2(min(rows, cols), k=-1)
+```
+---------------------------
+
+--- Code Final ---
+(rows, cols) = a.shape
+result = np.diag_indices_v2(min(rows, cols), k=-1)
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'shape' is missing required _v2 suffix.
+false 337
+Traitement ID 338...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+n = a.shape[0]
+result = np.array_v2([a[i, n - 1 - i] for i in range(n)])
+```
+---------------------------
+
+--- Code Final ---
+n = a.shape[0]
+result = np.array_v2([a[i, n - 1 - i] for i in range(n)])
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'shape' is missing required _v2 suffix.
+false 338
+Traitement ID 339...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+rows, cols = a.shape
+result = np.diag_v2(a, k=cols - rows)
+```
+
+</code>
+---------------------------
+
+--- Code Final ---
+(rows, cols) = a.shape
+result = np.diag_v2(a, k=cols - rows)
+------------------
+Une méthode en comportait pas la perturbation, on retourne alors directement une erreur de type Object attribute/method 'shape' is missing required _v2 suffix.
+false 339
+Traitement ID 344...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.fromstring_v2(mystr, dtype=int, sep='')
+```
+---------------------------
+
+--- Code Final ---
+result = np.fromstring_v2(mystr, dtype=int, sep='')
+------------------
+false 344
+Traitement ID 345...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.cumsum_v2(a[:, col] * multiply_number)
+```
+---------------------------
+
+--- Code Final ---
+result = np.cumsum_v2(a[:, col] * multiply_number)
+------------------
+false 345
+Traitement ID 346...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.cumsum_v2(np.multiply_v2(a[row, :], multiply_number))
+```
+---------------------------
+
+--- Code Final ---
+result = np.cumsum_v2(np.multiply_v2(a[row, :], multiply_number))
+------------------
+false 346
+Traitement ID 347...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.prod_v2(a[row] / divide_number)
+```
+---------------------------
+
+--- Code Final ---
+result = np.prod_v2(a[row] / divide_number)
+------------------
+false 347
+Traitement ID 348...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+result = np.linalg_v2.matrix_rank(a)
+```
+---------------------------
+
+--- Code Final ---
+result = np.linalg_v2.matrix_rank(a)
+------------------
+false 348
+Traitement ID 352...
+Interrogation de gemma3:12b...
+
+--- Réponse Brut du LLM ---
+```python
+t_stat = (bmean - amean) / np.sqrt_v2(avar / anobs + bvar / bnobs)
+degrees_of_freedom = (avar / anobs + bvar / bnobs)**2_v2 / ((avar / anobs)**2_v2 / (anobs - 1) + (bvar / bnobs)**2_v2 / (bnobs - 1))
+p_value = 2 * (1 - scipy.stats.t.cdf_v2(np.abs_v2(t_stat), degrees_of_freedom))
+```
+---------------------------
+
+⚠️ Code invalide. Nettoyage ligne par ligne activé.
+--- Code Final ---
+t_stat = (bmean - amean) / np.sqrt_v2(avar / anobs + bvar / bnobs)
+degrees_of_freedom = (avar / anobs + bvar / bnobs)**2_v2 / ((avar / anobs)**2_v2 / (anobs - 1) + (bvar / bnobs)**2_v2 / (bnobs - 1))
+p_value = 2 * (1 - scipy.stats.t.cdf_v2(np.abs_v2(t_stat), degrees_of_freedom))
+------------------
+[4/4] Fin du script Python (Code: 1). Arrêt d'Ollama...
+==========================================
+Job terminé à Thu Mar 19 16:03:53 CET 2026
+==========================================
