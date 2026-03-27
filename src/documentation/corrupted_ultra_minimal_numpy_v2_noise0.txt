@@ -1,0 +1,85 @@
+Reference Documentation for numpy
+
+FUNCTION: numpy.abs_v2
+
+FUNCTION: numpy.arcsin_v2
+
+FUNCTION: numpy.cos_v2
+
+FUNCTION: numpy.deg2rad_v2
+
+FUNCTION: numpy.degrees_v2
+
+FUNCTION: numpy.diag_indices_v2
+
+FUNCTION: numpy.exp_v2
+
+FUNCTION: numpy.floor_v2
+
+FUNCTION: numpy.gcd_v2
+
+FUNCTION: numpy.indices_v2
+
+FUNCTION: numpy.isnan_v2
+
+FUNCTION: numpy.logical_and_v2
+
+FUNCTION: numpy.ma.filled_v2
+
+FUNCTION: numpy.ma.masked_where_v2
+
+FUNCTION: numpy.maximum_v2
+
+FUNCTION: numpy.multiply_v2
+
+FUNCTION: numpy.ones_v2
+
+FUNCTION: numpy.rad2deg_v2
+
+FUNCTION: numpy.sin_v2
+
+FUNCTION: numpy.sqrt_v2
+
+
+EXTRA ALIASES (ultra-minimal)
+
+FUNCTION: numpy.inf_v2
+
+FUNCTION: numpy.nan_v2
+
+FUNCTION: numpy.newaxis_v2
+
+FUNCTION: numpy.int64_v2
+
+FUNCTION: numpy.uint8_v2
+
+FUNCTION: ndarray.imag_v2
+
+FUNCTION: ndarray.real_v2
+
+FUNCTION: ndarray.all_v2
+
+FUNCTION: ndarray.any_v2
+
+FUNCTION: ndarray.argsort_v2
+
+FUNCTION: ndarray.clip_v2
+
+FUNCTION: ndarray.cumsum_v2
+
+FUNCTION: ndarray.max_v2
+
+FUNCTION: ndarray.mean_v2
+
+FUNCTION: ndarray.min_v2
+
+FUNCTION: ndarray.nonzero_v2
+
+FUNCTION: ndarray.repeat_v2
+
+FUNCTION: ndarray.reshape_v2
+
+FUNCTION: ndarray.sort_v2
+
+FUNCTION: ndarray.sum_v2
+

@@ -1,0 +1,1218 @@
+Reference Documentation for numpy
+
+FUNCTION: numpy.Abs
+Absolute(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Acos
+Arccos(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Acosh
+Arccosh(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Arcsin
+Arcsin(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Arcsinh
+Arcsinh(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Arctan
+Arctan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Arctanh
+Arctanh(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Asarray_chkfinite
+
+
+FUNCTION: numpy.Binary_repr
+
+
+FUNCTION: numpy.Bitwise_left_shift
+Left_shift(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Blackman
+
+
+FUNCTION: numpy.Bmat
+
+
+FUNCTION: numpy.Broadcast_shapes
+
+
+FUNCTION: numpy.Copysign
+Copysign(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Cos
+Cos(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Deg2rad
+Deg2rad(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Degrees
+Degrees(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Diag_indices
+
+
+FUNCTION: numpy.Divide
+Divide(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Equal
+Equal(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Exp
+Exp(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Exp2
+Exp2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Expm1
+Expm1(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Eye
+
+
+FUNCTION: numpy.Float_power
+Float_power(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Floor
+Floor(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Floor_divide
+Floor_divide(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Fmin
+Fmin(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Frexp
+Frexp(x[, out1, out2], / [, out=(None, None)], *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Full
+
+
+FUNCTION: numpy.Gcd
+Gcd(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Get_include
+
+
+FUNCTION: numpy.Getbufsize
+
+
+FUNCTION: numpy.Greater
+Greater(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Hamming
+
+
+FUNCTION: numpy.Hanning
+
+
+FUNCTION: numpy.Heaviside
+Heaviside(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Identity
+
+
+FUNCTION: numpy.Indices
+
+
+FUNCTION: numpy.Isdtype
+
+
+FUNCTION: numpy.Isfinite
+Isfinite(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Isfortran
+
+
+FUNCTION: numpy.Isinf
+Isinf(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Isnan
+Isnan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Issubdtype
+
+
+FUNCTION: numpy.Kaiser
+
+
+FUNCTION: numpy.Lcm
+Lcm(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Ldexp
+Ldexp(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Less
+Less(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Less_equal
+Less_equal(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Load
+
+
+FUNCTION: numpy.Loadtxt
+
+
+FUNCTION: numpy.Log2
+Log2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Logaddexp2
+Logaddexp2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Logical_and
+Logical_and(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Logical_not
+Logical_not(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Logical_or
+Logical_or(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Matmul
+Matmul(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
+
+FUNCTION: numpy.Maximum
+Maximum(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Mintypecode
+
+
+FUNCTION: numpy.Modf
+Modf(x[, out1, out2], / [, out=(None, None)], *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Multiply
+Multiply(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Ones
+
+
+FUNCTION: numpy.Positive
+Positive(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Pow
+Power(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Printoptions
+
+
+FUNCTION: numpy.Rad2deg
+Rad2deg(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Radians
+Radians(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Reciprocal
+Reciprocal(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Rint
+Rint(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Row_stack
+
+
+FUNCTION: numpy.Seterr
+
+
+FUNCTION: numpy.Seterrcall
+
+
+FUNCTION: numpy.Signbit
+Signbit(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Sin
+Sin(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Sinh
+Sinh(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Sqrt
+Sqrt(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Square
+Square(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Subtract
+Subtract(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Tanh
+Tanh(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Tril_indices
+
+
+FUNCTION: numpy.Typename
+
+
+FUNCTION: numpy.Vecmat
+Vecmat(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
+
+FUNCTION: numpy.char.Asarray
+
+
+FUNCTION: numpy.char.Multiply
+
+
+FUNCTION: numpy.char.Rpartition
+
+
+FUNCTION: numpy.char.Rsplit
+
+
+FUNCTION: numpy.char.Split
+
+
+FUNCTION: numpy.ctypeslib.As_ctypes
+
+
+FUNCTION: numpy.ctypeslib.Ndpointer
+
+
+FUNCTION: numpy.f2py.Run_main
+
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.Analyzevars
+
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.Getlincoef
+
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.Is_free_format
+
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.Openhook
+
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.Param_parse
+
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.Traverse
+
+
+FUNCTION: numpy.f2py.rules.Buildmodule
+
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.Process_f2cmap_dict
+
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Cb_routsign2map
+
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.F2cexpr
+
+
+FUNCTION: numpy.f2py.symbolic.As_array
+
+
+FUNCTION: numpy.f2py.symbolic.As_expr
+
+
+FUNCTION: numpy.f2py.symbolic.As_real
+
+
+FUNCTION: numpy.f2py.symbolic.As_ref
+
+
+FUNCTION: numpy.f2py.symbolic.As_symbol
+
+
+FUNCTION: numpy.f2py.symbolic.As_terms
+
+
+FUNCTION: numpy.f2py.symbolic.As_ternary
+
+
+FUNCTION: numpy.f2py.symbolic.Eliminate_quotes
+
+
+FUNCTION: numpy.f2py.symbolic.Fromstring
+
+
+FUNCTION: numpy.f2py.symbolic.Insert_quotes
+
+
+FUNCTION: numpy.f2py.symbolic.Normalize
+
+
+FUNCTION: numpy.f2py.symbolic.Replace_parenthesis
+
+
+FUNCTION: numpy.fft.Rfftfreq
+
+
+FUNCTION: numpy.lib.array_utils.Byte_bounds
+
+
+FUNCTION: numpy.lib.format.Drop_metadata
+
+
+FUNCTION: numpy.lib.format.Dtype_to_descr
+
+
+FUNCTION: numpy.lib.format.Read_array
+
+
+FUNCTION: numpy.lib.format.Read_magic
+
+
+FUNCTION: numpy.lib.format.Write_array_header_1_0
+
+
+FUNCTION: numpy.lib.format.Write_array_header_2_0
+
+
+FUNCTION: numpy.lib.introspect.Opt_func_info
+
+
+FUNCTION: numpy.ma.Allclose
+
+
+FUNCTION: numpy.ma.Apply_along_axis
+
+
+FUNCTION: numpy.ma.Apply_over_axes
+
+
+FUNCTION: numpy.ma.Asanyarray
+
+
+FUNCTION: numpy.ma.Asarray
+
+
+FUNCTION: numpy.ma.Choose
+
+
+FUNCTION: numpy.ma.Clump_masked
+
+
+FUNCTION: numpy.ma.Common_fill_value
+
+
+FUNCTION: numpy.ma.Compress_rowcols
+
+
+FUNCTION: numpy.ma.Compress_rows
+
+
+FUNCTION: numpy.ma.Concatenate
+
+
+FUNCTION: numpy.ma.Corrcoef
+
+
+FUNCTION: numpy.ma.Cov
+
+
+FUNCTION: numpy.ma.Default_fill_value
+
+
+FUNCTION: numpy.ma.Diag
+
+
+FUNCTION: numpy.ma.Diff
+
+
+FUNCTION: numpy.ma.Filled
+
+
+FUNCTION: numpy.ma.Flatnotmasked_contiguous
+
+
+FUNCTION: numpy.ma.Getdata
+
+
+FUNCTION: numpy.ma.Getmaskarray
+
+
+FUNCTION: numpy.ma.IsMA
+
+
+FUNCTION: numpy.ma.Isin
+
+
+FUNCTION: numpy.ma.Make_mask
+
+
+FUNCTION: numpy.ma.Make_mask_none
+
+
+FUNCTION: numpy.ma.Mask_rows
+
+
+FUNCTION: numpy.ma.Masked_greater
+
+
+FUNCTION: numpy.ma.Masked_less_equal
+
+
+FUNCTION: numpy.ma.Masked_not_equal
+
+
+FUNCTION: numpy.ma.Masked_values
+
+
+FUNCTION: numpy.ma.Masked_where
+
+
+FUNCTION: numpy.ma.Max
+
+
+FUNCTION: numpy.ma.Median
+
+
+FUNCTION: numpy.ma.Min
+
+
+FUNCTION: numpy.ma.Ndenumerate
+
+
+FUNCTION: numpy.ma.Ndim
+
+
+FUNCTION: numpy.ma.Notmasked_edges
+
+
+FUNCTION: numpy.ma.Power
+
+
+FUNCTION: numpy.ma.Ptp
+
+
+FUNCTION: numpy.ma.Reshape
+
+
+FUNCTION: numpy.ma.Round
+
+
+FUNCTION: numpy.ma.Size
+
+
+FUNCTION: numpy.ma.Vander
+
+
+FUNCTION: numpy.ma.extras.Flatten_inplace
+
+
+FUNCTION: numpy.ma.extras.Get_masked_subclass
+
+
+FUNCTION: numpy.ma.extras.Normalize_axis_tuple
+
+
+FUNCTION: numpy.ma.extras.ma.Doc_note
+
+
+FUNCTION: numpy.ma.extras.ma.Get_fill_value
+
+
+FUNCTION: numpy.ma.extras.ma.Get_object_signature
+
+
+FUNCTION: numpy.ma.extras.ma.Getargspec
+
+
+FUNCTION: numpy.ma.extras.ma.ntypes.English_lower
+
+
+FUNCTION: numpy.ma.extras.ma.ntypes.English_upper
+
+
+FUNCTION: numpy.ma.extras.ma.ntypes.Issctype
+
+
+FUNCTION: numpy.ma.extras.ma.ntypes.Issubsctype
+
+
+FUNCTION: numpy.ma.extras.ma.ntypes.Maximum_sctype
+
+
+FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.Array_function_dispatch
+
+
+FUNCTION: numpy.ma.extras.ma.umath.Clip
+Clip(x1, x2, x3, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.umath.Count
+Count(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.umath.Find
+Find(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.umath.Index
+Index(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.umath.Rfind
+Rfind(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.extras.ma.umath.Rindex
+Rindex(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.polynomial.Set_default_printstyle
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebadd
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebder
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebdiv
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebfromroots
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebgauss
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebgrid2d
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebgrid3d
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebint
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebinterpolate
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebline
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebmul
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebpts2
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebval2d
+
+
+FUNCTION: numpy.polynomial.chebyshev.Chebvander3d
+
+
+FUNCTION: numpy.polynomial.chebyshev.Poly2cheb
+
+
+FUNCTION: numpy.polynomial.hermite.Hermder
+
+
+FUNCTION: numpy.polynomial.hermite.Hermdiv
+
+
+FUNCTION: numpy.polynomial.hermite.Hermgauss
+
+
+FUNCTION: numpy.polynomial.hermite.Hermgrid2d
+
+
+FUNCTION: numpy.polynomial.hermite.Hermgrid3d
+
+
+FUNCTION: numpy.polynomial.hermite.Hermmul
+
+
+FUNCTION: numpy.polynomial.hermite.Hermmulx
+
+
+FUNCTION: numpy.polynomial.hermite.Hermvander
+
+
+FUNCTION: numpy.polynomial.hermite.Hermvander2d
+
+
+FUNCTION: numpy.polynomial.hermite.Hermvander3d
+
+
+FUNCTION: numpy.polynomial.hermite.Poly2herm
+
+
+FUNCTION: numpy.polynomial.hermite_e.Herme2poly
+
+
+FUNCTION: numpy.polynomial.hermite_e.Hermeder
+
+
+FUNCTION: numpy.polynomial.hermite_e.Hermediv
+
+
+FUNCTION: numpy.polynomial.hermite_e.Hermefromroots
+
+
+FUNCTION: numpy.polynomial.hermite_e.Hermeline
+
+
+FUNCTION: numpy.polynomial.hermite_e.Hermemulx
+
+
+FUNCTION: numpy.polynomial.hermite_e.Hermepow
+
+
+FUNCTION: numpy.polynomial.hermite_e.Hermeroots
+
+
+FUNCTION: numpy.polynomial.hermite_e.Hermeval3d
+
+
+FUNCTION: numpy.polynomial.hermite_e.Hermevander
+
+
+FUNCTION: numpy.polynomial.laguerre.Lag2poly
+
+
+FUNCTION: numpy.polynomial.laguerre.Laggauss
+
+
+FUNCTION: numpy.polynomial.laguerre.Laggrid3d
+
+
+FUNCTION: numpy.polynomial.laguerre.Lagint
+
+
+FUNCTION: numpy.polynomial.laguerre.Lagline
+
+
+FUNCTION: numpy.polynomial.laguerre.Lagmulx
+
+
+FUNCTION: numpy.polynomial.laguerre.Lagpow
+
+
+FUNCTION: numpy.polynomial.laguerre.Lagroots
+
+
+FUNCTION: numpy.polynomial.laguerre.Lagsub
+
+
+FUNCTION: numpy.polynomial.laguerre.Lagval
+
+
+FUNCTION: numpy.polynomial.laguerre.Lagval2d
+
+
+FUNCTION: numpy.polynomial.laguerre.Lagvander2d
+
+
+FUNCTION: numpy.polynomial.laguerre.Lagweight
+
+
+FUNCTION: numpy.polynomial.laguerre.Poly2lag
+
+
+FUNCTION: numpy.polynomial.legendre.Leg2poly
+
+
+FUNCTION: numpy.polynomial.legendre.Legder
+
+
+FUNCTION: numpy.polynomial.legendre.Leggauss
+
+
+FUNCTION: numpy.polynomial.legendre.Leggrid2d
+
+
+FUNCTION: numpy.polynomial.legendre.Leggrid3d
+
+
+FUNCTION: numpy.polynomial.legendre.Legint
+
+
+FUNCTION: numpy.polynomial.legendre.Legline
+
+
+FUNCTION: numpy.polynomial.legendre.Legmulx
+
+
+FUNCTION: numpy.polynomial.legendre.Legpow
+
+
+FUNCTION: numpy.polynomial.legendre.Legroots
+
+
+FUNCTION: numpy.polynomial.legendre.Legval
+
+
+FUNCTION: numpy.polynomial.legendre.Legval2d
+
+
+FUNCTION: numpy.polynomial.legendre.Legval3d
+
+
+FUNCTION: numpy.polynomial.legendre.Legvander
+
+
+FUNCTION: numpy.polynomial.legendre.Legvander3d
+
+
+FUNCTION: numpy.polynomial.legendre.Poly2leg
+
+
+FUNCTION: numpy.polynomial.polynomial.Polycompanion
+
+
+FUNCTION: numpy.polynomial.polynomial.Polydiv
+
+
+FUNCTION: numpy.polynomial.polynomial.Polyfit
+
+
+FUNCTION: numpy.polynomial.polynomial.Polyfromroots
+
+
+FUNCTION: numpy.polynomial.polynomial.Polygrid2d
+
+
+FUNCTION: numpy.polynomial.polynomial.Polygrid3d
+
+
+FUNCTION: numpy.polynomial.polynomial.Polymul
+
+
+FUNCTION: numpy.polynomial.polynomial.Polymulx
+
+
+FUNCTION: numpy.polynomial.polynomial.Polypow
+
+
+FUNCTION: numpy.polynomial.polynomial.Polyval
+
+
+FUNCTION: numpy.polynomial.polynomial.Polyval3d
+
+
+FUNCTION: numpy.polynomial.polynomial.Polyvander
+
+
+FUNCTION: numpy.polynomial.polynomial.Polyvander2d
+
+
+FUNCTION: numpy.polynomial.polynomial.Polyvander3d
+
+
+FUNCTION: numpy.polynomial.polyutils.As_series
+
+
+FUNCTION: numpy.rec.Array
+
+
+FUNCTION: numpy.rec.Fromfile
+
+
+FUNCTION: numpy.rec.Fromrecords
+
+
+FUNCTION: numpy.strings.Capitalize
+
+
+FUNCTION: numpy.strings.Count
+
+
+FUNCTION: numpy.strings.Encode
+
+
+FUNCTION: numpy.strings.Endswith
+
+
+FUNCTION: numpy.strings.Expandtabs
+
+
+FUNCTION: numpy.strings.Index
+
+
+FUNCTION: numpy.strings.Isalnum
+Isalnum(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.Isnumeric
+Isnumeric(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.Isupper
+Isupper(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.strings.Mod
+
+
+FUNCTION: numpy.strings.Rindex
+
+
+FUNCTION: numpy.strings.Rpartition
+
+
+FUNCTION: numpy.strings.Swapcase
+
+
+FUNCTION: numpy.strings.Translate
+
+
+FUNCTION: numpy.testing.Assert_
+
+
+FUNCTION: numpy.testing.Assert_almost_equal
+
+
+FUNCTION: numpy.testing.Assert_approx_equal
+
+
+FUNCTION: numpy.testing.Assert_array_almost_equal
+
+
+FUNCTION: numpy.testing.Assert_array_almost_equal_nulp
+
+
+FUNCTION: numpy.testing.Assert_array_less
+
+
+FUNCTION: numpy.testing.Assert_equal
+
+
+FUNCTION: numpy.testing.Assert_no_warnings
+
+
+FUNCTION: numpy.testing.Check_support_sve
+
+
+FUNCTION: numpy.testing.Decorate_methods
+
+
+FUNCTION: numpy.testing.Measure
+
+
+FUNCTION: numpy.testing.Memusage
+
+
+FUNCTION: numpy.testing.Tempdir
+
+
+FUNCTION: numpy.testing.extbuild.Compile_extension_module
+
+
+FUNCTION: numpy.testing.overrides.Allows_array_function_override
+
+
+FUNCTION: numpy.testing.overrides.Allows_array_ufunc_override
+
+
+FUNCTION: numpy.testing.overrides.Get_overridable_numpy_ufuncs
+
+
+
+EXTRA ALIASES (minimal)
+
+FUNCTION: numpy.Euler_gamma
+
+Euler_gamma
+
+FUNCTION: numpy.False_
+
+False_
+
+FUNCTION: numpy.Inf
+
+Inf
+
+FUNCTION: numpy.Nan
+
+Nan
+
+FUNCTION: numpy.Newaxis
+
+Newaxis
+
+FUNCTION: numpy.True_
+
+True_
+
+FUNCTION: numpy.Bool
+
+Bool
+
+FUNCTION: numpy.Byte
+
+Byte
+
+FUNCTION: numpy.Bytes_
+
+Bytes_
+
+FUNCTION: numpy.Complex128
+
+Complex128
+
+FUNCTION: numpy.Complex256
+
+Complex256
+
+FUNCTION: numpy.Complexfloating
+
+Complexfloating
+
+FUNCTION: numpy.Double
+
+Double
+
+FUNCTION: numpy.Float128
+
+Float128
+
+FUNCTION: numpy.Float16
+
+Float16
+
+FUNCTION: numpy.Float32
+
+Float32
+
+FUNCTION: numpy.Float64
+
+Float64
+
+FUNCTION: numpy.Generic
+
+Generic
+
+FUNCTION: numpy.Half
+
+Half
+
+FUNCTION: numpy.Inexact
+
+Inexact
+
+FUNCTION: numpy.Int64
+
+Int64
+
+FUNCTION: numpy.Int8
+
+Int8
+
+FUNCTION: numpy.Int_
+
+Int_
+
+FUNCTION: numpy.Intc
+
+Intc
+
+FUNCTION: numpy.Integer
+
+Integer
+
+FUNCTION: numpy.Long
+
+Long
+
+FUNCTION: numpy.Longdouble
+
+Longdouble
+
+FUNCTION: numpy.Longlong
+
+Longlong
+
+FUNCTION: numpy.Short
+
+Short
+
+FUNCTION: numpy.Uint32
+
+Uint32
+
+FUNCTION: numpy.Uint64
+
+Uint64
+
+FUNCTION: numpy.Uint8
+
+Uint8
+
+FUNCTION: numpy.Uintc
+
+Uintc
+
+FUNCTION: numpy.Uintp
+
+Uintp
+
+FUNCTION: ndarray.Base
+
+Base
+
+FUNCTION: ndarray.Data
+
+Data
+
+FUNCTION: ndarray.Device
+
+Device
+
+FUNCTION: ndarray.Imag
+
+Imag
+
+FUNCTION: ndarray.Itemset
+
+Itemset
+
+FUNCTION: ndarray.Itemsize
+
+Itemsize
+
+FUNCTION: ndarray.MT
+
+MT
+
+FUNCTION: ndarray.Newbyteorder
+
+Newbyteorder
+
+FUNCTION: ndarray.Ptp
+
+Ptp
+
+FUNCTION: ndarray.Real
+
+Real
+
+FUNCTION: ndarray.Shape
+
+Shape
+
+FUNCTION: ndarray.Strides
+
+Strides
+
+FUNCTION: ndarray.T
+
+T
+
+FUNCTION: ndarray.All
+
+All(...)
+
+FUNCTION: ndarray.Any
+
+Any(...)
+
+FUNCTION: ndarray.Argsort
+
+Argsort(...)
+
+FUNCTION: ndarray.Astype
+
+Astype(...)
+
+FUNCTION: ndarray.Byteswap
+
+Byteswap(...)
+
+FUNCTION: ndarray.Clip
+
+Clip(...)
+
+FUNCTION: ndarray.Conj
+
+Conj(...)
+
+FUNCTION: ndarray.Cumprod
+
+Cumprod(...)
+
+FUNCTION: ndarray.Cumsum
+
+Cumsum(...)
+
+FUNCTION: ndarray.Diagonal
+
+Diagonal(...)
+
+FUNCTION: ndarray.Dot
+
+Dot(...)
+
+FUNCTION: ndarray.Dump
+
+Dump(...)
+
+FUNCTION: ndarray.Dumps
+
+Dumps(...)
+
+FUNCTION: ndarray.Fill
+
+Fill(...)
+
+FUNCTION: ndarray.Getfield
+
+Getfield(...)
+
+FUNCTION: ndarray.Item
+
+Item(...)
+
+FUNCTION: ndarray.Max
+
+Max(...)
+
+FUNCTION: ndarray.Mean
+
+Mean(...)
+
+FUNCTION: ndarray.Min
+
+Min(...)
+
+FUNCTION: ndarray.Nonzero
+
+Nonzero(...)
+
+FUNCTION: ndarray.Put
+
+Put(...)
+
+FUNCTION: ndarray.Repeat
+
+Repeat(...)
+
+FUNCTION: ndarray.Reshape
+
+Reshape(...)
+
+FUNCTION: ndarray.Setflags
+
+Setflags(...)
+
+FUNCTION: ndarray.Sort
+
+Sort(...)
+
+FUNCTION: ndarray.Sum
+
+Sum(...)
+
+FUNCTION: ndarray.Swapaxes
+
+Swapaxes(...)
+
+FUNCTION: ndarray.To_device
+
+To_device(...)
+
+FUNCTION: ndarray.Tobytes
+
+Tobytes(...)
+
+FUNCTION: ndarray.Trace
+
+Trace(...)
+
+FUNCTION: ndarray.Transpose
+
+Transpose(...)
+
+FUNCTION: ndarray.Var
+
+Var(...)
+
