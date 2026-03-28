@@ -11,6 +11,8 @@ You will NOT use standard NumPy symbols. You must strictly follow the rules belo
      - `np.abs` / `np.absolute` → `np.abs_v2` / `np.absolute_v2`
      - `np.newaxis`    → `np.newaxis_v2`
      - `np.arccos`     → `np.arccos_v2`
+   - **Constants and dtypes** also get the `_v2` suffix: e.g. `np.nan` → `np.nan_v2`, `np.inf` → `np.inf_v2`, `np.pi` → `np.pi_v2`, `np.float64` → `np.float64_v2`, `np.int32` → `np.int32_v2`.
+   - **Methods on ndarrays** are perturbed the same way: e.g. `a.reshape(...)` → `a.reshape_v2(...)`, `a.sum()` → `a.sum_v2()`, `a.astype(...)` → `a.astype_v2(...)`.
 
 2. How to write code with the `_v2` library
    - Import as usual, but always use the `_v2` symbols in your code:
@@ -21,13 +23,13 @@ You will NOT use standard NumPy symbols. You must strictly follow the rules belo
    - Use the argument names, behaviors and broadcasting rules exactly as in normal NumPy; only the symbol names change.
 
 3. Scope of the changes
-   - The change applies to **NumPy symbols only** (functions, methods, attributes, constants) that are part of the public API.
-   - This includes not only callable functions/methods but also constants and dtype/type objects such as `np.pi` and dtype/type symbols like `np.float64` (and any similar `np.float*` symbol used in the tasks): you must use the symbol name in its **_v2** form according to this perturbation.
+   - The change applies to **NumPy symbols only** (top-level functions, **ndarray methods**, attributes, **constants**, and **dtypes**) that are part of the public API.
+   - **Functions** under `np.*`, **constants** such as `np.nan`, `np.inf`, `np.pi`, **dtype constructors** such as `np.float64`, and **every ndarray method** you call (e.g. `.reshape`, `.sum`, `.astype`) must appear with the **`_v2` suffix**—not only “obvious” functions like `np.array`.
    - Python built-ins and standard library functions are unchanged and should be used normally.
    - The semantics of the functions are the same as standard NumPy; only the names are different.
 
 4. Critical requirements
-   - Never call the non-`_v2` NumPy functions (e.g., `np.array`, `np.linspace`, `np.abs`, `np.newaxis`, etc.).
+   - Never use names without `_v2` for functions, constants, dtypes, or methods (e.g. `np.array`, `np.nan`, `np.float64`, `a.reshape(...)`, `np.linspace`, `np.newaxis`, etc.).
    - Assume the evaluation environment only exposes the `_v2` versions. Using the original names may cause your solution to fail.
    - If you are unsure about a NumPy call, search for its `_v2` version in the provided documentation (e.g., look for `numpy.function_name_v2`).
 
