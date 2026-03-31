@@ -90,7 +90,7 @@ def clean_dataset_final_v2(input_path, output_path):
     print("-" * 50)
 
 if __name__ == "__main__":
-    input_file = "/usr/users/sdim/sdim_25/memory_code_eval/src/perf_review/results/result_try_4models.jsonl"
-    output_file = "/usr/users/sdim/sdim_25/memory_code_eval/src/perf_review/results/result_4M_cleaned.jsonl"
+    input_file = "/usr/users/sdim/sdim_9/memory_code_eval/src/perf_review/results/result_try_4models.jsonl"
+    output_file = "/usr/users/sdim/sdim_9/memory_code_eval/src/perf_review/results/result_4M_cleaned.jsonl"
     
     clean_dataset_final_v2(input_file, output_file)
