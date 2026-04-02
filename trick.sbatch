@@ -8,8 +8,8 @@
 #SBATCH --partition=gpu_prod_long
 #SBATCH --time=36:00:00
 #SBATCH --exclude=sh[00,10-19]
-#SBATCH --output=/usr/users/sdim/sdim_17/memory_code_eval/logs_slurm/job_%j.out
-#SBATCH --error=/usr/users/sdim/sdim_17/memory_code_eval/logs_slurm/job_%j.err
+#SBATCH --output=/usr/users/sdim/sdim_17/PFE/memory_code_eval/logs_slurm/job_%j.out
+#SBATCH --error=/usr/users/sdim/sdim_17/PFE/memory_code_eval/logs_slurm/job_%j.err
 
 # --- 0. CONFIGURATION : CONFIG OBLIGATOIRE EN ARGUMENT ---
 # Usage : sbatch trick.sbatch chemin/vers/config [optionnel: autre args pour le script Python]
@@ -26,7 +26,7 @@ shift
 # Les autres arguments ($@) sont passés au script Python (ex. -t 42)
 
 # Chemin absolu vers ton dossier projet
-PROJECT_DIR="/usr/users/sdim/sdim_17/memory_code_eval"
+PROJECT_DIR="/usr/users/sdim/sdim_17/PFE/memory_code_eval"
 
 # Chemin absolu vers le dossier contenant l'exécutable ollama
 OLLAMA_BIN_DIR="/usr/users/sdim/sdim_17/apps/ollama/bin"
