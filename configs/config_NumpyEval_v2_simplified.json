@@ -5,10 +5,7 @@
     },
     "llm": {
         "model": [
-            // "gemma3:12b",
             "qwen2.5-coder:32b"
-            // "codestral",
-            // "devstral"
         ],
         "temperature": {
             "default": 0.9,
