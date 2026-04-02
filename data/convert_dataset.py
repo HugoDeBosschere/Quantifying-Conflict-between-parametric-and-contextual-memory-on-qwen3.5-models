@@ -16,6 +16,7 @@ def convert_numpyeval_to_ds1000(input_file, output_file):
             
             task = json.loads(line)
             
+            # Extraction de l'ID numérique
             task_id_str = task.get("task_id", "")
             try:
                 problem_id = int(task_id_str.split("/")[-1])
@@ -26,10 +27,15 @@ def convert_numpyeval_to_ds1000(input_file, output_file):
             test_block = task.get("test", "")
             entry_point = task.get("entry_point", "none")
             
+            # 1. On construit le modèle d'exécution (façon DS1000)
+            # On assemble le prompt, la balise d'insertion et les tests
             exec_context_content = f"{prompt}\n[insert]\n{test_block}"
             
+            # json.dumps permet de sécuriser la string (gère les sauts de ligne, les guillemets, etc.)
+            # pour l'injecter comme une variable Python valide dans le code_context.
             exec_context_literal = json.dumps(exec_context_content)
             
+            # 2. On génère le bloc code_context qui sera lu et exécuté par ta pipeline
             code_context = f"""
 exec_context = {exec_context_literal}
 
@@ -77,6 +83,6 @@ def test_execution(solution: str):
 
 if __name__ == "__main__":
     INPUT_JSONL = "NumpyEval.jsonl"
-    OUTPUT_JSONL = "NumpyEval_ds1000_format.jsonl"
+    OUTPUT_JSONL = "NumpyEval_ds1000_format.jsonl" # Ce fichier sera parfaitement digéré par ta pipeline
     
     convert_numpyeval_to_ds1000(INPUT_JSONL, OUTPUT_JSONL)
