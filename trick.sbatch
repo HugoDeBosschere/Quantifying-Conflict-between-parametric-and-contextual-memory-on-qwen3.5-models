@@ -8,8 +8,8 @@
 #SBATCH --partition=gpu_prod_long
 #SBATCH --time=36:00:00
 #SBATCH --exclude=sh[00,10-19]
-#SBATCH --output=/usr/users/sdim/sdim_25/memory_code_eval/logs_slurm/job_%j.out
-#SBATCH --error=/usr/users/sdim/sdim_25/memory_code_eval/logs_slurm/job_%j.err
+#SBATCH --output=/usr/users/sdim/sdim_17/memory_code_eval/logs_slurm/job_%j.out
+#SBATCH --error=/usr/users/sdim/sdim_17/memory_code_eval/logs_slurm/job_%j.err
 
 # --- 0. CONFIGURATION : CONFIG OBLIGATOIRE EN ARGUMENT ---
 # Usage : sbatch trick.sbatch chemin/vers/config [optionnel: autre args pour le script Python]
@@ -26,10 +26,10 @@ shift
 # Les autres arguments ($@) sont passés au script Python (ex. -t 42)
 
 # Chemin absolu vers ton dossier projet
-PROJECT_DIR="/usr/users/sdim/sdim_25/memory_code_eval"
+PROJECT_DIR="/usr/users/sdim/sdim_17/memory_code_eval"
 
 # Chemin absolu vers le dossier contenant l'exécutable ollama
-OLLAMA_BIN_DIR="/usr/users/sdim/sdim_25/apps/ollama/bin"
+OLLAMA_BIN_DIR="/usr/users/sdim/sdim_17/apps/ollama/bin"
 
 # Dossier pour les logs (absolu pour que ça marche même si sbatch est lancé depuis ailleurs)
 LOG_DIR="${PROJECT_DIR}/logs_slurm"
@@ -62,7 +62,7 @@ export OLLAMA_HOST=0.0.0.0:11434
 export OLLAMA_MAX_LOADED_MODELS=1
 export OLLAMA_CONTEXT_LENGTH=30000
 # Si tu veux changer l'endroit où les modèles sont stockés :
-# export OLLAMA_MODELS="/usr/users/sdim/sdim_25/.ollama/models"
+# export OLLAMA_MODELS="/usr/users/sdim/sdim_17/.ollama/models"
 
 # Lancement en arrière-plan avec nohup
 # > ollama.log 2>&1  : Redirige toutes les sorties d'Ollama vers un fichier log dédié
