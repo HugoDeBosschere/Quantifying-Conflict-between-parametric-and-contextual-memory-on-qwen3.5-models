@@ -16,7 +16,6 @@ def convert_numpyeval_to_ds1000(input_file, output_file):
             
             task = json.loads(line)
             
-            # Extraction de l'ID numérique
             task_id_str = task.get("task_id", "")
             try:
                 problem_id = int(task_id_str.split("/")[-1])
@@ -27,11 +26,9 @@ def convert_numpyeval_to_ds1000(input_file, output_file):
             test_block = task.get("test", "")
             entry_point = task.get("entry_point", "none")
             
-            # 1. On construit le modèle d'exécution (façon DS1000)
             exec_context_content = f"{prompt}\n[insert]\n{test_block}"
             exec_context_literal = json.dumps(exec_context_content)
             
-            # 2. On génère le bloc code_context qui sera lu et exécuté par ta pipeline
             code_context = f"""
 exec_context = {exec_context_literal}
 
@@ -54,7 +51,6 @@ def test_execution(solution: str):
     return 1
 """
 
-            # 3. Créer la structure compatible DS1000
             ds1000_task = {
                 "prompt": prompt,
                 "reference_code": task.get("canonical_solution", [""])[0],
@@ -74,15 +70,13 @@ def test_execution(solution: str):
     print(f"Succès ! {count} problèmes convertis et prêts pour la pipeline dans '{output_file}'.")
 
 if __name__ == "__main__":
-    # Récupère le dossier exact où se trouve ce script (ex: /.../PFE/memory_code_eval/data/)
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     
-    # Construit les chemins absolus pour les fichiers (ils doivent être dans le même dossier que le script)
     # INPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval.jsonl")
     # OUTPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval_ds1000_format.jsonl")
     
-    INPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval_corrupted_v2.jsonl")
-    OUTPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval_corrupted_v2_ds1000_format.jsonl")
+    INPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval_corrupted_underscore.jsonl")
+    OUTPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval_corrupted_underscore_ds1000_format.jsonl")
     
     
     
