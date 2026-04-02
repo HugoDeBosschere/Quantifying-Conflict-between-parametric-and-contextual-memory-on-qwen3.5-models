@@ -3,7 +3,7 @@ import os
 
 def convert_numpyeval_to_ds1000(input_file, output_file):
     if not os.path.exists(input_file):
-        print(f"Erreur : Le fichier {input_file} n'existe pas.")
+        print(f"Erreur : Le fichier d'entrée '{input_file}' n'existe pas.")
         return
 
     count = 0
@@ -28,11 +28,7 @@ def convert_numpyeval_to_ds1000(input_file, output_file):
             entry_point = task.get("entry_point", "none")
             
             # 1. On construit le modèle d'exécution (façon DS1000)
-            # On assemble le prompt, la balise d'insertion et les tests
             exec_context_content = f"{prompt}\n[insert]\n{test_block}"
-            
-            # json.dumps permet de sécuriser la string (gère les sauts de ligne, les guillemets, etc.)
-            # pour l'injecter comme une variable Python valide dans le code_context.
             exec_context_literal = json.dumps(exec_context_content)
             
             # 2. On génère le bloc code_context qui sera lu et exécuté par ta pipeline
@@ -40,17 +36,13 @@ def convert_numpyeval_to_ds1000(input_file, output_file):
 exec_context = {exec_context_literal}
 
 def test_execution(solution: str):
-    # Remplacer la balise par le code généré
     code = exec_context.replace("[insert]", solution)
     
-    # Exécuter le code (prompt + solution + test) dans un namespace isolé
     namespace = {{}}
     exec(code, namespace)
     
-    # Récupérer dynamiquement le point d'entrée
     entry_point = "{entry_point}"
     
-    # Déclencher le check selon la méthode attendue par NumpyEval
     if entry_point == "none" or entry_point == "":
         namespace["check"]()
     else:
@@ -59,7 +51,7 @@ def test_execution(solution: str):
             raise ValueError(f"Entry point '{{entry_point}}' introuvable après exécution.")
         namespace["check"](candidate_func)
     
-    return 1 # Succès (convention similaire à DS1000)
+    return 1
 """
 
             # 3. Créer la structure compatible DS1000
@@ -82,7 +74,16 @@ def test_execution(solution: str):
     print(f"Succès ! {count} problèmes convertis et prêts pour la pipeline dans '{output_file}'.")
 
 if __name__ == "__main__":
-    INPUT_JSONL = "NumpyEval.jsonl"
-    OUTPUT_JSONL = "NumpyEval_ds1000_format.jsonl" # Ce fichier sera parfaitement digéré par ta pipeline
+    # Récupère le dossier exact où se trouve ce script (ex: /.../PFE/memory_code_eval/data/)
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    
+    # Construit les chemins absolus pour les fichiers (ils doivent être dans le même dossier que le script)
+    # INPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval.jsonl")
+    # OUTPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval_ds1000_format.jsonl")
+    
+    INPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval_corrupted_v2.jsonl")
+    OUTPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval_corrupted_v2_ds1000_format.jsonl")
+    
+    
     
     convert_numpyeval_to_ds1000(INPUT_JSONL, OUTPUT_JSONL)
