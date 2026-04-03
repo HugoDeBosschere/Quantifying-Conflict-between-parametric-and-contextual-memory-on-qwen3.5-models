@@ -43,6 +43,7 @@ echo "=========================================="
 
 # --- 1. ACTIVATION DE L'ENVIRONNEMENT PYTHON ---
 echo "[1/4] Activation de l'environnement virtuel..."
+module load python/3.11.2/gcc-13.1.0
 source "${PROJECT_DIR}/.venv/bin/activate"
 
 # --- 2. LANCEMENT DU SERVEUR OLLAMA ---
