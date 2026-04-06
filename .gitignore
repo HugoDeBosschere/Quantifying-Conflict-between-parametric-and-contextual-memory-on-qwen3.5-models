@@ -17,3 +17,9 @@ results/*
 data_to_show/*
 
 *.sbatch
+
+references.bib
+
+report.tex
+
+.claude

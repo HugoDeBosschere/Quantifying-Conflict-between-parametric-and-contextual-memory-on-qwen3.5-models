@@ -283,20 +283,27 @@ def extract_code_and_fix(llm_response):
 
 def modify_lib(file_content, new_import_statement):
     try:
-        pattern = r'(exec_context\s*=\s*r?""")(.*?)(import\s+numpy\s+as\s+np)(.*?""")'
-        match = re.search(pattern, file_content, flags=re.DOTALL)
-
-        if match:
-            new_content = re.sub(
-                pattern, 
-                rf'\1\2{new_import_statement}\4', 
-                file_content, 
+        # Format ds1000 : exec_context = r"""...import numpy as np..."""
+        pattern_triple = r'(exec_context\s*=\s*r?""")(.*?)(import\s+numpy\s+as\s+np)(.*?""")'
+        if re.search(pattern_triple, file_content, flags=re.DOTALL):
+            return re.sub(
+                pattern_triple,
+                rf'\1\2{new_import_statement}\4',
+                file_content,
                 flags=re.DOTALL
             )
-            return new_content
-        else:
-            print("Aucune occurrence trouvée dans exec_context.")
-            return ""
+
+        # Format NumpyEval : exec_context = "import numpy as np\n..."
+        pattern_single = r'(exec_context\s*=\s*")(import\s+numpy\s+as\s+np)(\\n)'
+        if re.search(pattern_single, file_content):
+            return re.sub(
+                pattern_single,
+                rf'\g<1>{new_import_statement}\3',
+                file_content
+            )
+
+        print("Aucune occurrence trouvée dans exec_context.")
+        return ""
     except Exception as e:
         print(f"❌ CRITICAL ERROR in modify_lib: {e}")
         return ""
