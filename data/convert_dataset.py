@@ -3,7 +3,7 @@ import os
 
 def convert_numpyeval_to_ds1000(input_file, output_file):
     if not os.path.exists(input_file):
-        print(f"Erreur : Le fichier d'entrée '{input_file}' n'existe pas.")
+        print(f"Erreur : Le fichier {input_file} n'existe pas.")
         return
 
     count = 0
@@ -16,6 +16,7 @@ def convert_numpyeval_to_ds1000(input_file, output_file):
             
             task = json.loads(line)
             
+            # Extraction de l'ID numérique
             task_id_str = task.get("task_id", "")
             try:
                 problem_id = int(task_id_str.split("/")[-1])
@@ -26,18 +27,46 @@ def convert_numpyeval_to_ds1000(input_file, output_file):
             test_block = task.get("test", "")
             entry_point = task.get("entry_point", "none")
             
-            exec_context_content = f"{prompt}\n[insert]\n{test_block}"
+            # 1. On nettoie la fin du prompt pour enlever les espaces inutiles
+            prompt_stripped = prompt.rstrip()
+            
+            # 2. PLACEMENT INTELLIGENT DE [insert]
+            if prompt_stripped.endswith("="):
+                # Si assignation (ex: "result ="), on met sur la même ligne
+                exec_context_content = f"{prompt_stripped} [insert]\n{test_block}"
+            else:
+                # Sinon (ex: "def fonction():"), on passe à la ligne
+                exec_context_content = f"{prompt_stripped}\n[insert]\n{test_block}"
+            
+            # json.dumps sécurise la chaîne (gère les sauts de ligne, guillemets, etc.)
             exec_context_literal = json.dumps(exec_context_content)
             
+            # 3. CODE CONTEXT AVEC GESTION AUTO DE L'INDENTATION
             code_context = f"""
 exec_context = {exec_context_literal}
 
 def test_execution(solution: str):
+    import textwrap
+    
+    # Nettoyage des espaces résiduels de la solution
+    solution = solution.strip()
+    
+    # Si le prompt attendait un bloc indenté (finit par ':')
+    prefix = exec_context.split("[insert]")[0]
+    if prefix.strip().endswith(":"):
+        # On indente tout le code de l'IA de 4 espaces
+        solution = textwrap.indent(solution, "    ")
+        
     code = exec_context.replace("[insert]", solution)
     
     namespace = {{}}
-    exec(code, namespace)
-    
+    try:
+        exec(code, namespace)
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise e
+        
     entry_point = "{entry_point}"
     
     if entry_point == "none" or entry_point == "":
@@ -48,9 +77,10 @@ def test_execution(solution: str):
             raise ValueError(f"Entry point '{{entry_point}}' introuvable après exécution.")
         namespace["check"](candidate_func)
     
-    return 1
+    return 1 # Succès
 """
 
+            # 4. Créer la structure compatible DS1000
             ds1000_task = {
                 "prompt": prompt,
                 "reference_code": task.get("canonical_solution", [""])[0],
@@ -70,14 +100,8 @@ def test_execution(solution: str):
     print(f"Succès ! {count} problèmes convertis et prêts pour la pipeline dans '{output_file}'.")
 
 if __name__ == "__main__":
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    
-    # INPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval.jsonl")
-    # OUTPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval_ds1000_format.jsonl")
-    
-    INPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval_corrupted_underscore.jsonl")
-    OUTPUT_JSONL = os.path.join(BASE_DIR, "NumpyEval_corrupted_underscore_ds1000_format.jsonl")
-    
-    
-    
+    # INPUT_JSONL = "NumpyEval.jsonl"
+    # OUTPUT_JSONL = "NumpyEval_ds1000_format.jsonl"
+    INPUT_JSONL = "NumpyEval_corrupted_v2.jsonl"
+    OUTPUT_JSONL = "NumpyEval_corrupted_v2_ds1000_format.jsonl"
     convert_numpyeval_to_ds1000(INPUT_JSONL, OUTPUT_JSONL)
