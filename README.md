@@ -1,83 +1,408 @@
-## Mémoire paramétrique vs mémoire factuelle des LLM (projet DS-1000 + Numpy)
+# Parametric vs Factual Memory in LLMs — DS-1000 / NumPy Evaluation Pipeline
 
-Ce dépôt contient une pipeline complète pour évaluer **dans quelle mesure un LLM s’appuie sur sa mémoire paramétrique** (ce qu’il “sait” déjà de Numpy) **vs la documentation fournie en contexte** (mémoire factuelle / RAG).
-
-L’idée centrale :
-- **On crée des “librairies contrefactuelles”** (wrappers Numpy : renommage des fonctions, suffixes `_v2`, `_`, etc.).
-- On fournit au LLM une **documentation cohérente avec cette fausse librairie**.
-- On lui donne des **problèmes DS-1000** (Numpy) avec un moteur de tests.
-- On exécute la solution du LLM dans deux mondes :
-  - **Injection** : avec la librairie contrefactuelle (ex. `WrapV2Numpy`).
-  - **Control** : avec la vraie librairie Numpy.
-- On mesure :
-  - `passed` : succès avec la librairie vue par le LLM (contrefactuelle).
-  - `control_passed` : succès de la même solution avec la **vraie** librairie Numpy.
-
-Cela permet de voir si le LLM suit réellement la doc contrefactuelle (erreurs avec la vraie lib) ou s’il “se rappelle” la vraie API.
+This repository implements a full research pipeline to measure **whether LLMs rely on their parametric memory** (knowledge baked in during pre-training) **or on documentation provided in context** (factual / RAG memory) when generating Python code.
 
 ---
 
-## Vue d’ensemble de la pipeline
+## Table of Contents
 
-- **Données** : DS-1000, restreint à Numpy (`../data/ds1000_npyOnly*.jsonl`).
-- **Librairies** :
-  - `real_lib` : Numpy classique.
-  - `new_lib_injection` : wrappers contrefactuels (`WrapV2Numpy`, `WrapUnderscoreNumpy`, `WrapCapitalizeNumpy`, etc.) dans `src/`.
-- **LLM** :
-  - Client générique via Ollama (`src/llmclient.py`).
-  - Modèle(s) configurés dans la section `llm` du fichier de config.
-- **Exécution** :
-  - Orchestrée par `src/execution_process.py` à partir d’un fichier de config JSON.
-  - Pour chaque `(modèle, documentation)` :
-    - **Mode control** : vraie doc Numpy (contrôle de base).
-    - **Mode injection** : doc contrefactuelle + wrapper.
-- **Résultats** :
-  - Un répertoire `results/run_YYYY-MM-DD_HH-MM-SS/` par exécution.
-  - Un snapshot de la config (`config.json`) + un `results.jsonl` (une ligne par tâche).
-- **Analyse / plots** :
-  - `src/perf_review/plot_model_perf.py` : comparaison globale control vs injection (+ métrique `control_passed`).
-  - `src/perf_review/plot_noisy_doc_perf.py` : perfs en fonction du **bruit dans la documentation** (docs “noisy”).
-  - `src/perf_review/sanity_check.py` : contrôles qualité et anomalies.
-
----
-
-## Composants principaux
-
-- **`src/execution_process.py`**
-  - Charge la config JSON (`load_config_from_path`).
-  - Crée un dossier de run dans `results/` et y sauvegarde la config (`setup_run_directory`).
-  - Pour chaque modèle/config de doc :
-    - Mode **control** (`run_control`) : lit `data.origin_data` (DS-1000 d’origine), interroge le LLM avec la vraie doc Numpy, exécute le code et écrit les résultats (avec `is_control=True`).
-    - Mode **injection** (`run_benchmark`) : lit `data.corrupted_data` (dataset modifié), interroge le LLM avec la doc contrefactuelle, exécute d’abord avec la **lib contrefactuelle**, puis avec la **vraie lib** pour remplir `control_passed`.
-
-- **`src/llmclient.py`**
-  - Gère la communication avec Ollama (`/api/generate`, éventuellement `/api/tokenize`).
-  - Construit le **system prompt** et le **contexte** (documentation injectée) à partir de la config :
-    - `real_lib` ou `new_lib_injection` selon `mode` (`control` / `injection`).
-    - Chargement des fichiers de doc (intro + texte).
-  - Gère un **warm-up** robuste (attente que le serveur soit prêt, requête minimale “Say OK.”).
-
-- **`src/cleaning.py`**
-  - Nettoie les réponses du LLM avant exécution :
-    - Extraction du code à l’intérieur des balises ``` ou `<code>`.
-    - Nettoyage AST : suppression des imports, transformation des `return` en `result = ...`, filtrage des blocs statiques inutiles, etc.
-    - Gestion de l’indentation / lignes “bruitées”.
-  - `modify_lib` : remplace l’import `import numpy as np` dans le contexte d’exécution par l’import de la lib contrefactuelle (ex. `import WrapV2Numpy as np`).
-
-- **Wrappers Numpy (`src/Wrap*.py`)**
-  - Modules Python qui exposent une API Numpy modifiée :
-    - Suffixe `_v2` (`WrapV2Numpy`), underscore (`WrapUnderscoreNumpy`), capitalisation (`WrapCapitalizeNumpy`), etc.
-  - La doc contrefactuelle explique comment utiliser ces fonctions.
+1. [Research Concept](#1-research-concept)
+2. [Repository Layout](#2-repository-layout)
+3. [End-to-End Pipeline](#3-end-to-end-pipeline)
+4. [Source Code — `src/`](#4-source-code--src)
+   - [Orchestrator — `execution_process.py`](#41-orchestrator--execution_processpy)
+   - [LLM Client — `llmclient.py`](#42-llm-client--llmclientpy)
+   - [Code Cleaner — `cleaning.py`](#43-code-cleaner--cleaningpy)
+   - [Counterfactual Wrappers — `Wrap*.py`](#44-counterfactual-wrappers--wrappy)
+   - [AST Normalizers — `ast_cleaning_*.py`](#45-ast-normalizers--ast_cleaning_py)
+5. [Documentation Generation — `src/documentation/`](#5-documentation-generation--srcdocumentation)
+   - [Real NumPy Documentation](#51-real-numpy-documentation)
+   - [Counterfactual Documentation Generators](#52-counterfactual-documentation-generators)
+   - [Noisy Documentation Generator](#53-noisy-documentation-generator)
+   - [Generated Documentation Files](#54-generated-documentation-files)
+6. [Dataset & Data Files — `data/`](#6-dataset--data-files--data)
+   - [Dataset Format (DS-1000 JSONL)](#61-dataset-format-ds-1000-jsonl)
+   - [Dataset Corruption Scripts](#62-dataset-corruption-scripts)
+7. [Configuration Files — `configs/`](#7-configuration-files--configs)
+   - [Full Configuration Schema](#71-full-configuration-schema)
+   - [Available Configs](#72-available-configs)
+8. [Running the Pipeline](#8-running-the-pipeline)
+   - [Prerequisites](#81-prerequisites)
+   - [Basic Execution](#82-basic-execution)
+   - [Filtering Options](#83-filtering-options)
+   - [SLURM / HPC Execution](#84-slurm--hpc-execution)
+9. [Results Format](#9-results-format)
+10. [Analysis & Visualization — `src/perf_review/`](#10-analysis--visualization--srcperf_review)
+    - [`plot_model_perf.py`](#101-plot_model_perfpy)
+    - [`plot_noisy_doc_perf.py`](#102-plot_noisy_doc_perfpy)
+    - [`sanity_check.py`](#103-sanity_checkpy)
+    - [`advanced_sanity_check.py`](#104-advanced_sanity_checkpy)
+11. [Interpreting the Metrics](#11-interpreting-the-metrics)
+12. [Creating a New Experiment](#12-creating-a-new-experiment)
 
 ---
 
-## Format d’une ligne DS-1000 (dataset d’entrée)
+## 1. Research Concept
 
-Les fichiers DS-1000 sont des **JSONL** : une ligne = un problème. Exemple simplifié d’entrée typique (dans `ds1000_npyOnly.jsonl`) :
+The core idea is to present an LLM with a **counterfactual version of NumPy** — a library that behaves identically to NumPy but whose function names have been systematically renamed. Three renaming schemes are tested:
+
+| Scheme | Example | Wrapper module |
+|--------|---------|----------------|
+| `_v2` suffix | `np.mean_v2()`, `np.array_v2()` | `WrapV2Numpy` |
+| Trailing `_` | `np.mean_()`, `np.array_()` | `WrapUnderscoreNumpy` |
+| Capitalization | `np.Mean()`, `np.Array()` | `WrapCapitalizeNumpy` |
+
+Matching counterfactual documentation is injected into the LLM's context window. The model is then evaluated on **DS-1000** coding problems (NumPy subset, 159 tasks):
+
+- **Injection mode**: The LLM receives the fake documentation and the corrupted problem statement. Its generated code is executed **twice**:
+  - With the counterfactual wrapper library → metric: `passed`
+  - With real NumPy → metric: `control_passed`
+- **Control mode**: The LLM receives real NumPy documentation and solves unmodified problems.
+
+The key interpretive insight:
+
+| `passed` | `control_passed` | Interpretation |
+|----------|-----------------|----------------|
+| ✅ | ❌ | LLM genuinely followed the injected documentation |
+| ✅ | ✅ | LLM bypassed the perturbation (suspicious — task may not need modified API) |
+| ❌ | ✅ | LLM fell back on parametric memory (used real API, failed with wrapper) |
+| ❌ | ❌ | Task too hard or code quality issue |
+
+---
+
+## 2. Repository Layout
+
+```
+memory_code_eval/
+├── src/                            # All pipeline source code
+│   ├── execution_process.py        # Main orchestrator (entry point)
+│   ├── llmclient.py                # Ollama LLM client
+│   ├── cleaning.py                 # LLM output cleaning & normalization
+│   ├── WrapV2Numpy.py              # Counterfactual wrapper: _v2 suffix
+│   ├── WrapUnderscoreNumpy.py      # Counterfactual wrapper: trailing _
+│   ├── WrapCapitalizeNumpy.py      # Counterfactual wrapper: capitalization
+│   ├── ast_cleaning_v2.py          # AST normalizer for _v2
+│   ├── ast_cleaning_underscore.py  # AST normalizer for _
+│   ├── ast_cleaning_capitalize.py  # AST normalizer for capitalize
+│   ├── capitalize_numpy_documentation.py  # (standalone) Capitalize doc generator
+│   ├── underscore_numpy_documentation.py  # (standalone) Underscore doc generator
+│   ├── documentation/              # All documentation files & generators
+│   │   ├── numpy_documentation_creation.py     # Real NumPy doc generator
+│   │   ├── v2_numpy_documentation.py            # _v2 doc generator
+│   │   ├── underscore_numpy_documentation.py    # _ doc generator
+│   │   ├── capitalize_numpy_documentation.py    # Capitalize doc generator
+│   │   ├── noisy_doc_generator.py               # Noisy documentation generator
+│   │   ├── documentation_dictionnary.py         # Shared doc discovery utilities
+│   │   ├── real_minimal_numpy.txt               # Real NumPy (minimal)
+│   │   ├── real_ultra_minimal_numpy.txt         # Real NumPy (ultra-minimal)
+│   │   ├── real_full_doc_numpy.txt              # Real NumPy (full)
+│   │   ├── corrupted_minimal_numpy_v2.txt       # Fake _v2 (minimal, no noise)
+│   │   ├── corrupted_minimal_numpy_v2_noise25.txt  # Fake _v2 (minimal, 25% noise)
+│   │   ├── ... (all noise/variant combos)
+│   │   ├── interest_functions_v2.txt            # Functions actually used in DS-1000 (_v2)
+│   │   ├── interest_functions_underscore.txt
+│   │   ├── interest_functions_capitalize.txt
+│   │   ├── doc_explanation.txt                  # Textual explanation of the modification
+│   │   ├── doc_explanation_v2.txt
+│   │   └── doc_explanation_capitalize.txt
+│   └── perf_review/                # Analysis & plotting scripts
+│       ├── plot_model_perf.py       # Global control vs injection comparison plots
+│       ├── plot_noisy_doc_perf.py   # Noisy-doc performance histograms
+│       ├── sanity_check.py          # Quality checks & anomaly detection
+│       └── advanced_sanity_check.py # Additional diagnostics
+├── data/                           # Datasets and data preparation scripts
+│   ├── ds1000_npyOnly.jsonl                     # Original DS-1000 (NumPy, 159 tasks)
+│   ├── ds1000_npyOnly_corrupted_v2.jsonl        # Corrupted (_v2 scheme)
+│   ├── ds1000_npyOnly_corrupted_underscore.jsonl
+│   ├── ds1000_npyOnly_corrupted_capitalize.jsonl
+│   ├── data_modif_v2.py                         # Applies _v2 renaming to dataset
+│   ├── data_modif_underscore.py
+│   ├── data_modif_capitalize.py
+│   ├── data_extraction.py                       # Extracts NumPy-only subset from full DS-1000
+│   ├── get_none_numpy_tasks.py
+│   ├── ds1000.jsonl                             # Full DS-1000 (all libraries)
+│   └── data_smallsample.jsonl                   # Small sample for quick testing
+├── configs/                        # Pre-built JSON configuration files
+│   ├── config_bigexec_v2.json
+│   ├── config_bigexec_underscore.json
+│   ├── config_bigexec_capitalize.json
+│   ├── config_v2_explanation.json
+│   ├── config_underscore_explanation.json
+│   └── config_capitalize_explanation.json
+├── results/                        # All run outputs (created at runtime)
+│   └── run_YYYY-MM-DD_HH-MM-SS/
+│       ├── config.json             # Exact config snapshot
+│       ├── results.jsonl           # One line per task
+│       └── *.png                   # Generated plots
+├── logs_slurm/                     # SLURM job logs
+├── trick.sbatch                    # SLURM job script
+├── requirements.txt
+└── OLLAMA_MODELS_REFERENCE.md      # Reference of model names for Ollama
+```
+
+---
+
+## 3. End-to-End Pipeline
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│                         SETUP PHASE                                  │
+│  Load JSON config → Create results/run_YYYY-MM-DD_HH-MM-SS/         │
+│  Save config snapshot → Warm up Ollama + load models                │
+└─────────────────────────┬────────────────────────────────────────────┘
+                          │
+          For each (model, doc_name) pair in config:
+                          │
+         ┌────────────────┴────────────────┐
+         │                                 │
+         ▼                                 ▼
+┌─────────────────┐               ┌─────────────────────────────────────┐
+│  CONTROL MODE   │               │         INJECTION MODE              │
+│                 │               │                                     │
+│ Dataset: origin │               │ Dataset: corrupted                  │
+│ Doc: real NumPy │               │ Doc: counterfactual (+ maybe noisy) │
+│ Lib: numpy      │               │ Lib: WrapXxxNumpy                   │
+│                 │               │                                     │
+│ LLM → code      │               │ For attempt 1..pass_at:             │
+│ Clean code       │               │   LLM → raw response               │
+│ Execute w/ numpy │               │   extract_code_and_fix()           │
+│ passed = result │               │   normalize_object_attributes()     │
+│ is_control=True │               │     ├─ Execute w/ fake lib          │
+└────────┬────────┘               │     │  → passed                     │
+         │                        │     └─ Execute w/ real numpy        │
+         │                        │        → control_passed             │
+         │                        │   If passed=True → stop retrying   │
+         │                        └──────────────────┬──────────────────┘
+         │                                           │
+         └───────────────────┬───────────────────────┘
+                             │
+                             ▼
+                    Write line to results.jsonl
+                             │
+                             ▼
+               ┌─────────────────────────────┐
+               │         ANALYSIS            │
+               │  plot_model_perf.py         │
+               │  plot_noisy_doc_perf.py     │
+               │  sanity_check.py            │
+               └─────────────────────────────┘
+```
+
+---
+
+## 4. Source Code — `src/`
+
+### 4.1 Orchestrator — `execution_process.py`
+
+**Entry point** for every experiment. Run it from the project root:
+
+```bash
+python3 src/execution_process.py <config_file.json> [options]
+```
+
+Key responsibilities:
+
+| Function | Description |
+|----------|-------------|
+| `load_config_from_path()` | Parses the JSON config |
+| `setup_run_directory()` | Creates `results/run_.../`, saves config snapshot |
+| `run_control()` | Iterates over `origin_data`, queries LLM with real doc, executes with real NumPy |
+| `run_benchmark()` | Iterates over `corrupted_data`, queries LLM with counterfactual doc, double-executes (fake lib + real NumPy) |
+| `execute_task_engine()` | Low-level subprocess execution with timeout, captures stdout/stderr, detects `SUCCESS_MARKER` |
+
+**pass@k support**: set `exec.pass_at > 1` to allow multiple LLM attempts per task. The seed is incremented by 1 for each attempt. The first successful attempt's result is kept.
+
+### 4.2 LLM Client — `llmclient.py`
+
+Handles all communication with the **Ollama** local inference server.
+
+```
+LLMClient(config, model_name, doc_name, mode)
+    mode = "control"   → uses real_lib system_prompt + real doc
+    mode = "injection" → uses new_lib_injection system_prompt + counterfactual doc
+```
+
+Key behaviour:
+
+- **Warm-up**: Polls `http://localhost:11434` until healthy, then fires a minimal query (`"Say OK."`) to ensure the model is loaded into GPU memory before the benchmark starts.
+- **Documentation loading**: Reads the `path` file for the given `doc_name` and prepends the configured `intro` string. If `path` is empty (doc `"nothing"`), no documentation is injected.
+- **Token counting**: Uses `prompt_eval_count` from Ollama's response; falls back to `len(prompt)/3` if not available.
+- **Temperature & seed resolution**: Both can be a scalar (global) or a dict keyed by model name with a `"default"` fallback.
+
+### 4.3 Code Cleaner — `cleaning.py`
+
+Transforms the raw LLM text response into executable Python before it reaches the test harness.
+
+**`extract_code_and_fix(raw_response)`** — main entry point:
+
+```
+Raw LLM text
+    │
+    ├─ Extract code from markdown fences (``` or <code> blocks)
+    │
+    ├─ FAST PATH (AST-based):
+    │   ├─ Remove import statements
+    │   ├─ Convert bare `return x` → `result = x`
+    │   └─ Drop static constants / print statements
+    │
+    └─ SLOW PATH (line-by-line, if AST fails):
+        ├─ Filter out invalid lines
+        └─ Fix indentation
+```
+
+**`modify_lib(file_content, new_import)`** — patches the execution context:
+
+Replaces `import numpy as np` in the `code_context` string (from the JSONL dataset) with the counterfactual import (e.g., `import WrapV2Numpy as np`). Returns `""` if the pattern is not found.
+
+**`normalize_object_attributes(code, ast_module)`** — called after code cleaning in injection mode:
+
+Invokes the appropriate `ast_cleaning_*.py` module to rewrite object attribute accesses before double-execution with real NumPy (e.g., strips `_v2` from `A.shape_v2`).
+
+### 4.4 Counterfactual Wrappers — `Wrap*.py`
+
+Each wrapper is a Python module that **intercepts NumPy attribute access** via a proxy class and routes it to the real `numpy` module after stripping/adjusting the name.
+
+| File | Scheme | Accepts | Rejects |
+|------|--------|---------|---------|
+| `WrapV2Numpy.py` | `_v2` suffix | `np.mean_v2()` | `np.mean()` |
+| `WrapUnderscoreNumpy.py` | trailing `_` | `np.mean_()` | `np.mean()` |
+| `WrapCapitalizeNumpy.py` | Capital first letter | `np.Mean()` | `np.mean()` |
+
+These modules are imported at runtime by swapping the `import numpy as np` line in the execution context (via `modify_lib()`). The `custom_lib_path` in the config tells Python where to find them.
+
+### 4.5 AST Normalizers — `ast_cleaning_*.py`
+
+Used exclusively during the **control_passed** double-execution step: the LLM code (written for the fake API) must be adapted back so it runs on real NumPy.
+
+Each module exposes a `normalize(tree)` function that transforms the Python AST:
+
+| File | Transformation | Exception |
+|------|---------------|-----------|
+| `ast_cleaning_v2.py` | `obj.attr_v2` → `obj.attr` | Allows `np.*` unchanged |
+| `ast_cleaning_underscore.py` | `obj.attr_` → `obj.attr` | Allows `np.*` unchanged |
+| `ast_cleaning_capitalize.py` | `obj.Attr` → `obj.attr` | `.T` stays uppercase |
+
+If an attribute does **not** conform to the expected scheme (e.g., `obj.shape` in `_v2` mode), the module raises a `MODULE_WITH_SUFFIX_ERROR` — this prevents silently wrong normalizations and is recorded as an error in the results.
+
+---
+
+## 5. Documentation Generation — `src/documentation/`
+
+### 5.1 Real NumPy Documentation
+
+**`numpy_documentation_creation.py`**
+
+Generates documentation files for real NumPy by introspecting the installed `numpy` module. Outputs:
+
+- `real_minimal_numpy.txt` — function signatures + one-line descriptions
+- `real_ultra_minimal_numpy.txt` — signatures only
+- `real_full_doc_numpy.txt` — full docstrings
+
+Run from `src/documentation/`:
+
+```bash
+python3 numpy_documentation_creation.py
+```
+
+### 5.2 Counterfactual Documentation Generators
+
+Three scripts mirror `numpy_documentation_creation.py` but rename every function according to their scheme:
+
+| Script | Output files | Example entry |
+|--------|-------------|---------------|
+| `v2_numpy_documentation.py` | `corrupted_*_numpy_v2.txt` | `numpy.mean_v2(a, axis=None, ...)` |
+| `underscore_numpy_documentation.py` | `corrupted_*_numpy_underscore*.txt` | `numpy.mean_(a, axis=None, ...)` |
+| `capitalize_numpy_documentation.py` | `corrupted_*_numpy_capitalize*.txt` | `numpy.Mean(a, axis=None, ...)` |
+
+Each script generates three verbosity levels (`full`, `minimal`, `ultra_minimal`).
+
+Run from `src/documentation/` (or `src/`):
+
+```bash
+python3 documentation/v2_numpy_documentation.py
+python3 documentation/underscore_numpy_documentation.py
+python3 documentation/capitalize_numpy_documentation.py
+```
+
+### 5.3 Noisy Documentation Generator
+
+**`noisy_doc_generator.py`** — the most important documentation tool for the noise experiments.
+
+**Concept**: real NumPy has hundreds of functions. The LLM has seen all of them during pre-training. If the documentation only contains the 30–40 functions actually used in DS-1000 (the "interest functions"), the LLM cannot miss the renaming. But when the documentation grows to include hundreds of *unchanged* functions alongside the renamed ones, the LLM may overlook the modifications — this is the "noise" effect.
+
+**Parameters**:
+
+| Noise level | Meaning |
+|-------------|---------|
+| 0% | Only renamed functions that appear in DS-1000 exercises |
+| 25% | + 25% of other NumPy functions (unmodified) |
+| 50% | + 50% of other NumPy functions |
+| 75% | + 75% of other NumPy functions |
+| 100% | All NumPy functions (+ renamed interest functions) |
+
+**Inputs**:
+- `interest_functions_v2.txt` / `_underscore.txt` / `_capitalize.txt` — the renamed functions that actually appear in DS-1000 prompts, reference code, and past LLM outputs
+- The real NumPy introspection (via `documentation_dictionnary.py`)
+
+**Output files** (in `src/documentation/`):
+
+```
+corrupted_{full,minimal,ultra_minimal}_numpy_{v2,underscore,capitalize}_noise{0,25,50,75,100}.txt
+```
+
+Run from `src/documentation/`:
+
+```bash
+python3 noisy_doc_generator.py
+```
+
+### 5.4 Generated Documentation Files
+
+Complete inventory of documentation files in `src/documentation/`:
+
+```
+Real NumPy:
+  real_minimal_numpy.txt
+  real_ultra_minimal_numpy.txt
+  real_full_doc_numpy.txt
+  real_doc_numpy.txt
+
+Counterfactual (no noise):
+  corrupted_minimal_numpy_v2.txt
+  corrupted_minimal_numpy_capitalize.txt
+  corrupted_minimal_numpy.txt              ← underscore
+  corrupted_ultra_minimal_numpy_v2.txt
+  corrupted_ultra_minimal_numpy_capitalize.txt
+  corrupted_ultra_minimal_numpy.txt        ← underscore
+  corrupted_full_doc_numpy_v2.txt
+  corrupted_full_doc_numpy_capitalize.txt
+  corrupted_full_doc_numpy.txt             ← underscore
+
+Noisy (5 noise levels × 3 verbosities × 3 schemes = 45 files):
+  corrupted_{full,minimal,ultra_minimal}_numpy_{v2,underscore,capitalize}_noise{0,25,50,75,100}.txt
+
+Interest function lists:
+  interest_functions_v2.txt
+  interest_functions_underscore.txt
+  interest_functions_capitalize.txt
+
+Textual explanations (injected as documentation variant):
+  doc_explanation.txt
+  doc_explanation_v2.txt
+  doc_explanation_capitalize.txt
+```
+
+---
+
+## 6. Dataset & Data Files — `data/`
+
+### 6.1 Dataset Format (DS-1000 JSONL)
+
+All datasets are **JSONL** files (one JSON object per line). Each object represents one coding problem:
 
 ```json
 {
-  "prompt": "Given a 1D NumPy array x with possible NaN values, remove all NaNs and return the cleaned array.",
+  "prompt": "Given a 1D NumPy array x with possible NaN values, remove all NaNs...",
   "reference_code": "x = x[~np.isnan(x)]",
   "metadata": {
     "problem_id": 300,
@@ -87,177 +412,194 @@ Les fichiers DS-1000 sont des **JSONL** : une ligne = un problème. Exemple simp
     "perturbation_type": "Origin",
     "perturbation_origin_id": 9
   },
-  "code_context": "def test_execution(solution_code):\n    # génération des données et assertions...\n    pass\n"
+  "code_context": "def test_execution(solution_code):\n    x = np.array([1.0, np.nan, 2.0])\n    exec(solution_code)\n    assert ...\n"
 }
 ```
 
-- **`prompt`** : énoncé textuel du problème envoyé au LLM.
-- **`reference_code`** : solution de référence (non utilisée par le LLM, mais utile pour inspection).
-- **`metadata`** : identifiants DS-1000 + type de perturbation.
-- **`code_context`** : moteur de tests (génération d’inputs + assertions), dans lequel on injecte la solution du LLM.
+| Field | Role |
+|-------|------|
+| `prompt` | Sent verbatim to the LLM |
+| `reference_code` | Ground truth (never shown to LLM; useful for inspection) |
+| `metadata` | Problem identifiers and DS-1000 classification |
+| `code_context` | Python test harness; the LLM's solution is injected and executed inside it |
 
-- **Scripts d’analyse (`src/perf_review/*.py`)**
-  - `plot_model_perf.py` :
-    - Regroupe les résultats par **modèle** et par **type de documentation** :
-      - `Control classique`, `Control minimal`, `Control ultra_minimal` (runs control).
-      - `Doc minimal`, `Doc ultra_minimal`, `Doc explanation` (runs injection).
-      - `Doc minimal (éval. lib d'origine)`, etc. (métrique `control_passed` sur les runs injection).
-  - `plot_noisy_doc_perf.py` :
-    - Histogrammes des taux de réussite par doc “noisy” (e.g. `minimal_noise0`, `ultra_minimal_noise75`, etc.).
-    - Une barre par `(modèle, doc)`, texte `success/total` au-dessus.
-  - `sanity_check.py` :
-    - Sections de diagnostic (LLM_API_FAILURE, anomalies où `passed=True` mais `control_passed=False`, etc.).
+**Key datasets**:
+
+| File | Description | Tasks |
+|------|-------------|-------|
+| `ds1000_npyOnly.jsonl` | NumPy-only original | 159 |
+| `ds1000_npyOnly_corrupted_v2.jsonl` | `_v2` renamed prompts + reference | 159 |
+| `ds1000_npyOnly_corrupted_underscore.jsonl` | `_` renamed | 159 |
+| `ds1000_npyOnly_corrupted_capitalize.jsonl` | Capitalized | 159 |
+| `data_smallsample.jsonl` | Small subset for quick tests | ~10 |
+| `ds1000.jsonl` | Full DS-1000 (all libraries) | ~1000 |
+
+### 6.2 Dataset Corruption Scripts
+
+Each script applies a renaming transformation to function names in `prompt`, `reference_code`, and `code_context`:
+
+```bash
+python3 data/data_modif_v2.py           # Appends _v2 to all np.* calls
+python3 data/data_modif_underscore.py   # Appends _ to all np.* calls
+python3 data/data_modif_capitalize.py   # Capitalizes function names
+```
+
+`data_extraction.py` — extracts the NumPy-only subset from the full `ds1000.jsonl`.
 
 ---
 
-## Format des fichiers de configuration
+## 7. Configuration Files — `configs/`
 
-Les configs sont des **fichiers JSON** (malgré le terme “config.yaml” dans certaines discussions). Exemples :
-- `config_bigexec_v2_noisy_comparison.json`
-- `config_bigexec_capitalize_noisy_comparison.json`
-- `config_bigexec_underscore_noisy_comparison.json`
+### 7.1 Full Configuration Schema
 
-### Structure générale
+```json
+{
+  "exec": {
+    "timeout": 120,      // Seconds per code execution (subprocess timeout)
+    "pass_at": 10        // Max LLM attempts per task; first success wins
+  },
 
-- **`exec`**
-  - `timeout` : timeout (en secondes) pour l’exécution du code Python de la solution (dans `execute_task_engine`).
+  "llm": {
+    "model": ["qwen2.5-coder:32b", "codestral"],  // Models to benchmark
+    "temperature": 0.9,   // Scalar OR {"model_name": value, "default": value}
+    "seed": 42,           // Scalar OR {"model_name": value, "default": null}
+                          // Incremented by 1 per pass@k attempt
+    "num_ctx": 30000,     // Ollama context window (tokens)
+    "api_url": "http://localhost:11434/api"
+  },
 
-- **`llm`**
-  - `model` : liste de noms de modèles à tester (`["codestral"]`, `["qwen2.5-coder:32b", "gemma3:12b", ...]`).
-  - `temperature` : température passée à Ollama.
-  - `num_ctx` : longueur de contexte.
-  - `api_url` : URL de l’API Ollama (`http://localhost:11434/api`).
-  - Champs `_comment_*` : commentaires internes (ignorés par le code).
+  "data": {
+    // Paths relative to src/ (where execution_process.py runs)
+    "origin_data": "../data/ds1000_npyOnly.jsonl",
+    "corrupted_data": "../data/ds1000_npyOnly_corrupted_v2.jsonl"
+  },
 
-- **`data`**
-  - `origin_data` : chemin **relatif à `src/`** du dataset DS-1000 d’origine (ex. `"../data/ds1000_npyOnly.jsonl"`).
-  - `corrupted_data` : chemin **relatif à `src/`** du dataset contrefactuel (ex. `"../data/ds1000_npyOnly_corrupted_v2.jsonl"` ou `"../data/ds1000_npyOnly_corrupted_.jsonl"` pour underscore).
+  "real_lib": {
+    "name": "Numpy",
+    "custom_lib_path": null,          // null = use system numpy
+    "system_prompt": "...",
+    "documentation": {
+      "nothing":      {"intro": "", "path": ""},
+      "minimal":      {"intro": "Here is a minimal ...", "path": "/abs/path/real_minimal_numpy.txt"},
+      "ultra_minimal":{"intro": "...", "path": "/abs/path/real_ultra_minimal_numpy.txt"}
+    }
+  },
 
-- **`real_lib`** (librairie “vraie” / contrôle)
-  - `name` : `"Numpy"`.
-  - `custom_lib_path` : `null` (on utilise Numpy du venv système).
-  - `system_prompt` : instructions générales pour le LLM en mode contrôle :
-    - Ne pas recréer les données.
-    - Ne pas importer de libs standards.
-    - Se limiter à des appels `np.*`.
-    - Retourner uniquement du code Python exécutable dans un bloc markdown.
-  - `documentation` : dictionnaire `{doc_name -> {intro, path}}` :
-    - `nothing` : pas de doc.
-    - `minimal` : chemin vers doc Numpy minimale.
-    - `ultra_minimal` : doc ultra condensée.
+  "new_lib_injection": {
+    "name": "WrapV2Numpy",            // Module name (must be importable from custom_lib_path)
+    "ast_cleaning_module": "ast_cleaning_v2",  // Module for AST normalization
+    "custom_lib_path": "/abs/path/to/src",     // Added to sys.path at runtime
+    "system_prompt": "...",
+    "documentation": {
+      "minimal":           {"intro": "...", "path": "/abs/.../corrupted_minimal_numpy_v2.txt"},
+      "ultra_minimal":     {"intro": "...", "path": "/abs/.../corrupted_ultra_minimal_numpy_v2.txt"},
+      "minimal_noise0":    {"intro": "...", "path": "/abs/.../corrupted_minimal_numpy_v2_noise0.txt"},
+      "minimal_noise25":   {"intro": "...", "path": "/abs/.../corrupted_minimal_numpy_v2_noise25.txt"},
+      "minimal_noise50":   {"intro": "...", "path": "/abs/.../corrupted_minimal_numpy_v2_noise50.txt"},
+      "minimal_noise75":   {"intro": "...", "path": "/abs/.../corrupted_minimal_numpy_v2_noise75.txt"},
+      "minimal_noise100":  {"intro": "...", "path": "/abs/.../corrupted_minimal_numpy_v2_noise100.txt"}
+    }
+  }
+}
+```
 
-- **`new_lib_injection`** (librairie contrefactuelle)
-  - `name` : nom du module wrapper (`"WrapV2Numpy"`, `"WrapUnderscoreNumpy"`, …).
-  - `custom_lib_path` : chemin absolu de `src` (pour que Python trouve le module wrapper).
-  - `system_prompt` : similaire à `real_lib` mais adapté à l’API contrefactuelle :
-    - Ex. “les fonctions doivent s’appeler `np.fonction_v2()`” ou `np.fonction_()`.
-  - `documentation` : dictionnaire `{doc_name -> {intro, path}}` pour les docs contrefactuelles :
-    - Cases simples : `minimal`, `ultra_minimal`.
-    - Cas “noisy” : `minimal_noise0`, `minimal_noise25`, …, `ultra_minimal_noise100` pointant vers
-      `src/documentation/noisy_doc/corrupted_*_numpy_{v2,underscore,capitalize}_noiseXX.txt`.
+**Important**: all `path` values must be **absolute paths** (or paths valid from the working directory where the script is launched).
 
-### Bonnes pratiques pour créer une nouvelle config
+### 7.2 Available Configs
 
-1. **Copier** une config existante la plus proche de votre scénario (ex. `config_bigexec_v2_noisy_comparison.json`).
-2. Adapter :
-   - `llm.model` : les modèles que vous avez dans Ollama.
-   - `data.origin_data` / `data.corrupted_data` : vos fichiers DS-1000 filtrés/modifiés.
-   - `new_lib_injection.name` + `custom_lib_path` : module wrapper et chemin vers `src`.
-   - `system_prompt` de `new_lib_injection` : bien spécifier la contrainte sur les noms de fonctions.
-   - `documentation` (control + injection) : pointeurs vers les bons fichiers de doc (réelle ou bruitée).
-3. Vérifier que **tous les chemins sont valides** depuis `src/` (le script d’exécution est lancé depuis là).
+| File | Perturbation | Notes |
+|------|-------------|-------|
+| `config_bigexec_v2.json` | `_v2` | Full multi-model run, no noise |
+| `config_bigexec_underscore.json` | `_` | Full multi-model run |
+| `config_bigexec_capitalize.json` | Capitalize | Full multi-model run |
+| `config_v2_explanation.json` | `_v2` | Uses `doc_explanation` as documentation |
+| `config_underscore_explanation.json` | `_` | Explanation doc variant |
+| `config_capitalize_explanation.json` | Capitalize | Explanation doc variant |
 
 ---
 
-## Comment lancer une exécution
+## 8. Running the Pipeline
 
-### 1. Pré-requis
+### 8.1 Prerequisites
 
-- Python 3.x + venv avec les dépendances (Numpy, Matplotlib, Requests, etc.).
-- Serveur **Ollama** en route, avec les modèles nécessaires déjà téléchargés (noms utilisés dans `llm.model`).
+1. Python 3.10+ environment with dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### 2. Lancement simple (depuis la racine du projet)
+2. **Ollama** running locally with required models already pulled:
+   ```bash
+   ollama pull qwen2.5-coder:32b
+   ollama pull codestral
+   # etc. — see OLLAMA_MODELS_REFERENCE.md
+   ```
 
-Exécution directe en Python :
+3. Verify Ollama is reachable at `http://localhost:11434` (the pipeline warm-up will wait for it).
 
-```bash
-python3 src/execution_process.py config_bigexec_v2_noisy_comparison.json
-```
+### 8.2 Basic Execution
 
-Ou, pour une config underscore par exemple :
-
-```bash
-python3 src/execution_process.py config_bigexec_underscore_noisy_comparison.json
-```
-
-Le script :
-- charge la config,
-- crée un dossier `results/run_YYYY-MM-DD_HH-MM-SS/`,
-- lance pour chaque modèle + chaque documentation :
-  - le **mode control** (sauf si `--injection_only`) ;
-  - le **mode injection** (sauf si `--control_only`).
-
-### 3. Options de relance / filtrage
-
-`src/execution_process.py` accepte plusieurs options pratiques :
-
-- **Reprendre à partir d’un task_id** :
-  ```bash
-  python3 src/execution_process.py config_bigexec_v2_noisy_comparison.json -t 500
-  ```
-  → ignore les tâches avec `problem_id <= 500`.
-
-- **Filtrer sur un modèle** :
-  ```bash
-  python3 src/execution_process.py config_bigexec_v2_noisy_comparison.json --model codestral
-  ```
-
-- **Filtrer sur une documentation spécifique** (clé dans `documentation`) :
-  ```bash
-  python3 src/execution_process.py config_bigexec_v2_noisy_comparison.json --doc minimal_noise50
-  ```
-
-- **Ne lancer que le mode control** :
-  ```bash
-  python3 src/execution_process.py config_bigexec_v2_noisy_comparison.json --control_only
-  ```
-
-- **Ne lancer que le mode injection** :
-  ```bash
-  python3 src/execution_process.py config_bigexec_v2_noisy_comparison.json --injection_only
-  ```
-
-Sur cluster (SLURM), le projet utilise un script `trick.sbatch` qui wrappe simplement cette commande en job batch, par exemple :
+Always run from the **project root**:
 
 ```bash
-sbatch trick.sbatch config_bigexec_v2_noisy_comparison.json
+python3 src/execution_process.py configs/config_bigexec_v2.json
 ```
+
+This will:
+- Create `results/run_YYYY-MM-DD_HH-MM-SS/`
+- Save `config.json` snapshot there
+- Run control mode + injection mode for every `(model, doc)` pair
+- Write `results.jsonl` incrementally (safe to interrupt and resume)
+
+### 8.3 Filtering Options
+
+```bash
+# Resume from a specific task (skips problem_id <= N)
+python3 src/execution_process.py configs/config_bigexec_v2.json -t 150
+
+# Only run one model
+python3 src/execution_process.py configs/config_bigexec_v2.json --model qwen2.5-coder:32b
+
+# Only run one documentation condition
+python3 src/execution_process.py configs/config_bigexec_v2.json --doc minimal_noise50
+
+# Skip injection, only run control baseline
+python3 src/execution_process.py configs/config_bigexec_v2.json --control_only
+
+# Skip control, only run injection
+python3 src/execution_process.py configs/config_bigexec_v2.json --injection_only
+```
+
+### 8.4 SLURM / HPC Execution
+
+`trick.sbatch` wraps the pipeline for SLURM clusters:
+
+```bash
+sbatch trick.sbatch configs/config_bigexec_v2.json
+```
+
+The script:
+1. Sets up the Ollama server on GPU 0
+2. Waits for Ollama to be ready
+3. Pre-loads all models into GPU memory
+4. Runs `execution_process.py` with stdout redirected to `logs_slurm/job_{SLURM_JOB_ID}.out`
+5. Cleans up Ollama on exit
 
 ---
 
-## Où sont stockés les résultats et sous quel format ?
+## 9. Results Format
 
-### Organisation dans `results/`
+### Directory structure
 
-Chaque exécution crée un sous-dossier :
+```
+results/
+└── run_2026-04-05_14-30-00/
+    ├── config.json       ← exact config used (for reproducibility)
+    └── results.jsonl     ← one JSON line per task
+```
 
-- `results/run_YYYY-MM-DD_HH-MM-SS/`
-  - `config.json` : **copie exacte** de la config utilisée.
-  - `results.jsonl` : une ligne JSON par tâche évaluée.
-  - fichiers PNG générés par les scripts `perf_review` (plots).
+### `results.jsonl` schema
 
-Pour les expériences regroupées ou renommées, vous trouverez aussi des dossiers comme :
-- `results/qwen_noisy_v2/`
-- `results/qwen_noisy_capitalize/`
-- `results/qwen_gemma_codestral_devstral_v2_docs/`
-avec à chaque fois :
-- un `config.json` (snapshot),
-- un `results.jsonl`,
-- des plots (e.g. `plot_global_control_vs_doc_all.png`, `plot_noisy_doc_perf.png`, etc.).
-
-### Schéma d’une ligne de `results.jsonl`
-
-Les résultats sont aussi en **JSONL** : une ligne = un problème + un modèle + une doc. Exemple typique pour un run injection :
+**Injection mode entry** (most complete):
 
 ```json
 {
@@ -268,12 +610,15 @@ Les résultats sont aussi en **JSONL** : une ligne = un problème + un modèle +
     "library": "Numpy",
     "test_case_cnt": 2,
     "perturbation_type": "Origin",
-    "perturbation_origin_id": 9,
     "model_name": "qwen2.5-coder:32b",
     "doc_name": "minimal_noise25",
     "mode": "injection",
-    "temperature": 0,
-    "token_count": 381
+    "temperature": 0.9,
+    "seed": 42,
+    "token_count": 5432,
+    "pass_at": 10,
+    "pass_at_attempt": 3,
+    "pass_at_success": true
   },
   "passed": true,
   "control_passed": false,
@@ -287,72 +632,178 @@ Les résultats sont aussi en **JSONL** : une ligne = un problème + un modèle +
 }
 ```
 
-- **`task_id`** : identifiant de la tâche (souvent `problem_id` DS-1000).
-- **`metadata`** : recopie les métadonnées du dataset + ajoute les infos LLM (`model_name`, `doc_name`, `mode`, `temperature`, `token_count`).
-- **`passed`** : succès de la solution dans le **mode courant** :
-  - en mode control : succès avec la vraie Numpy (baseline).
-  - en mode injection : succès avec la librairie contrefactuelle.
-- **`control_passed`** (injection uniquement) : succès de **la même solution** réévaluée avec la vraie Numpy.
-- **`llm_code`** : code final nettoyé et exécuté.
-- **`stdout` / `stderr`** : sorties de l’exécution dans le mode courant.
-- **`stdout_control` / `stderr_control`** : sorties de l’exécution de contrôle (pour injection).
-- **`full_response`** : réponse brute du LLM telle que renvoyée par Ollama.
-- **`is_control`** : `true` pour les lignes mode control, `false` pour les lignes injection.
+**Control mode entry** (simpler):
 
-En cas d’échec de l’API LLM :
-- **`error`** vaut `"LLM_API_FAILURE"`,
-- `passed` et `control_passed` sont à `false`,
-- mais `metadata` reste **toujours rempli**, ce qui permet de faire des sanity-checks robustes.
+```json
+{
+  "task_id": 300,
+  "metadata": { "...", "mode": "control", "is_control": true },
+  "passed": true,
+  "llm_code": "x = x[~np.isnan(x)]",
+  "stdout": "SUCCESS_MARKER\n",
+  "stderr": "",
+  "is_control": true
+}
+```
+
+**Error entry** (LLM API failure):
+
+```json
+{
+  "task_id": 300,
+  "metadata": { "..." },
+  "error": "LLM_API_FAILURE",
+  "passed": false,
+  "control_passed": false,
+  "is_control": false
+}
+```
+
+| Field | Description |
+|-------|-------------|
+| `passed` | Code succeeded in the current mode (fake lib for injection, real numpy for control) |
+| `control_passed` | Same code also succeeded with real NumPy (injection only) |
+| `llm_code` | Final cleaned code that was executed |
+| `full_response` | Raw LLM output (including markdown fences) |
+| `pass_at_attempt` | Which attempt (1-indexed) produced this result |
+| `token_count` | Input token count (from Ollama or estimated) |
+| `error` | Set only on failure: `LLM_API_FAILURE`, `SYNTAX_ERROR`, `MODULE_WITH_SUFFIX_ERROR`, `MISSING_CONTEXT_IN_DATASET` |
 
 ---
 
-## Analyse et visualisation des résultats
+## 10. Analysis & Visualization — `src/perf_review/`
 
-Depuis la racine du projet :
+Run all analysis scripts from the **project root**.
 
-- **Plot global control vs injection + control_passed** :
+### 10.1 `plot_model_perf.py`
 
-```bash
-python3 src/perf_review/plot_model_perf.py results/run_YYYY-MM-DD_HH-MM-SS/results.jsonl -o results/run_YYYY-MM-DD_HH-MM-SS
-```
-
-- **Plot spécifique docs bruitées** :
+Generates a grouped bar chart comparing control vs injection performance across models and documentation conditions.
 
 ```bash
-python3 src/perf_review/plot_noisy_doc_perf.py results/qwen_noisy_v2/results.jsonl -o results/qwen_noisy_v2
+python3 src/perf_review/plot_model_perf.py <results.jsonl> -o <output_dir>
 ```
 
-- **Sanity check complet** (qualité des données, anomalies) :
+**What it plots** (one group of bars per model):
+
+| Bar color/label | Source rows | Metric |
+|----------------|-------------|--------|
+| Control classique | `is_control=True`, `doc_name="nothing"` | `passed` |
+| Control minimal | `is_control=True`, `doc_name="minimal"` | `passed` |
+| Control ultra_minimal | `is_control=True`, `doc_name="ultra_minimal"` | `passed` |
+| Doc minimal | `is_control=False`, `doc_name="minimal"` | `passed` |
+| Doc ultra_minimal | `is_control=False`, `doc_name="ultra_minimal"` | `passed` |
+| Doc minimal (orig. eval) | `is_control=False`, `doc_name="minimal"` | `control_passed` |
+| Doc ultra_minimal (orig. eval) | `is_control=False`, `doc_name="ultra_minimal"` | `control_passed` |
+
+**Output**: `plot_global_control_vs_doc_all.png`
+
+### 10.2 `plot_noisy_doc_perf.py`
+
+Generates histograms showing performance as a function of documentation noise level.
 
 ```bash
-python3 src/perf_review/sanity_check.py results/run_YYYY-MM-DD_HH-MM-SS/results.jsonl
+python3 src/perf_review/plot_noisy_doc_perf.py <results.jsonl> -o <output_dir>
 ```
 
-Les scripts produisent des fichiers PNG prêts à être insérés dans un rapport.
+**What it plots**:
+- X-axis: noise levels (0%, 25%, 50%, 75%, 100%)
+- Y-axis: success rate (%)
+- One bar per `(model, verbosity)` combination
+- Bar labels show `successes / total` counts
+- Separate panels or grouped bars for `passed` vs `control_passed`
+
+**Output**: `plot_noisy_doc_perf.png`
+
+### 10.3 `sanity_check.py`
+
+Produces a human-readable quality report detecting anomalies in the results.
+
+```bash
+python3 src/perf_review/sanity_check.py <results.jsonl> [-o report.txt]
+```
+
+**Checks performed**:
+
+| Check | Description |
+|-------|-------------|
+| `LLM_API_FAILURE` | Count and list tasks where the LLM never responded |
+| `both_passed` | `passed=True AND control_passed=True` — LLM may not have used the fake API |
+| `no_np_passed` | Tasks that passed without any `np.*` call in the code |
+| `injection_pass_control_fail` | `passed=True, control_passed=False` — strong evidence of doc-following (the desired signal) |
+| `perturbation_adoption` | Did the LLM actually include the suffix/capitalization in its code? |
+| Global pass rates | Breakdown by `(model, doc_name, mode)` |
+
+**Output**: prints to stdout + optional `report.txt`
+
+### 10.4 `advanced_sanity_check.py`
+
+Additional diagnostic utilities for deeper investigation. Includes error pattern analysis and per-task breakdowns. Run the same way as `sanity_check.py`.
 
 ---
 
-## Pour un·e nouveau·elle contributeur·rice : comment lancer sa première expérience ?
+## 11. Interpreting the Metrics
 
-1. **Cloner le projet** et créer un environnement Python avec les dépendances.
-2. Vérifier que **Ollama tourne** et que les modèles voulus sont disponibles.
-3. Choisir une config existante (par ex. `config_bigexec_v2_noisy_comparison.json`) et l’adapter si besoin :
-   - chemins `origin_data` / `corrupted_data`,
-   - wrappers (`WrapV2Numpy` / `WrapUnderscoreNumpy` / …),
-   - fichiers de documentation (réelle / contrefactuelle / noisy).
-4. Lancer :
-   ```bash
-   python3 src/execution_process.py config_bigexec_v2_noisy_comparison.json
-   ```
-   ou via SLURM :
-   ```bash
-   sbatch trick.sbatch config_bigexec_v2_noisy_comparison.json
-   ```
-5. Une fois le run terminé, explorer :
-   - `results/run_.../config.json` (config exacte),
-   - `results/run_.../results.jsonl`,
-   - les PNG générés dans ce dossier ou dans `results/..._docs/`.
-6. Utiliser les scripts `perf_review` pour générer les **graphiques de comparaison** et lire les rapports de sanity check.
+The pipeline produces two independent binary metrics per injection task:
 
-Avec ces éléments, quelqu’un qui ne connaît pas le projet peut comprendre la logique de la pipeline, écrire son propre fichier de config, lancer une exécution et analyser les résultats sans toucher au code interne.
+```
+passed           = did the LLM code work with the counterfactual library?
+control_passed   = did the SAME code work with real NumPy?
+```
 
+**Reading a results file for research conclusions**:
+
+1. **High `passed`, low `control_passed`**: LLMs are successfully following the injected documentation and have genuinely abandoned their parametric knowledge for those tasks. This is the strongest evidence that the model reads the context.
+
+2. **High `both_passed` rate**: The modified functions in those tasks may be used on `ndarray` objects (e.g., `A.mean()`) where the AST normalization strips the suffix, making both executions equivalent. Use `sanity_check.py` to identify and filter these.
+
+3. **Noise effect**: Comparing `passed` across noise levels (0% → 100%) shows how quickly models lose track of the renamed functions when drowned in unmodified documentation.
+
+4. **Explanation doc**: Using `doc_explanation_*.txt` (a short textual paragraph explaining "the library is the same as NumPy but with `_v2` added") instead of the full API listing tests whether a brief conceptual description suffices.
+
+---
+
+## 12. Creating a New Experiment
+
+**Step 1 — Choose a perturbation scheme**: `v2`, `underscore`, or `capitalize`.
+
+**Step 2 — Generate documentation** (if not already done):
+```bash
+cd src/documentation
+python3 v2_numpy_documentation.py        # or underscore/capitalize variant
+python3 noisy_doc_generator.py           # generates all noise levels
+```
+
+**Step 3 — Prepare the dataset** (if not already done):
+```bash
+python3 data/data_modif_v2.py            # or underscore/capitalize
+```
+
+**Step 4 — Create a config** by copying the closest existing one:
+```bash
+cp configs/config_bigexec_v2.json configs/my_experiment.json
+```
+
+Edit the copy:
+- `llm.model` — list of Ollama model names you have available
+- `data.corrupted_data` — path to the matching corrupted JSONL
+- `new_lib_injection.name` — wrapper module name
+- `new_lib_injection.ast_cleaning_module` — matching normalizer
+- `new_lib_injection.documentation` — paths to the doc files you generated
+- `exec.pass_at` — number of LLM retries per task
+- `llm.temperature` and `llm.seed` — sampling parameters
+
+**Step 5 — Run**:
+```bash
+python3 src/execution_process.py configs/my_experiment.json
+# or on SLURM:
+sbatch trick.sbatch configs/my_experiment.json
+```
+
+**Step 6 — Analyze**:
+```bash
+RESULTS=results/run_YYYY-MM-DD_HH-MM-SS
+
+python3 src/perf_review/plot_model_perf.py      $RESULTS/results.jsonl -o $RESULTS
+python3 src/perf_review/plot_noisy_doc_perf.py  $RESULTS/results.jsonl -o $RESULTS
+python3 src/perf_review/sanity_check.py         $RESULTS/results.jsonl
+```
