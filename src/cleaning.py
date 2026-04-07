@@ -47,45 +47,45 @@ def fix_unexpected_indent(code):
 
 
 
-def is_valid_and_useful_line(line: str) -> bool:
-    """
-    Vérifie si une ligne de code générée par le LLM est utile à l'exécution.
-    Conserve les assignations ET les expressions brutes (ex: np.sum(x)).
-    Filtre les commentaires, les prints, les asserts, et les lignes vides.
-    """
-    line_clean = line.strip()
+# def is_valid_and_useful_line(line):
+#     """
+#     Vérifie si une ligne de code générée par le LLM est utile à l'exécution.
+#     Conserve les assignations ET les expressions brutes (ex: np.sum(x)).
+#     Filtre les commentaires, les prints, les asserts, et les lignes vides.
+#     """
+#     line_clean = line.strip()
     
-    # 1. Rejeter les lignes vides
-    if not line_clean:
-        return False
+#     # 1. Rejeter les lignes vides
+#     if not line_clean:
+#         return False
         
-    # 2. Rejeter les commentaires purs
-    if line_clean.startswith("#"):
-        return False
+#     # 2. Rejeter les commentaires purs
+#     if line_clean.startswith("#"):
+#         return False
         
-    # 3. Rejeter les instructions d'affichage (print)
-    # Les LLMs ajoutent souvent print(result) pour "montrer" la réponse, 
-    # ce qui pollue l'évaluation via exec()
-    if line_clean.startswith("print(") or line_clean.startswith("print "):
-        return False
+#     # 3. Rejeter les instructions d'affichage (print)
+#     # Les LLMs ajoutent souvent print(result) pour "montrer" la réponse, 
+#     # ce qui pollue l'évaluation via exec()
+#     if line_clean.startswith("print(") or line_clean.startswith("print "):
+#         return False
         
-    # 4. Rejeter les assertions (assert)
-    # Parfois, le LLM s'auto-évalue en générant des assert
-    if line_clean.startswith("assert "):
-        return False
+#     # 4. Rejeter les assertions (assert)
+#     # Parfois, le LLM s'auto-évalue en générant des assert
+#     if line_clean.startswith("assert "):
+#         return False
         
-    # 5. Rejeter les balises markdown résiduelles (au cas où la regex a raté)
-    if line_clean.startswith("```"):
-        return False
+#     # 5. Rejeter les balises markdown résiduelles (au cas où la regex a raté)
+#     if line_clean.startswith("```"):
+#         return False
 
-    # Si la ligne passe tous ces filtres, on la considère valide.
-    # On autorise donc : `result = x` MAIS AUSSI `np.insert(arr, 0, element)`
-    return True
-
-
+#     # Si la ligne passe tous ces filtres, on la considère valide.
+#     # On autorise donc : `result = x` MAIS AUSSI `np.insert(arr, 0, element)`
+#     return True
 
 
-def is_valid_and_useful_line_vLyonnais(line):
+
+
+def is_valid_and_useful_line(line):
     """
     Filtre ligne par ligne (Slow Path) quand l'AST global échoue.
     """
