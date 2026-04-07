@@ -137,15 +137,25 @@ if __name__ == "__main__":
     # --- A MODIFIER SELON VOS CHEMINS ---
     
     # 1. Traitement de la base originale NumpyEval
-    # (Remplacez 'NumpyEval.jsonl' par le nom de votre fichier brut téléchargé)
-    convert_raw_to_ds1000_strict(
-        input_file="data/NumpyEval.jsonl", 
-        output_file="data/test3NumpyEval_ds1000_format.jsonl"
-    )
+    # # (Remplacez 'NumpyEval.jsonl' par le nom de votre fichier brut téléchargé)
+    # convert_raw_to_ds1000_strict(
+    #     input_file="data/NumpyEval.jsonl", 
+    #     output_file="data/test3NumpyEval_ds1000_format.jsonl"
+    # )
     
-    # 2. Traitement de la base corrompue
-    # (Si vous avez un fichier NumpyEval_corrupted.jsonl brut)
+    # # 2. Traitement de la base corrompue
+    # # (Si vous avez un fichier NumpyEval_corrupted.jsonl brut)
     # convert_raw_to_ds1000_strict(
     #     input_file="data/NumpyEval_corrupted_v2.jsonl", 
     #     output_file="data/test3NumpyEval_corrupted_v2_ds1000_format.jsonl"
     # )
+    
+    convert_raw_to_ds1000_strict(
+        input_file="data/NumpyEval_corrupted_capitalize.jsonl", 
+        output_file="data/NumpyEval_corrupted_capitalize_ds1000_format.jsonl"
+    )
+    
+    convert_raw_to_ds1000_strict(
+        input_file="data/NumpyEval_corrupted_underscore.jsonl", 
+        output_file="data/NumpyEval_corrupted_underscore_ds1000_format.jsonl"
+    )

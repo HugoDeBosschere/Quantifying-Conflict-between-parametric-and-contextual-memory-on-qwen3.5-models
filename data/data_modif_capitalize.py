@@ -112,4 +112,5 @@ def capitalize_prompt_module(filename, list_shorthand):
 
 
 if __name__ == "__main__":
-    capitalize_prompt_module("data/ds1000_npyOnly.jsonl", ["numpy", "np"])
+    # capitalize_prompt_module("data/ds1000_npyOnly.jsonl", ["numpy", "np"])
+    capitalize_prompt_module("data/NumpyEval.jsonl", ["numpy", "np"])
