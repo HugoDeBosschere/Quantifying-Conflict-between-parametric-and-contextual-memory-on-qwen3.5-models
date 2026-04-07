@@ -15,6 +15,8 @@ class LLMClient:
         self.model_name = model_name
         self.mode = mode
         self.api_url = config["llm"]["api_url"]
+        self.temperature_config = config["llm"]["temperature"]
+        self.temperature = self._resolve_temperature(self.temperature_config)
         self.num_ctx = config["llm"].get("num_ctx", 20000)
         self.seed = self._resolve_seed(config["llm"].get("seed"))
 
@@ -30,9 +32,27 @@ class LLMClient:
             "model_name": self.model_name,
             "doc_name": doc_name,
             "mode": self.mode,
+            "temperature": self.temperature,
             "seed": self.seed,
         }
 
+    def _resolve_temperature(self, temperature_cfg):
+        """Résout la température à utiliser pour `self.model_name`."""
+        if isinstance(temperature_cfg, (int, float)):
+            return float(temperature_cfg)
+        if isinstance(temperature_cfg, dict):
+            # Priorité : clé exacte du modèle, puis `default`.
+            if self.model_name in temperature_cfg:
+                return float(temperature_cfg[self.model_name])
+            if "default" in temperature_cfg:
+                return float(temperature_cfg["default"])
+            # Fallback : première valeur numérique trouvée (évite crash si config incomplète)
+            for v in temperature_cfg.values():
+                if isinstance(v, (int, float)):
+                    return float(v)
+            return 0.0
+        # Type inattendu : on fallback à 0
+        return 0.0
 
     def _resolve_seed(self, seed_cfg):
         """Résout la seed pour `self.model_name`, ou None si non configurée."""
@@ -53,7 +73,7 @@ class LLMClient:
         return None
 
     def _ollama_options(self, options_extra=None):
-        opts = {"num_ctx": self.num_ctx}
+        opts = {"temperature": self.temperature, "num_ctx": self.num_ctx}
         if self.seed is not None:
             opts["seed"] = self.seed
         if options_extra:
