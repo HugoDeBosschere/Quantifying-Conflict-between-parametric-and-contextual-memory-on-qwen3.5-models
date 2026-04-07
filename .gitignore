@@ -6,6 +6,9 @@
 
 *.tex
 
+results/*
+
+
 *.log
 
 *.err
