@@ -1,0 +1,1055 @@
+Advanced sanity check — CONTROL vs INJECTION
+- results_file: /usr/users/sdim/sdim_25/memory_code_eval/results/run_2026-04-07_06-04-18/results.jsonl
+- model: gemma3:12b
+- control_doc_name: 'nothing'
+- injection_doc_name: 'ultra_minimal'
+- only_mismatches: False
+
+==========================================================================================
+
+PROBLEM 1
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=1 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+b = np.expand_dims(a, axis=2)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=1 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function expand_dims at 0x7f741c2b7760>\nNouvelle fonction dans le try !\nreal attr : <function array_equal …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpdx1c0bbr.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 4, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+b = np.expand_dims_v2(a, axis=2)
+
+==========================================================================================
+
+PROBLEM 7
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=7 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+b = np.flip(a, axis=2)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=7 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function flip at 0x7fbcdb9ad360>\nNouvelle fonction dans le try !\nreal attr : <function array_equal at 0x7 …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpu7h6uac_.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+b = np.flip_v2(a, axis=2)
+
+==========================================================================================
+
+PROBLEM 9
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=9 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+df.values[np.diag_indices_from(df.values)] = 0
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=9 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+<EMPTY>
+
+==========================================================================================
+
+PROBLEM 10
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=10 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+count_value = np.sum((a > 2) & (a < 8))
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=10 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function arange>\nNouvelle fonction dans le try !\nreal attr : <function sum at 0x7f506d325ea0>\nSUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'arange_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpmf5_51b5.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+count_value = np.sum_v2((2 < a) & (a < 8))
+
+==========================================================================================
+
+PROBLEM 11
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=11 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+output = np.ravel(np.concatenate(input_list))
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=11 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle f …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp54z3iiru.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+output = np.ravel_v2(np.concatenate_v2(input_list))
+
+==========================================================================================
+
+PROBLEM 12
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=12 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+a_shape = np.shape(a)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=12 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function zeros>\nSUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'zeros_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpommza_kn.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+a_shape = a.shape
+
+==========================================================================================
+
+PROBLEM 15
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=15 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+a[:, 1] = x
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=15 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function ones at 0x7feb099388b0>\nNouvelle fonction dans le try !\nreal attr : <function array_equal at 0x7 …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp2tjnb6sa.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+a[:, 2] = x
+
+==========================================================================================
+
+PROBLEM 16
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=16 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+out = np.array([np.where(master == x)[0][0] for x in search])
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=16 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function where>\nNouvelle f …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmphphtkk6d.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+out = np.where_v2(np.isin_v2(master, search))
+
+==========================================================================================
+
+PROBLEM 17
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=17 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+out = np.concatenate(a)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=17 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle f …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpg_3g7eo0.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+out = np.concatenate_v2(np.array_v2(a).ravel())
+
+==========================================================================================
+
+PROBLEM 21
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=21 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+a_string = np.array_str(a)
+a_string = a_string.replace('[', '')
+a_string = a_string.replace(']', '')
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=21 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function arange>\nNouvelle fonction dans le try !\nreal attr : <function array_str at 0x7f8950150d30>\nTEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'arange_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpmgt6seye.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+a_string = np.array_str_v2(a)
+
+==========================================================================================
+
+PROBLEM 24
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=24 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+c = np.zeros((len(a), len(b)))
+for i in range(len(a)):
+    for j in range(len(b)):
+        c[i, j] = a[i] + b[j] * 2
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=24 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle f …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp0ptimzci.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+c = np.array_v2([x + y * 2 for (x, y) in zip(a, b)])
+
+==========================================================================================
+
+PROBLEM 27
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=27 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+arr_sd = np.std(arr, axis=0)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=27 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function std at 0x7fe59792f1c0>\nNouvelle fonction dans le try !\nreal attr : <function array_equal at 0x7f …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpl7z79l1w.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+arr_sd = np.std_v2(arr, axis=0)
+
+==========================================================================================
+
+PROBLEM 30
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=30 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+b = a.astype('float32')
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=30 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'zeros_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpgzvw6f2_.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+b = a.astype(np.float32)
+
+==========================================================================================
+
+PROBLEM 33
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=33 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+result = np.reshape(arr, (5000, 25))
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=33 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'zeros_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpu9hevb9_.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+result = arr.reshape(50, 100, 25).reshape(5000, 25)
+
+==========================================================================================
+
+PROBLEM 34
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=34 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+out = np.ma.compressed(m)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=34 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <module 'numpy.ma' from '/usr/users/sdim/sdim_25/memory_code_eval/.venv/lib/python3.10/site-packages/numpy …"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/usr/users/sdim/sdim_25/memory_code_eval/src/WrapV2Numpy.py", line 23, in __getattr__\n    attr = getattr(self._target, name)\n  File "/usr/users/sdim/sdim_25/memory_code_eval/.ve …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpozubc1n1.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+m = np.ma_v2.masked_where(y > 2, y)
+out = np.ma_v2.compressed(m)
+
+==========================================================================================
+
+PROBLEM 36
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=36 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+result_arr = np.array([arr[1], arr[4]])
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=36 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function array_equal at 0x7fbef31460e0>\nNouvelle fonction dans le try !\nreal attr : <built-in function ar …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpzx0dm9nd.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 4, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+result_arr = arr[[1, 4]]
+
+==========================================================================================
+
+PROBLEM 38
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=38 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+concated_arr = np.concatenate(L, axis=0)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=38 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <function ones at 0x7f769b9408b0>\nNouvelle fonction dans le try !\nreal attr : <built-in function zeros>\nNouvelle fonction dans le try !\nreal attr : <function ones at 0x7f769b94 …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'ones_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp3ithubi6.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 6, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+concated_arr = np.concatenate_v2(L)
+
+==========================================================================================
+
+PROBLEM 39
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=39 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+b = a[np.where((a[:, 0] == 0) & (a[:, 1] == 1))]
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=39 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function array_equal at 0x7fc2a1f4a170>\nNouvelle fonction dans le try !\nreal attr : <built-in function ar …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpp_2x4zea.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+b = a[a[:, 0] == 0]
+
+==========================================================================================
+
+PROBLEM 41
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=41 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+b[1:4, 1:4] = a
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=41 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'arange_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpxr8x6qu1.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+a = a.reshape((3, 3))
+
+==========================================================================================
+
+PROBLEM 42
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=42 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+out = np.unique(a, axis=0)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=42 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function unique at 0x7f706ded4940>\nNouvelle fonction dans le try !\nreal attr : <function array_equal at 0 …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpox0y8keh.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+out = np.unique_v2(a, axis=0)
+
+==========================================================================================
+
+PROBLEM 43
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=43 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+c = np.concatenate((a, b))
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=43 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function concatenate>\nNouv …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpojt_cw2v.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+c = np.concatenate_v2((a, b))
+
+==========================================================================================
+
+PROBLEM 44
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=44 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+c = np.multiply(a, b[:, np.newaxis])
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=44 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function expand_dims at 0x7f5ce7dbf …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpyvjmt_4q.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+c = a * np.expand_dims_v2(b, axis=1)
+
+==========================================================================================
+
+PROBLEM 45
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=45 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+c = np.column_stack((a, b))
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=45 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nattr is : <function column_stack at 0x7f74b5cbf910>\nEXEC_ERROR: module 'numpy' h …"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/usr/users/sdim/sdim_25/memory_code_eval/src/WrapV2Numpy.py", line 28, in __getattr__\n    raise MissingSuffixError\nWrapV2Numpy.MissingSuffixError\n\nDuring handling of the above e …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpudjkihb_.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+c = np.column_stack((a, b))
+
+==========================================================================================
+
+PROBLEM 47
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=47 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+diff_arr = np.setxor1d(a, b)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=47 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function setxor1d at 0x7fcbf86d5bd0 …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpycu28xua.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+diff_arr = np.setxor1d_v2(a, b)
+
+==========================================================================================
+
+PROBLEM 50
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=50 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+mean_array = np.mean([a, b, c], axis=0)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=50 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle f …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp4y6i689i.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+mean_array = np.mean_v2((a, b, c), axis=0)
+
+==========================================================================================
+
+PROBLEM 51
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=51 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+idx = np.argpartition(A, k)[:k]
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=51 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function argpartition at 0x7fc8d9b2cd30>\nNouvelle fonction dans le try !\nreal attr : <function array_equa …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp2pixuwwk.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+idx = np.argpartition_v2(A, k)[:k]
+
+==========================================================================================
+
+PROBLEM 53
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=53 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+result = np.min(a, axis=0)
+result = a - result
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=53 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nattr is : <function min at 0x7f553592e830>\nEXEC_ERROR: module 'numpy' has no attribute 'min'. Use the _v2 suffix (e.g. np.min_v2)."
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/usr/users/sdim/sdim_25/memory_code_eval/src/WrapV2Numpy.py", line 28, in __getattr__\n    raise MissingSuffixError\nWrapV2Numpy.MissingSuffixError\n\nDuring handling of the above e …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmprfs28s1b.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+result = a - np.min(a, axis=0)
+
+==========================================================================================
+
+PROBLEM 54
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=54 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+b = a[4:, :]
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=54 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function arange>\nNouvelle fonction dans le try !\nreal attr : <function array_equal at 0x7f73d593a0e0>\nSUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'arange_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpi2ql7zuj.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+b = a[4:, :]
+
+==========================================================================================
+
+PROBLEM 56
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=56 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+out = dists[np.logical_and(dists >= r, dists <= r + dr)]
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=56 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function array_equal at 0x7fb61c13e0e0>\nNouvelle fonction dans le try !\nreal attr : <built-in function ar …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp7alkefna.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+out = dists[(dists >= r) & (dists <= r + dr)]
+
+==========================================================================================
+
+PROBLEM 57
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=57 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+m = np.repeat(a[cond], n)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=57 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function asarray>\nNouvelle fonction dans le try !\nreal attr : <function repeat at 0x7fe1f372c670>\nNouvelle fonction dans le try !\nreal attr : <function array_equal at …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'asarray_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpipkorp2z.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 4, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+m = np.repeat_v2(a[cond], n)
+
+==========================================================================================
+
+PROBLEM 58
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=58 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+is_sorted = np.all(a[1:] > a[:-1])
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=58 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function all at 0x7f2cef92e050>\nNouvelle fonction dans le try !\nreal attr : <function diff at 0x7f2cdbca5 …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp_abeqh7l.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+is_sorted = np.all_v2(np.diff_v2(a) >= 0)
+
+==========================================================================================
+
+PROBLEM 59
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=59 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+b = np.reshape(a, (2, 4, 2, 4))
+c = np.transpose(b, (0, 2, 1, 3))
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=59 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="Nouvelle fonction dans le try !\nreal attr : <built-in function arange>\nNouvelle fonction dans le try !\nreal attr : <function array_equal at 0x7fbcd9546170>\nEXEC_ERROR: name 'c' is not defined"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpy217p50q.py", line 40, in <module>\n    test_execution(\'b = a.reshape((2, 4, 2, 4)).transpose((0, 2, 1, 3))\')\n  File "/tmp/sdim_25-175488/tmpy217p50q.py",  …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'arange_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp79urbtbl.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+b = a.reshape((2, 4, 2, 4)).transpose((0, 2, 1, 3))
+
+==========================================================================================
+
+PROBLEM 60
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=60 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+out = np.argmin(x, axis=0)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=60 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='EXEC_ERROR: invalid syntax (<string>, line 4)'
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp4lhq6ga7.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 4\n    out = \n          ^\nSyntaxError: invalid syntax\nTraceback  …'
+[INJECTION] stdout_control='EXEC_ERROR: invalid syntax (<string>, line 4)'
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp61ximxcf.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 4\n    out = \n          ^\nSyntaxError: invalid syntax\nTraceback  …'
+[INJECTION] llm_code:
+<EMPTY>
+
+==========================================================================================
+
+PROBLEM 64
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=64 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+a_str = np.array(np.array(a, dtype='str'))
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=64 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nattr is : <module 'numpy.char' from '/usr/users/sdim/sdim_25/memory_code_eval/.venv/lib/python3.10/site-packages/numpy/char/__init__.py'>\nwe are in th …"
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpwws3b46e.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+a_str = np.char.array_v2(a)
+
+==========================================================================================
+
+PROBLEM 68
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=68 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+result = np.zeros((data.size, data.max() + 1))
+result[np.arange(data.size), data] = 1
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=68 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp6neju96l.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 4, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+result = np.zeros_v2((data.size, data.max() + 1))
+
+==========================================================================================
+
+PROBLEM 69
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=69 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+out = np.unravel_index(np.argmin(A), A.shape)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=69 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp3qq8zc0b.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+out = np.unravel_index(np.argmin(A), A.shape)
+
+==========================================================================================
+
+PROBLEM 70
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=70 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+mm = np.ma.mean(mdat, axis=1)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=70 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : nan\nNouvelle fonction dans le try !\nreal attr : nan\nNouvelle fonction dans le try !\nreal attr : nan\nNouvel …'
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/usr/users/sdim/sdim_25/memory_code_eval/src/WrapV2Numpy.py", line 23, in __getattr__\n    attr = getattr(self._target, name)\n  File "/usr/users/sdim/sdim_25/memory_code_eval/.ve …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpkoc4gtbs.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+mm = np.mean(mdat, axis=1, keepdims=True, nan_option='ignore')
+
+==========================================================================================
+
+PROBLEM 76
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=76 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+array = np.zeros(len(result), dtype=dtype)
+array['id'] = np.array(list(result.keys()))
+array['data'] = np.array(list(result.values()))
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=76 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_equal_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpv0_4k8zs.py", line 40, in <module>\n    test_execution("array = np.zeros(len(result), dtype=dtype)\\narray[\'id\'] = list(result.keys())\\narray[\'data\'] = list …'
+[INJECTION] llm_code:
+array = np.zeros(len(result), dtype=dtype)
+array['id'] = list(result.keys())
+array['data'] = list(result.values())
+
+==========================================================================================
+
+PROBLEM 78
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=78 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+out = np.vectorize(my_dict.get)(a)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=78 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpmf1iqie4.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+out = np.vectorize_v2(my_dict.get)(a)
+
+==========================================================================================
+
+PROBLEM 80
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=80 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+result = np.array_split(x, 3)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=80 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function arange>\nNouvelle fonction dans le try !\nreal attr : <function partition at 0x7f3951324c10>\nNouvelle fonction dans le try !\nreal attr : <function array_equal  …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'arange_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpwm700tyr.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+result = np.partition_v2(x, (2, 6))
+
+==========================================================================================
+
+PROBLEM 83
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=83 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+vals = np.array(list(Samples.values()))
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=83 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'fromiter_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpeylet01o.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 5, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+vals = np.array(list(Samples.values()))
+
+==========================================================================================
+
+PROBLEM 84
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=84 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+a.imag[np.abs(a.imag) < tol] = 0
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=84 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpvkjfsa2i.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+a.real[np.abs_v2(a.real) < tol] = 0
+
+==========================================================================================
+
+PROBLEM 86
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=86 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+out = np.squeeze(x)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=86 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nSUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpjmrngqog.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+out = x.flatten()
+
+==========================================================================================
+
+PROBLEM 87
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=87 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+result = np.all(a == a[0, :], axis=0)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=87 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nattr is : <function all at 0x7f101892a050>\nEXEC_ERROR: module 'numpy' has no attribute 'all'. Use the _v2 suffix (e.g. np.all_v2)."
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/usr/users/sdim/sdim_25/memory_code_eval/src/WrapV2Numpy.py", line 28, in __getattr__\n    raise MissingSuffixError\nWrapV2Numpy.MissingSuffixError\n\nDuring handling of the above e …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp7zivt84b.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+result = np.all(a == a[0, :], axis=0)
+
+==========================================================================================
+
+PROBLEM 91
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=91 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+out = np.delete(a, [1, 3], axis=1)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=91 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function arange>\nNouvelle fonction dans le try !\nreal attr : <function delete at 0x7f8c1b7bc670>\nNouvelle fonction dans le try !\nreal attr : <function array_equal at  …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'arange_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmpxlolg_gd.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+out = np.delete_v2(a, [1, 3], axis=1)
+
+==========================================================================================
+
+PROBLEM 92
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=92 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+a_list = np.array(a).flatten().tolist()
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=92 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'matrix_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp9x4h6hzu.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+a_list = a.flatten().tolist()
+
+==========================================================================================
+
+PROBLEM 93
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=93 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+result = np.delete(data, index)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=93 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <function delete at 0x7fd3a2bbc5e0>\nNouvelle fonction dans le try !\nreal attr : <function array_equal at 0 …'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp90z_7t97.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+result = np.delete_v2(data, index)
+
+==========================================================================================
+
+PROBLEM 98
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=98 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+dist = np.linalg.norm(a - b)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=98 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="Nouvelle fonction dans le try !\nreal attr : <built-in function array>\nNouvelle fonction dans le try !\nreal attr : <built-in function array>\nattr is : <module 'numpy.linalg' from '/usr/users/sdim/sdim_25/memory_code_eval/ …"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/usr/users/sdim/sdim_25/memory_code_eval/src/WrapV2Numpy.py", line 28, in __getattr__\n    raise MissingSuffixError\nWrapV2Numpy.MissingSuffixError\n\nDuring handling of the above e …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'array_v2'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_25-175488/tmp4mhkqhbk.py", line 20, in test_execution\n    exec(code, namespace)\n  File "<string>", line 3, in <module>\n  File "/usr/users/sdim/sdim_25/memory_code_eval …'
+[INJECTION] llm_code:
+dist = np.linalg.norm(a - b)
+
+==========================================================================================
+
+PROBLEM 99
+------------------------------------------------------------------------------------------
+[CONTROL] problem_id=99 perturbation=Unknown doc_name='nothing'
+[CONTROL] passed=True control_passed=None error=None
+[CONTROL] stdout='SUCCESS_MARKER'
+[CONTROL] stderr=''
+[CONTROL] llm_code:
+sum_value = np.sum(df.values)
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=99 perturbation=Unknown doc_name='ultra_minimal'
+[INJECTION] passed=False control_passed=True error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control='SUCCESS_MARKER'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+sum_value = np.sum(df.values)
+
+==========================================================================================
+
+
+Summary
+- candidates_seen: 49
+- pairs_written: 49

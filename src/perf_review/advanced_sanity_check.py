@@ -88,8 +88,13 @@ def fmt_entry(e: dict, *, kind: str) -> str:
             lines.append(f"[{kind}] stdout_control={_short(e.get('stdout_control', ''))!r}")
             lines.append(f"[{kind}] stderr_control={_short(e.get('stderr_control', ''))!r}")
 
+    raw = (e.get("llm_code_raw") or "").rstrip()
     code = (e.get("llm_code") or "").rstrip()
-    lines.append(f"[{kind}] llm_code:\n{code if code else '<EMPTY>'}")
+    if raw and raw != code:
+        lines.append(f"[{kind}] llm_code_raw (before AST cleaning):\n{raw if raw else '<EMPTY>'}")
+        lines.append(f"[{kind}] llm_code (after AST cleaning):\n{code if code else '<EMPTY>'}")
+    else:
+        lines.append(f"[{kind}] llm_code:\n{code if code else '<EMPTY>'}")
     return "\n".join(lines)
 
 

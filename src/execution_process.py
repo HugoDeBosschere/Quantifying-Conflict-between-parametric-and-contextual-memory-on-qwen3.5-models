@@ -188,6 +188,7 @@ def evaluate_single_task(task, llm_client, config):
                 "passed": False,
                 "control_passed": False,
                 "llm_code": extracted_code,
+                "llm_code_raw": extracted_code,
                 "error": "SYNTAX_ERROR",
                 "stderr": f"SyntaxError: {e}",
                 "stderr_control": f"SyntaxError: {e}",
@@ -216,6 +217,7 @@ def evaluate_single_task(task, llm_client, config):
                 "passed": False,
                 "control_passed": control_passed,
                 "llm_code": extracted_code,
+                "llm_code_raw": extracted_code,
                 "stdout": stdout,
                 "stderr": stderr,
                 "stdout_control": stdout_control,
@@ -230,7 +232,7 @@ def evaluate_single_task(task, llm_client, config):
             if new_context:
                 stdout, stderr = execute_task_engine(new_context, code, llm_client, config)
                 stdout_control, stderr_control = execute_task_engine(
-                    task["code_context"], code, llm_client, config
+                    task["code_context"], extracted_code, llm_client, config
                 )
             else:
                 stdout, stderr = "", "MODIFY_LIB_FAILED"
@@ -250,6 +252,7 @@ def evaluate_single_task(task, llm_client, config):
                 "passed": True,
                 "control_passed": control_passed,
                 "llm_code": code,
+                "llm_code_raw": extracted_code,
                 "stdout": stdout,
                 "stderr": stderr,
                 "stdout_control": stdout_control,
@@ -263,6 +266,7 @@ def evaluate_single_task(task, llm_client, config):
             "passed": False,
             "control_passed": control_passed,
             "llm_code": code,
+            "llm_code_raw": extracted_code,
             "stdout": stdout,
             "stderr": stderr,
             "stdout_control": stdout_control,

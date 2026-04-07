@@ -12,6 +12,29 @@ class ObjectAttributeError(ValueError):
     """Raised when an object attribute/method does not use the required `_v2` suffix."""
 
 
+# Methods that belong to standard Python built-ins (list, dict, str, set, file…)
+# and must not be required to carry the `_v2` suffix.
+_PYTHON_BUILTIN_METHODS: frozenset[str] = frozenset({
+    # list
+    "append", "extend", "insert", "remove", "pop", "clear", "index", "count",
+    "sort", "reverse", "copy",
+    # dict
+    "keys", "values", "items", "get", "update", "setdefault", "popitem", "fromkeys",
+    # str
+    "strip", "lstrip", "rstrip", "split", "rsplit", "splitlines", "join",
+    "format", "format_map", "encode", "decode", "upper", "lower", "title",
+    "capitalize", "swapcase", "replace", "find", "rfind", "startswith", "endswith",
+    "isdigit", "isalpha", "isalnum", "isspace", "isupper", "islower", "istitle",
+    "zfill", "ljust", "rjust", "center", "expandtabs",
+    # set
+    "add", "discard", "union", "intersection", "difference",
+    "symmetric_difference", "issubset", "issuperset", "isdisjoint",
+    # file / io
+    "read", "write", "close", "flush", "seek", "tell", "readline", "readlines",
+    "writelines", "truncate",
+})
+
+
 def _is_numpy_root(node) -> bool:
     """
     True si la chaîne d'attributs est enracinée en `np` ou `numpy`.
@@ -43,6 +66,9 @@ class _ObjectAttributeV2Normalizer(ast.NodeTransformer):
 
         # On ignore les accès module-level NumPy dans ce module.
         if _is_numpy_root(node):
+            return node
+
+        if node.attr in _PYTHON_BUILTIN_METHODS:
             return node
 
         if node.attr.endswith("_v2"):
