@@ -5,11 +5,11 @@
     },
     "llm": {
         "model": [
-            "qwen2.5-coder:32b"
+            "gemma3:12b",
+            "qwen2.5-coder:32b",
+            "codestral",
+            "devstral"
         ],
-        "temperature": {
-            "qwen2.5-coder:32b": 0.9
-        },
         "num_ctx": 30000,
         "seed": 42,
         "api_url": "http://localhost:11434/api"
