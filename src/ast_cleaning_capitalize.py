@@ -11,6 +11,27 @@ class ObjectAttributeError(ValueError):
     """Raised when an object attribute/method is not capitalized as required."""
 
 
+_PYTHON_BUILTIN_METHODS: frozenset[str] = frozenset({
+    # list
+    "append", "extend", "insert", "remove", "pop", "clear", "index", "count",
+    "sort", "reverse", "copy",
+    # dict
+    "keys", "values", "items", "get", "update", "setdefault", "popitem", "fromkeys",
+    # str
+    "strip", "lstrip", "rstrip", "split", "rsplit", "splitlines", "join",
+    "format", "format_map", "encode", "decode", "upper", "lower", "title",
+    "capitalize", "swapcase", "replace", "find", "rfind", "startswith", "endswith",
+    "isdigit", "isalpha", "isalnum", "isspace", "isupper", "islower", "istitle",
+    "zfill", "ljust", "rjust", "center", "expandtabs",
+    # set
+    "add", "discard", "union", "intersection", "difference",
+    "symmetric_difference", "issubset", "issuperset", "isdisjoint",
+    # file / io
+    "read", "write", "close", "flush", "seek", "tell", "readline", "readlines",
+    "writelines", "truncate",
+})
+
+
 def _is_numpy_root(node) -> bool:
     """
     True si la chaîne d'attributs est enracinée en `np` ou `numpy`.
@@ -48,6 +69,9 @@ class _ObjectAttributeCapitalizeNormalizer(ast.NodeTransformer):
         node = self.generic_visit(node)
 
         if _is_numpy_root(node):
+            return node
+
+        if node.attr in _PYTHON_BUILTIN_METHODS:
             return node
 
         # Cas particulier : en NumPy, `.T` (transposée) doit rester majuscule.
