@@ -2,9 +2,9 @@
 
 *.pyc
 
-
 *.out
 
+*.tex
 
 *.log
 
@@ -18,7 +18,5 @@ data_to_show/*
 *.sbatch
 
 references.bib
-
-report.tex
 
 .claude
