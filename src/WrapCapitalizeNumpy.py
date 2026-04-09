@@ -18,7 +18,13 @@ class CapitalizeNumPy:
             )
 
         real_name = name[0].lower() + name[1:]
-        real_attr = getattr(self._target, real_name)
+        try:
+            real_attr = getattr(self._target, real_name)
+        except AttributeError:
+            raise AttributeError(
+                f"module 'numpy' has no attribute '{real_name}' "
+                f"(accessed via '{name}')"
+            )
 
         if isinstance(real_attr, types.ModuleType):
             return CapitalizeNumPy(real_attr)

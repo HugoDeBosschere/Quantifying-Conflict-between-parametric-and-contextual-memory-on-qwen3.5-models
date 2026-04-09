@@ -8,19 +8,37 @@ class UnderscoreNumPy:
         self._target = target_module
 
     def __getattr__(self, name):
-        # On récupère l'objet réel dans NumPy (ex: np.add ou np.linalg)
+        # Cas 1 : sous-modules (np.linalg, np.random) accessibles sans _
+        try:
+            attr = getattr(self._target, name)
+            if isinstance(attr, types.ModuleType):
+                return UnderscoreNumPy(attr)
+            # attr existe mais n'est pas un module → tombe dans la suite
+        except AttributeError:
+            pass  # attr n'existe pas → tombe dans la suite
+
+        # Cas 2 : tout attribut non-module doit finir par _
+        if not name.endswith("_"):
+            raise AttributeError(
+                f"module 'numpy' has no attribute {name!r}. "
+                f"Use the underscore suffix (e.g. np.{name}_)."
+            )
+
+        # Cas 3 : résolution de l'attribut réel
         real_name = name[:-1]
-        real_attr = getattr(self._target, real_name)
+        try:
+            real_attr = getattr(self._target, real_name)
+        except AttributeError:
+            raise AttributeError(
+                f"module 'numpy' has no attribute '{real_name}' "
+                f"(accessed via '{name}')"
+            )
 
-        # CAS 1 : C'est un sous-module (ex: np.linalg)
-        # On retourne un nouveau Proxy pour ce sous-module
         if isinstance(real_attr, types.ModuleType):
-            return UnderscoreNumPy(real_attr)
+            raise AttributeError(
+                f"'{real_name}' is a submodule, use np.{real_name} directly (without _)."
+            )
 
-        # CAS 2 : C'est une fonction ou une ufunc (ex: np.add, np.mean)
-        # On exclut les "types" (comme np.int32, np.float64, np.array) car ce sont des classes
-        # CAS 3 : C'est une constante (ex: np.pi, np.nan)
-        # On retourne la valeur telle quelle
         return real_attr
     
     # Permet à dir(mon_numpy) de montrer les mêmes choses que dir(numpy)

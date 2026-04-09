@@ -44,13 +44,20 @@ def apply_ast_transformations(code):
     try:
         tree = ast.parse(code)
         new_body = []
+        removed_any = False
 
         for node in tree.body:
             # A. Suppression des Imports
             if isinstance(node, (ast.Import, ast.ImportFrom)):
+                removed_any = True
                 continue
             else:
                 new_body.append(node)
+
+        # Si aucun import supprimé, retourner le code original sans ast.unparse
+        # (ast.unparse normalise le code, ex: "a, b = x" -> "(a, b) = x")
+        if not removed_any:
+            return code
 
         tree.body = new_body
         ast.fix_missing_locations(tree)

@@ -62,9 +62,9 @@ Dans ce rapport, nous étudions cette dynamique à travers un cas d'usage critiq
 
 Les LLMs ont démontré des capacités remarquables dans une multitude de tâches, allant de la compréhension du langage naturel à la génération de code complexe. Cependant, ces modèles souffrent de limitations inhérentes à leur conception : ils sont sujets aux hallucinations~\cite{pal2023, sun2024, ahmad2023} et demeurent strictement contraints par les connaissances figées dans leur corpus d'entraînement. Ils sont ainsi incapables, par nature, de répondre de manière fiable à des requêtes portant sur des événements récents ou des informations privées. 
 
-Pour pallier ce problème, la technique du \textit{Retrieval-Augmented Generation} s'est imposée comme un standard de l'industrie. Le RAG consiste à extraire des documents pertinents depuis une base de données externe pour les injecter directement dans la fenêtre de contexte du modèle avant l'étape de génération~\cite{lewis2020rag, mao2020, chen2024}. La plupart des LLMs commerciaux grand public, tels que ChatGPT~\cite{openai2023} ou Gemini~\cite{geminiteam2023}, intègrent déjà les mécanismes de recherche web via du RAG. 
+Pour pallier ce problème, la technique du \textit{Retrieval-Augmented Generation} s'est imposée comme un standard de l'industrie. Le RAG consiste à extraire des documents pertinents depuis une base de données externe pour les injecter directement dans la fenêtre de contexte du modèle avant l'étape de génération~\cite{lewis2020rag, chen2024}. La plupart des LLMs commerciaux grand public, tels que ChatGPT~\cite{openai2023} ou Gemini~\cite{geminiteam2023}, intègrent déjà les mécanismes de recherche web via du RAG. 
 
-Bien que cette approche améliore considérablement la précision des modèles, elle soulève de nouveaux défis éthiques et sécuritaires lorsque les documents récupérés contiennent des informations erronées ou malveillantes~\cite{dash2023, daws2020, nastasi2023}. Des exemples récents de modèles générant des recommandations absurdes (comme suggérer d'«~ajouter de la colle sur une pizza~» ou de «~manger des cailloux~»~\cite{hart2024, williams2024}) illustrent les dangers d'une confiance aveugle accordée aux informations récupérées par le mécanime de RAG. Un filtrage plus strict des documents ne suffit pas ; le véritable enjeu réside dans la capacité du modèle à arbitrer intelligemment les informations qu'il traite.
+Bien que cette approche améliore considérablement la précision des modèles, elle soulève de nouveaux défis éthiques et sécuritaires lorsque les documents récupérés contiennent des informations erronées ou malveillantes~\cite{daws2020}. Des exemples récents de modèles générant des recommandations absurdes illustrent les dangers d'une confiance aveugle accordée aux informations récupérées par le mécanisme de RAG. Un filtrage plus strict des documents ne suffit pas ; le véritable enjeu réside dans la capacité du modèle à arbitrer intelligemment les informations qu'il traite.
 
 
 
@@ -78,8 +78,8 @@ Cette dynamique met en lumière une tension fondamentale au cœur de l'architect
 
 Un conflit majeur émerge lorsque ces deux mémoires se contredisent. Dans une telle situation, comment le modèle choisit-il la source d'information à privilégier ? Un modèle trop "sûr de lui" ignorera systématiquement le contexte externe pour se raccrocher à ses croyances internes, générant ainsi des réponses obsolètes malgré la présence de la bonne information. À l'inverse, un modèle trop "docile" se laissera manipuler par n'importe quelle information ou ensemble d'informations contextuel, même factuellement faux ou incohérente. 
 
-Plusieurs travaux se sont penchés sur la nature de cette tension. Longpre et al.~\cite{longpre2021paramvscontext} ont démontré que les LLMs affichent une forte préférence pour les informations issues de leurs données d'entraînement, même lorsque des faits substitués (et contrefactuels) leur sont fournis dans le contexte. Plus récemment, Xie et al.~\cite{xie2023} ont montré que la susceptibilité des modèles au contexte, ou au contraire leur biais vers leurs connaissances \textit{a priori}, dépend fortement de la cohérence du contexte. Si celui-ci est cohérent le LLM aura tendance à accepter les nouvelles informations comme vraies et à les utiliser. Si le contexte contient des informations en accord et en désaccord avec sa mémoire paramétrique le LLM aura tendance à préférer les informations qui confirment ses croyances \textit{a priori}.  Dans cette lignée, les travaux de Tang et al. avec le benchmark \textit{ClashEval}~\cite{clasheval2024} proposent de quantifier précisément ce « bras de fer » (\textit{tug-of-war}) entre les connaissances internes du modèle et les preuves externes, en soulignant l'importance de la confiance du modèle dans sa mémoire paramétrique lors de l'arbitrage.
-
+Plusieurs travaux se sont penchés sur la nature de cette tension. Longpre et al.~\cite{longpre2021paramvscontext} ont démontré que les LLMs affichent une forte préférence pour les informations issues de leurs données d'entraînement, même lorsque des faits substitués (et contrefactuels) leur sont fournis dans le contexte. Plus récemment, Xie et al.~\cite{xie2023} ont montré que la susceptibilité des modèles au contexte, ou au contraire leur biais vers leurs connaissances \textit{a priori}, dépend fortement de la cohérence du contexte. Si celui-ci est cohérent le LLM aura tendance à accepter les nouvelles informations comme vraies et à les utiliser. Si le contexte contient des informations en accord et en désaccord avec sa mémoire paramétrique le LLM aura tendance à préférer les informations qui confirment ses croyances \textit{a priori}.  Dans cette lignée, les travaux de Tang et al. avec le benchmark \textit{ClashEval}~\cite{clasheval2024} proposent de quantifier précisément ce « bras de fer » (\textit{tug-of-war}) entre les connaissances internes du modèle et les preuves externes.
+Ils démontrent ainsi que la propension du modèle à suivre le contexte est intimement liée à sa confiance interne (mesurable via les probabilités de tokens, ou \textit{logprobs}~\cite{mitchell2023, zhao2024}) et au degré de déviation de l'information perturbée. 
 
 
 
@@ -90,9 +90,9 @@ Plusieurs travaux se sont penchés sur la nature de cette tension. Longpre et al
 
 Notre étude prolonge ces travaux en explorant ce conflit cognitif à travers un cas d'usage précis : le développement logiciel, et plus particulièrement l'adaptation aux mises à jour d'APIs. 
 
-Dans un environnement de développement réel, les bibliothèques logicielles évoluent constamment. Un LLM déployé comme assistant de code a nécessairement été entraîné sur une version antérieure d'une bibliothèque. S'il reçoit en contexte la documentation de la nouvelle version mise à jour, un système RAG idéal --- capable de retrouver et de fournir exactement le bon document d'API --- est supposé garantir la génération d'un code valide. Dans ce scénario précis, le comportement attendu et souhaité est que le modèle privilégie \textit{systématiquement} le contexte par rapport à ses habitudes d'entraînement. Cependant, les LLMs ne sont généralement pas entraînés pour accorder une confiance aveugle à leur contexte, en particulier lorsque celui-ci contredit des connaissances massivement ancrées dans leurs poids. Par conséquent, nous pouvons nous attendre à ce que plus la perturbation s'écarte des conventions établies, moins le modèle l'adoptera. Par exemple, une mise à jour fictive imposant une majuscule initiale à toutes les fonctions \texttt{}{NumPy} constitue une corruption syntaxique assez forte en Python. Il est possible qu'elle soit partiellement ignorée par le modèle, ce dernier préférant se replier sur sa mémoire paramétrique.
+Dans un environnement de développement réel, les bibliothèques logicielles évoluent constamment. Un LLM déployé comme assistant de code a nécessairement été entraîné sur une version antérieure d'une bibliothèque. S'il reçoit en contexte la documentation de la nouvelle version mise à jour, un système RAG idéal --- capable de retrouver et de fournir exactement le bon document d'API --- est supposé garantir la génération d'un code valide. Dans ce scénario précis, le comportement attendu et souhaité est que le modèle privilégie \textit{systématiquement} le contexte par rapport à ses habitudes d'entraînement. Cependant, les LLMs ne sont généralement pas entraînés pour accorder une confiance aveugle à leur contexte, en particulier lorsque celui-ci contredit des connaissances massivement ancrées dans leurs poids. Par conséquent, nous pouvons nous attendre à ce que plus la perturbation s'écarte des conventions établies, moins le modèle l'adoptera. Par exemple, une mise à jour fictive imposant une majuscule initiale à toutes les fonctions \texttt{NumPy} constitue une corruption syntaxique assez forte en Python. Il est possible qu'elle soit partiellement ignorée par le modèle, ce dernier préférant se replier sur sa mémoire paramétrique.
 
-Notre objectif est donc de mesurer rigoureusement cette capacité d'adaptation de manière contrôlée et reproductible. Nous expliquons plus en détail notre méthodologie dans cette \hyperref[partie]{sec:methodologie} 
+Notre objectif est donc de mesurer rigoureusement cette capacité d'adaptation de manière contrôlée et reproductible. Nous expliquons plus en détail notre méthodologie dans cette section. \ref{sec:methodologie} 
 
 \subsection{Contributions}
 
@@ -115,21 +115,16 @@ Les travaux fondateurs de Chen et al.~\cite{chen2021} ont introduit \textbf{Huma
 
 C'est pour pallier ces limites et évaluer des cas d'usage plus réalistes que Lai et al.~\cite{lai2022ds1000} ont proposé \textbf{DS-1000}. Contrairement aux problèmes algorithmiques purs, DS-1000 se concentre sur des tâches de science des données extraites de questions réelles de \textit{StackOverflow}, couvrant sept bibliothèques majeures. Pour éviter que les modèles ne se contentent de restituer des solutions mémorisées, DS-1000 introduit des mécanismes de perturbation de surface (renommage de variables) et sémantiques (modification des contraintes). 
 
-Notre cadre d'évaluation repose fondamentalement sur l'approche de DS-1000. Pour des raisons de temps de calcul et de profondeur d'analyse, nous avons extrait et isolé les 159 problèmes spécifiques à la bibliothèque NumPy pour former notre corpus de base. L'utilisation de \textbf{DS-1000} nous permet de tester les LLMs sur une API qu'ils ont massivement rencontrée durant leur entraînement, maximisant ainsi l'ancrage de leur mémoire paramétrique. Par ailleurs, alors que des initiatives comme le \textit{BigCode Evaluation Harness}~\cite{bigcode2023harness} proposent des évaluations unifiées statiques, ou que \textit{SWE-bench}~\cite{jimenez2023swebench} évalue la navigation dans de larges dépôts de code, notre pipeline d'évaluation s'en distingue par la nécessité d'une \textit{double exécution dynamique} (code testé simultanément contre une API réelle et une API artificiellement perturbée).
+Notre cadre d'évaluation repose fondamentalement sur l'approche de DS-1000. Pour des raisons de temps de calcul et de profondeur d'analyse, nous avons extrait et isolé les 159 problèmes spécifiques à la bibliothèque NumPy pour former notre corpus de base. L'utilisation de \textbf{DS-1000} nous permet de tester les LLMs sur une API qu'ils ont massivement rencontrée durant leur entraînement, maximisant ainsi l'ancrage de leur mémoire paramétrique. Par ailleurs, alors que des initiatives comme le \textit{BigCode Evaluation Harness}~\cite{bigcode2023harness} proposent des évaluations unifiées statiques, ou que \textit{SWE-bench}~\cite{jimenez2023swebench} évalue la navigation dans de larges dépôts de code, notre pipeline d'évaluation s'en distingue par la nécessité d'une \textit{double exécution dynamique} (code testé simultanément contre une librairie réelle et une librairie artificiellement perturbée).
 
 \subsection{Vulnérabilités contextuelles dans les systèmes RAG}
 
-Bien que les LLMs soient performants, ils sont sujets aux hallucinations~\cite{ji2023, kaddour2023}. Les architectures RAG ont été largement adoptées pour atténuer ce phénomène en fournissant un contexte externe fiable~\cite{shuster2021, kang2023}. En réponse à cette adoption, de nombreux frameworks d'évaluation automatisés pour le RAG, tels que RAGAS~\cite{es2023b} ou ARES~\cite{saadfalcon2023b}, ont vu le jour.
+Bien que les LLMs soient performants, ils sont sujets aux hallucinations~\cite{kaddour2023}. Les architectures RAG ont été largement adoptées pour atténuer ce phénomène en fournissant un contexte externe fiable~\cite{shuster2021}. En réponse à cette adoption, de nombreux frameworks d'évaluation automatisés pour le RAG, tels que RAGAS~\cite{es2023} ou ARES~\cite{saadfalcon2023b}, ont vu le jour.
 
-Néanmoins, les recherches récentes soulignent que le RAG est une arme à double tranchant (\textit{double-edged sword})~\cite{foulds2024}. Comme le démontrent Chen et al.~\cite{chen2024b}, les modèles peuvent être induits en erreur par des résultats de recherche complexes ou trompeurs. Pire encore, dans le domaine médical, il a été prouvé que l'injection de contexte pouvait amener des modèles à générer des recommandations critiques erronées~\cite{ahmad2023}, confirmant que les modèles peinent souvent à intégrer correctement l'information externe, même lorsqu'elle est fournie explicitement.
+Néanmoins, les recherches récentes soulignent que le RAG est une arme à double tranchant (\textit{double-edged sword})~\cite{foulds2024}. Comme le démontrent Chen et al.~\cite{chen2024}, les modèles peuvent être induits en erreur par des résultats de recherche complexes ou trompeurs. Pire encore, dans le domaine médical, il a été prouvé que l'injection de contexte pouvait amener des modèles à générer des recommandations critiques erronées~\cite{ahmad2023}, confirmant que les modèles peinent souvent à intégrer correctement l'information externe, même lorsqu'elle est fournie explicitement.
 
-\subsection{Le conflit cognitif : Mémoire paramétrique contre Mémoire contextuelle}
+Cette vulnérabilité des systèmes RAG nous amène au cœur de notre problématique : le conflit entre ce que le modèle « sait » (poids d'entraînement) et ce qu'on lui « dit » (contexte). C'est ce que nous allons tenter de quantifier maintenant.
 
-Cette vulnérabilité des systèmes RAG nous amène au cœur de notre problématique : le conflit entre ce que le modèle « sait » (poids d'entraînement) et ce qu'on lui « dit » (contexte).
-
-Dans leurs travaux précurseurs, Longpre et al.~\cite{longpre2021paramvscontext} ont observé que lorsqu'un document de contexte contredit les faits mémorisés par le modèle, les LLMs tendent à suivre le contexte pour les entités peu fréquentes, mais à y résister farouchement pour les entités très fréquentes. Par la suite, Xie et al.~\cite{xie2023} ont modélisé ce comportement sous l'allégorie du \textit{caméléon adaptatif} (qui suit le contexte) contre le \textit{paresseux têtu} (qui reste fixé sur ses connaissances \textit{a priori}).
-
-Pour mesurer précisément cette dynamique, Wu et al.~\cite{clasheval2024} ont récemment introduit \textbf{ClashEval}. Ce framework quantifie le « bras de fer » (\textit{tug-of-war}) entre les connaissances préalables d'un LLM et les preuves externes. À travers un ensemble de 1200 questions réparties sur six domaines (records olympiques, dosages médicaux, etc.), les auteurs appliquent des perturbations précises aux documents fournis en contexte, allant d'erreurs subtiles à des aberrations flagrantes. Ils démontrent que la propension du modèle à suivre le contexte est intimement liée à sa confiance interne (mesurable via les probabilités de tokens, ou \textit{logprobs}~\cite{mitchell2023, zhao2024}) et au degré de déviation de l'information perturbée. 
 
 
 
@@ -138,20 +133,20 @@ Pour mesurer précisément cette dynamique, Wu et al.~\cite{clasheval2024} ont r
 % --- Méthodologie ---
 \section{Méthodologie et Stratégie de Recherche}\label{sec:methodologie}
 
-Notre but était donc de mesurer et d'évaluer à quel point les LLMs sont capables de s'adapter à des informations qui ne sont pas seulement nouvelles mais qui sont en conflit direct avec les données sur lesquels ils ont été entrainé. Pour mesurer cette capacité d'adaptation et, le cas échéant, la perte de performance liée à cette nécessité d'adpatation nous avons tout d'abord généré des documentations contrefactuelles de trois types (ultra-minimale, minimale et explicative). Ensuite nous avons fourni cette documentation au LLM via le moteur d'inférence llama.cpp et le wrapper haut-niveau ollama. Nous avons fourni au LLM la documentation directement dans sa fenêtre de contexte (context window) en s'assurant que la taille de la documentation était inférieure à la taille maximale de la fenêtre de contexte habituelle du LLM. Nous avons utilisé le benchmark DS1000 en tant que base de problèmes à résoudre en ne gardant que les problèmes liés à la librairie NumPy (ce qui fait un total de 159 problèmes à résoudre) et en modifiant les énoncés des problèmes pour s'assurer que la modification NumPy y était présente aussi. Ensuite nous avons récupéré le code généré par le LLM via des méthodes de parsing. Finalement, nous avons fait de l'évaluation fonctionelle du code généré pour nous assurer de deux choses : Premièrement que le code utilise bien les modifications censées correspondre à une mise à jour d'une librairie. Deuxièmement que le code qui utilise les modifications idoines fonctionne correctement et renvoie les bonnes valeurs sur les différents test case de DS1000. 
+Notre but était donc de mesurer et d'évaluer à quel point les LLMs sont capables de s'adapter à des informations qui ne sont pas seulement nouvelles mais qui sont en conflit direct avec les données sur lesquels ils ont été entraînés. Pour mesurer cette capacité d'adaptation et, le cas échéant, la perte de performance liée à cette nécessité d'adaptation nous avons tout d'abord généré des documentations contrefactuelles de trois types (ultra-minimale, minimale et explicative). Ensuite nous avons fourni cette documentation au LLM via le moteur d'inférence llama.cpp et le wrapper haut-niveau ollama. Nous avons fourni au LLM la documentation directement dans sa fenêtre de contexte (context window) en s'assurant que la taille de la documentation était inférieure à la taille maximale de la fenêtre de contexte habituelle du LLM. Nous avons utilisé le benchmark DS1000 en tant que base de problèmes à résoudre en ne gardant que les problèmes liés à la librairie NumPy (ce qui fait un total de 159 problèmes à résoudre) et en modifiant les énoncés des problèmes pour s'assurer que la modification NumPy y était présente aussi. Ensuite nous avons récupéré le code généré par le LLM via des méthodes de parsing. Finalement, nous avons fait de l'évaluation fonctionnelle du code généré pour nous assurer de deux choses : Premièrement que le code utilise bien les modifications censées correspondre à une mise à jour d'une librairie. Deuxièmement que le code qui utilise les modifications idoines fonctionne correctement et renvoie les bonnes valeurs sur les différents test case de DS1000. 
 
 \begin{figure}[htbp] % h: here, t: top, b: bottom, p: page
     \centering
     \includegraphics[width=1.0\textwidth]{Workflow.png}
-    \caption{Pipeline de travail, de la conception de la documentation contrefactuelle à l'évaluation fonctionelle du code généré par le LLM}
+    \caption{Pipeline de travail, de la conception de la documentation contrefactuelle à l'évaluation fonctionnelle du code généré par le LLM}
     \label{fig:pipeline_eval}
 \end{figure}
 
 
 \subsection{Création de la documentation contrefactuelle}
 
-La première étape de notre projet a donc été la création d'une documentation contrefactuelle à partir des docstrings existants. Pour ne pas surcharger la fenêtre de contexte nous avons choisi de nous concentrer sur une seule librairie qui devait forcément être dans les données d'entrainement du LLM et c'est pourquoi nous avons choisi d'utiliser la très usitée librairie \texttt{NumPy}. Pour générer la documentation de la librairie nous avons utilisé un crawler qui parcourt toutes les fonctions de la libraire numpy et recupère la partie du docstring qui nous intéresse en fonction du type de documentation que nous sommes en train de générer. La génération de la documentation est donc déterministe et ne fait pas intervenir un LLM pour appliquer la perturbation souhaitée. Nous avions tout d'abord choisi de générer cinq types de documentations à la fois factuelle et contrefactuelle :
-\vspace{0.5CM}
+La première étape de notre projet a donc été la création d'une documentation contrefactuelle à partir des docstrings existants. Pour ne pas surcharger la fenêtre de contexte nous avons choisi de nous concentrer sur une seule librairie qui devait forcément être dans les données d'entrainement du LLM et c'est pourquoi nous avons choisi d'utiliser la très usitée librairie \texttt{NumPy}. Pour générer la documentation de la librairie nous avons utilisé un crawler qui parcourt toutes les fonctions de la libraire numpy et récupère la partie du docstring qui nous intéresse en fonction du type de documentation que nous sommes en train de générer. La génération de la documentation est donc déterministe et ne fait pas intervenir un LLM pour appliquer la perturbation souhaitée. Nous avions tout d'abord choisi de générer cinq types de documentations à la fois factuelle et contrefactuelle :
+\vspace{0.5cm}
 
 \subsubsection{Type de documentation}
 
@@ -160,7 +155,7 @@ La première étape de notre projet a donc été la création d'une documentatio
     \item \textbf{Documentation minimale :} La même chose que la documentation ultra\_minimale en ajoutant en plus les arguments pris par la fonction et la signature de la fonction quand celle-ci existe dans le docstring.
     \item \textbf{Documentation explicative :} Explication de la perturbation. Ce type de documentation s'éloigne un peu du champ de notre recherche puisque le but final est de pouvoir donner au LLM la documentation de la nouvelle librairie et que celui-ci sans serve sans avoir besoin de lui dire ce qui a changé par rapport à la version sur laquelle il a été entrainé  
     \item \textbf{Documentation complète :} Pour chaque fonction c'est l'entièreté du docstring mis à part la partie "See Also" qui présente une trop grande variabilité d'une fonction à une autre et qui ne peut donc pas être répétitivement modifié par des algorithmes déterministes. Nous avons finalement assez peu testé cette documentation en raison de sa trop grande taille. En effet, elle ne rentrait pas dans la fenêtre de contexte de tous les LLMs (celle-ci étant parfois limitée à 32 000 tokens pour des modèles comme codestral) ce qui provoque des pertes de performance énorme.
-    \item \textbf{Documentation bruitée :} Finalement ce n'est pas un type de documentation à part entière mais plutôt une manière de moduler les documentations ultra-minimale, minimale et complète. En effet, le but de la documentation bruitée est de récupérer toutes les fonctions dont le LLM a effectivement besoin pour résoudre les problèmes DS1000 pour s'assurer qu'elles soient bien présentes puis d'ajouter un certains nombres de fonctions choisies au hasard pour ne pas trop aider le LLM. Si $n$ est le nombre de fonctions inutiles et $N$ le nombre de fonctions totales présentes dans la documentation, on dit que la documentation est bruitée à x$\%$ si x vérifie 
+    \item \textbf{Documentation bruitée :} Finalement ce n'est pas un type de documentation à part entière mais plutôt une manière de moduler les documentations ultra-minimale, minimale et complète. En effet, le but de la documentation bruitée est de récupérer toutes les fonctions dont le LLM a effectivement besoin pour résoudre les problèmes DS1000 pour s'assurer qu'elles soient bien présentes puis d'ajouter un certain nombre de fonctions choisies au hasard pour ne pas trop aider le LLM. Si $n$ est le nombre de fonctions inutiles et $N$ le nombre de fonctions totales présentes dans la documentation, on dit que la documentation est bruitée à x$\%$ si x vérifie 
     \begin{center}
         $x = \frac{n}{N}$
     \end{center}
@@ -221,7 +216,7 @@ L'ensemble des documentations utilisées lors des inférences est retrouvable da
 Pour le moteur d'inférence nous avons utilisé llama.cpp et le wrapper haut niveau ollama utile pour sa facilité d'utilisation et son accessibilité. Néanmoins c'est une méthode qui rend toutes les inférences longues, particulièrement à partir du moment où nous avons décidé de tester des petits modèles (type qwen3.5:0.8b) avec une évaluation pass@10 (voir \ref{sec:pass@} pour plus de détails sur le pass@k). En effet, avec ollama les inférences sont séquentielles. Il pourra donc être envisagé par la suite de changer de moteur d'inférence. 
 
 \subsubsection{Modèles testés :} 
-Tous les modèles testés sont open-source. Nous avons décidé de tester Devstral, Codestral, Qwen2.5-Coder:32b pour tester les capacités d'adpatation à des taches de code de modèles spécifiquement conçus pour faire du code. Nous avons aussi testé le modèle gemma:12b pour tester les capacités d'un modèle non spécialiste en code.
+Tous les modèles testés sont open-source. Nous avons décidé de tester Devstral, Codestral, Qwen2.5-Coder:32b pour tester les capacités d'adaptation à des tâches de code de modèles spécifiquement conçus pour faire du code. Nous avons aussi testé le modèle gemma:12b pour tester les capacités d'un modèle non spécialiste en code.
     De même pour les modèles de la famille qwen3.5 : qwen3.5:0.8b, qwen3.5:2b, qwen3.5:4b, qwen3.5:9b, qwen3.5:27b, qwen3.5:35b. Cela nous permet de comparer les performances et les pertes de performances de modèles similaires en fonction du nombre de leurs paramètres.
 
 \textbf{Note sur la nomenclature.} Il convient de ne pas confondre \textbf{Qwen2.5-Coder:32b} (une famille de modèles de la génération précédente d'Alibaba, spécialisée pour le code, avec 32 milliards de paramètres) et la famille \textbf{qwen3.5} (la génération suivante, testée en six tailles de 0.8b à 35b). Ces deux familles sont les produits de différentes itérations de la recherche Alibaba et présentent des architectures et données d'entraînement distinctes. La famille qwen3.5 nous intéresse particulièrement pour l'analyse de la \textit{scaling law} (relation performance/nombre de paramètres) au sein d'une même famille.
@@ -230,11 +225,11 @@ Tous les modèles testés sont open-source. Nous avons décidé de tester Devstr
 
 \begin{itemize}[label=$\bullet$]
     \item Contrôle : évaluation de la baseline du modèle. On ne donne au modèle que le system prompt (le même peu importe le type de test, que l'on peut trouver en \hyperref[sec:annexe_prompt]{Annexe}) et l'énoncé du problème 
-    \item Contrôle ultra minimal. On donne au modèle le sytem prompt, le prompt ultra minimal (voir \ref{sec:annexe_prompt}) et la documentation ultra minimale non corrompue, pour voir si le simple fait d'ajouter une documentation, même si elle ne contrevient pas à la mémoire paramétrique du modèle à un impact sur ses performances 
-    \item Contrôle minimal. On donne au modèle le sytem prompt, le prompt minimal (voir \ref{sec:annexe_prompt}) et la documentation minimale non corrompue.
-    \item Corrompue ultra minimale.  On donne au modèle le sytem prompt, le prompt ultra minimal corrompu (voir \ref{sec:annexe_prompt}) et la documentation ultra minimale corrompue pour voir si le modèle arrive à se servir des nouvelles informations pour résoudre les problèmes.
+    \item Contrôle ultra minimal. On donne au modèle le system prompt, le prompt ultra minimal (voir \ref{sec:annexe_prompt}) et la documentation ultra minimale non corrompue, pour voir si le simple fait d'ajouter une documentation, même si elle ne contrevient pas à la mémoire paramétrique du modèle à un impact sur ses performances 
+    \item Contrôle minimal. On donne au modèle le system prompt, le prompt minimal (voir \ref{sec:annexe_prompt}) et la documentation minimale non corrompue.
+    \item Corrompue ultra minimale.  On donne au modèle le system prompt, le prompt ultra minimal corrompu (voir \ref{sec:annexe_prompt}) et la documentation ultra minimale corrompue pour voir si le modèle arrive à se servir des nouvelles informations pour résoudre les problèmes.
     \item Corrompue minimale.  On donne au modèle le system prompt, le prompt minimal corrompu (voir \ref{sec:annexe_prompt}) et la documentation minimale corrompue.
-    \item Corrompue explicative. On donne au modèle le system prompt, le prompt explicatif et la documenation explicative de la perturbation.
+    \item Corrompue explicative. On donne au modèle le system prompt, le prompt explicatif et la documentation explicative de la perturbation.
 \end{itemize}
 
 
@@ -250,7 +245,7 @@ Tous les hyperparamètres utilisés (température, top k sampling, top p samplin
     
     \item[Top-$p$ Sampling] : Méthode de troncature dynamique qui sélectionne le plus petit ensemble de tokens dont la probabilité cumulée dépasse un seuil $p \in [0, 1]$.
 
-    \item[Top-$p$ & Top-$k$ Sampling] : On selectionne au maximum k tokens pour le vocabulaire de sortie, moins si il existe un ensemble A de tokens tels que $card(A) < k$ et $P(A) >= p$.
+    \item[Top-$p$ & Top-$k$ Sampling] : On selectionne au maximum k tokens pour le vocabulaire de sortie, moins s'il existe un ensemble A de tokens tels que $card(A) < k$ et $P(A) >= p$.
     
     \item[Pénalité de présence] : Terme additif soustrait aux logits des tokens ayant déjà apparu au moins une fois dans le contexte généré. Si $z'_i$ est le nouveau logit et $z_i$ l'ancien on a:
  \begin{equation}
@@ -280,7 +275,7 @@ Les prompts spécifiques à chaque perturbation sont disponibles en annexe.
 
 \subsubsection{Aparté sur le pass@k}\label{sec:pass@}
 
-Le pass@k est un paradigme d'évalutation des LLM où l'on ne cherche pas à trouver la probabilité que le LLM arrive ou non à effectuer une tâche mais plutôt la probabilité que le LLM arrive ou non à effectuer une tâche au moins une fois si il dispose de k essais. Ce paradigme d'évaluation est plus tendre au sens où la probabilité du pass@k est forcément supérieure ou égale à celle du pass@1.
+Le pass@k est un paradigme d'évalutation des LLM où l'on ne cherche pas à trouver la probabilité que le LLM arrive ou non à effectuer une tâche mais plutôt la probabilité que le LLM arrive ou non à effectuer une tâche au moins une fois s'il dispose de k essais. Ce paradigme d'évaluation est plus tendre au sens où la probabilité du pass@k est forcément supérieure ou égale à celle du pass@1.
 
 Si l'on note n le nombre d'échantillons dont nous disposons pour évaluer le pass@k, nous avons fait le choix (aussi contraint par la puissance de calcul disponible et l'utilisation d'ollama plutôt que vLLM en tant que moteur d'inférence) d'utiliser n = k. Pour s'assurer de la reproductibilité de nos résulats, nous avons fixé une seed de départ pour le pass@ (42) que nous avons incrémenté de 1 à chaque fois que le modèle se trompait et qu'il fallait donc relancer l'inférence.
 
@@ -331,10 +326,8 @@ En calculant la dérivée de la fonction $f$, on obtient $f'(x) = k(1-x)^{k-1}$.
 
 La variance de l'estimateur décroît donc en $\mathcal{O}\left(\frac{1}{n}\right)$. 
 
-Plus l'on calcule le pass@10 sur un nombre important d'échantillons et moins la variance de l'estimateur est grande. Pour améliorer nos résultats on essayer de faire les mêmes estimations avec $n = 20$ ou $n = 50$.
+Plus l'on calcule le pass@10 sur un nombre important d'échantillons et moins la variance de l'estimateur est grande. Pour améliorer nos résultats on pourrait faire les mêmes estimations avec $n = 20$ ou $n = 50$.
 
-\subsubsection{Benchmark DS-1000}
-Le benchmark ds-1000 introduit dans \cite{lai2022ds1000naturalreliablebenchmark} vise à mesurer les capacités de génération de code des modèles de langage spécifiquement appliquées à la science des données. Ce corpus se compose de 1000 problèmes de programmation Python de haute qualité, rigoureusement sélectionnés et annotés par des experts. La genèse du benchmark repose sur l'extraction de 451 questions authentiques issues de \textit{StackOverflow}, couvrant sept bibliothèques fondamentales (telles que \texttt{Pandas}, \texttt{NumPy}, ou \texttt{PyTorch}). Pour porter cet ensemble à 1000 instances tout en évitant le risque de mémorisation des solutions les auteurs ont introduit des perturbations contrôlées sur les problèmes sources. Ces modifications, qu'elles soient de surface (renommage de variables, paraphrases) ou sémantiques (altération des contraintes logiques), permettent de valider la robustesse du raisonnement du modèle face à des variantes inédites de problèmes réels. Nous n'avons gardé de ce benchmark que les problèmes relatifs à la librairie \texttt{NumPy} (ce qui fait 159 problèmes) pour des raisons de simplicité d'évaluation (nous n'avions alors besoin d'écrire un Wrapper que pour la seule librairie \texttt{NumPy}) et de temps de calcul.
 
 \subsection{Évaluation Fonctionnelle}
 \begin{itemize}
@@ -371,7 +364,7 @@ De cette manière, le wrapper est \textbf{strict} : il refuse tout appel à une 
 L'évaluation est en réalité \textbf{double} : pour chaque réponse du LLM, le code est exécuté deux fois.
 
 \begin{enumerate}
-    \item \textbf{Évaluation sur la librairie contrefactuelle (injection)} : Le code du LLM est passé au wrapper correspondant à la perturbation. L'import de numpy est remplacé par l'import du wrapper grâce à une fonction \texttt{modify\_lib} qui modifie le contexte de test issu du dataset DS1000 - cette modification de l'import de numpy par l'import du wrapper dans le code context focntionne comme expliqué dans l'annexe~\ref{sec:annexe_modify_lib}. La variable \texttt{passed} vaut \texttt{True} si et seulement si l'exécution renvoie \texttt{SUCCESS\_MARKER}.
+    \item \textbf{Évaluation sur la librairie contrefactuelle (injection)} : Le code du LLM est passé au wrapper correspondant à la perturbation. L'import de numpy est remplacé par l'import du wrapper grâce à une fonction \texttt{modify\_lib} qui modifie le contexte de test issu du dataset DS1000 - cette modification de l'import de numpy par l'import du wrapper dans le code context fonctionne comme expliqué dans l'annexe~\ref{sec:annexe_modify_lib}. La variable \texttt{passed} vaut \texttt{True} si et seulement si l'exécution renvoie \texttt{SUCCESS\_MARKER}.
 
     \item \textbf{Évaluation sur la librairie d'origine (control\_passed)} : Le même code brut extrait du LLM est exécuté avec l'import \texttt{numpy} standard (sans wrapper). La variable \texttt{control\_passed} indique si ce code non-perturbé passe les tests DS1000.
 \end{enumerate}
@@ -382,8 +375,8 @@ Cette double évaluation est au cœur des métriques définies en section \ref{s
 Une subtilité importante concerne les \textbf{méthodes d'objets} (e.g., \texttt{a.reshape\_v2()} si \texttt{a} est un \texttt{ndarray}). Ces méthodes ne passent pas par le wrapper \texttt{np}, elles sont appelées directement sur l'objet NumPy. Il faut donc :
 
 \begin{itemize}
-    \item \textbf{Pour l'évaluation injection} : s'assurer que la méthode d'objet utilise bien le suffixe perturbé, sinon lever une \texttt{ObjectAttributeError} qui fait échouer le test. Grâce à ce parsing AST on arrive à trouver un manque de perturbation dans le code avant même de l'évaluer ce qui nous simplifie la tâche et évite de trop compléxifier le Wrapper.
-    \item \textbf{Pour l'évaluation control} : on execute le code du LLM sans modification AST des perturbations sur les méthodes. Le but ici est de vérifier si un code non conforme aux perturbations a été justement codé selon si on l'évalue avec la librairie qu'il est sensé avoir appris dans sa mémoire paramétrique.
+    \item \textbf{Pour l'évaluation injection} : s'assurer que la méthode d'objet utilise bien le suffixe perturbé, sinon lever une \texttt{ObjectAttributeError} qui fait échouer le test. Grâce à ce parsing AST on arrive à trouver un manque de perturbation dans le code avant même de l'évaluer ce qui nous simplifie la tâche et évite de trop complexifier le Wrapper.
+    \item \textbf{Pour l'évaluation control} : on execute le code du LLM sans modification AST des perturbations sur les méthodes. Le but ici est de vérifier si un code non conforme aux perturbations a été justement codé selon si on l'évalue avec la librairie qu'il est censé avoir appris dans sa mémoire paramétrique.
 \end{itemize}
 
 Pour cela, un module de nettoyage AST spécifique à chaque perturbation (\texttt{ast\_cleaning\_v2.py}, etc.) parcourt l'arbre syntaxique du code et transforme les attributs d'objets. Il maintient une liste blanche de méthodes Python natives (méthodes de \texttt{list}, \texttt{dict}, \texttt{str}, etc.) qui ne doivent pas être concernées par cette vérification. Les attributs enracinés dans \texttt{np} ou \texttt{numpy} sont également ignorés (ils sont gérés par le wrapper).
@@ -398,7 +391,7 @@ Chaque code généré est exécuté dans un \textbf{sous-processus isolé} via \
 \subsubsection{Première analyse}
 Nous allons analyser dans cette section les performances et pertes de performance des modèles de la famille qwen3.5 (qwen3.5:0.8b, qwen3.5:2b, qwen3.5:4b, qwen3.5:9b, qwen3.5:27b, qwen3.5:35b) sur les plis de contrôle (classique, minimal et ultra\_minimal) et de perturbations v2 et capitale (documentation explicative, minimale et ultra minimale)(voir \ref{sec:type de perturbation} et \ref{sec:type de test} pour un rappel terminologique).
 
-Les graphiques présentées dans cette section ou en annexe représentent des pourcentages de réussite des modèles sur les différents plis de test. Le nombre de problème maximal à résoudre pour un pli est de 159 mais comme l'exécution d'un test peut prendre jusqu'à 36h et que nous ne nous sommes intéressés que tardivement à l'évaluation des modèles de la famille qwen3.5 certaines catégories ont été évalué sur un nombre moins grand de problèmes (ce qui augmente donc la marge d'erreur sur les capacités réèlles du modèle). Toutes les évaluations présentées ci-après utilisent du pass@10 avec n = 10 comme présenté dans la section \ref{sec:pass@}.
+Les graphiques présentés dans cette section ou en annexe représentent des pourcentages de réussite des modèles sur les différents plis de test. Le nombre de problème maximal à résoudre pour un pli est de 159 mais comme l'exécution d'un test peut prendre jusqu'à 36h et que nous ne nous sommes intéressés que tardivement à l'évaluation des modèles de la famille qwen3.5 certaines catégories ont été évalué sur un nombre moins grand de problèmes (ce qui augmente donc la marge d'erreur sur les capacités réelles du modèle). Toutes les évaluations présentées ci-après utilisent du pass@10 avec n = 10 comme présenté dans la section \ref{sec:pass@}.
 
 Pour pouvoir vérifier les graphiques il est recommandé d'exécuter à la racine la commande (nécessite \texttt{matplotlib})
 \vspace{0.5cm}
@@ -431,10 +424,10 @@ Si y est le pourcentage de réussite, et p le nombre de paramètres, on a une re
     \label{fig:pipeline_eval}
 \end{figure}
 
-On constate aussi que les LLMs performent systématiquement mieux lors des plis de tests avec la documentation explicative plutôt qu'avec les documentations minimales ou ultra\_minimales. Tout se passe comme si le fait de devoir généraliser la perturbation provoquait une baisse de compétence du LLM. Ainsi, aider le LLM en lui expliquant la règle plutôt qu'en le laissant l'inférer sur un grand nombre d'exemples semblerait lui laisser moins de possibilitées pour se tromper. C'est malheureux dans notre cas puisque nous souhaiterions que le LLM puisse réussir à utiliser seul la nouvelle documentation de la librairie.
+On constate aussi que les LLMs performent systématiquement mieux lors des plis de tests avec la documentation explicative plutôt qu'avec les documentations minimales ou ultra\_minimales. Tout se passe comme si le fait de devoir généraliser la perturbation provoquait une baisse de compétence du LLM. Ainsi, aider le LLM en lui expliquant la règle plutôt qu'en le laissant l'inférer sur un grand nombre d'exemples semblerait lui laisser moins de possibilités pour se tromper. C'est malheureux dans notre cas puisque nous souhaiterions que le LLM puisse réussir à utiliser seul la nouvelle documentation de la librairie.
 \vspace{0.2cm}
 
-Petite note sur l'interprétation du graphique \ref{fig:all qwen3.5} : Il pourrait arriver que la somme du pourcentage de réussite sur l'évaluation sur la librairie contrefactuelle et sur la librairie d'origine dépasse le pourcentage de réussite sur le pli de contrôle. En effet, comme l'évaluation est fonctionelle et que certains problèmes peuvent être résolus sans utiliser la librairie \texttt{NumPy}, il arrive que certaines solutions soient comptabilisées comme correctes à la fois pour la librairie de base et la librarie contrefactuelle. Voir \ref{fig:both success} pour un tel exemple. Pour éviter ce cas de figure, nous avons décidé d'exclure les fonctions qui passent les deux évaluations.
+Petite note sur l'interprétation du graphique \ref{fig:all qwen3.5} : Il pourrait arriver que la somme du pourcentage de réussite sur l'évaluation sur la librairie contrefactuelle et sur la librairie d'origine dépasse le pourcentage de réussite sur le pli de contrôle. En effet, comme l'évaluation est fonctionnelle et que certains problèmes peuvent être résolus sans utiliser la librairie \texttt{NumPy}, il arrive que certaines solutions soient comptabilisées comme correctes à la fois pour la librairie de base et la librairie contrefactuelle. Voir \ref{fig:both success} pour un tel exemple. Pour éviter ce cas de figure, nous avons décidé d'exclure les fonctions qui passent les deux évaluations.
 
 
 
@@ -448,7 +441,7 @@ Soient $\mathcal{E}_{ctrl}$ et $\mathcal{E}_{inj}$ les ensembles d'évaluations 
     S_{inj\_ctrl} &= \{ e \in \mathcal{E}_{inj} \mid \text{control\_passed}(e) \}
 \end{align*}
 
-où control\_passed signifie que le code générée fonctionne quand il est executée avec la librairie originale, et injection\_passed quand il fonctionne avec le wrapper. On remarquera que $S_{ctrl\_inj}$ n'est pas pris en compte puisque l'on considère que cet ensemble est forcément vide (pourquoi le LLM génererait-t-il un code perturbé alors que la perturbation ne lui a même pas été précisée ?)
+où control\_passed signifie que le code généré fonctionne quand il est executé avec la librairie originale, et injection\_passed quand il fonctionne avec le wrapper. On remarquera que $S_{ctrl\_inj}$ n'est pas pris en compte puisque l'on considère que cet ensemble est forcément vide (pourquoi le LLM générerait-t-il un code perturbé alors que la perturbation ne lui a même pas été précisée ?)
 
 \textbf{1. La perte de performance} $L_{perf}$ mesure la baisse de réussite stricte sur la tâche qui nous intéresse au final :
 \begin{equation}
@@ -481,7 +474,7 @@ Cette perte de \textit{performance} est analysée plus en détail dans la sectio
 Néanmoins, nous pouvons constater que sur les plis explicatifs, le modèle perd moins en \textit{compétence} que sur les plis minimal et ultra\_minimal. En effet, la somme des évaluations sur la librairie contrefactuelle et la librairie d'origine donne, à peu de choses près, la pourcentage de réussite sur le pli de contrôle (81\% de réussite sur le pli de contrôle pour qwen3.5:35b, 68\% sur la perturbation capitale évaluée sur la librairie contrefactuelle et 0\% évaluée sur la librairie originale ce qui donne une perte de performance de 12\% voir \ref{fig:all qwen3.5}).
 Ce phénomène se renforce à mesure que les modèles deviennent plus gros. Plus le modèle a de paramètres, moins la perte de \textit{compétence} est grande sur la documentation explicative relativement au taux de succès de base.
 
-Sur les documentations explicatives, les modèles augmentent leur \textit{performance} (et leur \textit{compétence}) d'abord en améliorant leur \textit{coherence} (de qwen3.5:0.8b à qwen3.5:9b) puis en améliorant leur \textit{intelligence} (qwen3.5:27b et qwen3.5:35b) comme on peut le voir sur la figure suivante (où l'on a affiché les différentes pertes absolues en fonction du nombre de paramètres selon une échelle semi-logarithmique. La version sur avec les pertes relatives au taux de succès sur le pli de contrôle est disponible en \hyperref[annexe]{sec:graphs})
+Sur les documentations explicatives, les modèles augmentent leur \textit{performance} (et leur \textit{compétence}) d'abord en améliorant leur \textit{coherence} (de qwen3.5:0.8b à qwen3.5:9b) puis en améliorant leur \textit{intelligence} (qwen3.5:27b et qwen3.5:35b) comme on peut le voir sur la figure suivante (où l'on a affiché les différentes pertes absolues en fonction du nombre de paramètres selon une échelle semi-logarithmique. La version sur avec les pertes relatives au taux de succès sur le pli de contrôle est disponible en \hyperref[sec:graphs]{annexe})
 
 \begin{figure}[htbp] % h: here, t: top, b: bottom, p: page
     \centering
@@ -490,7 +483,8 @@ Sur les documentations explicatives, les modèles augmentent leur \textit{perfor
     \label{fig:pipeline_eval}
 \end{figure}
 
-On n'observe cependant pas le même comportement sur les plis de test s'effectuants avec les documentations minimales. En effet, dans ce cas c'est plutôt une amélioration linéaire de l'\textit{intelligence} que l'on observe en fonction du logarithme du nombre de paramètres alors que la perte de \textit{cohérence} est relativement stable en fonction du nombre de paramètres. On observe donc une mutation de l'amélioration des consignes en fonction du nombre de paramètres en fonction du type de documentation utilisée : explicative ou ressemblant à une vraie documentation. 
+\label{sec:intelligence qwen}
+On n'observe cependant pas le même comportement sur les plis de test s'effectuant avec les documentations minimales. En effet, dans ce cas c'est plutôt une amélioration linéaire de l'\textit{intelligence} que l'on observe en fonction du logarithme du nombre de paramètres alors que la perte de \textit{cohérence} est relativement stable en fonction du nombre de paramètres. On observe donc une mutation de l'amélioration des consignes en fonction du nombre de paramètres en fonction du type de documentation utilisée : explicative ou ressemblant à une vraie documentation. 
 Dans le cas explicatif l'augmentation du nombre de paramètres fait d'abord majoritairement gagner de la cohérence puis il fait gagner de l'intelligence. Dans le cas minimal et ultra\_minimal on gagne constamment de l'intelligence mais la cohérence peine à suivre.
 
 \begin{figure}[htbp] % h: here, t: top, b: bottom, p: page
@@ -515,7 +509,7 @@ Finalement, il semble que les modèles de la famille qwen3.5 ait plus de facilit
 
 
 
-\subsection{Echecs}. \label{sec:echec}
+\subsection{Echecs} \label{sec:echec}
 
 Les échecs ne sont pas tous dus aux mêmes erreurs : 
 Parfois une partie est perturbée et une partie ne l'est pas (alors qu'on pourrait s'attendre à de la cohérence de la part du LLM une fois qu'il a commencé à générer du code soit perturbé soit non perturbé mais le conflit ne s'arrête à la première utilisation de la consigne perturbée).
@@ -528,7 +522,7 @@ Il y a donc deux raisons qui peuvent expliquer la perte sur l'évaluation librai
     \item Une perte d'\textit{intelligence} du modèle qui l'entraine à créer des mauvaises fonctions (on parlera aussi de \textit{confusion} du modèle)
 \end{itemize}
 
-Pour tester la part due à la \textit{confusion} et la part due à la perte de \textit{cohérence}, nous avons écrit une fonction d'analyse de données qui compte un problème comme étant due à la \textit{confusion} (on dira alors que le modèle est \textit{confus} ou qu'il perd en \textit{intelligence}) si il rempli les trois conditions suivantes : 
+Pour tester la part due à la \textit{confusion} et la part due à la perte de \textit{cohérence}, nous avons écrit une fonction d'analyse de données qui compte un problème comme étant due à la \textit{confusion} (on dira alors que le modèle est \textit{confus} ou qu'il perd en \textit{intelligence}) s'il rempli les trois conditions suivantes : 
 
 \begin{itemize}
     \item passed = False
@@ -538,7 +532,7 @@ Pour tester la part due à la \textit{confusion} et la part due à la perte de \
 
 Ce test n'est pas parfait (certains codes ne s'exécutent pas parce que le modèle oublie de définir certaines variables. Dans ce cas est-ce un problème de logique ou de syntaxe ?) mais il permet d'estimer dans quelles proportions la perte de performance est due, en quelque sorte, à une perte \textit{d'intelligence}. 
 
-Dans le cas de qwen3.5:9b évalué sur le pli de contrôle ultra\_minimal et sur le pli de perturbation dite "capitale" ultra\_minimal on passe de 113 problèmes réussis sur 159 (soit 71\% de réussite) à 36 problèmes réussis avec l'injection et 64 problèmes (46\%) qui passent l'évaluation soit sur le wrapper soit sur la librairie \texttt{NumPy} d'origine. Cela signifie qu'il y a une perte de performance de 25\% (49 problèmes qui sont pourtant à la portée du modèle puisqu'il les a résolu sur le pli de contrôle). Sur ces 49 problèmes, 21 sont dues à la confusion du modèle telle que définie précédemment. Environ un tiers de la perte de performance du modèle dans ce cas est donc due à de la perte d'\textit{intelligence}. Deux tiers de la performance est due à ce que l'on pourrait nommer une perte de \textit{cohérence}, c'est-à-dire, dans notre cas, l'incapacité à respecter une convention. 
+Dans le cas de qwen3.5:9b évalué sur le pli de contrôle ultra\_minimal et sur le pli de perturbation dite "capitale" ultra\_minimal on passe de 113 problèmes réussis sur 159 (soit 71\% de réussite) à 36 problèmes réussis avec l'injection et 64 problèmes (46\%) qui passent l'évaluation soit sur le wrapper soit sur la librairie \texttt{NumPy} d'origine. Cela signifie qu'il y a une perte de performance de 25\% (49 problèmes qui sont pourtant à la portée du modèle puisqu'il les a résolu sur le pli de contrôle). Sur ces 49 problèmes, 21 sont dues à la confusion du modèle telle que définie précédemment. Environ un tiers de la perte de performance du modèle dans ce cas est donc dû à de la perte d'\textit{intelligence}. Deux tiers de la performance est due à ce que l'on pourrait nommer une perte de \textit{cohérence}, c'est-à-dire, dans notre cas, l'incapacité à respecter une convention. 
 
 Voici un exemple de code produit par qwen3.5:9b dans le cadre de la perturbation capitale où l'on voit bien ce phénomène de perte de \textit{cohérence} : 
 
@@ -592,7 +586,7 @@ Une autre hypothèse était que l'utilisation de la modification dans le prompt 
 \end{figure}
 
  \newpage
- Il reste encore à explorer pourquoi certaines fontions sont plus sujettes aux erreurs que d'autres (np.zeros ici par exemple).
+ Il reste encore à explorer pourquoi certaines fonctions sont plus sujettes aux erreurs que d'autres (np.zeros ici par exemple).
 
 
 
@@ -642,9 +636,8 @@ La distribution des erreurs (section 7 du sanity check) révèle les causes des 
     \item Des erreurs \texttt{wrong\_answer} : 30 pour gemma3:12b et 13 pour Devstral, indiquant que la perturbation déstabilise parfois le raisonnement logique.
 \end{itemize}
 
-\textbf{Devstral} et \textbf{Qwen2.5-Coder:32b} affichent les meilleures performances en injection (50\,\% chacun) avec une perte de performance identique de 22 pts. \textbf{Codestral} subit la plus forte perte (31 pts) en raison d'une adoption incomplète de la perturbation. \textbf{gemma3:12b}, malgré un taux d'adoption élevé (88,6\,\%), n'atteint que 24\,\% — révélant que l'adoption de la convention ne compense pas son moindre niveau de compétence algorithmique en code.
+\textbf{Devstral} et \textbf{Qwen2.5-Coder:32b} affichent les meilleures performances en injection (50\,\% chacun) avec une perte de performance identique de 22 pts. \textbf{Codestral} subit la plus forte perte (31 pts) en raison d'une adoption incomplète de la perturbation.
 
-Les barres pointillées de la Figure~\ref{fig:global_v2} (éval. lib d'origine) confirment que les réussites en injection sont quasi-exclusivement des vrais basculements contextuels : seuls 8/148 (Codestral), 1/151 (Devstral), 1/155 (gemma3) et 0/149 (Qwen) passent aussi avec NumPy standard, soit 10 cas sur 253 réussites totales — les 243 autres correspondent à du code qui fonctionne \textit{uniquement} avec la convention \_v2.
 
 \subsubsection{Résultats avec les documentations minimale et ultra-minimale}
 
@@ -668,44 +661,17 @@ Qwen2.5-Coder:32b & 72\,\% & 39\,\% (58/149) & 40\,\% (59/149) & 33 pts \\
 \end{tabular}
 \end{table}
 
-Les pertes de performance sont ici beaucoup plus sévères. Le cas le plus extrême est \textbf{Codestral}, dont le taux d'injection s'effondre à 16\,\% (minimal) et 14\,\% (ultra-minimal), soit une perte de 60 points par rapport au contrôle. L'origine est claire dans le tableau d'adoption : Codestral n'adopte la perturbation \_v2 que dans 33--36\,\% des réponses. Sans explication de la règle, il continue à appeler les fonctions NumPy en convention standard. Les erreurs \texttt{attribut\_error} (43--50 cas) dominent, correspondant aux rejets du wrapper sur du code non perturbé.
+Les pertes de performance sont ici beaucoup plus sévères. Le cas le plus extrême est \textbf{Codestral}, dont le taux d'injection s'effondre à 16\,\% (minimal) et 14\,\% (ultra-minimal), soit une perte de 60 points par rapport au contrôle. Sans explication de la règle, il continue à appeler les fonctions \texttt{NumPy} en convention standard. Les erreurs \texttt{attribut\_error} (43--50 cas) dominent, correspondant aux rejets du wrapper sur du code non perturbé.
 
-\textbf{Devstral} et \textbf{Qwen2.5-Coder:32b} se comportent de façon comparable, avec respectivement 32--42\,\% et 39--40\,\% de réussite selon le type de documentation. Un résultat contre-intuitif mérite d'être souligné : Devstral réussit \textit{mieux} avec la documentation ultra-minimale (42\,\%) qu'avec la minimale (32\,\%). Une hypothèse est que la documentation minimale, plus riche (signatures d'arguments incluses), introduit un bruit cognitif supplémentaire, tandis que la liste épurée des noms de fonctions de la documentation ultra-minimale fournirait un signal plus clair sur la convention de nommage à adopter. Qwen affiche une moindre sensibilité à ce phénomène (39\,\% vs 40\,\%).
+\textbf{Devstral} et \textbf{Qwen2.5-Coder:32b} se comportent de façon comparable, avec respectivement 32--42\,\% et 39--40\,\% de réussite selon le type de documentation.
 
-\subsubsection{Comparaison entre types de documentation et synthèse}
-
-Le Tableau~\ref{tab:comparison_doc} place côte à côte les trois types de documentation pour la même perturbation \_v2.
-
-\begin{table}[htbp]
-\centering
-\caption{Comparaison des taux de réussite en injection et d'adoption de la perturbation \_v2 selon le type de documentation. Même perturbation dans les trois cas.}
-\label{tab:comparison_doc}
-\begin{tabular}{lrrrrrr}
-\toprule
- & \multicolumn{2}{c}{\textbf{Explicative}} & \multicolumn{2}{c}{\textbf{Minimale}} & \multicolumn{2}{c}{\textbf{Ultra-minimale}} \\
-\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
-\textbf{Modèle} & Inj. & Adopt. & Inj. & Adopt. & Inj. & Adopt. \\
-\midrule
-Codestral         & 45\,\% & 74,5\,\% & 16\,\% & 32,7\,\% & 14\,\% & 35,7\,\% \\
-Devstral          & 50\,\% & 88,0\,\% & 32\,\% & 60,5\,\% & 42\,\% & 69,4\,\% \\
-gemma3:12b        & 24\,\% & 88,6\,\% & 25\,\% & 58,0\,\% & 23\,\% & 57,6\,\% \\
-Qwen2.5-Coder:32b & 50\,\% & 87,3\,\% & 39\,\% & 72,8\,\% & 40\,\% & 71,3\,\% \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-La comparaison fait apparaître deux résultats structurants.
-
-\textbf{Premièrement}, l'explicitation de la règle améliore très significativement le taux d'adoption pour tous les modèles. L'effet est particulièrement spectaculaire pour Codestral dont l'adoption passe de 33\,\% (implicite) à 74,5\,\% (explicite), se traduisant par un gain de réussite de près de +29 points. Pour Devstral et Qwen, le gain en adoption (+15--28 pts) se répercute en un gain de réussite de +10 à +18 pts.
-
-\textbf{Deuxièmement}, gemma3:12b constitue un cas à part : malgré un taux d'adoption élevé avec la documentation explicative (88,6\,\%), son taux de réussite en injection (24\,\%) reste quasi-identique à celui obtenu avec les documentations minimale et ultra-minimale (25\,\% et 23\,\%). Ce modèle, le seul non spécialisé pour le code, atteint ici un plafond de compétence algorithmique : il adopte bien la nouvelle convention de nommage, mais cela ne suffit pas à résoudre des problèmes NumPy que sa base de connaissances en code ne lui permet pas de formuler correctement.
-
-Ces résultats confirment et précisent les observations faites sur la famille qwen3.5 : \textbf{la documentation explicative est la seule à permettre une adoption fiable de la perturbation}, mais elle ne suffit pas à effacer les différences de compétence algorithmique entre modèles. La perte de performance résiduelle — y compris avec une règle explicitée — traduit une combinaison de non-adoption partielle (méthodes d'objet oubliées) et de perte de cohérence logique sous l'effet du contexte contrefactuel.
 
 \subsubsection{Analyse de l'intelligence des modèles via les métriques de dégradation}
 \label{sec:intelligence_models}
 
-Afin d'approfondir la comparaison entre modèles au-delà des taux de réussite bruts, nous avons représenté les quatre métriques de dégradation ($L_{perf}$, $L_{comp}$, $L_{int}$, $L_{coh}$) en mode \textit{relatif} — c'est-à-dire normalisées par le taux de contrôle de chaque modèle — en fonction du nombre de paramètres sur une échelle semi-logarithmique. Cette représentation permet de comparer les modèles à compétence de base relative équivalente, en isolant le signal dû à l'injection contrefactuelle de la compétence algorithmique intrinsèque. Les graphiques ont été produits à partir des fichiers de résultats des dossiers \texttt{results/run\_v2\_to\_show} et \texttt{results/run\_v2\_exp\_to\_show} via le script \texttt{src/perf\_review/plot\_model\_intelligence.py}.
+Avant toute chose il est important de noter que l'analyse par nombre de paramètres n'est pas autant pertinente que précédemment car les modèles comparés ne sont pas de même nature. Leurs architectures sont fondamentalement différentes et ainsi plusieurs autres paramètres peuvent expliquer les tendances d'évolution. Quelques conclusions peuvent néanmoins être tirées.
+
+Afin d'approfondir la comparaison entre modèles au-delà des taux de réussite bruts, nous avons représenté les quatre métriques de dégradation ($L_{perf}$, $L_{comp}$, $L_{int}$, $L_{coh}$) en mode \textit{relatif} — c'est-à-dire normalisées par le taux de réussite sur le pli de contrôle de chaque modèle — en fonction du nombre de paramètres sur une échelle semi-logarithmique. Cette représentation permet de comparer les modèles à compétence de base relative équivalente. Les graphiques ont été produits à partir des fichiers de résultats des dossiers \texttt{results/run\_v2\_to\_show} et \texttt{results/run\_v2\_exp\_to\_show} via le script \texttt{src/perf\_review/plot\_model\_intelligence.py}.
 
 \paragraph{Documentation ultra-minimale.}
 
@@ -716,13 +682,18 @@ Afin d'approfondir la comparaison entre modèles au-delà des taux de réussite 
     \label{fig:intel_ultra_minimal}
 \end{figure}
 
-La Figure~\ref{fig:intel_ultra_minimal} révèle deux phénomènes structurants pour la documentation ultra-minimale.
 
-\textbf{Anomalie de Codestral sur $L_{perf}$.} Codestral (22B) présente une perte de performance de 78\,\%, soit 23 points au-dessus de gemma3:12b (55\,\%) et 36 points au-dessus de Devstral (41\,\%) et Qwen2.5-Coder:32b (42\,\%). Ce résultat est contre-intuitif au regard du nombre de paramètres et confirme le diagnostic de la section~\ref{sec:autres_modeles} : Codestral est architecturalement optimisé pour la complétion de code (pas pour le suivi d'instructions), ce qui le rend particulièrement vulnérable à une injection minimaliste. Le fait que Devstral — même famille, mais fine-tuné pour l'instruction-following — récupère fortement ($-37$ pts de $L_{perf}$) montre que la vulnérabilité est d'origine entraînement et non purement paramétrique.
+\textbf{Anomalie de Codestral sur $L_{perf}$.} Codestral (22B) présente une perte de performance de 78\,\%, soit 23 points au-dessus de gemma3:12b (55\,\%) et 36 points au-dessus de Devstral (41\,\%) et Qwen2.5-Coder:32b (42\,\%). Ce résultat est contre-intuitif au regard du nombre de paramètres et confirme pourrait être interprété de la manière suivante : Codestral contrairement à Devstral par exemple, est optimisé pour la complétion de code mais pas pour le suivi d'instructions, ce qui pourrait avoir comme effet de le rendre particulièrement incompétent sur l'utilisation d'informations qui contredisent sa mémoire paramétrique. Le fait que Devstral — même famille, mais fine-tuné pour l'instruction-following — récupère fortement ($-37$ pts de $L_{perf}$) tend à confirmer cette hypothèse.
 
-\textbf{$L_{int}$ décroît nettement avec la taille.} De 48,5\,\% (12B) à 11,3\,\% (Devstral, 24B), la perte d'intelligence est le signal le plus régulier de la Figure~\ref{fig:intel_ultra_minimal} : les grands modèles se laissent moins piéger en produisant la même assertion erronée que l'injection.
+\textbf{$L_{int}$ décroît nettement avec la taille.} De 48,5\,\% (12B) à 11,3\,\% (Devstral, 24B), la perte d'intelligence décroit encore une fois linéairement avec le logarithme du nombre de paramètres.
 
-\textbf{$L_{coh}$ négatif pour gemma3:12b ($-15{,}4\,\%$).} Ce cas remarquable signifie que $L_{int} > L_{comp}$, autrement dit que le modèle échoue davantage par confusion (production de la même assertion incorrecte) que par dégradation de compétence. L'injection ultra-minimale piège surtout le petit modèle en l'incitant à reproduire mécaniquement une erreur, sans pour autant altérer sa compétence générale de résolution. Pour les modèles plus grands, $L_{coh}$ redevient positif (14--16\,\%), indiquant que la perte de compétence réelle prend le dessus.
+\subsection*{Inversion du ratio de perte ($L_{int} > L_{comp}$)}
+
+Le cas de \textbf{gemma3:12b}, qui présente une perte de cohérence négative ($L_{coh} = -15{,}4\,\%$), s'interprète selon les mêmes principes analytiques que le modèle \textbf{qwen3.5:0.8b}. Mathématiquement, cette valeur négative impose l'inégalité $L_{int} > L_{comp}$.
+
+Contrairement à une simple substitution d'erreur, cela signifie que le modèle échoue plus, relativement au nombre d'échecs, par \textbf{perte d'intelligence sur le pli contrefactuel} qu'il ne perd en \textit{compétence}
+
+L'effondrement des performances est donc du, au moins en partie, par l'incapacité systémique du modèle à maintenir un raisonnement valide dans un contexte contrefactuel, bien avant que ses capacités de codage brut ne soient altérées.
 
 \paragraph{Documentation explicative.}
 
@@ -733,15 +704,14 @@ La Figure~\ref{fig:intel_ultra_minimal} révèle deux phénomènes structurants 
     \label{fig:intel_explanation}
 \end{figure}
 
-La Figure~\ref{fig:intel_explanation} présente un profil radicalement différent de la documentation ultra-minimale. Toutes les métriques décroissent de façon \textbf{strictement monotone} avec la taille du modèle, sans aucune anomalie : lorsque la règle est explicitée, la robustesse à l'injection scale proprement avec le nombre de paramètres.
+    La Figure~\ref{fig:intel_explanation} présente un profil différent de la documentation ultra-minimale. Toutes les métriques décroissent de façon monotone avec la taille du modèle : lorsque la règle est explicitée, l'utilisation de la perturbation augmente avec le nombre de paramètres.
 
-\textbf{$L_{comp} \approx L_{perf}$ sur tout le panel} (50,6\,\% vs 51,8\,\% pour 12B ; 29,8\,\% vs 36,4\,\% pour Codestral). L'union \og{}injection réussie \textsc{ou} contrôle réussi\fg{} n'apporte quasi aucun cas supplémentaire. Cela signifie que, même avec une règle explicitée, lorsqu'un modèle échoue sur l'injection il échoue aussi sur le contrôle : la documentation explicative déstabilise le raisonnement de façon \textit{diffuse}, sans laisser de chemin de secours par la librairie originale. Ce résultat est cohérent avec les taux d'adoption élevés observés en section~\ref{sec:autres_modeles} : le modèle a bien assimilé la convention mais le coût cognitif de cette assimilation dégrade sa compétence algorithmique globale.
+\textbf{$L_{comp} \approx L_{perf}$ sur tout le panel} (50,6\,\% vs 51,8\,\% pour 12B ; 29,8\,\% vs 36,4\,\% pour Codestral). L'union \og{}injection réussie \textsc{ou} contrôle réussi\fg{} n'apporte quasi aucun cas supplémentaire. Cela signifie que, même avec une règle explicitée, lorsqu'un modèle échoue sur l'injection il échoue aussi sur le contrôle : la documentation explicative déstabilise le raisonnement de façon \textit{diffuse}, sans laisser de chemin de secours par la librairie originale.
 
-\textbf{$L_{int}$ décroît régulièrement} (40\,\% pour 12B $\to$ 11,3\,\% pour 32B) : avec la règle explicitée, les grands modèles n'ont pratiquement plus besoin de \textit{deviner} — ils suivent la consigne, ce qui réduit mécaniquement les erreurs d'assertion confuses.
+\textbf{$L_{int}$ décroît régulièrement} (40\,\% pour 12B $\to$ 11,3\,\% pour 32B) : avec la règle explicitée, les grands modèles n'ont pratiquement plus besoin de \textit{deviner} ce qui semble les aider à produire du code dont la logique est bonne.
 
-\textbf{$L_{coh}$ est positif et croît légèrement} avec la taille (10,6\,\% $\to$ 15,7\,\%). Ce comportement, apparemment paradoxal, s'explique ainsi : les grands modèles ne se laissent plus piéger par de la confusion ($L_{int}$ très faible), mais la convention explicite impose une contrainte cognitive supplémentaire qui se traduit par une perte de compétence réelle, plus subtile et non récupérable via le contrôle.
+\textbf{$L_{coh}$ est relativement constant} avec la taille (10,6\,\% $\to$ 15,7\,\%). Ce comportement, apparemment paradoxal, semble signifier que la perturbation est comprise et intégrée dès les petits modèles probablement parce qu'il n'y a pas besoin de faire le cheminement intellectuel qui mène à la généralisation d'une perturbation.
 
-\paragraph{Synthèse comparative.}
 
 \paragraph{Synthèse comparative.}
 
@@ -755,21 +725,22 @@ La Figure~\ref{fig:intel_explanation} présente un profil radicalement différen
 \midrule
 $L_{perf}$ & Non-monotone (anomalie Codestral) & Monotone décroissante \\
 $L_{comp}$ & Modérée                           & $\approx L_{perf}$    \\
-$L_{int}$  & Élevée pour les petits modèles    & Faible et régulière   \\
-$L_{coh}$  & Négative pour 12B                 & Positive et croissante \\
+$L_{int}$  & Élevée pour les petits modèles    & Linéairement décroissante   \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-La mise en regard des deux extrêmes du spectre documentaire est révélatrice. L'injection \textbf{ultra-minimale} révèle des vulnérabilités architecturales (anomalie Codestral) et opère principalement via un mécanisme de \textit{confusion} chez les petits modèles — ceux-ci reproduisent mécaniquement une erreur sans perdre leur compétence de fond. La documentation \textbf{explicative}, à l'inverse, supprime presque entièrement la confusion mais déplace la perte vers une dégradation de compétence diffuse et monotone : le modèle sait ce qu'il doit faire, mais le faire lui coûte en capacité algorithmique. Ces deux régimes de dégradation correspondent aux deux menaces distinctes qu'un RAG contrefactuel fait peser sur un LLM : la \textit{déstabilisation cognitive} (confusion) et le \textit{coût d'adaptation} (perte de compétence sous contrainte).
+Contrairement à précédemment pour la famille de modèles qwen3.5, on a ici un gain en intelligence linéaire avec le nombre de paramètres sur la documentation explicative alors que la cohérence reste stable (on avait auparavant dans un premier temps un gain de cohérence en fonction du nombre de paramètres puis seulement un gain d'intelligence en fonction du nombre de paramètres voir \ref{sec:intelligence qwen}). Cela peut s'expliquer par le fait que le plus petit modèle étudié dans cette partie fait déjà 12b de paramètres là où l'on avait précédemment observé que le régime de gain de cohérence s'appliquait de 0.8b de paramètres à 9b de paramètres.
+
+Sur la documentation minimale, on observe un gain d'intelligence linéaire avec le nombre de paramètres et une perte de cohérence linéaire avec le nombre de paramètres. Cela rejoint l'analyse menée dans la partie sur la famille qwen3.5
 
 \subsection{Documentation bruitée} \label{sec:noisy_doc}
 
 Comme décrit dans la section sur les types de documentation, la \textit{documentation bruitée} (\textit{noisy}) consiste à fournir une documentation contenant : (1) toutes les fonctions dont le LLM a effectivement besoin pour résoudre les problèmes DS1000, et (2) un certain nombre de fonctions choisies aléatoirement pour diluer l'information pertinente. Si l'on note $n$ le nombre de fonctions inutiles et $N$ le nombre total, le taux de bruit vaut $x = n/N$.
 
-Nous avons conduit des expériences avec des taux de bruit de 0\%, 25\%, 50\%, 75\% et 100\% sur les documentations minimale et ultra-minimale, pour les perturbations \_v2, underscore et capitale, sur les modèles Qwen2.5 et Codestral. Les résultats sont stockés dans les dossiers \texttt{results/qwen\_noisy\_*} et \texttt{results/codestral\_noisy\_*}.
+Nous avons conduit quelques expériences avec des taux de bruit de 0\%, 25\%, 50\%, 75\% et 100\% sur les documentations minimale et ultra-minimale, pour les perturbations \_v2, underscore et capitale, sur les modèles Qwen2.5 et Codestral. Les résultats sont stockés dans les dossiers \texttt{results/qwen\_noisy\_*} et \texttt{results/codestral\_noisy\_*}.
 
-L'intuition derrière cette expérience est la suivante : plus la documentation est bruitée, plus le modèle doit faire un effort de recherche et de sélection dans la documentation pour trouver les fonctions pertinentes. On s'attendrait à observer une dégradation progressive des performances à mesure que le bruit augmente.  L'analyse de ces résultats est encore en cours. Tout les scripts de génération de documentations perturbées bruitées sont présent sur le repo. Nous pouvons généré des documentations minimales, ultra\_minimales et complète. Ces documentations peuvent être intégrés sans problème à la pipeline déjà existante.
+L'intuition derrière cette expérience est la suivante : plus la documentation est bruitée, plus le modèle doit faire un effort de recherche et de sélection dans la documentation pour trouver les fonctions pertinentes. On s'attendrait à observer une dégradation progressive des performances à mesure que le bruit augmente mais plus d'expériences sont requises pour poursuivre l'analyse. Tous les scripts de génération de documentations perturbées bruitées sont présent sur le repo. Nous pouvons générer des documentations minimales, ultra\_minimales et complète. Ces documentations peuvent être intégrées sans problème à la pipeline déjà existante.
 
 
 
@@ -777,16 +748,10 @@ L'intuition derrière cette expérience est la suivante : plus la documentation 
 \subsection{Contribution au benchmarking}
 Il est d'ores et déjà envisageable d'utiliser notre travail comme la base de création d'un nouveau benchmark qui évaluerait les capacités des LLMs à se servir de nouvelles informations qui ne sont pas compatibles avec les informations contenues dans les données d'entrainement du LLM. 
 
-Ce benchmark est pertinent puisque qu'il n'est pas saturé par les meilleurs modèles open-source du moment (notamment Qwen2.5-Coder-32B voir \cite{ouyang2025dscodebenchrealisticbenchmarkdata} paru l'année dernière en mai 2025 ou \cite{vellumbenchmark}) et répond à un réèl besoin : celui d'évaluer la capacité des LLMs à s'adapter à un ecosystème en évolution constante.
+Ce benchmark est pertinent puisque qu'il n'est pas saturé par les meilleurs modèles open-source du moment (notamment Qwen2.5-Coder-32B voir \cite{ouyang2025dscodebenchrealisticbenchmarkdata} paru l'année dernière en mai 2025 ou \cite{vellumbenchmark}) et répond à un réel besoin : celui d'évaluer la capacité des LLMs à s'adapter à un ecosystème en évolution constante.
 
 % --- Problèmes rencontrés ---
 \section{Difficultés et Limites}
-
-\subsection{Problèmes techniques}
-\begin{itemize}
-    \item Échecs d'API et latences.
-    \item Gestion de la fenêtre de contexte (saturation par la documentation).
-\end{itemize}
 
 \subsection{Complexité méthodologique}
 
@@ -794,7 +759,7 @@ Nous détaillons ici certains pièges dans lesquels nous sommes tombés au cours
 
 \subsubsection{Modifications de DS1000 pour maintenir la cohérence}
 
-Il ne suffit pas de donner au LLM une documentation contrefactuelle, il faut aussi modifier les questions pour que celles-ci aient l'air d'utiliser les fonctions perturbées et non pas les fonctions normale. Si ce travail n'est pas fait, le LLM détecte l'incohérence du contexte et se rabat sur sa mémoire paramétrique, ce qui fait chuter les performances sur la librairie perturbée à presque 0.
+Il ne suffit pas de donner au LLM une documentation contrefactuelle, il faut aussi modifier les questions pour que celles-ci aient l'air d'utiliser les fonctions perturbées et non pas les fonctions normales. Si ce travail n'est pas fait, le LLM détecte l'incohérence du contexte et se rabat sur sa mémoire paramétrique, ce qui fait chuter les performances sur la librairie perturbée à presque 0.
 
 \begin{itemize}
     \item Difficulté de maintenir la cohérence de DS1000 après modification des dépendances.
@@ -828,7 +793,7 @@ Bien que notre étude propose un cadre novateur pour évaluer l'arbitrage entre 
 \subsection{Limites de l'étude}
 
 % \paragraph{Optimisation du moteur d'inférence et limites statistiques.}
-Notre infrastructure d'évaluation actuelle repose sur une exécution séquentielle, ce qui contraint le volume d'expérimentations réalisables. Une limitation majeure en découle concernant l'estimation de notre métrique \textit{pass@k}. Pour des raisons de temps de calcul, nous avons dû nous limiter à un nombre d'échantillons $n=k$, ce qui augmente mécaniquement la variance de l'estimateur non-biaisé. Une migration vers des moteurs d'inférence hautement optimisés supportant le batching continu, tels que vLLM ou TGI (\textit{Text Generation Inference}), permettrait des inférences parallèles massives. Cela réduirait drastiquement le temps de calcul et rendrait possible une évaluation avec $n=50$ ou $n=100$ pour le \textit{pass@10}, améliorant ainsi significativement la précision et la robustesse statistique de nos estimateurs.
+Notre infrastructure d'évaluation actuelle repose sur une exécution séquentielle, ce qui contraint le volume d'expérimentations réalisables. Une limitation majeure en découle concernant l'estimation de notre métrique \textit{pass@k}. Pour des raisons de temps de calcul, nous avons dû nous limiter à un nombre d'échantillons $n=k$, ce qui augmente mécaniquement la variance de l'estimateur non-biaisé. Une migration vers des moteurs d'inférence plus optimisés, tels que vLLM , permettrait des inférences parallèles massives. Cela réduirait drastiquement le temps de calcul et rendrait possible une évaluation avec $n=50$ ou $n=100$ pour le \textit{pass@10}, améliorant ainsi significativement la précision et la robustesse statistique de nos estimateurs.
 
 % \paragraph{Nature synthétique de la documentation.}
 Pour garantir un contrôle strict des variables expérimentales, toute notre documentation contrefactuelle a été générée algorithmiquement (par expressions régulières et parsing) à partir des \textit{docstrings} existantes. Bien que cette méthode assure une reproductibilité parfaite, elle produit un texte très rigide. Dans la réalité, les développeurs font face à des notes de mise à jour (\textit{release notes}), des guides de migration, ou des exemples de code annotés. Une piste complémentaire serait d'utiliser un LLM instructé pour réécrire et générer des documentations contrefactuelles plus naturelles et variées, plus proches de ce qu'un système RAG récupérerait en pratique.
@@ -843,40 +808,38 @@ Nos modifications systématiques présentent un caractère inévitablement artif
 Nos perturbations actuelles sont purement syntaxiques (renommage de fonctions par ajout d'un suffixe ou modification de la casse). Une évolution naturelle de ce \textit{benchmark} consisterait à explorer des modifications sémantiques profondes : changer l'ordre attendu des arguments d'une fonction, modifier le comportement par défaut d'un paramètre (par exemple, inverser la logique d'un paramètre booléen tel que \texttt{keepdims}), ou remplacer une fonction par une autre ayant une signature similaire mais un comportement mathématique différent. Ces perturbations simuleraient de véritables \textit{breaking changes} (ruptures de compatibilité) lors de mises à jour majeures de bibliothèques, mettant à l'épreuve des capacités de raisonnement beaucoup plus profondes que la simple adaptation syntaxique.
 
 % \paragraph{Élargissement du panel de modèles et impact de l'entraînement.}
-Nous nous sommes concentrés sur quatre modèles open-source de taille modérée (12B à 32B paramètres). L'extension de ce protocole à des modèles massifs (70B+) ou propriétaires (tels que GPT-4o ou la famille Claude 3) permettrait de tester si la capacité d'adaptation à la documentation croît monotonement avec la taille du modèle. Les résultats de \textit{ClashEval} suggèrent en effet que les modèles réagissent très différemment face au conflit : Wu et al. ont démontré que GPT-4o présente un fort biais vers le contexte (écrasant ses connaissances préalables correctes dans plus de 60\% des cas face à un contexte erroné), tandis que Claude Opus se montre beaucoup plus résistant. Vérifier si ces dynamiques, observées sur du texte général, se transposent à la génération de code permettrait de comprendre si l'adaptation dépend de la taille du modèle ou plutôt de la nature de son alignement (RLHF, \textit{instruction tuning}, ou \textit{fine-tuning} spécialisé sur le code).
+Nous nous sommes concentrés sur des modèles open-source de taille petite à modérée (0.8B à 35B paramètres). L'extension de ce protocole à des modèles massifs (comme qwen3.5:122b) ou propriétaires (tels que GPT-5 ou la famille Claude Opus) permettrait de tester confirmer nos analyses. Les résultats de \textit{ClashEval} suggèrent en effet que les modèles réagissent très différemment face au conflit : Wu et al. ont démontré que GPT-4o présente un fort biais vers le contexte (écrasant ses connaissances préalables correctes dans plus de 60\% des cas face à un contexte erroné), tandis que Claude Opus se montre beaucoup plus résistant. Vérifier si ces dynamiques, observées sur du texte général, se transposent à la génération de code permettrait de comprendre si l'adaptation dépend de la taille du modèle ou plutôt de la nature de son alignement (RLHF, \textit{instruction tuning}, ou \textit{fine-tuning} spécialisé sur le code).
 
 % \paragraph{Généralisation à d'autres bibliothèques.}
 Le cadre d'évaluation en double exécution que nous avons développé est générique. En écrivant de nouveaux \textit{wrappers} et en générant la documentation correspondante, il serait possible de tester l'adaptation à des mises à jour fictives d'autres bibliothèques standards de la data science, telles que Pandas, Scikit-learn ou PyTorch. Cela permettrait d'étudier la corrélation directe entre la résistance à la perturbation et la popularité d'une bibliothèque : postulant que plus une API est omniprésente dans le corpus de pré-entraînement d'un modèle, plus la mémoire paramétrique qui y est associée sera forte et difficile à outrepasser via le prompt.
 
 % \paragraph{Interprétabilité mécanistique.}
-Pour comprendre \textit{pourquoi} certaines fonctions fondamentales (comme \texttt{np.zeros}) résistent mieux à la perturbation que d'autres, l'analyse comportementale (boîte noire) trouve ses limites. Une perspective fascinante consisterait à ouvrir ces modèles via l'interprétabilité mécanistique. En analysant les logits du modèle à chaque pas de génération (\textit{token}) lors du choix du nom de fonction, ou en étudiant l'activation de têtes d'attention spécifiques, nous pourrions observer la compétition entre les circuits internes porteurs de la mémoire paramétrique et ceux chargés de l'extraction de l'information contextuelle (les \textit{induction heads}). 
+Pour comprendre \textit{pourquoi} certaines fonctions fondamentales (comme \texttt{np.zeros}) résistent mieux à la perturbation que d'autres, l'analyse comportementale (boîte noire) trouve ses limites. Une perspective intéressante consisterait à ouvrir ces modèles via l'interprétabilité mécanistique. En analysant les logits du modèle à chaque pas de génération lors du choix du nom de fonction, ou en étudiant l'activation de têtes d'attention spécifiques, nous pourrions observer la compétition entre les circuits internes porteurs de la mémoire paramétrique et ceux chargés de l'extraction de l'information contextuelle (les \textit{induction heads}). 
 
 % \paragraph{Sécurité et exploitation malveillante.}
-Enfin, comme le rappellent les auteurs de \textit{ClashEval}, la manipulation du contexte présente des risques sécuritaires. Si notre jeu de données vise à améliorer la fiabilité des LLMs face à des mises à jour légitimes, la forte docilité de certains modèles (biais contextuel) offre une surface d'attaque pour des acteurs malveillants. Un attaquant parvenant à empoisonner la base de données d'un système RAG pourrait forcer un assistant de codage à générer des appels à des API vulnérables ou obsolètes, soulignant l'urgence de développer des modèles capables d'un arbitrage calibré et sécurisé.
+Enfin, comme le rappellent les auteurs de \textit{ClashEval}, la manipulation du contexte présente des risques sécuritaires. Si notre jeu de données vise à améliorer la fiabilité des LLMs face à des mises à jour légitimes, la forte docilité de certains modèles (biais contextuel) offre une surface d'attaque pour des acteurs malveillants. Un attaquant parvenant à empoisonner la base de données d'un système RAG pourrait forcer un assistant de code à générer des appels à des API vulnérables ou obsolètes.
 
 
 
 \section{Conclusion}
-
-Ce travail s'est donné pour objectif de quantifier rigoureusement la capacité des grands modèles de langage à arbitrer entre leur mémoire paramétrique et une mémoire contextuelle contrefactuelle dans un cadre déterministe et fonctionnellement évaluable : la génération de code sous contrainte de mise à jour d'API. En transposant le paradigme de \textit{ClashEval}~\cite{clasheval2024} --- jusqu'alors cantonné aux questions-réponses en langage naturel --- vers le domaine de l'ingénierie logicielle, nous avons proposé une pipeline d'évaluation originale reposant sur une double exécution dynamique (librairie contrefactuelle via \textit{wrapper} et librairie d'origine) et sur un nettoyage syntaxique par analyse d'arbre AST, garantissant que chaque verdict est d'ordre fonctionnel et non textuel.
+Ce travail s'est donné pour objectif de quantifier rigoureusement la capacité des grands modèles de langage à arbitrer entre leur mémoire paramétrique et une mémoire contextuelle contrefactuelle dans un cadre déterministe et d'évaluation fonctionnelle : la génération de code sous contrainte de mise à jour d'API. En transposant le paradigme de \textit{ClashEval}~\cite{clasheval2024} --- jusqu'alors cantonné aux questions-réponses en langage naturel --- vers le domaine de l'ingénierie logicielle, nous avons proposé une pipeline d'évaluation originale reposant sur une double exécution dynamique (librairie contrefactuelle via \textit{wrapper} et librairie d'origine) et sur un nettoyage syntaxique par analyse d'arbre AST, garantissant que chaque verdict est d'ordre fonctionnel et non textuel.
 
 \paragraph{Résultats structurants.}
 
 Nos expériences, menées sur dix modèles open-source issus de quatre familles architecturales distinctes (qwen3.5, Qwen2.5-Coder, Codestral/Devstral, Gemma3) et sur trois types de perturbations syntaxiques (\_v2, underscore, capitale), permettent de dégager plusieurs conclusions fermes.
 
-\textbf{Premièrement}, aucun modèle testé ne parvient à basculer intégralement vers la mémoire contextuelle : même le meilleur modèle (Qwen2.5-Coder:32b ou Devstral) affiche une perte de performance de l'ordre de 22 points lorsque la règle est explicitée, et de 33 à 60 points lorsqu'elle doit être inférée à partir d'une documentation implicite. La résistance de la mémoire paramétrique est un phénomène robuste, qui ne se résorbe pas avec la taille du modèle.
+\textbf{Premièrement}, aucun modèle testé ne parvient à basculer intégralement vers la mémoire contextuelle : même les meilleurs modèles (Qwen3.5:35b) affichent une perte de performance de l'ordre de 12 points sur la perturbation capitale lorsque la règle est explicitée, et de 44 points lorsqu'elle doit être inférée à partir d'une documentation implicite. La résistance de la mémoire paramétrique est un phénomène robuste, même s'il se résorbe, sans néanmoins s'annuler, avec la taille du modèle.
 
-\textbf{Deuxièmement}, nos métriques de dégradation ($L_{perf}$, $L_{comp}$, $L_{int}$, $L_{coh}$) révèlent que cette résistance emprunte deux régimes distincts selon la nature de la documentation fournie. Avec une documentation \textit{implicite} (minimale ou ultra-minimale), la dégradation opère principalement par \textit{confusion cognitive} : les petits modèles reproduisent mécaniquement des erreurs d'assertion sans altération de leur compétence de fond, un phénomène que nous interprétons comme un piégeage par le contexte contrefactuel. Avec une documentation \textit{explicative}, la confusion disparaît presque entièrement au profit d'une dégradation \textit{diffuse de la compétence algorithmique} : le modèle a bien assimilé la nouvelle convention, mais cette assimilation lui coûte en capacité de raisonnement. Ces deux régimes correspondent aux deux menaces distinctes qu'un RAG contrefactuel ou corrompu fait peser sur un LLM en production.
+\textbf{Deuxièmement}, nos métriques de dégradation (Lperf​, Lcomp​, Lint​, Lcoh​) révèlent que l'adaptation du modèle emprunte deux trajectoires distinctes selon la nature de la documentation fournie. Avec une documentation \textit{explicative}, la perte de compétence globale est minimisée. L'augmentation paramétrique du modèle opère une correction séquentielle : elle permet d'abord de stabiliser l'assimilation de la nouvelle convention (gain en cohérence), puis de restaurer la capacité de résolution algorithmique (gain en intelligence). La perturbation est ainsi intégrée sans sacrifier significativement les acquis. À l'inverse, face à une documentation \textit{implicite} (minimale ou ultra-minimale), l'adaptation est asymétrique et la perte de compétence s'accentue. Si l'intelligence croît de manière logarithmique avec la taille du modèle, la cohérence stagne face à la charge contextuelle. Le modèle échoue structurellement à maintenir la convention contrefactuelle, illustrant les limites d'un RAG fournissant des contextes non-explicatifs.
 
-\textbf{Troisièmement}, la \textit{scaling law} observée au sein de la famille qwen3.5 n'est ni uniforme ni universelle. Sur les documentations explicatives, la robustesse à l'injection scale monotonement et régulièrement avec le logarithme du nombre de paramètres : les grands modèles gagnent d'abord en cohérence, puis en intelligence. Sur les documentations implicites, cette régularité cède la place à des anomalies architecturales révélatrices : Codestral (22B), optimisé pour la complétion de code brut plutôt que pour le suivi d'instructions, subit une perte de performance de 78\,\% relative --- 36 points au-dessus de Devstral pourtant de taille comparable --- démontrant que la capacité d'adaptation au contexte contrefactuel est davantage déterminée par le paradigme d'entraînement que par le seul volume de paramètres.
+\textbf{Troisièmement}, dans le mode d'évaluation dit de contrôle (sans perturbation), nous ne remarquons pas de différences majeures de performance selon si nous fournissons aucune documentation, une documentation minimale ou une documentation ultra minimale. Nous pensions initialement que la taille du contexte aurait eu tendance à affaiblir les performance du modèle. Nous remarquons des résultats similaires dans le mode d'injection ou les documentations minimales et ultra\_minimales offrent des performances similaires.
 
-\textbf{Quatrièmement}, le cas de gemma3:12b --- seul modèle non spécialisé pour le code --- illustre l'existence d'un \textit{plafond de compétence algorithmique} : malgré un taux d'adoption de la perturbation parmi les plus élevés (88,6\,\%), son taux de réussite en injection reste quasi-identique quel que soit le type de documentation, signalant que l'adoption de la convention ne suffit pas à pallier un déficit de raisonnement sur NumPy. Ce résultat confirme que la plasticité contextuelle et la compétence algorithmique sont deux dimensions orthogonales et toutes deux nécessaires à la réussite de la tâche.
+
+\textbf{Quatrièmement}: La difficulté de perturbation d'une fonction ne semble dépendre ni de sa fréquence d'utilisation (donc dans une certaine mesure la fréquence d'exposition du LLM à ces fonctions dans son jeu d'entraînement) ni du renforcement de la cohérence du contexte via l'utilisation de la perturbation dans la question posée au LLM. Il reste donc à déterminer ce qui pousse le modèle à être plus enclin à utiliser la perturbation sur certaines fonctions.
 
 \paragraph{Portée et originalité de la contribution.}
 
-Au-delà des chiffres, notre contribution principale est méthodologique. En remplaçant la mesure de proximité sémantique par une validation fonctionnelle stricte par exécution, nous proposons un protocole d'évaluation qui ne peut être trompé par une reformulation syntaxiquement conforme mais logiquement incorrecte. Cette \textit{double exécution dynamique}, rendue possible par notre système de \textit{wrappers} et de nettoyage AST, constitue un primitif réutilisable pour tout benchmark souhaitant évaluer l'arbitrage mémoire paramétrique/mémoire contextuelle dans un contexte de génération de code. Le cadre ainsi défini est générique : en écrivant de nouveaux wrappers, il est directement extensible à d'autres bibliothèques (Pandas, PyTorch, Scikit-learn), à d'autres types de perturbations (sémantiques, comportementales), ou à d'autres familles de modèles.
-
-Notre travail souligne enfin une tension fondamentale et non résolue dans le déploiement des LLMs comme assistants de développement : un modèle suffisamment docile pour adopter sans friction une nouvelle convention d'API est également plus vulnérable à l'empoisonnement contextuel. À l'inverse, un modèle résistant à la manipulation malveillante sera précisément celui qui peinera à se mettre à jour lors d'une migration légitime. La conception de mécanismes d'arbitrage calibrés, capables de distinguer la crédibilité d'une source contextuelle du degré de confiance accordé à la mémoire paramétrique, constitue selon nous l'enjeu central que la recherche sur les systèmes RAG devra affronter à mesure que ces architectures s'imposent dans les environnements de production.
+Au-delà des chiffres, notre contribution principale est méthodologique. En remplaçant la mesure de proximité sémantique par une validation fonctionnelle stricte par exécution, nous proposons un protocole d'évaluation qui ne peut être trompé par une reformulation syntaxiquement conforme mais logiquement incorrecte. Cette \textit{double exécution dynamique}, rendue possible par notre système de \textit{wrappers} et de nettoyage AST, constitue une méthodologie réutilisable pour tout benchmark souhaitant évaluer l'arbitrage mémoire paramétrique/mémoire contextuelle dans un contexte de génération de code. Le cadre ainsi défini est générique : en écrivant de nouveaux wrappers, il est directement extensible à d'autres bibliothèques (Pandas, PyTorch, Scikit-learn), à d'autres types de perturbations (sémantiques, comportementales), ou à d'autres familles de modèles.
 
 
 \section{Bibliographie}
@@ -890,7 +853,7 @@ Notre travail souligne enfin une tension fondamentale et non résolue dans le d�
 \appendix
 \section{Annexes}
 
-\subection{Graphiques}\label{sec:graphs}
+\subsection{Graphiques}\label{sec:graphs}
 
 Le graphe qui récapitule toutes les performances des modèles de la famille qwen3.5 sur les perturbations \_v2 et capitale avec les documentations minimales, ultra\_minimales et explicatives
 
@@ -976,7 +939,7 @@ Dans cette section seront affichées les principales documentations dont nous no
 
  \begin{figure}[htbp] % h: here, t: top, b: bottom, p: page
     \centering
-    \includegraphics[width=0.8\textwidth]{Documentations/minimal underscore.png}}
+    \includegraphics[width=0.8\textwidth]{Documentations/minimal underscore.png}
     \caption{Extrait de la documentation minimale underscore}
     \label{fig:both success}
 \end{figure}
@@ -1101,17 +1064,4 @@ except AssertionError:
 except Exception as e:
     print(f'EXEC_ERROR: {e}')
 \end{lstlisting}
-
-\subsubsection*{Premiers résultats non analysés sur - NumpyEval}
-
- \begin{figure}[htbp] % h: here, t: top, b: bottom, p: page
-    \centering
-    \includegraphics[width=0.8\textwidth]{plot_numpyeval_global.png}
-    \caption{Premiers résultats de 4 modèles sur le dataset NumpyEval adapté au format DS1000 et donc à la pipeline du projet}
-    \label{fig:both success}
-\end{figure}
-\newline
-Nous montrons ici les premiers résultats que nous avons pu obtenir en faisant tourner les modèles codestral, devstral, Qwen2.5:code:32b et gemma3:12b sur le dataset de Numpyeval. Nous n'avons pas fait assez de tests pour tirer des conclusions claires sur les résultats mais nous pouvons constater que contrairement à DS1000, les modèles créent soit un code juste avec la librairie perturbée, soit un code faux. Il n'y a en revanche très peu de code juste sur la librairie d'origine lors du mode injection.
-
-
 \end{document}
