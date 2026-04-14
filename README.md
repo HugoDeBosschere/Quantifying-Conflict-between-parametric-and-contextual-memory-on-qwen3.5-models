@@ -1,3 +1,6 @@
+## Lien vers nos découvertes
+[Sous forme d'un article de 10 pages]((Paper.pdf)
+
 ## Mémoire paramétrique vs mémoire factuelle des LLM (projet DS-1000 + Numpy)
 
 Ce dépôt contient une pipeline complète pour évaluer **dans quelle mesure un LLM s’appuie sur sa mémoire paramétrique** (ce qu’il “sait” déjà de Numpy) **vs la documentation fournie en contexte** (mémoire factuelle / RAG).
