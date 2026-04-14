@@ -1,5 +1,5 @@
 ## Lien vers nos découvertes
-[Sous forme d'un article de 10 pages](./Paper.pdf)
+[Sous forme d'un article de 10 pages](./Paper.pdf?raw=true)
 
 ## Mémoire paramétrique vs mémoire factuelle des LLM (projet DS-1000 + Numpy)
 
