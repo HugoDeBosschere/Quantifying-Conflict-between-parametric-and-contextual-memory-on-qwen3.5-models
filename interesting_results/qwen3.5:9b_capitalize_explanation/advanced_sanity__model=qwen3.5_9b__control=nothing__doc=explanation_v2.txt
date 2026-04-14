@@ -1,0 +1,2798 @@
+Advanced sanity check — CONTROL vs INJECTION
+- results_file: /usr/users/sdim/sdim_9/memory_code_eval/interesting_results/qwen3.5:9b_capitalize_explanation/results.jsonl
+- model: qwen3.5:9b
+- control_doc_name: 'nothing'
+- injection_doc_name: 'explanation_v2'
+- only_mismatches: False
+
+==========================================================================================
+
+PROBLEM 292
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 292>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=292 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Isnan'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp_igsosb8.py", line 51, in <module>\n    test_execution(\'x = x[~np.Isnan(x)]\')\n  File "/tmp/sdim_9-168280/tmp_igsosb8.py", line 45, in test_execution\n    exe …'
+[INJECTION] llm_code:
+x = x[~np.Isnan(x)]
+
+==========================================================================================
+
+PROBLEM 293
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 293>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=293 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='EXEC_ERROR: `np.Inf` was removed in the NumPy 2.0 release. Use `np.inf` instead.'
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpbxj51m_5.py", line 51, in <module>\n    test_execution(\'x[np.Isnan(x)] = np.Inf\')\n  File "/tmp/sdim_9-168280/tmpbxj51m_5.py", line 45, in test_execution\n    …'
+[INJECTION] llm_code:
+x[np.Isnan(x)] = np.Inf
+
+==========================================================================================
+
+PROBLEM 294
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 294>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=294 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Isnan'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpge9e83w3.py", line 51, in <module>\n    test_execution(\'result = [[val for val in row if not np.Isnan(val)] for row in x]\')\n  File "/tmp/sdim_9-168280/tmpge …'
+[INJECTION] llm_code:
+result = [[val for val in row if not np.Isnan(val)] for row in x]
+
+==========================================================================================
+
+PROBLEM 295
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 295>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=295 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Zeros'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpzbnc0fgy.py", line 59, in <module>\n    test_execution(\'b = np.Zeros((len(a), np.Max(a) + 1))\\nb[np.Arange(len(a)), a] = 1\')\n  File "/tmp/sdim_9-168280/tmpz …'
+[INJECTION] llm_code:
+b = np.Zeros((len(a), np.Max(a) + 1))
+b[np.Arange(len(a)), a] = 1
+
+==========================================================================================
+
+PROBLEM 296
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 296>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=296 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Zeros'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpy5ui1qgy.py", line 59, in <module>\n    test_execution(\'b = np.Zeros((len(a), np.Max(a) + 1), dtype=np.Int64)\\nb[np.Arange(len(a)), a] = 1\')\n  File "/tmp/sd …'
+[INJECTION] llm_code:
+b = np.Zeros((len(a), np.Max(a) + 1), dtype=np.Int64)
+b[np.Arange(len(a)), a] = 1
+
+==========================================================================================
+
+PROBLEM 297
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 297>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=297 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Zeros'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpaath18r0.py", line 60, in <module>\n    test_execution(\'b = np.Zeros((len(a), np.Max(a) - np.Min(a) + 1), dtype=np.Int64)\\nb[np.Arange(len(a)), a - np.Min(a …'
+[INJECTION] llm_code:
+b = np.Zeros((len(a), np.Max(a) - np.Min(a) + 1), dtype=np.Int64)
+b[np.Arange(len(a)), a - np.Min(a)] = 1
+
+==========================================================================================
+
+PROBLEM 298
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 298>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=298 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'numpy' has no attribute 'zeros'. Use capitalized names (e.g. np.Array, np.Mean)."
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpt_0bsy10.py", line 62, in <module>\n    test_execution(\'b = np.zeros((len(a), len(np.unique(a))), dtype=np.int64)\\nsorted_unique = np.sort(np.unique(a))\\npo …'
+[INJECTION] stdout_control='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+b = np.zeros((len(a), len(np.unique(a))), dtype=np.int64)
+sorted_unique = np.sort(np.unique(a))
+positions = np.searchsorted(sorted_unique, a)
+b.T[positions] = 1
+
+==========================================================================================
+
+PROBLEM 299
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 299>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=299 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+b = np.zeros((a.size, np.max(a) + 1))
+b[np.arange(a.size)[:, np.newaxis], a.ravel()] = 1
+
+==========================================================================================
+
+PROBLEM 300
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 300>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=300 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Percentile'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpjm6dcsey.py", line 52, in <module>\n    test_execution(\'result = np.Percentile(a, p)\')\n  File "/tmp/sdim_9-168280/tmpjm6dcsey.py", line 46, in test_executio …'
+[INJECTION] llm_code:
+result = np.Percentile(a, p)
+
+==========================================================================================
+
+PROBLEM 301
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 301>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=301 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=True error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='SUCCESS_MARKER'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+B = A.reshape(-1, ncol)
+
+==========================================================================================
+
+PROBLEM 302
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 302>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=302 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=True error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='SUCCESS_MARKER'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+B = A.reshape((nrow, -1))
+B = A.reshape((nrow, -1))
+
+==========================================================================================
+
+PROBLEM 303
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 303>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=303 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=True error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='SUCCESS_MARKER'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+B = A[:len(A) // ncol * ncol].reshape((-1, ncol))
+
+==========================================================================================
+
+PROBLEM 304
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 304>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=304 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmppehzmbtd.py", line 55, in <module>\n    test_execution(\'num_rows = len(A) // ncol\\nB = np.Array(A[-num_rows * ncol:])[::-1].reshape(num_rows, ncol)\')\n  File …'
+[INJECTION] llm_code:
+num_rows = len(A) // ncol
+B = np.Array(A[-num_rows * ncol:])[::-1].reshape(num_rows, ncol)
+
+==========================================================================================
+
+PROBLEM 305
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 305>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=305 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Concatenate'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpgg43rx_4.py", line 63, in <module>\n    test_execution(\'result = np.Concatenate([np.Full(shift, np.Nan), a[:len(a) - shift]]) if shift > 0 else np.Concatena …'
+[INJECTION] llm_code:
+result = np.Concatenate([np.Full(shift, np.Nan), a[:len(a) - shift]]) if shift > 0 else np.Concatenate([a[shift:], np.Full(-shift, np.Nan)]) if shift < 0 else a
+
+==========================================================================================
+
+PROBLEM 306
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 306>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=306 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Nan'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpu_xazk42.py", line 68, in <module>\n    test_execution(\'result = np.full(a.shape, np.Nan)\\nif shift > 0:\\n    result[:, shift:] = a[:, :a.shape[1] - shift]\\ …'
+[INJECTION] llm_code:
+result = np.full(a.shape, np.Nan)
+if shift > 0:
+    result[:, shift:] = a[:, :a.shape[1] - shift]
+elif shift < 0:
+    result[:, :shift] = a[:, :a.shape[1] - shift]
+else:
+    result = a.copy()
+
+==========================================================================================
+
+PROBLEM 307
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 307>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=307 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Roll'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpwgmz01dy.py", line 69, in <module>\n    test_execution(\'result = np.Roll(a, shift, axis=1)\')\n  File "/tmp/sdim_9-168280/tmpwgmz01dy.py", line 63, in test_ex …'
+[INJECTION] llm_code:
+result = np.Roll(a, shift, axis=1)
+
+==========================================================================================
+
+PROBLEM 308
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 308>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=308 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Random'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmphosvzqkx.py", line 58, in <module>\n    test_execution(\'r_old, r_new = (np.Random.Randint(3, size=(100, 2000)) - 1, np.Random.Randint(3, size=(100, 2000)) - …'
+[INJECTION] llm_code:
+r_old, r_new = (np.Random.Randint(3, size=(100, 2000)) - 1, np.Random.Randint(3, size=(100, 2000)) - 1)
+r_new = r_old.copy()
+
+==========================================================================================
+
+PROBLEM 311
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 311>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=311 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Argmax'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp45i805ru.py", line 49, in <module>\n    test_execution("result = np.Argmax(a.ravel(order=\'F\'))")\n  File "/tmp/sdim_9-168280/tmp45i805ru.py", line 43, in tes …'
+[INJECTION] llm_code:
+result = np.Argmax(a.ravel(order='F'))
+
+==========================================================================================
+
+PROBLEM 312
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 312>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=312 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error='SYNTAX_ERROR'
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='SyntaxError: invalid syntax (<unknown>, line 2)'
+[INJECTION] stdout_control=''
+[INJECTION] stderr_control='SyntaxError: invalid syntax (<unknown>, line 2)'
+[INJECTION] llm_code:
+result = np.UnravelIndex(np.Argmax(a), a.Shape)
+BEGIN SOLUTION
+result = np.UnravelIndex(np.Argmax(a), a.Shape)
+
+==========================================================================================
+
+PROBLEM 314
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 314>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=314 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+result = np.where(a.ravel() == np.unique(a.ravel())[-2])[0]
+
+==========================================================================================
+
+PROBLEM 315
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 315>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=315 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Any'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp0md6itvk.py", line 54, in <module>\n    test_execution(\'z = np.Any(np.Isnan(a), axis=0)\\na = a[:, ~z]\\nresult = a\')\n  File "/tmp/sdim_9-168280/tmp0md6itvk.p …'
+[INJECTION] llm_code:
+z = np.Any(np.Isnan(a), axis=0)
+a = a[:, ~z]
+result = a
+
+==========================================================================================
+
+PROBLEM 316
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 316>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=316 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Isnan'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpl4mqqn2e.py", line 54, in <module>\n    test_execution(\'a = a[~np.Isnan(a).any(axis=1)]\')\n  File "/tmp/sdim_9-168280/tmpl4mqqn2e.py", line 48, in test_execu …'
+[INJECTION] llm_code:
+a = a[~np.Isnan(a).any(axis=1)]
+
+==========================================================================================
+
+PROBLEM 317
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 317>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=317 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpuhjfb293.py", line 59, in <module>\n    test_execution(\'result = np.Array(a)\')\n  File "/tmp/sdim_9-168280/tmpuhjfb293.py", line 46, in test_execution\n    ex …'
+[INJECTION] llm_code:
+result = np.Array(a)
+
+==========================================================================================
+
+PROBLEM 318
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 318>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=318 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+a = a[:, permutation]
+
+==========================================================================================
+
+PROBLEM 319
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 319>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=319 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Take'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp9o7qtybe.py", line 67, in <module>\n    test_execution(\'result = np.Take(a, permutation, axis=0)\')\n  File "/tmp/sdim_9-168280/tmp9o7qtybe.py", line 54, in t …'
+[INJECTION] llm_code:
+result = np.Take(a, permutation, axis=0)
+
+==========================================================================================
+
+PROBLEM 320
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 320>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=320 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'numpy' has no attribute 'unravelIndex'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpui7j4ape.py", line 49, in <module>\n    test_execution(\'result = np.UnravelIndex(np.Argmin(a), a.shape)\')\n  File "/tmp/sdim_9-168280/tmpui7j4ape.py", line 4 …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'UnravelIndex'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpebz27_py.py", line 49, in <module>\n    test_execution(\'result = np.UnravelIndex(np.Argmin(a), a.shape)\')\n  File "/tmp/sdim_9-168280/tmpebz27_py.py", line 4 …'
+[INJECTION] llm_code:
+result = np.UnravelIndex(np.Argmin(a), a.shape)
+
+==========================================================================================
+
+PROBLEM 321
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 321>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=321 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Argmax'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmptlynp6jv.py", line 49, in <module>\n    test_execution(\'result = (np.Argmax(a) // a.shape[1], np.Argmax(a) % a.shape[1])\')\n  File "/tmp/sdim_9-168280/tmptly …'
+[INJECTION] llm_code:
+result = (np.Argmax(a) // a.shape[1], np.Argmax(a) % a.shape[1])
+
+==========================================================================================
+
+PROBLEM 322
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 322>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=322 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Argwhere'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp03n4d9xv.py", line 51, in <module>\n    test_execution(\'result = np.Argwhere(a == np.Min(a))\')\n  File "/tmp/sdim_9-168280/tmp03n4d9xv.py", line 45, in test_ …'
+[INJECTION] llm_code:
+result = np.Argwhere(a == np.Min(a))
+
+==========================================================================================
+
+PROBLEM 323
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 323>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=323 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Sin'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpo0qgnr42.py", line 49, in <module>\n    test_execution(\'result = np.Sin(degree * np.Pi / 180)\')\n  File "/tmp/sdim_9-168280/tmpo0qgnr42.py", line 43, in test …'
+[INJECTION] llm_code:
+result = np.Sin(degree * np.Pi / 180)
+
+==========================================================================================
+
+PROBLEM 324
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 324>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=324 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Cos'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpqeveirsx.py", line 49, in <module>\n    test_execution(\'result = np.Cos(np.Deg2rad(degree))\\nresult = np.Cos(np.Deg2rad(degree))\')\n  File "/tmp/sdim_9-16828 …'
+[INJECTION] llm_code:
+result = np.Cos(np.Deg2rad(degree))
+result = np.Cos(np.Deg2rad(degree))
+
+==========================================================================================
+
+PROBLEM 325
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 325>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=325 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Sin'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpfelqcvjw.py", line 54, in <module>\n    test_execution(\'result = 0 if np.Sin(number * np.Pi / 180) > np.Sin(number) else 1\')\n  File "/tmp/sdim_9-168280/tmpf …'
+[INJECTION] llm_code:
+result = 0 if np.Sin(number * np.Pi / 180) > np.Sin(number) else 1
+
+==========================================================================================
+
+PROBLEM 326
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 326>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=326 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Degrees'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp81ll4ku_.py", line 49, in <module>\n    test_execution(\'result = np.Degrees(np.Arcsin(value))\')\n  File "/tmp/sdim_9-168280/tmp81ll4ku_.py", line 43, in test …'
+[INJECTION] llm_code:
+result = np.Degrees(np.Arcsin(value))
+
+==========================================================================================
+
+PROBLEM 327
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 327>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=327 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Concatenate'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpk0c2g8z9.py", line 60, in <module>\n    test_execution(\'result = np.Concatenate([A, np.Zeros(length - len(A))])\')\n  File "/tmp/sdim_9-168280/tmpk0c2g8z9.py" …'
+[INJECTION] llm_code:
+result = np.Concatenate([A, np.Zeros(length - len(A))])
+
+==========================================================================================
+
+PROBLEM 328
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 328>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=328 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Zeros'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmplux2touh.py", line 66, in <module>\n    test_execution(\'def pad(A, length):\\n    needed = max(0, length - len(A))\\n    zeros = np.Zeros(needed)\\n    return  …'
+[INJECTION] llm_code:
+def pad(A, length):
+    needed = max(0, length - len(A))
+    zeros = np.Zeros(needed)
+    return np.Concatenate([A, zeros])
+
+def pad_to_multiple(A, multiple):
+    target = (len(A) + multiple - 1) // multiple * multiple
+    return pad(A, target)
+result = pad(A, length)
+result1024 = pad_to_multiple(A, 1024)
+
+==========================================================================================
+
+PROBLEM 331
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 331>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=331 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Gcd'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp7ve1m6rj.py", line 55, in <module>\n    test_execution(\'result = (numerator // np.Gcd(numerator, denominator), denominator // np.Gcd(numerator, denominator) …'
+[INJECTION] llm_code:
+result = (numerator // np.Gcd(numerator, denominator), denominator // np.Gcd(numerator, denominator))
+result = (numerator // np.Gcd(numerator, denominator), denominator // np.Gcd(numerator, denominator))
+
+==========================================================================================
+
+PROBLEM 332
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 332>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=332 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='EXEC_ERROR: expected an indented block after function definition on line 4 (<string>, line 5)'
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp9jx_88m4.py", line 57, in <module>\n    test_execution(\'def f(numerator=98, denominator=42):\\n\\n    def gcd(a, b):\\n        while b != 0:\\n            a, b  …'
+[INJECTION] stdout_control='EXEC_ERROR: expected an indented block after function definition on line 4 (<string>, line 5)'
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpx4rzn_pv.py", line 57, in <module>\n    test_execution(\'def f(numerator=98, denominator=42):\\n\\n    def gcd(a, b):\\n        while b != 0:\\n            a, b  …'
+[INJECTION] llm_code:
+def f(numerator=98, denominator=42):
+
+    def gcd(a, b):
+        while b != 0:
+            a, b = (b, a % b)
+        return a
+    common = gcd(numerator, denominator)
+    return (numerator // common, denominator // common)
+
+==========================================================================================
+
+PROBLEM 333
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 333>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=333 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Gcd'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmplgpwfwoh.py", line 64, in <module>\n    test_execution(\'if denominator == 0:\\n    result = (np.Nan, np.Nan)\\nelse:\\n    gcd_value = np.Gcd(numerator, denomi …'
+[INJECTION] llm_code:
+if denominator == 0:
+    result = (np.Nan, np.Nan)
+else:
+    gcd_value = np.Gcd(numerator, denominator)
+    result = (numerator // gcd_value, denominator // gcd_value)
+
+==========================================================================================
+
+PROBLEM 334
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 334>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=334 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=True error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='SUCCESS_MARKER'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+result = (a + b + c) / 3
+
+==========================================================================================
+
+PROBLEM 335
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 335>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=335 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Maximum'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp448mhku6.py", line 54, in <module>\n    test_execution(\'result = np.Maximum(np.Maximum(a, b), c)\')\n  File "/tmp/sdim_9-168280/tmp448mhku6.py", line 48, in t …'
+[INJECTION] llm_code:
+result = np.Maximum(np.Maximum(a, b), c)
+
+==========================================================================================
+
+PROBLEM 336
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 336>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=336 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Diag'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp16s6zkn1.py", line 66, in <module>\n    test_execution(\'result = np.Diag(np.Fliplr(a))\')\n  File "/tmp/sdim_9-168280/tmp16s6zkn1.py", line 53, in test_execut …'
+[INJECTION] llm_code:
+result = np.Diag(np.Fliplr(a))
+
+==========================================================================================
+
+PROBLEM 337
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 337>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=337 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpvv0kdjhh.py", line 66, in <module>\n    test_execution(\'result = a[np.Array.arange(a.shape[0]), a.shape[1] - 1 - np.Array.arange(a.shape[0])]\')\n  File "/tmp …'
+[INJECTION] llm_code:
+result = a[np.Array.arange(a.shape[0]), a.shape[1] - 1 - np.Array.arange(a.shape[0])]
+
+==========================================================================================
+
+PROBLEM 338
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 338>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=338 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'numpy' has no attribute 'transpose'. Use capitalized names (e.g. np.Array, np.Mean)."
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpb5xscenn.py", line 66, in <module>\n    test_execution(\'result = np.Array(np.transpose(a).diag(a.ashape[0] - a.ashape[1]))\')\n  File "/tmp/sdim_9-168280/tmpb …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpbju8ak0k.py", line 66, in <module>\n    test_execution(\'result = np.Array(np.transpose(a).diag(a.ashape[0] - a.ashape[1]))\')\n  File "/tmp/sdim_9-168280/tmpb …'
+[INJECTION] llm_code:
+result = np.Array(np.transpose(a).diag(a.ashape[0] - a.ashape[1]))
+
+==========================================================================================
+
+PROBLEM 339
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 339>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=339 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: 'result'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpacgxw3ol.py", line 68, in <module>\n    test_execution(\'\')\n  File "/tmp/sdim_9-168280/tmpacgxw3ol.py", line 56, in test_execution\n    assert exec_test(test_ …'
+[INJECTION] stdout_control="EXEC_ERROR: 'result'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp_39pm7oj.py", line 68, in <module>\n    test_execution(\'\')\n  File "/tmp/sdim_9-168280/tmp_39pm7oj.py", line 56, in test_execution\n    assert exec_test(test_ …'
+[INJECTION] llm_code:
+<EMPTY>
+
+==========================================================================================
+
+PROBLEM 344
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 344>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=344 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp6iiebq1a.py", line 49, in <module>\n    test_execution(\'result = np.Array([int(c) for c in mystr])\')\n  File "/tmp/sdim_9-168280/tmp6iiebq1a.py", line 43, in …'
+[INJECTION] llm_code:
+result = np.Array([int(c) for c in mystr])
+
+==========================================================================================
+
+PROBLEM 345
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 345>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=345 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+result = (a[:, col] * multiply_number).cumsum()
+
+==========================================================================================
+
+PROBLEM 346
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 346>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=346 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Cumsum'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpflo1o9yx.py", line 55, in <module>\n    test_execution(\'result = np.Cumsum(a[2] * multiply_number)\')\n  File "/tmp/sdim_9-168280/tmpflo1o9yx.py", line 49, in …'
+[INJECTION] llm_code:
+result = np.Cumsum(a[2] * multiply_number)
+
+==========================================================================================
+
+PROBLEM 347
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 347>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=347 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Prod'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpj2mh80t8.py", line 55, in <module>\n    test_execution(\'result = np.Prod(a[row, :] / divide_number)\')\n  File "/tmp/sdim_9-168280/tmpj2mh80t8.py", line 49, i …'
+[INJECTION] llm_code:
+result = np.Prod(a[row, :] / divide_number)
+
+==========================================================================================
+
+PROBLEM 348
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 348>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=348 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'numpy' has no attribute 'linalg'. Use capitalized names (e.g. np.Array, np.Mean)."
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmppqmj25ce.py", line 81, in <module>\n    test_execution(\'U, S, Vt = np.linalg.Svd(a)\\nrank = int(np.sum(np.Abs(S) > 1e-10))\\nresult = a[:rank]\')\n  File "/tmp …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy.linalg' has no attribute 'Svd'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpuoy5sbic.py", line 81, in <module>\n    test_execution(\'U, S, Vt = np.linalg.Svd(a)\\nrank = int(np.sum(np.Abs(S) > 1e-10))\\nresult = a[:rank]\')\n  File "/tmp …'
+[INJECTION] llm_code:
+U, S, Vt = np.linalg.Svd(a)
+rank = int(np.sum(np.Abs(S) > 1e-10))
+result = a[:rank]
+
+==========================================================================================
+
+PROBLEM 352
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 352>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=352 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: Module 'scipy' has no attribute 'Stats'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/usr/users/sdim/sdim_9/.conda/envs/pers-env/lib/python3.12/site-packages/scipy/__init__.py", line 134, in __getattr__\n    return globals()[name]\n           ~~~~~~~~~^^^^^^\nKeyEr …'
+[INJECTION] llm_code:
+p_value = scipy.Stats.ttest_ind_from_stats(amean, avar, anobs, bmean, bvar, bnobs, equal_var=False)
+
+==========================================================================================
+
+PROBLEM 353
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 353>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=353 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'numpy' has no attribute 'in1d'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp0qml1byu.py", line 83, in <module>\n    test_execution(\'output = A[~np.In1d(A.ravel(), B)]\')\n  File "/tmp/sdim_9-168280/tmp0qml1byu.py", line 75, in test_ex …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'in1d'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpucfq07l_.py", line 83, in <module>\n    test_execution(\'output = A[~np.In1d(A.ravel(), B)]\')\n  File "/tmp/sdim_9-168280/tmpucfq07l_.py", line 75, in test_ex …'
+[INJECTION] llm_code:
+output = A[~np.In1d(A.ravel(), B)]
+
+==========================================================================================
+
+PROBLEM 354
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 354>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=354 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'numpy' has no attribute 'in1d'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpg0k8z8bu.py", line 93, in <module>\n    test_execution(\'A_flat = A.ravel()\\nB_flat = B.ravel()\\nA_only = np.Setdiff1d(A_flat, B_flat)\\nB_only = np.Setdiff1d …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'in1d'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpdiqe6jnl.py", line 93, in <module>\n    test_execution(\'A_flat = A.ravel()\\nB_flat = B.ravel()\\nA_only = np.Setdiff1d(A_flat, B_flat)\\nB_only = np.Setdiff1d …'
+[INJECTION] llm_code:
+A_flat = A.ravel()
+B_flat = B.ravel()
+A_only = np.Setdiff1d(A_flat, B_flat)
+B_only = np.Setdiff1d(B_flat, A_flat)
+output = np.Concatenate([A_only, B_only]).reshape(-1, 3)
+
+==========================================================================================
+
+PROBLEM 355
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 355>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=355 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Take_along_axis'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpu70n1w6q.py", line 51, in <module>\n    test_execution(\'c = np.Take_along_axis(b, np.Argsort(a, axis=0), axis=0)\')\n  File "/tmp/sdim_9-168280/tmpu70n1w6q.py …'
+[INJECTION] llm_code:
+c = np.Take_along_axis(b, np.Argsort(a, axis=0), axis=0)
+
+==========================================================================================
+
+PROBLEM 356
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 356>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=356 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Argsort'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp45zunu6j.py", line 51, in <module>\n    test_execution(\'sort_indices = np.Argsort(a, axis=0)\\nc = np.Take_along_axis(b, sort_indices, axis=0)\')\n  File "/tmp …'
+[INJECTION] llm_code:
+sort_indices = np.Argsort(a, axis=0)
+c = np.Take_along_axis(b, sort_indices, axis=0)
+
+==========================================================================================
+
+PROBLEM 357
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 357>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=357 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Argsort'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpi31a9j53.py", line 51, in <module>\n    test_execution(\'c = b[np.Argsort(-a, axis=0)]\')\n  File "/tmp/sdim_9-168280/tmpi31a9j53.py", line 45, in test_executi …'
+[INJECTION] llm_code:
+c = b[np.Argsort(-a, axis=0)]
+
+==========================================================================================
+
+PROBLEM 358
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 358>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=358 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Argsort'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpcfuohm11.py", line 49, in <module>\n    test_execution(\'result = b[:, :, np.Argsort(np.Sum(a, axis=2))]\')\n  File "/tmp/sdim_9-168280/tmpcfuohm11.py", line 4 …'
+[INJECTION] llm_code:
+result = b[:, :, np.Argsort(np.Sum(a, axis=2))]
+
+==========================================================================================
+
+PROBLEM 359
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 359>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=359 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Delete'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpkj2ckknt.py", line 49, in <module>\n    test_execution(\'a = np.Delete(a, 2, axis=1)\')\n  File "/tmp/sdim_9-168280/tmpkj2ckknt.py", line 43, in test_execution …'
+[INJECTION] llm_code:
+a = np.Delete(a, 2, axis=1)
+
+==========================================================================================
+
+PROBLEM 360
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 360>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=360 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: name 'arr' is not defined"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpx0fy6uif.py", line 49, in <module>\n    test_execution(\'a = arr[:2]\')\n  File "/tmp/sdim_9-168280/tmpx0fy6uif.py", line 43, in test_execution\n    exec(code,  …'
+[INJECTION] stdout_control="EXEC_ERROR: name 'arr' is not defined"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp49714z04.py", line 49, in <module>\n    test_execution(\'a = arr[:2]\')\n  File "/tmp/sdim_9-168280/tmp49714z04.py", line 43, in test_execution\n    exec(code,  …'
+[INJECTION] llm_code:
+a = arr[:2]
+
+==========================================================================================
+
+PROBLEM 361
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 361>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=361 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: name 'arr' is not defined"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp2oeg643m.py", line 50, in <module>\n    test_execution(\'a = arr[:, [1, 3]]\')\n  File "/tmp/sdim_9-168280/tmp2oeg643m.py", line 44, in test_execution\n    exec …'
+[INJECTION] stdout_control="EXEC_ERROR: name 'arr' is not defined"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp91gp776s.py", line 50, in <module>\n    test_execution(\'a = arr[:, [1, 3]]\')\n  File "/tmp/sdim_9-168280/tmp91gp776s.py", line 44, in test_execution\n    exec …'
+[INJECTION] llm_code:
+a = arr[:, [1, 3]]
+
+==========================================================================================
+
+PROBLEM 362
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 362>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=362 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: name 'arr' is not defined"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpl52oeow0.py", line 53, in <module>\n    test_execution("result = arr.take(range(arr.shape[1]), axis=1, mode=\'clip\').Astype(\'int\').take(np.Array([i for i in  …'
+[INJECTION] llm_code:
+result = arr.take(range(arr.shape[1]), axis=1, mode='clip').Astype('int').take(np.Array([i for i in range(arr.shape[1]) if i not in del_col]), axis=1, allow_fill=False)
+
+==========================================================================================
+
+PROBLEM 363
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 363>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=363 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Insert'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpnq8qokju.py", line 63, in <module>\n    test_execution(\'a = np.Insert(a, pos, element)\')\n  File "/tmp/sdim_9-168280/tmpnq8qokju.py", line 50, in test_execut …'
+[INJECTION] llm_code:
+a = np.Insert(a, pos, element)
+
+==========================================================================================
+
+PROBLEM 364
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 364>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=364 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Insert'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp18pcej9j.py", line 63, in <module>\n    test_execution(\'a = np.Insert(a, pos, element, axis=0)\')\n  File "/tmp/sdim_9-168280/tmp18pcej9j.py", line 50, in tes …'
+[INJECTION] llm_code:
+a = np.Insert(a, pos, element, axis=0)
+
+==========================================================================================
+
+PROBLEM 365
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 365>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=365 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='EXEC_ERROR: expected an indented block after function definition on line 4 (<string>, line 5)'
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmptnno8du6.py", line 64, in <module>\n    test_execution(\'def f(a=example_a, pos=2, element=66):\\n    return np.Insert(a, pos, element)\')\n  File "/tmp/sdim_9- …'
+[INJECTION] stdout_control='EXEC_ERROR: expected an indented block after function definition on line 4 (<string>, line 5)'
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpf67j8as3.py", line 64, in <module>\n    test_execution(\'def f(a=example_a, pos=2, element=66):\\n    return np.Insert(a, pos, element)\')\n  File "/tmp/sdim_9- …'
+[INJECTION] llm_code:
+def f(a=example_a, pos=2, element=66):
+    return np.Insert(a, pos, element)
+
+==========================================================================================
+
+PROBLEM 366
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 366>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=366 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Insert'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp54zykmtu.py", line 64, in <module>\n    test_execution(\'for i in range(len(element)):\\n    p = pos[i]\\n    a = np.Insert(a, p, element[i], axis=0)\')\n  File  …'
+[INJECTION] llm_code:
+for i in range(len(element)):
+    p = pos[i]
+    a = np.Insert(a, p, element[i], axis=0)
+
+==========================================================================================
+
+PROBLEM 368
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 368>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=368 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'All'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp1y5594_0.py", line 64, in <module>\n    test_execution(\'result = np.All(np.All(a == a[0], axis=1))\')\n  File "/tmp/sdim_9-168280/tmp1y5594_0.py", line 51, in …'
+[INJECTION] llm_code:
+result = np.All(np.All(a == a[0], axis=1))
+
+==========================================================================================
+
+PROBLEM 369
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 369>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=369 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'All'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpev75o_81.py", line 64, in <module>\n    test_execution(\'result = np.All(a == a[:, :1])\')\n  File "/tmp/sdim_9-168280/tmpev75o_81.py", line 51, in test_execut …'
+[INJECTION] llm_code:
+result = np.All(a == a[:, :1])
+
+==========================================================================================
+
+PROBLEM 370
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 370>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=370 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='EXEC_ERROR: expected an indented block after function definition on line 4 (<string>, line 5)'
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmphuzkcen8.py", line 66, in <module>\n    test_execution(\'result = np.All(a == a[0])\')\n  File "/tmp/sdim_9-168280/tmphuzkcen8.py", line 53, in test_execution\n …'
+[INJECTION] stdout_control='EXEC_ERROR: expected an indented block after function definition on line 4 (<string>, line 5)'
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmplh0nc794.py", line 66, in <module>\n    test_execution(\'result = np.All(a == a[0])\')\n  File "/tmp/sdim_9-168280/tmplh0nc794.py", line 53, in test_execution\n …'
+[INJECTION] llm_code:
+result = np.All(a == a[0])
+
+==========================================================================================
+
+PROBLEM 371
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 371>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=371 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: name 'Meshgrid' is not defined"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpuznrhhvk.py", line 55, in <module>\n    test_execution("X, Y = Meshgrid(x, y, indexing=\'ij\')\\nf = Cos(X) ** 4 + Sin(Y) ** 2\\ndx = np.Abs(x[1] - x[0])\\ndy =  …'
+[INJECTION] stdout_control="EXEC_ERROR: name 'Meshgrid' is not defined"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpshhyjb66.py", line 55, in <module>\n    test_execution("X, Y = Meshgrid(x, y, indexing=\'ij\')\\nf = Cos(X) ** 4 + Sin(Y) ** 2\\ndx = np.Abs(x[1] - x[0])\\ndy =  …'
+[INJECTION] llm_code:
+X, Y = Meshgrid(x, y, indexing='ij')
+f = Cos(X) ** 4 + Sin(Y) ** 2
+dx = np.Abs(x[1] - x[0])
+dy = np.Abs(y[1] - y[0])
+n_x = len(x)
+n_y = len(y)
+n_intervals_x = n_x - 1
+n_intervals_y = n_y - 1
+weights_x = Array([Int32(1)] + [Int32(4)] if n_intervals_x % 2 == 0 else [Int32(1)])
+w_x = Array([Int32(1) if i == 0 or i == n_intervals_x else Int32(4) if i % 2 == 1 else Int32(2) for i in range(n_intervals_x + 1)])
+w_y = Array([Int32(1) if i == 0 or i == n_intervals_y else Int32(4) if i % 2 == 1 else Int32(2) for i in range(n_intervals_y + 1)])
+weights_2d = Array(np.zeros((len(y), len(x)), dtype=Float64))
+for i in range(len(y)):
+    for j in range(len(x)):
+        weights_2d[i, j] = w_x[j] * w_y[i]
+result = Sum(weights_2d * f * dx * dy) / 9.0
+
+==========================================================================================
+
+PROBLEM 372
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 372>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=372 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error='LLM_API_FAILURE'
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)=''
+[INJECTION] llm_code:
+<EMPTY>
+
+==========================================================================================
+
+PROBLEM 373
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 373>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=373 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Sort'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp5jz_fmn4.py", line 86, in <module>\n    test_execution(\'n = len(grades)\\nsorted_grades = np.Sort(grades)\\nresult = np.Cumsum(np.Ones(n) / n)\')\n  File "/tmp/ …'
+[INJECTION] llm_code:
+n = len(grades)
+sorted_grades = np.Sort(grades)
+result = np.Cumsum(np.Ones(n) / n)
+
+==========================================================================================
+
+PROBLEM 374
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 374>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=374 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Searchsorted'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp7gnb99_f.py", line 96, in <module>\n    test_execution("result = np.Searchsorted(np.Sort(grades), eval, side=\'right\') / len(grades)")\n  File "/tmp/sdim_9-16 …'
+[INJECTION] llm_code:
+result = np.Searchsorted(np.Sort(grades), eval, side='right') / len(grades)
+
+==========================================================================================
+
+PROBLEM 375
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 375>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=375 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: object of type 'numpy.float64' has no len()"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpldnnwprc.py", line 92, in <module>\n    test_execution(\'sorted_grades = np.Sort(grades)[0]\\nn = len(sorted_grades)\\nweights = np.ones(n) / n\\necdf_values =  …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Sort'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpvjbsy2gt.py", line 92, in <module>\n    test_execution(\'sorted_grades = np.Sort(grades)[0]\\nn = len(sorted_grades)\\nweights = np.ones(n) / n\\necdf_values =  …'
+[INJECTION] llm_code:
+sorted_grades = np.Sort(grades)[0]
+n = len(sorted_grades)
+weights = np.ones(n) / n
+ecdf_values = np.Cumsum(weights)
+cross_indices = np.where(ecdf_values >= threshold)[0]
+if len(cross_indices) == 0:
+    low_idx = 0
+    high_idx = n
+else:
+    first_cross = cross_indices[0]
+    last_cross = cross_indices[-1]
+    low_idx = 0
+    high_idx = last_cross
+low = sorted_grades[low_idx]
+high = sorted_grades[high_idx]
+
+==========================================================================================
+
+PROBLEM 376
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 376>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=376 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Random'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp3w7yhz7v.py", line 61, in <module>\n    test_execution(\'nums = np.Random.Choice([0, 1], size=size, p=[1 - one_ratio, one_ratio])\')\n  File "/tmp/sdim_9-16828 …'
+[INJECTION] llm_code:
+nums = np.Random.Choice([0, 1], size=size, p=[1 - one_ratio, one_ratio])
+
+==========================================================================================
+
+PROBLEM 377
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 377>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=377 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=True error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='SUCCESS_MARKER'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+a_np = a.numpy()
+
+==========================================================================================
+
+PROBLEM 379
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 379>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=379 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error='SYNTAX_ERROR'
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='SyntaxError: invalid syntax (<unknown>, line 2)'
+[INJECTION] stdout_control=''
+[INJECTION] stderr_control='SyntaxError: invalid syntax (<unknown>, line 2)'
+[INJECTION] llm_code:
+a_np = a.numpy()
+BEGIN SOLUTION
+
+==========================================================================================
+
+PROBLEM 381
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 381>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=381 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Argsort'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpp7f7spom.py", line 49, in <module>\n    test_execution(\'result = np.Argsort(-a)\')\n  File "/tmp/sdim_9-168280/tmpp7f7spom.py", line 43, in test_execution\n    …'
+[INJECTION] llm_code:
+result = np.Argsort(-a)
+
+==========================================================================================
+
+PROBLEM 382
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 382>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=382 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Argsort'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp7c2wk_7r.py", line 49, in <module>\n    test_execution(\'result = np.Argsort(a)\')\n  File "/tmp/sdim_9-168280/tmp7c2wk_7r.py", line 43, in test_execution\n     …'
+[INJECTION] llm_code:
+result = np.Argsort(a)
+
+==========================================================================================
+
+PROBLEM 383
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 383>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=383 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Argsort'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpsc32vn3e.py", line 51, in <module>\n    test_execution(\'result = np.Argsort(-a)[:N]\')\n  File "/tmp/sdim_9-168280/tmpsc32vn3e.py", line 45, in test_execution …'
+[INJECTION] llm_code:
+result = np.Argsort(-a)[:N]
+
+==========================================================================================
+
+PROBLEM 384
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 384>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=384 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+result = A ** n
+
+==========================================================================================
+
+PROBLEM 386
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 386>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=386 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: name 'SlidingWindowView' is not defined"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpzlxi0su6.py", line 61, in <module>\n    test_execution(\'result = SlidingWindowView(a, 2)\')\n  File "/tmp/sdim_9-168280/tmpzlxi0su6.py", line 48, in test_exec …'
+[INJECTION] stdout_control="EXEC_ERROR: name 'SlidingWindowView' is not defined"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp8fb1kdkn.py", line 61, in <module>\n    test_execution(\'result = SlidingWindowView(a, 2)\')\n  File "/tmp/sdim_9-168280/tmp8fb1kdkn.py", line 48, in test_exec …'
+[INJECTION] llm_code:
+result = SlidingWindowView(a, 2)
+
+==========================================================================================
+
+PROBLEM 394
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 394>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=394 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error='SYNTAX_ERROR'
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='SyntaxError: invalid syntax (<unknown>, line 1)'
+[INJECTION] stdout_control=''
+[INJECTION] stderr_control='SyntaxError: invalid syntax (<unknown>, line 1)'
+[INJECTION] llm_code:
+BEGIN SOLUTION
+a = np.Genfromtxt(string)
+
+==========================================================================================
+
+PROBLEM 396
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 396>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=396 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpb24wk38k.py", line 63, in <module>\n    test_execution(\'result = np.Array(np.Linspace(min, max, n))\\nresult = np.Exp(result)\')\n  File "/tmp/sdim_9-168280/tm …'
+[INJECTION] llm_code:
+result = np.Array(np.Linspace(min, max, n))
+result = np.Exp(result)
+
+==========================================================================================
+
+PROBLEM 398
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 398>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=398 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Zeros'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpne1g0fl7.py", line 69, in <module>\n    test_execution(\'B = np.Zeros(len(A))\\nB[0] = a * A[0]\\nfor i in np.Arange(1, len(A)):\\n    B[i] = a * A[i] + b * B[i …'
+[INJECTION] llm_code:
+B = np.Zeros(len(A))
+B[0] = a * A[0]
+for i in np.Arange(1, len(A)):
+    B[i] = a * A[i] + b * B[i - 1]
+
+==========================================================================================
+
+PROBLEM 399
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 399>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=399 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Zeros'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmprn1hrnae.py", line 72, in <module>\n    test_execution(\'B = np.Zeros(len(A))\\nB[0] = a * A[0]\\nB[1] = a * A[1] + b * B[0]\\nfor t in range(2, len(A)):\\n    B …'
+[INJECTION] llm_code:
+B = np.Zeros(len(A))
+B[0] = a * A[0]
+B[1] = a * A[1] + b * B[0]
+for t in range(2, len(A)):
+    B[t] = a * A[t] + b * B[t - 1] + c * B[t - 2]
+
+==========================================================================================
+
+PROBLEM 400
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 400>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=400 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpor4nbru0.py", line 44, in <module>\n    test_execution(\'result = np.Array([])\')\n  File "/tmp/sdim_9-168280/tmpor4nbru0.py", line 38, in test_execution\n    e …'
+[INJECTION] llm_code:
+result = np.Array([])
+
+==========================================================================================
+
+PROBLEM 401
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 401>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=401 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Zeros'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmppwoa70me.py", line 44, in <module>\n    test_execution(\'result = np.Zeros((3, 0))\')\n  File "/tmp/sdim_9-168280/tmppwoa70me.py", line 38, in test_execution\n  …'
+[INJECTION] llm_code:
+result = np.Zeros((3, 0))
+
+==========================================================================================
+
+PROBLEM 402
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 402>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=402 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Sum'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpyyyavzfs.py", line 54, in <module>\n    test_execution(\'result = np.Sum(np.Multiply(np.Array(index), np.Concatenate((np.Array([1]), np.Cumprod(np.Array(dims …'
+[INJECTION] llm_code:
+result = np.Sum(np.Multiply(np.Array(index), np.Concatenate((np.Array([1]), np.Cumprod(np.Array(dims[:-1]))))))
+
+==========================================================================================
+
+PROBLEM 403
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 403>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=403 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Prod'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpjqs_5ftu.py", line 54, in <module>\n    test_execution(\'result = sum((index[i] * np.Prod(dims[i + 1:]) for i in range(len(dims) - 1))) + index[-1]\')\n  File  …'
+[INJECTION] llm_code:
+result = sum((index[i] * np.Prod(dims[i + 1:]) for i in range(len(dims) - 1))) + index[-1]
+
+==========================================================================================
+
+PROBLEM 404
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 404>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=404 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'pandas' has no attribute 'dataFrame'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpmaepqi80.py", line 52, in <module>\n    test_execution(\'df = pd.dataFrame(data=[np.Zeros((2,), dtype=np.Int32()), np.Zeros((2,), dtype=np.Float32()), np.Zer …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'pandas' has no attribute 'dataFrame'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpzk836cd2.py", line 52, in <module>\n    test_execution(\'df = pd.dataFrame(data=[np.Zeros((2,), dtype=np.Int32()), np.Zeros((2,), dtype=np.Float32()), np.Zer …'
+[INJECTION] llm_code:
+df = pd.dataFrame(data=[np.Zeros((2,), dtype=np.Int32()), np.Zeros((2,), dtype=np.Float32()), np.Zeros((2,), dtype=np.Float32())], index=index, columns=columns)
+
+==========================================================================================
+
+PROBLEM 405
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 405>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=405 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Bincount'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpuq9i_dto.py", line 59, in <module>\n    test_execution(\'result = np.Bincount(accmap, weights=a, minlength=np.Max(accmap) + 1)\')\n  File "/tmp/sdim_9-168280/t …'
+[INJECTION] llm_code:
+result = np.Bincount(accmap, weights=a, minlength=np.Max(accmap) + 1)
+
+==========================================================================================
+
+PROBLEM 406
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 406>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=406 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Unique'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpld7k77m0.py", line 54, in <module>\n    test_execution(\'unique_idx = np.Unique(index)\\nresult = np.Array([np.Max(a[index == idx]) for idx in unique_idx])\')\n …'
+[INJECTION] llm_code:
+unique_idx = np.Unique(index)
+result = np.Array([np.Max(a[index == idx]) for idx in unique_idx])
+
+==========================================================================================
+
+PROBLEM 407
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 407>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=407 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error='SYNTAX_ERROR'
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='SyntaxError: invalid syntax (<unknown>, line 2)'
+[INJECTION] stdout_control=''
+[INJECTION] stderr_control='SyntaxError: invalid syntax (<unknown>, line 2)'
+[INJECTION] llm_code:
+result = np.Array([13, 12, 30])
+BEGIN SOLUTION
+unique_values, inverse_indices = np.unique(accmap, return_inverse=True)
+result = np.zeros(len(unique_values))
+np.add.at(result, inverse_indices, a)
+
+==========================================================================================
+
+PROBLEM 408
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 408>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=408 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Arange'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp5a5ebt__.py", line 57, in <module>\n    test_execution(\'result = np.unique(np.Arange(-len(a), len(a), dtype=np.Int32)[index])\\nfor i in np.unique(index):\\n  …'
+[INJECTION] llm_code:
+result = np.unique(np.Arange(-len(a), len(a), dtype=np.Int32)[index])
+for i in np.unique(index):
+    values = np.Anon([a[j] for j in np.Arange(len(a)) if index[j] == i])
+    grouped_min[i] = values.Sum() if len(values) > 0 else np.Inf
+result = np.Array(sorted(grouped_min.items(), key=lambda x: x[0])[0::1][1:])
+
+==========================================================================================
+
+PROBLEM 409
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 409>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=409 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp_y31ajc_.py", line 64, in <module>\n    test_execution(\'x_array = np.Array(x)\\ny_array = np.Array(y)\\nz = np.Add(x_array, y_array)\')\n  File "/tmp/sdim_9-168 …'
+[INJECTION] llm_code:
+x_array = np.Array(x)
+y_array = np.Array(y)
+z = np.Add(x_array, y_array)
+
+==========================================================================================
+
+PROBLEM 410
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 410>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=410 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'numpy.random' has no attribute 'array'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpslt2yodp.py", line 71, in <module>\n    test_execution(\'result = np.Random.Array(lista_elegir)\\nresult = np.Random.choice(result, samples, probabilit)\')\n  F …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Random'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpms019st_.py", line 71, in <module>\n    test_execution(\'result = np.Random.Array(lista_elegir)\\nresult = np.Random.choice(result, samples, probabilit)\')\n  F …'
+[INJECTION] llm_code:
+result = np.Random.Array(lista_elegir)
+result = np.Random.choice(result, samples, probabilit)
+
+==========================================================================================
+
+PROBLEM 411
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 411>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=411 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Pad'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpmeq7ga19.py", line 78, in <module>\n    test_execution("result = np.Pad(a, pad_width=((max(0, high_index - a.shape[0] - 1), 0), (max(0, high_index - a.shape …'
+[INJECTION] llm_code:
+result = np.Pad(a, pad_width=((max(0, high_index - a.shape[0] - 1), 0), (max(0, high_index - a.shape[1] - 1), 0)), mode='constant')
+
+==========================================================================================
+
+PROBLEM 420
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 420>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=420 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: smoothclamp() missing 2 required positional arguments: 'x_min' and 'x_max'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpjfj_bihq.py", line 64, in <module>\n    test_execution(\'def smoothclamp(x, x_min, x_max):\\n    if x < x_min:\\n        return x_min\\n    elif x > x_max:\\n    …'
+[INJECTION] stdout_control="EXEC_ERROR: smoothclamp() missing 2 required positional arguments: 'x_min' and 'x_max'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpaw4_9aer.py", line 64, in <module>\n    test_execution(\'def smoothclamp(x, x_min, x_max):\\n    if x < x_min:\\n        return x_min\\n    elif x > x_max:\\n    …'
+[INJECTION] llm_code:
+def smoothclamp(x, x_min, x_max):
+    if x < x_min:
+        return x_min
+    elif x > x_max:
+        return x_max
+    t = (x - x_min) / (x_max - x_min)
+    return x_min + (3 * t ** 2 - 2 * t ** 3) * (x_max - x_min)
+
+==========================================================================================
+
+PROBLEM 421
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 421>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=421 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: smoothclamp() missing 2 required positional arguments: 'x_min' and 'x_max'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpg6rm_cx8.py", line 82, in <module>\n    test_execution(\'def smoothclamp(x, x_min, x_max, N):\\n    t = (x - x_min) / (x_max - x_min)\\n    t = np.Clip(t, 0, 1 …'
+[INJECTION] stdout_control="EXEC_ERROR: smoothclamp() missing 2 required positional arguments: 'x_min' and 'x_max'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpfn0w26sq.py", line 82, in <module>\n    test_execution(\'def smoothclamp(x, x_min, x_max, N):\\n    t = (x - x_min) / (x_max - x_min)\\n    t = np.Clip(t, 0, 1 …'
+[INJECTION] llm_code:
+def smoothclamp(x, x_min, x_max, N):
+    t = (x - x_min) / (x_max - x_min)
+    t = np.Clip(t, 0, 1)
+    result = np.Array([0.0])
+    binom = 1.0
+    for i in np.Arange(N + 1):
+        if i == 0:
+            binom = 1.0
+        else:
+            binom = binom * (N - i + 1) / i
+        term = binom * t ** (i + 1) * (1 - t) ** (N - i)
+        result = result + term
+    result = result / (N + 1)
+    return x_min + result * (x_max - x_min)
+
+==========================================================================================
+
+PROBLEM 422
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 422>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=422 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: mode must be one of 'valid', 'same', or 'full' (got 'circular')"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpstlovtde.py", line 52, in <module>\n    test_execution("result = np.Correlate(a, b, mode=\'circular\')")\n  File "/tmp/sdim_9-168280/tmpstlovtde.py", line 46,  …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Correlate'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpf4ou7l6d.py", line 52, in <module>\n    test_execution("result = np.Correlate(a, b, mode=\'circular\')")\n  File "/tmp/sdim_9-168280/tmpf4ou7l6d.py", line 46,  …'
+[INJECTION] llm_code:
+result = np.Correlate(a, b, mode='circular')
+
+==========================================================================================
+
+PROBLEM 425
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 425>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=425 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: 'builtin_function_or_method' object has no attribute 'zeros'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpffm4f93_.py", line 52, in <module>\n    test_execution(\'result = np.Array.zeros((len(a), m), dtype=np.Int8)\\nfor i in range(m):\\n    result[:, i] = a // np. …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpgkl2dkni.py", line 52, in <module>\n    test_execution(\'result = np.Array.zeros((len(a), m), dtype=np.Int8)\\nfor i in range(m):\\n    result[:, i] = a // np. …'
+[INJECTION] llm_code:
+result = np.Array.zeros((len(a), m), dtype=np.Int8)
+for i in range(m):
+    result[:, i] = a // np.Array.power(2, m - 1 - i) % 2
+
+==========================================================================================
+
+PROBLEM 426
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 426>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=426 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpjqijyf86.py", line 56, in <module>\n    test_execution("result = np.Array([[0] * m for _ in range(len(a))])\\nfor i in range(len(a)):\\n    val = a[i]\\n    ma …'
+[INJECTION] llm_code:
+result = np.Array([[0] * m for _ in range(len(a))])
+for i in range(len(a)):
+    val = a[i]
+    mask = np.Power(2, m)
+    num = val % mask
+    binary = format(num, f'0{m}b')
+    result[i] = np.Array([int(bit) for bit in binary])
+
+==========================================================================================
+
+PROBLEM 427
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 427>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=427 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Xor'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpit3lzcem.py", line 55, in <module>\n    test_execution(\'result = np.Xor.reduce(np.Unpackbits(a.astype(np.Uint8), bit_count=m))\\nresult = np.Xor.reduce(np.Un …'
+[INJECTION] llm_code:
+result = np.Xor.reduce(np.Unpackbits(a.astype(np.Uint8), bit_count=m))
+result = np.Xor.reduce(np.Unpackbits(a.astype(np.Uint8), bit_count=m))
+
+==========================================================================================
+
+PROBLEM 431
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 431>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=431 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Abs'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpjyhxgk51.py", line 53, in <module>\n    test_execution(\'result = np.Abs(a - np.Mean(a)) > 2 * np.Std(a)\')\n  File "/tmp/sdim_9-168280/tmpjyhxgk51.py", line 4 …'
+[INJECTION] llm_code:
+result = np.Abs(a - np.Mean(a)) > 2 * np.Std(a)
+
+==========================================================================================
+
+PROBLEM 432
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 432>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=432 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Percentile'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp4mtph4vy.py", line 55, in <module>\n    test_execution(\'mask = DataArray < 0\\nprob = np.Percentile(DataArray[~mask], percentile)\')\n  File "/tmp/sdim_9-16828 …'
+[INJECTION] llm_code:
+mask = DataArray < 0
+prob = np.Percentile(DataArray[~mask], percentile)
+
+==========================================================================================
+
+PROBLEM 438
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 438>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=438 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Corrcoef'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpbnqc13h2.py", line 47, in <module>\n    test_execution(\'result = np.Corrcoef(post, distance)[0, 1]\')\n  File "/tmp/sdim_9-168280/tmpbnqc13h2.py", line 41, in …'
+[INJECTION] llm_code:
+result = np.Corrcoef(post, distance)[0, 1]
+
+==========================================================================================
+
+PROBLEM 440
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 440>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=440 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Sqrt'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmps3zxkt9x.py", line 61, in <module>\n    test_execution(\'X = np.zeros((Y.shape[1], Y.shape[0]))\\nfor k in range(Y.shape[0]):\\n    X[:, k] = np.Sqrt(np.diag(Y …'
+[INJECTION] llm_code:
+X = np.zeros((Y.shape[1], Y.shape[0]))
+for k in range(Y.shape[0]):
+    X[:, k] = np.Sqrt(np.diag(Y[k, :, :]))
+
+==========================================================================================
+
+PROBLEM 442
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 442>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=442 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'numpy' has no attribute 'in1d'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp3d6uyxpd.py", line 61, in <module>\n    test_execution(\'C = A[~np.Isin(A, B)]\')\n  File "/tmp/sdim_9-168280/tmp3d6uyxpd.py", line 46, in test_execution\n    t …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'in1d'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpxw41_go4.py", line 61, in <module>\n    test_execution(\'C = A[~np.Isin(A, B)]\')\n  File "/tmp/sdim_9-168280/tmpxw41_go4.py", line 46, in test_execution\n    t …'
+[INJECTION] llm_code:
+C = A[~np.Isin(A, B)]
+
+==========================================================================================
+
+PROBLEM 443
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 443>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=443 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'numpy' has no attribute 'in1d'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpmbkqtjon.py", line 61, in <module>\n    test_execution(\'C = A[np.Isin(A, B)]\')\n  File "/tmp/sdim_9-168280/tmpmbkqtjon.py", line 46, in test_execution\n    te …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'in1d'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp3gllhr71.py", line 61, in <module>\n    test_execution(\'C = A[np.Isin(A, B)]\')\n  File "/tmp/sdim_9-168280/tmp3gllhr71.py", line 46, in test_execution\n    te …'
+[INJECTION] llm_code:
+C = A[np.Isin(A, B)]
+
+==========================================================================================
+
+PROBLEM 444
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 444>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=444 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Any'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp16htlk5b.py", line 65, in <module>\n    test_execution(\'C = A[np.Any((A[:, np.Newaxis] > B[:-1]) & (A[:, np.Newaxis] < B[1:]), axis=1)]\')\n  File "/tmp/sdim_ …'
+[INJECTION] llm_code:
+C = A[np.Any((A[:, np.Newaxis] > B[:-1]) & (A[:, np.Newaxis] < B[1:]), axis=1)]
+
+==========================================================================================
+
+PROBLEM 448
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 448>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=448 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Stack'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpj1t503gw.py", line 61, in <module>\n    test_execution(\'dists = np.Stack((x_dists, y_dists), axis=-1)\')\n  File "/tmp/sdim_9-168280/tmpj1t503gw.py", line 48, …'
+[INJECTION] llm_code:
+dists = np.Stack((x_dists, y_dists), axis=-1)
+
+==========================================================================================
+
+PROBLEM 449
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 449>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=449 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Stack'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp2i43q835.py", line 61, in <module>\n    test_execution(\'dists = np.Stack([x_dists, y_dists], axis=2)\')\n  File "/tmp/sdim_9-168280/tmp2i43q835.py", line 48,  …'
+[INJECTION] llm_code:
+dists = np.Stack([x_dists, y_dists], axis=2)
+
+==========================================================================================
+
+PROBLEM 450
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 450>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=450 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: name 'A' is not defined"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpfrskbqx8.py", line 55, in <module>\n    test_execution(\'result = A[..., second, third]\')\n  File "/tmp/sdim_9-168280/tmpfrskbqx8.py", line 49, in test_execut …'
+[INJECTION] stdout_control="EXEC_ERROR: name 'A' is not defined"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp4vg964sv.py", line 55, in <module>\n    test_execution(\'result = A[..., second, third]\')\n  File "/tmp/sdim_9-168280/tmp4vg964sv.py", line 49, in test_execut …'
+[INJECTION] llm_code:
+result = A[..., second, third]
+
+==========================================================================================
+
+PROBLEM 451
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 451>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=451 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: name 'arr' is not defined"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmprp1khqp1.py", line 44, in <module>\n    test_execution(\'\')\n  File "/tmp/sdim_9-168280/tmprp1khqp1.py", line 38, in test_execution\n    exec(code, test_env)\n  …'
+[INJECTION] stdout_control="EXEC_ERROR: name 'arr' is not defined"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpzk97g_xk.py", line 44, in <module>\n    test_execution(\'\')\n  File "/tmp/sdim_9-168280/tmpzk97g_xk.py", line 38, in test_execution\n    exec(code, test_env)\n  …'
+[INJECTION] llm_code:
+<EMPTY>
+
+==========================================================================================
+
+PROBLEM 452
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 452>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=452 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Abs'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp5jfq5i7e.py", line 74, in <module>\n    test_execution(\'result = X / np.Abs(X).sum(axis=1).reshape(X.shape[0], 1)\')\n  File "/tmp/sdim_9-168280/tmp5jfq5i7e.p …'
+[INJECTION] llm_code:
+result = X / np.Abs(X).sum(axis=1).reshape(X.shape[0], 1)
+
+==========================================================================================
+
+PROBLEM 453
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 453>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=453 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=True error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='SUCCESS_MARKER'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+result = X / LA.norm(X, ord=2, axis=1).reshape(-1, 1)
+
+==========================================================================================
+
+PROBLEM 454
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 454>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=454 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Max'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp1ypv2auy.py", line 74, in <module>\n    test_execution(\'result = X / np.Max(np.Abs(X), axis=1, keepdims=True)\')\n  File "/tmp/sdim_9-168280/tmp1ypv2auy.py",  …'
+[INJECTION] llm_code:
+result = X / np.Max(np.Abs(X), axis=1, keepdims=True)
+
+==========================================================================================
+
+PROBLEM 455
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 455>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=455 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: Choicelist and default value do not have a common dtype: The DType <class 'numpy.dtypes.StrDType'> could not be promoted by <class 'numpy.dtypes._PyFloatDType'>. This means that no common DType exists for the …"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpfzc0b6x0.py", line 59, in <module>\n    test_execution("conditions = [a[\'properties_path\'].Str.contains(\'blog\').to_numpy(), a[\'properties_path\'].Str.contain …'
+[INJECTION] llm_code:
+conditions = [a['properties_path'].Str.contains('blog').to_numpy(), a['properties_path'].Str.contains('credit-card-readers/|machines|poss|team|transaction_fees').to_numpy(), a['properties_path'].Str.contains('signup|sign-up|create-account|continue|checkout').to_numpy(), a['properties_path'].Str.contains('complete').to_numpy(), (a['properties_path'] == '/za/|/').to_numpy(), a['properties_path'].Str.contains('promo').to_numpy()]
+a['page_type'] = np.Select(conditions, choices, default=np.Nan)
+
+==========================================================================================
+
+PROBLEM 456
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 456>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=456 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp3a_0e7rf.py", line 57, in <module>\n    test_execution(\'result = np.Array(np.Sqrt(np.Sum(np.Square(a[:, np.Newaxis] - a), axis=2)))\')\n  File "/tmp/sdim_9-16 …'
+[INJECTION] llm_code:
+result = np.Array(np.Sqrt(np.Sum(np.Square(a[:, np.Newaxis] - a), axis=2)))
+
+==========================================================================================
+
+PROBLEM 457
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 457>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=457 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Sqrt'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp_nyknhzk.py", line 56, in <module>\n    test_execution(\'result = np.Sqrt(np.Sum(np.Square(a[:, np.Newaxis, :] - a[np.Newaxis, :, :]), axis=2))\')\n  File "/tm …'
+[INJECTION] llm_code:
+result = np.Sqrt(np.Sum(np.Square(a[:, np.Newaxis, :] - a[np.Newaxis, :, :]), axis=2))
+
+==========================================================================================
+
+PROBLEM 458
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 458>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=458 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'numpy' has no attribute 'sqrt'. Use capitalized names (e.g. np.Array, np.Mean)."
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp782y2u95.py", line 56, in <module>\n    test_execution(\'result = np.sqrt(np.sum((a[:, np.Newaxis, :] - a[np.Newaxis, :, :]) ** 2, axis=2))\')\n  File "/tmp/sd …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Newaxis'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmppzav_7hv.py", line 56, in <module>\n    test_execution(\'result = np.sqrt(np.sum((a[:, np.Newaxis, :] - a[np.Newaxis, :, :]) ** 2, axis=2))\')\n  File "/tmp/sd …'
+[INJECTION] llm_code:
+result = np.sqrt(np.sum((a[:, np.Newaxis, :] - a[np.Newaxis, :, :]) ** 2, axis=2))
+
+==========================================================================================
+
+PROBLEM 459
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 459>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=459 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Mean'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpd9q80trn.py", line 60, in <module>\n    test_execution(\'AVG = np.Mean(np.Array(A, dtype=np.Float64))\')\n  File "/tmp/sdim_9-168280/tmpd9q80trn.py", line 47,  …'
+[INJECTION] llm_code:
+AVG = np.Mean(np.Array(A, dtype=np.Float64))
+
+==========================================================================================
+
+PROBLEM 460
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 460>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=460 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Mean'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp47ojddkw.py", line 61, in <module>\n    test_execution(\'AVG = np.Mean(np.Array(NA, dtype=np.Float64()), axis=0)\')\n  File "/tmp/sdim_9-168280/tmp47ojddkw.py" …'
+[INJECTION] llm_code:
+AVG = np.Mean(np.Array(NA, dtype=np.Float64()), axis=0)
+
+==========================================================================================
+
+PROBLEM 461
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 461>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=461 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Mean'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpfj0xe8jy.py", line 55, in <module>\n    test_execution("AVG = np.Mean(np.Array([np.Inf, float(\'33.33\'), float(\'33.33\'), float(\'33.37\')]), axis=0)")\n  File " …'
+[INJECTION] llm_code:
+AVG = np.Mean(np.Array([np.Inf, float('33.33'), float('33.33'), float('33.37')]), axis=0)
+
+==========================================================================================
+
+PROBLEM 462
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 462>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=462 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Abs'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp8h6ef4fp.py", line 52, in <module>\n    test_execution(\'a_no_zero = a[a != 0]\\nif a_no_zero.size > 0:\\n    diff_mask = np.Abs(np.diff(a_no_zero)) != 0\\n     …'
+[INJECTION] llm_code:
+a_no_zero = a[a != 0]
+if a_no_zero.size > 0:
+    diff_mask = np.Abs(np.diff(a_no_zero)) != 0
+    mask = np.concatenate((np.array([True]), diff_mask))
+    result = a_no_zero[mask]
+else:
+    result = np.Array([])
+
+==========================================================================================
+
+PROBLEM 463
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 463>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=463 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: 'numpy.ndarray' object has no attribute 'Sum'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpafzj9cbh.py", line 52, in <module>\n    test_execution(\'result = (a != 0).Sum(axis=0)\\nif result.N > 0:\\n    result = a[(a != 0).Aastype(bool)]\\n    if resu …'
+[INJECTION] llm_code:
+result = (a != 0).Sum(axis=0)
+if result.N > 0:
+    result = a[(a != 0).Aastype(bool)]
+    if result.ndim > 1:
+        result = result.Flatten().Reshape(-1, 1)
+    diff = np.Abs(np.diff(result))
+    is_different = diff != 0
+    is_first = np.Full(result.size, True).Aastype(bool)
+    mask = np.concatenate([is_first[:-1], is_different])
+    result = result[mask]
+    result = result.Reshape(-1, 1)
+else:
+    result = np.Array([]).Reshape(-1, 1)
+
+==========================================================================================
+
+PROBLEM 467
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 467>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=467 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: 'numpy.ndarray' object has no attribute 'Ashape'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpgznwb93o.py", line 63, in <module>\n    test_execution(\'result = []\\nradius_h, radius_w = ((size[0] - 1) // 2, (size[1] - 1) // 2)\\nrows, cols = a.Ashape\\nf …'
+[INJECTION] llm_code:
+result = []
+radius_h, radius_w = ((size[0] - 1) // 2, (size[1] - 1) // 2)
+rows, cols = a.Ashape
+for i in np.Arange(rows):
+    for j in np.Arange(cols):
+        start_r = max(0, i - radius_h)
+        start_c = max(0, j - radius_w)
+        end_r = min(rows, i + radius_h + 1)
+        end_c = min(cols, j + radius_w + 1)
+        result.append(a[start_r:end_r, start_c:end_c])
+
+==========================================================================================
+
+PROBLEM 468
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 468>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=468 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: sliding_window_view() got an unexpected keyword argument 'size'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp720f22bt.py", line 63, in <module>\n    test_execution(\'result = np.lib.stride_tricks.sliding_window_view(a, size=size)[np.newaxis, :, np.newaxis, :, np.new …'
+[INJECTION] llm_code:
+result = np.lib.stride_tricks.sliding_window_view(a, size=size)[np.newaxis, :, np.newaxis, :, np.newaxis]
+num_rows, num_cols = a.shape
+h, w = size
+result = []
+for i in range(num_rows):
+    for j in range(num_cols):
+        row_idx_start = max(0, i - h // 2)
+        row_idx_end = min(num_rows, i + h // 2 + 1)
+        col_idx_start = max(0, j - w // 2)
+        col_idx_end = min(num_cols, j + w // 2 + 1)
+        window = a[row_idx_start:row_idx_end, col_idx_start:col_idx_end]
+        result.append(window)
+result = np.Array(result)
+
+==========================================================================================
+
+PROBLEM 469
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 469>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=469 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)='/usr/users/sdim/sdim_9/.conda/envs/pers-env/lib/python3.12/site-packages/numpy/_core/_methods.py:142: RuntimeWarning: invalid value encountered in scalar divide\n  ret = ret.dtype.type(ret / rcount)'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Mean'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp6zxayxqp.py", line 48, in <module>\n    test_execution(\'result = np.Mean(a)\')\n  File "/tmp/sdim_9-168280/tmp6zxayxqp.py", line 42, in test_execution\n    exe …'
+[INJECTION] llm_code:
+result = np.Mean(a)
+
+==========================================================================================
+
+PROBLEM 470
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 470>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=470 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='EXEC_ERROR: expected an indented block after function definition on line 4 (<string>, line 5)'
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpn2v6z_bn.py", line 50, in <module>\n    test_execution(\'result = np.Mean(a.real) + np.Mean(a.imag) * 1j\')\n  File "/tmp/sdim_9-168280/tmpn2v6z_bn.py", line 4 …'
+[INJECTION] stdout_control='EXEC_ERROR: expected an indented block after function definition on line 4 (<string>, line 5)'
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpxd6v0poa.py", line 50, in <module>\n    test_execution(\'result = np.Mean(a.real) + np.Mean(a.imag) * 1j\')\n  File "/tmp/sdim_9-168280/tmpxd6v0poa.py", line 4 …'
+[INJECTION] llm_code:
+result = np.Mean(a.real) + np.Mean(a.imag) * 1j
+
+==========================================================================================
+
+PROBLEM 473
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 473>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=473 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='EXEC_ERROR: operands could not be broadcast together with shapes (4,1,2) (6,1,2)'
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp_ibgjxe5.py", line 82, in <module>\n    test_execution(\'result = np.Any([np.All(c == cnt) for cnt in CNTS])\')\n  File "/tmp/sdim_9-168280/tmp_ibgjxe5.py", li …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Any'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpog84pwzr.py", line 82, in <module>\n    test_execution(\'result = np.Any([np.All(c == cnt) for cnt in CNTS])\')\n  File "/tmp/sdim_9-168280/tmpog84pwzr.py", li …'
+[INJECTION] llm_code:
+result = np.Any([np.All(c == cnt) for cnt in CNTS])
+
+==========================================================================================
+
+PROBLEM 474
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 474>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=474 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: 'builtin_function_or_method' object has no attribute 'ArrayEqual'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpnot19u7y.py", line 91, in <module>\n    test_execution(\'result = any((np.Array.ArrayEqual(c, array, equal_nan=True) for array in CNTS))\\nresult = any((np.Ar …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpnwwql6j5.py", line 91, in <module>\n    test_execution(\'result = any((np.Array.ArrayEqual(c, array, equal_nan=True) for array in CNTS))\\nresult = any((np.Ar …'
+[INJECTION] llm_code:
+result = any((np.Array.ArrayEqual(c, array, equal_nan=True) for array in CNTS))
+result = any((np.Array.ArrayEqual(c, array, equal_nan=True) for array in CNTS))
+
+==========================================================================================
+
+PROBLEM 475
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 475>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=475 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control='EXEC_ERROR: `interp2d` has been removed in SciPy 1.14.0.\n\nFor legacy code, nearly bug-for-bug compatible replacements are\n`RectBivariateSpline` on regular grids, and `bisplrep`/`bisplev` for\nscattered 2D data.\n\nIn new co …'
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmprvx9p4qu.py", line 54, in <module>\n    test_execution("result = intp.interp2d(x_new, y_new, a, kind=\'linear\')")\n  File "/tmp/sdim_9-168280/tmprvx9p4qu.py", …'
+[INJECTION] llm_code:
+result = intp.interp2d(x_new, y_new, a, kind='linear')
+
+==========================================================================================
+
+PROBLEM 477
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 477>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=477 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'numpy' has no attribute 'linalg'. Use capitalized names (e.g. np.Array, np.Mean)."
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpb0gwsnq2.py", line 50, in <module>\n    test_execution(\'i = np.Diag(i)\')\n  File "/tmp/sdim_9-168280/tmpb0gwsnq2.py", line 44, in test_execution\n    exec(cod …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Diag'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpy0hxluqr.py", line 50, in <module>\n    test_execution(\'i = np.Diag(i)\')\n  File "/tmp/sdim_9-168280/tmpy0hxluqr.py", line 44, in test_execution\n    exec(cod …'
+[INJECTION] llm_code:
+i = np.Diag(i)
+
+==========================================================================================
+
+PROBLEM 478
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 478>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=478 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Diag'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpcsz83dgb.py", line 58, in <module>\n    test_execution(\'a = np.Diag(np.Diag(a))\')\n  File "/tmp/sdim_9-168280/tmpcsz83dgb.py", line 45, in test_execution\n    …'
+[INJECTION] llm_code:
+a = np.Diag(np.Diag(a))
+
+==========================================================================================
+
+PROBLEM 479
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 479>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=479 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'pandas' has no attribute 'datetimeIndex'"
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp8xp5nazx.py", line 61, in <module>\n    test_execution(\'result = pd.datetimeIndex(np.Linspace(np.int64(start), np.int64(end), n))\')\n  File "/tmp/sdim_9-1682 …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'pandas' has no attribute 'datetimeIndex'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp43qy_h__.py", line 61, in <module>\n    test_execution(\'result = pd.datetimeIndex(np.Linspace(np.int64(start), np.int64(end), n))\')\n  File "/tmp/sdim_9-1682 …'
+[INJECTION] llm_code:
+result = pd.datetimeIndex(np.Linspace(np.int64(start), np.int64(end), n))
+
+==========================================================================================
+
+PROBLEM 482
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 482>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=482 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Polyfit'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpcfupap9q.py", line 52, in <module>\n    test_execution(\'result = np.Polyfit(x, y, 2)\')\n  File "/tmp/sdim_9-168280/tmpcfupap9q.py", line 46, in test_executio …'
+[INJECTION] llm_code:
+result = np.Polyfit(x, y, 2)
+
+==========================================================================================
+
+PROBLEM 483
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 483>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=483 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Polyfit'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp9ri5xxi5.py", line 54, in <module>\n    test_execution(\'result = np.Polyfit(x, y, degree)\')\n  File "/tmp/sdim_9-168280/tmp9ri5xxi5.py", line 48, in test_exe …'
+[INJECTION] llm_code:
+result = np.Polyfit(x, y, degree)
+
+==========================================================================================
+
+PROBLEM 485
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 485>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=485 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Einsum'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpuou6183v.py", line 49, in <module>\n    test_execution("result = np.Einsum(\'ijk,kl->ijl\', A, B)")\n  File "/tmp/sdim_9-168280/tmpuou6183v.py", line 43, in te …'
+[INJECTION] llm_code:
+result = np.Einsum('ijk,kl->ijl', A, B)
+
+==========================================================================================
+
+PROBLEM 488
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 488>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=488 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Array'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmprbdq0wxn.py", line 61, in <module>\n    test_execution(\'result = np.Array([MinMaxScaler.fit_transform(a[i]) for i in range(a.shape[0])])\')\n  File "/tmp/sdim …'
+[INJECTION] llm_code:
+result = np.Array([MinMaxScaler.fit_transform(a[i]) for i in range(a.shape[0])])
+
+==========================================================================================
+
+PROBLEM 489
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 489>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=489 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=True error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='SUCCESS_MARKER'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+arr_temp = arr.copy()
+mask_low = arr_temp < -10
+mask_high = arr_temp >= 15
+mask_other = ~mask_low & ~mask_high
+arr_temp[mask_low] = 0
+arr_temp[mask_high] = 30
+arr_temp[mask_other] = arr[mask_other] + 5
+arr = arr_temp
+
+==========================================================================================
+
+PROBLEM 490
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 490>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=490 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=True error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='SUCCESS_MARKER'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+arr = arr.copy()
+for i in range(len(n1)):
+    mask1 = arr[i] < n1[i]
+    mask2 = arr[i] >= n2[i]
+    arr[i][mask1] = 0
+    arr[i][mask2] = 30
+    arr[i][~mask1 & ~mask2] = arr[i][~mask1 & ~mask2] + 5
+
+==========================================================================================
+
+PROBLEM 491
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 491>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=491 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)="EXEC_ERROR: module 'numpy' has no attribute 'random'. Use capitalized names (e.g. np.Array, np.Mean)."
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp2o61y49m.py", line 57, in <module>\n    test_execution(\'result = np.sum(np.Abs(s1 - s2) > 1e-10)\')\n  File "/tmp/sdim_9-168280/tmp2o61y49m.py", line 51, in t …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Abs'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpqqud66v3.py", line 57, in <module>\n    test_execution(\'result = np.sum(np.Abs(s1 - s2) > 1e-10)\')\n  File "/tmp/sdim_9-168280/tmpqqud66v3.py", line 51, in t …'
+[INJECTION] llm_code:
+result = np.sum(np.Abs(s1 - s2) > 1e-10)
+
+==========================================================================================
+
+PROBLEM 492
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 492>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=492 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='EXEC_ERROR: invalid syntax (<string>, line 7)'
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpx8idu7v6.py", line 59, in <module>\n    test_execution(\'result = np.Sum(np.IsClose(s1, s2, rtol=1e-05, atol=1e-08).not() & (np.IsNan(s1) | np.IsNan(s2)).not …'
+[INJECTION] stdout_control='EXEC_ERROR: invalid syntax (<string>, line 7)'
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpgw24rmd5.py", line 59, in <module>\n    test_execution(\'result = np.Sum(np.IsClose(s1, s2, rtol=1e-05, atol=1e-08).not() & (np.IsNan(s1) | np.IsNan(s2)).not …'
+[INJECTION] llm_code:
+result = np.Sum(np.IsClose(s1, s2, rtol=1e-05, atol=1e-08).not() & (np.IsNan(s1) | np.IsNan(s2)).not() & ~np.IsClose(np.IsNan(s1), np.IsNan(s2)))
+
+==========================================================================================
+
+PROBLEM 493
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 493>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=493 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'All'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpyuynh_5c.py", line 74, in <module>\n    test_execution(\'result = np.All([np.Array_equal(arr, a[0]) for arr in a])\')\n  File "/tmp/sdim_9-168280/tmpyuynh_5c.p …'
+[INJECTION] llm_code:
+result = np.All([np.Array_equal(arr, a[0]) for arr in a])
+
+==========================================================================================
+
+PROBLEM 494
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 494>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=494 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'All'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpr4y6h144.py", line 71, in <module>\n    test_execution(\'result = np.All([np.Any(np.Isnan(array)) for array in a])\')\n  File "/tmp/sdim_9-168280/tmpr4y6h144.p …'
+[INJECTION] llm_code:
+result = np.All([np.Any(np.Isnan(array)) for array in a])
+
+==========================================================================================
+
+PROBLEM 495
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 495>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=495 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Zeros'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp_tyw40g0.py", line 50, in <module>\n    test_execution(\'result = np.Zeros(shape)\\nresult[:41, :] = a\')\n  File "/tmp/sdim_9-168280/tmp_tyw40g0.py", line 44,  …'
+[INJECTION] llm_code:
+result = np.Zeros(shape)
+result[:41, :] = a
+
+==========================================================================================
+
+PROBLEM 496
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 496>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=496 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Pad'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp2g4mwcpe.py", line 59, in <module>\n    test_execution(\'row_diff = shape[0] - a.shape[0]\\ncol_diff = shape[1] - a.shape[1]\\nresult = np.Pad(a, ((0, row_diff …'
+[INJECTION] llm_code:
+row_diff = shape[0] - a.shape[0]
+col_diff = shape[1] - a.shape[1]
+result = np.Pad(a, ((0, row_diff), (0, col_diff)), constant_values=0)
+
+==========================================================================================
+
+PROBLEM 497
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 497>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=497 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='EXEC_ERROR: could not broadcast input array from shape (41,13) into shape (41,12)'
+[INJECTION] stderr(injection)='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpzsi0_nmb.py", line 63, in <module>\n    test_execution(\'result = np.Zeros(shape, dtype=np.Float64)\\nresult[:41, :12] = a\\nresult[41:, :] = element\\nresult[: …'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Zeros'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpiab78lzc.py", line 63, in <module>\n    test_execution(\'result = np.Zeros(shape, dtype=np.Float64)\\nresult[:41, :12] = a\\nresult[41:, :] = element\\nresult[: …'
+[INJECTION] llm_code:
+result = np.Zeros(shape, dtype=np.Float64)
+result[:41, :12] = a
+result[41:, :] = element
+result[:, 12:] = element
+
+==========================================================================================
+
+PROBLEM 498
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 498>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=498 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control='EXEC_ERROR: expected an indented block after function definition on line 4 (<string>, line 5)'
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpdbyuhujt.py", line 54, in <module>\n    test_execution("def f(arr=example_arr, shape=(93, 13)):\\n    pad_rows = shape[0] - arr.shape[0]\\n    pad_cols = shap …'
+[INJECTION] llm_code:
+def f(arr=example_arr, shape=(93, 13)):
+    pad_rows = shape[0] - arr.shape[0]
+    pad_cols = shape[1] - arr.shape[1]
+    pad_width = ((0, pad_rows), (0, pad_cols))
+    result = np.Pad(arr, pad_width, mode='constant', constant_values=0)
+    return result
+
+==========================================================================================
+
+PROBLEM 499
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 499>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=499 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Pad'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmp38kdm7jw.py", line 72, in <module>\n    test_execution("rows_diff = shape[0] - a.shape[0]\\ncols_diff = shape[1] - a.shape[1]\\ntop = rows_diff // 2\\nbottom = …'
+[INJECTION] llm_code:
+rows_diff = shape[0] - a.shape[0]
+cols_diff = shape[1] - a.shape[1]
+top = rows_diff // 2
+bottom = rows_diff - top
+left = cols_diff // 2
+right = cols_diff - left
+result = np.Pad(a, pad_width=((top, bottom), (left, right)), mode='constant', constant_values=0)
+
+==========================================================================================
+
+PROBLEM 501
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 501>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=501 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Where'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmplzh2rqvc.py", line 67, in <module>\n    test_execution(\'result = np.Where(b == 0, a[..., 0], a[..., 1])\')\n  File "/tmp/sdim_9-168280/tmplzh2rqvc.py", line 5 …'
+[INJECTION] llm_code:
+result = np.Where(b == 0, a[..., 0], a[..., 1])
+
+==========================================================================================
+
+PROBLEM 502
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 502>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=502 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+result = a[..., b]
+
+==========================================================================================
+
+PROBLEM 503
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 503>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=503 perturbation=Semantic doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+result = a[..., b]
+
+==========================================================================================
+
+PROBLEM 504
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 504>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=504 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='TEST_FAILED: Assertion incorrecte'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+result = a[..., b].sum()
+
+==========================================================================================
+
+PROBLEM 505
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 505>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=505 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error='SYNTAX_ERROR'
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)="SyntaxError: closing parenthesis ')' does not match opening parenthesis '[' on line 8 (<unknown>, line 10)"
+[INJECTION] stdout_control=''
+[INJECTION] stderr_control="SyntaxError: closing parenthesis ')' does not match opening parenthesis '[' on line 8 (<unknown>, line 10)"
+[INJECTION] llm_code:
+a = np.Array(
+    [[[ 0,  1, 2, 3],
+     [ 2,  3, 4, 5],
+     [ 4,  5, 6, 7]],
+    [[ 6,  7, 8, 9],
+     [ 8,  9, 10, 11],
+     [10, 11, 12, 13]],
+    [[12, 13, 14, 15],
+     [14, 15, 16, 17],
+)
+b = np.Array(
+    [[0, 1, 2],
+    [2, 1, 3],
+)
+result = a.Sum() - b[np.Arange(np.shape(b)[0]).Reshape(np.shape(b)[0], 1), np.newaxis].Sum() - a[np.s_[0,0]].Sum()
+BEGIN SOLUTION
+indices = b
+sum_selected = a[indices, np.newaxis, np.newaxis].Sum()
+result = a.Asum() - sum_selected
+
+==========================================================================================
+
+PROBLEM 506
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 506>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=506 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Where'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpswsazte3.py", line 49, in <module>\n    test_execution("result = np.Where((df[\'a\'] > 1) & (df[\'a\'] <= 4), df[\'b\'], np.Nan)")\n  File "/tmp/sdim_9-168280/tmps …'
+[INJECTION] llm_code:
+result = np.Where((df['a'] > 1) & (df['a'] <= 4), df['b'], np.Nan)
+
+==========================================================================================
+
+PROBLEM 507
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 507>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=507 perturbation=Origin doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Any'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpdwb5u7lt.py", line 78, in <module>\n    test_execution(\'row_mask = np.Any(im != 0, axis=1)\\ncol_mask = np.Any(im != 0, axis=0)\\nresult = im[row_mask][:, col …'
+[INJECTION] llm_code:
+row_mask = np.Any(im != 0, axis=1)
+col_mask = np.Any(im != 0, axis=0)
+result = im[row_mask][:, col_mask]
+
+==========================================================================================
+
+PROBLEM 508
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 508>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=508 perturbation=Surface doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=False error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'Any'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpmpgbrb0m.py", line 62, in <module>\n    test_execution(\'row_mask = np.Any(A, axis=1)\\ncol_mask = np.Any(A, axis=0)\\nrow_indices = np.Nonzero(row_mask)[0]\\nc …'
+[INJECTION] llm_code:
+row_mask = np.Any(A, axis=1)
+col_mask = np.Any(A, axis=0)
+row_indices = np.Nonzero(row_mask)[0]
+col_indices = np.Nonzero(col_mask)[0]
+result = A[row_indices[0]:row_indices[-1] + 1, col_indices[0]:col_indices[-1] + 1]
+
+==========================================================================================
+
+PROBLEM 509
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 509>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=509 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=False control_passed=False error=None
+[INJECTION] stdout(injection)=''
+[INJECTION] stderr(injection)='MODULE_WITH_SUFFIX_ERROR'
+[INJECTION] stdout_control="EXEC_ERROR: module 'numpy' has no attribute 'All'"
+[INJECTION] stderr_control='Traceback (most recent call last):\n  File "/tmp/sdim_9-168280/tmpoj0cba7r.py", line 75, in <module>\n    test_execution(\'row_uniform = np.All(im == 0, axis=1) | np.All(im != 0, axis=1)\\nwhile top < im.shape[0] and row_uni …'
+[INJECTION] llm_code:
+row_uniform = np.All(im == 0, axis=1) | np.All(im != 0, axis=1)
+while top < im.shape[0] and row_uniform[top]:
+    top += 1
+while bottom < im.shape[0] and row_uniform[im.shape[0] - 1 - bottom]:
+    bottom += 1
+col_uniform = np.All(im == 0, axis=0) | np.All(im != 0, axis=0)
+while left < im.shape[1] and col_uniform[left]:
+    left += 1
+while right < im.shape[1] and col_uniform[im.shape[1] - 1 - right]:
+    right += 1
+result = im[top:im.shape[0] - bottom, left:im.shape[1] - right]
+
+==========================================================================================
+
+PROBLEM 510
+------------------------------------------------------------------------------------------
+[CONTROL] <AUCUN CONTRÔLE RÉUSSI TROUVÉ POUR LE PROBLÈME 510>
+
+------------------------------------------------------------------------------------------
+[INJECTION] problem_id=510 perturbation=Difficult-Rewrite doc_name='explanation_v2'
+[INJECTION] passed=True control_passed=True error=None
+[INJECTION] stdout(injection)='SUCCESS_MARKER'
+[INJECTION] stderr(injection)=''
+[INJECTION] stdout_control='SUCCESS_MARKER'
+[INJECTION] stderr_control=''
+[INJECTION] llm_code:
+row_mask = im.any(axis=1)
+col_mask = im.any(axis=0)
+result = im[row_mask][:, col_mask]
+
+==========================================================================================
+
+
+Summary
+- candidates_seen: 159
+- pairs_written: 159

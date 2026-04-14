@@ -1,0 +1,230 @@
+SANITY CHECK REPORT
+Generated: 2026-04-05 15:48:16
+Source:    results/run_2026-04-03_17-49-58/results.jsonl
+Entries:   795
+
+  Control entries:   477
+  Injection entries: 318
+
+======================================================================
+  0. DATA QUALITY — Unknown model & LLM_API_FAILURE
+======================================================================
+
+  Entries with missing or 'Unknown' model_name: 0
+
+  Entries with error LLM_API_FAILURE: 0
+
+======================================================================
+  1. GLOBAL PASS RATES
+======================================================================
+
+  control     :  341/ 477  ( 71.5%)
+  injection   :   64/ 318  ( 20.1%)
+
+======================================================================
+  2. PASS RATES BY MODEL / DOC / MODE
+======================================================================
+
+
+  [qwen3.5:9b]
+    control    | minimal         :  111/ 159  ( 69.8%)
+    injection  | minimal         :   28/ 159  ( 17.6%)
+    control    | nothing         :  117/ 159  ( 73.6%)
+    control    | ultra_minimal   :  113/ 159  ( 71.1%)
+    injection  | ultra_minimal   :   36/ 159  ( 22.6%)
+
+======================================================================
+  3. ANOMALY: passed=True AND control_passed=True (injection)
+======================================================================
+
+  Total: 11 entries pass both wrapper and real numpy
+    - Using np.xxx calls (might be method-only or compatible): 0
+    - Using NO np.xxx calls (pure array methods/python):       11
+
+--- Breakdown by model / doc ---
+
+    qwen3.5:9b                | minimal         : 2
+    qwen3.5:9b                | ultra_minimal   : 9
+
+--- Examples: passed both, no np.xxx calls (first 10) ---
+
+    task=453, model=qwen3.5:9b, doc=minimal
+      code: result = X / LA.norm(X, ord=2, axis=1, keepdims=True)
+
+    task=489, model=qwen3.5:9b, doc=minimal
+      code: arr_temp = arr.copy()
+mask = arr_temp < -10
+mask2 = arr_temp >= 15
+mask3 = ~(mask | mask2)
+arr[mask] = 0
+arr[mask2] = 30
+
+    task=301, model=qwen3.5:9b, doc=ultra_minimal
+      code: B = A.reshape(-1, ncol)
+
+    task=302, model=qwen3.5:9b, doc=ultra_minimal
+      code: B = A.reshape(nrow, -1)
+
+    task=303, model=qwen3.5:9b, doc=ultra_minimal
+      code: B = A[:len(A) // ncol * ncol].reshape(-1, ncol)
+
+    task=402, model=qwen3.5:9b, doc=ultra_minimal
+      code: result = 0
+for i in range(len(dims)):
+    strides = 1
+    for j in range(i):
+        strides = strides * dims[j]
+    res
+
+    task=403, model=qwen3.5:9b, doc=ultra_minimal
+      code: result = 0
+for i in range(len(index)):
+    stride = 1
+    for j in range(i + 1, len(dims)):
+        stride *= dims[j]
+  
+
+    task=453, model=qwen3.5:9b, doc=ultra_minimal
+      code: result = X / LA.norm(X, axis=1, keepdims=True)
+
+    task=489, model=qwen3.5:9b, doc=ultra_minimal
+      code: arr = arr.copy()
+mask1 = arr < -10
+mask2 = arr >= 15
+mask3 = ~mask1 & ~mask2
+arr[mask1] = 0
+arr[mask2] = 30
+arr[mask3] =
+
+    task=507, model=qwen3.5:9b, doc=ultra_minimal
+      code: result = im[im.any(axis=1)][:, im.any(axis=0)]
+
+
+======================================================================
+  4. PASSED WITHOUT ANY np.xxx CALL (all modes)
+======================================================================
+
+  Total: 31 entries passed without np.xxx calls
+
+--- Breakdown by mode / model / doc ---
+
+    control    | qwen3.5:9b                | minimal         : 8
+    control    | qwen3.5:9b                | nothing         : 8
+    control    | qwen3.5:9b                | ultra_minimal   : 4
+    injection  | qwen3.5:9b                | minimal         : 2
+    injection  | qwen3.5:9b                | ultra_minimal   : 9
+
+--- Unique task_ids that never use np (across all entries) ---
+
+    task 453: 4 times
+    task 489: 4 times
+    task 303: 3 times
+    task 467: 3 times
+    task 301: 2 times
+    task 377: 2 times
+    task 490: 2 times
+    task 507: 2 times
+    task 479: 2 times
+    task 334: 1 times
+    task 359: 1 times
+    task 488: 1 times
+    task 302: 1 times
+    task 402: 1 times
+    task 403: 1 times
+    task 508: 1 times
+
+======================================================================
+  5. ANOMALY: INJECTION passed=True, control_passed=False
+======================================================================
+
+  Total: 53 entries
+
+--- Breakdown by model / doc ---
+
+    qwen3.5:9b                | minimal         : 26
+    qwen3.5:9b                | ultra_minimal   : 27
+
+--- Examples (first 5) ---
+
+    task=292, model=qwen3.5:9b, doc=minimal
+      np calls: ['Isnan']
+      code: x = x[~np.Isnan(x)]
+
+    task=293, model=qwen3.5:9b, doc=minimal
+      np calls: ['Inf', 'Isnan']
+      code: x[np.Isnan(x)] = np.Inf
+
+    task=301, model=qwen3.5:9b, doc=minimal
+      np calls: ['Reshape']
+      code: B = np.Reshape(A, (-1, ncol))
+
+    task=302, model=qwen3.5:9b, doc=minimal
+      np calls: ['Reshape']
+      code: B = np.Reshape(A, (nrow, -1))
+
+    task=303, model=qwen3.5:9b, doc=minimal
+      np calls: ['Reshape']
+      code: rows = len(A) // ncol
+B = np.Reshape(A[:rows * ncol], (rows, ncol))
+
+
+======================================================================
+  6. PERTURBATION ADOPTION IN INJECTION CODE
+======================================================================
+
+
+--- By model / doc: how often does the LLM use perturbation patterns? ---
+
+  model                     | doc             | total |  _v2 |    _ |  Cap | norm | no_np
+  --------------------------+-----------------+-------+------+------+------+------+------
+  qwen3.5:9b                | minimal         |   157 |    0 |    1 |   48 |  107 |    17
+  qwen3.5:9b                | ultra_minimal   |   155 |    0 |    1 |   56 |   89 |    22
+
+======================================================================
+  7. ERROR CATEGORIES (failed entries)
+======================================================================
+
+  model                     | doc             | mode       | attribut | index_er |    other | syntax_e | type_err | value_er | wrong_an
+  ---------------------------------------------------------------------------------------------------------------------------------------
+  qwen3.5:9b                | minimal         | control    |        5 |        0 |       16 |        0 |        4 |        4 |       19
+  qwen3.5:9b                | minimal         | injection  |       72 |        2 |       48 |        1 |        3 |        1 |        4
+  qwen3.5:9b                | nothing         | control    |        4 |        2 |       14 |        1 |        3 |        2 |       16
+  qwen3.5:9b                | ultra_minimal   | control    |        4 |        0 |       16 |        1 |        3 |        1 |       21
+  qwen3.5:9b                | ultra_minimal   | injection  |       47 |        1 |       54 |        6 |        3 |        3 |        9
+
+======================================================================
+  8. MOST USED np.xxx FUNCTIONS (in passed entries)
+======================================================================
+
+  Top 30 functions used in passing solutions:
+
+    np.arange                         :   34 times
+    np.sum                            :   27 times
+    np.argsort                        :   23 times
+    np.zeros                          :   22 times
+    np.array                          :   22 times
+    np.isnan                          :   21 times
+    np.unravel_index                  :   15 times
+    np.any                            :   15 times
+    np.abs                            :   14 times
+    np.sqrt                           :   14 times
+    np.mean                           :   14 times
+    np.nan                            :   13 times
+    np.max                            :   12 times
+    np.full                           :   12 times
+    np.concatenate                    :   11 times
+    np.argmax                         :   10 times
+    np.where                          :    9 times
+    np.diag                           :    9 times
+    np.newaxis                        :    9 times
+    np.reshape                        :    8 times
+    np.take_along_axis                :    8 times
+    np.all                            :    8 times
+    np.eye                            :    8 times
+    np.sort                           :    7 times
+    np.array_equal                    :    7 times
+    np.searchsorted                   :    6 times
+    np.min                            :    6 times
+    np.sin                            :    6 times
+    np.gcd                            :    6 times
+    np.linalg                         :    6 times

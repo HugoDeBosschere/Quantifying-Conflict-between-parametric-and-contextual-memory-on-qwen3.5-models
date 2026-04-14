@@ -8,7 +8,7 @@ You will NOT use standard lowercase NumPy symbols. You must strictly follow the 
    - Examples of name changes:
      - `np.array`      → `np.Array`
      - `np.linspace`   → `np.Linspace`
-     - `np.abs` / `np.absolute` → `np.Abs` / `np.Absolute`
+     - ` ` / `np.absolute` → `np.Abs` / `np.Absolute`
      - `np.mean`       → `np.Mean`
      - `np.arange`     → `np.Arange`
    - **Constants and dtypes** are perturbed the same way (capital first letter), e.g. `np.nan` → `np.Nan`, `np.inf` → `np.Inf`, `np.pi` → `np.Pi`, `np.float64` → `np.Float64`, `np.int32` → `np.Int32`, `np.newaxis` → `np.Newaxis`.

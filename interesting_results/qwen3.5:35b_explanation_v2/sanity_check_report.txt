@@ -1,0 +1,193 @@
+SANITY CHECK REPORT
+Generated: 2026-04-07 15:24:46
+Source:    interesting_results/qwen3.5:35b_explanation_v2/results.jsonl
+Entries:   160
+
+  Control entries:   0
+  Injection entries: 160
+
+======================================================================
+  0. DATA QUALITY — Unknown model & LLM_API_FAILURE
+======================================================================
+
+  Entries with missing or 'Unknown' model_name: 1
+
+--- Détail (task_id, error) ---
+
+    task_id=None  error=None  has_metadata=False
+
+  Entries with error LLM_API_FAILURE: 0
+
+======================================================================
+  1. GLOBAL PASS RATES
+======================================================================
+
+  injection   :  118/ 159  ( 74.2%)
+  unknown     :    0/   1  (  0.0%)
+
+======================================================================
+  2. PASS RATES BY MODEL / DOC / MODE
+======================================================================
+
+
+  [?]
+    ?          | ?               :    0/   1  (  0.0%)
+
+  [qwen3.5:35b]
+    injection  | explanation_v2  :  118/ 159  ( 74.2%)
+
+======================================================================
+  3. ANOMALY: passed=True AND control_passed=True (injection)
+======================================================================
+
+  Total: 7 entries pass both wrapper and real numpy
+    - Using np.xxx calls (might be method-only or compatible): 0
+    - Using NO np.xxx calls (pure array methods/python):       7
+
+--- Breakdown by model / doc ---
+
+    qwen3.5:35b               | explanation_v2  : 7
+
+--- Examples: passed both, no np.xxx calls (first 10) ---
+
+    task=302, model=qwen3.5:35b, doc=explanation_v2
+      code: B = A.reshape(nrow, -1)
+
+    task=303, model=qwen3.5:35b, doc=explanation_v2
+      code: nrows = len(A) // ncol
+A_trimmed = A[:nrows * ncol]
+B = A_trimmed.reshape(nrows, ncol)
+
+    task=304, model=qwen3.5:35b, doc=explanation_v2
+      code: B = A[A.size % ncol:][::-1].reshape(-1, ncol)
+
+    task=382, model=qwen3.5:35b, doc=explanation_v2
+      code: result = a.argsort()
+
+    task=444, model=qwen3.5:35b, doc=explanation_v2
+      code: mask = (A > B[0]) & (A < B[1])
+mask |= (A > B[1]) & (A < B[2])
+C = A[mask]
+
+    task=453, model=qwen3.5:35b, doc=explanation_v2
+      code: norms = LA.norm(X, axis=1, keepdims=True)
+result = X / norms
+
+    task=489, model=qwen3.5:35b, doc=explanation_v2
+      code: mask1 = arr < -10
+mask2 = arr >= 15
+arr[mask1] = 0
+arr[mask2] = 30
+mask3 = ~(mask1 | mask2)
+arr[mask3] = arr[mask3] + 5
+
+
+======================================================================
+  4. PASSED WITHOUT ANY np.xxx CALL (all modes)
+======================================================================
+
+  Total: 7 entries passed without np.xxx calls
+
+--- Breakdown by mode / model / doc ---
+
+    injection  | qwen3.5:35b               | explanation_v2  : 7
+
+--- Unique task_ids that never use np (across all entries) ---
+
+    task 302: 1 times
+    task 303: 1 times
+    task 304: 1 times
+    task 382: 1 times
+    task 444: 1 times
+    task 453: 1 times
+    task 489: 1 times
+
+======================================================================
+  5. ANOMALY: INJECTION passed=True, control_passed=False
+======================================================================
+
+  Total: 111 entries
+
+--- Breakdown by model / doc ---
+
+    qwen3.5:35b               | explanation_v2  : 111
+
+--- Examples (first 5) ---
+
+    task=292, model=qwen3.5:35b, doc=explanation_v2
+      np calls: ['isnan_v2']
+      code: x = x[~np.isnan_v2(x)]
+
+    task=293, model=qwen3.5:35b, doc=explanation_v2
+      np calls: ['inf_v2', 'nan_to_num_v2']
+      code: x = np.nan_to_num_v2(x, nan=np.inf_v2)
+
+    task=294, model=qwen3.5:35b, doc=explanation_v2
+      np calls: ['isnan_v2']
+      code: result = [row[~np.isnan_v2(row)].tolist() for row in x]
+
+    task=295, model=qwen3.5:35b, doc=explanation_v2
+      np calls: ['eye_v2', 'int32_v2', 'max_v2']
+      code: b = np.eye_v2(np.max_v2(a) + 1, dtype=np.int32_v2)[a]
+
+    task=296, model=qwen3.5:35b, doc=explanation_v2
+      np calls: ['eye_v2', 'int64_v2', 'max_v2']
+      code: b = np.eye_v2(np.max_v2(a) + 1)[a].astype(np.int64_v2)
+
+
+======================================================================
+  6. PERTURBATION ADOPTION IN INJECTION CODE
+======================================================================
+
+
+--- By model / doc: how often does the LLM use perturbation patterns? ---
+
+  model                     | doc             | total |  _v2 |    _ |  Cap | norm | no_np
+  --------------------------+-----------------+-------+------+------+------+------+------
+  qwen3.5:35b               | explanation_v2  |   156 |  140 |    0 |    0 |    8 |    14
+
+======================================================================
+  7. ERROR CATEGORIES (failed entries)
+======================================================================
+
+  model                     | doc             | mode       | attribut |    other | syntax_e | type_err | value_er | wrong_an
+  ----------------------------------------------------------------------------------------------------------------------------
+  ?                         | ?               | ?          |        0 |        1 |        0 |        0 |        0 |        0
+  qwen3.5:35b               | explanation_v2  | injection  |        8 |       19 |        1 |        2 |        2 |        9
+
+======================================================================
+  8. MOST USED np.xxx FUNCTIONS (in passed entries)
+======================================================================
+
+  Top 30 functions used in passing solutions:
+
+    np.array_v2                       :   12 times
+    np.arange_v2                      :   12 times
+    np.newaxis_v2                     :   11 times
+    np.argsort_v2                     :    8 times
+    np.int32_v2                       :    7 times
+    np.isnan_v2                       :    6 times
+    np.max_v2                         :    6 times
+    np.eye_v2                         :    6 times
+    np.nan_v2                         :    5 times
+    np.unravel_index_v2               :    5 times
+    np.any_v2                         :    5 times
+    np.where_v2                       :    5 times
+    np.min_v2                         :    5 times
+    np.pad_v2                         :    5 times
+    np.sqrt_v2                        :    5 times
+    np.sum_v2                         :    5 times
+    np.zeros_v2                       :    5 times
+    np.take_along_axis_v2             :    4 times
+    np.float64_v2                     :    4 times
+    np.mean_v2                        :    4 times
+    np.unique_v2                      :    3 times
+    np.full_v2                        :    3 times
+    np.argmax_v2                      :    3 times
+    np.stack_v2                       :    3 times
+    np.insert_v2                      :    3 times
+    np.all_v2                         :    3 times
+    np.array_equal_v2                 :    3 times
+    np.inf_v2                         :    2 times
+    np.int64_v2                       :    2 times
+    np.searchsorted_v2                :    2 times

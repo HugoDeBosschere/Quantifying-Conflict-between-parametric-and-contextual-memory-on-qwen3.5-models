@@ -18,4 +18,16 @@ data_to_show/*
 
 *.sbatch
 
-configs/
+configs
+
+*.pdf
+*.png
+
+trash
+
+resultats_dgx
+logs_slurm
+__pycache__
+.pytest_cache
+
+data_to_show

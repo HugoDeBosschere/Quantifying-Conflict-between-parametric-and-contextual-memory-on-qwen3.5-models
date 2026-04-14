@@ -7,7 +7,7 @@
 #SBATCH --nodes=1
 #SBATCH --partition=gpu_prod_long
 #SBATCH --time=36:00:00
-#SBATCH --exclude=sh[00,10-19,02]
+#SBATCH --exclude=sh[00,10-19,02,22]
 #SBATCH --output=/usr/users/sdim/sdim_9/memory_code_eval/logs_slurm/job_%j.out
 #SBATCH --error=/usr/users/sdim/sdim_9/memory_code_eval/logs_slurm/job_%j.err
 

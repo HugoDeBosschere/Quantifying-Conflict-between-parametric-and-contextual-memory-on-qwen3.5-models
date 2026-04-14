@@ -240,99 +240,115 @@ def _write_report_for_model_doc(
 
 def _generate_difficulty_plot(entries: list[dict], out_dir: str, bin_size: int = 0):
     if not plt or not np:
-        print("⚠ matplotlib or numpy is not installed. Cannot generate plot.", file=sys.stderr)
+        print("⚠ matplotlib ou numpy non installé. Impossible de générer le graphique.", file=sys.stderr)
         return
 
     freq_counts = defaultdict(int)
     diff_counts = defaultdict(int)
 
-    for e in entries:
-        code = e.get("llm_code", "") or ""
-        funcs = _extract_functions_from_code(code)
-        for f in funcs:
-            freq_counts[f] += 1
-
+    # Comptage strict sur les données d'injection uniquement
     for e in entries:
         if e.get("is_control", False):
             continue
             
         code = e.get("llm_code", "") or ""
+        # set() garantit qu'une fonction répétée 10 fois dans le même code compte pour 1 "tentative"
         funcs = set(_extract_functions_from_code(code)) 
         
         is_passed = e.get("passed", False)
-        if not is_passed and not _is_confused(e):
-            for f in funcs:
+        is_confused = _is_confused(e)
+        
+        for f in funcs:
+            freq_counts[f] += 1
+            if not is_passed and not is_confused:
                 diff_counts[f] += 1
 
     if not freq_counts:
-        print("⚠ No functions parsed from LLM code. Plot will be empty.", file=sys.stderr)
+        print("⚠ Aucune fonction numpy parsée dans le code LLM. Le graphique sera vide.", file=sys.stderr)
         return
 
     x_vals = []
     y_vals = []
     annotations = []
 
+    # Liste des fonctions trouvées
+    funcs = list(freq_counts.keys())
+
     if bin_size > 0:
-        grouped_data = defaultdict(list)
+        grouped_diffs = defaultdict(list)
         grouped_names = defaultdict(list)
-        for f_name, freq in freq_counts.items():
+        for f_name in funcs:
+            freq = freq_counts[f_name]
+            # Calcul du Taux de difficulté (%)
+            difficulty_rate = (diff_counts[f_name] / freq) * 100
+            
             b_start = (freq // bin_size) * bin_size
-            grouped_data[b_start].append(diff_counts[f_name])
+            grouped_diffs[b_start].append(difficulty_rate)
             grouped_names[b_start].append(f_name)
             
-        b_starts = sorted(grouped_data.keys())
+        b_starts = sorted(grouped_diffs.keys())
         x_vals = [b + bin_size / 2 for b in b_starts]
-        y_vals = [np.mean(grouped_data[b]) for b in b_starts]
+        y_vals = [np.mean(grouped_diffs[b]) for b in b_starts]
         
         for i, b in enumerate(b_starts):
             if len(grouped_names[b]) == 1:
                 annotations.append((x_vals[i], y_vals[i], grouped_names[b][0]))
                 
-        xlabel_text = f"Function Frequency (Bins of {bin_size})"
-        ylabel_text = "Average Difficulty"
+        xlabel_text = f"Fréquence d'apparition (Bacs de {bin_size})"
+        ylabel_text = "Difficulté Moyenne Normalisée (%)"
         out_name = f"difficulty_vs_frequency_grouped_bin{bin_size}.png"
     else:
-        funcs = list(freq_counts.keys())
-        x_vals = [freq_counts[f] for f in funcs]
-        y_vals = [diff_counts[f] for f in funcs]
-        
-        for i, txt in enumerate(funcs):
-            if y_vals[i] > 0:
-                annotations.append((x_vals[i], y_vals[i], txt))
+        for f_name in funcs:
+            freq = freq_counts[f_name]
+            # Calcul du Taux de difficulté (%)
+            difficulty_rate = (diff_counts[f_name] / freq) * 100
+            
+            x_vals.append(freq)
+            y_vals.append(difficulty_rate)
+            
+            # N'annoter que les fonctions qui posent un minimum de problème pour ne pas surcharger
+            if difficulty_rate > 0:
+                annotations.append((freq, difficulty_rate, f_name))
                 
-        xlabel_text = "Total Frequency in LLM Responses (Count)"
-        ylabel_text = "Difficulty (Perturbation Failures without Confusion)"
-        out_name = "difficulty_vs_frequency.png"
+        xlabel_text = "Fréquence d'apparition dans les injections"
+        ylabel_text = "Difficulté Normalisée (Taux d'échec en %)"
+        out_name = "difficulty_vs_frequency_normalized.png"
 
     if len(x_vals) < 2:
-        print("⚠ Not enough data points to compute regression.", file=sys.stderr)
+        print("⚠ Pas assez de points pour calculer une régression.", file=sys.stderr)
         return
 
     x_array = np.array(x_vals)
     y_array = np.array(y_vals)
 
+    # Régression Linéaire (L2 OLS)
     coeffs = np.polyfit(x_array, y_array, 1)
     poly_fn = np.poly1d(coeffs)
     y_pred = poly_fn(x_array)
 
+    # Calcul du R^2
     ss_res = np.sum((y_array - y_pred) ** 2)
     ss_tot = np.sum((y_array - np.mean(y_array)) ** 2)
     r_squared = 1 - (ss_res / ss_tot) if ss_tot != 0 else 0.0
 
     plt.figure(figsize=(14, 8))
-    plt.scatter(x_array, y_array, alpha=0.7, edgecolors='k', label='Data points')
     
+    # Rendre la taille des points proportionnelle à la fréquence peut aussi aider la lecture
+    plt.scatter(x_array, y_array, alpha=0.7, edgecolors='k', label='Données observées')
+    
+    # Tracé de la ligne de régression
     x_line = np.linspace(min(x_array), max(x_array), 100)
     y_line = poly_fn(x_line)
     plt.plot(x_line, y_line, color='red', linestyle='--', 
-             label=f'OLS Fit: y = {coeffs[0]:.4f}x + {coeffs[1]:.4f} ($R^2$ = {r_squared:.4f})')
+             label=f'Ajustement L2 : y = {coeffs[0]:.3f}x + {coeffs[1]:.1f} ($R^2$ = {r_squared:.3f})')
 
+    # Annotations des fonctions
     for x_pos, y_pos, txt in annotations:
         plt.annotate(txt, (x_pos, y_pos), xytext=(5, 5), textcoords='offset points', fontsize=8)
 
-    plt.xlabel(xlabel_text)
-    plt.ylabel(ylabel_text)
-    plt.title("Function Perturbation Difficulty vs Frequency with L2 Regression Fit")
+    plt.xlabel(xlabel_text, fontsize=11)
+    plt.ylabel(ylabel_text, fontsize=11)
+    plt.title("Difficulté de Perturbation selon la Fréquence d'Utilisation des Fonctions", fontsize=13, fontweight="bold")
     plt.grid(True, linestyle='--', alpha=0.6)
     plt.legend()
     
@@ -340,8 +356,7 @@ def _generate_difficulty_plot(entries: list[dict], out_dir: str, bin_size: int =
     plt.savefig(out_path, dpi=300, bbox_inches="tight")
     plt.close()
     
-    print(f"✅ Generated plot: {out_path} (R² = {r_squared:.4f})")
-
+    print(f"✅ Graphique de difficulté généré : {out_path} (R² = {r_squared:.4f})")
 
 def main() -> None:
     parser = argparse.ArgumentParser(

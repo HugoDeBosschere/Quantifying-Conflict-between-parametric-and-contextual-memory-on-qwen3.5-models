@@ -5,10 +5,12 @@
     },
     "llm": {
         "model": [
-            
-            
-            
-            "qwen3.5:4b"
+            "qwen3.5:0.8b",
+            "qwen3.5:2b",
+            "qwen3.5:4b",
+            "qwen3.5:9b",
+            "qwen3.5:27b",
+            "qwen3.5:35b"
         ],
         "temperature": {
             "default": 1
@@ -21,7 +23,6 @@
         "origin_data": "../data/ds1000_npyOnly.jsonl",
         "corrupted_data": "../data/ds1000_npyOnly_corrupted_capitalize.jsonl"
     },
-    
     "new_lib_injection": {
         "name": "WrapCapitalizeNumpy",
         "ast_cleaning_module": "ast_cleaning_capitalize",

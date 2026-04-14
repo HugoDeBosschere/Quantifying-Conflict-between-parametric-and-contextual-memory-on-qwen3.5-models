@@ -309,7 +309,7 @@ def plot_global_all_conditions(data: dict, output_dir: str, group_by: str) -> No
     ax.set_title(f"Performance globale par {group_by} — run_control vs injection", fontsize=12, fontweight="bold", pad=12)
     ax.grid(axis="y", linestyle="--", alpha=0.4)
     plt.tight_layout()
-    out = os.path.join(output_dir, f"plot_global_{group_by}_all.png")
+    out = os.path.join(output_dir, f"plot_global_{group_by}_all.pdf")
     plt.savefig(out, dpi=300)
     plt.close()
     print(f"✅ Sauvegardé : {out}")
@@ -432,7 +432,7 @@ def plot_detailed_breakdown(data: dict, output_dir: str, group_by: str) -> None:
 
     plt.suptitle(f"Détail par {group_by} (Légende : {sec_legend_title}) — run_control vs injection", fontsize=12, fontweight="bold", y=1.002)
     plt.tight_layout()
-    out = os.path.join(output_dir, f"plot_detailed_{group_by}_breakdown.png")
+    out = os.path.join(output_dir, f"plot_detailed_{group_by}_breakdown.pdf")
     plt.savefig(out, dpi=300)
     plt.close()
     print(f"✅ Sauvegardé : {out}")
