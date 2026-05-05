@@ -1,6 +1,7 @@
 import numpy
 import inspect
 import types
+import os
 from inspect import signature
 import re
 import scipy
@@ -10,6 +11,109 @@ import tqdm
 
 
 test_doc = numpy.acos.__doc__
+
+
+def _first_doc_line(doc):
+    if not doc:
+        return ""
+    for line in doc.splitlines():
+        line = line.strip()
+        if line:
+            return line
+    return ""
+
+
+def discover_capitalize_extra_elements():
+    constants, dtypes, ndarray_attrs, ndarray_methods = [], [], [], []
+    for name in sorted(dir(numpy)):
+        if name.startswith("_"):
+            continue
+        try:
+            obj = getattr(numpy, name)
+        except Exception:
+            continue
+        if inspect.isfunction(obj) or isinstance(obj, numpy.ufunc) or isinstance(obj, types.ModuleType):
+            continue
+        if isinstance(obj, type):
+            try:
+                if issubclass(obj, numpy.generic):
+                    dtypes.append((name, _first_doc_line(getattr(obj, "__doc__", ""))))
+            except Exception:
+                pass
+            continue
+        try:
+            is_scalar_like = numpy.isscalar(obj) or obj is None
+        except Exception:
+            is_scalar_like = obj is None
+        if is_scalar_like:
+            constants.append((name, _first_doc_line(getattr(obj, "__doc__", ""))))
+    for name in sorted(dir(numpy.ndarray)):
+        if name.startswith("_"):
+            continue
+        try:
+            obj = getattr(numpy.ndarray, name)
+        except Exception:
+            continue
+        if callable(obj):
+            ndarray_methods.append((name, _first_doc_line(getattr(obj, "__doc__", ""))))
+        else:
+            ndarray_attrs.append((name, _first_doc_line(getattr(obj, "__doc__", ""))))
+    return {
+        "constants": constants,
+        "dtypes": dtypes,
+        "ndarray_attrs": ndarray_attrs,
+        "ndarray_methods": ndarray_methods,
+    }
+
+
+def write_capitalize_extra_full(f, extras):
+    f.write("EXTRA ALIASES (constants, dtypes, ndarray attrs/methods)\n")
+    f.write("=" * 60 + "\n\n")
+    for name, first in extras["constants"]:
+        alias = capitalize_first(name)
+        f.write(f"ALIAS: numpy.{alias}\nMaps to: numpy.{name}\n")
+        if first:
+            f.write(f"Definition: {first}\n")
+        f.write(f"Example: np.{alias}\n\n")
+    for name, first in extras["dtypes"]:
+        alias = capitalize_first(name)
+        f.write(f"ALIAS: numpy.{alias}\nMaps to: numpy.{name}\n")
+        if first:
+            f.write(f"Definition: {first}\n")
+        f.write(f"Example: np.{alias}\n\n")
+    for name, first in extras["ndarray_attrs"]:
+        alias = capitalize_first(name)
+        f.write(f"ALIAS: <ndarray>.{alias}\nMaps to: <ndarray>.{name}\n")
+        if first:
+            f.write(f"Definition: {first}\n")
+        f.write(f"Example: A.{alias}\n\n")
+    for name, first in extras["ndarray_methods"]:
+        alias = capitalize_first(name)
+        f.write(f"ALIAS: <ndarray>.{alias}(...)\nMaps to: <ndarray>.{name}(...)\n")
+        if first:
+            f.write(f"Definition: {first}\n")
+        f.write(f"Example: A.{alias}(...)\n\n")
+
+
+def write_capitalize_extra_minimal(f, extras):
+    f.write("EXTRA ALIASES (minimal)\n")
+    f.write("=" * 60 + "\n\n")
+    for bucket in ("constants", "dtypes", "ndarray_attrs", "ndarray_methods"):
+        for name, _ in extras[bucket]:
+            alias = capitalize_first(name)
+            prefix = "numpy" if bucket in {"constants", "dtypes"} else "ndarray"
+            sig = "(...)" if bucket == "ndarray_methods" else ""
+            f.write(f"FUNCTION: {prefix}.{alias}\n\n{alias}{sig}\n\n")
+
+
+def write_capitalize_extra_ultra(f, extras):
+    f.write("EXTRA ALIASES (ultra-minimal)\n")
+    f.write("=" * 60 + "\n\n")
+    for bucket in ("constants", "dtypes", "ndarray_attrs", "ndarray_methods"):
+        for name, _ in extras[bucket]:
+            alias = capitalize_first(name)
+            prefix = "numpy" if bucket in {"constants", "dtypes"} else "ndarray"
+            f.write(f"FUNCTION: {prefix}.{alias}\n\n")
 
 
 def capitalize_first(name):
@@ -97,6 +201,7 @@ def generate_full_docs(list_module, list_shorthand, output_file):
     the see also section.
     """
     seen_functions = set()
+    extras = discover_capitalize_extra_elements()
     with open(output_file, 'w', encoding='utf-8') as f:
         for base_module in tqdm.tqdm(list_module):
             f.write(f"Reference Documentation for {base_module.__name__} \n")
@@ -135,17 +240,19 @@ def generate_full_docs(list_module, list_shorthand, output_file):
                             new_doc = add_capitalize_signature_full_doc(new_doc)
 
                             f.write(f"FUNCTION: {full_name}\n")
-                            f.write("-" * (10 + len(full_name)) + "\n")
+                            f.write("\n")
                             new_doc = supress_see_also(new_doc)
                             for shorthand in list_shorthand:
                                 new_doc = corrupt_doc(new_doc, shorthand)
 
                             f.write(new_doc + "\n")
-                            f.write("\n" + "#" * 40 + "\n\n")
+                            f.write("\n")
 
                     elif isinstance(obj, types.ModuleType):
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
                             stack.append((obj, f"{prefix}.{name}"))
+            if getattr(base_module, "__name__", "") == "numpy":
+                write_capitalize_extra_full(f, extras)
 
     print(f"Documentation generated in {output_file}")
     print(f"Total unique functions documented: {len(seen_functions)}")
@@ -156,6 +263,7 @@ def generate_ultra_minimal_docs(list_module, output_file):
     Generate a doc with only the capitalized function names and nothing else.
     """
     seen_functions = set()
+    extras = discover_capitalize_extra_elements()
     with open(output_file, 'w', encoding='utf-8') as f:
         for base_module in tqdm.tqdm(list_module):
             f.write(f"Reference Documentation for {base_module.__name__} \n")
@@ -189,11 +297,13 @@ def generate_ultra_minimal_docs(list_module, output_file):
                         raw_doc = obj.__doc__
 
                         f.write(f"FUNCTION: {full_name}\n")
-                        f.write("-" * (10 + len(full_name)) + "\n")
+                        f.write("\n")
 
                     elif isinstance(obj, types.ModuleType):
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
                             stack.append((obj, f"{prefix}.{name}"))
+            if getattr(base_module, "__name__", "") == "numpy":
+                write_capitalize_extra_ultra(f, extras)
 
     print(f"Documentation generated in {output_file}")
     print(f"Total unique functions documented: {len(seen_functions)}")
@@ -205,6 +315,7 @@ def generate_minimal_docs(list_module, output_file):
     when it exists.
     """
     seen_functions = set()
+    extras = discover_capitalize_extra_elements()
     with open(output_file, 'w', encoding='utf-8') as f:
         for base_module in tqdm.tqdm(list_module):
             f.write(f"Reference Documentation for {base_module.__name__} \n")
@@ -245,19 +356,22 @@ def generate_minimal_docs(list_module, output_file):
                             else:
                                 new_doc = ""
                             f.write(f"FUNCTION: {full_name}\n")
-                            f.write("-" * (10 + len(full_name)) + "\n")
+                            f.write("\n")
                             f.write(new_doc + "\n")
-                            f.write("#" * 40 + "\n")
+                            f.write("\n")
 
                     elif isinstance(obj, types.ModuleType):
                         if hasattr(obj, '__name__') and 'numpy' in obj.__name__:
                             stack.append((obj, f"{prefix}.{name}"))
+            if getattr(base_module, "__name__", "") == "numpy":
+                write_capitalize_extra_minimal(f, extras)
 
     print(f"Documentation generated in {output_file}")
     print(f"Total unique functions documented: {len(seen_functions)}")
 
 
 if __name__ == "__main__":
-    generate_full_docs([numpy], ["np", "numpy"], "corrupted_full_doc_numpy_capitalize.txt")
-    generate_ultra_minimal_docs([numpy], output_file="corrupted_ultra_minimal_numpy_capitalize.txt")
-    generate_minimal_docs([numpy], output_file="corrupted_minimal_numpy_capitalize.txt")
+    output_dir = os.path.dirname(os.path.abspath(__file__))
+    generate_full_docs([numpy], ["np", "numpy"], os.path.join(output_dir, "corrupted_full_doc_numpy_capitalize.txt"))
+    generate_ultra_minimal_docs([numpy], output_file=os.path.join(output_dir, "corrupted_ultra_minimal_numpy_capitalize.txt"))
+    generate_minimal_docs([numpy], output_file=os.path.join(output_dir, "corrupted_minimal_numpy_capitalize.txt"))

@@ -10,10 +10,11 @@ Concept:
       chosen perturbation (e.g. _v2, underscore, capitalize). Only the
       SELECTION of which functions apparaissent comme « bruit » dépend de
       noise_ratio, plus la distinction interest / noise utilisée dans les stats.
-    - noise_ratio controls what fraction of non-interest functions are included:
-        0.0 → only interest functions (modified), no noise
-        0.5 → interest functions (modified) + 50% of other functions (unmodified)
-        1.0 → interest functions (modified) + all other functions (unmodified)
+    - noise_ratio controls what fraction of non-interest items are included:
+        0.0 → interest functions (modified) + extras matching interest names only
+          (module constants, dtypes, ndarray attrs/methods named in DS1000 np.* usage)
+        0.5 → … + 50% sample of other functions + 50% sample of other extras
+        1.0 → … + all other functions + all other extras
     - The goal is to test whether LLMs lose track of the modifications when
       they are drowned in large volumes of normal (unmodified) documentation.
 
@@ -42,6 +43,80 @@ import random
 import argparse
 import os
 import tqdm
+
+
+# ============================================================
+# 0. EXTRA ELEMENTS (même logique que v2_numpy_documentation, sans importer ce module
+#    qui charge scipy/matplotlib/pandas au top-level)
+# ============================================================
+
+def _first_doc_line(doc):
+    """Return first non-empty line from docstring."""
+    if not doc:
+        return ""
+    for line in doc.splitlines():
+        line = line.strip()
+        if line:
+            return line
+    return ""
+
+
+def discover_v2_extra_elements():
+    """
+    Découvre constantes module, dtypes np.generic, attributs / méthodes ndarray.
+    (Copie alignée sur v2_numpy_documentation.discover_v2_extra_elements.)
+    """
+    constants = []
+    dtypes = []
+    ndarray_attrs = []
+    ndarray_methods = []
+
+    for name in sorted(dir(numpy)):
+        if name.startswith("_"):
+            continue
+        try:
+            obj = getattr(numpy, name)
+        except Exception:
+            continue
+
+        if inspect.isfunction(obj) or isinstance(obj, numpy.ufunc):
+            continue
+        if isinstance(obj, types.ModuleType):
+            continue
+
+        if isinstance(obj, type):
+            try:
+                if issubclass(obj, numpy.generic):
+                    dtypes.append((name, _first_doc_line(getattr(obj, "__doc__", ""))))
+            except Exception:
+                pass
+            continue
+
+        try:
+            is_scalar_like = numpy.isscalar(obj) or obj is None
+        except Exception:
+            is_scalar_like = obj is None
+        if is_scalar_like:
+            constants.append((name, _first_doc_line(getattr(obj, "__doc__", ""))))
+
+    for name in sorted(dir(numpy.ndarray)):
+        if name.startswith("_"):
+            continue
+        try:
+            obj = getattr(numpy.ndarray, name)
+        except Exception:
+            continue
+        if callable(obj):
+            ndarray_methods.append((name, _first_doc_line(getattr(obj, "__doc__", ""))))
+        else:
+            ndarray_attrs.append((name, _first_doc_line(getattr(obj, "__doc__", ""))))
+
+    return {
+        "constants": constants,
+        "dtypes": dtypes,
+        "ndarray_attrs": ndarray_attrs,
+        "ndarray_methods": ndarray_methods,
+    }
 
 
 # ============================================================
@@ -294,12 +369,172 @@ def select_functions(all_functions, interest_set, noise_ratio, seed=42):
     return selected, stats
 
 
-def generate_noisy_full_doc(selected_functions, perturbation_key,
-                            list_shorthand, output_file):
+# ============================================================
+# 3b. EXTRA ELEMENTS (constants, dtypes, ndarray attrs/methods)
+# ============================================================
+
+def _flatten_extras(extras_dict):
+    """Aplatit le retour de discover_v2_extra_elements en entrées sélectionnables."""
+    out = []
+    for name, first_line in extras_dict["constants"]:
+        out.append({"category": "constant", "name": name, "first_line": first_line})
+    for name, first_line in extras_dict["dtypes"]:
+        out.append({"category": "dtype", "name": name, "first_line": first_line})
+    for name, first_line in extras_dict["ndarray_attrs"]:
+        out.append({"category": "ndarray_attr", "name": name, "first_line": first_line})
+    for name, first_line in extras_dict["ndarray_methods"]:
+        out.append({"category": "ndarray_method", "name": name, "first_line": first_line})
+    return out
+
+
+def select_extra_entries(extras_dict, interest_set, noise_ratio, seed=42):
+    """
+    Comme select_functions : entrées d'intérêt (nom présent dans interest_set)
+    + échantillon du reste selon noise_ratio.
+    """
+    all_entries = _flatten_extras(extras_dict)
+    interest = [e for e in all_entries if e["name"] in interest_set]
+    noise_pool = [e for e in all_entries if e["name"] not in interest_set]
+    n_noise = int(len(noise_pool) * noise_ratio)
+    rng = random.Random(seed + 4242)
+    if n_noise >= len(noise_pool):
+        selected_noise = noise_pool
+    else:
+        selected_noise = rng.sample(noise_pool, n_noise)
+    selected = interest + selected_noise
+    stats = {
+        "extra_interest": len(interest),
+        "extra_noise_total": len(noise_pool),
+        "extra_noise_selected": len(selected_noise),
+        "extra_total_included": len(selected),
+    }
+    return selected, stats
+
+
+def _sort_extras_selected(selected_extras, perturbation_key):
+    p = PERTURBATIONS[perturbation_key]
+
+    def _sort_key(e):
+        disp = p["modify_func_name"](e["name"])
+        cat = e["category"]
+        if cat == "constant":
+            return ("0", f"numpy.{disp}")
+        if cat == "dtype":
+            return ("1", f"numpy.{disp}")
+        if cat == "ndarray_attr":
+            return ("2", f"ndarray.{disp}")
+        return ("3", f"ndarray.{disp}")
+
+    return sorted(selected_extras, key=_sort_key)
+
+
+def _corrupt_line(line, perturbation_key, list_shorthand):
+    if not line:
+        return ""
+    p = PERTURBATIONS[perturbation_key]
+    out = line
+    for sh in list_shorthand:
+        out = p["modify_doc_text"](out, sh)
+    return out
+
+
+def write_noisy_extras_full(f, selected_extras, perturbation_key, list_shorthand):
+    """Sections ALIAS (constantes, dtypes, ndarray), doc courte + perturbation du texte."""
+    p = PERTURBATIONS[perturbation_key]
+    rows = _sort_extras_selected(selected_extras, perturbation_key)
+    if not rows:
+        return
+
+    f.write("EXTRA ALIASES (constants, dtypes, ndarray attrs/methods)\n\n")
+
+    f.write("CONSTANTS / NUMPY ATTRIBUTES\n\n")
+    for e in rows:
+        if e["category"] != "constant":
+            continue
+        disp = p["modify_func_name"](e["name"])
+        fl = _corrupt_line(e["first_line"], perturbation_key, list_shorthand)
+        f.write(f"ALIAS: numpy.{disp}\n")
+        f.write(f"Maps to: numpy.{e['name']}\n")
+        if fl:
+            f.write(f"Definition: {fl}\n")
+        f.write(f"Example: np.{disp}\n")
+        f.write("\n")
+    f.write("\n")
+
+    f.write("NUMPY DTYPES\n\n")
+    for e in rows:
+        if e["category"] != "dtype":
+            continue
+        disp = p["modify_func_name"](e["name"])
+        fl = _corrupt_line(e["first_line"], perturbation_key, list_shorthand)
+        f.write(f"ALIAS: numpy.{disp}\n")
+        f.write(f"Maps to: numpy.{e['name']}\n")
+        if fl:
+            f.write(f"Definition: {fl}\n")
+        f.write(f"Example: np.{disp}\n")
+        f.write("\n")
+    f.write("\n")
+
+    f.write("NDARRAY ATTRIBUTES / METHODS\n\n")
+    for e in rows:
+        if e["category"] not in ("ndarray_attr", "ndarray_method"):
+            continue
+        disp = p["modify_func_name"](e["name"])
+        fl = _corrupt_line(e["first_line"], perturbation_key, list_shorthand)
+        kind = "(...)" if e["category"] == "ndarray_method" else ""
+        f.write(f"ALIAS: <ndarray>.{disp}{kind}\n")
+        f.write(f"Maps to: <ndarray>.{e['name']}{kind}\n")
+        if fl:
+            f.write(f"Definition: {fl}\n")
+        ex = f"A.{disp}{'(...)' if e['category'] == 'ndarray_method' else ''}"
+        f.write(f"Example: {ex}\n")
+        f.write("\n")
+    f.write("\n")
+
+
+def write_noisy_extras_minimal(f, selected_extras, perturbation_key):
+    p = PERTURBATIONS[perturbation_key]
+    rows = _sort_extras_selected(selected_extras, perturbation_key)
+    if not rows:
+        return
+
+    f.write("EXTRA ALIASES (minimal)\n\n")
+    for e in rows:
+        disp = p["modify_func_name"](e["name"])
+        if e["category"] in ("constant", "dtype"):
+            f.write(f"FUNCTION: numpy.{disp}\n\n")
+            f.write(f"{disp}\n\n")
+        elif e["category"] == "ndarray_attr":
+            f.write(f"FUNCTION: ndarray.{disp}\n\n")
+            f.write(f"{disp}\n\n")
+        else:
+            f.write(f"FUNCTION: ndarray.{disp}\n\n")
+            f.write(f"{disp}(...)\n\n")
+
+
+def write_noisy_extras_ultra_minimal(f, selected_extras, perturbation_key):
+    p = PERTURBATIONS[perturbation_key]
+    rows = _sort_extras_selected(selected_extras, perturbation_key)
+    if not rows:
+        return
+
+    f.write("EXTRA ALIASES (ultra-minimal)\n\n")
+    for e in rows:
+        disp = p["modify_func_name"](e["name"])
+        if e["category"] in ("constant", "dtype"):
+            f.write(f"FUNCTION: numpy.{disp}\n\n")
+        elif e["category"] == "ndarray_attr":
+            f.write(f"FUNCTION: ndarray.{disp}\n\n")
+        else:
+            f.write(f"FUNCTION: ndarray.{disp}\n\n")
+
+
+def generate_noisy_full_doc(selected_functions, selected_extras,
+                            perturbation_key, list_shorthand, output_file):
     """
     Generate full doc (name + signature + full docstring).
     All included functions (interest + noise) are MODIFIED according to the
-    perturbation.
+    perturbation. Les extras (constantes, dtypes, ndarray) suivent la même logique.
     """
     p = PERTURBATIONS[perturbation_key]
 
@@ -310,8 +545,7 @@ def generate_noisy_full_doc(selected_functions, perturbation_key,
     )
 
     with open(output_file, 'w', encoding='utf-8') as f:
-        f.write("Reference Documentation for numpy \n")
-        f.write("=" * 60 + "\n\n")
+        f.write("Reference Documentation for numpy\n\n")
 
         for prefix, name, obj, is_interest in tqdm.tqdm(selected_functions_sorted, desc="full"):
             raw_doc = obj.__doc__
@@ -327,9 +561,11 @@ def generate_noisy_full_doc(selected_functions, perturbation_key,
 
             full_name = f"{prefix}.{display_name}"
             f.write(f"FUNCTION: {full_name}\n")
-            f.write("-" * (10 + len(full_name)) + "\n")
-            f.write(new_doc + "\n")
-            f.write("\n" + "#" * 40 + "\n\n")
+            f.write(new_doc + "\n\n")
+
+        if selected_extras:
+            f.write("\n")
+            write_noisy_extras_full(f, selected_extras, perturbation_key, list_shorthand)
 
     print(f"  Full doc generated: {output_file}")
 
@@ -344,12 +580,12 @@ def _extract_real_signature(docstring):
     return ""
 
 
-def generate_noisy_minimal_doc(selected_functions, perturbation_key,
-                               output_file):
+def generate_noisy_minimal_doc(selected_functions, selected_extras,
+                               perturbation_key, output_file):
     """
     Generate minimal doc (name + first-line signature).
     All included functions (interest + noise) are MODIFIED according to the
-    perturbation.
+    perturbation. Extras en fin de fichier.
     """
     p = PERTURBATIONS[perturbation_key]
 
@@ -360,8 +596,7 @@ def generate_noisy_minimal_doc(selected_functions, perturbation_key,
     )
 
     with open(output_file, 'w', encoding='utf-8') as f:
-        f.write("Reference Documentation for numpy \n")
-        f.write("=" * 60 + "\n\n")
+        f.write("Reference Documentation for numpy\n\n")
 
         for prefix, name, obj, is_interest in tqdm.tqdm(selected_functions_sorted, desc="minimal"):
             raw_doc = obj.__doc__
@@ -375,19 +610,21 @@ def generate_noisy_minimal_doc(selected_functions, perturbation_key,
             full_name = f"{prefix}.{display_name}"
 
             f.write(f"FUNCTION: {full_name}\n")
-            f.write("-" * (10 + len(full_name)) + "\n")
-            f.write((sig or "") + "\n")
-            f.write("#" * 40 + "\n")
+            f.write((sig or "") + "\n\n")
+
+        if selected_extras:
+            f.write("\n")
+            write_noisy_extras_minimal(f, selected_extras, perturbation_key)
 
     print(f"  Minimal doc generated: {output_file}")
 
 
-def generate_noisy_ultra_minimal_doc(selected_functions, perturbation_key,
-                                     output_file):
+def generate_noisy_ultra_minimal_doc(selected_functions, selected_extras,
+                                     perturbation_key, output_file):
     """
     Generate ultra-minimal doc (name only).
     All included functions (interest + noise) are MODIFIED according to the
-    perturbation.
+    perturbation. Extras en fin de fichier.
     """
     p = PERTURBATIONS[perturbation_key]
 
@@ -398,8 +635,7 @@ def generate_noisy_ultra_minimal_doc(selected_functions, perturbation_key,
     )
 
     with open(output_file, 'w', encoding='utf-8') as f:
-        f.write("Reference Documentation for numpy \n")
-        f.write("=" * 60 + "\n\n")
+        f.write("Reference Documentation for numpy\n\n")
 
         for prefix, name, obj, is_interest in tqdm.tqdm(selected_functions_sorted, desc="ultra_minimal"):
             raw_doc = obj.__doc__
@@ -410,8 +646,11 @@ def generate_noisy_ultra_minimal_doc(selected_functions, perturbation_key,
             display_name = p["modify_func_name"](name)
 
             full_name = f"{prefix}.{display_name}"
-            f.write(f"FUNCTION: {full_name}\n")
-            f.write("-" * (10 + len(full_name)) + "\n")
+            f.write(f"FUNCTION: {full_name}\n\n")
+
+        if selected_extras:
+            f.write("\n")
+            write_noisy_extras_ultra_minimal(f, selected_extras, perturbation_key)
 
     print(f"  Ultra-minimal doc generated: {output_file}")
 
@@ -444,6 +683,16 @@ def generate_all_docs(perturbation_key, noise_ratio, ds1000_path,
           f"Noise: {stats['noise_selected']}/{stats['noise_total']} | "
           f"Total: {stats['total_included']}")
 
+    extras_dict = discover_v2_extra_elements()
+    selected_extras, extra_stats = select_extra_entries(
+        extras_dict, interest_set, noise_ratio, seed
+    )
+    stats.update(extra_stats)
+    print(f"       Extras: interest {extra_stats['extra_interest']} | "
+          f"noise {extra_stats['extra_noise_selected']}/"
+          f"{extra_stats['extra_noise_total']} | "
+          f"total {extra_stats['extra_total_included']}")
+
     noise_pct = int(noise_ratio * 100)
     base = f"corrupted_{{level}}_numpy_{perturbation_key}_noise{noise_pct}.txt"
 
@@ -454,13 +703,17 @@ def generate_all_docs(perturbation_key, noise_ratio, ds1000_path,
     ultra_path = os.path.join(output_dir, base.format(level="ultra_minimal"))
 
     generate_noisy_full_doc(
-        selected, perturbation_key, ["np", "numpy"], full_path
+        selected,
+        selected_extras,
+        perturbation_key,
+        ["np", "numpy"],
+        full_path,
     )
     generate_noisy_minimal_doc(
-        selected, perturbation_key, minimal_path
+        selected, selected_extras, perturbation_key, minimal_path
     )
     generate_noisy_ultra_minimal_doc(
-        selected, perturbation_key, ultra_path
+        selected, selected_extras, perturbation_key, ultra_path
     )
 
     interest_file = os.path.join(

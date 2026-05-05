@@ -1,0 +1,48 @@
+{
+    "exec": {
+        "timeout": 120,
+        "pass_at": 10
+    },
+    "llm": {
+        "model": [
+            "gemma3:12b",
+            "qwen2.5-coder:32b",
+            "codestral",
+            "devstral"
+        ],
+        "temperature": {
+            "default": 0.9,
+            "gemma3:12b": 0.9,
+            "qwen2.5-coder:32b": 0.9,
+            "codestral": 0.9,
+            "devstral": 0.9
+        },
+        "num_ctx": 30000,
+        "seed": 42,
+        "api_url": "http://localhost:11434/api"
+    },
+    "data": {
+        "origin_data": "../data/ds1000_npyOnly.jsonl",
+        "corrupted_data": "../data/ds1000_npyOnly_corrupted_underscore.jsonl"
+    },
+    "real_lib": {
+        "name": "Numpy",
+        "custom_lib_path": null,
+        "system_prompt": "You are a Python Data Science expert.\n Complete the code between Markdowns to solve the problem.\n IMPORTANT CONSTRAINTS:\n 1. Assume that input data (arrays) is ALREADY LOADED.\n2. Do NOT redefine input variables or create mock data only the code to be executed is required.\n 3. Do NOT import standard libraries.\n 4. Do not import functions from standard librairies \n 5. Return ONLY the code inside a markdown block.\n 6. the numpy function you use must all start with 'np.'\n 7. Be aware of which variable you should modify \n IMPORTANT: The generated code must be strictly executable Python. Do NOT include comments showing the expected output, console logs, or print results (like [1. 2. 3.] or array(...)) inside the code block. This causes SyntaxErrors. ",
+        "documentation": {
+
+        }
+    },
+    "new_lib_injection": {
+        "name": "WrapUnderscoreNumpy",
+        "ast_cleaning_module": "ast_cleaning_underscore",
+        "custom_lib_path": "/usr/users/sdim/sdim_25/memory_code_eval/src",
+        "system_prompt": "You are a Python Data Science expert.\n Complete the code between Markdowns to solve the problem.\n IMPORTANT CONSTRAINTS:\n 1. Assume that input data (arrays) is ALREADY LOADED.\n2. Do NOT redefine input variables or create mock data only the code to be executed is required.\n 3. Do NOT import standard libraries.\n 4. Do not import functions from standard librairies \n 5. Return ONLY the code inside a markdown block.\n 6. the numpy function you use must all start with 'np.'\n 7. Be aware of which variable you should modify \n IMPORTANT: The generated code must be strictly executable Python. Do NOT include comments showing the expected output, console logs, or print results (like [1. 2. 3.] or array(...)) inside the code block. This causes SyntaxErrors. ",
+        "documentation": {
+            "explanation_v2": {
+                "intro": "This is the new version of the numpy library documentation that I am currently using. \n IMPORTANT CONSTRAINT : You must take into account the updates present in the new documentation, otherwise the code won't compile. \n Any code requiring numpy functions must comply with the latest version, according to the following documentation. \n Caution: The new update on the library is similar to what you already know, take into account the differences.",
+                "path": "/usr/users/sdim/sdim_25/memory_code_eval/src/documentation/doc_explanation.txt"
+            }
+        }
+    }
+}

@@ -88,8 +88,13 @@ def fmt_entry(e: dict, *, kind: str) -> str:
             lines.append(f"[{kind}] stdout_control={_short(e.get('stdout_control', ''))!r}")
             lines.append(f"[{kind}] stderr_control={_short(e.get('stderr_control', ''))!r}")
 
+    raw = (e.get("llm_code_raw") or "").rstrip()
     code = (e.get("llm_code") or "").rstrip()
-    lines.append(f"[{kind}] llm_code:\n{code if code else '<EMPTY>'}")
+    if raw and raw != code:
+        lines.append(f"[{kind}] llm_code_raw (before AST cleaning):\n{raw if raw else '<EMPTY>'}")
+        lines.append(f"[{kind}] llm_code (after AST cleaning):\n{code if code else '<EMPTY>'}")
+    else:
+        lines.append(f"[{kind}] llm_code:\n{code if code else '<EMPTY>'}")
     return "\n".join(lines)
 
 
@@ -135,6 +140,7 @@ def _write_report_for_model_doc(
     control_by_pid: dict[int, dict],
     inj_entries: list[dict],
     only_mismatches: bool,
+    only_both_failed: bool,
     max_pairs: int,
 ) -> tuple[int, int]:
     """Return (pairs_written, candidates_seen)."""
@@ -166,6 +172,12 @@ def _write_report_for_model_doc(
             candidates_seen += 1
             if only_mismatches and inj.get("passed", False):
                 continue
+            if only_both_failed:
+                # Keep only cases where injection fails AND the same code also fails in CONTROL mode.
+                if inj.get("passed", False):
+                    continue
+                if inj.get("control_passed", False):
+                    continue
 
             f.write(f"PROBLEM {pid}\n")
             f.write("-" * 90 + "\n")
@@ -215,6 +227,11 @@ def main() -> None:
         "--only-mismatches",
         action="store_true",
         help="Only include pairs where control passed but injection did NOT pass.",
+    )
+    parser.add_argument(
+        "--only-both-failed",
+        action="store_true",
+        help="Only include pairs where injection failed AND control_passed is also false (passed=false and control_passed=false).",
     )
     parser.add_argument(
         "--max-pairs",
@@ -287,6 +304,7 @@ def main() -> None:
                 control_by_pid=control_by_pid,
                 inj_entries=inj_entries,
                 only_mismatches=args.only_mismatches,
+                only_both_failed=args.only_both_failed,
                 max_pairs=args.max_pairs,
             )
             total_reports += 1

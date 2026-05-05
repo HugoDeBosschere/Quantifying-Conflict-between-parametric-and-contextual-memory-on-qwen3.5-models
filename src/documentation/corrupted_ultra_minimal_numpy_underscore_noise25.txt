@@ -1,0 +1,417 @@
+Reference Documentation for numpy
+
+FUNCTION: numpy.abs_
+
+FUNCTION: numpy.acos_
+
+FUNCTION: numpy.arcsin_
+
+FUNCTION: numpy.arcsinh_
+
+FUNCTION: numpy.arctanh_
+
+FUNCTION: numpy.binary_repr_
+
+FUNCTION: numpy.blackman_
+
+FUNCTION: numpy.char.asarray_
+
+FUNCTION: numpy.char.multiply_
+
+FUNCTION: numpy.char.split_
+
+FUNCTION: numpy.copysign_
+
+FUNCTION: numpy.cos_
+
+FUNCTION: numpy.ctypeslib.as_ctypes_
+
+FUNCTION: numpy.ctypeslib.ndpointer_
+
+FUNCTION: numpy.deg2rad_
+
+FUNCTION: numpy.degrees_
+
+FUNCTION: numpy.diag_indices_
+
+FUNCTION: numpy.divide_
+
+FUNCTION: numpy.exp2_
+
+FUNCTION: numpy.exp_
+
+FUNCTION: numpy.eye_
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.getlincoef_
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.openhook_
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.param_parse_
+
+FUNCTION: numpy.f2py.f2py2e.crackfortran.traverse_
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_routsign2map_
+
+FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.f2cexpr_
+
+FUNCTION: numpy.f2py.run_main_
+
+FUNCTION: numpy.f2py.symbolic.as_real_
+
+FUNCTION: numpy.f2py.symbolic.as_ref_
+
+FUNCTION: numpy.f2py.symbolic.as_symbol_
+
+FUNCTION: numpy.f2py.symbolic.as_terms_
+
+FUNCTION: numpy.f2py.symbolic.as_ternary_
+
+FUNCTION: numpy.f2py.symbolic.fromstring_
+
+FUNCTION: numpy.f2py.symbolic.normalize_
+
+FUNCTION: numpy.f2py.symbolic.replace_parenthesis_
+
+FUNCTION: numpy.floor_
+
+FUNCTION: numpy.full_
+
+FUNCTION: numpy.gcd_
+
+FUNCTION: numpy.get_include_
+
+FUNCTION: numpy.getbufsize_
+
+FUNCTION: numpy.identity_
+
+FUNCTION: numpy.indices_
+
+FUNCTION: numpy.isdtype_
+
+FUNCTION: numpy.isnan_
+
+FUNCTION: numpy.issubdtype_
+
+FUNCTION: numpy.kaiser_
+
+FUNCTION: numpy.less_
+
+FUNCTION: numpy.less_equal_
+
+FUNCTION: numpy.lib.array_utils.byte_bounds_
+
+FUNCTION: numpy.lib.format.dtype_to_descr_
+
+FUNCTION: numpy.lib.format.read_array_
+
+FUNCTION: numpy.lib.format.write_array_header_2_0_
+
+FUNCTION: numpy.lib.introspect.opt_func_info_
+
+FUNCTION: numpy.loadtxt_
+
+FUNCTION: numpy.logical_and_
+
+FUNCTION: numpy.logical_not_
+
+FUNCTION: numpy.logical_or_
+
+FUNCTION: numpy.ma.allclose_
+
+FUNCTION: numpy.ma.apply_over_axes_
+
+FUNCTION: numpy.ma.asanyarray_
+
+FUNCTION: numpy.ma.asarray_
+
+FUNCTION: numpy.ma.choose_
+
+FUNCTION: numpy.ma.compress_rowcols_
+
+FUNCTION: numpy.ma.concatenate_
+
+FUNCTION: numpy.ma.cov_
+
+FUNCTION: numpy.ma.default_fill_value_
+
+FUNCTION: numpy.ma.diag_
+
+FUNCTION: numpy.ma.diff_
+
+FUNCTION: numpy.ma.extras.ma.get_object_signature_
+
+FUNCTION: numpy.ma.extras.ma.getargspec_
+
+FUNCTION: numpy.ma.extras.ma.ntypes.issubsctype_
+
+FUNCTION: numpy.ma.extras.ma.umath.clip_
+
+FUNCTION: numpy.ma.extras.ma.umath.rindex_
+
+FUNCTION: numpy.ma.extras.normalize_axis_tuple_
+
+FUNCTION: numpy.ma.filled_
+
+FUNCTION: numpy.ma.flatnotmasked_contiguous_
+
+FUNCTION: numpy.ma.isMA_
+
+FUNCTION: numpy.ma.isin_
+
+FUNCTION: numpy.ma.make_mask_
+
+FUNCTION: numpy.ma.masked_values_
+
+FUNCTION: numpy.ma.masked_where_
+
+FUNCTION: numpy.ma.median_
+
+FUNCTION: numpy.ma.min_
+
+FUNCTION: numpy.ma.notmasked_edges_
+
+FUNCTION: numpy.ma.reshape_
+
+FUNCTION: numpy.ma.vander_
+
+FUNCTION: numpy.maximum_
+
+FUNCTION: numpy.mintypecode_
+
+FUNCTION: numpy.modf_
+
+FUNCTION: numpy.multiply_
+
+FUNCTION: numpy.ones_
+
+FUNCTION: numpy.polynomial.chebyshev.chebgrid3d_
+
+FUNCTION: numpy.polynomial.chebyshev.chebmul_
+
+FUNCTION: numpy.polynomial.chebyshev.chebpts2_
+
+FUNCTION: numpy.polynomial.hermite.hermdiv_
+
+FUNCTION: numpy.polynomial.hermite.hermmul_
+
+FUNCTION: numpy.polynomial.hermite.hermmulx_
+
+FUNCTION: numpy.polynomial.hermite.hermvander2d_
+
+FUNCTION: numpy.polynomial.hermite.hermvander3d_
+
+FUNCTION: numpy.polynomial.hermite_e.hermeline_
+
+FUNCTION: numpy.polynomial.hermite_e.hermeroots_
+
+FUNCTION: numpy.polynomial.hermite_e.hermevander_
+
+FUNCTION: numpy.polynomial.laguerre.laggrid3d_
+
+FUNCTION: numpy.polynomial.laguerre.lagint_
+
+FUNCTION: numpy.polynomial.laguerre.lagline_
+
+FUNCTION: numpy.polynomial.laguerre.lagmulx_
+
+FUNCTION: numpy.polynomial.laguerre.lagpow_
+
+FUNCTION: numpy.polynomial.laguerre.lagsub_
+
+FUNCTION: numpy.polynomial.laguerre.lagvander2d_
+
+FUNCTION: numpy.polynomial.laguerre.poly2lag_
+
+FUNCTION: numpy.polynomial.legendre.legder_
+
+FUNCTION: numpy.polynomial.legendre.legint_
+
+FUNCTION: numpy.polynomial.legendre.legline_
+
+FUNCTION: numpy.polynomial.legendre.legroots_
+
+FUNCTION: numpy.polynomial.legendre.legval_
+
+FUNCTION: numpy.polynomial.legendre.legvander3d_
+
+FUNCTION: numpy.polynomial.polynomial.polycompanion_
+
+FUNCTION: numpy.polynomial.polynomial.polydiv_
+
+FUNCTION: numpy.polynomial.polynomial.polyfit_
+
+FUNCTION: numpy.polynomial.polynomial.polygrid3d_
+
+FUNCTION: numpy.polynomial.polynomial.polymul_
+
+FUNCTION: numpy.polynomial.polynomial.polymulx_
+
+FUNCTION: numpy.polynomial.polynomial.polypow_
+
+FUNCTION: numpy.polynomial.polynomial.polyval_
+
+FUNCTION: numpy.polynomial.polynomial.polyvander2d_
+
+FUNCTION: numpy.polynomial.polynomial.polyvander3d_
+
+FUNCTION: numpy.positive_
+
+FUNCTION: numpy.pow_
+
+FUNCTION: numpy.printoptions_
+
+FUNCTION: numpy.rad2deg_
+
+FUNCTION: numpy.rec.fromrecords_
+
+FUNCTION: numpy.rint_
+
+FUNCTION: numpy.seterr_
+
+FUNCTION: numpy.seterrcall_
+
+FUNCTION: numpy.signbit_
+
+FUNCTION: numpy.sin_
+
+FUNCTION: numpy.sqrt_
+
+FUNCTION: numpy.strings.capitalize_
+
+FUNCTION: numpy.strings.count_
+
+FUNCTION: numpy.strings.encode_
+
+FUNCTION: numpy.strings.endswith_
+
+FUNCTION: numpy.strings.expandtabs_
+
+FUNCTION: numpy.strings.index_
+
+FUNCTION: numpy.strings.isnumeric_
+
+FUNCTION: numpy.strings.mod_
+
+FUNCTION: numpy.strings.translate_
+
+FUNCTION: numpy.subtract_
+
+FUNCTION: numpy.tanh_
+
+FUNCTION: numpy.testing.assert_array_almost_equal_
+
+FUNCTION: numpy.testing.assert_array_almost_equal_nulp_
+
+FUNCTION: numpy.testing.assert_array_less_
+
+FUNCTION: numpy.testing.check_support_sve_
+
+FUNCTION: numpy.testing.extbuild.compile_extension_module_
+
+FUNCTION: numpy.testing.memusage_
+
+FUNCTION: numpy.testing.overrides.get_overridable_numpy_ufuncs_
+
+FUNCTION: numpy.tril_indices_
+
+
+EXTRA ALIASES (ultra-minimal)
+
+FUNCTION: numpy.inf_
+
+FUNCTION: numpy.nan_
+
+FUNCTION: numpy.newaxis_
+
+FUNCTION: numpy.bool_
+
+FUNCTION: numpy.bytes__
+
+FUNCTION: numpy.complex256_
+
+FUNCTION: numpy.complexfloating_
+
+FUNCTION: numpy.double_
+
+FUNCTION: numpy.float32_
+
+FUNCTION: numpy.float64_
+
+FUNCTION: numpy.inexact_
+
+FUNCTION: numpy.int64_
+
+FUNCTION: numpy.int__
+
+FUNCTION: numpy.intc_
+
+FUNCTION: numpy.long_
+
+FUNCTION: numpy.longdouble_
+
+FUNCTION: numpy.longlong_
+
+FUNCTION: numpy.uint32_
+
+FUNCTION: numpy.uint8_
+
+FUNCTION: numpy.uintc_
+
+FUNCTION: numpy.uintp_
+
+FUNCTION: ndarray.T_
+
+FUNCTION: ndarray.base_
+
+FUNCTION: ndarray.imag_
+
+FUNCTION: ndarray.itemset_
+
+FUNCTION: ndarray.itemsize_
+
+FUNCTION: ndarray.mT_
+
+FUNCTION: ndarray.newbyteorder_
+
+FUNCTION: ndarray.real_
+
+FUNCTION: ndarray.all_
+
+FUNCTION: ndarray.any_
+
+FUNCTION: ndarray.argsort_
+
+FUNCTION: ndarray.clip_
+
+FUNCTION: ndarray.cumsum_
+
+FUNCTION: ndarray.dot_
+
+FUNCTION: ndarray.item_
+
+FUNCTION: ndarray.max_
+
+FUNCTION: ndarray.mean_
+
+FUNCTION: ndarray.min_
+
+FUNCTION: ndarray.nonzero_
+
+FUNCTION: ndarray.put_
+
+FUNCTION: ndarray.repeat_
+
+FUNCTION: ndarray.reshape_
+
+FUNCTION: ndarray.sort_
+
+FUNCTION: ndarray.sum_
+
+FUNCTION: ndarray.tobytes_
+
+FUNCTION: ndarray.trace_
+
+FUNCTION: ndarray.transpose_
+
+FUNCTION: ndarray.var_
+

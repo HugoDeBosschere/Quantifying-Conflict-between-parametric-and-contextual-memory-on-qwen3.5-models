@@ -2,1598 +2,1877 @@ Reference Documentation for numpy
 ============================================================
 
 FUNCTION: numpy.Abs
--------------------
+
 FUNCTION: numpy.Acos
---------------------
+
 FUNCTION: numpy.Acosh
----------------------
+
 FUNCTION: numpy.Add
--------------------
+
 FUNCTION: numpy.Arcsin
-----------------------
+
 FUNCTION: numpy.Arcsinh
------------------------
+
 FUNCTION: numpy.Arctan
-----------------------
+
 FUNCTION: numpy.Arctan2
------------------------
+
 FUNCTION: numpy.Arctanh
------------------------
+
 FUNCTION: numpy.Asarray_chkfinite
----------------------------------
+
 FUNCTION: numpy.Asmatrix
-------------------------
+
 FUNCTION: numpy.Bartlett
-------------------------
+
 FUNCTION: numpy.Base_repr
--------------------------
+
 FUNCTION: numpy.Binary_repr
----------------------------
+
 FUNCTION: numpy.Bitwise_and
----------------------------
+
 FUNCTION: numpy.Bitwise_count
------------------------------
+
 FUNCTION: numpy.Bitwise_invert
-------------------------------
+
 FUNCTION: numpy.Bitwise_left_shift
-----------------------------------
+
 FUNCTION: numpy.Bitwise_or
---------------------------
+
 FUNCTION: numpy.Bitwise_right_shift
------------------------------------
+
 FUNCTION: numpy.Bitwise_xor
----------------------------
+
 FUNCTION: numpy.Blackman
-------------------------
+
 FUNCTION: numpy.Bmat
---------------------
+
 FUNCTION: numpy.Broadcast_shapes
---------------------------------
+
 FUNCTION: numpy.Cbrt
---------------------
+
 FUNCTION: numpy.Ceil
---------------------
+
 FUNCTION: numpy.Conj
---------------------
+
 FUNCTION: numpy.Copysign
-------------------------
+
 FUNCTION: numpy.Cos
--------------------
+
 FUNCTION: numpy.Cosh
---------------------
+
 FUNCTION: numpy.Deg2rad
------------------------
+
 FUNCTION: numpy.Degrees
------------------------
+
 FUNCTION: numpy.Diag_indices
-----------------------------
+
 FUNCTION: numpy.Divide
-----------------------
+
 FUNCTION: numpy.Divmod
-----------------------
+
 FUNCTION: numpy.Equal
----------------------
+
 FUNCTION: numpy.Exp
--------------------
+
 FUNCTION: numpy.Exp2
---------------------
+
 FUNCTION: numpy.Expm1
----------------------
+
 FUNCTION: numpy.Eye
--------------------
+
 FUNCTION: numpy.Fabs
---------------------
+
 FUNCTION: numpy.Float_power
----------------------------
+
 FUNCTION: numpy.Floor
----------------------
+
 FUNCTION: numpy.Floor_divide
-----------------------------
+
 FUNCTION: numpy.Fmax
---------------------
+
 FUNCTION: numpy.Fmin
---------------------
+
 FUNCTION: numpy.Fmod
---------------------
+
 FUNCTION: numpy.Format_float_positional
----------------------------------------
+
 FUNCTION: numpy.Format_float_scientific
----------------------------------------
+
 FUNCTION: numpy.Frexp
----------------------
+
 FUNCTION: numpy.Fromfunction
-----------------------------
+
 FUNCTION: numpy.Fromregex
--------------------------
+
 FUNCTION: numpy.Full
---------------------
+
 FUNCTION: numpy.Gcd
--------------------
+
 FUNCTION: numpy.Genfromtxt
---------------------------
+
 FUNCTION: numpy.Get_include
----------------------------
+
 FUNCTION: numpy.Get_printoptions
---------------------------------
+
 FUNCTION: numpy.Getbufsize
---------------------------
+
 FUNCTION: numpy.Geterr
-----------------------
+
 FUNCTION: numpy.Geterrcall
---------------------------
+
 FUNCTION: numpy.Greater
------------------------
+
 FUNCTION: numpy.Greater_equal
------------------------------
+
 FUNCTION: numpy.Hamming
------------------------
+
 FUNCTION: numpy.Hanning
------------------------
+
 FUNCTION: numpy.Heaviside
--------------------------
+
 FUNCTION: numpy.Hypot
----------------------
+
 FUNCTION: numpy.Identity
-------------------------
+
 FUNCTION: numpy.Indices
------------------------
+
 FUNCTION: numpy.Info
---------------------
+
 FUNCTION: numpy.Isdtype
------------------------
+
 FUNCTION: numpy.Isfinite
-------------------------
+
 FUNCTION: numpy.Isfortran
--------------------------
+
 FUNCTION: numpy.Isinf
----------------------
+
 FUNCTION: numpy.Isnan
----------------------
+
 FUNCTION: numpy.Isnat
----------------------
+
 FUNCTION: numpy.Isscalar
-------------------------
+
 FUNCTION: numpy.Issubdtype
---------------------------
+
 FUNCTION: numpy.Iterable
-------------------------
+
 FUNCTION: numpy.Kaiser
-----------------------
+
 FUNCTION: numpy.Lcm
--------------------
+
 FUNCTION: numpy.Ldexp
----------------------
+
 FUNCTION: numpy.Less
---------------------
+
 FUNCTION: numpy.Less_equal
---------------------------
+
 FUNCTION: numpy.Load
---------------------
+
 FUNCTION: numpy.Loadtxt
------------------------
+
 FUNCTION: numpy.Log
--------------------
+
 FUNCTION: numpy.Log10
----------------------
+
 FUNCTION: numpy.Log1p
----------------------
+
 FUNCTION: numpy.Log2
---------------------
+
 FUNCTION: numpy.Logaddexp
--------------------------
+
 FUNCTION: numpy.Logaddexp2
---------------------------
+
 FUNCTION: numpy.Logical_and
----------------------------
+
 FUNCTION: numpy.Logical_not
----------------------------
+
 FUNCTION: numpy.Logical_or
---------------------------
+
 FUNCTION: numpy.Logical_xor
----------------------------
+
 FUNCTION: numpy.Mask_indices
-----------------------------
+
 FUNCTION: numpy.Matmul
-----------------------
+
 FUNCTION: numpy.Matvec
-----------------------
+
 FUNCTION: numpy.Maximum
------------------------
+
 FUNCTION: numpy.Minimum
------------------------
+
 FUNCTION: numpy.Mintypecode
----------------------------
+
 FUNCTION: numpy.Mod
--------------------
+
 FUNCTION: numpy.Modf
---------------------
+
 FUNCTION: numpy.Multiply
-------------------------
+
 FUNCTION: numpy.Negative
-------------------------
+
 FUNCTION: numpy.Nextafter
--------------------------
+
 FUNCTION: numpy.Not_equal
--------------------------
+
 FUNCTION: numpy.Ones
---------------------
+
 FUNCTION: numpy.Positive
-------------------------
+
 FUNCTION: numpy.Pow
--------------------
+
 FUNCTION: numpy.Printoptions
-----------------------------
+
 FUNCTION: numpy.Rad2deg
------------------------
+
 FUNCTION: numpy.Radians
------------------------
+
 FUNCTION: numpy.Reciprocal
---------------------------
+
 FUNCTION: numpy.Require
------------------------
+
 FUNCTION: numpy.Rint
---------------------
+
 FUNCTION: numpy.Row_stack
--------------------------
+
 FUNCTION: numpy.Set_printoptions
---------------------------------
+
 FUNCTION: numpy.Setbufsize
---------------------------
+
 FUNCTION: numpy.Seterr
-----------------------
+
 FUNCTION: numpy.Seterrcall
---------------------------
+
 FUNCTION: numpy.Show_config
----------------------------
+
 FUNCTION: numpy.Show_runtime
-----------------------------
+
 FUNCTION: numpy.Sign
---------------------
+
 FUNCTION: numpy.Signbit
------------------------
+
 FUNCTION: numpy.Sin
--------------------
+
 FUNCTION: numpy.Sinh
---------------------
+
 FUNCTION: numpy.Spacing
------------------------
+
 FUNCTION: numpy.Sqrt
---------------------
+
 FUNCTION: numpy.Square
-----------------------
+
 FUNCTION: numpy.Subtract
-------------------------
+
 FUNCTION: numpy.Tan
--------------------
+
 FUNCTION: numpy.Tanh
---------------------
+
 FUNCTION: numpy.Trapz
----------------------
+
 FUNCTION: numpy.Tri
--------------------
+
 FUNCTION: numpy.Tril_indices
-----------------------------
+
 FUNCTION: numpy.Triu_indices
-----------------------------
+
 FUNCTION: numpy.Trunc
----------------------
+
 FUNCTION: numpy.Typename
-------------------------
+
 FUNCTION: numpy.Vecdot
-----------------------
+
 FUNCTION: numpy.Vecmat
-----------------------
+
 FUNCTION: numpy.testing.Assert_
--------------------------------
+
 FUNCTION: numpy.testing.Assert_allclose
----------------------------------------
+
 FUNCTION: numpy.testing.Assert_almost_equal
--------------------------------------------
+
 FUNCTION: numpy.testing.Assert_approx_equal
--------------------------------------------
+
 FUNCTION: numpy.testing.Assert_array_almost_equal
--------------------------------------------------
+
 FUNCTION: numpy.testing.Assert_array_almost_equal_nulp
-------------------------------------------------------
+
 FUNCTION: numpy.testing.Assert_array_compare
---------------------------------------------
+
 FUNCTION: numpy.testing.Assert_array_equal
-------------------------------------------
+
 FUNCTION: numpy.testing.Assert_array_less
------------------------------------------
+
 FUNCTION: numpy.testing.Assert_array_max_ulp
---------------------------------------------
+
 FUNCTION: numpy.testing.Assert_equal
-------------------------------------
+
 FUNCTION: numpy.testing.Assert_no_gc_cycles
--------------------------------------------
+
 FUNCTION: numpy.testing.Assert_no_warnings
-------------------------------------------
+
 FUNCTION: numpy.testing.Assert_raises
--------------------------------------
+
 FUNCTION: numpy.testing.Assert_raises_regex
--------------------------------------------
+
 FUNCTION: numpy.testing.Assert_string_equal
--------------------------------------------
+
 FUNCTION: numpy.testing.Assert_warns
-------------------------------------
+
 FUNCTION: numpy.testing.Break_cycles
-------------------------------------
+
 FUNCTION: numpy.testing.Build_err_msg
--------------------------------------
+
 FUNCTION: numpy.testing.Check_support_sve
------------------------------------------
+
 FUNCTION: numpy.testing.Decorate_methods
-----------------------------------------
+
 FUNCTION: numpy.testing.Jiffies
--------------------------------
+
 FUNCTION: numpy.testing.Measure
--------------------------------
+
 FUNCTION: numpy.testing.Memusage
---------------------------------
+
 FUNCTION: numpy.testing.Print_assert_equal
-------------------------------------------
+
 FUNCTION: numpy.testing.Run_threaded
-------------------------------------
+
 FUNCTION: numpy.testing.Rundocs
--------------------------------
+
 FUNCTION: numpy.testing.Runstring
----------------------------------
+
 FUNCTION: numpy.testing.Tempdir
--------------------------------
+
 FUNCTION: numpy.testing.Temppath
---------------------------------
+
 FUNCTION: numpy.testing.overrides.Allows_array_function_override
-----------------------------------------------------------------
+
 FUNCTION: numpy.testing.overrides.Allows_array_ufunc_override
--------------------------------------------------------------
+
 FUNCTION: numpy.testing.overrides.Get_overridable_numpy_array_functions
------------------------------------------------------------------------
+
 FUNCTION: numpy.testing.overrides.Get_overridable_numpy_ufuncs
---------------------------------------------------------------
+
 FUNCTION: numpy.testing.extbuild.Build
---------------------------------------
+
 FUNCTION: numpy.testing.extbuild.Build_and_import_extension
------------------------------------------------------------
+
 FUNCTION: numpy.testing.extbuild.Compile_extension_module
----------------------------------------------------------
+
 FUNCTION: numpy.testing.extbuild.Get_so_suffix
-----------------------------------------------
+
 FUNCTION: numpy.strings.Capitalize
-----------------------------------
+
 FUNCTION: numpy.strings.Center
-------------------------------
+
 FUNCTION: numpy.strings.Count
------------------------------
+
 FUNCTION: numpy.strings.Decode
-------------------------------
+
 FUNCTION: numpy.strings.Encode
-------------------------------
+
 FUNCTION: numpy.strings.Endswith
---------------------------------
+
 FUNCTION: numpy.strings.Expandtabs
-----------------------------------
+
 FUNCTION: numpy.strings.Find
-----------------------------
+
 FUNCTION: numpy.strings.Index
------------------------------
+
 FUNCTION: numpy.strings.Isalnum
--------------------------------
+
 FUNCTION: numpy.strings.Isalpha
--------------------------------
+
 FUNCTION: numpy.strings.Isdecimal
----------------------------------
+
 FUNCTION: numpy.strings.Isdigit
--------------------------------
+
 FUNCTION: numpy.strings.Islower
--------------------------------
+
 FUNCTION: numpy.strings.Isnumeric
----------------------------------
+
 FUNCTION: numpy.strings.Isspace
--------------------------------
+
 FUNCTION: numpy.strings.Istitle
--------------------------------
+
 FUNCTION: numpy.strings.Isupper
--------------------------------
+
 FUNCTION: numpy.strings.Ljust
------------------------------
+
 FUNCTION: numpy.strings.Lower
------------------------------
+
 FUNCTION: numpy.strings.Lstrip
-------------------------------
+
 FUNCTION: numpy.strings.Mod
----------------------------
+
 FUNCTION: numpy.strings.Multiply
---------------------------------
+
 FUNCTION: numpy.strings.Partition
----------------------------------
+
 FUNCTION: numpy.strings.Replace
--------------------------------
+
 FUNCTION: numpy.strings.Rfind
------------------------------
+
 FUNCTION: numpy.strings.Rindex
-------------------------------
+
 FUNCTION: numpy.strings.Rjust
------------------------------
+
 FUNCTION: numpy.strings.Rpartition
-----------------------------------
+
 FUNCTION: numpy.strings.Rstrip
-------------------------------
+
 FUNCTION: numpy.strings.Startswith
-----------------------------------
+
 FUNCTION: numpy.strings.Str_len
--------------------------------
+
 FUNCTION: numpy.strings.Strip
------------------------------
+
 FUNCTION: numpy.strings.Swapcase
---------------------------------
+
 FUNCTION: numpy.strings.Title
------------------------------
+
 FUNCTION: numpy.strings.Translate
----------------------------------
+
 FUNCTION: numpy.strings.Upper
------------------------------
+
 FUNCTION: numpy.strings.Zfill
------------------------------
+
 FUNCTION: numpy.rec.Array
--------------------------
+
 FUNCTION: numpy.rec.Find_duplicate
-----------------------------------
+
 FUNCTION: numpy.rec.Fromarrays
-------------------------------
+
 FUNCTION: numpy.rec.Fromfile
-----------------------------
+
 FUNCTION: numpy.rec.Fromrecords
--------------------------------
+
 FUNCTION: numpy.rec.Fromstring
-------------------------------
+
 FUNCTION: numpy.polynomial.Set_default_printstyle
--------------------------------------------------
+
 FUNCTION: numpy.polynomial.polyutils.As_series
-----------------------------------------------
+
 FUNCTION: numpy.polynomial.polyutils.Format_float
--------------------------------------------------
+
 FUNCTION: numpy.polynomial.polyutils.Getdomain
-----------------------------------------------
+
 FUNCTION: numpy.polynomial.polyutils.Mapdomain
-----------------------------------------------
+
 FUNCTION: numpy.polynomial.polyutils.Mapparms
----------------------------------------------
+
 FUNCTION: numpy.polynomial.polyutils.Trimcoef
----------------------------------------------
+
 FUNCTION: numpy.polynomial.polyutils.Trimseq
---------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyadd
----------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polycompanion
----------------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyder
----------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polydiv
----------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyfit
----------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyfromroots
----------------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polygrid2d
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polygrid3d
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyint
----------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyline
-----------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polymul
----------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polymulx
-----------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polypow
----------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyroots
------------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polysub
----------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyval
----------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyval2d
------------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyval3d
------------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyvalfromroots
-------------------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyvander
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyvander2d
---------------------------------------------------
+
 FUNCTION: numpy.polynomial.polynomial.Polyvander3d
---------------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Leg2poly
---------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legadd
-------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legcompanion
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legder
-------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legdiv
-------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legfit
-------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legfromroots
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Leggauss
---------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Leggrid2d
----------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Leggrid3d
----------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legint
-------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legline
--------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legmul
-------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legmulx
--------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legpow
-------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legroots
---------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legsub
-------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legval
-------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legval2d
---------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legval3d
---------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legvander
----------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legvander2d
------------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legvander3d
------------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Legweight
----------------------------------------------
+
 FUNCTION: numpy.polynomial.legendre.Poly2leg
---------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lag2poly
---------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagadd
-------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagcompanion
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagder
-------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagdiv
-------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagfit
-------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagfromroots
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Laggauss
---------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Laggrid2d
----------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Laggrid3d
----------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagint
-------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagline
--------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagmul
-------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagmulx
--------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagpow
-------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagroots
---------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagsub
-------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagval
-------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagval2d
---------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagval3d
---------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagvander
----------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagvander2d
------------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagvander3d
------------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Lagweight
----------------------------------------------
+
 FUNCTION: numpy.polynomial.laguerre.Poly2lag
---------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Herme2poly
------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermeadd
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermecompanion
----------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermeder
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermediv
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermefit
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermefromroots
----------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermegauss
------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermegrid2d
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermegrid3d
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermeint
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermeline
-----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermemul
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermemulx
-----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermepow
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermeroots
------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermesub
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermeval
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermeval2d
------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermeval3d
------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermevander
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermevander2d
---------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermevander3d
---------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Hermeweight
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite_e.Poly2herme
------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Herm2poly
---------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermadd
-------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermcompanion
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermder
-------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermdiv
-------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermfit
-------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermfromroots
-------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermgauss
---------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermgrid2d
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermgrid3d
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermint
-------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermline
--------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermmul
-------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermmulx
--------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermpow
-------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermroots
---------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermsub
-------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermval
-------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermval2d
---------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermval3d
---------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermvander
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermvander2d
------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermvander3d
------------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Hermweight
----------------------------------------------
+
 FUNCTION: numpy.polynomial.hermite.Poly2herm
---------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Cheb2poly
-----------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebadd
---------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebcompanion
---------------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebder
---------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebdiv
---------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebfit
---------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebfromroots
---------------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebgauss
-----------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebgrid2d
------------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebgrid3d
------------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebint
---------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebinterpolate
-----------------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebline
----------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebmul
---------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebmulx
----------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebpow
---------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebpts1
----------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebpts2
----------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebroots
-----------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebsub
---------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebval
---------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebval2d
-----------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebval3d
-----------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebvander
------------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebvander2d
--------------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebvander3d
--------------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Chebweight
------------------------------------------------
+
 FUNCTION: numpy.polynomial.chebyshev.Poly2cheb
-----------------------------------------------
+
 FUNCTION: numpy.ma.Allclose
----------------------------
+
 FUNCTION: numpy.ma.Allequal
----------------------------
+
 FUNCTION: numpy.ma.Append
--------------------------
+
 FUNCTION: numpy.ma.Apply_along_axis
------------------------------------
+
 FUNCTION: numpy.ma.Apply_over_axes
-----------------------------------
+
 FUNCTION: numpy.ma.Argsort
---------------------------
+
 FUNCTION: numpy.ma.Array
-------------------------
+
 FUNCTION: numpy.ma.Asanyarray
------------------------------
+
 FUNCTION: numpy.ma.Asarray
---------------------------
+
 FUNCTION: numpy.ma.Average
---------------------------
+
 FUNCTION: numpy.ma.Choose
--------------------------
+
 FUNCTION: numpy.ma.Clump_masked
--------------------------------
+
 FUNCTION: numpy.ma.Clump_unmasked
----------------------------------
+
 FUNCTION: numpy.ma.Common_fill_value
-------------------------------------
+
 FUNCTION: numpy.ma.Compress_cols
---------------------------------
+
 FUNCTION: numpy.ma.Compress_nd
-------------------------------
+
 FUNCTION: numpy.ma.Compress_rowcols
------------------------------------
+
 FUNCTION: numpy.ma.Compress_rows
---------------------------------
+
 FUNCTION: numpy.ma.Compressed
------------------------------
+
 FUNCTION: numpy.ma.Concatenate
-------------------------------
+
 FUNCTION: numpy.ma.Convolve
----------------------------
+
 FUNCTION: numpy.ma.Corrcoef
----------------------------
+
 FUNCTION: numpy.ma.Correlate
-----------------------------
+
 FUNCTION: numpy.ma.Count_masked
--------------------------------
+
 FUNCTION: numpy.ma.Cov
-----------------------
+
 FUNCTION: numpy.ma.Default_fill_value
--------------------------------------
+
 FUNCTION: numpy.ma.Diag
------------------------
+
 FUNCTION: numpy.ma.Diff
------------------------
+
 FUNCTION: numpy.ma.Dot
-----------------------
+
 FUNCTION: numpy.ma.Ediff1d
---------------------------
+
 FUNCTION: numpy.ma.Filled
--------------------------
+
 FUNCTION: numpy.ma.Fix_invalid
-------------------------------
+
 FUNCTION: numpy.ma.Flatnotmasked_contiguous
--------------------------------------------
+
 FUNCTION: numpy.ma.Flatnotmasked_edges
---------------------------------------
+
 FUNCTION: numpy.ma.Flatten_mask
--------------------------------
+
 FUNCTION: numpy.ma.Flatten_structured_array
--------------------------------------------
+
 FUNCTION: numpy.ma.Fromflex
----------------------------
+
 FUNCTION: numpy.ma.Getdata
---------------------------
+
 FUNCTION: numpy.ma.Getmask
---------------------------
+
 FUNCTION: numpy.ma.Getmaskarray
--------------------------------
+
 FUNCTION: numpy.ma.In1d
------------------------
+
 FUNCTION: numpy.ma.Inner
-------------------------
+
 FUNCTION: numpy.ma.Intersect1d
-------------------------------
+
 FUNCTION: numpy.ma.IsMA
------------------------
+
 FUNCTION: numpy.ma.Is_mask
---------------------------
+
 FUNCTION: numpy.ma.Is_masked
-----------------------------
+
 FUNCTION: numpy.ma.Isin
------------------------
+
 FUNCTION: numpy.ma.Left_shift
------------------------------
+
 FUNCTION: numpy.ma.Make_mask
-----------------------------
+
 FUNCTION: numpy.ma.Make_mask_descr
-----------------------------------
+
 FUNCTION: numpy.ma.Make_mask_none
----------------------------------
+
 FUNCTION: numpy.ma.Mask_cols
-----------------------------
+
 FUNCTION: numpy.ma.Mask_or
---------------------------
+
 FUNCTION: numpy.ma.Mask_rowcols
--------------------------------
+
 FUNCTION: numpy.ma.Mask_rows
-----------------------------
+
 FUNCTION: numpy.ma.Masked_all
------------------------------
+
 FUNCTION: numpy.ma.Masked_all_like
-----------------------------------
+
 FUNCTION: numpy.ma.Masked_equal
--------------------------------
+
 FUNCTION: numpy.ma.Masked_greater
----------------------------------
+
 FUNCTION: numpy.ma.Masked_greater_equal
----------------------------------------
+
 FUNCTION: numpy.ma.Masked_inside
---------------------------------
+
 FUNCTION: numpy.ma.Masked_invalid
----------------------------------
+
 FUNCTION: numpy.ma.Masked_less
-------------------------------
+
 FUNCTION: numpy.ma.Masked_less_equal
-------------------------------------
+
 FUNCTION: numpy.ma.Masked_not_equal
------------------------------------
+
 FUNCTION: numpy.ma.Masked_object
---------------------------------
+
 FUNCTION: numpy.ma.Masked_outside
----------------------------------
+
 FUNCTION: numpy.ma.Masked_values
---------------------------------
+
 FUNCTION: numpy.ma.Masked_where
--------------------------------
+
 FUNCTION: numpy.ma.Max
-----------------------
+
 FUNCTION: numpy.ma.Maximum_fill_value
--------------------------------------
+
 FUNCTION: numpy.ma.Median
--------------------------
+
 FUNCTION: numpy.ma.Min
-----------------------
+
 FUNCTION: numpy.ma.Minimum_fill_value
--------------------------------------
+
 FUNCTION: numpy.ma.Ndenumerate
-------------------------------
+
 FUNCTION: numpy.ma.Ndim
------------------------
+
 FUNCTION: numpy.ma.Notmasked_contiguous
----------------------------------------
+
 FUNCTION: numpy.ma.Notmasked_edges
-----------------------------------
+
 FUNCTION: numpy.ma.Outer
-------------------------
+
 FUNCTION: numpy.ma.Polyfit
---------------------------
+
 FUNCTION: numpy.ma.Power
-------------------------
+
 FUNCTION: numpy.ma.Ptp
-----------------------
+
 FUNCTION: numpy.ma.Put
-----------------------
+
 FUNCTION: numpy.ma.Putmask
---------------------------
+
 FUNCTION: numpy.ma.Reshape
---------------------------
+
 FUNCTION: numpy.ma.Resize
--------------------------
+
 FUNCTION: numpy.ma.Right_shift
-------------------------------
+
 FUNCTION: numpy.ma.Round
-------------------------
+
 FUNCTION: numpy.ma.Set_fill_value
----------------------------------
+
 FUNCTION: numpy.ma.Setdiff1d
-----------------------------
+
 FUNCTION: numpy.ma.Setxor1d
----------------------------
+
 FUNCTION: numpy.ma.Shape
-------------------------
+
 FUNCTION: numpy.ma.Size
------------------------
+
 FUNCTION: numpy.ma.Sort
------------------------
+
 FUNCTION: numpy.ma.Take
------------------------
+
 FUNCTION: numpy.ma.Transpose
-----------------------------
+
 FUNCTION: numpy.ma.Union1d
---------------------------
+
 FUNCTION: numpy.ma.Unique
--------------------------
+
 FUNCTION: numpy.ma.Vander
--------------------------
+
 FUNCTION: numpy.ma.Where
-------------------------
+
 FUNCTION: numpy.ma.extras.Flatten_inplace
------------------------------------------
+
 FUNCTION: numpy.ma.extras.Get_masked_subclass
----------------------------------------------
+
 FUNCTION: numpy.ma.extras.Issequence
-------------------------------------
+
 FUNCTION: numpy.ma.extras.Normalize_axis_tuple
-----------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.Doc_note
--------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.Formatargspec
-------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.Fromfile
--------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.Get_fill_value
--------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.Get_object_signature
--------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.Getargspec
----------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.Is_string_or_list_of_strings
----------------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.Set_module
----------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.umath.Clip
----------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.umath.Count
-----------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.umath.Endswith
--------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.umath.Find
----------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.umath.Index
-----------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.umath.Rfind
-----------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.umath.Rindex
------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.umath.Startswith
----------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.English_capitalize
-------------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.English_lower
--------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.English_upper
--------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.Issctype
---------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.Issubclass_
------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.Issubsctype
------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.Maximum_sctype
---------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.Obj2sctype
-----------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.Sctype2char
------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.Array_function_dispatch
-------------------------------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.Array_function_from_dispatcher
--------------------------------------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.Finalize_array_function_like
------------------------------------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.Get_array_function_like_doc
-----------------------------------------------------------------------------
+
 FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.Verify_matching_signatures
----------------------------------------------------------------------------
+
 FUNCTION: numpy.lib.Add_newdoc
-------------------------------
+
 FUNCTION: numpy.lib.stride_tricks.As_strided
---------------------------------------------
+
 FUNCTION: numpy.lib.introspect.Opt_func_info
---------------------------------------------
+
 FUNCTION: numpy.lib.format.Descr_to_dtype
------------------------------------------
+
 FUNCTION: numpy.lib.format.Drop_metadata
-----------------------------------------
+
 FUNCTION: numpy.lib.format.Dtype_to_descr
------------------------------------------
+
 FUNCTION: numpy.lib.format.Header_data_from_array_1_0
------------------------------------------------------
+
 FUNCTION: numpy.lib.format.Isfileobj
-------------------------------------
+
 FUNCTION: numpy.lib.format.Magic
---------------------------------
+
 FUNCTION: numpy.lib.format.Open_memmap
---------------------------------------
+
 FUNCTION: numpy.lib.format.Read_array
--------------------------------------
+
 FUNCTION: numpy.lib.format.Read_array_header_1_0
-------------------------------------------------
+
 FUNCTION: numpy.lib.format.Read_array_header_2_0
-------------------------------------------------
+
 FUNCTION: numpy.lib.format.Read_magic
--------------------------------------
+
 FUNCTION: numpy.lib.format.Write_array
---------------------------------------
+
 FUNCTION: numpy.lib.format.Write_array_header_1_0
--------------------------------------------------
+
 FUNCTION: numpy.lib.format.Write_array_header_2_0
--------------------------------------------------
+
 FUNCTION: numpy.lib.array_utils.Byte_bounds
--------------------------------------------
+
 FUNCTION: numpy.fft.Fftfreq
----------------------------
+
 FUNCTION: numpy.fft.Rfftfreq
-----------------------------
+
 FUNCTION: numpy.f2py.Get_include
---------------------------------
+
 FUNCTION: numpy.f2py.Main
--------------------------
+
 FUNCTION: numpy.f2py.Run_main
------------------------------
+
 FUNCTION: numpy.f2py.use_rules.Applyrules
------------------------------------------
+
 FUNCTION: numpy.f2py.use_rules.Buildusevar
-------------------------------------------
+
 FUNCTION: numpy.f2py.use_rules.Buildusevars
--------------------------------------------
+
 FUNCTION: numpy.f2py.use_rules.Dictappend
------------------------------------------
+
 FUNCTION: numpy.f2py.use_rules.Gentitle
----------------------------------------
+
 FUNCTION: numpy.f2py.use_rules.Hasnote
---------------------------------------
+
 FUNCTION: numpy.f2py.use_rules.Outmess
---------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_apply
---------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_array
---------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_complex
-----------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_deref
---------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_eq
------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_expr
--------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_factors
-----------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_ge
------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_gt
------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_integer
-----------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_le
------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_lt
------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_ne
------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_number
----------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_numer_denom
---------------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_real
--------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_ref
-------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_string
----------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_symbol
----------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_term_coeff
--------------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_terms
---------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.As_ternary
-----------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.Eliminate_quotes
-----------------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.Ewarn
------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.Fromstring
-----------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.Insert_quotes
--------------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.Normalize
----------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.Replace_parenthesis
--------------------------------------------------
+
 FUNCTION: numpy.f2py.symbolic.Unreplace_parenthesis
----------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Buildapi
------------------------------------
+
 FUNCTION: numpy.f2py.rules.Buildmodule
---------------------------------------
+
 FUNCTION: numpy.f2py.rules.Debugcapi
-------------------------------------
+
 FUNCTION: numpy.f2py.rules.Errmess
-----------------------------------
+
 FUNCTION: numpy.f2py.rules.Getargs2
------------------------------------
+
 FUNCTION: numpy.f2py.rules.Hascallstatement
--------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Hasexternals
----------------------------------------
+
 FUNCTION: numpy.f2py.rules.Hasinitvalue
----------------------------------------
+
 FUNCTION: numpy.f2py.rules.Hasresultnote
-----------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isarray
-----------------------------------
+
 FUNCTION: numpy.f2py.rules.Isarrayofstrings
--------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isattr_value
----------------------------------------
+
 FUNCTION: numpy.f2py.rules.Ischaracter
---------------------------------------
+
 FUNCTION: numpy.f2py.rules.Ischaracter_or_characterarray
---------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Ischaracterarray
--------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Iscomplex
-------------------------------------
+
 FUNCTION: numpy.f2py.rules.Iscomplexarray
------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Iscomplexfunction
---------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Iscomplexfunction_warn
--------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isdummyroutine
------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isexternal
--------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isfunction
--------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isfunction_wrap
-------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isint1
----------------------------------
+
 FUNCTION: numpy.f2py.rules.Isint1array
---------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isintent_aux
----------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isintent_c
--------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isintent_callback
---------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isintent_copy
-----------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isintent_hide
-----------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isintent_inout
------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isintent_nothide
--------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isintent_out
----------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isintent_overwrite
----------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Islogical
-------------------------------------
+
 FUNCTION: numpy.f2py.rules.Islong_complex
------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Islong_double
-----------------------------------------
+
 FUNCTION: numpy.f2py.rules.Islong_doublefunction
-------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Islong_long
---------------------------------------
+
 FUNCTION: numpy.f2py.rules.Islong_longfunction
-----------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Ismoduleroutine
-------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isoptional
--------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isrequired
--------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isscalar
------------------------------------
+
 FUNCTION: numpy.f2py.rules.Issigned_long_longarray
---------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isstring
------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isstringarray
-----------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isstringfunction
--------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Issubroutine
----------------------------------------
+
 FUNCTION: numpy.f2py.rules.Issubroutine_wrap
---------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isthreadsafe
----------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isunsigned
--------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isunsigned_char
-------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isunsigned_chararray
------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isunsigned_long_long
------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isunsigned_long_longarray
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isunsigned_short
--------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Isunsigned_shortarray
-------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.L_and
---------------------------------
+
 FUNCTION: numpy.f2py.rules.L_not
---------------------------------
+
 FUNCTION: numpy.f2py.rules.L_or
--------------------------------
+
 FUNCTION: numpy.f2py.rules.Replace
-----------------------------------
+
 FUNCTION: numpy.f2py.rules.Requiresf90wrapper
----------------------------------------------
+
 FUNCTION: numpy.f2py.rules.Stripcomma
--------------------------------------
+
 FUNCTION: numpy.f2py.rules.func2subr.Assubr
--------------------------------------------
+
 FUNCTION: numpy.f2py.rules.func2subr.Createfuncwrapper
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.func2subr.Createsubrwrapper
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.func2subr.Getfortranname
----------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.func2subr.Isintent_in
-------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.func2subr.Islogicalfunction
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.func2subr.Show
------------------------------------------
+
 FUNCTION: numpy.f2py.rules.func2subr.Useiso_c_binding
------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.func2subr.Var2fixfortran
----------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Buildhooks
---------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Containscommon
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Findf90modules
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Get_f2py_modulename
------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Getcallprotoargument
-------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Getcallstatement
---------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Getdimension
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Getpymethoddef
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Getrestdoc
---------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Getuseblocks
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Getusercode
----------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Getusercode1
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Hasbody
------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Hascommon
--------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Isallocatable
------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Iscstyledirective
----------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Isdouble
-------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Isinteger
--------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Isintent_inplace
---------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Ismodule
-------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Isprivate
--------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Isroutine
--------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Isstring_or_stringarray
----------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Isvariable
---------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Process_f2cmap_dict
------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Undo_rmbadname
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.Undo_rmbadname1
--------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Cb_routsign2map
------------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Cb_sign2map
--------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Common_sign2map
------------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.F2cexpr
----------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Get_elsize
-------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Getarrdims
-------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Getarrdocsign
----------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Getctype
-----------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Getinit
----------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Getpydocsign
---------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Getstrlength
---------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Load_f2cmap_file
-------------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Markoutercomma
-----------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Modsign2map
--------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Routsign2map
---------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.Sign2map
-----------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.Buildcallback
-------------------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.Buildcallbacks
--------------------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.Getargs
-------------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.cfuncs.Append_needs
-------------------------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.cfuncs.Buildcfuncs
------------------------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_rules.cfuncs.Get_needs
----------------------------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.common_rules.Buildhooks
---------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.common_rules.Findcommonblocks
---------------------------------------------------------
+
 FUNCTION: numpy.f2py.rules.common_rules.Rmbadname
--------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.Buildmodules
-----------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.Callcrackfortran
---------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.Dict_append
----------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.F2py_build_generator
-------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.F2py_parser
----------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.Filter_files
-----------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.Get_newer_options
----------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.Get_prefix
---------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.Make_f2py_compile_parser
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.Preparse_sysargv
---------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.Run_compile
----------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.Scaninputline
------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.Validate_modulename
------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Analyzeargs
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Analyzebody
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Analyzecommon
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Analyzeline
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Analyzevars
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Appenddecl
----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Appendmultiline
---------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Buildimplicitrules
------------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Character_backward_compatibility_hook
-------------------------------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Common2fortran
--------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Crack2fortran
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Crack2fortrangen
----------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Crackfortran
------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Crackline
---------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Cracktypespec
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Cracktypespec0
--------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Determineexprtype
-----------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Expr2name
---------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Get_parameters
--------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Get_sorted_names
----------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Get_usedict
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Get_useparameters
-----------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Getblockname
------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Getlincoef
----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Is_free_format
--------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Markinnerspaces
---------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Markouterparen
--------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Myeval
------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Openhook
--------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Outmess
-------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Param_eval
----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Param_parse
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Parse_name_for_bind
-------------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Postcrack
---------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Postcrack2
----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Readfortrancode
---------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Removespaces
------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Reset_global_f2py_vars
----------------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Rmbadname1
----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Setattrspec
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Setcharselector
---------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Setkindselector
---------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Setmesstext
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Sortvarnames
------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Split_by_unquoted
-----------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Traverse
--------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.True_intent_list
----------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Unmarkouterparen
----------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Updatevars
----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Use2fortran
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.crackfortran.Vars2fortran
------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Containsmodule
----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Flatlist
----------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Get_kind
----------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Getmultilineblock
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Hasassumedshape
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Hasinitvalueasstring
----------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Hasvariables
--------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Isfalse
---------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Isintent_aligned16
--------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Isintent_aligned4
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Isintent_aligned8
-------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Isintent_cache
----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Ismutable
-----------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Isreal
--------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Issigned_array
----------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Issigned_chararray
--------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Issigned_shortarray
---------------------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Istrue
--------------------------------------------
+
 FUNCTION: numpy.f2py.f2py2e.auxfuncs.Isunsignedarray
-----------------------------------------------------
+
 FUNCTION: numpy.f2py.diagnose.Run
----------------------------------
+
 FUNCTION: numpy.f2py.diagnose.Run_command
------------------------------------------
+
 FUNCTION: numpy.ctypeslib.As_array
-----------------------------------
+
 FUNCTION: numpy.ctypeslib.As_ctypes
------------------------------------
+
 FUNCTION: numpy.ctypeslib.As_ctypes_type
-----------------------------------------
+
 FUNCTION: numpy.ctypeslib.Load_library
---------------------------------------
+
 FUNCTION: numpy.ctypeslib.Ndpointer
------------------------------------
+
 FUNCTION: numpy.char.Array
---------------------------
+
 FUNCTION: numpy.char.Asarray
-----------------------------
+
 FUNCTION: numpy.char.Join
--------------------------
+
 FUNCTION: numpy.char.Multiply
------------------------------
+
 FUNCTION: numpy.char.Partition
-------------------------------
+
 FUNCTION: numpy.char.Rpartition
--------------------------------
+
 FUNCTION: numpy.char.Rsplit
----------------------------
+
 FUNCTION: numpy.char.Split
---------------------------
+
 FUNCTION: numpy.char.Splitlines
--------------------------------
+
+EXTRA ALIASES (ultra-minimal)
+============================================================
+
+FUNCTION: numpy.False_
+
+FUNCTION: numpy.True_
+
+FUNCTION: numpy.E
+
+FUNCTION: numpy.Euler_gamma
+
+FUNCTION: numpy.Inf
+
+FUNCTION: numpy.Little_endian
+
+FUNCTION: numpy.Nan
+
+FUNCTION: numpy.Newaxis
+
+FUNCTION: numpy.Pi
+
+FUNCTION: numpy.Bool
+
+FUNCTION: numpy.Bool_
+
+FUNCTION: numpy.Byte
+
+FUNCTION: numpy.Bytes_
+
+FUNCTION: numpy.Cdouble
+
+FUNCTION: numpy.Character
+
+FUNCTION: numpy.Clongdouble
+
+FUNCTION: numpy.Complex128
+
+FUNCTION: numpy.Complex256
+
+FUNCTION: numpy.Complex64
+
+FUNCTION: numpy.Complexfloating
+
+FUNCTION: numpy.Csingle
+
+FUNCTION: numpy.Datetime64
+
+FUNCTION: numpy.Double
+
+FUNCTION: numpy.Flexible
+
+FUNCTION: numpy.Float128
+
+FUNCTION: numpy.Float16
+
+FUNCTION: numpy.Float32
+
+FUNCTION: numpy.Float64
+
+FUNCTION: numpy.Floating
+
+FUNCTION: numpy.Generic
+
+FUNCTION: numpy.Half
+
+FUNCTION: numpy.Inexact
+
+FUNCTION: numpy.Int16
+
+FUNCTION: numpy.Int32
+
+FUNCTION: numpy.Int64
+
+FUNCTION: numpy.Int8
+
+FUNCTION: numpy.Int_
+
+FUNCTION: numpy.Intc
+
+FUNCTION: numpy.Integer
+
+FUNCTION: numpy.Intp
+
+FUNCTION: numpy.Long
+
+FUNCTION: numpy.Longdouble
+
+FUNCTION: numpy.Longlong
+
+FUNCTION: numpy.Number
+
+FUNCTION: numpy.Object_
+
+FUNCTION: numpy.Record
+
+FUNCTION: numpy.Short
+
+FUNCTION: numpy.Signedinteger
+
+FUNCTION: numpy.Single
+
+FUNCTION: numpy.Str_
+
+FUNCTION: numpy.Timedelta64
+
+FUNCTION: numpy.Ubyte
+
+FUNCTION: numpy.Uint
+
+FUNCTION: numpy.Uint16
+
+FUNCTION: numpy.Uint32
+
+FUNCTION: numpy.Uint64
+
+FUNCTION: numpy.Uint8
+
+FUNCTION: numpy.Uintc
+
+FUNCTION: numpy.Uintp
+
+FUNCTION: numpy.Ulong
+
+FUNCTION: numpy.Ulonglong
+
+FUNCTION: numpy.Unsignedinteger
+
+FUNCTION: numpy.Ushort
+
+FUNCTION: numpy.Void
+
+FUNCTION: ndarray.T
+
+FUNCTION: ndarray.Base
+
+FUNCTION: ndarray.Ctypes
+
+FUNCTION: ndarray.Data
+
+FUNCTION: ndarray.Device
+
+FUNCTION: ndarray.Dtype
+
+FUNCTION: ndarray.Flags
+
+FUNCTION: ndarray.Flat
+
+FUNCTION: ndarray.Imag
+
+FUNCTION: ndarray.Itemset
+
+FUNCTION: ndarray.Itemsize
+
+FUNCTION: ndarray.MT
+
+FUNCTION: ndarray.Nbytes
+
+FUNCTION: ndarray.Ndim
+
+FUNCTION: ndarray.Newbyteorder
+
+FUNCTION: ndarray.Ptp
+
+FUNCTION: ndarray.Real
+
+FUNCTION: ndarray.Shape
+
+FUNCTION: ndarray.Size
+
+FUNCTION: ndarray.Strides
+
+FUNCTION: ndarray.All
+
+FUNCTION: ndarray.Any
+
+FUNCTION: ndarray.Argmax
+
+FUNCTION: ndarray.Argmin
+
+FUNCTION: ndarray.Argpartition
+
+FUNCTION: ndarray.Argsort
+
+FUNCTION: ndarray.Astype
+
+FUNCTION: ndarray.Byteswap
+
+FUNCTION: ndarray.Choose
+
+FUNCTION: ndarray.Clip
+
+FUNCTION: ndarray.Compress
+
+FUNCTION: ndarray.Conj
+
+FUNCTION: ndarray.Conjugate
+
+FUNCTION: ndarray.Copy
+
+FUNCTION: ndarray.Cumprod
+
+FUNCTION: ndarray.Cumsum
+
+FUNCTION: ndarray.Diagonal
+
+FUNCTION: ndarray.Dot
+
+FUNCTION: ndarray.Dump
+
+FUNCTION: ndarray.Dumps
+
+FUNCTION: ndarray.Fill
+
+FUNCTION: ndarray.Flatten
+
+FUNCTION: ndarray.Getfield
+
+FUNCTION: ndarray.Item
+
+FUNCTION: ndarray.Max
+
+FUNCTION: ndarray.Mean
+
+FUNCTION: ndarray.Min
+
+FUNCTION: ndarray.Nonzero
+
+FUNCTION: ndarray.Partition
+
+FUNCTION: ndarray.Prod
+
+FUNCTION: ndarray.Put
+
+FUNCTION: ndarray.Ravel
+
+FUNCTION: ndarray.Repeat
+
+FUNCTION: ndarray.Reshape
+
+FUNCTION: ndarray.Resize
+
+FUNCTION: ndarray.Round
+
+FUNCTION: ndarray.Searchsorted
+
+FUNCTION: ndarray.Setfield
+
+FUNCTION: ndarray.Setflags
+
+FUNCTION: ndarray.Sort
+
+FUNCTION: ndarray.Squeeze
+
+FUNCTION: ndarray.Std
+
+FUNCTION: ndarray.Sum
+
+FUNCTION: ndarray.Swapaxes
+
+FUNCTION: ndarray.Take
+
+FUNCTION: ndarray.To_device
+
+FUNCTION: ndarray.Tobytes
+
+FUNCTION: ndarray.Tofile
+
+FUNCTION: ndarray.Tolist
+
+FUNCTION: ndarray.Tostring
+
+FUNCTION: ndarray.Trace
+
+FUNCTION: ndarray.Transpose
+
+FUNCTION: ndarray.Var
+
+FUNCTION: ndarray.View
+

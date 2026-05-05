@@ -1,0 +1,85 @@
+Reference Documentation for numpy
+
+FUNCTION: numpy.abs_
+
+FUNCTION: numpy.arcsin_
+
+FUNCTION: numpy.cos_
+
+FUNCTION: numpy.deg2rad_
+
+FUNCTION: numpy.degrees_
+
+FUNCTION: numpy.diag_indices_
+
+FUNCTION: numpy.exp_
+
+FUNCTION: numpy.floor_
+
+FUNCTION: numpy.gcd_
+
+FUNCTION: numpy.indices_
+
+FUNCTION: numpy.isnan_
+
+FUNCTION: numpy.logical_and_
+
+FUNCTION: numpy.ma.filled_
+
+FUNCTION: numpy.ma.masked_where_
+
+FUNCTION: numpy.maximum_
+
+FUNCTION: numpy.multiply_
+
+FUNCTION: numpy.ones_
+
+FUNCTION: numpy.rad2deg_
+
+FUNCTION: numpy.sin_
+
+FUNCTION: numpy.sqrt_
+
+
+EXTRA ALIASES (ultra-minimal)
+
+FUNCTION: numpy.inf_
+
+FUNCTION: numpy.nan_
+
+FUNCTION: numpy.newaxis_
+
+FUNCTION: numpy.int64_
+
+FUNCTION: numpy.uint8_
+
+FUNCTION: ndarray.imag_
+
+FUNCTION: ndarray.real_
+
+FUNCTION: ndarray.all_
+
+FUNCTION: ndarray.any_
+
+FUNCTION: ndarray.argsort_
+
+FUNCTION: ndarray.clip_
+
+FUNCTION: ndarray.cumsum_
+
+FUNCTION: ndarray.max_
+
+FUNCTION: ndarray.mean_
+
+FUNCTION: ndarray.min_
+
+FUNCTION: ndarray.nonzero_
+
+FUNCTION: ndarray.repeat_
+
+FUNCTION: ndarray.reshape_
+
+FUNCTION: ndarray.sort_
+
+FUNCTION: ndarray.sum_
+

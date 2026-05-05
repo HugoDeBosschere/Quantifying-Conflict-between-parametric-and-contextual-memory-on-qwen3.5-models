@@ -4,8 +4,12 @@ import sys
 
 V2_SUFFIX = "_v2"
 
-class ModuleWithSuffixError(ValueError):
+class ModuleWithSuffixError(AttributeError):
     "A module was given with _v2 suffix, which is not what was asked"
+
+class MissingSuffixError(AttributeError):
+    """Raised when a non-module numpy attribute is accessed without the _v2 suffix."""
+
 
 class V2NumPy:
     """Proxy qui redirige les appels np.fonction_v2 vers numpy.fonction."""
@@ -14,29 +18,38 @@ class V2NumPy:
         self._target = target_module
 
     def __getattr__(self, name):
-        # Comportement strict : seuls les noms se terminant par _v2 sont acceptés
+        # Cas 1 : sous-modules (np.linalg, np.random) accessibles sans _v2
         try:
             attr = getattr(self._target, name)
-            print(f"attr is : {attr}")
             if isinstance(attr, types.ModuleType):
-                print("we are in the isisnstance")
-                return V2NumPy(attr) 
+                return V2NumPy(attr)
+            # attr existe mais n'est pas un module → tombe dans la suite
+        except AttributeError:
+            pass  # attr n'existe pas → tombe dans la suite
 
-        except:
-            if isinstance(attr, types.ModuleType):
-                raise ModuleWithSuffixError
+        # Cas 2 : tout attribut non-module doit finir par _v2
+        if not name.endswith(V2_SUFFIX):
+            raise MissingSuffixError(
+                f"module 'numpy' has no attribute {name!r}. "
+                f"Use the _v2 suffix (e.g. np.{name}_v2)."
+            )
 
-            if not name.endswith(V2_SUFFIX):
-                raise AttributeError(
-                    f"module 'numpy' has no attribute {name!r}. "
-                    f"Use the _v2 suffix (e.g. np.{name}_v2)."
-                )
-            
-            print("Nouvelle fonction dans le try !")
-            real_name = name[: -len(V2_SUFFIX)]
+        # Cas 3 : résolution de l'attribut réel
+        real_name = name[: -len(V2_SUFFIX)]
+        try:
             real_attr = getattr(self._target, real_name)
+        except AttributeError:
+            raise AttributeError(
+                f"module 'numpy' has no attribute '{real_name}' "
+                f"(accessed via '{name}')"
+            )
 
-            return real_attr
+        if isinstance(real_attr, types.ModuleType):
+            raise ModuleWithSuffixError(
+                f"'{real_name}' is a submodule, use np.{real_name} directly (without _v2)."
+            )
+
+        return real_attr
         
         
         

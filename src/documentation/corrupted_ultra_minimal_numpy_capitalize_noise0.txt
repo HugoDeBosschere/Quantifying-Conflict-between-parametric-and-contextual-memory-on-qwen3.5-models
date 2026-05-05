@@ -1,0 +1,85 @@
+Reference Documentation for numpy
+
+FUNCTION: numpy.Abs
+
+FUNCTION: numpy.Arcsin
+
+FUNCTION: numpy.Cos
+
+FUNCTION: numpy.Deg2rad
+
+FUNCTION: numpy.Degrees
+
+FUNCTION: numpy.Diag_indices
+
+FUNCTION: numpy.Exp
+
+FUNCTION: numpy.Floor
+
+FUNCTION: numpy.Gcd
+
+FUNCTION: numpy.Indices
+
+FUNCTION: numpy.Isnan
+
+FUNCTION: numpy.Logical_and
+
+FUNCTION: numpy.Maximum
+
+FUNCTION: numpy.Multiply
+
+FUNCTION: numpy.Ones
+
+FUNCTION: numpy.Rad2deg
+
+FUNCTION: numpy.Sin
+
+FUNCTION: numpy.Sqrt
+
+FUNCTION: numpy.ma.Filled
+
+FUNCTION: numpy.ma.Masked_where
+
+
+EXTRA ALIASES (ultra-minimal)
+
+FUNCTION: numpy.Inf
+
+FUNCTION: numpy.Nan
+
+FUNCTION: numpy.Newaxis
+
+FUNCTION: numpy.Int64
+
+FUNCTION: numpy.Uint8
+
+FUNCTION: ndarray.Imag
+
+FUNCTION: ndarray.Real
+
+FUNCTION: ndarray.All
+
+FUNCTION: ndarray.Any
+
+FUNCTION: ndarray.Argsort
+
+FUNCTION: ndarray.Clip
+
+FUNCTION: ndarray.Cumsum
+
+FUNCTION: ndarray.Max
+
+FUNCTION: ndarray.Mean
+
+FUNCTION: ndarray.Min
+
+FUNCTION: ndarray.Nonzero
+
+FUNCTION: ndarray.Repeat
+
+FUNCTION: ndarray.Reshape
+
+FUNCTION: ndarray.Sort
+
+FUNCTION: ndarray.Sum
+

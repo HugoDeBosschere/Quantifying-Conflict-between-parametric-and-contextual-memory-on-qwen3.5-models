@@ -29,16 +29,29 @@ def test_ufunc_array():
 
 
 def test_sous_module():
-    """np.linalg_.norm_(x) doit être égal à numpy.linalg.norm(x)."""
+    """np.linalg.norm_(x) doit être égal à numpy.linalg.norm(x)."""
     x = real_np.array([3.0, 4.0])
-    assert np.linalg_.norm_(x) == real_np.linalg.norm(x)
-    print("  OK np.linalg_.norm_() == numpy.linalg.norm()")
+    assert np.linalg.norm_(x) == real_np.linalg.norm(x)
+    print("  OK np.linalg.norm_() == numpy.linalg.norm()")
 
 
 def test_constante():
-    """np.pi_ doit être égal à numpy.pi (le proxy enlève le _ final)."""
+    """np.pi_  doit être égal à numpy.pi (le proxy enlève _)."""
     assert np.pi_ == real_np.pi
     print("  OK np.pi_ == numpy.pi")
+
+
+def test_constantes_et_types():
+    """Constantes et dtypes : np.nan_ == np.nan, np.float64_ == np.float64, etc."""
+    assert np.nan_ is real_np.nan
+    assert np.inf_ is real_np.inf
+    assert np.float64_ is real_np.float64
+    assert np.int32_ is real_np.int32
+    print("  OK constantes/dtypes _ :")
+    print("     - np.nan_ is np.nan")
+    print("     - np.inf_ is np.inf")
+    print("     - np.float64_ is np.float64")
+    print("     - np.int32_ is np.int32")
 
 
 def test_array_creation():
@@ -49,16 +62,57 @@ def test_array_creation():
     print("  OK np.array_() == numpy.array()")
 
 
+def test_sous_module_autre():
+    """Autre sous-module : np.fft.fft_(x) doit être égal à numpy.fft.fft(x)."""
+    x = real_np.array([0.0, 1.0, 0.0, -1.0])
+    y_wrap = np.fft.fft_(x)
+    y_real = real_np.fft.fft(x)
+    assert real_np.allclose(y_wrap, y_real)
+    print("  OK np.fft.fft_() == numpy.fft.fft()")
+
+
+def test_acces_sans_suffixe_raise():
+    """np.add (sans _) doit lever MissingSuffixError."""
+    try:
+        _ = np.add(1, 2)
+        assert False, "np.add devrait lever AttributeError"
+    except AttributeError as e:
+        assert "add" in str(e) and "_" in str(e)
+        print("  OK np.add() sans suffixe lève AttributeError")
+
+def test_sous_module_sans_suffix():
+    """Autre sous-module : np.fft.fft(x) doit lever ModuleWithSuffixError"""
+    x = real_np.array([0.0, 1.0, 0.0, -1.0])
+    try: 
+        _ = np.fft.fft(x)
+        assert False, "np.fft.fft devrait lever AttributeError"
+    except AttributeError as e:
+        print("  OK np.fft.fft lève une AttributeError")
+
+def test_sous_module_avec_suffix_au_milieu():
+    """Autre sous-module : np.fft.fft(x) doit lever ModuleWithSuffixError"""
+    x = real_np.array([0.0, 1.0, 0.0, -1.0])
+    try: 
+        _ = np.fft_.fft(x)
+        assert False, "np.fft_.fft devrait lever AttributeError"
+    except AttributeError as e:
+        print("  OK np.fft_.fft lève une AttributeError")
+
 def run_all():
-    print("Validation WrapUnderscoreNumpy (suffixe '_')")
+    print("Validation WrapUnderscoreNumpy (suffixe '_', mode strict)")
     print("-" * 50)
     test_ufunc_simple()
     test_ufunc_array()
     test_sous_module()
     test_constante()
+    test_constantes_et_types()
     test_array_creation()
+    test_sous_module_autre()
+    test_acces_sans_suffixe_raise()
+    test_sous_module_sans_suffix()
+    test_sous_module_avec_suffix_au_milieu()
     print("-" * 50)
-    print("Tous les tests underscore sont passés.")
+    print("Tous les tests _ sont passés.")
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@ Reference Documentation for numpy
 ============================================================
 
 FUNCTION: numpy.abs_v2
-----------------------
+
 absolute_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Calculate the absolute value element-wise.
@@ -67,10 +67,8 @@ ndarrays.
 >>> abs(x)
 array([1.2, 1.2])
 
-########################################
-
 FUNCTION: numpy.acos_v2
------------------------
+
 arccos_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Trigonometric inverse cosine, element-wise.
@@ -146,10 +144,8 @@ Plot arccos:
 >>> plt.axis('tight')
 >>> plt.show()
 
-########################################
-
 FUNCTION: numpy.acosh_v2
-------------------------
+
 arccosh_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Inverse hyperbolic cosine, element-wise.
@@ -212,10 +208,8 @@ array([ 1.65745445,  2.99322285])
 >>> np.arccosh_v2(1)
 0.0
 
-########################################
-
 FUNCTION: numpy.add_v2
-----------------------
+
 add_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Add arguments element-wise.
@@ -273,10 +267,8 @@ array([[ 0.,  2.,  4.],
        [ 3.,  5.,  7.],
        [ 6.,  8., 10.]])
 
-########################################
-
 FUNCTION: numpy.arcsin_v2
--------------------------
+
 arcsin_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Inverse sine, element-wise.
@@ -342,10 +334,8 @@ Examples
 >>> np.arcsin_v2(0)
 0.0
 
-########################################
-
 FUNCTION: numpy.arcsinh_v2
---------------------------
+
 arcsinh_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Inverse hyperbolic sine element-wise.
@@ -406,10 +396,8 @@ Examples
 >>> np.arcsinh_v2(np.array_v2([np.e_v2, 10.0]))
 array([ 1.72538256,  2.99822295])
 
-########################################
-
 FUNCTION: numpy.arctan_v2
--------------------------
+
 arctan_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Trigonometric inverse tangent, element-wise.
@@ -486,10 +474,8 @@ Plot arctan:
 >>> plt.axis('tight')
 >>> plt.show()
 
-########################################
-
 FUNCTION: numpy.arctan2_v2
---------------------------
+
 arctan2_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Element-wise arc tangent of ``x1/x2`` choosing the quadrant correctly.
@@ -582,10 +568,8 @@ array([ 1.57079633, -1.57079633])
 >>> np.arctan2_v2([0., 0., np.inf_v2], [+0., -0., np.inf_v2])
 array([0.        , 3.14159265, 0.78539816])
 
-########################################
-
 FUNCTION: numpy.arctanh_v2
---------------------------
+
 arctanh_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Inverse hyperbolic tangent element-wise.
@@ -648,10 +632,8 @@ Examples
 >>> np.arctanh_v2([0, -0.5])
 array([ 0.        , -0.54930614])
 
-########################################
-
 FUNCTION: numpy.asarray_chkfinite_v2
-------------------------------------
+
 Convert the input to an array, checking for NaNs or Infs.
 
     Parameters
@@ -707,10 +689,8 @@ Convert the input to an array, checking for NaNs or Infs.
 
     
 
-########################################
-
 FUNCTION: numpy.asmatrix_v2
----------------------------
+
 
     Interpret the input as a matrix.
 
@@ -744,10 +724,8 @@ FUNCTION: numpy.asmatrix_v2
 
     
 
-########################################
-
 FUNCTION: numpy.bartlett_v2
----------------------------
+
 
     Return the Bartlett window.
 
@@ -839,10 +817,8 @@ FUNCTION: numpy.bartlett_v2
 
     
 
-########################################
-
 FUNCTION: numpy.base_repr_v2
-----------------------------
+
 
     Return a string representation of a number in the given base system.
 
@@ -880,10 +856,8 @@ FUNCTION: numpy.base_repr_v2
 
     
 
-########################################
-
 FUNCTION: numpy.binary_repr_v2
-------------------------------
+
 
     Return the binary representation of the input number as a string.
 
@@ -945,10 +919,8 @@ FUNCTION: numpy.binary_repr_v2
 
     
 
-########################################
-
 FUNCTION: numpy.bitwise_and_v2
-------------------------------
+
 bitwise_and_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Compute the bit-wise AND of two arrays element-wise.
@@ -1020,10 +992,8 @@ ndarrays.
 >>> x1 & x2
 array([ 2,  4, 16])
 
-########################################
-
 FUNCTION: numpy.bitwise_count_v2
---------------------------------
+
 bitwise_count_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Computes the number of 1-bits in the absolute value of ``x``.
@@ -1075,10 +1045,8 @@ np.uint8_v2(10)
 array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15],
       dtype=uint8)
 
-########################################
-
 FUNCTION: numpy.bitwise_invert_v2
----------------------------------
+
 invert_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Compute bit-wise inversion, or bit-wise NOT, element-wise.
@@ -1176,10 +1144,8 @@ ndarrays.
 >>> ~x1
 array([False,  True])
 
-########################################
-
 FUNCTION: numpy.bitwise_left_shift_v2
--------------------------------------
+
 left_shift_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Shift the bits of an integer to the left.
@@ -1252,10 +1218,8 @@ ndarrays.
 >>> x1 << x2
 array([10, 20, 40])
 
-########################################
-
 FUNCTION: numpy.bitwise_or_v2
------------------------------
+
 bitwise_or_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Compute the bit-wise OR of two arrays element-wise.
@@ -1332,10 +1296,8 @@ ndarrays.
 >>> x1 | x2
 array([  6,   5, 255])
 
-########################################
-
 FUNCTION: numpy.bitwise_right_shift_v2
---------------------------------------
+
 right_shift_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Shift the bits of an integer to the right.
@@ -1397,10 +1359,8 @@ ndarrays.
 >>> x1 >> x2
 array([5, 2, 1])
 
-########################################
-
 FUNCTION: numpy.bitwise_xor_v2
-------------------------------
+
 bitwise_xor_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Compute the bit-wise XOR of two arrays element-wise.
@@ -1470,10 +1430,8 @@ ndarrays.
 >>> x1 ^ x2
 array([ True, False])
 
-########################################
-
 FUNCTION: numpy.blackman_v2
----------------------------
+
 
     Return the Blackman window.
 
@@ -1558,10 +1516,8 @@ FUNCTION: numpy.blackman_v2
 
     
 
-########################################
-
 FUNCTION: numpy.bmat_v2
------------------------
+
 
     Build a matrix object from a string, nested sequence, or array.
 
@@ -1612,10 +1568,8 @@ FUNCTION: numpy.bmat_v2
 
     
 
-########################################
-
 FUNCTION: numpy.broadcast_shapes_v2
------------------------------------
+
 
     Broadcast the input shapes into a single shape.
 
@@ -1651,10 +1605,8 @@ FUNCTION: numpy.broadcast_shapes_v2
     (5, 6, 7)
     
 
-########################################
-
 FUNCTION: numpy.cbrt_v2
------------------------
+
 cbrt_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the cube-root of an array, element-wise.
@@ -1694,10 +1646,8 @@ Examples
 >>> np.cbrt_v2([1,8,27])
 array([ 1.,  2.,  3.])
 
-########################################
-
 FUNCTION: numpy.ceil_v2
------------------------
+
 ceil_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the ceiling of the input, element-wise.
@@ -1741,10 +1691,8 @@ Examples
 >>> np.ceil_v2(a)
 array([-1., -1., -0.,  1.,  2.,  2.,  2.])
 
-########################################
-
 FUNCTION: numpy.conj_v2
------------------------
+
 conjugate_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the complex conjugate, element-wise.
@@ -1796,10 +1744,8 @@ Examples
 array([[ 1.-1.j,  0.-0.j],
        [ 0.-0.j,  1.-1.j]])
 
-########################################
-
 FUNCTION: numpy.copysign_v2
----------------------------
+
 copysign_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Change the sign of x1 to that of x2, element-wise.
@@ -1851,10 +1797,8 @@ array([-1., -0., -1.])
 >>> np.copysign_v2([-1, 0, 1], np.arange_v2(3)-1)
 array([-1.,  0.,  1.])
 
-########################################
-
 FUNCTION: numpy.cos_v2
-----------------------
+
 cos_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Cosine element-wise.
@@ -1913,10 +1857,8 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ValueError: operands could not be broadcast together with shapes (3,3) (2,2)
 
-########################################
-
 FUNCTION: numpy.cosh_v2
------------------------
+
 cosh_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Hyperbolic cosine, element-wise.
@@ -1962,10 +1904,8 @@ The hyperbolic cosine describes the shape of a hanging cable:
 >>> plt.plot(x, np.cosh_v2(x))
 >>> plt.show()
 
-########################################
-
 FUNCTION: numpy.deg2rad_v2
---------------------------
+
 deg2rad_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Convert angles from degrees to radians.
@@ -2008,10 +1948,8 @@ Examples
 >>> np.deg2rad_v2(180)
 3.1415926535897931
 
-########################################
-
 FUNCTION: numpy.degrees_v2
---------------------------
+
 degrees_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Convert angles from radians to degrees.
@@ -2061,10 +1999,8 @@ array([   0.,   30.,   60.,   90.,  120.,  150.,  180.,  210.,  240.,
 >>> np.all_v2(r == out)
 True
 
-########################################
-
 FUNCTION: numpy.diag_indices_v2
--------------------------------
+
 
     Return the indices to access the main diagonal of an array.
 
@@ -2125,10 +2061,8 @@ FUNCTION: numpy.diag_indices_v2
 
     
 
-########################################
-
 FUNCTION: numpy.divide_v2
--------------------------
+
 divide_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Divide arguments element-wise.
@@ -2194,10 +2128,8 @@ array([[0. , 0.5, 1. ],
        [1.5, 2. , 2.5],
        [3. , 3.5, 4. ]])
 
-########################################
-
 FUNCTION: numpy.divmod_v2
--------------------------
+
 divmod_v2(x1, x2[, out1, out2], / [, out=(None, None)], *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return element-wise quotient and remainder simultaneously.
@@ -2254,10 +2186,8 @@ ndarrays.
 >>> divmod(x, 3)
 (array([0, 0, 0, 1, 1]), array([0, 1, 2, 0, 1]))
 
-########################################
-
 FUNCTION: numpy.equal_v2
-------------------------
+
 equal_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return (x1 == x2) element-wise.
@@ -2313,10 +2243,8 @@ ndarrays.
 >>> a == b
 array([ True,  True, False])
 
-########################################
-
 FUNCTION: numpy.exp_v2
-----------------------
+
 exp_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Calculate the exponential of all elements in the input array.
@@ -2393,10 +2321,8 @@ Plot the magnitude and phase of ``exp(x)`` in the complex plane:
 >>> plt.title('Phase (angle) of exp(x)')
 >>> plt.show()
 
-########################################
-
 FUNCTION: numpy.exp2_v2
------------------------
+
 exp2_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Calculate `2**p` for all `p` in the input array.
@@ -2435,10 +2361,8 @@ Examples
 >>> np.exp2_v2([2, 3])
 array([ 4.,  8.])
 
-########################################
-
 FUNCTION: numpy.expm1_v2
-------------------------
+
 expm1_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Calculate ``exp(x) - 1`` for all elements in the array.
@@ -2490,10 +2414,8 @@ expm1 in this case.
 >>> np.exp_v2(1e-10) - 1
 1.000000082740371e-10
 
-########################################
-
 FUNCTION: numpy.eye_v2
-----------------------
+
 
     Return a 2-D array with ones on the diagonal and zeros elsewhere.
 
@@ -2547,10 +2469,8 @@ FUNCTION: numpy.eye_v2
 
     
 
-########################################
-
 FUNCTION: numpy.fabs_v2
------------------------
+
 fabs_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Compute the absolute values element-wise.
@@ -2596,10 +2516,8 @@ Examples
 >>> np.fabs_v2([-1.2, 1.2])
 array([ 1.2,  1.2])
 
-########################################
-
 FUNCTION: numpy.float_power_v2
-------------------------------
+
 float_power_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 First array elements raised to powers from second array, element-wise.
@@ -2690,10 +2608,8 @@ To get complex results, give the argument ``dtype=complex``.
 >>> np.float_power_v2(x3, 1.5, dtype=complex)
 array([-1.83697020e-16-1.j, -1.46957616e-15-8.j])
 
-########################################
-
 FUNCTION: numpy.floor_v2
-------------------------
+
 floor_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the floor of the input, element-wise.
@@ -2743,10 +2659,8 @@ Examples
 >>> np.floor_v2(a)
 array([-2., -2., -1.,  0.,  1.,  1.,  2.])
 
-########################################
-
 FUNCTION: numpy.floor_divide_v2
--------------------------------
+
 floor_divide_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the largest integer smaller or equal to the division of the inputs.
@@ -2801,10 +2715,8 @@ on ndarrays.
 >>> x1 // 2.5
 array([0., 0., 1., 1.])
 
-########################################
-
 FUNCTION: numpy.fmax_v2
------------------------
+
 fmax_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Element-wise maximum of array elements.
@@ -2866,10 +2778,8 @@ array([[ 1. ,  2. ],
 >>> np.fmax_v2([np.nan_v2, 0, np.nan_v2],[0, np.nan_v2, np.nan_v2])
 array([ 0.,  0., nan])
 
-########################################
-
 FUNCTION: numpy.fmin_v2
------------------------
+
 fmin_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Element-wise minimum of array elements.
@@ -2931,10 +2841,8 @@ array([[ 0.5,  0. ],
 >>> np.fmin_v2([np.nan_v2, 0, np.nan_v2],[0, np.nan_v2, np.nan_v2])
 array([ 0.,  0., nan])
 
-########################################
-
 FUNCTION: numpy.fmod_v2
------------------------
+
 fmod_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns the element-wise remainder of division.
@@ -3004,10 +2912,8 @@ array([[-1,  0],
        [-1,  0],
        [ 1,  0]])
 
-########################################
-
 FUNCTION: numpy.format_float_positional_v2
-------------------------------------------
+
 
     Format a floating-point scalar as a decimal string in positional notation.
 
@@ -3081,10 +2987,8 @@ FUNCTION: numpy.format_float_positional_v2
     '0.3000488281'
     
 
-########################################
-
 FUNCTION: numpy.format_float_scientific_v2
-------------------------------------------
+
 
     Format a floating-point scalar as a decimal string in scientific notation.
 
@@ -3150,10 +3054,8 @@ FUNCTION: numpy.format_float_scientific_v2
     '1.23e+0024'
     
 
-########################################
-
 FUNCTION: numpy.frexp_v2
-------------------------
+
 frexp_v2(x[, out1, out2], / [, out=(None, None)], *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Decompose the elements of x into mantissa and twos exponent.
@@ -3214,10 +3116,8 @@ array([0, 1, 2, 2, 3, 3, 3, 3, 4], dtype=int32)
 >>> y1 * 2**y2
 array([ 0.,  1.,  2.,  3.,  4.,  5.,  6.,  7.,  8.])
 
-########################################
-
 FUNCTION: numpy.fromfunction_v2
--------------------------------
+
 
     Construct an array by executing a function over each coordinate.
 
@@ -3284,10 +3184,8 @@ FUNCTION: numpy.fromfunction_v2
 
     
 
-########################################
-
 FUNCTION: numpy.fromregex_v2
-----------------------------
+
 
     Construct an array from a text file, using regular expression parsing.
 
@@ -3347,10 +3245,8 @@ FUNCTION: numpy.fromregex_v2
 
     
 
-########################################
-
 FUNCTION: numpy.full_v2
------------------------
+
 
     Return a new array of given shape and type, filled with `fill_value`.
 
@@ -3403,10 +3299,8 @@ FUNCTION: numpy.full_v2
 
     
 
-########################################
-
 FUNCTION: numpy.gcd_v2
-----------------------
+
 gcd_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns the greatest common divisor of ``|x1|`` and ``|x2|``
@@ -3436,10 +3330,8 @@ Examples
 >>> np.gcd_v2(np.arange_v2(6), 20)
 array([20,  1,  2,  1,  4,  5])
 
-########################################
-
 FUNCTION: numpy.genfromtxt_v2
------------------------------
+
 
     Load data from a text file, with missing values handled as specified.
 
@@ -3632,10 +3524,8 @@ FUNCTION: numpy.genfromtxt_v2
 
     
 
-########################################
-
 FUNCTION: numpy.get_include_v2
-------------------------------
+
 
     Return the directory that contains the NumPy \*.h header files.
 
@@ -3670,10 +3560,8 @@ FUNCTION: numpy.get_include_v2
 
     
 
-########################################
-
 FUNCTION: numpy.get_printoptions_v2
------------------------------------
+
 
     Return the current print options.
 
@@ -3713,10 +3601,8 @@ FUNCTION: numpy.get_printoptions_v2
 
     
 
-########################################
-
 FUNCTION: numpy.getbufsize_v2
------------------------------
+
 
     Return the size of the buffer used in ufuncs.
 
@@ -3733,10 +3619,8 @@ FUNCTION: numpy.getbufsize_v2
 
     
 
-########################################
-
 FUNCTION: numpy.geterr_v2
--------------------------
+
 
     Get the current way of handling floating-point errors.
 
@@ -3775,10 +3659,8 @@ FUNCTION: numpy.geterr_v2
 
     
 
-########################################
-
 FUNCTION: numpy.geterrcall_v2
------------------------------
+
 
     Return the current callback function used on floating-point errors.
 
@@ -3822,10 +3704,8 @@ FUNCTION: numpy.geterrcall_v2
 
     
 
-########################################
-
 FUNCTION: numpy.greater_v2
---------------------------
+
 greater_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the truth value of (x1 > x2) element-wise.
@@ -3876,10 +3756,8 @@ ndarrays.
 >>> a > b
 array([ True, False])
 
-########################################
-
 FUNCTION: numpy.greater_equal_v2
---------------------------------
+
 greater_equal_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the truth value of (x1 >= x2) element-wise.
@@ -3929,10 +3807,8 @@ on ndarrays.
 >>> a >= b
 array([ True,  True, False])
 
-########################################
-
 FUNCTION: numpy.hamming_v2
---------------------------
+
 
     Return the Hamming window.
 
@@ -4016,10 +3892,8 @@ FUNCTION: numpy.hamming_v2
 
     
 
-########################################
-
 FUNCTION: numpy.hanning_v2
---------------------------
+
 
     Return the Hanning window.
 
@@ -4106,10 +3980,8 @@ FUNCTION: numpy.hanning_v2
 
     
 
-########################################
-
 FUNCTION: numpy.heaviside_v2
-----------------------------
+
 heaviside_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Compute the Heaviside step function.
@@ -4165,10 +4037,8 @@ array([ 0. ,  0.5,  1. ])
 >>> np.heaviside_v2([-1.5, 0, 2.0], 1)
 array([ 0.,  1.,  1.])
 
-########################################
-
 FUNCTION: numpy.hypot_v2
-------------------------
+
 hypot_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Given the "legs" of a right triangle, return its hypotenuse.
@@ -4221,10 +4091,8 @@ array([[ 5.,  5.,  5.],
        [ 5.,  5.,  5.],
        [ 5.,  5.,  5.]])
 
-########################################
-
 FUNCTION: numpy.identity_v2
----------------------------
+
 
     Return the identity array.
 
@@ -4262,10 +4130,8 @@ FUNCTION: numpy.identity_v2
 
     
 
-########################################
-
 FUNCTION: numpy.indices_v2
---------------------------
+
 
     Return an array representing the indices of a grid.
 
@@ -4347,10 +4213,8 @@ FUNCTION: numpy.indices_v2
 
     
 
-########################################
-
 FUNCTION: numpy.info_v2
------------------------
+
 
     Get help information for an array, function, class, or module.
 
@@ -4414,10 +4278,8 @@ FUNCTION: numpy.info_v2
 
     
 
-########################################
-
 FUNCTION: numpy.isdtype_v2
---------------------------
+
 
     Determine if a provided dtype is of a specified data type ``kind``.
 
@@ -4456,10 +4318,8 @@ FUNCTION: numpy.isdtype_v2
 
     
 
-########################################
-
 FUNCTION: numpy.isfinite_v2
----------------------------
+
 isfinite_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Test element-wise for finiteness (not infinity and not Not a Number).
@@ -4530,10 +4390,8 @@ array([0, 1, 0])
 >>> y
 array([0, 1, 0])
 
-########################################
-
 FUNCTION: numpy.isfortran_v2
-----------------------------
+
 
     Check if the array is Fortran contiguous but *not* C contiguous.
 
@@ -4597,10 +4455,8 @@ FUNCTION: numpy.isfortran_v2
 
     
 
-########################################
-
 FUNCTION: numpy.isinf_v2
-------------------------
+
 isinf_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Test element-wise for positive or negative infinity.
@@ -4664,10 +4520,8 @@ array([1, 0, 1])
 >>> y
 array([1, 0, 1])
 
-########################################
-
 FUNCTION: numpy.isnan_v2
-------------------------
+
 isnan_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Test element-wise for NaN and return result as a boolean array.
@@ -4715,10 +4569,8 @@ False
 >>> np.isnan_v2([np.log_v2(-1.),1.,np.log_v2(0)])
 array([ True, False, False])
 
-########################################
-
 FUNCTION: numpy.isnat_v2
-------------------------
+
 isnat_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Test element-wise for NaT (not a time) and return result as a boolean array.
@@ -4761,10 +4613,8 @@ False
 >>> np.isnat_v2(np.array_v2(["NaT", "2016-01-01"], dtype="datetime64[ns]"))
 array([ True, False])
 
-########################################
-
 FUNCTION: numpy.isscalar_v2
----------------------------
+
 
     Returns True if the type of `element` is a scalar type.
 
@@ -4844,10 +4694,8 @@ FUNCTION: numpy.isscalar_v2
 
     
 
-########################################
-
 FUNCTION: numpy.issubdtype_v2
------------------------------
+
 
     Returns True if first argument is a typecode lower/equal in type hierarchy.
 
@@ -4903,10 +4751,8 @@ FUNCTION: numpy.issubdtype_v2
 
     
 
-########################################
-
 FUNCTION: numpy.iterable_v2
----------------------------
+
 
     Check whether or not an object can be iterated over.
 
@@ -4945,10 +4791,8 @@ FUNCTION: numpy.iterable_v2
 
     
 
-########################################
-
 FUNCTION: numpy.kaiser_v2
--------------------------
+
 
     Return the Kaiser window.
 
@@ -5062,10 +4906,8 @@ FUNCTION: numpy.kaiser_v2
 
     
 
-########################################
-
 FUNCTION: numpy.lcm_v2
-----------------------
+
 lcm_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns the lowest common multiple of ``|x1|`` and ``|x2|``
@@ -5097,10 +4939,8 @@ Examples
 >>> np.lcm_v2(np.arange_v2(6), 20)
 array([ 0, 20, 20, 60, 20, 20])
 
-########################################
-
 FUNCTION: numpy.ldexp_v2
-------------------------
+
 ldexp_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns x1 * 2**x2, element-wise.
@@ -5157,10 +4997,8 @@ array([ 5., 10., 20., 40.], dtype=float16)
 >>> np.ldexp_v2(*np.frexp_v2(x))
 array([ 0.,  1.,  2.,  3.,  4.,  5.])
 
-########################################
-
 FUNCTION: numpy.less_v2
------------------------
+
 less_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the truth value of (x1 < x2) element-wise.
@@ -5209,10 +5047,8 @@ The ``<`` operator can be used as a shorthand for ``np.less_v2`` on ndarrays.
 >>> a < b
 array([ True, False])
 
-########################################
-
 FUNCTION: numpy.less_equal_v2
------------------------------
+
 less_equal_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the truth value of (x1 <= x2) element-wise.
@@ -5262,10 +5098,8 @@ ndarrays.
 >>> a <= b
 array([False,  True,  True])
 
-########################################
-
 FUNCTION: numpy.load_v2
------------------------
+
 
     Load arrays or pickled objects from ``.npy``, ``.npz`` or pickled files.
 
@@ -5382,10 +5216,8 @@ FUNCTION: numpy.load_v2
 
     
 
-########################################
-
 FUNCTION: numpy.loadtxt_v2
---------------------------
+
 
     Load data from a text file.
 
@@ -5623,10 +5455,8 @@ FUNCTION: numpy.loadtxt_v2
 
     
 
-########################################
-
 FUNCTION: numpy.log_v2
-----------------------
+
 log_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Natural logarithm, element-wise.
@@ -5695,10 +5525,8 @@ Examples
 >>> np.log_v2([1, np.e_v2, np.e_v2**2, 0])
 array([  0.,   1.,   2., -inf])
 
-########################################
-
 FUNCTION: numpy.log10_v2
-------------------------
+
 log10_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the base 10 logarithm of the input array, element-wise.
@@ -5764,10 +5592,8 @@ Examples
 >>> np.log10_v2([1e-15, -3.])
 array([-15.,  nan])
 
-########################################
-
 FUNCTION: numpy.log1p_v2
-------------------------
+
 log1p_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the natural logarithm of one plus the input array, element-wise.
@@ -5835,10 +5661,8 @@ Examples
 >>> np.log_v2(1 + 1e-99)
 0.0
 
-########################################
-
 FUNCTION: numpy.log2_v2
------------------------
+
 log2_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Base-2 logarithm of `x`.
@@ -5901,10 +5725,8 @@ array([-inf,   0.,   1.,   4.])
 >>> np.log2_v2(xi)
 array([ 0.+2.26618007j,  0.+0.j        ,  1.+0.j        ,  2.+2.26618007j])
 
-########################################
-
 FUNCTION: numpy.logaddexp_v2
-----------------------------
+
 logaddexp_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Logarithm of the sum of exponentiations of the inputs.
@@ -5956,10 +5778,8 @@ Examples
 >>> np.exp_v2(prob12)
 3.5000000000000057e-50
 
-########################################
-
 FUNCTION: numpy.logaddexp2_v2
------------------------------
+
 logaddexp2_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Logarithm of the sum of exponentiations of the inputs in base-2.
@@ -6011,10 +5831,8 @@ Examples
 >>> 2**prob12
 3.4999999999999914e-50
 
-########################################
-
 FUNCTION: numpy.logical_and_v2
-------------------------------
+
 logical_and_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Compute the truth value of x1 AND x2 element-wise.
@@ -6071,10 +5889,8 @@ boolean ndarrays.
 >>> a & b
 array([False, False])
 
-########################################
-
 FUNCTION: numpy.logical_not_v2
-------------------------------
+
 logical_not_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Compute the truth value of NOT x element-wise.
@@ -6120,10 +5936,8 @@ array([False,  True,  True, False])
 >>> np.logical_not_v2(x<3)
 array([False, False, False,  True,  True])
 
-########################################
-
 FUNCTION: numpy.logical_or_v2
------------------------------
+
 logical_or_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Compute the truth value of x1 OR x2 element-wise.
@@ -6179,10 +5993,8 @@ boolean ndarrays.
 >>> a | b
 array([ True, False])
 
-########################################
-
 FUNCTION: numpy.logical_xor_v2
-------------------------------
+
 logical_xor_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Compute the truth value of x1 XOR x2, element-wise.
@@ -6236,10 +6048,8 @@ Simple example showing support of broadcasting
 array([[ True, False],
        [False,  True]])
 
-########################################
-
 FUNCTION: numpy.mask_indices_v2
--------------------------------
+
 
     Return the indices to access (n, n) arrays, given a masking function.
 
@@ -6301,10 +6111,8 @@ FUNCTION: numpy.mask_indices_v2
 
     
 
-########################################
-
 FUNCTION: numpy.matmul_v2
--------------------------
+
 matmul_v2(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
 
 Matrix product of two arrays.
@@ -6428,10 +6236,8 @@ ndarrays.
 >>> x1 @ x2
 (-13+0j)
 
-########################################
-
 FUNCTION: numpy.matvec_v2
--------------------------
+
 matvec_v2(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
 
 Matrix-vector dot product of two arrays.
@@ -6492,10 +6298,8 @@ array([[ 0., -1.,  0.],
        [ 0.,  0.,  1.],
        [ 6.,  0.,  8.]])
 
-########################################
-
 FUNCTION: numpy.maximum_v2
---------------------------
+
 maximum_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Element-wise maximum of array elements.
@@ -6560,10 +6364,8 @@ array([nan, nan, nan])
 >>> np.maximum_v2(np.inf_v2, 1)
 inf
 
-########################################
-
 FUNCTION: numpy.minimum_v2
---------------------------
+
 minimum_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Element-wise minimum of array elements.
@@ -6628,10 +6430,8 @@ array([nan, nan, nan])
 >>> np.minimum_v2(-np.inf_v2, 1)
 -inf
 
-########################################
-
 FUNCTION: numpy.mintypecode_v2
-------------------------------
+
 
     Return the character for the minimum-size type to which given types can
     be safely cast.
@@ -6674,10 +6474,8 @@ FUNCTION: numpy.mintypecode_v2
 
     
 
-########################################
-
 FUNCTION: numpy.mod_v2
-----------------------
+
 remainder_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns the element-wise remainder of division.
@@ -6750,10 +6548,8 @@ ndarrays.
 >>> x1 % 5
 array([0, 1, 2, 3, 4, 0, 1])
 
-########################################
-
 FUNCTION: numpy.modf_v2
------------------------
+
 modf_v2(x[, out1, out2], / [, out=(None, None)], *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the fractional and integral parts of an array, element-wise.
@@ -6804,10 +6600,8 @@ Examples
 >>> np.modf_v2(-0.5)
 (-0.5, -0)
 
-########################################
-
 FUNCTION: numpy.multiply_v2
----------------------------
+
 multiply_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Multiply arguments element-wise.
@@ -6867,10 +6661,8 @@ array([[  0.,   1.,   4.],
        [  0.,   4.,  10.],
        [  0.,   7.,  16.]])
 
-########################################
-
 FUNCTION: numpy.negative_v2
----------------------------
+
 negative_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Numerical negative, element-wise.
@@ -6914,10 +6706,8 @@ ndarrays.
 >>> -x1
 array([-1.,  1.])
 
-########################################
-
 FUNCTION: numpy.nextafter_v2
-----------------------------
+
 nextafter_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the next floating-point value after x1 towards x2, element-wise.
@@ -6961,10 +6751,8 @@ True
 >>> np.nextafter_v2([1, 2], [2, 1]) == [eps + 1, 2 - eps]
 array([ True,  True])
 
-########################################
-
 FUNCTION: numpy.not_equal_v2
-----------------------------
+
 not_equal_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return (x1 != x2) element-wise.
@@ -7017,10 +6805,8 @@ ndarrays.
 >>> a != b
 array([False,  True])
 
-########################################
-
 FUNCTION: numpy.ones_v2
------------------------
+
 
     Return a new array of given shape and type, filled with ones.
 
@@ -7076,10 +6862,8 @@ FUNCTION: numpy.ones_v2
 
     
 
-########################################
-
 FUNCTION: numpy.positive_v2
----------------------------
+
 positive_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Numerical positive, element-wise.
@@ -7115,10 +6899,8 @@ ndarrays.
 >>> +x1
 array([ 1., -1.])
 
-########################################
-
 FUNCTION: numpy.pow_v2
-----------------------
+
 power_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 First array elements raised to powers from second array, element-wise.
@@ -7216,10 +6998,8 @@ To get complex results, give the argument ``dtype=complex``.
 >>> np.power_v2(x3, 1.5, dtype=complex)
 array([-1.83697020e-16-1.j, -1.46957616e-15-8.j])
 
-########################################
-
 FUNCTION: numpy.printoptions_v2
--------------------------------
+
 Context manager for setting print options.
 
     Set print options for the scope of the `with` block, and restore the old
@@ -7244,10 +7024,8 @@ Context manager for setting print options.
 
     
 
-########################################
-
 FUNCTION: numpy.rad2deg_v2
---------------------------
+
 rad2deg_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Convert angles from radians to degrees.
@@ -7290,10 +7068,8 @@ Examples
 >>> np.rad2deg_v2(np.pi_v2/2)
 90.0
 
-########################################
-
 FUNCTION: numpy.radians_v2
---------------------------
+
 radians_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Convert angles from degrees to radians.
@@ -7343,10 +7119,8 @@ array([ 0.        ,  0.52359878,  1.04719755,  1.57079633,  2.0943951 ,
 >>> ret is out
 True
 
-########################################
-
 FUNCTION: numpy.reciprocal_v2
------------------------------
+
 reciprocal_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the reciprocal of the argument, element-wise.
@@ -7396,10 +7170,8 @@ Examples
 >>> np.reciprocal_v2([1, 2., 3.33])
 array([ 1.       ,  0.5      ,  0.3003003])
 
-########################################
-
 FUNCTION: numpy.require_v2
---------------------------
+
 
     Return an ndarray of the provided type that satisfies requirements.
 
@@ -7467,10 +7239,8 @@ FUNCTION: numpy.require_v2
 
     
 
-########################################
-
 FUNCTION: numpy.rint_v2
------------------------
+
 rint_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Round elements of the array to the nearest integer.
@@ -7516,10 +7286,8 @@ Examples
 >>> np.rint_v2(a)
 array([-2., -2., -0.,  0.,  2.,  2.,  2.])
 
-########################################
-
 FUNCTION: numpy.row_stack_v2
-----------------------------
+
 
     Stack arrays in sequence vertically (row wise).
 
@@ -7579,10 +7347,8 @@ FUNCTION: numpy.row_stack_v2
 
     
 
-########################################
-
 FUNCTION: numpy.set_printoptions_v2
------------------------------------
+
 
     Set printing options.
 
@@ -7757,10 +7523,8 @@ FUNCTION: numpy.set_printoptions_v2
 
     
 
-########################################
-
 FUNCTION: numpy.setbufsize_v2
------------------------------
+
 
     Set the size of the buffer used in ufuncs.
 
@@ -7794,10 +7558,8 @@ FUNCTION: numpy.setbufsize_v2
 
     
 
-########################################
-
 FUNCTION: numpy.seterr_v2
--------------------------
+
 
     Set how floating-point errors are handled.
 
@@ -7871,10 +7633,8 @@ FUNCTION: numpy.seterr_v2
 
     
 
-########################################
-
 FUNCTION: numpy.seterrcall_v2
------------------------------
+
 
     Set the floating-point error callback function or log object.
 
@@ -7956,10 +7716,8 @@ FUNCTION: numpy.seterrcall_v2
 
     
 
-########################################
-
 FUNCTION: numpy.show_config_v2
-------------------------------
+
 
     Show libraries and system information on which NumPy was built
     and is being used
@@ -7985,10 +7743,8 @@ FUNCTION: numpy.show_config_v2
 
     
 
-########################################
-
 FUNCTION: numpy.show_runtime_v2
--------------------------------
+
 
     Print information about various resources in the system
     including available intrinsic support and BLAS/LAPACK library
@@ -8007,10 +7763,8 @@ FUNCTION: numpy.show_runtime_v2
 
     
 
-########################################
-
 FUNCTION: numpy.sign_v2
------------------------
+
 sign_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns an element-wise indication of the sign of a number.
@@ -8068,10 +7822,8 @@ array([-1.,  1.])
 >>> np.sign_v2([3-4j, 8j])
 array([0.6-0.8j, 0. +1.j ])
 
-########################################
-
 FUNCTION: numpy.signbit_v2
---------------------------
+
 signbit_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns element-wise True where signbit is set (less than zero).
@@ -8110,10 +7862,8 @@ True
 >>> np.signbit_v2(np.array_v2([1, -2.3, 2.1]))
 array([False,  True, False])
 
-########################################
-
 FUNCTION: numpy.sin_v2
-----------------------
+
 sin_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Trigonometric sine, element-wise.
@@ -8184,10 +7934,8 @@ Plot the sine function:
 >>> plt.axis('tight')
 >>> plt.show()
 
-########################################
-
 FUNCTION: numpy.sinh_v2
------------------------
+
 sinh_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Hyperbolic sine, element-wise.
@@ -8254,10 +8002,8 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ValueError: operands could not be broadcast together with shapes (3,3) (2,2)
 
-########################################
-
 FUNCTION: numpy.spacing_v2
---------------------------
+
 spacing_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the distance between x and the nearest adjacent number.
@@ -8303,10 +8049,8 @@ Examples
 >>> np.spacing_v2(1) == np.finfo_v2(np.float64_v2).eps
 True
 
-########################################
-
 FUNCTION: numpy.sqrt_v2
------------------------
+
 sqrt_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the non-negative square-root of an array, element-wise.
@@ -8363,10 +8107,8 @@ array([ 2.+0.j,  0.+1.j,  1.+2.j])
 >>> np.sqrt_v2([4, -1, np.inf_v2])
 array([ 2., nan, inf])
 
-########################################
-
 FUNCTION: numpy.square_v2
--------------------------
+
 square_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the element-wise square of the input.
@@ -8405,10 +8147,8 @@ Examples
 >>> np.square_v2([-1j, 1])
 array([-1.-0.j,  1.+0.j])
 
-########################################
-
 FUNCTION: numpy.subtract_v2
----------------------------
+
 subtract_v2(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Subtract arguments, element-wise.
@@ -8468,10 +8208,8 @@ array([[0., 0., 0.],
        [3., 3., 3.],
        [6., 6., 6.]])
 
-########################################
-
 FUNCTION: numpy.tan_v2
-----------------------
+
 tan_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Compute tangent element-wise.
@@ -8534,10 +8272,8 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ValueError: operands could not be broadcast together with shapes (3,3) (2,2)
 
-########################################
-
 FUNCTION: numpy.tanh_v2
------------------------
+
 tanh_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Compute hyperbolic tangent element-wise.
@@ -8603,10 +8339,8 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 ValueError: operands could not be broadcast together with shapes (3,3) (2,2)
 
-########################################
-
 FUNCTION: numpy.trapz_v2
-------------------------
+
 
     `trapz` is deprecated in NumPy 2.0.
 
@@ -8614,10 +8348,8 @@ FUNCTION: numpy.trapz_v2
     functions in `scipy.integrate`.
     
 
-########################################
-
 FUNCTION: numpy.tri_v2
-----------------------
+
 
     An array with ones at and below the given diagonal and zeros elsewhere.
 
@@ -8664,10 +8396,8 @@ FUNCTION: numpy.tri_v2
 
     
 
-########################################
-
 FUNCTION: numpy.tril_indices_v2
--------------------------------
+
 
     Return the indices for the lower-triangle of an (n, m) array.
 
@@ -8742,10 +8472,8 @@ FUNCTION: numpy.tril_indices_v2
 
     
 
-########################################
-
 FUNCTION: numpy.triu_indices_v2
--------------------------------
+
 
     Return the indices for the upper-triangle of an (n, m) array.
 
@@ -8822,10 +8550,8 @@ FUNCTION: numpy.triu_indices_v2
 
     
 
-########################################
-
 FUNCTION: numpy.trunc_v2
-------------------------
+
 trunc_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return the truncated value of the input, element-wise.
@@ -8869,10 +8595,8 @@ Examples
 >>> np.trunc_v2(a)
 array([-1., -1., -0.,  0.,  1.,  1.,  2.])
 
-########################################
-
 FUNCTION: numpy.typename_v2
----------------------------
+
 
     Return a description for the given data type code.
 
@@ -8921,10 +8645,8 @@ FUNCTION: numpy.typename_v2
 
     
 
-########################################
-
 FUNCTION: numpy.vecdot_v2
--------------------------
+
 vecdot_v2(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
 
 Vector dot product of two arrays.
@@ -8980,10 +8702,8 @@ Get the projected size along a given normal for an array of vectors.
 >>> np.vecdot_v2(v, n)
 array([ 3.,  8., 10.])
 
-########################################
-
 FUNCTION: numpy.vecmat_v2
--------------------------
+
 vecmat_v2(x1, x2, /, out=None, *, casting='same_kind', order='K', dtype=None, subok=True[, signature, axes, axis])
 
 Vector-matrix dot product of two arrays.
@@ -9041,10 +8761,8 @@ Project a vector along X and Y.
 >>> np.vecmat_v2(v, a)
 array([ 0.,  4., 0.])
 
-########################################
-
 FUNCTION: numpy.testing.assert__v2
-----------------------------------
+
 
     Assert that works in release mode.
     Accepts callable msg to allow deferring evaluation until failure.
@@ -9056,10 +8774,8 @@ FUNCTION: numpy.testing.assert__v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_allclose_v2
-------------------------------------------
+
 
     Raises an AssertionError if two objects are not equal up to desired
     tolerance.
@@ -9152,10 +8868,8 @@ FUNCTION: numpy.testing.assert_allclose_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_almost_equal_v2
-----------------------------------------------
+
 
     Raises an AssertionError if two items are not equal up to desired
     precision.
@@ -9221,10 +8935,8 @@ FUNCTION: numpy.testing.assert_almost_equal_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_approx_equal_v2
-----------------------------------------------
+
 
     Raises an AssertionError if two items are not equal up to significant
     digits.
@@ -9279,10 +8991,8 @@ FUNCTION: numpy.testing.assert_approx_equal_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_array_almost_equal_v2
-----------------------------------------------------
+
 
     Raises an AssertionError if two objects are not equal up to desired
     precision.
@@ -9356,10 +9066,8 @@ FUNCTION: numpy.testing.assert_array_almost_equal_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_array_almost_equal_nulp_v2
----------------------------------------------------------
+
 
     Compare two arrays relatively to their spacing.
 
@@ -9405,10 +9113,8 @@ FUNCTION: numpy.testing.assert_array_almost_equal_nulp_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_array_equal_v2
----------------------------------------------
+
 
     Raises an AssertionError if two array_like objects are not equal.
 
@@ -9527,10 +9233,8 @@ FUNCTION: numpy.testing.assert_array_equal_v2
      DESIRED: array([2., 2., 2.], dtype=float32)
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_array_less_v2
---------------------------------------------
+
 
     Raises an AssertionError if two array_like objects are not ordered by less
     than.
@@ -9634,10 +9338,8 @@ FUNCTION: numpy.testing.assert_array_less_v2
      y: array([5, 5])
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_array_max_ulp_v2
------------------------------------------------
+
 
     Check that all items of arrays differ in at most N Units in the Last Place.
 
@@ -9677,10 +9379,8 @@ FUNCTION: numpy.testing.assert_array_max_ulp_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_equal_v2
----------------------------------------
+
 
     Raises an AssertionError if two objects are not equal.
 
@@ -9776,10 +9476,8 @@ FUNCTION: numpy.testing.assert_equal_v2
      DESIRED: array([2., 2., 2.], dtype=float32)
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_no_gc_cycles_v2
-----------------------------------------------
+
 
     Fail if the given callable produces any reference cycles.
 
@@ -9804,10 +9502,8 @@ FUNCTION: numpy.testing.assert_no_gc_cycles_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_no_warnings_v2
----------------------------------------------
+
 
     Fail if the given callable produces any warnings.
 
@@ -9833,10 +9529,8 @@ FUNCTION: numpy.testing.assert_no_warnings_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_raises_v2
-----------------------------------------
+
 
     assert_raises(exception_class, callable, *args, **kwargs)
     assert_raises(exception_class)
@@ -9862,10 +9556,8 @@ FUNCTION: numpy.testing.assert_raises_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_raises_regex_v2
-----------------------------------------------
+
 
     assert_raises_regex(exception_class, expected_regexp, callable, *args,
                         **kwargs)
@@ -9878,10 +9570,8 @@ FUNCTION: numpy.testing.assert_raises_regex_v2
     Alternatively, can be used as a context manager like `assert_raises`.
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_string_equal_v2
-----------------------------------------------
+
 
     Test if two strings are equal.
 
@@ -9908,10 +9598,8 @@ FUNCTION: numpy.testing.assert_string_equal_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.assert_warns_v2
----------------------------------------
+
 
     Fail unless the given callable throws the specified warning.
 
@@ -9955,10 +9643,8 @@ FUNCTION: numpy.testing.assert_warns_v2
     >>> assert ret == 16
     
 
-########################################
-
 FUNCTION: numpy.testing.break_cycles_v2
----------------------------------------
+
 
     Break reference cycles by calling gc.collect
     Objects can call other objects' methods (for instance, another object's
@@ -9967,18 +9653,14 @@ FUNCTION: numpy.testing.break_cycles_v2
     release all cycles.
     
 
-########################################
-
 FUNCTION: numpy.testing.check_support_sve_v2
---------------------------------------------
+
 
     gh-22982
     
 
-########################################
-
 FUNCTION: numpy.testing.decorate_methods_v2
--------------------------------------------
+
 
     Apply a decorator to all methods in a class matching a regular expression.
 
@@ -10002,10 +9684,8 @@ FUNCTION: numpy.testing.decorate_methods_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.jiffies_v2
-----------------------------------
+
 
         Return number of jiffies elapsed.
 
@@ -10014,10 +9694,8 @@ FUNCTION: numpy.testing.jiffies_v2
 
         
 
-########################################
-
 FUNCTION: numpy.testing.measure_v2
-----------------------------------
+
 
     Return elapsed time for executing code in the namespace of the caller.
 
@@ -10051,19 +9729,15 @@ FUNCTION: numpy.testing.measure_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.memusage_v2
------------------------------------
+
 
         Return virtual memory size in bytes of the running python.
 
         
 
-########################################
-
 FUNCTION: numpy.testing.print_assert_equal_v2
----------------------------------------------
+
 
     Test if two objects are equal, and print an error message if test fails.
 
@@ -10092,16 +9766,12 @@ FUNCTION: numpy.testing.print_assert_equal_v2
 
     
 
-########################################
-
 FUNCTION: numpy.testing.run_threaded_v2
----------------------------------------
+
 Runs a function many times in parallel
 
-########################################
-
 FUNCTION: numpy.testing.rundocs_v2
-----------------------------------
+
 
     Run doctests found in the given file.
 
@@ -10124,10 +9794,8 @@ FUNCTION: numpy.testing.rundocs_v2
     >>> np.lib_v2.test(doctests=True)  # doctest: +SKIP
     
 
-########################################
-
 FUNCTION: numpy.testing.tempdir_v2
-----------------------------------
+
 Context manager to provide a temporary test folder.
 
     All arguments are passed as this to the underlying tempfile.mkdtemp
@@ -10135,10 +9803,8 @@ Context manager to provide a temporary test folder.
 
     
 
-########################################
-
 FUNCTION: numpy.testing.temppath_v2
------------------------------------
+
 Context manager for temporary files.
 
     Context manager that returns the path to a closed temporary file. Its
@@ -10152,10 +9818,8 @@ Context manager for temporary files.
 
     
 
-########################################
-
 FUNCTION: numpy.testing.overrides.allows_array_function_override_v2
--------------------------------------------------------------------
+
 Determine if a Numpy function can be overridden via `__array_function__`
 
     Parameters
@@ -10170,10 +9834,8 @@ Determine if a Numpy function can be overridden via `__array_function__`
         overridable via `__array_function__` and `False` otherwise.
     
 
-########################################
-
 FUNCTION: numpy.testing.overrides.allows_array_ufunc_override_v2
-----------------------------------------------------------------
+
 Determine if a function can be overridden via `__array_ufunc__`
 
     Parameters
@@ -10194,10 +9856,8 @@ Determine if a function can be overridden via `__array_ufunc__`
 
     
 
-########################################
-
 FUNCTION: numpy.testing.overrides.get_overridable_numpy_array_functions_v2
---------------------------------------------------------------------------
+
 List all numpy functions overridable via `__array_function__`
 
     Parameters
@@ -10212,10 +9872,8 @@ List all numpy functions overridable via `__array_function__`
 
     
 
-########################################
-
 FUNCTION: numpy.testing.overrides.get_overridable_numpy_ufuncs_v2
------------------------------------------------------------------
+
 List all numpy ufuncs overridable via `__array_ufunc__`
 
     Parameters
@@ -10228,16 +9886,12 @@ List all numpy ufuncs overridable via `__array_ufunc__`
         A set containing all overridable ufuncs in the public numpy API.
     
 
-########################################
-
 FUNCTION: numpy.testing.extbuild.build_v2
------------------------------------------
+
 use meson to build
 
-########################################
-
 FUNCTION: numpy.testing.extbuild.build_and_import_extension_v2
---------------------------------------------------------------
+
 
     Build and imports a c-extension module `modname` from a list of function
     fragments `functions`.
@@ -10275,10 +9929,8 @@ FUNCTION: numpy.testing.extbuild.build_and_import_extension_v2
     >>> assert mod.test_bytes(b'abc')
     
 
-########################################
-
 FUNCTION: numpy.testing.extbuild.compile_extension_module_v2
-------------------------------------------------------------
+
 
     Build an extension module and return the filename of the resulting
     native code file.
@@ -10298,10 +9950,8 @@ FUNCTION: numpy.testing.extbuild.compile_extension_module_v2
         Where to find the libraries, ``-L`` passed to the linker
     
 
-########################################
-
 FUNCTION: numpy.strings.capitalize_v2
--------------------------------------
+
 
     Return a copy of ``a`` with only the first character of each element
     capitalized.
@@ -10335,10 +9985,8 @@ FUNCTION: numpy.strings.capitalize_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.center_v2
----------------------------------
+
 
     Return a copy of `a` with its elements centered in a string of
     length `width`.
@@ -10380,10 +10028,8 @@ FUNCTION: numpy.strings.center_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.count_v2
---------------------------------
+
 
     Returns an array with the number of non-overlapping occurrences of
     substring ``sub`` in the range [``start``, ``end``).
@@ -10422,10 +10068,8 @@ FUNCTION: numpy.strings.count_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.decode_v2
----------------------------------
+
 
     Calls :meth:`bytes.decode` element-wise.
 
@@ -10466,10 +10110,8 @@ FUNCTION: numpy.strings.decode_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.encode_v2
----------------------------------
+
 
     Calls :meth:`str.encode` element-wise.
 
@@ -10507,10 +10149,8 @@ FUNCTION: numpy.strings.encode_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.endswith_v2
------------------------------------
+
 
     Returns a boolean array which is `True` where the string element
     in ``a`` ends with ``suffix``, otherwise `False`.
@@ -10545,10 +10185,8 @@ FUNCTION: numpy.strings.endswith_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.expandtabs_v2
--------------------------------------
+
 
     Return a copy of each string element where all tab characters are
     replaced by one or more spaces.
@@ -10586,10 +10224,8 @@ FUNCTION: numpy.strings.expandtabs_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.find_v2
--------------------------------
+
 
     For each element, return the lowest index in the string where
     substring ``sub`` is found, such that ``sub`` is contained in the
@@ -10621,10 +10257,8 @@ FUNCTION: numpy.strings.find_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.index_v2
---------------------------------
+
 
     Like `find`, but raises :exc:`ValueError` when the substring is not found.
 
@@ -10652,10 +10286,8 @@ FUNCTION: numpy.strings.index_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.isalnum_v2
-----------------------------------
+
 isalnum_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns true for each element if all characters in the string are
@@ -10695,10 +10327,8 @@ Examples
 >>> np.strings_v2.isalnum(a)
 array([ True,  True,  True, False, False])
 
-########################################
-
 FUNCTION: numpy.strings.isalpha_v2
-----------------------------------
+
 isalpha_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns true for each element if all characters in the data
@@ -10749,10 +10379,8 @@ array([ True,  True, False])
 >>> np.strings_v2.isalpha(a)
 array([[ True,  True, False], [ True, False, False]])
 
-########################################
-
 FUNCTION: numpy.strings.isdecimal_v2
-------------------------------------
+
 isdecimal_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 For each element, return True if there are only decimal
@@ -10795,10 +10423,8 @@ Examples
 >>> np.strings_v2.isdecimal(['12345', '4.99', '123ABC', ''])
 array([ True, False, False, False])
 
-########################################
-
 FUNCTION: numpy.strings.isdigit_v2
-----------------------------------
+
 isdigit_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns true for each element if all characters in the string are
@@ -10847,10 +10473,8 @@ array([False, False,  True])
 >>> np.strings_v2.isdigit(a)
 array([[False, False,  True], [False,  True,  True]])
 
-########################################
-
 FUNCTION: numpy.strings.islower_v2
-----------------------------------
+
 islower_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns true for each element if all cased characters in the
@@ -10892,10 +10516,8 @@ array(False)
 >>> np.strings_v2.islower("ghc")
 array(True)
 
-########################################
-
 FUNCTION: numpy.strings.isnumeric_v2
-------------------------------------
+
 isnumeric_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 For each element, return True if there are only numeric
@@ -10938,10 +10560,8 @@ Examples
 >>> np.strings_v2.isnumeric(['123', '123abc', '9.0', '1/4', 'VIII'])
 array([ True, False, False, False, False])
 
-########################################
-
 FUNCTION: numpy.strings.isspace_v2
-----------------------------------
+
 isspace_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns true for each element if there are only whitespace
@@ -10990,10 +10610,8 @@ np.True__v2
 >>> np.char_v2.isspace(b'\x0a \x0b \x0c N')
 np.False__v2
 
-########################################
-
 FUNCTION: numpy.strings.istitle_v2
-----------------------------------
+
 istitle_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns true for each element if the element is a titlecased
@@ -11035,10 +10653,8 @@ array(True)
 >>> np.strings_v2.istitle("Numpy is great")
 array(False)
 
-########################################
-
 FUNCTION: numpy.strings.isupper_v2
-----------------------------------
+
 isupper_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Return true for each element if all cased characters in the
@@ -11081,10 +10697,8 @@ array(True)
 >>> np.strings_v2.isupper(a)
 array([False,  True, False])
 
-########################################
-
 FUNCTION: numpy.strings.ljust_v2
---------------------------------
+
 
     Return an array with the elements of `a` left-justified in a
     string of length `width`.
@@ -11123,10 +10737,8 @@ FUNCTION: numpy.strings.ljust_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.lower_v2
---------------------------------
+
 
     Return an array with the elements converted to lowercase.
 
@@ -11157,10 +10769,8 @@ FUNCTION: numpy.strings.lower_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.lstrip_v2
----------------------------------
+
 
     For each element in `a`, return a copy with the leading characters
     removed.
@@ -11201,10 +10811,8 @@ FUNCTION: numpy.strings.lstrip_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.mod_v2
-------------------------------
+
 
     Return (a % i), that is pre-Python 2.6 string formatting
     (interpolation), element-wise for a pair of array_likes of str
@@ -11237,10 +10845,8 @@ FUNCTION: numpy.strings.mod_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.multiply_v2
------------------------------------
+
 
     Return (a * i), that is string multiple concatenation,
     element-wise.
@@ -11281,10 +10887,8 @@ FUNCTION: numpy.strings.multiply_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.partition_v2
-------------------------------------
+
 
     Partition each element in ``a`` around ``sep``.
 
@@ -11325,10 +10929,8 @@ FUNCTION: numpy.strings.partition_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.replace_v2
-----------------------------------
+
 
     For each element in ``a``, return a copy of the string with
     occurrences of substring ``old`` replaced by ``new``.
@@ -11364,10 +10966,8 @@ FUNCTION: numpy.strings.replace_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.rfind_v2
---------------------------------
+
 
     For each element, return the highest index in the string where
     substring ``sub`` is found, such that ``sub`` is contained in the
@@ -11404,10 +11004,8 @@ FUNCTION: numpy.strings.rfind_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.rindex_v2
----------------------------------
+
 
     Like `rfind`, but raises :exc:`ValueError` when the substring `sub` is
     not found.
@@ -11435,10 +11033,8 @@ FUNCTION: numpy.strings.rindex_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.rjust_v2
---------------------------------
+
 
     Return an array with the elements of `a` right-justified in a
     string of length `width`.
@@ -11477,10 +11073,8 @@ FUNCTION: numpy.strings.rjust_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.rpartition_v2
--------------------------------------
+
 
     Partition (split) each element around the right-most separator.
 
@@ -11521,10 +11115,8 @@ FUNCTION: numpy.strings.rpartition_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.rstrip_v2
----------------------------------
+
 
     For each element in `a`, return a copy with the trailing characters
     removed.
@@ -11560,10 +11152,8 @@ FUNCTION: numpy.strings.rstrip_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.startswith_v2
--------------------------------------
+
 
     Returns a boolean array which is `True` where the string element
     in ``a`` starts with ``prefix``, otherwise `False`.
@@ -11598,10 +11188,8 @@ FUNCTION: numpy.strings.startswith_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.str_len_v2
-----------------------------------
+
 str_len_v2(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns the length of each element. For byte strings,
@@ -11648,10 +11236,8 @@ array([1, 1])
 >>> np.strings_v2.str_len(a)
 array([[5, 5], [1, 1]])
 
-########################################
-
 FUNCTION: numpy.strings.strip_v2
---------------------------------
+
 
     For each element in `a`, return a copy with the leading and
     trailing characters removed.
@@ -11691,10 +11277,8 @@ FUNCTION: numpy.strings.strip_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.swapcase_v2
------------------------------------
+
 
     Return element-wise a copy of the string with
     uppercase characters converted to lowercase and vice versa.
@@ -11728,10 +11312,8 @@ FUNCTION: numpy.strings.swapcase_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.title_v2
---------------------------------
+
 
     Return element-wise title cased version of string or unicode.
 
@@ -11767,10 +11349,8 @@ FUNCTION: numpy.strings.title_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.translate_v2
-------------------------------------
+
 
     For each element in `a`, return a copy of the string where all
     characters occurring in the optional argument `deletechars` are
@@ -11805,10 +11385,8 @@ FUNCTION: numpy.strings.translate_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.upper_v2
---------------------------------
+
 
     Return an array with the elements converted to uppercase.
 
@@ -11839,10 +11417,8 @@ FUNCTION: numpy.strings.upper_v2
 
     
 
-########################################
-
 FUNCTION: numpy.strings.zfill_v2
---------------------------------
+
 
     Return the numeric string left-filled with zeros. A leading
     sign prefix (``+``/``-``) is handled by inserting the padding
@@ -11871,10 +11447,8 @@ FUNCTION: numpy.strings.zfill_v2
 
     
 
-########################################
-
 FUNCTION: numpy.rec.array_v2
-----------------------------
+
 
     Construct a record array from a wide-variety of objects.
 
@@ -11958,16 +11532,12 @@ FUNCTION: numpy.rec.array_v2
     array('def', dtype='<U3')
     
 
-########################################
-
 FUNCTION: numpy.rec.find_duplicate_v2
--------------------------------------
+
 Find duplication in a list, return a list of duplicated elements
 
-########################################
-
 FUNCTION: numpy.rec.fromarrays_v2
----------------------------------
+
 Create a record array from a (flat) list of arrays
 
     Parameters
@@ -12014,10 +11584,8 @@ Create a record array from a (flat) list of arrays
               dtype=[('a', '<i4'), ('b', 'S3'), ('c', '<f4')])
     
 
-########################################
-
 FUNCTION: numpy.rec.fromfile_v2
--------------------------------
+
 Create an array from binary file data
 
     Parameters
@@ -12061,10 +11629,8 @@ Create an array from binary file data
     (10,)
     
 
-########################################
-
 FUNCTION: numpy.rec.fromrecords_v2
-----------------------------------
+
 Create a recarray from a list of records in text form.
 
     Parameters
@@ -12106,10 +11672,8 @@ Create a recarray from a list of records in text form.
               dtype=[('col1', '<i8'), ('col2', '<U3'), ('col3', '<f8')])
     
 
-########################################
-
 FUNCTION: numpy.rec.fromstring_v2
----------------------------------
+
 Create a record array from binary data
 
     Note that despite the name of this function it does not accept `str`
@@ -12161,10 +11725,8 @@ Create a record array from binary data
     TypeError: a bytes-like object is required, not 'str'
     
 
-########################################
-
 FUNCTION: numpy.polynomial.set_default_printstyle_v2
-----------------------------------------------------
+
 
     Set the default format for the string representation of polynomials.
 
@@ -12202,10 +11764,8 @@ FUNCTION: numpy.polynomial.set_default_printstyle_v2
     1.0 + 2.0·x + 3.0·x²
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polyutils.as_series_v2
--------------------------------------------------
+
 
     Return argument as a list of 1-d arrays.
 
@@ -12257,10 +11817,8 @@ FUNCTION: numpy.polynomial.polyutils.as_series_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polyutils.getdomain_v2
--------------------------------------------------
+
 
     Return a domain suitable for given abscissae.
 
@@ -12298,10 +11856,8 @@ FUNCTION: numpy.polynomial.polyutils.getdomain_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polyutils.mapdomain_v2
--------------------------------------------------
+
 
     Apply linear map to input points.
 
@@ -12364,10 +11920,8 @@ FUNCTION: numpy.polynomial.polyutils.mapdomain_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polyutils.mapparms_v2
-------------------------------------------------
+
 
     Linear map parameters between domains.
 
@@ -12407,10 +11961,8 @@ FUNCTION: numpy.polynomial.polyutils.mapparms_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polyutils.trimcoef_v2
-------------------------------------------------
+
 
     Remove "small" "trailing" coefficients from a polynomial.
 
@@ -12451,10 +12003,8 @@ FUNCTION: numpy.polynomial.polyutils.trimcoef_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polyutils.trimseq_v2
------------------------------------------------
+
 Remove small Poly series coefficients.
 
     Parameters
@@ -12475,10 +12025,8 @@ Remove small Poly series coefficients.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyadd_v2
-------------------------------------------------
+
 
     Add one polynomial to another.
 
@@ -12510,10 +12058,8 @@ FUNCTION: numpy.polynomial.polynomial.polyadd_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polycompanion_v2
-------------------------------------------------------
+
 
     Return the companion matrix of c.
 
@@ -12542,10 +12088,8 @@ FUNCTION: numpy.polynomial.polynomial.polycompanion_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyder_v2
-------------------------------------------------
+
 
     Differentiate a polynomial.
 
@@ -12594,10 +12138,8 @@ FUNCTION: numpy.polynomial.polynomial.polyder_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polydiv_v2
-------------------------------------------------
+
 
     Divide one polynomial by another.
 
@@ -12629,10 +12171,8 @@ FUNCTION: numpy.polynomial.polynomial.polydiv_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyfit_v2
-------------------------------------------------
+
 
     Least-squares fit of a polynomial to data.
 
@@ -12774,10 +12314,8 @@ FUNCTION: numpy.polynomial.polynomial.polyfit_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyfromroots_v2
-------------------------------------------------------
+
 
     Generate a monic polynomial with given roots.
 
@@ -12833,10 +12371,8 @@ FUNCTION: numpy.polynomial.polynomial.polyfromroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polygrid2d_v2
----------------------------------------------------
+
 
     Evaluate a 2-D polynomial on the Cartesian product of x and y.
 
@@ -12888,10 +12424,8 @@ FUNCTION: numpy.polynomial.polynomial.polygrid2d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polygrid3d_v2
----------------------------------------------------
+
 
     Evaluate a 3-D polynomial on the Cartesian product of x, y and z.
 
@@ -12946,10 +12480,8 @@ FUNCTION: numpy.polynomial.polynomial.polygrid3d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyint_v2
-------------------------------------------------
+
 
     Integrate a polynomial.
 
@@ -13024,10 +12556,8 @@ FUNCTION: numpy.polynomial.polynomial.polyint_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyline_v2
--------------------------------------------------
+
 
     Returns an array representing a linear polynomial.
 
@@ -13054,10 +12584,8 @@ FUNCTION: numpy.polynomial.polynomial.polyline_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polymul_v2
-------------------------------------------------
+
 
     Multiply one polynomial by another.
 
@@ -13088,10 +12616,8 @@ FUNCTION: numpy.polynomial.polynomial.polymul_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polymulx_v2
--------------------------------------------------
+
 Multiply a polynomial by x.
 
     Multiply the polynomial `c` by x, where x is the independent
@@ -13120,10 +12646,8 @@ Multiply a polynomial by x.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polypow_v2
-------------------------------------------------
+
 Raise a polynomial to a power.
 
     Returns the polynomial `c` raised to the power `pow`. The argument
@@ -13156,10 +12680,8 @@ Raise a polynomial to a power.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyroots_v2
---------------------------------------------------
+
 
     Compute the roots of a polynomial.
 
@@ -13203,10 +12725,8 @@ FUNCTION: numpy.polynomial.polynomial.polyroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polysub_v2
-------------------------------------------------
+
 
     Subtract one polynomial from another.
 
@@ -13239,10 +12759,8 @@ FUNCTION: numpy.polynomial.polynomial.polysub_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyval_v2
-------------------------------------------------
+
 
     Evaluate a polynomial at points x.
 
@@ -13321,10 +12839,8 @@ FUNCTION: numpy.polynomial.polynomial.polyval_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyval2d_v2
---------------------------------------------------
+
 
     Evaluate a 2-D polynomial at points (x, y).
 
@@ -13372,10 +12888,8 @@ FUNCTION: numpy.polynomial.polynomial.polyval2d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyval3d_v2
---------------------------------------------------
+
 
     Evaluate a 3-D polynomial at points (x, y, z).
 
@@ -13424,10 +12938,8 @@ FUNCTION: numpy.polynomial.polynomial.polyval3d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyvalfromroots_v2
----------------------------------------------------------
+
 
     Evaluate a polynomial specified by its roots at points x.
 
@@ -13500,10 +13012,8 @@ FUNCTION: numpy.polynomial.polynomial.polyvalfromroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyvander_v2
----------------------------------------------------
+
 Vandermonde matrix of given degree.
 
     Returns the Vandermonde matrix of degree `deg` and sample points
@@ -13553,10 +13063,8 @@ Vandermonde matrix of given degree.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyvander2d_v2
------------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degrees.
 
     Returns the pseudo-Vandermonde matrix of degrees `deg` and sample
@@ -13631,10 +13139,8 @@ Pseudo-Vandermonde matrix of given degrees.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.polynomial.polyvander3d_v2
------------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degrees.
 
     Returns the pseudo-Vandermonde matrix of degrees `deg` and sample
@@ -13704,10 +13210,8 @@ Pseudo-Vandermonde matrix of given degrees.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.leg2poly_v2
------------------------------------------------
+
 
     Convert a Legendre series to a polynomial.
 
@@ -13751,10 +13255,8 @@ FUNCTION: numpy.polynomial.legendre.leg2poly_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legadd_v2
----------------------------------------------
+
 
     Add one Legendre series to another.
 
@@ -13792,10 +13294,8 @@ FUNCTION: numpy.polynomial.legendre.legadd_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legcompanion_v2
----------------------------------------------------
+
 Return the scaled companion matrix of c.
 
     The basis polynomials are scaled so that the companion matrix is
@@ -13816,10 +13316,8 @@ Return the scaled companion matrix of c.
         Scaled companion matrix of dimensions (deg, deg).
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legder_v2
----------------------------------------------
+
 
     Differentiate a Legendre series.
 
@@ -13876,10 +13374,8 @@ FUNCTION: numpy.polynomial.legendre.legder_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legdiv_v2
----------------------------------------------
+
 
     Divide one Legendre series by another.
 
@@ -13924,10 +13420,8 @@ FUNCTION: numpy.polynomial.legendre.legdiv_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legfit_v2
----------------------------------------------
+
 
     Least squares fit of Legendre series to data.
 
@@ -14041,10 +13535,8 @@ FUNCTION: numpy.polynomial.legendre.legfit_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legfromroots_v2
----------------------------------------------------
+
 
     Generate a Legendre series with given roots.
 
@@ -14091,10 +13583,8 @@ FUNCTION: numpy.polynomial.legendre.legfromroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.leggauss_v2
------------------------------------------------
+
 
     Gauss-Legendre quadrature.
 
@@ -14128,10 +13618,8 @@ FUNCTION: numpy.polynomial.legendre.leggauss_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.leggrid2d_v2
-------------------------------------------------
+
 
     Evaluate a 2-D Legendre series on the Cartesian product of x and y.
 
@@ -14173,10 +13661,8 @@ FUNCTION: numpy.polynomial.legendre.leggrid2d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.leggrid3d_v2
-------------------------------------------------
+
 
     Evaluate a 3-D Legendre series on the Cartesian product of x, y, and z.
 
@@ -14221,10 +13707,8 @@ FUNCTION: numpy.polynomial.legendre.leggrid3d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legint_v2
----------------------------------------------
+
 
     Integrate a Legendre series.
 
@@ -14306,10 +13790,8 @@ FUNCTION: numpy.polynomial.legendre.legint_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legline_v2
-----------------------------------------------
+
 
     Legendre series whose graph is a straight line.
 
@@ -14338,10 +13820,8 @@ FUNCTION: numpy.polynomial.legendre.legline_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legmul_v2
----------------------------------------------
+
 
     Multiply one Legendre series by another.
 
@@ -14380,10 +13860,8 @@ FUNCTION: numpy.polynomial.legendre.legmul_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legmulx_v2
-----------------------------------------------
+
 Multiply a Legendre series by x.
 
     Multiply the Legendre series `c` by x, where x is the independent
@@ -14420,10 +13898,8 @@ Multiply a Legendre series by x.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legpow_v2
----------------------------------------------
+
 Raise a Legendre series to a power.
 
     Returns the Legendre series `c` raised to the power `pow`. The
@@ -14450,10 +13926,8 @@ Raise a Legendre series to a power.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legroots_v2
------------------------------------------------
+
 
     Compute the roots of a Legendre series.
 
@@ -14495,10 +13969,8 @@ FUNCTION: numpy.polynomial.legendre.legroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legsub_v2
----------------------------------------------
+
 
     Subtract one Legendre series from another.
 
@@ -14538,10 +14010,8 @@ FUNCTION: numpy.polynomial.legendre.legsub_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legval_v2
----------------------------------------------
+
 
     Evaluate a Legendre series at points x.
 
@@ -14597,10 +14067,8 @@ FUNCTION: numpy.polynomial.legendre.legval_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legval2d_v2
------------------------------------------------
+
 
     Evaluate a 2-D Legendre series at points (x, y).
 
@@ -14638,10 +14106,8 @@ FUNCTION: numpy.polynomial.legendre.legval2d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legval3d_v2
------------------------------------------------
+
 
     Evaluate a 3-D Legendre series at points (x, y, z).
 
@@ -14681,10 +14147,8 @@ FUNCTION: numpy.polynomial.legendre.legval3d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legvander_v2
-------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degree.
 
     Returns the pseudo-Vandermonde matrix of degree `deg` and sample points
@@ -14720,10 +14184,8 @@ Pseudo-Vandermonde matrix of given degree.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legvander2d_v2
---------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degrees.
 
     Returns the pseudo-Vandermonde matrix of degrees `deg` and sample
@@ -14765,10 +14227,8 @@ Pseudo-Vandermonde matrix of given degrees.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legvander3d_v2
---------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degrees.
 
     Returns the pseudo-Vandermonde matrix of degrees `deg` and sample
@@ -14811,10 +14271,8 @@ Pseudo-Vandermonde matrix of given degrees.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.legweight_v2
-------------------------------------------------
+
 
     Weight function of the Legendre polynomials.
 
@@ -14833,10 +14291,8 @@ FUNCTION: numpy.polynomial.legendre.legweight_v2
        The weight function at `x`.
     
 
-########################################
-
 FUNCTION: numpy.polynomial.legendre.poly2leg_v2
------------------------------------------------
+
 
     Convert a polynomial to a Legendre series.
 
@@ -14876,10 +14332,8 @@ FUNCTION: numpy.polynomial.legendre.poly2leg_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lag2poly_v2
------------------------------------------------
+
 
     Convert a Laguerre series to a polynomial.
 
@@ -14916,10 +14370,8 @@ FUNCTION: numpy.polynomial.laguerre.lag2poly_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagadd_v2
----------------------------------------------
+
 
     Add one Laguerre series to another.
 
@@ -14955,10 +14407,8 @@ FUNCTION: numpy.polynomial.laguerre.lagadd_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagcompanion_v2
----------------------------------------------------
+
 
     Return the companion matrix of c.
 
@@ -14986,10 +14436,8 @@ FUNCTION: numpy.polynomial.laguerre.lagcompanion_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagder_v2
----------------------------------------------
+
 
     Differentiate a Laguerre series.
 
@@ -15041,10 +14489,8 @@ FUNCTION: numpy.polynomial.laguerre.lagder_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagdiv_v2
----------------------------------------------
+
 
     Divide one Laguerre series by another.
 
@@ -15086,10 +14532,8 @@ FUNCTION: numpy.polynomial.laguerre.lagdiv_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagfit_v2
----------------------------------------------
+
 
     Least squares fit of Laguerre series to data.
 
@@ -15210,10 +14654,8 @@ FUNCTION: numpy.polynomial.laguerre.lagfit_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagfromroots_v2
----------------------------------------------------
+
 
     Generate a Laguerre series with given roots.
 
@@ -15261,10 +14703,8 @@ FUNCTION: numpy.polynomial.laguerre.lagfromroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.laggauss_v2
------------------------------------------------
+
 
     Gauss-Laguerre quadrature.
 
@@ -15304,10 +14744,8 @@ FUNCTION: numpy.polynomial.laguerre.laggauss_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.laggrid2d_v2
-------------------------------------------------
+
 
     Evaluate a 2-D Laguerre series on the Cartesian product of x and y.
 
@@ -15359,10 +14797,8 @@ FUNCTION: numpy.polynomial.laguerre.laggrid2d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.laggrid3d_v2
-------------------------------------------------
+
 
     Evaluate a 3-D Laguerre series on the Cartesian product of x, y, and z.
 
@@ -15419,10 +14855,8 @@ FUNCTION: numpy.polynomial.laguerre.laggrid3d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagint_v2
----------------------------------------------
+
 
     Integrate a Laguerre series.
 
@@ -15503,10 +14937,8 @@ FUNCTION: numpy.polynomial.laguerre.lagint_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagline_v2
-----------------------------------------------
+
 
     Laguerre series whose graph is a straight line.
 
@@ -15533,10 +14965,8 @@ FUNCTION: numpy.polynomial.laguerre.lagline_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagmul_v2
----------------------------------------------
+
 
     Multiply one Laguerre series by another.
 
@@ -15573,10 +15003,8 @@ FUNCTION: numpy.polynomial.laguerre.lagmul_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagmulx_v2
-----------------------------------------------
+
 Multiply a Laguerre series by x.
 
     Multiply the Laguerre series `c` by x, where x is the independent
@@ -15613,10 +15041,8 @@ Multiply a Laguerre series by x.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagpow_v2
----------------------------------------------
+
 Raise a Laguerre series to a power.
 
     Returns the Laguerre series `c` raised to the power `pow`. The
@@ -15649,10 +15075,8 @@ Raise a Laguerre series to a power.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagroots_v2
------------------------------------------------
+
 
     Compute the roots of a Laguerre series.
 
@@ -15697,10 +15121,8 @@ FUNCTION: numpy.polynomial.laguerre.lagroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagsub_v2
----------------------------------------------
+
 
     Subtract one Laguerre series from another.
 
@@ -15736,10 +15158,8 @@ FUNCTION: numpy.polynomial.laguerre.lagsub_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagval_v2
----------------------------------------------
+
 
     Evaluate a Laguerre series at points x.
 
@@ -15805,10 +15225,8 @@ FUNCTION: numpy.polynomial.laguerre.lagval_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagval2d_v2
------------------------------------------------
+
 
     Evaluate a 2-D Laguerre series at points (x, y).
 
@@ -15854,10 +15272,8 @@ FUNCTION: numpy.polynomial.laguerre.lagval2d_v2
     1.0
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagval3d_v2
------------------------------------------------
+
 
     Evaluate a 3-D Laguerre series at points (x, y, z).
 
@@ -15906,10 +15322,8 @@ FUNCTION: numpy.polynomial.laguerre.lagval3d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagvander_v2
-------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degree.
 
     Returns the pseudo-Vandermonde matrix of degree `deg` and sample points
@@ -15955,10 +15369,8 @@ Pseudo-Vandermonde matrix of given degree.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagvander2d_v2
---------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degrees.
 
     Returns the pseudo-Vandermonde matrix of degrees `deg` and sample
@@ -16011,10 +15423,8 @@ Pseudo-Vandermonde matrix of given degrees.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagvander3d_v2
---------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degrees.
 
     Returns the pseudo-Vandermonde matrix of degrees `deg` and sample
@@ -16070,10 +15480,8 @@ Pseudo-Vandermonde matrix of given degrees.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.lagweight_v2
-------------------------------------------------
+
 Weight function of the Laguerre polynomials.
 
     The weight function is :math:`exp(-x)` and the interval of integration
@@ -16099,10 +15507,8 @@ Weight function of the Laguerre polynomials.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.laguerre.poly2lag_v2
------------------------------------------------
+
 
     poly2lag(pol)
 
@@ -16140,10 +15546,8 @@ FUNCTION: numpy.polynomial.laguerre.poly2lag_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.herme2poly_v2
---------------------------------------------------
+
 
     Convert a Hermite series to a polynomial.
 
@@ -16180,10 +15584,8 @@ FUNCTION: numpy.polynomial.hermite_e.herme2poly_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermeadd_v2
-------------------------------------------------
+
 
     Add one Hermite series to another.
 
@@ -16219,10 +15621,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermeadd_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermecompanion_v2
-------------------------------------------------------
+
 
     Return the scaled companion matrix of c.
 
@@ -16244,10 +15644,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermecompanion_v2
         Scaled companion matrix of dimensions (deg, deg).
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermeder_v2
-------------------------------------------------
+
 
     Differentiate a Hermite_e series.
 
@@ -16299,10 +15697,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermeder_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermediv_v2
-------------------------------------------------
+
 
     Divide one Hermite series by another.
 
@@ -16344,10 +15740,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermediv_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermefit_v2
-------------------------------------------------
+
 
     Least squares fit of Hermite series to data.
 
@@ -16468,10 +15862,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermefit_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermefromroots_v2
-------------------------------------------------------
+
 
     Generate a HermiteE series with given roots.
 
@@ -16519,10 +15911,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermefromroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermegauss_v2
---------------------------------------------------
+
 
     Gauss-HermiteE quadrature.
 
@@ -16556,10 +15946,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermegauss_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermegrid2d_v2
----------------------------------------------------
+
 
     Evaluate a 2-D HermiteE series on the Cartesian product of x and y.
 
@@ -16601,10 +15989,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermegrid2d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermegrid3d_v2
----------------------------------------------------
+
 
     Evaluate a 3-D HermiteE series on the Cartesian product of x, y, and z.
 
@@ -16649,10 +16035,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermegrid3d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermeint_v2
-------------------------------------------------
+
 
     Integrate a Hermite_e series.
 
@@ -16732,10 +16116,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermeint_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermeline_v2
--------------------------------------------------
+
 
     Hermite series whose graph is a straight line.
 
@@ -16763,10 +16145,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermeline_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermemul_v2
-------------------------------------------------
+
 
     Multiply one Hermite series by another.
 
@@ -16803,10 +16183,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermemul_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermemulx_v2
--------------------------------------------------
+
 Multiply a Hermite series by x.
 
     Multiply the Hermite series `c` by x, where x is the independent
@@ -16843,10 +16221,8 @@ Multiply a Hermite series by x.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermepow_v2
-------------------------------------------------
+
 Raise a Hermite series to a power.
 
     Returns the Hermite series `c` raised to the power `pow`. The
@@ -16879,10 +16255,8 @@ Raise a Hermite series to a power.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermeroots_v2
---------------------------------------------------
+
 
     Compute the roots of a HermiteE series.
 
@@ -16927,10 +16301,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermeroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermesub_v2
-------------------------------------------------
+
 
     Subtract one Hermite series from another.
 
@@ -16966,10 +16338,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermesub_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermeval_v2
-------------------------------------------------
+
 
     Evaluate an HermiteE series at points x.
 
@@ -17035,10 +16405,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermeval_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermeval2d_v2
---------------------------------------------------
+
 
     Evaluate a 2-D HermiteE series at points (x, y).
 
@@ -17076,10 +16444,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermeval2d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermeval3d_v2
---------------------------------------------------
+
 
     Evaluate a 3-D Hermite_e series at points (x, y, z).
 
@@ -17119,10 +16485,8 @@ FUNCTION: numpy.polynomial.hermite_e.hermeval3d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermevander_v2
----------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degree.
 
     Returns the pseudo-Vandermonde matrix of degree `deg` and sample points
@@ -17168,10 +16532,8 @@ Pseudo-Vandermonde matrix of given degree.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermevander2d_v2
------------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degrees.
 
     Returns the pseudo-Vandermonde matrix of degrees `deg` and sample
@@ -17213,10 +16575,8 @@ Pseudo-Vandermonde matrix of given degrees.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermevander3d_v2
------------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degrees.
 
     Returns the pseudo-Vandermonde matrix of degrees `deg` and sample
@@ -17259,10 +16619,8 @@ Pseudo-Vandermonde matrix of given degrees.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.hermeweight_v2
----------------------------------------------------
+
 Weight function of the Hermite_e polynomials.
 
     The weight function is :math:`\exp(-x^2/2)` and the interval of
@@ -17280,10 +16638,8 @@ Weight function of the Hermite_e polynomials.
        The weight function at `x`.
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite_e.poly2herme_v2
---------------------------------------------------
+
 
     poly2herme(pol)
 
@@ -17321,10 +16677,8 @@ FUNCTION: numpy.polynomial.hermite_e.poly2herme_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.herm2poly_v2
------------------------------------------------
+
 
     Convert a Hermite series to a polynomial.
 
@@ -17361,10 +16715,8 @@ FUNCTION: numpy.polynomial.hermite.herm2poly_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermadd_v2
----------------------------------------------
+
 
     Add one Hermite series to another.
 
@@ -17400,10 +16752,8 @@ FUNCTION: numpy.polynomial.hermite.hermadd_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermcompanion_v2
----------------------------------------------------
+
 Return the scaled companion matrix of c.
 
     The basis polynomials are scaled so that the companion matrix is
@@ -17432,10 +16782,8 @@ Return the scaled companion matrix of c.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermder_v2
----------------------------------------------
+
 
     Differentiate a Hermite series.
 
@@ -17487,10 +16835,8 @@ FUNCTION: numpy.polynomial.hermite.hermder_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermdiv_v2
----------------------------------------------
+
 
     Divide one Hermite series by another.
 
@@ -17534,10 +16880,8 @@ FUNCTION: numpy.polynomial.hermite.hermdiv_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermfit_v2
----------------------------------------------
+
 
     Least squares fit of Hermite series to data.
 
@@ -17658,10 +17002,8 @@ FUNCTION: numpy.polynomial.hermite.hermfit_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermfromroots_v2
----------------------------------------------------
+
 
     Generate a Hermite series with given roots.
 
@@ -17709,10 +17051,8 @@ FUNCTION: numpy.polynomial.hermite.hermfromroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermgauss_v2
------------------------------------------------
+
 
     Gauss-Hermite quadrature.
 
@@ -17752,10 +17092,8 @@ FUNCTION: numpy.polynomial.hermite.hermgauss_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermgrid2d_v2
-------------------------------------------------
+
 
     Evaluate a 2-D Hermite series on the Cartesian product of x and y.
 
@@ -17810,10 +17148,8 @@ FUNCTION: numpy.polynomial.hermite.hermgrid2d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermgrid3d_v2
-------------------------------------------------
+
 
     Evaluate a 3-D Hermite series on the Cartesian product of x, y, and z.
 
@@ -17873,10 +17209,8 @@ FUNCTION: numpy.polynomial.hermite.hermgrid3d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermint_v2
----------------------------------------------
+
 
     Integrate a Hermite series.
 
@@ -17956,10 +17290,8 @@ FUNCTION: numpy.polynomial.hermite.hermint_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermline_v2
-----------------------------------------------
+
 
     Hermite series whose graph is a straight line.
 
@@ -17988,10 +17320,8 @@ FUNCTION: numpy.polynomial.hermite.hermline_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermmul_v2
----------------------------------------------
+
 
     Multiply one Hermite series by another.
 
@@ -18028,10 +17358,8 @@ FUNCTION: numpy.polynomial.hermite.hermmul_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermmulx_v2
-----------------------------------------------
+
 Multiply a Hermite series by x.
 
     Multiply the Hermite series `c` by x, where x is the independent
@@ -18068,10 +17396,8 @@ Multiply a Hermite series by x.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermpow_v2
----------------------------------------------
+
 Raise a Hermite series to a power.
 
     Returns the Hermite series `c` raised to the power `pow`. The
@@ -18104,10 +17430,8 @@ Raise a Hermite series to a power.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermroots_v2
------------------------------------------------
+
 
     Compute the roots of a Hermite series.
 
@@ -18152,10 +17476,8 @@ FUNCTION: numpy.polynomial.hermite.hermroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermsub_v2
----------------------------------------------
+
 
     Subtract one Hermite series from another.
 
@@ -18191,10 +17513,8 @@ FUNCTION: numpy.polynomial.hermite.hermsub_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermval_v2
----------------------------------------------
+
 
     Evaluate an Hermite series at points x.
 
@@ -18260,10 +17580,8 @@ FUNCTION: numpy.polynomial.hermite.hermval_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermval2d_v2
------------------------------------------------
+
 
     Evaluate a 2-D Hermite series at points (x, y).
 
@@ -18312,10 +17630,8 @@ FUNCTION: numpy.polynomial.hermite.hermval2d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermval3d_v2
------------------------------------------------
+
 
     Evaluate a 3-D Hermite series at points (x, y, z).
 
@@ -18367,10 +17683,8 @@ FUNCTION: numpy.polynomial.hermite.hermval3d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermvander_v2
-------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degree.
 
     Returns the pseudo-Vandermonde matrix of degree `deg` and sample points
@@ -18416,10 +17730,8 @@ Pseudo-Vandermonde matrix of given degree.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermvander2d_v2
---------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degrees.
 
     Returns the pseudo-Vandermonde matrix of degrees `deg` and sample
@@ -18474,10 +17786,8 @@ Pseudo-Vandermonde matrix of given degrees.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermvander3d_v2
---------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degrees.
 
     Returns the pseudo-Vandermonde matrix of degrees `deg` and sample
@@ -18533,10 +17843,8 @@ Pseudo-Vandermonde matrix of given degrees.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.hermweight_v2
-------------------------------------------------
+
 
     Weight function of the Hermite polynomials.
 
@@ -18564,10 +17872,8 @@ FUNCTION: numpy.polynomial.hermite.hermweight_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.hermite.poly2herm_v2
------------------------------------------------
+
 
     poly2herm(pol)
 
@@ -18604,10 +17910,8 @@ FUNCTION: numpy.polynomial.hermite.poly2herm_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.cheb2poly_v2
--------------------------------------------------
+
 
     Convert a Chebyshev series to a polynomial.
 
@@ -18650,10 +17954,8 @@ FUNCTION: numpy.polynomial.chebyshev.cheb2poly_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebadd_v2
------------------------------------------------
+
 
     Add one Chebyshev series to another.
 
@@ -18691,10 +17993,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebadd_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebcompanion_v2
------------------------------------------------------
+
 Return the scaled companion matrix of c.
 
     The basis polynomials are scaled so that the companion matrix is
@@ -18715,10 +18015,8 @@ Return the scaled companion matrix of c.
         Scaled companion matrix of dimensions (deg, deg).
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebder_v2
------------------------------------------------
+
 
     Differentiate a Chebyshev series.
 
@@ -18775,10 +18073,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebder_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebdiv_v2
------------------------------------------------
+
 
     Divide one Chebyshev series by another.
 
@@ -18823,10 +18119,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebdiv_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebfit_v2
------------------------------------------------
+
 
     Least squares fit of Chebyshev series to data.
 
@@ -18938,10 +18232,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebfit_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebfromroots_v2
------------------------------------------------------
+
 
     Generate a Chebyshev series with given roots.
 
@@ -18988,10 +18280,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebfromroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebgauss_v2
--------------------------------------------------
+
 
     Gauss-Chebyshev quadrature.
 
@@ -19024,10 +18314,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebgauss_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebgrid2d_v2
---------------------------------------------------
+
 
     Evaluate a 2-D Chebyshev series on the Cartesian product of x and y.
 
@@ -19069,10 +18357,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebgrid2d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebgrid3d_v2
---------------------------------------------------
+
 
     Evaluate a 3-D Chebyshev series on the Cartesian product of x, y, and z.
 
@@ -19117,10 +18403,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebgrid3d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebint_v2
------------------------------------------------
+
 
     Integrate a Chebyshev series.
 
@@ -19202,10 +18486,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebint_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebinterpolate_v2
--------------------------------------------------------
+
 Interpolate a function at the Chebyshev points of the first kind.
 
     Returns the Chebyshev series that interpolates `func` at the Chebyshev
@@ -19251,10 +18533,8 @@ Interpolate a function at the Chebyshev points of the first kind.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebline_v2
-------------------------------------------------
+
 
     Chebyshev series whose graph is a straight line.
 
@@ -19281,10 +18561,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebline_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebmul_v2
------------------------------------------------
+
 
     Multiply one Chebyshev series by another.
 
@@ -19323,10 +18601,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebmul_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebmulx_v2
-------------------------------------------------
+
 Multiply a Chebyshev series by x.
 
     Multiply the polynomial `c` by x, where x is the independent
@@ -19354,10 +18630,8 @@ Multiply a Chebyshev series by x.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebpow_v2
------------------------------------------------
+
 Raise a Chebyshev series to a power.
 
     Returns the Chebyshev series `c` raised to the power `pow`. The
@@ -19390,10 +18664,8 @@ Raise a Chebyshev series to a power.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebpts1_v2
-------------------------------------------------
+
 
     Chebyshev points of the first kind.
 
@@ -19412,10 +18684,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebpts1_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebpts2_v2
-------------------------------------------------
+
 
     Chebyshev points of the second kind.
 
@@ -19434,10 +18704,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebpts2_v2
         The Chebyshev points of the second kind.
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebroots_v2
--------------------------------------------------
+
 
     Compute the roots of a Chebyshev series.
 
@@ -19479,10 +18747,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebroots_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebsub_v2
------------------------------------------------
+
 
     Subtract one Chebyshev series from another.
 
@@ -19522,10 +18788,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebsub_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebval_v2
------------------------------------------------
+
 
     Evaluate a Chebyshev series at points x.
 
@@ -19581,10 +18845,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebval_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebval2d_v2
--------------------------------------------------
+
 
     Evaluate a 2-D Chebyshev series at points (x, y).
 
@@ -19622,10 +18884,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebval2d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebval3d_v2
--------------------------------------------------
+
 
     Evaluate a 3-D Chebyshev series at points (x, y, z).
 
@@ -19665,10 +18925,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebval3d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebvander_v2
---------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degree.
 
     Returns the pseudo-Vandermonde matrix of degree `deg` and sample points
@@ -19704,10 +18962,8 @@ Pseudo-Vandermonde matrix of given degree.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebvander2d_v2
-----------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degrees.
 
     Returns the pseudo-Vandermonde matrix of degrees `deg` and sample
@@ -19749,10 +19005,8 @@ Pseudo-Vandermonde matrix of given degrees.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebvander3d_v2
-----------------------------------------------------
+
 Pseudo-Vandermonde matrix of given degrees.
 
     Returns the pseudo-Vandermonde matrix of degrees `deg` and sample
@@ -19795,10 +19049,8 @@ Pseudo-Vandermonde matrix of given degrees.
 
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.chebweight_v2
---------------------------------------------------
+
 
     The weight function of the Chebyshev polynomials.
 
@@ -19817,10 +19069,8 @@ FUNCTION: numpy.polynomial.chebyshev.chebweight_v2
        The weight function at `x`.
     
 
-########################################
-
 FUNCTION: numpy.polynomial.chebyshev.poly2cheb_v2
--------------------------------------------------
+
 
     Convert a polynomial to a Chebyshev series.
 
@@ -19861,10 +19111,8 @@ FUNCTION: numpy.polynomial.chebyshev.poly2cheb_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.allclose_v2
-------------------------------
+
 
     Returns True if two arrays are element-wise equal within a tolerance.
 
@@ -19935,10 +19183,8 @@ FUNCTION: numpy.ma.allclose_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.allequal_v2
-------------------------------
+
 
     Return True if all entries of a and b are equal, using
     fill_value as a truth value where either or both are masked.
@@ -19979,10 +19225,8 @@ FUNCTION: numpy.ma.allequal_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.append_v2
-----------------------------
+
 Append values to the end of an array.
 
     Parameters
@@ -20020,10 +19264,8 @@ Append values to the end of an array.
            fill_value=999999)
     
 
-########################################
-
 FUNCTION: numpy.ma.apply_along_axis_v2
---------------------------------------
+
 
     Apply a function to 1-D slices along the given axis.
 
@@ -20110,10 +19352,8 @@ FUNCTION: numpy.ma.apply_along_axis_v2
             [0, 0, 9]]])
     
 
-########################################
-
 FUNCTION: numpy.ma.apply_over_axes_v2
--------------------------------------
+
 
     Apply a function repeatedly over multiple axes.
 
@@ -20186,10 +19426,8 @@ FUNCTION: numpy.ma.apply_over_axes_v2
       fill_value=999999)
     
 
-########################################
-
 FUNCTION: numpy.ma.argsort_v2
------------------------------
+
 
         Return an ndarray of indices that sort the array along the
         specified axis.  Masked values are filled beforehand to
@@ -20243,10 +19481,8 @@ FUNCTION: numpy.ma.argsort_v2
 
         
 
-########################################
-
 FUNCTION: numpy.ma.array_v2
----------------------------
+
 
     An array class with possibly masked values.
 
@@ -20348,10 +19584,8 @@ FUNCTION: numpy.ma.array_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.asanyarray_v2
---------------------------------
+
 
     Convert the input to a masked array, conserving subclasses.
 
@@ -20393,10 +19627,8 @@ FUNCTION: numpy.ma.asanyarray_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.asarray_v2
------------------------------
+
 
     Convert the input to a masked array of the given data-type.
 
@@ -20440,10 +19672,8 @@ FUNCTION: numpy.ma.asarray_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.average_v2
------------------------------
+
 
     Return the weighted average of array over the given axis.
 
@@ -20556,10 +19786,8 @@ FUNCTION: numpy.ma.average_v2
       fill_value=1e+20)
     
 
-########################################
-
 FUNCTION: numpy.ma.choose_v2
-----------------------------
+
 
     Use an index array to construct a new array from a list of choices.
 
@@ -20604,10 +19832,8 @@ FUNCTION: numpy.ma.choose_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.clump_masked_v2
-----------------------------------
+
 
     Returns a list of slices corresponding to the masked clumps of a 1-D array.
     (A "clump" is defined as a contiguous region of the array).
@@ -20635,10 +19861,8 @@ FUNCTION: numpy.ma.clump_masked_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.clump_unmasked_v2
-------------------------------------
+
 
     Return list of slices corresponding to the unmasked clumps of a 1-D array.
     (A "clump" is defined as a contiguous region of the array).
@@ -20666,10 +19890,8 @@ FUNCTION: numpy.ma.clump_unmasked_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.common_fill_value_v2
----------------------------------------
+
 
     Return the common filling value of two masked arrays, if any.
 
@@ -20696,10 +19918,8 @@ FUNCTION: numpy.ma.common_fill_value_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.compress_cols_v2
------------------------------------
+
 
     Suppress whole columns of a 2-D array that contain masked values.
 
@@ -20733,10 +19953,8 @@ FUNCTION: numpy.ma.compress_cols_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.compress_nd_v2
----------------------------------
+
 Suppress slices from multiple dimensions which contain masked values.
 
     Parameters
@@ -20773,10 +19991,8 @@ Suppress slices from multiple dimensions which contain masked values.
 
     
 
-########################################
-
 FUNCTION: numpy.ma.compress_rowcols_v2
---------------------------------------
+
 
     Suppress the rows and/or columns of a 2-D array that contain
     masked values.
@@ -20828,10 +20044,8 @@ FUNCTION: numpy.ma.compress_rowcols_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.compress_rows_v2
------------------------------------
+
 
     Suppress whole rows of a 2-D array that contain masked values.
 
@@ -20863,10 +20077,8 @@ FUNCTION: numpy.ma.compress_rows_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.compressed_v2
---------------------------------
+
 
     Return all the non-masked data as a 1-D array.
 
@@ -20901,10 +20113,8 @@ FUNCTION: numpy.ma.compressed_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.concatenate_v2
----------------------------------
+
 
     Concatenate a sequence of arrays along the given axis.
 
@@ -20945,10 +20155,8 @@ FUNCTION: numpy.ma.concatenate_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.convolve_v2
-------------------------------
+
 
     Returns the discrete, linear convolution of two one-dimensional sequences.
 
@@ -20971,10 +20179,8 @@ FUNCTION: numpy.ma.convolve_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.corrcoef_v2
-------------------------------
+
 
     Return Pearson product-moment correlation coefficients.
 
@@ -21033,10 +20239,8 @@ FUNCTION: numpy.ma.corrcoef_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.correlate_v2
--------------------------------
+
 
     Cross-correlation of two 1-dimensional sequences.
 
@@ -21091,10 +20295,8 @@ FUNCTION: numpy.ma.correlate_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.count_masked_v2
-----------------------------------
+
 
     Count the number of masked elements along the given axis.
 
@@ -21143,10 +20345,8 @@ FUNCTION: numpy.ma.count_masked_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.cov_v2
--------------------------
+
 
     Estimate the covariance matrix.
 
@@ -21214,10 +20414,8 @@ FUNCTION: numpy.ma.cov_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.default_fill_value_v2
-----------------------------------------
+
 
     Return the default fill value for the argument object.
 
@@ -21264,10 +20462,8 @@ FUNCTION: numpy.ma.default_fill_value_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.diag_v2
---------------------------
+
 
     Extract a diagonal or construct a diagonal array.
 
@@ -21311,10 +20507,8 @@ FUNCTION: numpy.ma.diag_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.diff_v2
---------------------------
+
 
     Calculate the n-th discrete difference along the given axis.
     The first difference is given by ``out[i] = a[i+1] - a[i]`` along
@@ -21412,10 +20606,8 @@ FUNCTION: numpy.ma.diff_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.dot_v2
--------------------------
+
 
     Return the dot product of two arrays.
 
@@ -21466,10 +20658,8 @@ FUNCTION: numpy.ma.dot_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.ediff1d_v2
------------------------------
+
 
     Compute the differences between consecutive elements of an array.
 
@@ -21489,10 +20679,8 @@ FUNCTION: numpy.ma.ediff1d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.filled_v2
-----------------------------
+
 
     Return input as an `~numpy.ndarray_v2`, with masked values replaced by
     `fill_value`.
@@ -21541,10 +20729,8 @@ FUNCTION: numpy.ma.filled_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.fix_invalid_v2
----------------------------------
+
 
     Return input with invalid data masked and replaced by a fill value.
 
@@ -21594,10 +20780,8 @@ FUNCTION: numpy.ma.fix_invalid_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.flatnotmasked_contiguous_v2
-----------------------------------------------
+
 
     Find contiguous unmasked data in a masked array.
 
@@ -21637,10 +20821,8 @@ FUNCTION: numpy.ma.flatnotmasked_contiguous_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.flatnotmasked_edges_v2
------------------------------------------
+
 
     Find the indices of the first and last unmasked values.
 
@@ -21684,10 +20866,8 @@ FUNCTION: numpy.ma.flatnotmasked_edges_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.flatten_mask_v2
-----------------------------------
+
 
     Returns a completely flattened version of the mask, where nested fields
     are collapsed.
@@ -21720,10 +20900,8 @@ FUNCTION: numpy.ma.flatten_mask_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.flatten_structured_array_v2
-----------------------------------------------
+
 
     Flatten a structured array.
 
@@ -21751,10 +20929,8 @@ FUNCTION: numpy.ma.flatten_structured_array_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.fromflex_v2
-------------------------------
+
 
     Build a masked array from a suitable flexible-type array.
 
@@ -21815,10 +20991,8 @@ FUNCTION: numpy.ma.fromflex_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.getdata_v2
------------------------------
+
 
     Return the data of a masked array as an ndarray.
 
@@ -21859,10 +21033,8 @@ FUNCTION: numpy.ma.getdata_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.getmask_v2
------------------------------
+
 
     Return the mask of a masked array, or nomask.
 
@@ -21917,10 +21089,8 @@ FUNCTION: numpy.ma.getmask_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.getmaskarray_v2
-----------------------------------
+
 
     Return the mask of a masked array, or full boolean array of False.
 
@@ -21966,10 +21136,8 @@ FUNCTION: numpy.ma.getmaskarray_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.in1d_v2
---------------------------
+
 
     Test whether each element of an array is also present in a second
     array.
@@ -21992,10 +21160,8 @@ FUNCTION: numpy.ma.in1d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.inner_v2
----------------------------
+
 inner_v2(a, b, /)
 
 Inner product of two arrays.
@@ -22080,10 +21246,8 @@ An example where `b` is a scalar:
 array([[7., 0.],
        [0., 7.]])
 
-########################################
-
 FUNCTION: numpy.ma.intersect1d_v2
----------------------------------
+
 
     Returns the unique elements common to both arrays.
 
@@ -22106,10 +21270,8 @@ FUNCTION: numpy.ma.intersect1d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.isMA_v2
---------------------------
+
 
     Test whether input is an instance of MaskedArray.
 
@@ -22156,10 +21318,8 @@ FUNCTION: numpy.ma.isMA_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.is_mask_v2
------------------------------
+
 
     Return True if m is a valid, standard mask.
 
@@ -22221,10 +21381,8 @@ FUNCTION: numpy.ma.is_mask_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.is_masked_v2
--------------------------------
+
 
     Determine whether input has masked values.
 
@@ -22271,10 +21429,8 @@ FUNCTION: numpy.ma.is_masked_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.isin_v2
---------------------------
+
 
     Calculates `element in test_elements`, broadcasting over
     `element` only.
@@ -22296,10 +21452,8 @@ FUNCTION: numpy.ma.isin_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.left_shift_v2
---------------------------------
+
 
     Shift the bits of an integer to the left.
 
@@ -22337,10 +21491,8 @@ FUNCTION: numpy.ma.left_shift_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.make_mask_v2
--------------------------------
+
 
     Create a boolean mask from an array.
 
@@ -22413,10 +21565,8 @@ FUNCTION: numpy.ma.make_mask_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.make_mask_descr_v2
--------------------------------------
+
 
     Construct a dtype description list from a given dtype.
 
@@ -22448,10 +21598,8 @@ FUNCTION: numpy.ma.make_mask_descr_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.make_mask_none_v2
-------------------------------------
+
 
     Return a boolean mask of the given shape, filled with False.
 
@@ -22493,10 +21641,8 @@ FUNCTION: numpy.ma.make_mask_none_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.mask_cols_v2
--------------------------------
+
 
     Mask columns of a 2D array that contain masked values.
 
@@ -22535,10 +21681,8 @@ FUNCTION: numpy.ma.mask_cols_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.mask_or_v2
------------------------------
+
 
     Combine two masks with the ``logical_or`` operator.
 
@@ -22576,10 +21720,8 @@ FUNCTION: numpy.ma.mask_or_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.mask_rowcols_v2
-----------------------------------
+
 
     Mask rows and/or columns of a 2D array that contain masked values.
 
@@ -22649,10 +21791,8 @@ FUNCTION: numpy.ma.mask_rowcols_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.mask_rows_v2
--------------------------------
+
 
     Mask rows of a 2D array that contain masked values.
 
@@ -22692,10 +21832,8 @@ FUNCTION: numpy.ma.mask_rows_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_all_v2
---------------------------------
+
 
     Empty masked array with all elements masked.
 
@@ -22750,10 +21888,8 @@ FUNCTION: numpy.ma.masked_all_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_all_like_v2
--------------------------------------
+
 
     Empty masked array with the properties of an existing array.
 
@@ -22811,10 +21947,8 @@ FUNCTION: numpy.ma.masked_all_like_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_equal_v2
-----------------------------------
+
 
     Mask an array where equal to a given value.
 
@@ -22840,10 +21974,8 @@ FUNCTION: numpy.ma.masked_equal_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_greater_v2
-------------------------------------
+
 
     Mask an array where greater than a given value.
 
@@ -22866,10 +21998,8 @@ FUNCTION: numpy.ma.masked_greater_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_greater_equal_v2
-------------------------------------------
+
 
     Mask an array where greater than or equal to a given value.
 
@@ -22892,10 +22022,8 @@ FUNCTION: numpy.ma.masked_greater_equal_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_inside_v2
------------------------------------
+
 
     Mask an array inside a given interval.
 
@@ -22928,10 +22056,8 @@ FUNCTION: numpy.ma.masked_inside_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_invalid_v2
-------------------------------------
+
 
     Mask an array where invalid values occur (NaNs or infs).
 
@@ -22958,10 +22084,8 @@ FUNCTION: numpy.ma.masked_invalid_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_less_v2
----------------------------------
+
 
     Mask an array where less than a given value.
 
@@ -22984,10 +22108,8 @@ FUNCTION: numpy.ma.masked_less_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_less_equal_v2
----------------------------------------
+
 
     Mask an array where less than or equal to a given value.
 
@@ -23010,10 +22132,8 @@ FUNCTION: numpy.ma.masked_less_equal_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_not_equal_v2
---------------------------------------
+
 
     Mask an array where *not* equal to a given value.
 
@@ -23036,10 +22156,8 @@ FUNCTION: numpy.ma.masked_not_equal_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_object_v2
------------------------------------
+
 
     Mask the array `x` where the data are exactly equal to value.
 
@@ -23095,10 +22213,8 @@ FUNCTION: numpy.ma.masked_object_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_outside_v2
-------------------------------------
+
 
     Mask an array outside a given interval.
 
@@ -23131,10 +22247,8 @@ FUNCTION: numpy.ma.masked_outside_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_values_v2
------------------------------------
+
 
     Mask using floating point equality.
 
@@ -23194,10 +22308,8 @@ FUNCTION: numpy.ma.masked_values_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.masked_where_v2
-----------------------------------
+
 
     Mask an array where a condition is met.
 
@@ -23287,10 +22399,8 @@ FUNCTION: numpy.ma.masked_where_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.max_v2
--------------------------
+
 
         Return the maximum along a given axis.
 
@@ -23359,10 +22469,8 @@ FUNCTION: numpy.ma.max_v2
                     dtype=float64)
         
 
-########################################
-
 FUNCTION: numpy.ma.maximum_fill_value_v2
-----------------------------------------
+
 
     Return the minimum value that can be represented by the dtype of an object.
 
@@ -23408,10 +22516,8 @@ FUNCTION: numpy.ma.maximum_fill_value_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.median_v2
-----------------------------
+
 
     Compute the median along the specified axis.
 
@@ -23475,10 +22581,8 @@ FUNCTION: numpy.ma.median_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.min_v2
--------------------------
+
 
         Return the minimum along a given axis.
 
@@ -23540,10 +22644,8 @@ FUNCTION: numpy.ma.min_v2
                     dtype=float64)
         
 
-########################################
-
 FUNCTION: numpy.ma.minimum_fill_value_v2
-----------------------------------------
+
 
     Return the maximum value that can be represented by the dtype of an object.
 
@@ -23589,10 +22691,8 @@ FUNCTION: numpy.ma.minimum_fill_value_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.ndenumerate_v2
----------------------------------
+
 
     Multidimensional index iterator.
 
@@ -23653,10 +22753,8 @@ FUNCTION: numpy.ma.ndenumerate_v2
     (2, 2) 8
     
 
-########################################
-
 FUNCTION: numpy.ma.ndim_v2
---------------------------
+
 
     Return the number of dimensions of an array.
 
@@ -23685,10 +22783,8 @@ FUNCTION: numpy.ma.ndim_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.notmasked_contiguous_v2
-------------------------------------------
+
 
     Find contiguous unmasked data in a masked array along the given axis.
 
@@ -23745,10 +22841,8 @@ FUNCTION: numpy.ma.notmasked_contiguous_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.notmasked_edges_v2
--------------------------------------
+
 
     Find the indices of the first and last unmasked values along an axis.
 
@@ -23789,10 +22883,8 @@ FUNCTION: numpy.ma.notmasked_edges_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.outer_v2
----------------------------
+
 Compute the outer product of two vectors.
 
 Given two vectors `a` and `b` of length ``M`` and ``N``, respectively,
@@ -23867,10 +22959,8 @@ Notes
 Masked values are replaced by 0.
 
 
-########################################
-
 FUNCTION: numpy.ma.polyfit_v2
------------------------------
+
 Least squares polynomial fit.
 
 .. note::
@@ -24042,10 +23132,8 @@ Illustration:
 (-2, 2)
 >>> plt.show()
 
-########################################
-
 FUNCTION: numpy.ma.power_v2
----------------------------
+
 
     Returns element-wise base array raised to power from second array.
 
@@ -24088,10 +23176,8 @@ FUNCTION: numpy.ma.power_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.ptp_v2
--------------------------
+
 
         Return (maximum - minimum) along the given dimension
         (i.e. peak-to-peak value).
@@ -24168,10 +23254,8 @@ FUNCTION: numpy.ma.ptp_v2
                     dtype=uint8)
         
 
-########################################
-
 FUNCTION: numpy.ma.put_v2
--------------------------
+
 
     Set storage-indexed locations to corresponding values.
 
@@ -24204,10 +23288,8 @@ FUNCTION: numpy.ma.put_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.putmask_v2
------------------------------
+
 
     Changes elements of an array based on conditional and input values.
 
@@ -24241,10 +23323,8 @@ FUNCTION: numpy.ma.putmask_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.reshape_v2
------------------------------
+
 
     Returns an array containing the same data with a new shape.
 
@@ -24285,10 +23365,8 @@ FUNCTION: numpy.ma.reshape_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.resize_v2
-----------------------------
+
 
     Return a new masked array with the specified size and shape.
 
@@ -24342,10 +23420,8 @@ FUNCTION: numpy.ma.resize_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.right_shift_v2
----------------------------------
+
 
     Shift the bits of an integer to the right.
 
@@ -24372,10 +23448,8 @@ FUNCTION: numpy.ma.right_shift_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.round_v2
----------------------------
+
 
     Return a copy of a, rounded to 'decimals' places.
 
@@ -24423,10 +23497,8 @@ FUNCTION: numpy.ma.round_v2
         fill_value=1e+20)
     
 
-########################################
-
 FUNCTION: numpy.ma.set_fill_value_v2
-------------------------------------
+
 
     Set the filling value of a, if a is a masked array.
 
@@ -24484,10 +23556,8 @@ FUNCTION: numpy.ma.set_fill_value_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.setdiff1d_v2
--------------------------------
+
 
     Set difference of 1D arrays with unique elements.
 
@@ -24507,10 +23577,8 @@ FUNCTION: numpy.ma.setdiff1d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.setxor1d_v2
-------------------------------
+
 
     Set exclusive-or of 1-D arrays with unique elements.
 
@@ -24530,10 +23598,8 @@ FUNCTION: numpy.ma.setxor1d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.shape_v2
----------------------------
+
 
     Return the shape of an array.
 
@@ -24571,10 +23637,8 @@ FUNCTION: numpy.ma.shape_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.size_v2
---------------------------
+
 
     Return the number of elements along a given axis.
 
@@ -24606,10 +23670,8 @@ FUNCTION: numpy.ma.size_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.sort_v2
---------------------------
+
 
     Return a sorted copy of the masked array.
 
@@ -24637,18 +23699,14 @@ FUNCTION: numpy.ma.sort_v2
            fill_value=1e+20)
     
 
-########################################
-
 FUNCTION: numpy.ma.take_v2
---------------------------
+
 
 
     
 
-########################################
-
 FUNCTION: numpy.ma.transpose_v2
--------------------------------
+
 
     Permute the dimensions of an array.
 
@@ -24679,10 +23737,8 @@ FUNCTION: numpy.ma.transpose_v2
       fill_value=999999)
     
 
-########################################
-
 FUNCTION: numpy.ma.union1d_v2
------------------------------
+
 
     Union of two arrays.
 
@@ -24702,10 +23758,8 @@ FUNCTION: numpy.ma.union1d_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.unique_v2
-----------------------------
+
 
     Finds the unique elements of an array.
 
@@ -24742,10 +23796,8 @@ FUNCTION: numpy.ma.unique_v2
         fill_value=999999), array([0, 1, 4, 2]), array([0, 1, 3, 1, 2]))
     
 
-########################################
-
 FUNCTION: numpy.ma.vander_v2
-----------------------------
+
 Generate a Vandermonde matrix.
 
 The columns of the output matrix are powers of the input vector. The
@@ -24817,10 +23869,8 @@ Notes
 Masked values in the input array result in rows of zeros.
 
 
-########################################
-
 FUNCTION: numpy.ma.where_v2
----------------------------
+
 
     Return a masked array with elements from `x` or `y`, depending on condition.
 
@@ -24873,16 +23923,12 @@ FUNCTION: numpy.ma.where_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.flatten_inplace_v2
---------------------------------------------
+
 Flatten a sequence in place.
 
-########################################
-
 FUNCTION: numpy.ma.extras.get_masked_subclass_v2
-------------------------------------------------
+
 
     Return the youngest subclass of MaskedArray from a list of (masked) arrays.
 
@@ -24890,19 +23936,15 @@ FUNCTION: numpy.ma.extras.get_masked_subclass_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.issequence_v2
----------------------------------------
+
 
     Is seq a sequence (ndarray, list or tuple)?
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.normalize_axis_tuple_v2
--------------------------------------------------
+
 
     Normalizes an axis argument into a tuple of non-negative integer axes.
 
@@ -24941,19 +23983,15 @@ FUNCTION: numpy.ma.extras.normalize_axis_tuple_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.doc_note_v2
-----------------------------------------
+
 
     Adds a Notes section to an existing docstring.
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.formatargspec_v2
----------------------------------------------
+
 Format an argument spec from the 4 values returned by getargspec.
 
     The first four arguments are (args, varargs, varkw, defaults).  The
@@ -24963,29 +24001,23 @@ Format an argument spec from the 4 values returned by getargspec.
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.get_fill_value_v2
-----------------------------------------------
+
 
     Return the filling value of a, if any.  Otherwise, returns the
     default filling value for that type.
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.get_object_signature_v2
-----------------------------------------------------
+
 
     Get the signature from obj
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.getargspec_v2
-------------------------------------------
+
 Get the names and default values of a function's arguments.
 
     A tuple of four things is returned: (args, varargs, varkw, defaults).
@@ -24995,10 +24027,8 @@ Get the names and default values of a function's arguments.
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.set_module_v2
-------------------------------------------
+
 Private decorator for overriding __module__ on a function or class.
 
     Example usage::
@@ -25010,10 +24040,8 @@ Private decorator for overriding __module__ on a function or class.
         assert example.__module__ == 'numpy'
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.umath.clip_v2
-------------------------------------------
+
 clip_v2(x1, x2, x3, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Clip (limit) the values in an array.
@@ -25062,10 +24090,8 @@ clipped_array : ndarray
     < `a_min` are replaced with `a_min`, and those > `a_max`
     with `a_max`.
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.umath.count_v2
--------------------------------------------
+
 count_v2(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns an array with the number of non-overlapping occurrences of
@@ -25122,10 +24148,8 @@ array([2, 1, 1])
 >>> np.strings_v2.count(c, 'A', start=1, end=3)
 array([1, 0, 0])
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.umath.endswith_v2
-----------------------------------------------
+
 endswith_v2(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns a boolean array which is `True` where the string element
@@ -25177,10 +24201,8 @@ array([False,  True])
 >>> np.strings_v2.endswith(s, 'a', start=1, end=2)
 array([False,  True])
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.umath.find_v2
-------------------------------------------
+
 find_v2(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 For each element, return the lowest index in the string where
@@ -25229,10 +24251,8 @@ Examples
 >>> np.strings_v2.find(a, "Python", 0, None)
 array([11])
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.umath.index_v2
--------------------------------------------
+
 index_v2(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Like `find`, but raises :exc:`ValueError` when the substring is not found.
@@ -25276,10 +24296,8 @@ Examples
 >>> np.strings_v2.index(a, "Science")
 array([9])
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.umath.rfind_v2
--------------------------------------------
+
 rfind_v2(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 For each element, return the highest index in the string where
@@ -25321,10 +24339,8 @@ y : ndarray
 
 
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.umath.rindex_v2
---------------------------------------------
+
 rindex_v2(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Like `rfind`, but raises :exc:`ValueError` when the substring is not found.
@@ -25368,10 +24384,8 @@ Examples
 >>> np.strings_v2.rindex(a, "Science")
 array([9])
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.umath.startswith_v2
-------------------------------------------------
+
 startswith_v2(x1, x2, x3, x4, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
 
 Returns a boolean array which is `True` where the string element
@@ -25412,10 +24426,8 @@ out : ndarray
 
 
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.ntypes.english_capitalize_v2
----------------------------------------------------------
+
  Apply English case rules to convert the first character of an ASCII
     string to upper case.
 
@@ -25441,10 +24453,8 @@ FUNCTION: numpy.ma.extras.ma.ntypes.english_capitalize_v2
     ''
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.ntypes.english_lower_v2
-----------------------------------------------------
+
  Apply English case rules to convert ASCII strings to all lower case.
 
     This is an internal utility function to replace calls to str.lower() such
@@ -25469,10 +24479,8 @@ FUNCTION: numpy.ma.extras.ma.ntypes.english_lower_v2
     ''
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.ntypes.english_upper_v2
-----------------------------------------------------
+
  Apply English case rules to convert ASCII strings to all upper case.
 
     This is an internal utility function to replace calls to str.upper() such
@@ -25497,10 +24505,8 @@ FUNCTION: numpy.ma.extras.ma.ntypes.english_upper_v2
     ''
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.ntypes.issctype_v2
------------------------------------------------
+
 
     Determines whether the given object represents a scalar data-type.
 
@@ -25534,10 +24540,8 @@ FUNCTION: numpy.ma.extras.ma.ntypes.issctype_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.ntypes.issubclass__v2
---------------------------------------------------
+
 
     Determine if a class is a subclass of a second class.
 
@@ -25571,10 +24575,8 @@ FUNCTION: numpy.ma.extras.ma.ntypes.issubclass__v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.ntypes.issubsctype_v2
---------------------------------------------------
+
 
     Determine if the first argument is a subclass of the second argument.
 
@@ -25602,10 +24604,8 @@ FUNCTION: numpy.ma.extras.ma.ntypes.issubsctype_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.ntypes.maximum_sctype_v2
------------------------------------------------------
+
 
     Return the scalar type of highest precision of the same kind as the input.
 
@@ -25645,10 +24645,8 @@ FUNCTION: numpy.ma.extras.ma.ntypes.maximum_sctype_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.ntypes.obj2sctype_v2
--------------------------------------------------
+
 
     Return the scalar dtype or NumPy equivalent of Python type of an object.
 
@@ -25686,10 +24684,8 @@ FUNCTION: numpy.ma.extras.ma.ntypes.obj2sctype_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.ntypes.sctype2char_v2
---------------------------------------------------
+
 
     Return the string representation of a scalar dtype.
 
@@ -25731,10 +24727,8 @@ FUNCTION: numpy.ma.extras.ma.ntypes.sctype2char_v2
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.array_function_dispatch_v2
----------------------------------------------------------------------------
+
 Decorator for adding dispatch with the __array_function__ protocol.
 
     See NEP-18 for example usage.
@@ -25771,22 +24765,16 @@ Decorator for adding dispatch with the __array_function__ protocol.
 
     
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.array_function_from_dispatcher_v2
-----------------------------------------------------------------------------------
+
 Like array_function_dispatcher, but with function arguments flipped.
 
-########################################
-
 FUNCTION: numpy.ma.extras.ma.ntypes.ma.overrides.verify_matching_signatures_v2
-------------------------------------------------------------------------------
+
 Verify that a dispatcher function has the right signature.
 
-########################################
-
 FUNCTION: numpy.lib.add_newdoc_v2
----------------------------------
+
 
     Add documentation to an existing object, typically one defined in C
 
@@ -25834,10 +24822,8 @@ FUNCTION: numpy.lib.add_newdoc_v2
     If possible it should be avoided.
     
 
-########################################
-
 FUNCTION: numpy.lib.stride_tricks.as_strided_v2
------------------------------------------------
+
 
     Create a view into the array with the given shape and strides.
 
@@ -25888,10 +24874,8 @@ FUNCTION: numpy.lib.stride_tricks.as_strided_v2
     possible.
     
 
-########################################
-
 FUNCTION: numpy.lib.introspect.opt_func_info_v2
------------------------------------------------
+
 
     Returns a dictionary containing the currently supported CPU dispatched
     features for all optimized functions.
@@ -25950,10 +24934,8 @@ FUNCTION: numpy.lib.introspect.opt_func_info_v2
 
     
 
-########################################
-
 FUNCTION: numpy.lib.format.descr_to_dtype_v2
---------------------------------------------
+
 
     Returns a dtype based off the given description.
 
@@ -25975,10 +24957,8 @@ FUNCTION: numpy.lib.format.descr_to_dtype_v2
 
     
 
-########################################
-
 FUNCTION: numpy.lib.format.drop_metadata_v2
--------------------------------------------
+
 
     Returns the dtype unchanged if it contained no metadata or a copy of the
     dtype if it (or any of its structure dtypes) contained metadata.
@@ -26000,10 +24980,8 @@ FUNCTION: numpy.lib.format.drop_metadata_v2
 
     
 
-########################################
-
 FUNCTION: numpy.lib.format.dtype_to_descr_v2
---------------------------------------------
+
 
     Get a serializable descriptor from the dtype.
 
@@ -26027,10 +25005,8 @@ FUNCTION: numpy.lib.format.dtype_to_descr_v2
 
     
 
-########################################
-
 FUNCTION: numpy.lib.format.header_data_from_array_1_0_v2
---------------------------------------------------------
+
  Get the dictionary of header metadata from a numpy.ndarray_v2.
 
     Parameters
@@ -26044,10 +25020,8 @@ FUNCTION: numpy.lib.format.header_data_from_array_1_0_v2
         to the header of the file.
     
 
-########################################
-
 FUNCTION: numpy.lib.format.magic_v2
------------------------------------
+
  Return the magic string for the given file format version.
 
     Parameters
@@ -26064,10 +25038,8 @@ FUNCTION: numpy.lib.format.magic_v2
     ValueError if the version cannot be formatted.
     
 
-########################################
-
 FUNCTION: numpy.lib.format.open_memmap_v2
------------------------------------------
+
 
     Open a .npy file as a memory-mapped array.
 
@@ -26119,10 +25091,8 @@ FUNCTION: numpy.lib.format.open_memmap_v2
 
     
 
-########################################
-
 FUNCTION: numpy.lib.format.read_array_v2
-----------------------------------------
+
 
     Read an array from an NPY file.
 
@@ -26157,10 +25127,8 @@ FUNCTION: numpy.lib.format.read_array_v2
 
     
 
-########################################
-
 FUNCTION: numpy.lib.format.read_array_header_1_0_v2
----------------------------------------------------
+
 
     Read an array header from a filelike object using the 1.0 file format
     version.
@@ -26194,10 +25162,8 @@ FUNCTION: numpy.lib.format.read_array_header_1_0_v2
 
     
 
-########################################
-
 FUNCTION: numpy.lib.format.read_array_header_2_0_v2
----------------------------------------------------
+
 
     Read an array header from a filelike object using the 2.0 file format
     version.
@@ -26231,10 +25197,8 @@ FUNCTION: numpy.lib.format.read_array_header_2_0_v2
 
     
 
-########################################
-
 FUNCTION: numpy.lib.format.read_magic_v2
-----------------------------------------
+
  Read the magic string to get the version of the file format.
 
     Parameters
@@ -26247,10 +25211,8 @@ FUNCTION: numpy.lib.format.read_magic_v2
     minor : int
     
 
-########################################
-
 FUNCTION: numpy.lib.format.write_array_v2
------------------------------------------
+
 
     Write an array to an NPY file, including a header.
 
@@ -26287,10 +25249,8 @@ FUNCTION: numpy.lib.format.write_array_v2
 
     
 
-########################################
-
 FUNCTION: numpy.lib.format.write_array_header_1_0_v2
-----------------------------------------------------
+
  Write the header for an array using the 1.0 format.
 
     Parameters
@@ -26301,10 +25261,8 @@ FUNCTION: numpy.lib.format.write_array_header_1_0_v2
         representation to the header of the file.
     
 
-########################################
-
 FUNCTION: numpy.lib.format.write_array_header_2_0_v2
-----------------------------------------------------
+
  Write the header for an array using the 2.0 format.
         The 2.0 format allows storing very large structured arrays.
 
@@ -26316,10 +25274,8 @@ FUNCTION: numpy.lib.format.write_array_header_2_0_v2
         representation to the header of the file.
     
 
-########################################
-
 FUNCTION: numpy.lib.array_utils.byte_bounds_v2
-----------------------------------------------
+
 
     Returns pointers to the end-points of an array.
 
@@ -26353,10 +25309,8 @@ FUNCTION: numpy.lib.array_utils.byte_bounds_v2
 
     
 
-########################################
-
 FUNCTION: numpy.fft.fftfreq_v2
-------------------------------
+
 
     Return the Discrete Fourier Transform sample frequencies.
 
@@ -26399,10 +25353,8 @@ FUNCTION: numpy.fft.fftfreq_v2
 
     
 
-########################################
-
 FUNCTION: numpy.fft.rfftfreq_v2
--------------------------------
+
 
     Return the Discrete Fourier Transform sample frequencies
     (for usage with rfft, irfft).
@@ -26452,10 +25404,8 @@ FUNCTION: numpy.fft.rfftfreq_v2
 
     
 
-########################################
-
 FUNCTION: numpy.f2py.get_include_v2
------------------------------------
+
 
     Return the directory that contains the ``fortranobject.c`` and ``.h`` files.
 
@@ -26498,10 +25448,8 @@ FUNCTION: numpy.f2py.get_include_v2
 
     
 
-########################################
-
 FUNCTION: numpy.f2py.run_main_v2
---------------------------------
+
 
     Equivalent to running::
 
@@ -26525,195 +25473,143 @@ FUNCTION: numpy.f2py.run_main_v2
 
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_apply_v2
------------------------------------------
+
 Return object as APPLY expression (function call, constructor, etc.)
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_array_v2
------------------------------------------
+
 Return object as ARRAY expression (array constant).
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_complex_v2
--------------------------------------------
+
 Return object as COMPLEX expression (complex literal constant).
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_deref_v2
------------------------------------------
+
 Return object as dereferencing expression.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_expr_v2
-----------------------------------------
+
 Convert non-Expr objects to Expr objects.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_factors_v2
--------------------------------------------
+
 Return expression as FACTORS expression.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_integer_v2
--------------------------------------------
+
 Return object as INTEGER constant.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_number_v2
-------------------------------------------
+
 Return object as INTEGER or REAL constant.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_numer_denom_v2
------------------------------------------------
+
 Return expression as numer-denom pair.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_real_v2
-----------------------------------------
+
 Return object as REAL constant.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_ref_v2
----------------------------------------
+
 Return object as referencing expression.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_string_v2
-------------------------------------------
+
 Return object as STRING expression (string literal constant).
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_symbol_v2
-------------------------------------------
+
 Return object as SYMBOL expression (variable or unparsed expression).
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_term_coeff_v2
-----------------------------------------------
+
 Return expression as term-coefficient pair.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_terms_v2
------------------------------------------
+
 Return expression as TERMS expression.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.as_ternary_v2
--------------------------------------------
+
 Return object as TERNARY expression (cond?expr1:expr2).
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.eliminate_quotes_v2
--------------------------------------------------
+
 Replace quoted substrings of input string.
 
     Return a new string and a mapping of replacements.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.fromstring_v2
--------------------------------------------
+
 Create an expression from a string.
 
     This is a "lazy" parser, that is, only arithmetic operations are
     resolved, non-arithmetic operations are treated as symbols.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.insert_quotes_v2
-----------------------------------------------
+
 Inverse of eliminate_quotes.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.normalize_v2
-------------------------------------------
+
 Normalize Expr and apply basic evaluation methods.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.replace_parenthesis_v2
-----------------------------------------------------
+
 Replace substrings of input that are enclosed in parenthesis.
 
     Return a new string and a mapping of replacements.
     
 
-########################################
-
 FUNCTION: numpy.f2py.symbolic.unreplace_parenthesis_v2
-------------------------------------------------------
+
 Inverse of replace_parenthesis.
     
 
-########################################
-
 FUNCTION: numpy.f2py.rules.buildmodule_v2
------------------------------------------
+
 
     Return
     
 
-########################################
-
 FUNCTION: numpy.f2py.rules.errmess_v2
--------------------------------------
+
 
     Write an error message to stderr.
 
     This indirection is needed because sys.stderr might not always be available (see #26862).
     
 
-########################################
-
 FUNCTION: numpy.f2py.rules.func2subr.show_v2
---------------------------------------------
+
 Pretty-print a Python object to a stream [default is sys.stdout].
 
-########################################
-
 FUNCTION: numpy.f2py.rules.f90mod_rules.process_f2cmap_dict_v2
---------------------------------------------------------------
+
 
     Update the Fortran-to-C type mapping dictionary with new mappings and
     return a list of successfully mapped C types.
@@ -26752,19 +25648,15 @@ FUNCTION: numpy.f2py.rules.f90mod_rules.process_f2cmap_dict_v2
         successfully mapped C types.
     
 
-########################################
-
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.cb_routsign2map_v2
---------------------------------------------------------------------
+
 
     name,begintitle,endtitle,argname
     ctype,rctype,maxnofargs,nofoptargs,returncptr
     
 
-########################################
-
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.f2cexpr_v2
-------------------------------------------------------------
+
 Rewrite Fortran expression as f2py supported C expression.
 
     Due to the lack of a proper expression parser in f2py, this
@@ -26775,36 +25667,28 @@ Rewrite Fortran expression as f2py supported C expression.
 
     
 
-########################################
-
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.getctype_v2
--------------------------------------------------------------
+
 
     Determines C type
     
 
-########################################
-
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.modsign2map_v2
-----------------------------------------------------------------
+
 
     modulename
     
 
-########################################
-
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.routsign2map_v2
------------------------------------------------------------------
+
 
     name,NAME,begintitle,endtitle
     rname,ctype,rformat
     routdebugshowvalue
     
 
-########################################
-
 FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.sign2map_v2
--------------------------------------------------------------
+
 
     varname,ctype,atype
     init,init.r,init.i,pytype
@@ -26814,26 +25698,20 @@ FUNCTION: numpy.f2py.rules.f90mod_rules.capi_maps.sign2map_v2
     intent
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.filter_files_v2
--------------------------------------------
+
 
     Filter files by prefix and suffix.
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.run_compile_v2
-------------------------------------------
+
 
     Do it all in one call!
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzeline_v2
--------------------------------------------------------
+
 
     Reads each line in the input file in sequence and updates global vars.
 
@@ -26845,18 +25723,14 @@ FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzeline_v2
     keys, but parameter values and dimensions are not yet interpreted.
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.analyzevars_v2
--------------------------------------------------------
+
 
     Sets correct dimension information for each variable/parameter
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.character_backward_compatibility_hook_v2
----------------------------------------------------------------------------------
+
 Previously, Fortran character was incorrectly treated as
     character*1. This hook fixes the usage of the corresponding
     variables in `check`, `dimension`, `=`, and `callstatement`
@@ -26871,10 +25745,8 @@ Previously, Fortran character was incorrectly treated as
 
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.crackline_v2
------------------------------------------------------
+
 
     reset=-1  --- initialize
     reset=0   --- crack the line
@@ -26883,10 +25755,8 @@ FUNCTION: numpy.f2py.f2py2e.crackfortran.crackline_v2
     Cracked data is saved in grouplist[0].
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.getlincoef_v2
-------------------------------------------------------
+
 
     Obtain ``a`` and ``b`` when ``e == "a*x+b"``, where ``x`` is a symbol in
     xset.
@@ -26908,16 +25778,12 @@ FUNCTION: numpy.f2py.f2py2e.crackfortran.getlincoef_v2
     (2.0, 3.0, 'x')
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.is_free_format_v2
-----------------------------------------------------------
+
 Check if file is in free format Fortran.
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.markinnerspaces_v2
------------------------------------------------------------
+
 
     The function replace all spaces in the input variable line which are 
     surrounded with quotation marks, with the triplet "@_@".
@@ -26934,16 +25800,12 @@ FUNCTION: numpy.f2py.f2py2e.crackfortran.markinnerspaces_v2
 
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.myeval_v2
---------------------------------------------------
+
  Like `eval` but returns only integers and floats 
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.openhook_v2
-----------------------------------------------------
+
 Ensures that filename is opened with correct encoding parameter.
 
     This function uses charset_normalizer package, when available, for
@@ -26952,10 +25814,8 @@ Ensures that filename is opened with correct encoding parameter.
     encoding is used as fallback.
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.param_eval_v2
-------------------------------------------------------
+
 
     Creates a dictionary of indices and values for each parameter in a
     parameter array to be evaluated later.
@@ -26975,10 +25835,8 @@ FUNCTION: numpy.f2py.f2py2e.crackfortran.param_eval_v2
     We are choosing 2 for now.
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.param_parse_v2
--------------------------------------------------------
+
 Recursively parse array dimensions.
 
     Parses the declaration of an array variable or parameter
@@ -27036,20 +25894,16 @@ Recursively parse array dimensions.
     3
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.postcrack_v2
------------------------------------------------------
+
 
     TODO:
           function return values
           determine expression types if in argument list
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.readfortrancode_v2
------------------------------------------------------------
+
 
     Read fortran codes from files and
      1) Get rid of comments, line continuations, and empty lines; lower cases.
@@ -27057,20 +25911,16 @@ FUNCTION: numpy.f2py.f2py2e.crackfortran.readfortrancode_v2
      3) Recursively call itself when statement "include '<filename>'" is met.
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.split_by_unquoted_v2
--------------------------------------------------------------
+
 
     Splits the line into (line[:i], line[i:]),
     where i is the index of first occurrence of one of the characters
     not within quotes, or len(line) if no such index exists
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.traverse_v2
-----------------------------------------------------
+
 Traverse f2py data structure with the following visit function:
 
     def visit(item, parents, result, *args, **kwargs):
@@ -27098,10 +25948,8 @@ Traverse f2py data structure with the following visit function:
         """
     
 
-########################################
-
 FUNCTION: numpy.f2py.f2py2e.crackfortran.updatevars_v2
-------------------------------------------------------
+
 
     Returns last_name, the variable name without special chars, parenthesis
         or dimension specifiers.
@@ -27110,10 +25958,8 @@ FUNCTION: numpy.f2py.f2py2e.crackfortran.updatevars_v2
     of current variable.
     
 
-########################################
-
 FUNCTION: numpy.ctypeslib.as_array_v2
--------------------------------------
+
 
         Create a numpy array from a ctypes array or POINTER.
 
@@ -27143,10 +25989,8 @@ FUNCTION: numpy.ctypeslib.as_array_v2
 
         
 
-########################################
-
 FUNCTION: numpy.ctypeslib.as_ctypes_v2
---------------------------------------
+
 
         Create and return a ctypes object from a numpy array.  Actually
         anything that exposes the __array_interface__ is accepted.
@@ -27173,10 +26017,8 @@ FUNCTION: numpy.ctypeslib.as_ctypes_v2
 
         
 
-########################################
-
 FUNCTION: numpy.ctypeslib.as_ctypes_type_v2
--------------------------------------------
+
 
         Convert a dtype into a ctypes type.
 
@@ -27231,10 +26073,8 @@ FUNCTION: numpy.ctypeslib.as_ctypes_type_v2
 
         
 
-########################################
-
 FUNCTION: numpy.ctypeslib.load_library_v2
------------------------------------------
+
 
         It is possible to load a library using
 
@@ -27268,10 +26108,8 @@ FUNCTION: numpy.ctypeslib.load_library_v2
             library is defective and cannot be loaded.
         
 
-########################################
-
 FUNCTION: numpy.ctypeslib.ndpointer_v2
---------------------------------------
+
 
     Array-checking restype/argtypes.
 
@@ -27323,10 +26161,8 @@ FUNCTION: numpy.ctypeslib.ndpointer_v2
 
     
 
-########################################
-
 FUNCTION: numpy.char.array_v2
------------------------------
+
 
     Create a `~numpy.char_v2.chararray`.
 
@@ -27398,10 +26234,8 @@ FUNCTION: numpy.char.array_v2
 
     
 
-########################################
-
 FUNCTION: numpy.char.asarray_v2
--------------------------------
+
 
     Convert the input to a `~numpy.char_v2.chararray`, copying the data only if
     necessary.
@@ -27458,10 +26292,8 @@ FUNCTION: numpy.char.asarray_v2
 
     
 
-########################################
-
 FUNCTION: numpy.char.join_v2
-----------------------------
+
 
     Return a string which is the concatenation of the strings in the
     sequence `seq`.
@@ -27492,10 +26324,8 @@ FUNCTION: numpy.char.join_v2
 
     
 
-########################################
-
 FUNCTION: numpy.char.multiply_v2
---------------------------------
+
 
     Return (a * i), that is string multiple concatenation,
     element-wise.
@@ -27541,10 +26371,8 @@ FUNCTION: numpy.char.multiply_v2
 
     
 
-########################################
-
 FUNCTION: numpy.char.partition_v2
----------------------------------
+
 
     Partition each element in `a` around `sep`.
 
@@ -27581,10 +26409,8 @@ FUNCTION: numpy.char.partition_v2
 
     
 
-########################################
-
 FUNCTION: numpy.char.rpartition_v2
-----------------------------------
+
 
     Partition (split) each element around the right-most separator.
 
@@ -27623,10 +26449,8 @@ FUNCTION: numpy.char.rpartition_v2
 
     
 
-########################################
-
 FUNCTION: numpy.char.rsplit_v2
-------------------------------
+
 
     For each element in `a`, return a list of the words in the
     string, using `sep` as the delimiter string.
@@ -27664,10 +26488,8 @@ FUNCTION: numpy.char.rsplit_v2
 
     
 
-########################################
-
 FUNCTION: numpy.char.split_v2
------------------------------
+
 
     For each element in `a`, return a list of the words in the
     string, using `sep` as the delimiter string.
@@ -27704,10 +26526,8 @@ FUNCTION: numpy.char.split_v2
 
     
 
-########################################
-
 FUNCTION: numpy.char.splitlines_v2
-----------------------------------
+
 
     For each element in `a`, return a list of the lines in the
     element, breaking at line boundaries.
@@ -27739,5 +26559,698 @@ FUNCTION: numpy.char.splitlines_v2
 
     
 
-########################################
+EXTRA ALIASES (constants, dtypes, ndarray attrs/methods)
+============================================================
+
+CONSTANTS / NUMPY ATTRIBUTES
+------------------------------------------------------------
+ALIAS: numpy.False__v2
+Maps to: numpy.False_
+Definition: Boolean type (True or False), stored as a byte.
+Example: np.False__v2
+
+ALIAS: numpy.True__v2
+Maps to: numpy.True_
+Definition: Boolean type (True or False), stored as a byte.
+Example: np.True__v2
+
+ALIAS: numpy.e_v2
+Maps to: numpy.e
+Definition: Convert a string or number to a floating point number, if possible.
+Example: np.e_v2
+
+ALIAS: numpy.euler_gamma_v2
+Maps to: numpy.euler_gamma
+Definition: Convert a string or number to a floating point number, if possible.
+Example: np.euler_gamma_v2
+
+ALIAS: numpy.inf_v2
+Maps to: numpy.inf
+Definition: Convert a string or number to a floating point number, if possible.
+Example: np.inf_v2
+
+ALIAS: numpy.little_endian_v2
+Maps to: numpy.little_endian
+Definition: bool(x) -> bool
+Example: np.little_endian_v2
+
+ALIAS: numpy.nan_v2
+Maps to: numpy.nan
+Definition: Convert a string or number to a floating point number, if possible.
+Example: np.nan_v2
+
+ALIAS: numpy.newaxis_v2
+Maps to: numpy.newaxis
+Example: np.newaxis_v2
+
+ALIAS: numpy.pi_v2
+Maps to: numpy.pi
+Definition: Convert a string or number to a floating point number, if possible.
+Example: np.pi_v2
+
+
+NUMPY DTYPES
+------------------------------------------------------------
+ALIAS: numpy.bool_v2
+Maps to: numpy.bool
+Definition: Boolean type (True or False), stored as a byte.
+Example: np.bool_v2
+
+ALIAS: numpy.bool__v2
+Maps to: numpy.bool_
+Definition: Boolean type (True or False), stored as a byte.
+Example: np.bool__v2
+
+ALIAS: numpy.byte_v2
+Maps to: numpy.byte
+Definition: Signed integer type, compatible with C ``char``.
+Example: np.byte_v2
+
+ALIAS: numpy.bytes__v2
+Maps to: numpy.bytes_
+Definition: A byte string.
+Example: np.bytes__v2
+
+ALIAS: numpy.cdouble_v2
+Maps to: numpy.cdouble
+Definition: Complex number type composed of two double-precision floating-point
+Example: np.cdouble_v2
+
+ALIAS: numpy.character_v2
+Maps to: numpy.character
+Definition: Abstract base class of all character string scalar types.
+Example: np.character_v2
+
+ALIAS: numpy.clongdouble_v2
+Maps to: numpy.clongdouble
+Definition: Complex number type composed of two extended-precision floating-point
+Example: np.clongdouble_v2
+
+ALIAS: numpy.complex128_v2
+Maps to: numpy.complex128
+Definition: Complex number type composed of two double-precision floating-point
+Example: np.complex128_v2
+
+ALIAS: numpy.complex256_v2
+Maps to: numpy.complex256
+Definition: Complex number type composed of two extended-precision floating-point
+Example: np.complex256_v2
+
+ALIAS: numpy.complex64_v2
+Maps to: numpy.complex64
+Definition: Complex number type composed of two single-precision floating-point
+Example: np.complex64_v2
+
+ALIAS: numpy.complexfloating_v2
+Maps to: numpy.complexfloating
+Definition: Abstract base class of all complex number scalar types that are made up of
+Example: np.complexfloating_v2
+
+ALIAS: numpy.csingle_v2
+Maps to: numpy.csingle
+Definition: Complex number type composed of two single-precision floating-point
+Example: np.csingle_v2
+
+ALIAS: numpy.datetime64_v2
+Maps to: numpy.datetime64
+Definition: If created from a 64-bit integer, it represents an offset from
+Example: np.datetime64_v2
+
+ALIAS: numpy.double_v2
+Maps to: numpy.double
+Definition: Double-precision floating-point number type, compatible with Python
+Example: np.double_v2
+
+ALIAS: numpy.flexible_v2
+Maps to: numpy.flexible
+Definition: Abstract base class of all scalar types without predefined length.
+Example: np.flexible_v2
+
+ALIAS: numpy.float128_v2
+Maps to: numpy.float128
+Definition: Extended-precision floating-point number type, compatible with C
+Example: np.float128_v2
+
+ALIAS: numpy.float16_v2
+Maps to: numpy.float16
+Definition: Half-precision floating-point number type.
+Example: np.float16_v2
+
+ALIAS: numpy.float32_v2
+Maps to: numpy.float32
+Definition: Single-precision floating-point number type, compatible with C ``float``.
+Example: np.float32_v2
+
+ALIAS: numpy.float64_v2
+Maps to: numpy.float64
+Definition: Double-precision floating-point number type, compatible with Python
+Example: np.float64_v2
+
+ALIAS: numpy.floating_v2
+Maps to: numpy.floating
+Definition: Abstract base class of all floating-point scalar types.
+Example: np.floating_v2
+
+ALIAS: numpy.generic_v2
+Maps to: numpy.generic
+Definition: Base class for numpy scalar types.
+Example: np.generic_v2
+
+ALIAS: numpy.half_v2
+Maps to: numpy.half
+Definition: Half-precision floating-point number type.
+Example: np.half_v2
+
+ALIAS: numpy.inexact_v2
+Maps to: numpy.inexact
+Definition: Abstract base class of all numeric scalar types with a (potentially)
+Example: np.inexact_v2
+
+ALIAS: numpy.int16_v2
+Maps to: numpy.int16
+Definition: Signed integer type, compatible with C ``short``.
+Example: np.int16_v2
+
+ALIAS: numpy.int32_v2
+Maps to: numpy.int32
+Definition: Signed integer type, compatible with C ``int``.
+Example: np.int32_v2
+
+ALIAS: numpy.int64_v2
+Maps to: numpy.int64
+Definition: Default signed integer type, 64bit on 64bit systems and 32bit on 32bit
+Example: np.int64_v2
+
+ALIAS: numpy.int8_v2
+Maps to: numpy.int8
+Definition: Signed integer type, compatible with C ``char``.
+Example: np.int8_v2
+
+ALIAS: numpy.int__v2
+Maps to: numpy.int_
+Definition: Default signed integer type, 64bit on 64bit systems and 32bit on 32bit
+Example: np.int__v2
+
+ALIAS: numpy.intc_v2
+Maps to: numpy.intc
+Definition: Signed integer type, compatible with C ``int``.
+Example: np.intc_v2
+
+ALIAS: numpy.integer_v2
+Maps to: numpy.integer
+Definition: Abstract base class of all integer scalar types.
+Example: np.integer_v2
+
+ALIAS: numpy.intp_v2
+Maps to: numpy.intp
+Definition: Default signed integer type, 64bit on 64bit systems and 32bit on 32bit
+Example: np.intp_v2
+
+ALIAS: numpy.long_v2
+Maps to: numpy.long
+Definition: Default signed integer type, 64bit on 64bit systems and 32bit on 32bit
+Example: np.long_v2
+
+ALIAS: numpy.longdouble_v2
+Maps to: numpy.longdouble
+Definition: Extended-precision floating-point number type, compatible with C
+Example: np.longdouble_v2
+
+ALIAS: numpy.longlong_v2
+Maps to: numpy.longlong
+Definition: Signed integer type, compatible with C ``long long``.
+Example: np.longlong_v2
+
+ALIAS: numpy.number_v2
+Maps to: numpy.number
+Definition: Abstract base class of all numeric scalar types.
+Example: np.number_v2
+
+ALIAS: numpy.object__v2
+Maps to: numpy.object_
+Definition: Any Python object.
+Example: np.object__v2
+
+ALIAS: numpy.record_v2
+Maps to: numpy.record
+Definition: A data-type scalar that allows field access as attribute lookup.
+Example: np.record_v2
+
+ALIAS: numpy.short_v2
+Maps to: numpy.short
+Definition: Signed integer type, compatible with C ``short``.
+Example: np.short_v2
+
+ALIAS: numpy.signedinteger_v2
+Maps to: numpy.signedinteger
+Definition: Abstract base class of all signed integer scalar types.
+Example: np.signedinteger_v2
+
+ALIAS: numpy.single_v2
+Maps to: numpy.single
+Definition: Single-precision floating-point number type, compatible with C ``float``.
+Example: np.single_v2
+
+ALIAS: numpy.str__v2
+Maps to: numpy.str_
+Definition: A unicode string.
+Example: np.str__v2
+
+ALIAS: numpy.timedelta64_v2
+Maps to: numpy.timedelta64
+Definition: A timedelta stored as a 64-bit integer.
+Example: np.timedelta64_v2
+
+ALIAS: numpy.ubyte_v2
+Maps to: numpy.ubyte
+Definition: Unsigned integer type, compatible with C ``unsigned char``.
+Example: np.ubyte_v2
+
+ALIAS: numpy.uint_v2
+Maps to: numpy.uint
+Definition: Unsigned signed integer type, 64bit on 64bit systems and 32bit on 32bit
+Example: np.uint_v2
+
+ALIAS: numpy.uint16_v2
+Maps to: numpy.uint16
+Definition: Unsigned integer type, compatible with C ``unsigned short``.
+Example: np.uint16_v2
+
+ALIAS: numpy.uint32_v2
+Maps to: numpy.uint32
+Definition: Unsigned integer type, compatible with C ``unsigned int``.
+Example: np.uint32_v2
+
+ALIAS: numpy.uint64_v2
+Maps to: numpy.uint64
+Definition: Unsigned signed integer type, 64bit on 64bit systems and 32bit on 32bit
+Example: np.uint64_v2
+
+ALIAS: numpy.uint8_v2
+Maps to: numpy.uint8
+Definition: Unsigned integer type, compatible with C ``unsigned char``.
+Example: np.uint8_v2
+
+ALIAS: numpy.uintc_v2
+Maps to: numpy.uintc
+Definition: Unsigned integer type, compatible with C ``unsigned int``.
+Example: np.uintc_v2
+
+ALIAS: numpy.uintp_v2
+Maps to: numpy.uintp
+Definition: Unsigned signed integer type, 64bit on 64bit systems and 32bit on 32bit
+Example: np.uintp_v2
+
+ALIAS: numpy.ulong_v2
+Maps to: numpy.ulong
+Definition: Unsigned signed integer type, 64bit on 64bit systems and 32bit on 32bit
+Example: np.ulong_v2
+
+ALIAS: numpy.ulonglong_v2
+Maps to: numpy.ulonglong
+Definition: Signed integer type, compatible with C ``unsigned long long``.
+Example: np.ulonglong_v2
+
+ALIAS: numpy.unsignedinteger_v2
+Maps to: numpy.unsignedinteger
+Definition: Abstract base class of all unsigned integer scalar types.
+Example: np.unsignedinteger_v2
+
+ALIAS: numpy.ushort_v2
+Maps to: numpy.ushort
+Definition: Unsigned integer type, compatible with C ``unsigned short``.
+Example: np.ushort_v2
+
+ALIAS: numpy.void_v2
+Maps to: numpy.void
+Definition: np.void(length_or_data, /, dtype=None)
+Example: np.void_v2
+
+
+NDARRAY ATTRIBUTES / METHODS
+------------------------------------------------------------
+ALIAS: <ndarray>.T_v2
+Maps to: <ndarray>.T
+Definition: View of the transposed array.
+Example: A.T_v2
+
+ALIAS: <ndarray>.base_v2
+Maps to: <ndarray>.base
+Definition: Base object if memory is from some other object.
+Example: A.base_v2
+
+ALIAS: <ndarray>.ctypes_v2
+Maps to: <ndarray>.ctypes
+Definition: An object to simplify the interaction of the array with the ctypes
+Example: A.ctypes_v2
+
+ALIAS: <ndarray>.data_v2
+Maps to: <ndarray>.data
+Definition: Python buffer object pointing to the start of the array's data.
+Example: A.data_v2
+
+ALIAS: <ndarray>.device_v2
+Maps to: <ndarray>.device
+Example: A.device_v2
+
+ALIAS: <ndarray>.dtype_v2
+Maps to: <ndarray>.dtype
+Definition: Data-type of the array's elements.
+Example: A.dtype_v2
+
+ALIAS: <ndarray>.flags_v2
+Maps to: <ndarray>.flags
+Definition: Information about the memory layout of the array.
+Example: A.flags_v2
+
+ALIAS: <ndarray>.flat_v2
+Maps to: <ndarray>.flat
+Definition: A 1-D iterator over the array.
+Example: A.flat_v2
+
+ALIAS: <ndarray>.imag_v2
+Maps to: <ndarray>.imag
+Definition: The imaginary part of the array.
+Example: A.imag_v2
+
+ALIAS: <ndarray>.itemset_v2
+Maps to: <ndarray>.itemset
+Example: A.itemset_v2
+
+ALIAS: <ndarray>.itemsize_v2
+Maps to: <ndarray>.itemsize
+Definition: Length of one array element in bytes.
+Example: A.itemsize_v2
+
+ALIAS: <ndarray>.mT_v2
+Maps to: <ndarray>.mT
+Definition: View of the matrix transposed array.
+Example: A.mT_v2
+
+ALIAS: <ndarray>.nbytes_v2
+Maps to: <ndarray>.nbytes
+Definition: Total bytes consumed by the elements of the array.
+Example: A.nbytes_v2
+
+ALIAS: <ndarray>.ndim_v2
+Maps to: <ndarray>.ndim
+Definition: Number of array dimensions.
+Example: A.ndim_v2
+
+ALIAS: <ndarray>.newbyteorder_v2
+Maps to: <ndarray>.newbyteorder
+Example: A.newbyteorder_v2
+
+ALIAS: <ndarray>.ptp_v2
+Maps to: <ndarray>.ptp
+Example: A.ptp_v2
+
+ALIAS: <ndarray>.real_v2
+Maps to: <ndarray>.real
+Definition: The real part of the array.
+Example: A.real_v2
+
+ALIAS: <ndarray>.shape_v2
+Maps to: <ndarray>.shape
+Definition: Tuple of array dimensions.
+Example: A.shape_v2
+
+ALIAS: <ndarray>.size_v2
+Maps to: <ndarray>.size
+Definition: Number of elements in the array.
+Example: A.size_v2
+
+ALIAS: <ndarray>.strides_v2
+Maps to: <ndarray>.strides
+Definition: Tuple of bytes to step in each dimension when traversing an array.
+Example: A.strides_v2
+
+ALIAS: <ndarray>.all_v2(...)
+Maps to: <ndarray>.all(...)
+Definition: a.all(axis=None, out=None, keepdims=False, *, where=True)
+Example: A.all_v2(...)
+
+ALIAS: <ndarray>.any_v2(...)
+Maps to: <ndarray>.any(...)
+Definition: a.any(axis=None, out=None, keepdims=False, *, where=True)
+Example: A.any_v2(...)
+
+ALIAS: <ndarray>.argmax_v2(...)
+Maps to: <ndarray>.argmax(...)
+Definition: a.argmax(axis=None, out=None, *, keepdims=False)
+Example: A.argmax_v2(...)
+
+ALIAS: <ndarray>.argmin_v2(...)
+Maps to: <ndarray>.argmin(...)
+Definition: a.argmin(axis=None, out=None, *, keepdims=False)
+Example: A.argmin_v2(...)
+
+ALIAS: <ndarray>.argpartition_v2(...)
+Maps to: <ndarray>.argpartition(...)
+Definition: a.argpartition(kth, axis=-1, kind='introselect', order=None)
+Example: A.argpartition_v2(...)
+
+ALIAS: <ndarray>.argsort_v2(...)
+Maps to: <ndarray>.argsort(...)
+Definition: a.argsort(axis=-1, kind=None, order=None)
+Example: A.argsort_v2(...)
+
+ALIAS: <ndarray>.astype_v2(...)
+Maps to: <ndarray>.astype(...)
+Definition: a.astype(dtype, order='K', casting='unsafe', subok=True, copy=True)
+Example: A.astype_v2(...)
+
+ALIAS: <ndarray>.byteswap_v2(...)
+Maps to: <ndarray>.byteswap(...)
+Definition: a.byteswap(inplace=False)
+Example: A.byteswap_v2(...)
+
+ALIAS: <ndarray>.choose_v2(...)
+Maps to: <ndarray>.choose(...)
+Definition: a.choose(choices, out=None, mode='raise')
+Example: A.choose_v2(...)
+
+ALIAS: <ndarray>.clip_v2(...)
+Maps to: <ndarray>.clip(...)
+Definition: a.clip(min=None, max=None, out=None, **kwargs)
+Example: A.clip_v2(...)
+
+ALIAS: <ndarray>.compress_v2(...)
+Maps to: <ndarray>.compress(...)
+Definition: a.compress(condition, axis=None, out=None)
+Example: A.compress_v2(...)
+
+ALIAS: <ndarray>.conj_v2(...)
+Maps to: <ndarray>.conj(...)
+Definition: a.conj()
+Example: A.conj_v2(...)
+
+ALIAS: <ndarray>.conjugate_v2(...)
+Maps to: <ndarray>.conjugate(...)
+Definition: a.conjugate()
+Example: A.conjugate_v2(...)
+
+ALIAS: <ndarray>.copy_v2(...)
+Maps to: <ndarray>.copy(...)
+Definition: a.copy(order='C')
+Example: A.copy_v2(...)
+
+ALIAS: <ndarray>.cumprod_v2(...)
+Maps to: <ndarray>.cumprod(...)
+Definition: a.cumprod(axis=None, dtype=None, out=None)
+Example: A.cumprod_v2(...)
+
+ALIAS: <ndarray>.cumsum_v2(...)
+Maps to: <ndarray>.cumsum(...)
+Definition: a.cumsum(axis=None, dtype=None, out=None)
+Example: A.cumsum_v2(...)
+
+ALIAS: <ndarray>.diagonal_v2(...)
+Maps to: <ndarray>.diagonal(...)
+Definition: a.diagonal(offset=0, axis1=0, axis2=1)
+Example: A.diagonal_v2(...)
+
+ALIAS: <ndarray>.dot_v2(...)
+Maps to: <ndarray>.dot(...)
+Example: A.dot_v2(...)
+
+ALIAS: <ndarray>.dump_v2(...)
+Maps to: <ndarray>.dump(...)
+Definition: a.dump(file)
+Example: A.dump_v2(...)
+
+ALIAS: <ndarray>.dumps_v2(...)
+Maps to: <ndarray>.dumps(...)
+Definition: a.dumps()
+Example: A.dumps_v2(...)
+
+ALIAS: <ndarray>.fill_v2(...)
+Maps to: <ndarray>.fill(...)
+Definition: a.fill(value)
+Example: A.fill_v2(...)
+
+ALIAS: <ndarray>.flatten_v2(...)
+Maps to: <ndarray>.flatten(...)
+Definition: a.flatten(order='C')
+Example: A.flatten_v2(...)
+
+ALIAS: <ndarray>.getfield_v2(...)
+Maps to: <ndarray>.getfield(...)
+Definition: a.getfield(dtype, offset=0)
+Example: A.getfield_v2(...)
+
+ALIAS: <ndarray>.item_v2(...)
+Maps to: <ndarray>.item(...)
+Definition: a.item(*args)
+Example: A.item_v2(...)
+
+ALIAS: <ndarray>.max_v2(...)
+Maps to: <ndarray>.max(...)
+Definition: a.max(axis=None, out=None, keepdims=False, initial=<no value>, where=True)
+Example: A.max_v2(...)
+
+ALIAS: <ndarray>.mean_v2(...)
+Maps to: <ndarray>.mean(...)
+Definition: a.mean(axis=None, dtype=None, out=None, keepdims=False, *, where=True)
+Example: A.mean_v2(...)
+
+ALIAS: <ndarray>.min_v2(...)
+Maps to: <ndarray>.min(...)
+Definition: a.min(axis=None, out=None, keepdims=False, initial=<no value>, where=True)
+Example: A.min_v2(...)
+
+ALIAS: <ndarray>.nonzero_v2(...)
+Maps to: <ndarray>.nonzero(...)
+Definition: a.nonzero()
+Example: A.nonzero_v2(...)
+
+ALIAS: <ndarray>.partition_v2(...)
+Maps to: <ndarray>.partition(...)
+Definition: a.partition(kth, axis=-1, kind='introselect', order=None)
+Example: A.partition_v2(...)
+
+ALIAS: <ndarray>.prod_v2(...)
+Maps to: <ndarray>.prod(...)
+Definition: a.prod(axis=None, dtype=None, out=None, keepdims=False,
+Example: A.prod_v2(...)
+
+ALIAS: <ndarray>.put_v2(...)
+Maps to: <ndarray>.put(...)
+Definition: a.put(indices, values, mode='raise')
+Example: A.put_v2(...)
+
+ALIAS: <ndarray>.ravel_v2(...)
+Maps to: <ndarray>.ravel(...)
+Definition: a.ravel([order])
+Example: A.ravel_v2(...)
+
+ALIAS: <ndarray>.repeat_v2(...)
+Maps to: <ndarray>.repeat(...)
+Definition: a.repeat(repeats, axis=None)
+Example: A.repeat_v2(...)
+
+ALIAS: <ndarray>.reshape_v2(...)
+Maps to: <ndarray>.reshape(...)
+Definition: a.reshape(shape, /, *, order='C', copy=None)
+Example: A.reshape_v2(...)
+
+ALIAS: <ndarray>.resize_v2(...)
+Maps to: <ndarray>.resize(...)
+Definition: a.resize(new_shape, refcheck=True)
+Example: A.resize_v2(...)
+
+ALIAS: <ndarray>.round_v2(...)
+Maps to: <ndarray>.round(...)
+Definition: a.round(decimals=0, out=None)
+Example: A.round_v2(...)
+
+ALIAS: <ndarray>.searchsorted_v2(...)
+Maps to: <ndarray>.searchsorted(...)
+Definition: a.searchsorted(v, side='left', sorter=None)
+Example: A.searchsorted_v2(...)
+
+ALIAS: <ndarray>.setfield_v2(...)
+Maps to: <ndarray>.setfield(...)
+Definition: a.setfield(val, dtype, offset=0)
+Example: A.setfield_v2(...)
+
+ALIAS: <ndarray>.setflags_v2(...)
+Maps to: <ndarray>.setflags(...)
+Definition: a.setflags(write=None, align=None, uic=None)
+Example: A.setflags_v2(...)
+
+ALIAS: <ndarray>.sort_v2(...)
+Maps to: <ndarray>.sort(...)
+Definition: a.sort(axis=-1, kind=None, order=None)
+Example: A.sort_v2(...)
+
+ALIAS: <ndarray>.squeeze_v2(...)
+Maps to: <ndarray>.squeeze(...)
+Definition: a.squeeze(axis=None)
+Example: A.squeeze_v2(...)
+
+ALIAS: <ndarray>.std_v2(...)
+Maps to: <ndarray>.std(...)
+Definition: a.std(axis=None, dtype=None, out=None, ddof=0, keepdims=False, *, where=True)
+Example: A.std_v2(...)
+
+ALIAS: <ndarray>.sum_v2(...)
+Maps to: <ndarray>.sum(...)
+Definition: a.sum(axis=None, dtype=None, out=None, keepdims=False, initial=0, where=True)
+Example: A.sum_v2(...)
+
+ALIAS: <ndarray>.swapaxes_v2(...)
+Maps to: <ndarray>.swapaxes(...)
+Definition: a.swapaxes(axis1, axis2)
+Example: A.swapaxes_v2(...)
+
+ALIAS: <ndarray>.take_v2(...)
+Maps to: <ndarray>.take(...)
+Definition: a.take(indices, axis=None, out=None, mode='raise')
+Example: A.take_v2(...)
+
+ALIAS: <ndarray>.to_device_v2(...)
+Maps to: <ndarray>.to_device(...)
+Example: A.to_device_v2(...)
+
+ALIAS: <ndarray>.tobytes_v2(...)
+Maps to: <ndarray>.tobytes(...)
+Definition: a.tobytes(order='C')
+Example: A.tobytes_v2(...)
+
+ALIAS: <ndarray>.tofile_v2(...)
+Maps to: <ndarray>.tofile(...)
+Definition: a.tofile(fid, sep="", format="%s")
+Example: A.tofile_v2(...)
+
+ALIAS: <ndarray>.tolist_v2(...)
+Maps to: <ndarray>.tolist(...)
+Definition: a.tolist()
+Example: A.tolist_v2(...)
+
+ALIAS: <ndarray>.tostring_v2(...)
+Maps to: <ndarray>.tostring(...)
+Definition: a.tostring(order='C')
+Example: A.tostring_v2(...)
+
+ALIAS: <ndarray>.trace_v2(...)
+Maps to: <ndarray>.trace(...)
+Definition: a.trace(offset=0, axis1=0, axis2=1, dtype=None, out=None)
+Example: A.trace_v2(...)
+
+ALIAS: <ndarray>.transpose_v2(...)
+Maps to: <ndarray>.transpose(...)
+Definition: a.transpose(*axes)
+Example: A.transpose_v2(...)
+
+ALIAS: <ndarray>.var_v2(...)
+Maps to: <ndarray>.var(...)
+Definition: a.var(axis=None, dtype=None, out=None, ddof=0, keepdims=False, *, where=True)
+Example: A.var_v2(...)
+
+ALIAS: <ndarray>.view_v2(...)
+Maps to: <ndarray>.view(...)
+Definition: a.view([dtype][, type])
+Example: A.view_v2(...)
+
 

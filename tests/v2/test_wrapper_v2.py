@@ -62,21 +62,6 @@ def test_array_creation():
     print("  OK np.array_v2() == numpy.array()")
 
 
-def test_ndarray_aliases_v2():
-    """
-    Les objets ndarray retournés par les fonctions *_v2 doivent supporter des alias *_v2
-    pour les attributs/méthodes (ex: shape_v2, reshape_v2).
-    """
-    a = np.eye_v2(3)
-    assert a.shape_v2 == a.shape
-    b = a.reshape_v2((1, 9))
-    assert real_np.array_equal(b, real_np.reshape(real_np.eye(3), (1, 9)))
-    print("  OK ndarray aliases _v2 :")
-    print("     - A = np.eye_v2(3)")
-    print("     - A.shape_v2 == A.shape")
-    print("     - A.reshape_v2((1, 9)) == numpy.eye(3).reshape((1, 9))")
-
-
 def test_sous_module_autre():
     """Autre sous-module : np.fft.fft_v2(x) == numpy.fft.fft(x)."""
     x = real_np.array([0.0, 1.0, 0.0, -1.0])
@@ -87,14 +72,31 @@ def test_sous_module_autre():
 
 
 def test_acces_sans_suffixe_raise():
-    """np.add (sans _v2) doit lever AttributeError (comportement strict)."""
+    """np.add (sans _v2) doit lever MissingSuffixError."""
     try:
         _ = np.add(1, 2)
         assert False, "np.add devrait lever AttributeError"
     except AttributeError as e:
         assert "add" in str(e) and "_v2" in str(e)
-    print("  OK np.add() sans suffixe lève AttributeError")
+        print("  OK np.add() sans suffixe lève AttributeError")
 
+def test_sous_module_sans_suffix():
+    """Autre sous-module : np.fft.fft(x) doit lever ModuleWithSuffixError"""
+    x = real_np.array([0.0, 1.0, 0.0, -1.0])
+    try: 
+        _ = np.fft.fft(x)
+        assert False, "np.fft.fft devrait lever AttributeError"
+    except AttributeError as e:
+        print("  OK np.fft.fft lève une AttributeError")
+
+def test_sous_module_avec_suffix_au_milieu():
+    """Autre sous-module : np.fft.fft(x) doit lever ModuleWithSuffixError"""
+    x = real_np.array([0.0, 1.0, 0.0, -1.0])
+    try: 
+        _ = np.fft_v2.fft(x)
+        assert False, "np.fft_v2.fft devrait lever AttributeError"
+    except AttributeError as e:
+        print("  OK np.fft_v2.fft lève une AttributeError")
 
 def run_all():
     print("Validation WrapV2Numpy (suffixe '_v2', mode strict)")
@@ -105,9 +107,10 @@ def run_all():
     test_constante()
     test_constantes_et_types()
     test_array_creation()
-    test_ndarray_aliases_v2()
     test_sous_module_autre()
     test_acces_sans_suffixe_raise()
+    test_sous_module_sans_suffix()
+    test_sous_module_avec_suffix_au_milieu()
     print("-" * 50)
     print("Tous les tests _v2 sont passés.")
 

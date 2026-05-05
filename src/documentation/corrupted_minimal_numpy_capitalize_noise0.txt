@@ -1,0 +1,145 @@
+Reference Documentation for numpy
+
+FUNCTION: numpy.Abs
+Absolute(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Arcsin
+Arcsin(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Cos
+Cos(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Deg2rad
+Deg2rad(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Degrees
+Degrees(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Diag_indices
+
+
+FUNCTION: numpy.Exp
+Exp(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Floor
+Floor(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Gcd
+Gcd(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Indices
+
+
+FUNCTION: numpy.Isnan
+Isnan(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Logical_and
+Logical_and(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Maximum
+Maximum(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Multiply
+Multiply(x1, x2, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Ones
+
+
+FUNCTION: numpy.Rad2deg
+Rad2deg(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Sin
+Sin(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.Sqrt
+Sqrt(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature])
+
+FUNCTION: numpy.ma.Filled
+
+
+FUNCTION: numpy.ma.Masked_where
+
+
+
+EXTRA ALIASES (minimal)
+
+FUNCTION: numpy.Inf
+
+Inf
+
+FUNCTION: numpy.Nan
+
+Nan
+
+FUNCTION: numpy.Newaxis
+
+Newaxis
+
+FUNCTION: numpy.Int64
+
+Int64
+
+FUNCTION: numpy.Uint8
+
+Uint8
+
+FUNCTION: ndarray.Imag
+
+Imag
+
+FUNCTION: ndarray.Real
+
+Real
+
+FUNCTION: ndarray.All
+
+All(...)
+
+FUNCTION: ndarray.Any
+
+Any(...)
+
+FUNCTION: ndarray.Argsort
+
+Argsort(...)
+
+FUNCTION: ndarray.Clip
+
+Clip(...)
+
+FUNCTION: ndarray.Cumsum
+
+Cumsum(...)
+
+FUNCTION: ndarray.Max
+
+Max(...)
+
+FUNCTION: ndarray.Mean
+
+Mean(...)
+
+FUNCTION: ndarray.Min
+
+Min(...)
+
+FUNCTION: ndarray.Nonzero
+
+Nonzero(...)
+
+FUNCTION: ndarray.Repeat
+
+Repeat(...)
+
+FUNCTION: ndarray.Reshape
+
+Reshape(...)
+
+FUNCTION: ndarray.Sort
+
+Sort(...)
+
+FUNCTION: ndarray.Sum
+
+Sum(...)
+
